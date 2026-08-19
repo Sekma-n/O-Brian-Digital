@@ -58,6 +58,7 @@
             background-color: #ffffff;
             color: #1a1a1a;
             overflow-x: hidden;
+            padding-top: 80px;
         }
         
         .font-body {
@@ -127,25 +128,6 @@
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
-        }
-        
-        .nav-link {
-            position: relative;
-        }
-        
-        .nav-link::after {
-            content: '';
-            position: absolute;
-            bottom: -4px;
-            left: 0;
-            width: 0;
-            height: 2px;
-            background-color: #e6007e;
-            transition: width 0.3s ease;
-        }
-        
-        .nav-link:hover::after {
-            width: 100%;
         }
         
         ::-webkit-scrollbar {
@@ -313,7 +295,7 @@
             cursor: pointer;
         }
         
-        /* Modal styles - exact as requested */
+        /* Modal styles */
         .modal-overlay {
             position: fixed;
             inset: 0;
@@ -501,6 +483,9 @@
         }
         
         @media (max-width: 768px) {
+            body {
+                padding-top: 70px;
+            }
             .stat-number-new {
                 font-size: 2.2rem;
             }
@@ -512,238 +497,395 @@
             }
         }
 
-        /* ── NEW HEADER STYLES ── */
+        /* ── PREMIUM HEADER STYLES ── */
         .header-glass {
             position: fixed;
             top: 0;
             left: 0;
             width: 100%;
-            z-index: 50;
-            background: rgba(255, 255, 255, 0.85);
-            backdrop-filter: blur(12px);
-            -webkit-backdrop-filter: blur(12px);
-            transition: box-shadow 0.3s, background 0.3s;
-            border-bottom: 1px solid rgba(0, 0, 0, 0.04);
+            z-index: 1030;
+            background: rgba(255, 255, 255, 0.72);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.4);
+            box-shadow: 0 1px 2px rgba(0, 0, 0, 0.02);
+            height: 80px;
+            display: flex;
+            align-items: center;
+            padding: 0 1rem;
         }
         .header-glass.scrolled {
-            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
-            background: rgba(255, 255, 255, 0.98);
+            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.06);
+            background: rgba(255, 255, 255, 0.94);
+            border-bottom: 1px solid rgba(0, 0, 0, 0.03);
         }
 
-        .nav-link-new {
-            padding: 0.5rem 1rem;
-            font-size: 0.875rem;
-            font-weight: 600;
-            color: #374151;
-            border-radius: 0.5rem;
-            transition: all 0.3s ease;
+        .logo-premium {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            transition: transform 0.3s ease;
+        }
+        .logo-premium:hover {
+            transform: scale(1.01);
+        }
+        .logo-text {
+            font-size: 1.35rem;
+            font-weight: 800;
+            letter-spacing: -0.5px;
+            color: #231e1f;
+        }
+        .logo-text .highlight {
+            color: #e6007e;
+            position: relative;
+        }
+        .logo-text .highlight::after {
+            content: '';
+            position: absolute;
+            bottom: -2px;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            background: #e6007e;
+            transform: scaleX(0);
+            transform-origin: right;
+            transition: transform 0.4s ease;
+        }
+        .logo-premium:hover .logo-text .highlight::after {
+            transform: scaleX(1);
+            transform-origin: left;
+        }
+
+        .nav-link-premium {
+            position: relative;
+            padding: 0.5rem 1.2rem;
+            font-size: 0.75rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.8px;
+            color: #4b5563;
+            border-radius: 8px;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
             display: inline-block;
             cursor: pointer;
+            background: transparent;
+            text-decoration: none;
         }
-        .nav-link-new:hover {
+        .nav-link-premium::after {
+            content: '';
+            position: absolute;
+            bottom: 4px;
+            left: 50%;
+            width: 0;
+            height: 2px;
+            background: linear-gradient(90deg, #e6007e, #ff1493);
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            transform: translateX(-50%);
+            border-radius: 2px;
+        }
+        .nav-link-premium:hover {
             color: #e6007e;
-            background-color: #fdf2f8;
+            background: rgba(230, 0, 126, 0.06);
+        }
+        .nav-link-premium:hover::after {
+            width: 60%;
+        }
+        .nav-link-premium.active-link {
+            color: #e6007e;
+            background: rgba(230, 0, 126, 0.08);
+        }
+        .nav-link-premium.active-link::after {
+            width: 70%;
         }
 
-        .dropdown-menu-custom {
-            position: absolute;
-            top: 100%;
-            left: 0;
-            margin-top: 0.5rem;
-            width: 200px;
-            background: white;
-            border-radius: 0.75rem;
-            box-shadow: 0 20px 40px -8px rgba(0, 0, 0, 0.15);
-            border: 1px solid #f3f4f6;
-            opacity: 0;
-            visibility: hidden;
-            transform: translateY(-8px) scale(0.96);
-            transition: all 0.25s ease;
-            transform-origin: top left;
-            z-index: 60;
+        .dropdown-wrapper {
+            position: relative;
         }
-        .group:hover .dropdown-menu-custom {
+        .dropdown-wrapper:hover .dropdown-menu-premium {
             opacity: 1;
             visibility: visible;
             transform: translateY(0) scale(1);
         }
-        .dropdown-menu-custom a {
+        .dropdown-menu-premium {
+            position: absolute;
+            top: calc(100% + 12px);
+            left: 0;
+            min-width: 200px;
+            background: rgba(255, 255, 255, 0.98);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border-radius: 12px;
+            box-shadow: 0 20px 50px -12px rgba(0, 0, 0, 0.15);
+            border: 1px solid rgba(230, 0, 126, 0.08);
+            padding: 8px 0;
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(-8px) scale(0.96);
+            transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            transform-origin: top left;
+            z-index: 1050;
+        }
+        .dropdown-menu-premium::before {
+            content: '';
+            position: absolute;
+            top: -6px;
+            left: 20px;
+            width: 10px;
+            height: 10px;
+            background: rgba(255, 255, 255, 0.98);
+            border-left: 1px solid rgba(230, 0, 126, 0.08);
+            border-top: 1px solid rgba(230, 0, 126, 0.08);
+            transform: rotate(45deg);
+            border-radius: 2px;
+        }
+        .dropdown-menu-premium a {
             display: block;
-            padding: 0.75rem 1.25rem;
-            font-size: 0.875rem;
+            padding: 0.7rem 1.4rem;
+            font-size: 0.8rem;
+            font-weight: 500;
             color: #374151;
-            transition: background 0.2s, color 0.2s;
+            transition: all 0.2s ease;
+            letter-spacing: 0.3px;
+            text-decoration: none;
         }
-        .dropdown-menu-custom a:hover {
-            background: #fdf2f8;
+        .dropdown-menu-premium a:hover {
+            background: rgba(230, 0, 126, 0.05);
             color: #e6007e;
+            padding-left: 1.8rem;
         }
-        .dropdown-menu-custom a:first-child {
-            border-radius: 0.75rem 0.75rem 0 0;
+        .dropdown-menu-premium a:first-child {
+            border-radius: 12px 12px 0 0;
         }
-        .dropdown-menu-custom a:last-child {
-            border-radius: 0 0 0.75rem 0.75rem;
+        .dropdown-menu-premium a:last-child {
+            border-radius: 0 0 12px 12px;
         }
 
-        .btn-primary-pink {
+        .btn-premium-cta {
             display: inline-flex;
             align-items: center;
-            gap: 0.5rem;
-            padding: 0.75rem 1.75rem;
-            background: linear-gradient(135deg, #e6007e, #ff1493);
+            gap: 8px;
+            padding: 0.65rem 1.8rem;
+            background: linear-gradient(135deg, #e6007e 0%, #ff1493 100%);
             color: white;
             font-weight: 700;
-            font-size: 0.875rem;
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 0.6px;
             border-radius: 9999px;
-            transition: all 0.3s ease;
-            box-shadow: 0 4px 14px rgba(230, 0, 126, 0.3);
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            box-shadow: 0 4px 15px rgba(230, 0, 126, 0.3);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            text-decoration: none;
         }
-        .btn-primary-pink:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 8px 25px rgba(230, 0, 126, 0.4);
+        .btn-premium-cta:hover {
+            transform: translateY(-3px) scale(1.02);
+            box-shadow: 0 10px 30px rgba(230, 0, 126, 0.4);
             color: white;
+        }
+
+        .burger-premium {
+            width: 36px;
+            height: 36px;
+            border-radius: 10px;
+            border: 1px solid rgba(0, 0, 0, 0.04);
+            background: rgba(255, 255, 255, 0.5);
+            backdrop-filter: blur(4px);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            gap: 5px;
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+        .burger-premium:hover {
+            background: rgba(230, 0, 126, 0.05);
+            border-color: rgba(230, 0, 126, 0.15);
+        }
+        .burger-line {
+            display: block;
+            width: 18px;
+            height: 2px;
+            background: #374151;
+            border-radius: 2px;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        .burger-line:nth-child(3) {
+            width: 12px;
+            margin-left: auto;
+        }
+        .burger-premium.open .burger-line:nth-child(1) {
+            transform: rotate(45deg) translate(5px, 5px);
+            width: 20px;
+        }
+        .burger-premium.open .burger-line:nth-child(2) {
+            opacity: 0;
+            transform: scaleX(0);
+        }
+        .burger-premium.open .burger-line:nth-child(3) {
+            transform: rotate(-45deg) translate(5px, -5px);
+            width: 20px;
+            margin-left: 0;
+        }
+
+        .mobile-menu-panel {
+            display: none;
+            position: fixed;
+            top: 80px;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(255, 255, 255, 0.98);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            padding: 2rem 1.5rem;
+            overflow-y: auto;
+            z-index: 1020;
+            border-top: 1px solid rgba(0, 0, 0, 0.03);
+        }
+        .mobile-menu-panel.open {
+            display: block;
+            animation: fadeSlideDown 0.4s ease forwards;
+        }
+        @keyframes fadeSlideDown {
+            from {
+                opacity: 0;
+                transform: translateY(-10px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        .mobile-menu-panel a {
+            display: block;
+            padding: 0.75rem 1rem;
+            font-size: 1rem;
+            font-weight: 500;
+            color: #1a1a2e;
+            border-radius: 0.5rem;
+            transition: all 0.2s;
+            text-decoration: none;
+        }
+        .mobile-menu-panel a:hover {
+            background: rgba(237, 0, 142, 0.06);
+            color: #ed008e;
+            padding-left: 1.2rem;
+        }
+        .mobile-menu-panel .mobile-dropdown-title {
+            font-weight: 700;
+            padding: 0.75rem 1rem;
+            color: #1a1a2e;
+            cursor: default;
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            color: #6b7280;
+        }
+        .mobile-menu-panel .mobile-dropdown-items {
+            padding-left: 1rem;
+        }
+        .mobile-menu-panel .mobile-dropdown-items a {
+            font-weight: 400;
+            font-size: 0.95rem;
         }
     </style>
 </head>
 <body class="antialiased selection:bg-obrian-pink selection:text-white">
 
-    <!-- ===== NEW HEADER ===== -->
+    <!-- ===== PREMIUM GLASS HEADER ===== -->
     <header class="header-glass" id="mainHeader">
-        <div class="max-w-7xl mx-auto px-4 md:px-6">
-            <div class="flex justify-between items-center h-20">
+        <div class="max-w-7xl mx-auto px-4 md:px-6 w-full">
+            <div class="flex justify-between items-center">
 
-                <!-- Logo -->
-                <a href="#" class="flex items-center gap-3 group">
-                    <img src="assets/images/obrian-transparent-logo-4461219.webp" alt="O'Brian Group" class="h-10 w-auto" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22%3E%3Crect width=%22100%22 height=%22100%22 fill=%22%23ed008e%22/%3E%3Ctext x=%2250%22 y=%2268%22 font-size=%2248%22 text-anchor=%22middle%22 fill=%22white%22 font-weight=%22bold%22 font-family=%22Inter%22%3EO%3C/text%3E%3C/svg%3E'">
-                    <span class="font-black text-xl text-[#231e1f] tracking-tight hidden sm:inline"><span class="text-[#ed018e]"></span></span>
+                <!-- Premium Logo -->
+                <a href="Home.html" class="logo-premium group">
+                    <img src="assets/images/obrian-transparent-logo-4461219.webp" alt="O'Brian Group" class="h-9 w-auto" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22%3E%3Crect width=%22100%22 height=%22100%22 fill=%22%23ed008e%22/%3E%3Ctext x=%2250%22 y=%2268%22 font-size=%2248%22 text-anchor=%22middle%22 fill=%22white%22 font-weight=%22bold%22 font-family=%22Inter%22%3EO%3C/text%3E%3C/svg%3E'">
+                    <span class="logo-text hidden sm:inline-block">
+                        O'<span class="highlight">Brian</span> Digital
+                    </span>
                 </a>
 
-                <!-- Desktop Nav -->
+                <!-- Premium Desktop Nav -->
                 <div class="hidden lg:flex items-center gap-0.5">
-                    <a href="Home.html" class="nav-link-new">Home</a>
-                    <a href="About.html" class="nav-link-new">About</a>
-                    <a href="Our_Work.html" class="nav-link-new">Our Work</a>
-                    <a href="Client_Experience.html" class="nav-link-new">Client Experience</a>
+                    <a href="Home.html" class="nav-link-premium active-link">Home</a>
+                    <a href="About.html" class="nav-link-premium">About</a>
+                    <a href="Our_Work.html" class="nav-link-premium">Our Work</a>
+                    <a href="Client_Experience.html" class="nav-link-premium">Client Experience</a>
 
-                    <div class="relative group">
-                        <button class="nav-link-new flex items-center gap-1">
+                    <div class="dropdown-wrapper">
+                        <button class="nav-link-premium flex items-center gap-1">
                             Case Studies
-                            <svg class="w-3 h-3 transition-transform duration-300 group-hover:rotate-180" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M19 9l-7 7-7-7"></path></svg>
+                            <svg class="w-3 h-3 transition-transform duration-300 dropdown-wrapper:hover:rotate-180" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M19 9l-7 7-7-7"></path></svg>
                         </button>
-                        <div class="dropdown-menu-custom">
+                        <div class="dropdown-menu-premium">
                             <a href="Adv_Case_Studies.html">Advertising</a>
                             <a href="Digital_Case_Studies.html">Digital</a>
                             <a href="Consulting_Case_Studies.html">Consulting</a>
                         </div>
                     </div>
 
-                    <div class="relative group">
-                        <button class="nav-link-new flex items-center gap-1">
+                    <div class="dropdown-wrapper">
+                        <button class="nav-link-premium flex items-center gap-1">
                             Expertise
-                            <svg class="w-3 h-3 transition-transform duration-300 group-hover:rotate-180" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M19 9l-7 7-7-7"></path></svg>
+                            <svg class="w-3 h-3 transition-transform duration-300 dropdown-wrapper:hover:rotate-180" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M19 9l-7 7-7-7"></path></svg>
                         </button>
-                        <div class="dropdown-menu-custom">
+                        <div class="dropdown-menu-premium">
                             <a href="Advertising_Expertise.html">Advertising</a>
                             <a href="Digital_Expertise.html">Digital</a>
                             <a href="Consulting_Expertise.html">Consulting</a>
                         </div>
                     </div>
 
-                    <a href="Staff_News.html" class="nav-link-new">Staff News</a>
-                    <a href="Exploring_Boundless_Horizons.html" class="nav-link-new">Blog</a>
-                    <a href="Archive_Gallery.html" class="nav-link-new">Archives</a>
+                    <a href="Staff_News.html" class="nav-link-premium">Staff News</a>
+                    <a href="Exploring_Boundless_Horizons.html" class="nav-link-premium">Blog</a>
+                    <a href="Archive_Gallery.html" class="nav-link-premium">Archives</a>
                 </div>
 
-                <!-- CTA -->
+                <!-- Premium CTA -->
                 <div class="hidden lg:block">
-                    <a href="Contact_Us.html" class="btn-primary-pink">
+                    <a href="Contact_Us.html" class="btn-premium-cta">
                         <span>Contact</span>
                         <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M17 8l4 4m0 0l-4 4m4-4H3"></path></svg>
                     </a>
                 </div>
 
-                <!-- Burger -->
-                <button class="lg:hidden p-2 rounded-lg hover:bg-gray-100 transition-colors" id="menuBtn" aria-label="Toggle menu">
-                    <div class="w-6 h-6 flex flex-col justify-center items-center gap-1.5">
-                        <span class="w-6 h-0.5 bg-gray-700 transition-all duration-300 menu-line-1"></span>
-                        <span class="w-6 h-0.5 bg-gray-700 transition-all duration-300 menu-line-2"></span>
-                        <span class="w-4 h-0.5 bg-gray-700 transition-all duration-300 menu-line-3 ml-auto"></span>
-                    </div>
+                <!-- Premium Burger -->
+                <button class="burger-premium lg:hidden" id="menuBtn" aria-label="Toggle menu">
+                    <span class="burger-line"></span>
+                    <span class="burger-line"></span>
+                    <span class="burger-line"></span>
                 </button>
             </div>
         </div>
     </header>
 
-    <!-- ===== MOBILE MENU PANEL (preserved) ===== -->
-    <div class="lg:hidden fixed inset-0 bg-white z-40 transform translate-x-full transition-transform duration-500" id="mobileMenu">
-        <div class="flex flex-col h-full">
-            <!-- Mobile Header -->
-            <div class="flex justify-between items-center p-6 border-b border-gray-100">
-                <a href="#" class="flex items-center gap-3">
-                    <img src="obrian-transparent-logo-101.webp" alt="O'Brian Group" class="logo-img" style="height: 40px;" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22%3E%3Crect width=%22100%22 height=%22100%22 fill=%22%23e6007e%22/%3E%3Ctext x=%2250%22 y=%2268%22 font-size=%2248%22 text-anchor=%22middle%22 fill=%22white%22 font-weight=%22bold%22 font-family=%22Arial%22%3EO%3C/text%3E%3C/svg%3E'">
-                    <span class="font-black text-xl text-gray-900">O'BRIAN</span>
-                </a>
-                <button class="p-2 rounded-lg hover:bg-gray-100 transition-colors" id="closeMenu" aria-label="Close menu">
-                    <svg class="w-6 h-6 text-gray-700" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
-                    </svg>
-                </button>
-            </div>
+    <!-- ===== MOBILE MENU PANEL ===== -->
+    <div class="mobile-menu-panel" id="mobileMenuPanel">
+        <a href="Home.html">Home</a>
+        <a href="About.html">About</a>
+        <a href="Our_Work.html">Our Work</a>
+        <a href="Client_Experience.html">Client Experience</a>
 
-            <!-- Mobile Navigation Links -->
-            <div class="flex-1 overflow-y-auto py-6 px-6">
-                <div class="space-y-1">
-                    <a href="Home.html" class="mobile-link block px-4 py-3 text-lg font-semibold text-gray-800 hover:text-[#e6007e] hover:bg-pink-50 rounded-xl transition-all">Home</a>
-                    <a href="About.html" class="mobile-link block px-4 py-3 text-lg font-semibold text-gray-800 hover:text-[#e6007e] hover:bg-pink-50 rounded-xl transition-all">About</a>
-                    <a href="Our_Work.html" class="mobile-link block px-4 py-3 text-lg font-semibold text-gray-800 hover:text-[#e6007e] hover:bg-pink-50 rounded-xl transition-all">Our Work</a>
-                    <a href="Client_Experience.html" class="mobile-link block px-4 py-3 text-lg font-semibold text-gray-800 hover:text-[#e6007e] hover:bg-pink-50 rounded-xl transition-all">Client Experience</a>
-
-                    <!-- Mobile Case Studies Accordion -->
-                    <div class="mobile-accordion">
-                        <button class="w-full flex justify-between items-center px-4 py-3 text-lg font-semibold text-gray-800 hover:text-[#e6007e] hover:bg-pink-50 rounded-xl transition-all" onclick="toggleAccordion('case-studies')">
-                            Case Studies
-                            <svg class="w-5 h-5 transition-transform duration-300" id="case-studies-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
-                            </svg>
-                        </button>
-                        <div id="case-studies" class="hidden pl-4 space-y-1 mt-1">
-                            <a href="Advertising_Expertise.html" class="block px-4 py-2 text-sm text-gray-600 hover:text-[#e6007e] transition-colors">Advertising</a>
-                            <a href="Digital_Expertise.html" class="block px-4 py-2 text-sm text-gray-600 hover:text-[#e6007e] transition-colors">Digital</a>
-                            <a href="Consulting_Expertise.html" class="block px-4 py-2 text-sm text-gray-600 hover:text-[#e6007e] transition-colors">Consulting</a>
-                        </div>
-                    </div>
-
-                    <!-- Mobile Expertise Accordion -->
-                    <div class="mobile-accordion">
-                        <button class="w-full flex justify-between items-center px-4 py-3 text-lg font-semibold text-gray-800 hover:text-[#e6007e] hover:bg-pink-50 rounded-xl transition-all" onclick="toggleAccordion('expertise')">
-                            Our Expertise
-                            <svg class="w-5 h-5 transition-transform duration-300" id="expertise-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
-                            </svg>
-                        </button>
-                        <div id="expertise" class="hidden pl-4 space-y-1 mt-1">
-                            <a href="Advertising_Expertise.html" class="block px-4 py-2 text-sm text-gray-600 hover:text-[#e6007e] transition-colors">Advertising</a>
-                            <a href="Digital_Expertise.html" class="block px-4 py-2 text-sm text-gray-600 hover:text-[#e6007e] transition-colors">Digital</a>
-                            <a href="Consulting_Expertise.html" class="block px-4 py-2 text-sm text-gray-600 hover:text-[#e6007e] transition-colors">Consulting</a>
-                        </div>
-                    </div>
-
-                    <a href="Staff_News.html" class="mobile-link block px-4 py-3 text-lg font-semibold text-gray-800 hover:text-[#e6007e] hover:bg-pink-50 rounded-xl transition-all">Staff News</a>
-                    <a href="Blog.html" class="mobile-link block px-4 py-3 text-lg font-semibold text-gray-800 hover:text-[#e6007e] hover:bg-pink-50 rounded-xl transition-all">Blog</a>
-                    <a href="Archives.html" class="mobile-link block px-4 py-3 text-lg font-semibold text-gray-800 hover:text-[#e6007e] hover:bg-pink-50 rounded-xl transition-all">Archives</a>
-                </div>
-            </div>
-
-            <!-- Mobile CTA -->
-            <div class="p-6 border-t border-gray-100">
-                <a href="Contact_Us.html" class="flex items-center justify-center gap-2 w-full px-6 py-4 bg-gradient-to-r from-[#e6007e] to-[#ff1493] text-white font-bold rounded-xl hover:shadow-lg transition-all">
-                    Contact Us
-                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"></path>
-                    </svg>
-                </a>
-            </div>
+        <div class="mobile-dropdown-title">Case Studies</div>
+        <div class="mobile-dropdown-items">
+            <a href="Adv_Case_Studies.html">Advertising</a>
+            <a href="Digital_Case_Studies.html">Digital</a>
+            <a href="Consulting_Case_Studies.html">Consulting</a>
         </div>
+
+        <div class="mobile-dropdown-title">Our Expertise</div>
+        <div class="mobile-dropdown-items">
+            <a href="Advertising_Expertise.html">Advertising</a>
+            <a href="Digital_Expertise.html">Digital</a>
+            <a href="Consulting_Expertise.html">Consulting</a>
+        </div>
+
+        <a href="Staff_News.html">Staff News</a>
+        <a href="Exploring_Boundless_Horizons.html">Blog</a>
+        <a href="Archive_Gallery.html">Archives</a>
+        <a href="Contact_Us.html" style="display:inline-flex; margin-top:1rem; background:linear-gradient(135deg,#e6007e,#ff1493); color:#fff; padding:0.6rem 1.5rem; border-radius:9999px; font-weight:700; text-decoration:none;">Contact Us</a>
     </div>
 
     <!-- Hero Section -->
@@ -785,7 +927,7 @@
                 </a>
             </div>
 
-            <!-- Hero right side: replaced icon grid with user's image "two-boys-communicating 2.png" -->
+            <!-- Hero right side -->
             <div class="relative reveal" style="transition-delay: 0.2s;">
                 <div class="relative">
                     <div class="relative bg-obrian-black rounded-2xl p-4 shadow-2xl transform rotate-3 hover:rotate-0 transition-transform duration-500">
@@ -793,13 +935,11 @@
                             <img src="assets/images/two-boys-communicating 2.png" 
                                  alt="Two boys communicating" 
                                  class="w-full h-full object-cover">
-                            <!-- Subtle gradient overlay for better blend with brand -->
                             <div class="absolute inset-0 bg-gradient-to-tr from-obrian-pink/20 to-transparent"></div>
                         </div>
                         <div class="absolute -bottom-4 left-1/2 transform -translate-x-1/2 w-3/4 h-4 bg-gray-700 rounded-b-xl"></div>
                     </div>
                     
-                    <!-- Floating magic wand icon (preserved) -->
                     <div class="absolute -top-6 -right-6 w-20 h-20 bg-obrian-pink rounded-full flex items-center justify-center animate-float shadow-lg">
                         <i data-lucide="wand-2" class="w-8 h-8 text-white"></i>
                     </div>
@@ -1088,7 +1228,6 @@
                 </button>
             </div>
             <div class="modal-body">
-                <!-- Formspree success/error containers -->
                 <div data-fs-success></div>
                 <div data-fs-error></div>
 
@@ -1149,18 +1288,44 @@
             lucide.createIcons();
         }
 
-        // Accordion toggle function for mobile menu
-        window.toggleAccordion = function(id) {
-            const element = document.getElementById(id);
-            const icon = document.getElementById(id + '-icon');
-            if (element.classList.contains('hidden')) {
-                element.classList.remove('hidden');
-                if (icon) icon.style.transform = 'rotate(180deg)';
+        // Header scroll effect
+        const header = document.getElementById('mainHeader');
+        window.addEventListener('scroll', function() {
+            if (window.scrollY > 20) {
+                header.classList.add('scrolled');
             } else {
-                element.classList.add('hidden');
-                if (icon) icon.style.transform = 'rotate(0deg)';
+                header.classList.remove('scrolled');
             }
+        });
+
+        // Mobile menu toggle
+        const menuBtn = document.getElementById('menuBtn');
+        const mobilePanel = document.getElementById('mobileMenuPanel');
+
+        if (menuBtn && mobilePanel) {
+            menuBtn.addEventListener('click', function() {
+                this.classList.toggle('open');
+                mobilePanel.classList.toggle('open');
+                document.body.style.overflow = mobilePanel.classList.contains('open') ? 'hidden' : '';
+            });
+
+            mobilePanel.querySelectorAll('a').forEach(function(link) {
+                link.addEventListener('click', function() {
+                    menuBtn.classList.remove('open');
+                    mobilePanel.classList.remove('open');
+                    document.body.style.overflow = '';
+                });
+            });
         }
+
+        // Close menu on resize to desktop
+        window.addEventListener('resize', function() {
+            if (window.innerWidth >= 1024) {
+                if (mobilePanel) mobilePanel.classList.remove('open');
+                if (menuBtn) menuBtn.classList.remove('open');
+                document.body.style.overflow = '';
+            }
+        });
 
         // 3D ZOOM ANIMATION FOR "IN OUR MAGIC"
         const line1 = document.getElementById('line1');
@@ -1169,59 +1334,59 @@
         
         if (line1 && line2) {
             const text1 = "IN OUR";
-            text1.split('').forEach((char, index) => {
+            text1.split('').forEach(function(char, index) {
                 const span = document.createElement('span');
                 span.textContent = char === ' ' ? '\u00A0' : char;
                 span.className = 'zoom-char';
-                span.style.animationDelay = `${0.6 + (index * 0.08)}s`;
+                span.style.animationDelay = (0.6 + (index * 0.08)) + 's';
                 line1.appendChild(span);
             });
             
             const text2 = "MAGIC";
-            text2.split('').forEach((char, index) => {
+            text2.split('').forEach(function(char, index) {
                 const span = document.createElement('span');
                 span.textContent = char === ' ' ? '\u00A0' : char;
                 span.className = 'zoom-char';
-                span.style.animationDelay = `${0.6 + (text1.length * 0.08) + (index * 0.08)}s`;
+                span.style.animationDelay = (0.6 + (text1.length * 0.08) + (index * 0.08)) + 's';
                 line2.appendChild(span);
             });
         }
         
         // 3D tilt effect
         if (tiltText) {
-            document.addEventListener('mousemove', (e) => {
+            document.addEventListener('mousemove', function(e) {
                 if (window.innerWidth > 768) {
-                    const x = (e.clientX / window.innerWidth - 0.5) * 20;
-                    const y = (e.clientY / window.innerHeight - 0.5) * -10;
-                    tiltText.style.transform = `rotateY(${x}deg) rotateX(${y}deg)`;
+                    var x = (e.clientX / window.innerWidth - 0.5) * 20;
+                    var y = (e.clientY / window.innerHeight - 0.5) * -10;
+                    tiltText.style.transform = 'rotateY(' + x + 'deg) rotateX(' + y + 'deg)';
                 }
             });
             
-            document.addEventListener('mouseleave', () => {
+            document.addEventListener('mouseleave', function() {
                 if (tiltText) tiltText.style.transform = 'rotateY(0deg) rotateX(0deg)';
             });
         }
 
         // Magnetic button
-        const magneticWrap = document.getElementById('magneticWrap');
-        const magneticArea = document.getElementById('magneticArea');
-        const magneticBtn = document.getElementById('magneticBtn');
+        var magneticWrap = document.getElementById('magneticWrap');
+        var magneticArea = document.getElementById('magneticArea');
+        var magneticBtn = document.getElementById('magneticBtn');
         
         if (magneticArea && magneticBtn && magneticWrap) {
-            magneticArea.addEventListener('mousemove', (e) => {
-                const rect = magneticWrap.getBoundingClientRect();
-                const x = e.clientX - rect.left - rect.width / 2;
-                const y = e.clientY - rect.top - rect.height / 2;
-                magneticBtn.style.transform = `translate(${x * 0.4}px, ${y * 0.4}px)`;
+            magneticArea.addEventListener('mousemove', function(e) {
+                var rect = magneticWrap.getBoundingClientRect();
+                var x = e.clientX - rect.left - rect.width / 2;
+                var y = e.clientY - rect.top - rect.height / 2;
+                magneticBtn.style.transform = 'translate(' + (x * 0.4) + 'px, ' + (y * 0.4) + 'px)';
             });
             
-            magneticArea.addEventListener('mouseleave', () => {
+            magneticArea.addEventListener('mouseleave', function() {
                 magneticBtn.style.transform = 'translate(0, 0)';
             });
         }
 
-        // Booking Modal functions (open/close)
-        const bookingModal = document.getElementById('bookingModal');
+        // Booking Modal functions
+        var bookingModal = document.getElementById('bookingModal');
         
         window.openBookingModal = function() {
             if (bookingModal) {
@@ -1239,57 +1404,31 @@
         };
         
         if (bookingModal) {
-            bookingModal.addEventListener('click', (e) => {
+            bookingModal.addEventListener('click', function(e) {
                 if (e.target === bookingModal) closeBookingModal();
             });
             
-            document.addEventListener('keydown', (e) => {
+            document.addEventListener('keydown', function(e) {
                 if (e.key === 'Escape' && bookingModal.classList.contains('active')) closeBookingModal();
             });
         }
 
         // Scroll reveal
-        const revealElements = document.querySelectorAll('.reveal');
-        const revealObserver = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
+        var revealElements = document.querySelectorAll('.reveal');
+        var revealObserver = new IntersectionObserver(function(entries) {
+            entries.forEach(function(entry) {
                 if (entry.isIntersecting) entry.target.classList.add('active');
             });
         }, { threshold: 0.1, rootMargin: '0px 0px -50px 0px' });
-        revealElements.forEach(el => revealObserver.observe(el));
+        revealElements.forEach(function(el) { revealObserver.observe(el); });
 
-        // Mobile menu toggle (updated for new header)
-        const menuBtn = document.getElementById('menuBtn');
-        const closeMenuBtn = document.getElementById('closeMenu');
-        const mobileMenu = document.getElementById('mobileMenu');
-        
-        function toggleMobileMenu() {
-            if (mobileMenu) mobileMenu.classList.toggle('translate-x-full');
-        }
-        
-        if (menuBtn) menuBtn.addEventListener('click', toggleMobileMenu);
-        if (closeMenuBtn) closeMenuBtn.addEventListener('click', toggleMobileMenu);
-        
-        document.querySelectorAll('.mobile-link').forEach(link => {
-            link.addEventListener('click', toggleMobileMenu);
-        });
-        
         // Smooth scroll
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        document.querySelectorAll('a[href^="#"]').forEach(function(anchor) {
             anchor.addEventListener('click', function(e) {
                 e.preventDefault();
-                const target = document.querySelector(this.getAttribute('href'));
+                var target = document.querySelector(this.getAttribute('href'));
                 if (target) target.scrollIntoView({ behavior: 'smooth', block: 'start' });
             });
-        });
-
-        // Header scroll effect
-        const header = document.getElementById('mainHeader');
-        window.addEventListener('scroll', () => {
-            if (window.scrollY > 20) {
-                header.classList.add('scrolled');
-            } else {
-                header.classList.remove('scrolled');
-            }
         });
     </script>
 </body>
