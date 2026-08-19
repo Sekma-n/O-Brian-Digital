@@ -1,0 +1,806 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+    <title>Gauteng | O'Brian Group — It Starts Here</title>
+    <meta name="description" content="Gauteng brand identity & FIFA World Cup legacy campaign by O'Brian Group. Case study in excellence." />
+
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com">
+    </script>
+
+    <!-- Google Fonts + Icons -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,600;14..32,700;14..32,800&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
+
+    <!-- Lightbox CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.11.4/css/lightbox.min.css" />
+
+    <style>
+        /* ── reset & base ── */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: #ffffff;
+            color: #251e21;
+            line-height: 1.5;
+            scroll-behavior: smooth;
+        }
+
+        :root {
+            --magenta: #ed008e;
+            --magenta-dark: #c20074;
+            --charcoal: #251e21;
+            --white: #ffffff;
+            --gray-light: #faf7f9;
+        }
+
+        .container {
+            max-width: 1280px;
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+
+        /* ── NEW HEADER STYLES ── */
+        .header-glass {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            z-index: 100;
+            background: rgba(255, 255, 255, 0.85);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            transition: box-shadow 0.3s, background 0.3s;
+            border-bottom: 1px solid rgba(0, 0, 0, 0.04);
+        }
+        .header-glass.scrolled {
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+            background: rgba(255, 255, 255, 0.98);
+        }
+
+        .nav-link {
+            padding: 0.5rem 1rem;
+            font-size: 0.875rem;
+            font-weight: 600;
+            color: #374151;
+            border-radius: 0.5rem;
+            transition: all 0.3s ease;
+            display: inline-block;
+            cursor: pointer;
+        }
+        .nav-link:hover {
+            color: #e6007e;
+            background-color: #fdf2f8;
+        }
+
+        .dropdown-menu-custom {
+            position: absolute;
+            top: 100%;
+            left: 0;
+            margin-top: 0.5rem;
+            width: 200px;
+            background: white;
+            border-radius: 0.75rem;
+            box-shadow: 0 20px 40px -8px rgba(0, 0, 0, 0.15);
+            border: 1px solid #f3f4f6;
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(-8px) scale(0.96);
+            transition: all 0.25s ease;
+            transform-origin: top left;
+            z-index: 101;
+        }
+        .group:hover .dropdown-menu-custom {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0) scale(1);
+        }
+        .dropdown-menu-custom a {
+            display: block;
+            padding: 0.75rem 1.25rem;
+            font-size: 0.875rem;
+            color: #374151;
+            transition: background 0.2s, color 0.2s;
+        }
+        .dropdown-menu-custom a:hover {
+            background: #fdf2f8;
+            color: #e6007e;
+        }
+        .dropdown-menu-custom a:first-child {
+            border-radius: 0.75rem 0.75rem 0 0;
+        }
+        .dropdown-menu-custom a:last-child {
+            border-radius: 0 0 0.75rem 0.75rem;
+        }
+
+        .btn-primary-pink {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.75rem 1.75rem;
+            background: linear-gradient(135deg, #e6007e, #ff1493);
+            color: white;
+            font-weight: 700;
+            font-size: 0.875rem;
+            border-radius: 9999px;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 14px rgba(230, 0, 126, 0.3);
+        }
+        .btn-primary-pink:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(230, 0, 126, 0.4);
+            color: white;
+        }
+
+        /* Mobile menu panel */
+        .mobile-menu-panel {
+            display: none;
+            position: fixed;
+            top: 80px;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(255, 255, 255, 0.98);
+            backdrop-filter: blur(12px);
+            padding: 1.5rem;
+            overflow-y: auto;
+            z-index: 99;
+            border-top: 1px solid rgba(0, 0, 0, 0.04);
+        }
+        .mobile-menu-panel.open {
+            display: block;
+        }
+        .mobile-menu-panel a {
+            display: block;
+            padding: 0.75rem 1rem;
+            font-size: 1rem;
+            font-weight: 500;
+            color: #1a1a2e;
+            border-radius: 0.5rem;
+            transition: background 0.2s;
+        }
+        .mobile-menu-panel a:hover {
+            background: rgba(237, 0, 142, 0.06);
+            color: #ed008e;
+        }
+        .mobile-menu-panel .mobile-dropdown-title {
+            font-weight: 700;
+            padding: 0.75rem 1rem;
+            color: #1a1a2e;
+            cursor: default;
+        }
+        .mobile-menu-panel .mobile-dropdown-items {
+            padding-left: 1rem;
+        }
+        .mobile-menu-panel .mobile-dropdown-items a {
+            font-weight: 400;
+            font-size: 0.95rem;
+        }
+
+        /* ── original page styles ── */
+        .btn-back-right {
+            color: var(--magenta);
+            text-decoration: none;
+            font-weight: 600;
+            padding: 0.6rem 1.5rem;
+            border-radius: 40px;
+            transition: 0.2s ease;
+            border: 2px solid var(--magenta);
+            background: transparent;
+            font-size: 0.95rem;
+        }
+        .btn-back-right:hover {
+            background: var(--magenta);
+            color: white;
+            border-color: var(--magenta);
+            transform: translateY(-2px);
+            box-shadow: 0 8px 16px -6px rgba(237, 0, 142, 0.3);
+        }
+        .btn-back-right i {
+            font-size: 1rem;
+        }
+
+        .showcase-section {
+            padding: 4rem 0 2rem;
+            border-bottom: 1px solid #f3eff1;
+            background: #ffffff;
+        }
+        .showcase-title-block .pre-title {
+            font-size: 0.8rem;
+            font-weight: 600;
+            color: var(--magenta);
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            margin-bottom: 0.25rem;
+        }
+        .showcase-title-block h2 {
+            font-size: 3.8rem;
+            font-weight: 800;
+            color: var(--charcoal);
+            letter-spacing: -0.02em;
+        }
+        .showcase-title-block h2 .highlight {
+            background: linear-gradient(135deg, #251e21 30%, var(--magenta) 80%);
+            background-clip: text;
+            -webkit-background-clip: text;
+            color: transparent;
+        }
+        .showcase-title-block p {
+            color: #4a4045;
+            max-width: 600px;
+            font-size: 1.2rem;
+        }
+
+        .section {
+            padding: 4rem 0;
+            border-bottom: 1px solid #f3eff1;
+        }
+        .section-alt {
+            background: var(--gray-light);
+        }
+        .section-title {
+            font-size: 2rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+            color: var(--charcoal);
+        }
+        .section-sub {
+            color: var(--magenta);
+            font-weight: 700;
+            text-transform: uppercase;
+            font-size: 0.8rem;
+            letter-spacing: 1.5px;
+            margin-bottom: 1rem;
+        }
+
+        .video-wrapper {
+            position: relative;
+            padding-bottom: 56.25%;
+            height: 0;
+            border-radius: 28px;
+            overflow: hidden;
+            box-shadow: 0 20px 35px -12px rgba(0, 0, 0, 0.1);
+            margin: 2rem 0;
+        }
+        .video-wrapper iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border: 0;
+        }
+
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+        .gallery-item {
+            border-radius: 20px;
+            overflow: hidden;
+            background: #fff;
+            box-shadow: 0 8px 18px rgba(37, 30, 33, 0.05);
+            transition: all 0.25s ease;
+            cursor: pointer;
+        }
+        .gallery-item img {
+            width: 100%;
+            height: 220px;
+            object-fit: cover;
+            transition: transform 0.4s ease;
+            display: block;
+        }
+        .gallery-item:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 20px 28px -12px rgba(237, 0, 142, 0.25);
+        }
+        .gallery-item:hover img {
+            transform: scale(1.02);
+        }
+
+        .download-card {
+            background: #ffffff;
+            border-radius: 32px;
+            padding: 2rem 2rem;
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            justify-content: space-between;
+            margin: 2rem 0;
+            border: 1px solid #f1e6eb;
+            box-shadow: 0 12px 22px -8px rgba(0, 0, 0, 0.03);
+        }
+        .download-text h3 {
+            font-weight: 700;
+            font-size: 1.5rem;
+            margin-bottom: 0.5rem;
+        }
+        .btn-download {
+            background: var(--magenta);
+            color: white;
+            border: none;
+            padding: 0.85rem 2rem;
+            border-radius: 60px;
+            font-weight: 600;
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            transition: 0.2s;
+            text-decoration: none;
+        }
+        .btn-download:hover {
+            background: var(--magenta-dark);
+            transform: translateY(-2px);
+        }
+
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 1.8rem;
+            margin: 2rem 0 1rem;
+        }
+        .social-icon {
+            background: #f2eef0;
+            width: 48px;
+            height: 48px;
+            border-radius: 50%;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.4rem;
+            transition: 0.2s;
+            color: var(--charcoal);
+            text-decoration: none;
+        }
+        .social-icon:hover {
+            background: var(--magenta);
+            color: white;
+            transform: scale(1.05);
+        }
+
+        .footer {
+            background: var(--charcoal);
+            color: #ddd2d7;
+            padding: 3rem 0 2rem;
+        }
+        .footer-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
+            gap: 2rem;
+        }
+        .footer h5 {
+            color: white;
+            font-weight: 600;
+            margin-bottom: 1rem;
+            letter-spacing: -0.2px;
+        }
+        .footer a {
+            color: #ddd2d7;
+            text-decoration: none;
+        }
+        .footer a:hover {
+            color: var(--magenta);
+        }
+        .copyright {
+            text-align: center;
+            margin-top: 3rem;
+            font-size: 0.8rem;
+            border-top: 1px solid #3e3238;
+            padding-top: 2rem;
+        }
+
+        .showcase-btn-wrapper {
+            margin-top: 2.5rem;
+        }
+
+        @media (max-width: 800px) {
+            .showcase-title-block h2 {
+                font-size: 2.4rem;
+            }
+            .section-title {
+                font-size: 1.8rem;
+            }
+            .download-card {
+                flex-direction: column;
+                text-align: center;
+                gap: 1.5rem;
+            }
+            .showcase-section .row {
+                gap: 1.5rem;
+            }
+            .btn-back-right {
+                width: 100%;
+                justify-content: center;
+            }
+            .showcase-btn-wrapper {
+                margin-top: 0.5rem;
+                text-align: center !important;
+            }
+            .header-glass {
+                padding: 0 16px;
+            }
+            .header-glass .h-20 {
+                height: 70px !important;
+            }
+        }
+
+        @media (min-width: 769px) {
+            .showcase-btn-wrapper {
+                margin-top: 2.5rem;
+            }
+        }
+
+        .align-items-end {
+            align-items: flex-end;
+        }
+        .justify-content-between {
+            justify-content: space-between;
+        }
+        .text-md-end {
+            text-align: right;
+        }
+        .d-inline-flex {
+            display: inline-flex;
+        }
+        .align-items-center {
+            align-items: center;
+        }
+        .me-2 {
+            margin-right: 0.5rem;
+        }
+        .mt-3 {
+            margin-top: 1rem;
+        }
+        .mt-2 {
+            margin-top: 0.5rem;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- ===== NEW HEADER ===== -->
+    <header class="header-glass" id="mainHeader">
+        <div class="max-w-7xl mx-auto px-4 md:px-6">
+            <div class="flex justify-between items-center h-20">
+
+                <!-- Logo -->
+                <a href="index.html" class="flex items-center gap-3 group">
+                    <img src="assets/images/obrian-transparent-logo-4461219.webp" alt="O'Brian Group" class="h-10 w-auto" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22%3E%3Crect width=%22100%22 height=%22100%22 fill=%22%23ed008e%22/%3E%3Ctext x=%2250%22 y=%2268%22 font-size=%2248%22 text-anchor=%22middle%22 fill=%22white%22 font-weight=%22bold%22 font-family=%22Inter%22%3EO%3C/text%3E%3C/svg%3E'">
+                    <span class="font-black text-xl text-[#231e1f] tracking-tight hidden sm:inline"><span class="text-[#ed018e]"></span></span>
+                </a>
+
+                <!-- Desktop Nav -->
+                <div class="hidden lg:flex items-center gap-0.5">
+                    <a href="index.html" class="nav-link">Home</a>
+                    <a href="page8.html" class="nav-link">About</a>
+                    <a href="page30.html" class="nav-link">Our Work</a>
+                    <a href="page52.html" class="nav-link">Client Experience</a>
+
+                    <div class="relative group">
+                        <button class="nav-link flex items-center gap-1">
+                            Case Studies
+                            <svg class="w-3 h-3 transition-transform duration-300 group-hover:rotate-180" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M19 9l-7 7-7-7"></path></svg>
+                        </button>
+                        <div class="dropdown-menu-custom">
+                            <a href="page27.html">Advertising</a>
+                            <a href="page45.html">Digital</a>
+                            <a href="page43.html">Consulting</a>
+                        </div>
+                    </div>
+
+                    <div class="relative group">
+                        <button class="nav-link flex items-center gap-1">
+                            Expertise
+                            <svg class="w-3 h-3 transition-transform duration-300 group-hover:rotate-180" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M19 9l-7 7-7-7"></path></svg>
+                        </button>
+                        <div class="dropdown-menu-custom">
+                            <a href="page9.html">Advertising</a>
+                            <a href="page18.html">Digital</a>
+                            <a href="page1.html">Consulting</a>
+                        </div>
+                    </div>
+
+                    <a href="page60.html" class="nav-link">Staff News</a>
+                    <a href="page15.html" class="nav-link">Blog</a>
+                    <a href="page70.html" class="nav-link">Archives</a>
+                </div>
+
+                <!-- CTA -->
+                <div class="hidden lg:block">
+                    <a href="page5.html" class="btn-primary-pink">
+                        <span>Contact</span>
+                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M17 8l4 4m0 0l-4 4m4-4H3"></path></svg>
+                    </a>
+                </div>
+
+                <!-- Burger -->
+                <button class="lg:hidden p-2 rounded-lg hover:bg-gray-100 transition-colors" id="menuBtn" aria-label="Toggle menu">
+                    <div class="w-6 h-6 flex flex-col justify-center items-center gap-1.5">
+                        <span class="w-6 h-0.5 bg-gray-700 transition-all duration-300 menu-line-1"></span>
+                        <span class="w-6 h-0.5 bg-gray-700 transition-all duration-300 menu-line-2"></span>
+                        <span class="w-4 h-0.5 bg-gray-700 transition-all duration-300 menu-line-3 ml-auto"></span>
+                    </div>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- ===== MOBILE MENU PANEL ===== -->
+    <div class="mobile-menu-panel" id="mobileMenuPanel">
+        <a href="index.html">Home</a>
+        <a href="page8.html">About</a>
+        <a href="page30.html">Our Work</a>
+        <a href="page52.html">Client Experience</a>
+
+        <div class="mobile-dropdown-title">Case Studies</div>
+        <div class="mobile-dropdown-items">
+            <a href="page27.html">Advertising</a>
+            <a href="page45.html">Digital</a>
+            <a href="page43.html">Consulting</a>
+        </div>
+
+        <div class="mobile-dropdown-title">Our Expertise</div>
+        <div class="mobile-dropdown-items">
+            <a href="page9.html">Advertising</a>
+            <a href="page1.html">Digital</a>
+            <a href="page18.html">Consulting</a>
+        </div>
+
+        <a href="page60.html">Staff News</a>
+        <a href="page15.html">Blog</a>
+        <a href="page70.html">Archives</a>
+        <a href="page5.html" class="magnetic-btn" style="display:inline-flex; margin-top:1rem; background:linear-gradient(135deg,#e6007e,#ff1493); color:#fff; padding:0.6rem 1.5rem; border-radius:9999px; font-weight:700;">Contact Us</a>
+    </div>
+
+    <!-- ===== PAGE CONTENT (unchanged) ===== -->
+
+    <!-- SHOWCASE SECTION -->
+    <section class="showcase-section">
+        <div class="container">
+            <div class="row align-items-end justify-content-between">
+                <div class="col-12 col-md-8">
+                    <div class="showcase-title-block">
+                        <div class="pre-title">✦ brand showcase</div>
+                        <h2>
+                            GAUTENG<br />
+                            <span class="highlight">It Starts Here</span>
+                        </h2>
+                        <p class="mt-3">A bold identity campaign fusing civic pride, FIFA World Cup legacy, and innovative storytelling. From billboards to bespoke merchandise, we built a province's heartbeat.</p>
+                    </div>
+                </div>
+                <div class="col-12 col-md-4 text-md-end showcase-btn-wrapper">
+                    <a href="page30.html" class="btn-back-right d-inline-flex align-items-center">
+                        <i class="fas fa-arrow-left me-2"></i> Back to Our Work
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Main Anthem Video -->
+    <div class="container">
+        <div class="video-wrapper">
+            <iframe src="https://www.youtube.com/embed/oiYif1t1ouk?rel=0&mute=1&autoplay=1&loop=1&playlist=oiYif1t1ouk" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+        </div>
+    </div>
+
+    <!-- Brand Universe Gallery -->
+    <section class="section">
+        <div class="container">
+            <div class="section-sub">visual identity</div>
+            <h2 class="section-title">Gauteng Universe</h2>
+            <p style="color: #4a4045; margin-bottom: 1rem;">From stationery to large-scale out-of-home, every element was crafted to unify the spirit of South Africa's economic heartland.</p>
+            <div class="gallery-grid" id="brandGallery"></div>
+        </div>
+    </section>
+
+    <!-- FIFA World Cup Legacy -->
+    <section class="section section-alt">
+        <div class="container">
+            <div class="section-sub">FIFA 2010 LEGACY</div>
+            <h2 class="section-title">Gautransie Campaign<br /> The Pulse of a Nation</h2>
+            <div class="video-wrapper">
+                <iframe src="https://www.youtube.com/embed/VO8_1LdMoO4?rel=0&mute=1&autoplay=1&loop=1&playlist=VO8_1LdMoO4" allowfullscreen></iframe>
+            </div>
+            <div class="gallery-grid" id="fifaGallery"></div>
+        </div>
+    </section>
+
+    <!-- Additional Momentum Film -->
+    <div class="container">
+        <div class="video-wrapper">
+            <iframe src="https://www.youtube.com/embed/Kx4L28d2ozI?rel=0&mute=1&autoplay=1&loop=1&playlist=Kx4L28d2ozI" allowfullscreen></iframe>
+        </div>
+    </div>
+
+    <!-- Download PDF -->
+    <section class="section">
+        <div class="container">
+            <div class="download-card">
+                <div class="download-text">
+                    <h3><i class="fas fa-book-open" style="color: #ed008e;"></i> Gautransie Coffee Table Book</h3>
+                    <p>Commemorative A6 booklet — relive the 2010 World Cup activation & Gauteng's transformation.</p>
+                </div>
+                <a class="btn-download" href="assets/files/Gautransie-CoffeeTable-A6Booklet.pdf" download>
+                    <i class="fas fa-download"></i> Download PDF
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Extended 360° Rollout Gallery -->
+    <section class="section section-alt">
+        <div class="container">
+            <div class="section-sub">full spectrum</div>
+            <h2 class="section-title">360° Campaign Rollout</h2>
+            <p style="margin-bottom: 2rem;">Billboards, vehicle branding, luxury inserts, apparel, and beyond.</p>
+            <div class="gallery-grid" id="extendedGallery"></div>
+        </div>
+    </section>
+
+    <!-- Social Follow -->
+    <section class="section" style="padding-bottom: 1rem;">
+        <div class="container" style="text-align: center;">
+            <h3 class="section-title" style="font-size: 1.8rem;">Follow the journey</h3>
+            <div class="social-links">
+                <a href="https://www.facebook.com/profile.php?id=100094029616085" class="social-icon" target="_blank"><i class="fab fa-facebook-f"></i></a>
+                <a href="https://x.com/ObrianSA" class="social-icon" target="_blank"><i class="fab fa-twitter"></i></a>
+                <a href="https://www.instagram.com/obriandigital/" class="social-icon" target="_blank"><i class="fab fa-instagram"></i></a>
+                <a href="https://za.pinterest.com/OBRIANDIGITAL/" class="social-icon" target="_blank"><i class="fab fa-pinterest-p"></i></a>
+                <a href="https://za.linkedin.com/company/o-brian-digital" class="social-icon" target="_blank"><i class="fab fa-linkedin-in"></i></a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div>
+                    <h5>Johannesburg</h5>
+                    <p>2nd Floor Trumpet On Keyes,<br />21 Keyes Avenue, Rosebank, 2196</p>
+                    <p>+27 10 035 5218</p>
+                </div>
+                <div>
+                    <h5>Durban Office</h5>
+                    <p>2 Ncondo Place, Ridgeside Dr,<br />Umhlanga Ridge, 4319</p>
+                    <p>+27 83 325 9532</p>
+                </div>
+                <div>
+                    <h5>Email</h5>
+                    <p><a href="mailto:info@obriangroup.com">info@obriangroup.com</a></p>
+                </div>
+                <div>
+                    <h5>About</h5>
+                    <p><a href="page8.html">History</a><br /><a href="page52.html">Clients</a><br />Team & Culture</p>
+                </div>
+            </div>
+            <div class="copyright">
+                <p>© 2025 O'Brian Group — All Rights Reserved. Designed with #ed008e identity.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.11.4/js/lightbox-plus-jquery.min.js">
+    </script>
+
+    <script>
+        // ── Mobile menu toggle (updated for new header) ──
+        const menuBtn = document.getElementById('menuBtn');
+        const mobilePanel = document.getElementById('mobileMenuPanel');
+
+        if (menuBtn && mobilePanel) {
+            menuBtn.addEventListener('click', () => {
+                menuBtn.classList.toggle('open');
+                mobilePanel.classList.toggle('open');
+                document.body.style.overflow = mobilePanel.classList.contains('open') ? 'hidden' : '';
+            });
+
+            mobilePanel.querySelectorAll('a').forEach(link => {
+                link.addEventListener('click', () => {
+                    menuBtn.classList.remove('open');
+                    mobilePanel.classList.remove('open');
+                    document.body.style.overflow = '';
+                });
+            });
+        }
+
+        // ── Header scroll effect ──
+        const header = document.getElementById('mainHeader');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 20) {
+                header.classList.add('scrolled');
+            } else {
+                header.classList.remove('scrolled');
+            }
+        });
+
+        // ── Gallery data ──
+        const brandAssets = [
+            "assets/images/gauteng-logo.jpg", "assets/images/gauteng-beyond-mag.jpg", "assets/images/proposed-billboard.jpg",
+            "assets/images/proposed-billboard2-1.jpg", "assets/images/proposed-billboard3.jpg", "assets/images/proposed-billboard4-1.jpg",
+            "assets/images/proposed-billboard5.jpg", "assets/images/proposed-print-ad-1.jpg", "assets/images/proposed-print-ad2-1.jpg",
+            "assets/images/proposed-print-ad3.jpg", "assets/images/proposed-print-ad4-1.jpg", "assets/images/gauteng-stationery-page-1.jpg",
+            "assets/images/gauteng-stationery-page-12.jpg", "assets/images/gauteng-stationery-page-3.jpg", "assets/images/gauteng-stationery-page-13.jpg",
+            "assets/images/gauteng-stationery-page-5.jpg", "assets/images/gauteng-stationery-page-6.jpg", "assets/images/gauteng-stationery-page-14.jpg",
+            "assets/images/2.jpg", "assets/images/gauteng-stationery.jpg"
+        ];
+
+        const fifaAssets = [
+            "assets/images/obrian-work28.jpg", "assets/images/obrian-work25.jpg", "assets/images/obrian-work27.jpg",
+            "assets/images/obrian-work26.jpg", "assets/images/obrian-work29.jpg", "assets/images/obrian-work30.jpg",
+            "assets/images/obrian-work24.jpg", "assets/images/gauteng-1.jpg", "assets/images/gauteng-2.jpg",
+            "assets/images/gauteng-3.jpg", "assets/images/gauteng-4.jpg", "assets/images/gauteng-5.jpg",
+            "assets/images/our-story.jpg", "assets/images/gautransie-coffee-table-logo-page-4.png"
+        ];
+
+        const extendedAssets = [
+            "assets/images/gift.jpg", "assets/images/polo-shirt.jpg", "assets/images/whatsapp-image-2025-07-25-at-16.08.39.jpeg",
+            "assets/images/brochure-inside-cover.jpg", "assets/images/brochure-spread3.jpg", "assets/images/brochure-spread4.jpg",
+            "assets/images/brochure-spread5.jpg", "assets/images/brochure-spread6.jpg", "assets/images/folder.jpg",
+            "assets/images/gauteng-transnet-truck-page-1.jpg", "assets/images/gauteng-transnet-truck-page-2.jpg",
+            "assets/images/gauteng-transnet-truck-page-3.jpg",
+            "assets/images/gauteng-transnet-truck-page-4.jpg", "assets/images/whatsapp-image-2025-07-25-at-16.08.40.jpeg",
+            "assets/images/whatsapp-image-2025-07-25-at-16.08.38.jpeg",
+            "assets/images/whatsapp-image-2025-07-25-at-16.08.39-2.jpeg", "assets/images/whatsapp-image-2025-07-25-at-16.08.39-1.jpeg",
+            "assets/images/picture-50.jpg", "assets/images/picture-12.jpg", "assets/images/picture-10.jpg",
+            "assets/images/picture-13.jpg", "assets/images/picture-14.jpg", "assets/images/picture-15.jpg",
+            "assets/images/picture-16.jpg", "assets/images/picture-19.jpg", "assets/images/picture-20.jpg",
+            "assets/images/picture-21.jpg", "assets/images/picture-22.jpg", "assets/images/picture-24.jpg",
+            "assets/images/picture-32.jpg", "assets/images/picture-1.jpg", "assets/images/picture-2.jpg",
+            "assets/images/picture-3.jpg", "assets/images/picture-4.jpg", "assets/images/picture-5.jpg",
+            "assets/images/picture-6.jpg", "assets/images/picture-7.jpg", "assets/images/picture-8.jpg",
+            "assets/images/picture-9.jpg", "assets/images/picture-33.jpg", "assets/images/picture-34.jpg",
+            "assets/images/picture-35.jpg", "assets/images/picture-36.jpg", "assets/images/picture-37.jpg",
+            "assets/images/picture-38.jpg", "assets/images/picture-39.jpg", "assets/images/picture-40.jpg",
+            "assets/images/picture-41.jpg", "assets/images/picture-42.jpg", "assets/images/picture-43.jpg",
+            "assets/images/picture-44.jpg", "assets/images/picture-45.jpg", "assets/images/picture-46.jpg",
+            "assets/images/picture-47.jpg", "assets/images/picture-48.jpg", "assets/images/picture-49.jpg",
+            "assets/images/picture-27.jpg", "assets/images/picture-28.jpg", "assets/images/picture-29.jpg",
+            "assets/images/picture-30.jpg", "assets/images/picture-31.jpg", "assets/images/gift-1.jpg",
+            "assets/images/insert-back.jpg", "assets/images/insert-cover.jpg", "assets/images/insert.jpg",
+            "assets/images/pen.jpg", "assets/images/just-pen.jpg", "assets/images/picture-17.jpg",
+            "assets/images/picture-18.jpg"
+        ];
+
+        function buildGallery(containerId, images) {
+            const container = document.getElementById(containerId);
+            if (!container) return;
+            let html = '';
+            images.forEach(imgSrc => {
+                html += `
+                    <div class="gallery-item">
+                        <a href="${imgSrc}" data-lightbox="gallery-set" data-title="Gauteng campaign asset">
+                            <img src="${imgSrc}" alt="Gauteng brand creative" loading="lazy">
+                        </a>
+                    </div>
+                `;
+            });
+            container.innerHTML = html;
+        }
+
+        buildGallery('brandGallery', [...new Set(brandAssets)]);
+        buildGallery('fifaGallery', fifaAssets);
+        buildGallery('extendedGallery', extendedAssets);
+
+        lightbox.option({
+            resizeDuration: 200,
+            wrapAround: true,
+            albumLabel: "Image %1 of %2"
+        });
+    </script>
+
+</body>
+</html>

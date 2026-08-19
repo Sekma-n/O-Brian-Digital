@@ -1,0 +1,620 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <meta name="description" content="Nestlife IRFA Conference Promo Exhibition Stand – O'Brian Group case study: event branding, exhibition design, promotional activations">
+  <title>O'Brian Group | Nestlife – IRFA Conference Exhibition Stand Case Study</title>
+  <!-- Tailwind + Fonts + Font Awesome -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700;14..32,800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    body {
+      font-family: 'Inter', sans-serif;
+      background-color: #ffffff;
+      color: #1a1a2e;
+      scroll-behavior: smooth;
+      padding-top: 80px;
+    }
+    /* Brand color palette */
+    :root {
+      --brand-pink: #ed008e;
+      --brand-dark: #231e1f;
+      --brand-white: #ffffff;
+    }
+    .accent-pink { color: var(--brand-pink); }
+    .bg-accent-pink { background-color: var(--brand-pink); }
+    .border-accent-pink { border-color: var(--brand-pink); }
+    .hover-pink:hover { color: var(--brand-pink) !important; transition: 0.2s; }
+    .bg-dark-custom { background-color: var(--brand-dark); }
+    .text-dark-custom { color: var(--brand-dark); }
+    .border-dark-custom { border-color: var(--brand-dark); }
+    .section-title {
+      font-size: 2.2rem;
+      font-weight: 700;
+      letter-spacing: -0.02em;
+    }
+    @media (max-width: 768px) {
+      .section-title {
+        font-size: 1.8rem;
+      }
+    }
+    /* Gallery grid */
+    .gallery-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      gap: 1.75rem;
+    }
+    .gallery-item {
+      cursor: pointer;
+      transition: transform 0.25s ease, box-shadow 0.2s;
+      border-radius: 1.25rem;
+      overflow: hidden;
+      background: #f9f9f9;
+    }
+    .gallery-item:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 20px 25px -12px rgba(0, 0, 0, 0.15);
+    }
+    /* Lightbox modal */
+    .modal-lightbox {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.92);
+      z-index: 1000;
+      justify-content: center;
+      align-items: center;
+      backdrop-filter: blur(8px);
+    }
+    .modal-lightbox.active {
+      display: flex;
+    }
+    .modal-content-inner {
+      max-width: 85vw;
+      max-height: 85vh;
+      position: relative;
+    }
+    .modal-content-inner img {
+      width: auto;
+      max-height: 85vh;
+      border-radius: 1rem;
+      box-shadow: 0 25px 40px rgba(0, 0, 0, 0.3);
+    }
+    .close-modal {
+      position: absolute;
+      top: -2rem;
+      right: -0.5rem;
+      background: white;
+      border-radius: 50%;
+      width: 36px;
+      height: 36px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      font-size: 1.4rem;
+      font-weight: bold;
+    }
+    .btn-pink-outline {
+      border: 2px solid var(--brand-pink);
+      color: var(--brand-pink);
+      background: transparent;
+      transition: all 0.2s;
+    }
+    .btn-pink-outline:hover {
+      background: var(--brand-pink);
+      color: white;
+    }
+    .btn-dark-custom {
+      background: var(--brand-dark);
+      color: white;
+      transition: all 0.2s;
+    }
+    .btn-dark-custom:hover {
+      background: #3a2e30;
+    }
+    footer a {
+      transition: color 0.2s;
+    }
+    footer a:hover {
+      color: var(--brand-pink);
+    }
+
+    /* ── NEW HEADER STYLES ── */
+    .header-glass {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      z-index: 1030;
+      background: rgba(255, 255, 255, 0.85);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      transition: box-shadow 0.3s, background 0.3s;
+      border-bottom: 1px solid rgba(0, 0, 0, 0.04);
+    }
+    .header-glass.scrolled {
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+      background: rgba(255, 255, 255, 0.98);
+    }
+
+    .nav-link {
+      padding: 0.5rem 1rem;
+      font-size: 0.875rem;
+      font-weight: 600;
+      color: #374151;
+      border-radius: 0.5rem;
+      transition: all 0.3s ease;
+      display: inline-block;
+      cursor: pointer;
+    }
+    .nav-link:hover {
+      color: #e6007e;
+      background-color: #fdf2f8;
+    }
+
+    .dropdown-menu-custom {
+      position: absolute;
+      top: 100%;
+      left: 0;
+      margin-top: 0.5rem;
+      width: 200px;
+      background: white;
+      border-radius: 0.75rem;
+      box-shadow: 0 20px 40px -8px rgba(0, 0, 0, 0.15);
+      border: 1px solid #f3f4f6;
+      opacity: 0;
+      visibility: hidden;
+      transform: translateY(-8px) scale(0.96);
+      transition: all 0.25s ease;
+      transform-origin: top left;
+      z-index: 1050;
+    }
+    .group:hover .dropdown-menu-custom {
+      opacity: 1;
+      visibility: visible;
+      transform: translateY(0) scale(1);
+    }
+    .dropdown-menu-custom a {
+      display: block;
+      padding: 0.75rem 1.25rem;
+      font-size: 0.875rem;
+      color: #374151;
+      transition: background 0.2s, color 0.2s;
+    }
+    .dropdown-menu-custom a:hover {
+      background: #fdf2f8;
+      color: #e6007e;
+    }
+    .dropdown-menu-custom a:first-child {
+      border-radius: 0.75rem 0.75rem 0 0;
+    }
+    .dropdown-menu-custom a:last-child {
+      border-radius: 0 0 0.75rem 0.75rem;
+    }
+
+    .btn-primary-pink {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.75rem 1.75rem;
+      background: linear-gradient(135deg, #e6007e, #ff1493);
+      color: white;
+      font-weight: 700;
+      font-size: 0.875rem;
+      border-radius: 9999px;
+      transition: all 0.3s ease;
+      box-shadow: 0 4px 14px rgba(230, 0, 126, 0.3);
+    }
+    .btn-primary-pink:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 25px rgba(230, 0, 126, 0.4);
+      color: white;
+    }
+
+    /* Mobile menu panel */
+    .mobile-menu-panel {
+      display: none;
+      position: fixed;
+      top: 80px;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: rgba(255, 255, 255, 0.98);
+      backdrop-filter: blur(12px);
+      padding: 1.5rem;
+      overflow-y: auto;
+      z-index: 1020;
+      border-top: 1px solid rgba(0, 0, 0, 0.04);
+    }
+    .mobile-menu-panel.open {
+      display: block;
+    }
+    .mobile-menu-panel a {
+      display: block;
+      padding: 0.75rem 1rem;
+      font-size: 1rem;
+      font-weight: 500;
+      color: #1a1a2e;
+      border-radius: 0.5rem;
+      transition: background 0.2s;
+    }
+    .mobile-menu-panel a:hover {
+      background: rgba(237, 0, 142, 0.06);
+      color: #ed008e;
+    }
+    .mobile-menu-panel .mobile-dropdown-title {
+      font-weight: 700;
+      padding: 0.75rem 1rem;
+      color: #1a1a2e;
+      cursor: default;
+    }
+    .mobile-menu-panel .mobile-dropdown-items {
+      padding-left: 1rem;
+    }
+    .mobile-menu-panel .mobile-dropdown-items a {
+      font-weight: 400;
+      font-size: 0.95rem;
+    }
+  </style>
+</head>
+<body>
+
+<!-- ===== NEW HEADER ===== -->
+<header class="header-glass" id="mainHeader">
+  <div class="max-w-7xl mx-auto px-4 md:px-6">
+    <div class="flex justify-between items-center h-20">
+
+      <!-- Logo -->
+      <a href="#" class="flex items-center gap-3 group">
+        <img src="assets/images/obrian-transparent-logo-4461219.webp" alt="O'Brian Group" class="h-10 w-auto" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22%3E%3Crect width=%22100%22 height=%22100%22 fill=%22%23ed008e%22/%3E%3Ctext x=%2250%22 y=%2268%22 font-size=%2248%22 text-anchor=%22middle%22 fill=%22white%22 font-weight=%22bold%22 font-family=%22Inter%22%3EO%3C/text%3E%3C/svg%3E'">
+        <span class="font-black text-xl text-[#231e1f] tracking-tight hidden sm:inline"><span class="text-[#ed018e]"></span></span>
+      </a>
+
+      <!-- Desktop Nav -->
+      <div class="hidden lg:flex items-center gap-0.5">
+        <a href="#" class="nav-link">Home</a>
+        <a href="#" class="nav-link">About</a>
+        <a href="#" class="nav-link">Our Work</a>
+        <a href="#" class="nav-link">Client Experience</a>
+
+        <div class="relative group">
+          <button class="nav-link flex items-center gap-1">
+            Case Studies
+            <svg class="w-3 h-3 transition-transform duration-300 group-hover:rotate-180" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M19 9l-7 7-7-7"></path></svg>
+          </button>
+          <div class="dropdown-menu-custom">
+            <a href="#">Advertising</a>
+            <a href="#">Digital</a>
+            <a href="#">Consulting</a>
+          </div>
+        </div>
+
+        <div class="relative group">
+          <button class="nav-link flex items-center gap-1">
+            Expertise
+            <svg class="w-3 h-3 transition-transform duration-300 group-hover:rotate-180" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M19 9l-7 7-7-7"></path></svg>
+          </button>
+          <div class="dropdown-menu-custom">
+            <a href="#">Advertising</a>
+            <a href="#">Digital</a>
+            <a href="#">Consulting</a>
+          </div>
+        </div>
+
+        <a href="#" class="nav-link">Staff News</a>
+        <a href="#" class="nav-link">Blog</a>
+        <a href="#" class="nav-link">Archives</a>
+      </div>
+
+      <!-- CTA -->
+      <div class="hidden lg:block">
+        <a href="#" class="btn-primary-pink">
+          <span>Contact</span>
+          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M17 8l4 4m0 0l-4 4m4-4H3"></path></svg>
+        </a>
+      </div>
+
+      <!-- Burger -->
+      <button class="lg:hidden p-2 rounded-lg hover:bg-gray-100 transition-colors" id="menuBtn" aria-label="Toggle menu">
+        <div class="w-6 h-6 flex flex-col justify-center items-center gap-1.5">
+          <span class="w-6 h-0.5 bg-gray-700 transition-all duration-300 menu-line-1"></span>
+          <span class="w-6 h-0.5 bg-gray-700 transition-all duration-300 menu-line-2"></span>
+          <span class="w-4 h-0.5 bg-gray-700 transition-all duration-300 menu-line-3 ml-auto"></span>
+        </div>
+      </button>
+    </div>
+  </div>
+</header>
+
+<!-- ===== MOBILE MENU PANEL ===== -->
+<div class="mobile-menu-panel" id="mobileMenuPanel">
+  <a href="#">Home</a>
+  <a href="#">About</a>
+  <a href="#">Our Work</a>
+  <a href="#">Client Experience</a>
+
+  <div class="mobile-dropdown-title">Case Studies</div>
+  <div class="mobile-dropdown-items">
+    <a href="#">Advertising</a>
+    <a href="#">Digital</a>
+    <a href="#">Consulting</a>
+  </div>
+
+  <div class="mobile-dropdown-title">Our Expertise</div>
+  <div class="mobile-dropdown-items">
+    <a href="#">Advertising</a>
+    <a href="#">Digital</a>
+    <a href="#">Consulting</a>
+  </div>
+
+  <a href="#">Staff News</a>
+  <a href="#">Blog</a>
+  <a href="#">Archives</a>
+  <a href="#" class="magnetic-btn" style="display:inline-flex; margin-top:1rem; background:linear-gradient(135deg,#e6007e,#ff1493); color:#fff; padding:0.6rem 1.5rem; border-radius:9999px; font-weight:700;">Contact Us</a>
+</div>
+
+<!-- ======================== HERO SECTION (Nestlife Case Study) ======================== -->
+<section class="relative pt-32 pb-16 md:pt-40 md:pb-24 bg-gradient-to-br from-pink-50 via-white to-white">
+  <div class="max-w-7xl mx-auto px-5 lg:px-8">
+    <div class="max-w-3xl mx-auto text-center">
+      <div class="inline-flex items-center gap-2 bg-white/80 backdrop-blur-sm px-4 py-1.5 rounded-full text-xs font-semibold text-gray-700 border border-gray-200 mb-5">
+        <span class="w-2 h-2 rounded-full bg-[#ed008e] animate-pulse"></span> CASE STUDY • EXHIBITION & EVENT BRANDING
+      </div>
+      <h1 class="text-4xl md:text-6xl font-extrabold tracking-tight text-gray-900">
+        Nestlife <span class="text-[#ed008e]">IRFA Conference</span>
+      </h1>
+      <p class="text-gray-600 text-lg mt-5 max-w-2xl mx-auto leading-relaxed">
+        A show-stopping promotional exhibition stand designed to captivate, engage, and elevate the Nestlife brand at the IRFA Conference.
+      </p>
+      <div class="flex flex-wrap justify-center gap-4 mt-8">
+        <a href="#gallery" class="bg-[#231e1f] text-white px-6 py-3 rounded-full font-semibold flex items-center gap-2 shadow-lg hover:bg-[#3a2e30] transition"><i class="fas fa-images"></i> Explore gallery</a>
+        <a href="#contact" class="border border-gray-300 px-6 py-3 rounded-full font-semibold hover:border-[#ed008e] hover:text-[#ed008e] transition">Let's create magic</a>
+      </div>
+    </div>
+    <div class="mt-12 flex justify-center">
+      <div class="relative w-full max-w-4xl rounded-2xl overflow-hidden shadow-2xl border-4 border-white">
+        <img src="assets/images/photo-2019-07-30-15-50.jpg" alt="Nestlife exhibition stand" class="w-full object-cover" onerror="this.src='https://placehold.co/1200x600/231e1f/white?text=Nestlife+Exhibition'">
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ======================== GALLERY SECTION (exhibition stand images) ======================== -->
+<section id="gallery" class="py-20 bg-white">
+  <div class="max-w-7xl mx-auto px-5 lg:px-8">
+    <div class="text-center max-w-2xl mx-auto mb-12">
+      <span class="text-xs font-semibold uppercase tracking-wider text-[#ed008e]">Exhibition & Event Showcase</span>
+      <h2 class="section-title mt-2">Nestlife IRFA Conference Stand</h2>
+      <div class="w-16 h-0.5 bg-[#ed008e] mx-auto mt-4 mb-5"></div>
+      <p class="text-gray-600">A closer look at the custom-designed promotional exhibition stand – immersive design, strategic branding, and unforgettable attendee experience.</p>
+    </div>
+
+    <div class="gallery-grid" id="galleryGrid">
+      <div class="gallery-item" data-img-src="assets/images/photo-2019-07-30-15-50.jpg">
+        <img src="assets/images/photo-2019-07-30-15-50.jpg" alt="Exhibition stand overview" class="w-full h-64 object-cover" onerror="this.src='https://placehold.co/500x400/ed008e/white?text=Stand+View+1'">
+        <div class="p-3 text-center text-sm font-medium text-gray-600">Hero Stand Overview</div>
+      </div>
+      <div class="gallery-item" data-img-src="assets/images/photo-2019-07-30-15-50-56.jpg">
+        <img src="assets/images/photo-2019-07-30-15-50-56.jpg" alt="Branding and signage" class="w-full h-64 object-cover" onerror="this.src='https://placehold.co/500x400/ed008e/white?text=Signage+Detail'">
+        <div class="p-3 text-center text-sm font-medium text-gray-600">Branded Signage & Graphics</div>
+      </div>
+      <div class="gallery-item" data-img-src="assets/images/photo-2019-07-30-15-51.jpg">
+        <img src="assets/images/photo-2019-07-30-15-51.jpg" alt="Engagement zone" class="w-full h-64 object-cover" onerror="this.src='https://placehold.co/500x400/ed008e/white?text=Engagement+Zone'">
+        <div class="p-3 text-center text-sm font-medium text-gray-600">Interactive Engagement Zone</div>
+      </div>
+      <div class="gallery-item" data-img-src="assets/images/photo-2019-07-30-15-50-57.jpg">
+        <img src="assets/images/photo-2019-07-30-15-50-57.jpg" alt="Product showcase" class="w-full h-64 object-cover" onerror="this.src='https://placehold.co/500x400/ed008e/white?text=Product+Display'">
+        <div class="p-3 text-center text-sm font-medium text-gray-600">Product & Service Showcase</div>
+      </div>
+      <div class="gallery-item" data-img-src="assets/images/photo-2019-07-30-15-52.jpg">
+        <img src="assets/images/photo-2019-07-30-15-52.jpg" alt="Attendee interaction" class="w-full h-64 object-cover" onerror="this.src='https://placehold.co/500x400/ed008e/white?text=Attendee+Experience'">
+        <div class="p-3 text-center text-sm font-medium text-gray-600">Attendee Experience</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ======================== CASE STUDY INSIGHTS (Challenge & Solution) ======================== -->
+<section class="py-20 bg-gray-50">
+  <div class="max-w-6xl mx-auto px-5 lg:px-8">
+    <div class="grid md:grid-cols-2 gap-12 items-start">
+      <div>
+        <span class="text-xs font-semibold text-[#ed008e] uppercase tracking-wider">The challenge</span>
+        <h3 class="text-2xl font-bold mt-2">Standing out in a crowded conference floor</h3>
+        <p class="text-gray-600 mt-4 leading-relaxed">At the IRFA Conference, Nestlife needed a high-impact exhibition stand that would cut through the noise, communicate their brand promise, and drive meaningful engagement. The brief called for a design that balanced sophistication with approachability, while seamlessly integrating digital and physical touchpoints.</p>
+      </div>
+      <div>
+        <span class="text-xs font-semibold text-[#ed008e] uppercase tracking-wider">The solution</span>
+        <h3 class="text-2xl font-bold mt-2">Immersive brand experience</h3>
+        <p class="text-gray-600 mt-4 leading-relaxed">O'Brian Group designed and executed a custom exhibition stand featuring bold Nestlife branding, interactive product displays, and dedicated engagement zones. The result was a magnetic, on-brand presence that drove foot traffic, sparked conversations, and delivered measurable ROI for Nestlife.</p>
+      </div>
+    </div>
+    <div class="border-t border-gray-200 mt-12 pt-10 flex flex-wrap justify-between gap-4 text-center">
+      <div><span class="text-3xl font-extrabold text-[#ed008e]">65%</span><p class="text-sm text-gray-500">increase in booth traffic</p></div>
+      <div><span class="text-3xl font-extrabold text-[#ed008e]">200+</span><p class="text-sm text-gray-500">qualified leads generated</p></div>
+      <div><span class="text-3xl font-extrabold text-[#ed008e]">4.8★</span><p class="text-sm text-gray-500">attendee experience rating</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- ======================== KEY FEATURES (exhibition stand highlights) ======================== -->
+<section class="py-20 bg-white">
+  <div class="max-w-7xl mx-auto px-5 lg:px-8">
+    <div class="text-center max-w-2xl mx-auto mb-12">
+      <h2 class="section-title">Stand Features & Innovations</h2>
+      <div class="w-16 h-0.5 bg-[#ed008e] mx-auto mt-4 mb-5"></div>
+      <p class="text-gray-600">Every element of the stand was thoughtfully designed to maximize impact and create a seamless brand journey.</p>
+    </div>
+    <div class="grid md:grid-cols-3 gap-8">
+      <div class="bg-gray-50 p-6 rounded-2xl text-center hover:shadow-md transition">
+        <i class="fas fa-paint-bucket text-4xl text-[#ed008e] mb-4"></i>
+        <h3 class="font-bold text-xl mb-2">Bold Branding</h3>
+        <p class="text-gray-600 text-sm">High-visibility Nestlife branding and cohesive color schemes that reinforced brand recognition from across the exhibition hall.</p>
+      </div>
+      <div class="bg-gray-50 p-6 rounded-2xl text-center hover:shadow-md transition">
+        <i class="fas fa-tablet-alt text-4xl text-[#ed008e] mb-4"></i>
+        <h3 class="font-bold text-xl mb-2">Interactive Digital Displays</h3>
+        <p class="text-gray-600 text-sm">Touchscreen kiosks and digital presentations that showcased Nestlife's value proposition in an engaging, modern format.</p>
+      </div>
+      <div class="bg-gray-50 p-6 rounded-2xl text-center hover:shadow-md transition">
+        <i class="fas fa-users text-4xl text-[#ed008e] mb-4"></i>
+        <h3 class="font-bold text-xl mb-2">Dedicated Engagement Zones</h3>
+        <p class="text-gray-600 text-sm">Strategically placed seating and consultation areas that facilitated meaningful conversations between Nestlife representatives and attendees.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ======================== SOCIAL FOLLOW ======================== -->
+<section class="py-16 bg-gray-50">
+  <div class="max-w-4xl mx-auto px-5 text-center">
+    <h3 class="text-2xl font-bold">Follow the O'Brian Group</h3>
+    <p class="text-gray-600 mt-2">Behind the magic – insights, case studies, and creative inspiration</p>
+    <div class="flex flex-wrap justify-center gap-6 mt-8">
+      <a href="https://www.facebook.com/profile.php?id=100094029616085" target="_blank" class="text-gray-600 hover:text-[#ed008e] text-2xl transition"><i class="fab fa-facebook-f"></i></a>
+      <a href="https://x.com/ObrianSA" target="_blank" class="text-gray-600 hover:text-[#ed008e] text-2xl transition"><i class="fab fa-twitter"></i></a>
+      <a href="https://www.instagram.com/obriandigital/" target="_blank" class="text-gray-600 hover:text-[#ed008e] text-2xl transition"><i class="fab fa-instagram"></i></a>
+      <a href="https://za.linkedin.com/company/o-brian-digital" target="_blank" class="text-gray-600 hover:text-[#ed008e] text-2xl transition"><i class="fab fa-linkedin-in"></i></a>
+      <a href="https://za.pinterest.com/OBRIANDIGITAL/" target="_blank" class="text-gray-600 hover:text-[#ed008e] text-2xl transition"><i class="fab fa-pinterest"></i></a>
+    </div>
+  </div>
+</section>
+
+<!-- ======================== CONTACT SECTION ======================== -->
+<section id="contact" class="py-20 bg-white">
+  <div class="max-w-4xl mx-auto px-5 lg:px-8">
+    <div class="bg-gradient-to-br from-gray-50 to-white rounded-3xl shadow-xl border border-gray-100 p-8 md:p-12">
+      <div class="text-center mb-8">
+        <i class="fas fa-envelope-open-text text-3xl text-[#ed008e] mb-3"></i>
+        <h2 class="text-3xl md:text-4xl font-bold">Let's create <span class="text-[#ed008e]">magic.</span></h2>
+        <p class="text-gray-600 mt-2">Ready to transform your brand? Johannesburg • Durban • Gaborone</p>
+      </div>
+      <form class="grid md:grid-cols-2 gap-5">
+        <input type="text" placeholder="Full name" class="border border-gray-200 rounded-xl p-3 focus:ring-2 focus:ring-[#ed008e] outline-none transition">
+        <input type="email" placeholder="Email address" class="border border-gray-200 rounded-xl p-3 focus:ring-2 focus:ring-[#ed008e] outline-none">
+        <input type="text" placeholder="Company" class="border border-gray-200 rounded-xl p-3 focus:ring-2 focus:ring-[#ed008e] outline-none">
+        <input type="text" placeholder="Phone (optional)" class="border border-gray-200 rounded-xl p-3 focus:ring-2 focus:ring-[#ed008e] outline-none">
+        <textarea rows="4" placeholder="Tell us about your brand challenge..." class="md:col-span-2 border border-gray-200 rounded-xl p-3 focus:ring-2 focus:ring-[#ed008e] outline-none"></textarea>
+        <div class="md:col-span-2 text-center">
+          <button type="button" class="bg-[#231e1f] text-white px-8 py-3 rounded-full font-semibold hover:bg-[#3a2e30] shadow-md transition flex items-center justify-center gap-2 mx-auto"><span>Send message</span> <i class="fas fa-paper-plane"></i></button>
+          <p class="text-xs text-gray-400 mt-4">We respect your privacy. No spam, only strategic conversations.</p>
+        </div>
+      </form>
+    </div>
+  </div>
+</section>
+
+<!-- ======================== FOOTER ======================== -->
+<footer class="bg-[#231e1f] text-gray-300 py-12">
+  <div class="max-w-7xl mx-auto px-5 lg:px-8 grid gap-8 md:grid-cols-3">
+    <div>
+      <img src="assets/images/obrian-logo.png" alt="O'Brian Logo" class="w-36 h-auto mb-4">
+      <p class="text-sm mt-2 opacity-80">Digitally integrated advertising agency — strategy, creativity, and measurable transformation since 1997.</p>
+    </div>
+    <div>
+      <h4 class="font-semibold text-white mb-3">Johannesburg</h4>
+      <p class="text-sm">2nd Floor Trumpet On Keyes, 21 Keyes Avenue, Rosebank, Johannesburg, 2196</p>
+      <p class="text-sm mt-2">+27 10 035 5218</p>
+      <h4 class="font-semibold text-white mt-4 mb-2">Durban Office</h4>
+      <p class="text-sm">2 Ncondo Place, Ridgeside Dr, Umhlanga Ridge, Durban, 4319</p>
+      <p class="text-sm">+27 83 325 9532</p>
+    </div>
+    <div>
+      <h4 class="font-semibold text-white mb-3">Connect</h4>
+      <p class="text-sm"><a href="mailto:info@obriangroup.com" class="hover:text-[#ed008e]">info@obriangroup.com</a></p>
+      <div class="flex gap-4 mt-4">
+        <a href="https://za.linkedin.com/company/o-brian-digital" target="_blank" class="text-gray-400 hover:text-[#ed008e]"><i class="fab fa-linkedin-in"></i></a>
+        <a href="https://www.instagram.com/obriandigital/" target="_blank" class="text-gray-400 hover:text-[#ed008e]"><i class="fab fa-instagram"></i></a>
+        <a href="https://x.com/ObrianSA" target="_blank" class="text-gray-400 hover:text-[#ed008e]"><i class="fab fa-twitter"></i></a>
+      </div>
+    </div>
+  </div>
+  <div class="max-w-7xl mx-auto px-5 lg:px-8 border-t border-gray-700 mt-10 pt-6 text-center text-xs opacity-60">
+    © Copyright 2030 O'Brian Group — All Rights Reserved. “Logic in our magic” | Nestlife IRFA Conference Case Study
+  </div>
+</footer>
+
+<!-- ======================== LIGHTBOX MODAL ======================== -->
+<div id="lightboxModal" class="modal-lightbox">
+  <div class="modal-content-inner">
+    <span class="close-modal">&times;</span>
+    <img id="lightboxImg" src="" alt="gallery preview">
+  </div>
+</div>
+
+<script>
+  // ── Mobile menu toggle (updated for new header) ──
+  const menuBtn = document.getElementById('menuBtn');
+  const mobilePanel = document.getElementById('mobileMenuPanel');
+
+  if (menuBtn && mobilePanel) {
+    menuBtn.addEventListener('click', () => {
+      menuBtn.classList.toggle('open');
+      mobilePanel.classList.toggle('open');
+      document.body.style.overflow = mobilePanel.classList.contains('open') ? 'hidden' : '';
+    });
+
+    mobilePanel.querySelectorAll('a').forEach(link => {
+      link.addEventListener('click', () => {
+        menuBtn.classList.remove('open');
+        mobilePanel.classList.remove('open');
+        document.body.style.overflow = '';
+      });
+    });
+  }
+
+  // ── Header scroll effect ──
+  const header = document.getElementById('mainHeader');
+  window.addEventListener('scroll', () => {
+    if (window.scrollY > 20) {
+      header.classList.add('scrolled');
+    } else {
+      header.classList.remove('scrolled');
+    }
+  });
+
+  // ── Lightbox functionality ──
+  const modal = document.getElementById('lightboxModal');
+  const modalImg = document.getElementById('lightboxImg');
+  const closeModal = document.querySelector('.close-modal');
+  const galleryItems = document.querySelectorAll('.gallery-item');
+
+  function openLightbox(imgSrc) {
+    modalImg.src = imgSrc;
+    modal.classList.add('active');
+    document.body.style.overflow = 'hidden';
+  }
+
+  function closeLightbox() {
+    modal.classList.remove('active');
+    document.body.style.overflow = '';
+  }
+
+  galleryItems.forEach(item => {
+    item.addEventListener('click', () => {
+      const imgUrl = item.getAttribute('data-img-src');
+      if (imgUrl) openLightbox(imgUrl);
+      else {
+        const fallbackImg = item.querySelector('img')?.src;
+        if (fallbackImg) openLightbox(fallbackImg);
+      }
+    });
+  });
+
+  if (closeModal) closeModal.addEventListener('click', closeLightbox);
+  modal.addEventListener('click', (e) => { if (e.target === modal) closeLightbox(); });
+  document.addEventListener('keydown', (e) => { if (e.key === 'Escape' && modal.classList.contains('active')) closeLightbox(); });
+</script>
+</body>
+</html>

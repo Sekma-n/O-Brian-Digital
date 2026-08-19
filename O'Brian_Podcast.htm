@@ -1,0 +1,914 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>O'Brien Podcast | Coming Soon</title>
+
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com">
+    </script>
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,400;14..32,600;14..32,700;14..32,800;14..32,900&display=swap" rel="stylesheet" />
+
+    <!-- Font Awesome 6 (Free) -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
+
+    <style>
+        /* --- Reset & Base --- */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: #0b0b0b;
+            color: #ffffff;
+            line-height: 1.6;
+            overflow-x: hidden;
+            padding-top: 80px;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        /* --- Custom Nav Styles (to complement Tailwind) --- */
+        .magnetic-btn {
+            transition: all 0.3s ease;
+        }
+        .magnetic-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px -5px rgba(230, 0, 126, 0.4);
+        }
+
+        .nav-link {
+            position: relative;
+        }
+
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            bottom: 0px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 0;
+            height: 2px;
+            background: #e6007e;
+            transition: width 0.3s ease;
+        }
+
+        .nav-link:hover::after {
+            width: 60%;
+        }
+
+        /* Mobile menu lines animation */
+        .menu-line-1.active {
+            transform: rotate(45deg) translate(2px, 2px);
+        }
+        .menu-line-2.active {
+            opacity: 0;
+        }
+        .menu-line-3.active {
+            transform: rotate(-45deg) translate(2px, -2px);
+            width: 6px !important;
+        }
+
+        /* Dropdown scale animation */
+        .dropdown-menu {
+            transform-origin: top center;
+            transition: all 0.2s ease;
+        }
+
+        /* Hero / Header */
+        .hero {
+            min-height: calc(100vh - 80px);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 2rem;
+            background: radial-gradient(ellipse at 50% 30%, #1a1a1a 0%, #0b0b0b 70%);
+            position: relative;
+            overflow: hidden;
+            text-align: center;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.03'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+            pointer-events: none;
+        }
+
+        .hero-content {
+            max-width: 900px;
+            position: relative;
+            z-index: 2;
+        }
+
+        .hero-badge {
+            display: inline-block;
+            background: rgba(236, 0, 138, 0.15);
+            color: #ec008a;
+            font-weight: 700;
+            font-size: 0.8rem;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            padding: 0.4rem 1.2rem;
+            border-radius: 40px;
+            border: 1px solid rgba(236, 0, 138, 0.25);
+            margin-bottom: 1.5rem;
+        }
+
+        .hero h1 {
+            font-size: clamp(3rem, 10vw, 6rem);
+            font-weight: 900;
+            line-height: 1.05;
+            letter-spacing: -0.03em;
+            margin-bottom: 1.2rem;
+        }
+
+        .hero h1 .highlight {
+            background: linear-gradient(135deg, #ec008a, #ff6b9d);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .hero p {
+            font-size: 1.25rem;
+            color: rgba(255, 255, 255, 0.6);
+            max-width: 600px;
+            margin: 0 auto 2.5rem;
+            font-weight: 400;
+            line-height: 1.7;
+        }
+
+        .hero .btn-group {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            justify-content: center;
+            gap: 1rem;
+        }
+
+        .hero .btn-primary {
+            background: #ec008a;
+            color: #fff;
+            padding: 0.9rem 2.8rem;
+            border-radius: 60px;
+            font-weight: 700;
+            font-size: 1rem;
+            border: none;
+            cursor: pointer;
+            transition: background 0.25s ease, transform 0.25s ease;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.6rem;
+        }
+
+        .hero .btn-primary:hover {
+            background: #d10078;
+            transform: translateY(-2px);
+        }
+
+        .hero .btn-outline {
+            background: transparent;
+            color: #fff;
+            padding: 0.9rem 2.8rem;
+            border-radius: 60px;
+            font-weight: 600;
+            font-size: 1rem;
+            border: 1.5px solid rgba(255, 255, 255, 0.2);
+            cursor: pointer;
+            transition: border-color 0.25s ease, background 0.25s ease, transform 0.25s ease;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.6rem;
+        }
+
+        .hero .btn-outline:hover {
+            border-color: #ec008a;
+            background: rgba(236, 0, 138, 0.08);
+            transform: translateY(-2px);
+        }
+
+        /* Video Showcase */
+        .video-section {
+            padding: 4rem 2rem 5rem;
+            background: #0f0f0f;
+        }
+
+        .video-section .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .video-section .section-label {
+            font-size: 0.8rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            color: #ec008a;
+            margin-bottom: 0.5rem;
+        }
+
+        .video-section .section-title {
+            font-size: clamp(2rem, 5vw, 3rem);
+            font-weight: 800;
+            margin-bottom: 0.5rem;
+        }
+
+        .video-section .section-desc {
+            color: rgba(255, 255, 255, 0.5);
+            max-width: 500px;
+            margin-bottom: 2.5rem;
+        }
+
+        .video-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
+        }
+
+        .video-card {
+            background: #1a1a1a;
+            border-radius: 20px;
+            overflow: hidden;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            cursor: pointer;
+            border: 1px solid rgba(255, 255, 255, 0.04);
+        }
+
+        .video-card:hover {
+            transform: translateY(-6px);
+            box-shadow: 0 20px 40px -12px rgba(0, 0, 0, 0.6);
+        }
+
+        .video-card .thumb {
+            position: relative;
+            width: 100%;
+            padding-top: 56.25%;
+            background: #111;
+            overflow: hidden;
+        }
+
+        .video-card .thumb img {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.4s ease;
+        }
+
+        .video-card:hover .thumb img {
+            transform: scale(1.04);
+        }
+
+        .video-card .thumb .play-btn {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 64px;
+            height: 64px;
+            background: rgba(236, 0, 138, 0.92);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #fff;
+            font-size: 1.6rem;
+            transition: transform 0.3s ease, background 0.3s ease;
+            box-shadow: 0 0 0 0 rgba(236, 0, 138, 0.4);
+        }
+
+        .video-card:hover .thumb .play-btn {
+            transform: translate(-50%, -50%) scale(1.08);
+            background: #ec008a;
+        }
+
+        .video-card .info {
+            padding: 1.5rem 1.8rem;
+        }
+
+        .video-card .info h3 {
+            font-size: 1.2rem;
+            font-weight: 700;
+            margin-bottom: 0.3rem;
+        }
+
+        .video-card .info p {
+            font-size: 0.9rem;
+            color: rgba(255, 255, 255, 0.5);
+        }
+
+        @media (max-width: 768px) {
+            .video-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* Footer */
+        .footer {
+            background: #080808;
+            padding: 3rem 2rem 1.5rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.04);
+        }
+
+        .footer .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            gap: 2.5rem;
+            margin-bottom: 2.5rem;
+        }
+
+        .footer-grid h5 {
+            font-size: 0.85rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: rgba(255, 255, 255, 0.4);
+            margin-bottom: 0.8rem;
+        }
+
+        .footer-grid ul {
+            list-style: none;
+        }
+
+        .footer-grid ul li {
+            margin-bottom: 0.4rem;
+        }
+
+        .footer-grid ul li a,
+        .footer-grid ul li {
+            font-size: 0.9rem;
+            color: rgba(255, 255, 255, 0.5);
+            transition: color 0.2s ease;
+        }
+
+        .footer-grid ul li a:hover {
+            color: #ffffff;
+        }
+
+        .footer-bottom {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 1rem;
+            padding-top: 1.5rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.04);
+            font-size: 0.8rem;
+            color: rgba(255, 255, 255, 0.3);
+        }
+
+        .footer-socials {
+            display: flex;
+            gap: 1rem;
+        }
+
+        .footer-socials a {
+            color: rgba(255, 255, 255, 0.3);
+            font-size: 1.2rem;
+            transition: color 0.2s ease, transform 0.2s ease;
+        }
+
+        .footer-socials a:hover {
+            color: #ec008a;
+            transform: translateY(-2px);
+        }
+
+        @media (max-width: 600px) {
+            .footer-bottom {
+                flex-direction: column;
+                text-align: center;
+            }
+        }
+
+        /* Scroll Animation */
+        .fade-up {
+            opacity: 0;
+            transform: translateY(30px);
+            animation: fadeUp 0.8s ease forwards;
+        }
+
+        @keyframes fadeUp {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .delay-1 {
+            animation-delay: 0.1s;
+        }
+        .delay-2 {
+            animation-delay: 0.25s;
+        }
+        .delay-3 {
+            animation-delay: 0.4s;
+        }
+        .delay-4 {
+            animation-delay: 0.55s;
+        }
+
+        /* ── NEW HEADER STYLES ── */
+        .header-glass {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            z-index: 1030;
+            background: rgba(255, 255, 255, 0.85);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            transition: box-shadow 0.3s, background 0.3s;
+            border-bottom: 1px solid rgba(0, 0, 0, 0.04);
+        }
+        .header-glass.scrolled {
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+            background: rgba(255, 255, 255, 0.98);
+        }
+
+        .nav-link {
+            padding: 0.5rem 1rem;
+            font-size: 0.875rem;
+            font-weight: 600;
+            color: #374151;
+            border-radius: 0.5rem;
+            transition: all 0.3s ease;
+            display: inline-block;
+            cursor: pointer;
+        }
+        .nav-link:hover {
+            color: #e6007e;
+            background-color: #fdf2f8;
+        }
+
+        .dropdown-menu-custom {
+            position: absolute;
+            top: 100%;
+            left: 0;
+            margin-top: 0.5rem;
+            width: 200px;
+            background: white;
+            border-radius: 0.75rem;
+            box-shadow: 0 20px 40px -8px rgba(0, 0, 0, 0.15);
+            border: 1px solid #f3f4f6;
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(-8px) scale(0.96);
+            transition: all 0.25s ease;
+            transform-origin: top left;
+            z-index: 1050;
+        }
+        .group:hover .dropdown-menu-custom {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0) scale(1);
+        }
+        .dropdown-menu-custom a {
+            display: block;
+            padding: 0.75rem 1.25rem;
+            font-size: 0.875rem;
+            color: #374151;
+            transition: background 0.2s, color 0.2s;
+        }
+        .dropdown-menu-custom a:hover {
+            background: #fdf2f8;
+            color: #e6007e;
+        }
+        .dropdown-menu-custom a:first-child {
+            border-radius: 0.75rem 0.75rem 0 0;
+        }
+        .dropdown-menu-custom a:last-child {
+            border-radius: 0 0 0.75rem 0.75rem;
+        }
+
+        .btn-primary-pink {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.75rem 1.75rem;
+            background: linear-gradient(135deg, #e6007e, #ff1493);
+            color: white;
+            font-weight: 700;
+            font-size: 0.875rem;
+            border-radius: 9999px;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 14px rgba(230, 0, 126, 0.3);
+        }
+        .btn-primary-pink:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(230, 0, 126, 0.4);
+            color: white;
+        }
+
+        /* Mobile menu panel */
+        .mobile-menu-panel {
+            display: none;
+            position: fixed;
+            top: 80px;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(255, 255, 255, 0.98);
+            backdrop-filter: blur(12px);
+            padding: 1.5rem;
+            overflow-y: auto;
+            z-index: 1020;
+            border-top: 1px solid rgba(0, 0, 0, 0.04);
+        }
+        .mobile-menu-panel.open {
+            display: block;
+        }
+        .mobile-menu-panel a {
+            display: block;
+            padding: 0.75rem 1rem;
+            font-size: 1rem;
+            font-weight: 500;
+            color: #1a1a2e;
+            border-radius: 0.5rem;
+            transition: background 0.2s;
+        }
+        .mobile-menu-panel a:hover {
+            background: rgba(237, 0, 142, 0.06);
+            color: #ed008e;
+        }
+        .mobile-menu-panel .mobile-dropdown-title {
+            font-weight: 700;
+            padding: 0.75rem 1rem;
+            color: #1a1a2e;
+            cursor: default;
+        }
+        .mobile-menu-panel .mobile-dropdown-items {
+            padding-left: 1rem;
+        }
+        .mobile-menu-panel .mobile-dropdown-items a {
+            font-weight: 400;
+            font-size: 0.95rem;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- ===== NEW HEADER ===== -->
+    <header class="header-glass" id="mainHeader">
+        <div class="max-w-7xl mx-auto px-4 md:px-6">
+            <div class="flex justify-between items-center h-20">
+
+                <!-- Logo -->
+                <a href="#" class="flex items-center gap-3 group">
+                    <img src="assets/images/obrian-transparent-logo-4461219.webp" alt="O'Brian Group" class="h-10 w-auto" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22%3E%3Crect width=%22100%22 height=%22100%22 fill=%22%23ed008e%22/%3E%3Ctext x=%2250%22 y=%2268%22 font-size=%2248%22 text-anchor=%22middle%22 fill=%22white%22 font-weight=%22bold%22 font-family=%22Inter%22%3EO%3C/text%3E%3C/svg%3E'">
+                    <span class="font-black text-xl text-[#231e1f] tracking-tight hidden sm:inline"><span class="text-[#ed018e]"></span></span>
+                </a>
+
+                <!-- Desktop Nav -->
+                <div class="hidden lg:flex items-center gap-0.5">
+                    <a href="#" class="nav-link">Home</a>
+                    <a href="#" class="nav-link">About</a>
+                    <a href="#" class="nav-link">Our Work</a>
+                    <a href="#" class="nav-link">Client Experience</a>
+
+                    <div class="relative group">
+                        <button class="nav-link flex items-center gap-1">
+                            Case Studies
+                            <svg class="w-3 h-3 transition-transform duration-300 group-hover:rotate-180" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M19 9l-7 7-7-7"></path></svg>
+                        </button>
+                        <div class="dropdown-menu-custom">
+                            <a href="#">Advertising</a>
+                            <a href="#">Digital</a>
+                            <a href="#">Consulting</a>
+                        </div>
+                    </div>
+
+                    <div class="relative group">
+                        <button class="nav-link flex items-center gap-1">
+                            Expertise
+                            <svg class="w-3 h-3 transition-transform duration-300 group-hover:rotate-180" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M19 9l-7 7-7-7"></path></svg>
+                        </button>
+                        <div class="dropdown-menu-custom">
+                            <a href="#">Advertising</a>
+                            <a href="#">Digital</a>
+                            <a href="#">Consulting</a>
+                        </div>
+                    </div>
+
+                    <a href="#" class="nav-link">Staff News</a>
+                    <a href="#" class="nav-link">Blog</a>
+                    <a href="#" class="nav-link">Archives</a>
+                </div>
+
+                <!-- CTA -->
+                <div class="hidden lg:block">
+                    <a href="#" class="btn-primary-pink">
+                        <span>Contact</span>
+                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M17 8l4 4m0 0l-4 4m4-4H3"></path></svg>
+                    </a>
+                </div>
+
+                <!-- Burger -->
+                <button class="lg:hidden p-2 rounded-lg hover:bg-gray-100 transition-colors" id="menuBtn" aria-label="Toggle menu">
+                    <div class="w-6 h-6 flex flex-col justify-center items-center gap-1.5">
+                        <span class="w-6 h-0.5 bg-gray-700 transition-all duration-300 menu-line-1"></span>
+                        <span class="w-6 h-0.5 bg-gray-700 transition-all duration-300 menu-line-2"></span>
+                        <span class="w-4 h-0.5 bg-gray-700 transition-all duration-300 menu-line-3 ml-auto"></span>
+                    </div>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- ===== MOBILE MENU PANEL ===== -->
+    <div class="mobile-menu-panel" id="mobileMenuPanel">
+        <a href="#">Home</a>
+        <a href="#">About</a>
+        <a href="#">Our Work</a>
+        <a href="#">Client Experience</a>
+
+        <div class="mobile-dropdown-title">Case Studies</div>
+        <div class="mobile-dropdown-items">
+            <a href="#">Advertising</a>
+            <a href="#">Digital</a>
+            <a href="#">Consulting</a>
+        </div>
+
+        <div class="mobile-dropdown-title">Our Expertise</div>
+        <div class="mobile-dropdown-items">
+            <a href="#">Advertising</a>
+            <a href="#">Digital</a>
+            <a href="#">Consulting</a>
+        </div>
+
+        <a href="#">Staff News</a>
+        <a href="#">Blog</a>
+        <a href="#">Archives</a>
+        <a href="#" class="magnetic-btn" style="display:inline-flex; margin-top:1rem; background:linear-gradient(135deg,#e6007e,#ff1493); color:#fff; padding:0.6rem 1.5rem; border-radius:9999px; font-weight:700;">Contact Us</a>
+    </div>
+
+    <!-- ===== HERO ===== -->
+    <section class="hero">
+        <div class="hero-content">
+            <div class="hero-badge fade-up">Coming Soon</div>
+            <h1 class="fade-up delay-1">
+                The <span class="highlight">O'Brian</span> Podcast
+            </h1>
+            <p class="fade-up delay-2">
+                Conversations that matter. Stories that inspire. <br />
+                Launching <strong>Spring 2026</strong>.
+            </p>
+            <div class="btn-group fade-up delay-3">
+                <a href="#" class="btn-primary">
+                    <i class="fas fa-bell"></i> Notify Me
+                </a>
+                <a href="#video" class="btn-outline">
+                    <i class="fas fa-play-circle"></i> Watch Trailer
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== VIDEO SHOWCASE ===== -->
+    <section class="video-section" id="video">
+        <div class="container">
+            <p class="section-label fade-up">Sneak Peek</p>
+            <h2 class="section-title fade-up delay-1">Podcast Trailer</h2>
+            <p class="section-desc fade-up delay-2">
+                Get a first look at the energy, depth, and vision behind the O'Brian Podcast.
+            </p>
+
+            <div class="video-grid">
+                <!-- Video Card 1 -->
+                <div class="video-card fade-up delay-3" onclick="playVideo('VS9FbAnX3f0')">
+                    <div class="thumb">
+                        <img src="https://img.youtube.com/vi/VS9FbAnX3f0/maxresdefault.jpg" alt="Podcast Trailer" loading="lazy" />
+                        <div class="play-btn"><i class="fas fa-play"></i></div>
+                    </div>
+                    <div class="info">
+                        <h3>O'Brian Podcast – Trailer</h3>
+                        <p>Experience the vision behind the voice.</p>
+                    </div>
+                </div>
+
+                <!-- Video Card 2 (placeholder for future episode) -->
+                <div class="video-card fade-up delay-4" onclick="playVideo('VS9FbAnX3f0')">
+                    <div class="thumb">
+                        <img src="https://img.youtube.com/vi/VS9FbAnX3f0/maxresdefault.jpg" alt="Episode Teaser" loading="lazy" />
+                        <div class="play-btn"><i class="fas fa-play"></i></div>
+                    </div>
+                    <div class="info">
+                        <h3>Episode 01 – Teaser</h3>
+                        <p>Coming soon. Stay tuned.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== FOOTER ===== -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div>
+                    <h5>Johannesburg</h5>
+                    <ul>
+                        <li>2nd Floor Trumpet On Keyes,</li>
+                        <li>21 Keyes Avenue, Rosebank,</li>
+                        <li>Johannesburg, 2196</li>
+                        <li style="margin-top:0.5rem;">Phone: +27 10 035 5218</li>
+                    </ul>
+                </div>
+                <div>
+                    <h5>Durban Office</h5>
+                    <ul>
+                        <li>2 Ncondo Place, Ridgeside Dr,</li>
+                        <li>Umhlanga Ridge, Durban, 4319</li>
+                        <li style="margin-top:0.5rem;">Phone: +27 83 325 9532</li>
+                    </ul>
+                </div>
+                <div>
+                    <h5>Email</h5>
+                    <ul>
+                        <li><a href="mailto:info@obriangroup.com">info@obriangroup.com</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h5>About</h5>
+                    <ul>
+                        <li><a href="page8.html">History</a></li>
+                        <li><a href="page52.html">Clients</a></li>
+                        <li><a href="#">Teams</a></li>
+                        <li><a href="#">Brand</a></li>
+                        <li><a href="#">Terms</a></li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="footer-bottom">
+                <span>&copy; 2026 O'Brien Group. All rights reserved.</span>
+                <div class="footer-socials">
+                    <a href="https://www.facebook.com/profile.php?id=100094029616085" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+                    <a href="https://x.com/ObrianSA" aria-label="Twitter"><i class="fab fa-x-twitter"></i></a>
+                    <a href="https://www.instagram.com/obriandigital/" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                    <a href="https://za.linkedin.com/company/o-brian-digital" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- ===== LIGHTBOX / VIDEO MODAL ===== -->
+    <div id="videoModal" style="
+        position: fixed;
+        inset: 0;
+        background: rgba(0,0,0,0.92);
+        backdrop-filter: blur(12px);
+        z-index: 2000;
+        display: none;
+        align-items: center;
+        justify-content: center;
+        padding: 2rem;
+        cursor: pointer;
+    ">
+        <div style="
+            position: relative;
+            width: 100%;
+            max-width: 1000px;
+            background: #000;
+            border-radius: 20px;
+            overflow: hidden;
+            aspect-ratio: 16 / 9;
+            cursor: default;
+        ">
+            <button onclick="closeVideoModal()" style="
+                position: absolute;
+                top: 16px;
+                right: 20px;
+                background: rgba(255,255,255,0.1);
+                border: none;
+                color: #fff;
+                font-size: 1.8rem;
+                cursor: pointer;
+                z-index: 10;
+                width: 44px;
+                height: 44px;
+                border-radius: 50%;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                transition: background 0.2s ease;
+            " onmouseover="this.style.background='rgba(236,0,138,0.7)'" onmouseout="this.style.background='rgba(255,255,255,0.1)'">
+                <i class="fas fa-times"></i>
+            </button>
+            <iframe id="videoIframe" src="" style="
+                width: 100%;
+                height: 100%;
+                border: none;
+            " allow="autoplay; encrypted-media; fullscreen" allowfullscreen></iframe>
+        </div>
+    </div>
+
+    <script>
+        // ── Mobile menu toggle (updated for new header) ──
+        const menuBtn = document.getElementById('menuBtn');
+        const mobilePanel = document.getElementById('mobileMenuPanel');
+
+        if (menuBtn && mobilePanel) {
+            menuBtn.addEventListener('click', () => {
+                menuBtn.classList.toggle('open');
+                mobilePanel.classList.toggle('open');
+                document.body.style.overflow = mobilePanel.classList.contains('open') ? 'hidden' : '';
+            });
+
+            mobilePanel.querySelectorAll('a').forEach(link => {
+                link.addEventListener('click', () => {
+                    menuBtn.classList.remove('open');
+                    mobilePanel.classList.remove('open');
+                    document.body.style.overflow = '';
+                });
+            });
+        }
+
+        // ── Header scroll effect ──
+        const header = document.getElementById('mainHeader');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 20) {
+                header.classList.add('scrolled');
+            } else {
+                header.classList.remove('scrolled');
+            }
+        });
+
+        // ── Video Modal ──
+        const modal = document.getElementById('videoModal');
+        const iframe = document.getElementById('videoIframe');
+
+        function playVideo(videoId) {
+            iframe.src = 'https://www.youtube.com/embed/' + videoId +
+                '?autoplay=1&mute=1&loop=1&playlist=' + videoId +
+                '&controls=1&rel=0&modestbranding=1';
+            modal.style.display = 'flex';
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeVideoModal() {
+            modal.style.display = 'none';
+            document.body.style.overflow = '';
+            iframe.src = '';
+        }
+
+        // Close on backdrop click
+        modal.addEventListener('click', (e) => {
+            if (e.target === modal) closeVideoModal();
+        });
+
+        // Close on Escape
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape' && modal.style.display === 'flex') {
+                closeVideoModal();
+            }
+        });
+
+        // ── Scroll-triggered fade-up (Intersection Observer) ──
+        const fadeElements = document.querySelectorAll('.fade-up');
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.animationPlayState = 'running';
+                }
+            });
+        }, { threshold: 0.15 });
+
+        fadeElements.forEach(el => {
+            el.style.animationPlayState = 'paused';
+            observer.observe(el);
+        });
+
+        // Manually trigger for elements already visible on load
+        setTimeout(() => {
+            fadeElements.forEach(el => {
+                const rect = el.getBoundingClientRect();
+                if (rect.top < window.innerHeight) {
+                    el.style.animationPlayState = 'running';
+                }
+            });
+        }, 100);
+    </script>
+
+</body>
+</html>

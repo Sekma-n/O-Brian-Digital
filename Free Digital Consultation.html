@@ -1,0 +1,1170 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Free Digital Consultation | O'Brian Digital</title>
+    <meta name="description" content="Claim your free 360° digital strategy consultation. Scale your business with O'Brian Digital's expert marketing and advertising solutions." />
+
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com">
+    </script>
+    <script src="https://unpkg.com/lucide@latest">
+    </script>
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800;900&family=Open+Sans:wght@300;400;600&display=swap" rel="stylesheet" />
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        'sans': ['Montserrat', 'sans-serif'],
+                        'body': ['Open Sans', 'sans-serif'],
+                    },
+                    colors: {
+                        'obrian': {
+                            pink: '#e6007e',
+                            dark: '#1a1a1a',
+                            black: '#000000',
+                            white: '#ffffff',
+                            gray: '#f5f5f5'
+                        }
+                    },
+                    animation: {
+                        'float': 'float 6s ease-in-out infinite',
+                        'slide-up': 'slideUp 0.8s ease-out forwards',
+                    },
+                    keyframes: {
+                        float: {
+                            '0%, 100%': { transform: 'translateY(0)' },
+                            '50%': { transform: 'translateY(-20px)' },
+                        },
+                        slideUp: {
+                            '0%': { opacity: '0', transform: 'translateY(40px)' },
+                            '100%': { opacity: '1', transform: 'translateY(0)' },
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        /* ===== RESET & BASE ===== */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Montserrat', sans-serif;
+            background: #f8fafc;
+            color: #231e1f;
+            line-height: 1.6;
+            overflow-x: hidden;
+            padding-top: 80px;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        .font-body {
+            font-family: 'Open Sans', sans-serif;
+        }
+
+        .text-pink {
+            color: #e6007e;
+        }
+        .bg-pink {
+            background-color: #e6007e;
+        }
+        .border-pink {
+            border-color: #e6007e;
+        }
+
+        .gradient-text {
+            background: linear-gradient(135deg, #e6007e 0%, #ff1493 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        img {
+            max-width: 100%;
+            display: block;
+        }
+
+        .container {
+            max-width: 1280px;
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+
+        /* ===== SCROLLBAR ===== */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #e2e8f0;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #e6007e;
+            border-radius: 4px;
+        }
+
+        /* ===== HEADER ===== */
+        .header-glass {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            z-index: 50;
+            background: rgba(255, 255, 255, 0.85);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            transition: box-shadow 0.3s, background 0.3s;
+            border-bottom: 1px solid rgba(0, 0, 0, 0.04);
+        }
+        .header-glass.scrolled {
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+            background: rgba(255, 255, 255, 0.98);
+        }
+
+        .nav-link-new {
+            padding: 0.5rem 1rem;
+            font-size: 0.875rem;
+            font-weight: 600;
+            color: #374151;
+            border-radius: 0.5rem;
+            transition: all 0.3s ease;
+            display: inline-block;
+            cursor: pointer;
+        }
+        .nav-link-new:hover {
+            color: #e6007e;
+            background-color: #fdf2f8;
+        }
+
+        .dropdown-menu-custom {
+            position: absolute;
+            top: 100%;
+            left: 0;
+            margin-top: 0.5rem;
+            width: 200px;
+            background: white;
+            border-radius: 0.75rem;
+            box-shadow: 0 20px 40px -8px rgba(0, 0, 0, 0.15);
+            border: 1px solid #f3f4f6;
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(-8px) scale(0.96);
+            transition: all 0.25s ease;
+            transform-origin: top left;
+            z-index: 60;
+        }
+        .group:hover .dropdown-menu-custom {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0) scale(1);
+        }
+        .dropdown-menu-custom a {
+            display: block;
+            padding: 0.75rem 1.25rem;
+            font-size: 0.875rem;
+            color: #374151;
+            transition: background 0.2s, color 0.2s;
+        }
+        .dropdown-menu-custom a:hover {
+            background: #fdf2f8;
+            color: #e6007e;
+        }
+        .dropdown-menu-custom a:first-child {
+            border-radius: 0.75rem 0.75rem 0 0;
+        }
+        .dropdown-menu-custom a:last-child {
+            border-radius: 0 0 0.75rem 0.75rem;
+        }
+
+        .btn-primary-pink {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.75rem 1.75rem;
+            background: linear-gradient(135deg, #e6007e, #ff1493);
+            color: white;
+            font-weight: 700;
+            font-size: 0.875rem;
+            border-radius: 9999px;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 14px rgba(230, 0, 126, 0.3);
+        }
+        .btn-primary-pink:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(230, 0, 126, 0.4);
+            color: white;
+        }
+
+        /* ===== MOBILE MENU ===== */
+        .mobile-menu-panel {
+            position: fixed;
+            inset: 0;
+            background: white;
+            z-index: 60;
+            transform: translateX(100%);
+            transition: transform 0.4s cubic-bezier(0.22, 1, 0.36, 1);
+            display: flex;
+            flex-direction: column;
+            height: 100%;
+            overflow-y: auto;
+        }
+        .mobile-menu-panel.open {
+            transform: translateX(0);
+        }
+        .mobile-menu-panel a {
+            display: block;
+            padding: 0.75rem 1rem;
+            font-size: 1rem;
+            font-weight: 600;
+            color: #231e1f;
+            border-radius: 0.5rem;
+            transition: all 0.2s;
+        }
+        .mobile-menu-panel a:hover {
+            background: rgba(230, 0, 126, 0.06);
+            color: #e6007e;
+            padding-left: 1.2rem;
+        }
+        .mobile-menu-panel .mobile-dropdown-title {
+            font-weight: 700;
+            padding: 0.75rem 1rem;
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            color: #6b7280;
+        }
+        .mobile-menu-panel .mobile-dropdown-items {
+            padding-left: 1rem;
+        }
+        .mobile-menu-panel .mobile-dropdown-items a {
+            font-weight: 400;
+            font-size: 0.95rem;
+        }
+
+        /* ===== HERO (CONSULTATION) ===== */
+        .hero-consultation {
+            padding: 100px 0 80px;
+            background: linear-gradient(160deg, #ffffff 0%, #f1f5f9 100%);
+            position: relative;
+            overflow: hidden;
+        }
+        .hero-consultation .container.hero-content {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 50px;
+        }
+        .hero-consultation .hero-text {
+            flex: 1;
+            max-width: 600px;
+        }
+        .hero-consultation .hero-text h1 {
+            font-size: clamp(2.8rem, 5vw, 4rem);
+            font-weight: 800;
+            color: #231e1f;
+            margin-bottom: 16px;
+            letter-spacing: -0.02em;
+            text-align: left;
+        }
+        .hero-consultation .hero-text h1 .highlight {
+            background: linear-gradient(135deg, #e6007e, #ff4dab);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        .hero-consultation .hero-text p {
+            font-size: 1.15rem;
+            color: #4a4a4a;
+            font-weight: 400;
+            line-height: 1.7;
+            text-align: left;
+        }
+        .hero-consultation .hero-image {
+            flex: 1;
+            max-width: 600px;
+        }
+        .hero-consultation .hero-image img {
+            width: 100%;
+            height: auto;
+            border-radius: 16px;
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.12);
+            transition: transform 0.3s ease;
+        }
+        .hero-consultation .hero-image img:hover {
+            transform: translateY(-5px);
+        }
+        .hero-consultation .badge-pill {
+            display: inline-block;
+            background: rgba(230, 0, 126, 0.10);
+            color: #e6007e;
+            font-size: 0.8rem;
+            font-weight: 600;
+            letter-spacing: 1.2px;
+            padding: 8px 22px;
+            border-radius: 60px;
+            text-transform: uppercase;
+            margin-bottom: 24px;
+        }
+        .hero-consultation .trust-bar {
+            margin-top: 32px;
+            display: flex;
+            align-items: center;
+            gap: 24px;
+            flex-wrap: wrap;
+            font-size: 0.85rem;
+            color: #5a6a6f;
+        }
+        .hero-consultation .trust-bar span {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .hero-consultation .trust-bar .dot {
+            display: inline-block;
+            width: 6px;
+            height: 6px;
+            background: #34a853;
+            border-radius: 50%;
+        }
+
+        /* ===== BUTTONS ===== */
+        .btn-cta-primary {
+            background: linear-gradient(135deg, #e6007e, #ff1493);
+            color: #fff !important;
+            border: none;
+            padding: 16px 48px;
+            font-weight: 700;
+            font-size: 1.1rem;
+            border-radius: 60px;
+            transition: all 0.3s ease;
+            box-shadow: 0 8px 30px rgba(230, 0, 126, 0.35);
+            text-decoration: none !important;
+            display: inline-block;
+            letter-spacing: 0.5px;
+            text-transform: uppercase;
+        }
+        .btn-cta-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 14px 40px rgba(230, 0, 126, 0.45);
+            color: #fff !important;
+        }
+
+        .btn-cta-outline {
+            background: transparent;
+            color: #e6007e !important;
+            border: 2px solid #e6007e;
+            padding: 14px 44px;
+            font-weight: 600;
+            font-size: 1.05rem;
+            border-radius: 60px;
+            transition: all 0.3s ease;
+            text-decoration: none !important;
+            display: inline-block;
+            letter-spacing: 0.5px;
+        }
+        .btn-cta-outline:hover {
+            background: #e6007e;
+            color: #fff !important;
+            transform: translateY(-3px);
+            box-shadow: 0 10px 32px rgba(230, 0, 126, 0.25);
+        }
+
+        /* ===== FEATURES GRID ===== */
+        .features-grid {
+            padding: 80px 0;
+            background: #ffffff;
+        }
+        .features-grid .section-label {
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            font-weight: 600;
+            color: #e6007e;
+            font-size: 0.85rem;
+            margin-bottom: 8px;
+        }
+        .features-grid .feature-card {
+            background: #f8f9f6;
+            padding: 40px 30px;
+            border-radius: 20px;
+            transition: all 0.4s ease;
+            height: 100%;
+            border: 1px solid transparent;
+            position: relative;
+            overflow: hidden;
+        }
+        .features-grid .feature-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background: linear-gradient(90deg, #e6007e, #ff1493);
+            opacity: 0;
+            transition: opacity 0.4s ease;
+        }
+        .features-grid .feature-card:hover::before {
+            opacity: 1;
+        }
+        .features-grid .feature-card:hover {
+            transform: translateY(-8px);
+            border-color: rgba(230, 0, 126, 0.2);
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.05);
+            background: #ffffff;
+        }
+        .features-grid .feature-card .icon {
+            font-size: 2.8rem;
+            color: #e6007e;
+            margin-bottom: 20px;
+            display: inline-block;
+        }
+        .features-grid .feature-card h4 {
+            font-weight: 700;
+            font-size: 1.3rem;
+            margin-bottom: 12px;
+        }
+        .features-grid .feature-card p {
+            color: #5a6a6f;
+            font-size: 0.95rem;
+            line-height: 1.6;
+            margin: 0;
+        }
+
+        /* ===== CONSULTATION DETAILS ===== */
+        .consult-details {
+            padding: 80px 0;
+            background: #f0f2ef;
+        }
+        .consult-details .detail-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 20px;
+            padding: 20px 0;
+            border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+        }
+        .consult-details .detail-item:last-child {
+            border-bottom: none;
+        }
+        .consult-details .detail-item .icon-circle {
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(135deg, #e6007e, #ff1493);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+            color: #fff;
+            font-size: 1.8rem;
+            box-shadow: 0 4px 14px rgba(230, 0, 126, 0.25);
+        }
+        .consult-details .detail-item h5 {
+            font-weight: 700;
+            font-size: 1.2rem;
+            margin-bottom: 4px;
+        }
+        .consult-details .detail-item p {
+            color: #5a6a6f;
+            margin: 0;
+        }
+
+        /* ===== TABS ===== */
+        .tabs-enhanced {
+            padding: 80px 0;
+            background: #ffffff;
+        }
+        .tabs-enhanced .nav-tabs .nav-link {
+            border: none;
+            padding: 12px 28px;
+            font-weight: 600;
+            color: #1e2a2f;
+            background: #f0f2ef;
+            border-radius: 60px;
+            margin-right: 12px;
+            transition: all 0.3s ease;
+        }
+        .tabs-enhanced .nav-tabs .nav-link.active {
+            background: linear-gradient(135deg, #e6007e, #ff1493);
+            color: #fff;
+            box-shadow: 0 4px 14px rgba(230, 0, 126, 0.3);
+        }
+        .tabs-enhanced .tab-content .item-content {
+            background: #f8f9f6;
+            border-radius: 24px;
+            padding: 30px;
+            margin-top: 30px;
+            transition: all 0.3s ease;
+            border: 1px solid rgba(230, 0, 126, 0.08);
+        }
+        .tabs-enhanced .tab-content .item-content img {
+            border-radius: 16px;
+            width: 100%;
+            margin-bottom: 20px;
+        }
+        .tabs-enhanced .tab-content .item-content .btn {
+            margin-top: 16px;
+        }
+
+        /* ===== FINAL CTA ===== */
+        .final-cta-banner {
+            padding: 70px 0;
+            background: linear-gradient(135deg, #1e2a2f 0%, #0f1518 100%);
+            text-align: center;
+            border-top: 4px solid #e6007e;
+        }
+        .final-cta-banner h2 {
+            font-size: 2.8rem;
+            font-weight: 800;
+            color: #fff;
+        }
+        .final-cta-banner h2 .highlight {
+            color: #e6007e;
+        }
+        .final-cta-banner p {
+            color: rgba(255, 255, 255, 0.7);
+            font-size: 1.1rem;
+            max-width: 550px;
+            margin: 16px auto 32px;
+        }
+
+        /* ===== FOOTER ===== */
+        .footer {
+            background: #231e1f;
+            color: #cbd5e1;
+            padding: 60px 0 32px;
+        }
+        .footer .container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            gap: 40px;
+        }
+        .footer h5 {
+            font-size: 0.9rem;
+            font-weight: 700;
+            color: #e6007e;
+            margin-bottom: 16px;
+            letter-spacing: 0.02em;
+        }
+        .footer ul {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+        .footer ul li {
+            font-size: 0.85rem;
+            font-weight: 400;
+            color: #94a3b8;
+            transition: color 0.25s ease;
+        }
+        .footer ul li a {
+            color: inherit;
+            transition: color 0.25s ease;
+        }
+        .footer ul li a:hover {
+            color: #e6007e;
+        }
+        .footer .social {
+            display: flex;
+            gap: 16px;
+            margin-top: 8px;
+        }
+        .footer .social a {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.06);
+            color: #cbd5e1;
+            font-size: 1.1rem;
+            transition: all 0.3s ease;
+        }
+        .footer .social a:hover {
+            background: #e6007e;
+            color: #ffffff;
+            transform: translateY(-2px);
+        }
+        .footer .copyright {
+            grid-column: 1 / -1;
+            text-align: center;
+            margin-top: 32px;
+            padding-top: 24px;
+            border-top: 1px solid rgba(255, 255, 255, 0.06);
+            font-size: 0.8rem;
+            color: #64748b;
+        }
+
+        /* ===== RESPONSIVE ===== */
+        @media (max-width: 992px) {
+            .hero-consultation {
+                padding: 80px 0 60px;
+            }
+            .hero-consultation .container.hero-content {
+                flex-direction: column;
+                text-align: center;
+                gap: 30px;
+            }
+            .hero-consultation .hero-text {
+                max-width: 100%;
+            }
+            .hero-consultation .hero-text h1 {
+                text-align: center;
+            }
+            .hero-consultation .hero-text p {
+                text-align: center;
+            }
+            .hero-consultation .hero-image {
+                max-width: 80%;
+                margin: 0 auto;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .header-glass {
+                height: 64px;
+                padding: 0 1rem;
+            }
+            body {
+                padding-top: 64px;
+            }
+            .hero-consultation {
+                padding: 60px 0 40px;
+            }
+            .hero-consultation .hero-text h1 {
+                font-size: 2.2rem;
+            }
+            .hero-consultation .hero-image {
+                max-width: 100%;
+            }
+            .footer .container {
+                grid-template-columns: 1fr 1fr;
+            }
+            .final-cta-banner h2 {
+                font-size: 2.2rem;
+            }
+            .tabs-enhanced .nav-tabs .nav-link {
+                display: block;
+                width: 100%;
+                margin-bottom: 10px;
+                text-align: center;
+            }
+        }
+        @media (max-width: 480px) {
+            .footer .container {
+                grid-template-columns: 1fr;
+            }
+            .hero-consultation .hero-text h1 {
+                font-size: 2rem;
+            }
+            .btn-cta-primary,
+            .btn-cta-outline {
+                padding: 14px 28px;
+                font-size: 0.95rem;
+                width: 100%;
+                text-align: center;
+            }
+            .consult-details .detail-item {
+                flex-direction: column;
+                align-items: center;
+                text-align: center;
+            }
+        }
+
+        /* ===== UTILITY ===== */
+        .fade-up {
+            opacity: 0;
+            transform: translateY(30px);
+            animation: fadeUp 0.8s ease forwards;
+        }
+        .fade-up.delay-1 {
+            animation-delay: 0.1s;
+        }
+        .fade-up.delay-2 {
+            animation-delay: 0.25s;
+        }
+        .fade-up.delay-3 {
+            animation-delay: 0.4s;
+        }
+        .fade-up.delay-4 {
+            animation-delay: 0.55s;
+        }
+
+        @keyframes fadeUp {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- ===== HEADER ===== -->
+    <header class="header-glass" id="mainHeader">
+        <div class="max-w-7xl mx-auto px-4 md:px-6">
+            <div class="flex justify-between items-center h-20">
+
+                <!-- Logo -->
+                <a href="Home.html" class="flex items-center gap-3 group">
+                    <img src="assets/images/obrian-transparent-logo-4461219.webp" alt="O'Brian Group" class="h-10 w-auto" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22%3E%3Crect width=%22100%22 height=%22100%22 fill=%22%23e6007e%22/%3E%3Ctext x=%2250%22 y=%2268%22 font-size=%2248%22 text-anchor=%22middle%22 fill=%22white%22 font-weight=%22bold%22 font-family=%22Inter%22%3EO%3C/text%3E%3C/svg%3E'">
+                    <span class="font-black text-xl text-[#231e1f] tracking-tight hidden sm:inline"><span class="text-[#e6007e]"></span></span>
+                </a>
+
+                <!-- Desktop Nav -->
+                <div class="hidden lg:flex items-center gap-0.5">
+                    <a href="Home.html" class="nav-link-new">Home</a>
+                    <a href="About.html" class="nav-link-new">About</a>
+                    <a href="Our_Work.html" class="nav-link-new">Our Work</a>
+                    <a href="Client_Experience.html" class="nav-link-new">Client Experience</a>
+
+                    <div class="relative group">
+                        <button class="nav-link-new flex items-center gap-1">
+                            Case Studies
+                            <svg class="w-3 h-3 transition-transform duration-300 group-hover:rotate-180" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M19 9l-7 7-7-7"></path></svg>
+                        </button>
+                        <div class="dropdown-menu-custom">
+                            <a href="Adv_Case_Studies.html">Advertising</a>
+                            <a href="Digital_Case_Studies.html">Digital</a>
+                            <a href="Consulting_Case_Studies.html">Consulting</a>
+                        </div>
+                    </div>
+
+                    <div class="relative group">
+                        <button class="nav-link-new flex items-center gap-1">
+                            Expertise
+                            <svg class="w-3 h-3 transition-transform duration-300 group-hover:rotate-180" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M19 9l-7 7-7-7"></path></svg>
+                        </button>
+                        <div class="dropdown-menu-custom">
+                            <a href="Advertising_Expertise.html">Advertising</a>
+                            <a href="Digital_Expertise.html">Digital</a>
+                            <a href="Consulting_Expertise.html">Consulting</a>
+                        </div>
+                    </div>
+
+                    <a href="Exploring_Boundless_Horizons.html" class="nav-link-new">Blog</a>
+                    <a href="Staff_News.html" class="nav-link-new">Staff News</a>
+                    <a href="Archive_Gallery.html" class="nav-link-new">Archives</a>
+                </div>
+
+                <!-- CTA -->
+                <div class="hidden lg:block">
+                    <a href="Contact_Us.html" class="btn-primary-pink">
+                        <span>Contact</span>
+                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M17 8l4 4m0 0l-4 4m4-4H3"></path></svg>
+                    </a>
+                </div>
+
+                <!-- Burger -->
+                <button class="lg:hidden p-2 rounded-lg hover:bg-gray-100 transition-colors" id="menuBtn" aria-label="Toggle menu">
+                    <div class="w-6 h-6 flex flex-col justify-center items-center gap-1.5">
+                        <span class="w-6 h-0.5 bg-gray-700 transition-all duration-300 menu-line-1"></span>
+                        <span class="w-6 h-0.5 bg-gray-700 transition-all duration-300 menu-line-2"></span>
+                        <span class="w-4 h-0.5 bg-gray-700 transition-all duration-300 menu-line-3 ml-auto"></span>
+                    </div>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- ===== MOBILE MENU ===== -->
+    <div class="mobile-menu-panel lg:hidden" id="mobileMenu">
+        <div class="flex flex-col h-full">
+            <!-- Mobile Header -->
+            <div class="flex justify-between items-center p-6 border-b border-gray-100">
+                <a href="Home.html" class="flex items-center gap-3">
+                    <img src="assets/images/obrian-transparent-logo-4461219.webp" alt="O'Brian Group" class="logo-img" style="height: 40px;" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22%3E%3Crect width=%22100%22 height=%22100%22 fill=%22%23e6007e%22/%3E%3Ctext x=%2250%22 y=%2268%22 font-size=%2248%22 text-anchor=%22middle%22 fill=%22white%22 font-weight=%22bold%22 font-family=%22Arial%22%3EO%3C/text%3E%3C/svg%3E'">
+                    <span class="font-black text-xl text-gray-900">O'BRIAN</span>
+                </a>
+                <button class="p-2 rounded-lg hover:bg-gray-100 transition-colors" id="closeMenu" aria-label="Close menu">
+                    <svg class="w-6 h-6 text-gray-700" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+                    </svg>
+                </button>
+            </div>
+
+            <!-- Mobile Navigation Links -->
+            <div class="flex-1 overflow-y-auto py-6 px-6">
+                <div class="space-y-1">
+                    <a href="Home.html" class="block px-4 py-3 text-lg font-semibold text-gray-800 hover:text-[#e6007e] hover:bg-pink-50 rounded-xl transition-all">Home</a>
+                    <a href="About.html" class="block px-4 py-3 text-lg font-semibold text-gray-800 hover:text-[#e6007e] hover:bg-pink-50 rounded-xl transition-all">About</a>
+                    <a href="Our_Work.html" class="block px-4 py-3 text-lg font-semibold text-gray-800 hover:text-[#e6007e] hover:bg-pink-50 rounded-xl transition-all">Our Work</a>
+                    <a href="Client_Experience.html" class="block px-4 py-3 text-lg font-semibold text-gray-800 hover:text-[#e6007e] hover:bg-pink-50 rounded-xl transition-all">Client Experience</a>
+
+                    <!-- Mobile Case Studies Accordion -->
+                    <div class="mobile-accordion">
+                        <button class="w-full flex justify-between items-center px-4 py-3 text-lg font-semibold text-gray-800 hover:text-[#e6007e] hover:bg-pink-50 rounded-xl transition-all" onclick="toggleAccordion('case-studies')">
+                            Case Studies
+                            <svg class="w-5 h-5 transition-transform duration-300" id="case-studies-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+                            </svg>
+                        </button>
+                        <div id="case-studies" class="hidden pl-4 space-y-1 mt-1">
+                            <a href="Adv_Case_Studies.html" class="block px-4 py-2 text-sm text-gray-600 hover:text-[#e6007e] transition-colors">Advertising</a>
+                            <a href="Digital_Case_Studies.html" class="block px-4 py-2 text-sm text-gray-600 hover:text-[#e6007e] transition-colors">Digital</a>
+                            <a href="Consulting_Case_Studies.html" class="block px-4 py-2 text-sm text-gray-600 hover:text-[#e6007e] transition-colors">Consulting</a>
+                        </div>
+                    </div>
+
+                    <!-- Mobile Expertise Accordion -->
+                    <div class="mobile-accordion">
+                        <button class="w-full flex justify-between items-center px-4 py-3 text-lg font-semibold text-gray-800 hover:text-[#e6007e] hover:bg-pink-50 rounded-xl transition-all" onclick="toggleAccordion('expertise')">
+                            Our Expertise
+                            <svg class="w-5 h-5 transition-transform duration-300" id="expertise-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+                            </svg>
+                        </button>
+                        <div id="expertise" class="hidden pl-4 space-y-1 mt-1">
+                            <a href="Expertise_Advertising.html" class="block px-4 py-2 text-sm text-gray-600 hover:text-[#e6007e] transition-colors">Advertising</a>
+                            <a href="Expertise_Digital.html" class="block px-4 py-2 text-sm text-gray-600 hover:text-[#e6007e] transition-colors">Digital</a>
+                            <a href="Consulting_Expertise.html" class="block px-4 py-2 text-sm text-gray-600 hover:text-[#e6007e] transition-colors">Consulting</a>
+                        </div>
+                    </div>
+
+                    <a href="Exploring_Boundless_Horizons.html" class="block px-4 py-3 text-lg font-semibold text-gray-800 hover:text-[#e6007e] hover:bg-pink-50 rounded-xl transition-all">Blog</a>
+                    <a href="Staff_News.html" class="block px-4 py-3 text-lg font-semibold text-gray-800 hover:text-[#e6007e] hover:bg-pink-50 rounded-xl transition-all">Staff News</a>
+                    <a href="Archive_Gallery.html" class="block px-4 py-3 text-lg font-semibold text-gray-800 hover:text-[#e6007e] hover:bg-pink-50 rounded-xl transition-all">Archives</a>
+                </div>
+            </div>
+
+            <!-- Mobile CTA -->
+            <div class="p-6 border-t border-gray-100">
+                <a href="Contact_Us.html" class="flex items-center justify-center gap-2 w-full px-6 py-4 bg-gradient-to-r from-[#e6007e] to-[#ff1493] text-white font-bold rounded-xl hover:shadow-lg transition-all">
+                    Contact Us
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"></path>
+                    </svg>
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <!-- ===== HERO ===== -->
+    <section class="hero-consultation">
+        <div class="container hero-content">
+            <div class="hero-text">
+                <div class="badge-pill fade-up">
+                    <i class="fas fa-sparkles mr-2"></i> Limited Slots Available
+                </div>
+                <h1 class="fade-up delay-1">
+                    Claim Your <span class="highlight">Free Digital</span> Consultation
+                </h1>
+                <p class="fade-up delay-2">
+                    Get a custom 360° digital strategy review from O'Brian Digital's experts.
+                    We'll audit your current marketing, identify gaps, and build a roadmap to scale your business.
+                </p>
+                <div class="cta-group fade-up delay-3" style="margin-top: 32px; display: flex; flex-wrap: wrap; gap: 16px; align-items: center;">
+                    <a href="Contact_Us.html" class="btn-cta-primary">
+                        <i class="fas fa-calendar-check mr-2"></i> Book My Free Session
+                    </a>
+                    <a href="#features" class="btn-cta-outline">Learn More</a>
+                </div>
+                <div class="trust-bar fade-up delay-4">
+                    <span><span class="dot"></span> 100+ Projects Delivered</span>
+                    <span><span class="dot"></span> 98% Client Satisfaction</span>
+                    <span><span class="dot"></span> 4.9★ Average Rating</span>
+                </div>
+            </div>
+            <div class="hero-image fade-up delay-2">
+                <!-- Replace with your consultation image -->
+                <img src="assets/images/hero-laptop.png" alt="Virtual reality and digital innovation concept" />
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== FEATURES GRID ===== -->
+    <section class="features-grid" id="features">
+        <div class="container">
+            <div class="row text-center mb-5">
+                <div class="col-lg-8 mx-auto">
+                    <span class="section-label">What We Cover</span>
+                    <h2 class="display-4 fw-bold">Let's create marketing that <span class="text-pink">matters</span>.</h2>
+                    <p class="text-muted">A practical, performance-based digital marketing solution for emerging and established brands.</p>
+                </div>
+            </div>
+            <div class="row g-4">
+                <div class="col-md-4 fade-up">
+                    <div class="feature-card text-center">
+                        <div class="icon">📈</div>
+                        <h4>Strategy &amp; SEO</h4>
+                        <p>Data-driven SEO and content strategies that attract high-intent traffic and build lasting organic growth.</p>
+                    </div>
+                </div>
+                <div class="col-md-4 fade-up delay-1">
+                    <div class="feature-card text-center">
+                        <div class="icon">🎯</div>
+                        <h4>Paid Advertising</h4>
+                        <p>Precision-targeted PPC, social ads, and retargeting campaigns engineered for maximum ROI.</p>
+                    </div>
+                </div>
+                <div class="col-md-4 fade-up delay-2">
+                    <div class="feature-card text-center">
+                        <div class="icon">⚙️</div>
+                        <h4>Automation &amp; CRM</h4>
+                        <p>Streamline your sales funnel with marketing automation and CRM systems that nurture leads effortlessly.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== CONSULTATION DETAILS ===== -->
+    <section class="consult-details">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-lg-6 mb-4 mb-lg-0">
+                    <span class="section-label" style="color:#e6007e;">What's Included</span>
+                    <h2 class="display-5 fw-bold">Your <span class="text-pink">Free Strategy</span> Session</h2>
+                    <p class="text-muted">We don't just give generic advice. We dive deep into your business to uncover real opportunities.</p>
+
+                    <div class="mt-4">
+                        <div class="detail-item">
+                            <div class="icon-circle"><i class="fas fa-search"></i></div>
+                            <div>
+                                <h5>360° Digital Audit</h5>
+                                <p>We analyze your website, SEO, ads, and social presence to identify quick wins.</p>
+                            </div>
+                        </div>
+                        <div class="detail-item">
+                            <div class="icon-circle"><i class="fas fa-chart-line"></i></div>
+                            <div>
+                                <h5>Competitor Analysis</h5>
+                                <p>See exactly how you stack up against your top competitors and where to overtake them.</p>
+                            </div>
+                        </div>
+                        <div class="detail-item">
+                            <div class="icon-circle"><i class="fas fa-map-signs"></i></div>
+                            <div>
+                                <h5>Custom Growth Roadmap</h5>
+                                <p>Walk away with a clear, actionable 90-day plan to scale your digital presence.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-6">
+                    <div class="bg-white p-4 rounded-4 shadow-sm" style="border: 1px solid rgba(230,0,126,0.08);">
+                        <h4 class="fw-bold" style="color:#e6007e;">Why O'Brian Digital?</h4>
+                        <ul class="list-unstyled mt-3">
+                            <li class="py-2 border-bottom"><span class="text-pink me-2">✓</span> Trusted, locally-grounded digital marketing partners.</li>
+                            <li class="py-2 border-bottom"><span class="text-pink me-2">✓</span> We understand the nuance of transition challenges.</li>
+                            <li class="py-2 border-bottom"><span class="text-pink me-2">✓</span> Mid-to-large SA transformation-aligned businesses.</li>
+                            <li class="py-2"><span class="text-pink me-2">✓</span> Relevant storytelling + measurable ROI.</li>
+                        </ul>
+                        <a href="Contact_Us.html" class="btn-cta-primary mt-3 d-inline-block" style="padding:12px 36px; font-size:0.95rem;">
+                            <i class="fas fa-calendar-check mr-2"></i> Book Now
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== TABS ===== -->
+    <section class="tabs-enhanced">
+        <div class="container">
+            <div class="row">
+                <div class="col-12 text-center mb-4">
+                    <span class="section-label">Resources</span>
+                    <h2 class="display-5 fw-bold">Insights &amp; <span class="text-pink">Updates</span></h2>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-12">
+                    <ul class="nav nav-tabs justify-content-center" role="tablist">
+                        <li class="nav-item" role="presentation">
+                            <a class="nav-link active" data-toggle="tab" data-bs-toggle="tab" href="#tab1" role="tab" aria-selected="true">O'Brian Digital</a>
+                        </li>
+                        <li class="nav-item" role="presentation">
+                            <a class="nav-link" data-toggle="tab" data-bs-toggle="tab" href="#tab2" role="tab" aria-selected="false">Digital Blog</a>
+                        </li>
+                    </ul>
+
+                    <div class="tab-content">
+                        <!-- TAB 1 -->
+                        <div class="tab-pane fade show active" id="tab1" role="tabpanel">
+                            <div class="item-content row align-items-center">
+                                <div class="col-lg-5">
+                                    <img src="assets/images/vlcsnap-2025-11-21-10h26m51s495.png" alt="O'Brian Digital" class="img-fluid">
+                                </div>
+                                <div class="col-lg-7">
+                                    <h4 class="fw-bold" style="color:#e6007e;">At O'Brian Digital</h4>
+                                    <p>We help ambitious brands position themselves ahead of the curve, with intelligent strategy, precise execution, and measurable growth.</p>
+                                    <div class="mt-3 p-3 bg-white rounded-3 border border-pink border-opacity-25">
+                                        <strong class="text-pink">🔥 Claim your FREE-CONSULTATION</strong>
+                                    </div>
+                                    <div class="mbr-section-btn mt-3">
+                                        <a class="btn btn-primary-outline display-4" href="Contact_Us.html" style="color:#e6007e; border-color:#e6007e;">Click here</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- TAB 2 -->
+                        <div class="tab-pane fade" id="tab2" role="tabpanel">
+                            <div class="item-content row align-items-center">
+                                <div class="col-lg-5">
+                                    <img src="assets/images/scalingdigital-marketing-1725340.png" alt="Digital Blog" class="img-fluid">
+                                </div>
+                                <div class="col-lg-7">
+                                    <h4 class="fw-bold" style="color:#e6007e;">How Digital Marketing Can Scale Your Business</h4>
+                                    <p>Faster, Smarter, and More Sustainably. In today's hyper-connected world, scaling a business isn't just about growth.</p>
+                                    <div class="mbr-section-btn mt-3">
+                                        <a class="btn btn-primary-outline display-4" href="Contact_Us.html" style="color:#e6007e; border-color:#e6007e;">Read more</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== FINAL CTA ===== -->
+    <section class="final-cta-banner">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-lg-8">
+                    <h2>Ready to <span class="highlight">Future-Proof</span> Your Business?</h2>
+                    <p>Don't wait. Our expert team is ready to help you build a digital ecosystem that drives real, measurable growth.</p>
+                    <a href="Contact_Us.html" class="btn-cta-primary">
+                        <i class="fas fa-calendar-check mr-2"></i> Claim Your Free Consultation
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== FOOTER ===== -->
+    <footer class="footer">
+        <div class="container">
+            <div>
+                <h5>Johannesburg</h5>
+                <ul>
+                    <li>2nd Floor Trumpet On Keyes,<br />21 Keyes Avenue, Rosebank,<br />Johannesburg, 2196</li>
+                    <li style="margin-top:8px;">Phone: +27 10 035 5218</li>
+                </ul>
+            </div>
+            <div>
+                <h5>Durban Office</h5>
+                <ul>
+                    <li>2 Ncondo Place, Ridgeside Dr,<br />Umhlanga Ridge, Durban, 4319</li>
+                    <li style="margin-top:8px;">Phone: +27 83 325 9532</li>
+                </ul>
+            </div>
+            <div>
+                <h5>Email</h5>
+                <ul>
+                    <li><a href="mailto:info@obriangroup.com">info@obriangroup.com</a></li>
+                </ul>
+            </div>
+            <div>
+                <h5>About</h5>
+                <ul>
+                    <li><a href="About.html">History</a></li>
+                    <li><a href="Client_Experience.html">Clients</a></li>
+                    <li><a href="About_Teams.html">Teams</a></li>
+                    <li><a href="About_Brand.html">Brand</a></li>
+                    <li><a href="About_Terms.html">Terms</a></li>
+                </ul>
+            </div>
+            <div>
+                <h5>Follow Us</h5>
+                <div class="social">
+                    <a href="https://www.facebook.com/profile.php?id=100094029616085" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+                    <a href="https://x.com/ObrianSA" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+                    <a href="https://www.instagram.com/obriandigital/" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                    <a href="https://za.linkedin.com/company/o-brian-digital" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+                </div>
+            </div>
+            <div class="copyright">
+                &copy; 2026 O'Brian Group — All Rights Reserved.
+            </div>
+        </div>
+    </footer>
+
+    <!-- ===== SCRIPTS ===== -->
+    <script>
+        (function() {
+            // Header scroll effect
+            const header = document.getElementById('mainHeader');
+            window.addEventListener('scroll', function() {
+                if (window.scrollY > 20) {
+                    header.classList.add('scrolled');
+                } else {
+                    header.classList.remove('scrolled');
+                }
+            });
+
+            // Mobile menu toggle
+            const menuBtn = document.getElementById('menuBtn');
+            const mobileMenu = document.getElementById('mobileMenu');
+            const closeBtn = document.getElementById('closeMenu');
+
+            function openMenu() {
+                mobileMenu.classList.add('open');
+                document.body.style.overflow = 'hidden';
+            }
+
+            function closeMenu() {
+                mobileMenu.classList.remove('open');
+                document.body.style.overflow = '';
+            }
+
+            if (menuBtn) {
+                menuBtn.addEventListener('click', openMenu);
+            }
+            if (closeBtn) {
+                closeBtn.addEventListener('click', closeMenu);
+            }
+
+            // Close menu when a link is clicked
+            mobileMenu.querySelectorAll('a').forEach(link => {
+                link.addEventListener('click', closeMenu);
+            });
+
+            // Close menu on resize to desktop
+            window.addEventListener('resize', function() {
+                if (window.innerWidth >= 1024) {
+                    closeMenu();
+                }
+            });
+
+            // Mobile accordion
+            window.toggleAccordion = function(id) {
+                const panel = document.getElementById(id);
+                if (!panel) return;
+                const icon = document.getElementById(id + '-icon');
+                if (panel.classList.contains('hidden')) {
+                    panel.classList.remove('hidden');
+                    if (icon) icon.style.transform = 'rotate(180deg)';
+                } else {
+                    panel.classList.add('hidden');
+                    if (icon) icon.style.transform = 'rotate(0deg)';
+                }
+            };
+        })();
+    </script>
+
+</body>
+</html>

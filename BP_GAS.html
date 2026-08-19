@@ -1,0 +1,1122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>BP Gas — O'Brian Group</title>
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,600;14..32,700;14..32,800&display=swap" rel="stylesheet" />
+
+    <!-- Font Awesome 6 -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
+
+    <!-- Bootstrap 5 CSS (preserved) -->
+    <link rel="stylesheet" href="assets/bootstrap/css/bootstrap.min.css" />
+
+    <!-- Tailwind CSS (for the new header) -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <style>
+        /* ── reset & base ── */
+        *,
+        *::before,
+        *::after {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary: #ec008a;
+            --primary-dark: #c40073;
+            --primary-light: #f54a9f;
+            --dark: #0f0f1a;
+            --gray-900: #1a1a2e;
+            --gray-800: #2d2d44;
+            --gray-600: #5a5a7a;
+            --gray-400: #9a9ab0;
+            --gray-200: #e8e8f0;
+            --gray-100: #f5f5fa;
+            --white: #ffffff;
+            --shadow-sm: 0 4px 24px rgba(0, 0, 0, 0.06);
+            --shadow-md: 0 12px 48px rgba(0, 0, 0, 0.10);
+            --shadow-lg: 0 24px 64px rgba(0, 0, 0, 0.14);
+            --radius: 16px;
+            --radius-sm: 8px;
+            --transition: 0.35s cubic-bezier(0.22, 1, 0.36, 1);
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            background: var(--gray-100);
+            color: var(--gray-900);
+            line-height: 1.6;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+        img {
+            display: block;
+            max-width: 100%;
+            height: auto;
+        }
+
+        .container {
+            max-width: 1280px;
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+
+        /* ── buttons ── */
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 12px 28px;
+            border-radius: 50px;
+            font-weight: 600;
+            font-size: 0.95rem;
+            border: none;
+            cursor: pointer;
+            transition: var(--transition);
+            background: var(--gray-200);
+            color: var(--gray-900);
+        }
+
+        .btn-primary {
+            background: var(--primary);
+            color: #fff;
+        }
+        .btn-primary:hover {
+            background: var(--primary-dark);
+            transform: translateY(-2px);
+            box-shadow: 0 8px 24px rgba(236, 0, 138, 0.30);
+        }
+
+        .btn-outline {
+            background: transparent;
+            border: 2px solid var(--primary);
+            color: var(--primary);
+        }
+        .btn-outline:hover {
+            background: var(--primary);
+            color: #fff;
+            transform: translateY(-2px);
+        }
+
+        .btn-sm {
+            padding: 6px 16px;
+            font-size: 0.8rem;
+        }
+
+        .btn-white {
+            background: #fff;
+            color: var(--dark);
+        }
+        .btn-white:hover {
+            background: var(--gray-100);
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-sm);
+        }
+
+        /* ── NEW HEADER STYLES ── */
+        .header-glass {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            z-index: 1030;
+            background: rgba(255, 255, 255, 0.85);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            transition: box-shadow 0.3s, background 0.3s;
+            border-bottom: 1px solid rgba(0, 0, 0, 0.04);
+        }
+        .header-glass.scrolled {
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+            background: rgba(255, 255, 255, 0.98);
+        }
+
+        .nav-link {
+            padding: 0.5rem 1rem;
+            font-size: 0.875rem;
+            font-weight: 600;
+            color: #374151;
+            border-radius: 0.5rem;
+            transition: all 0.3s ease;
+            display: inline-block;
+            cursor: pointer;
+        }
+        .nav-link:hover {
+            color: #e6007e;
+            background-color: #fdf2f8;
+        }
+
+        .dropdown-menu-custom {
+            position: absolute;
+            top: 100%;
+            left: 0;
+            margin-top: 0.5rem;
+            width: 200px;
+            background: white;
+            border-radius: 0.75rem;
+            box-shadow: 0 20px 40px -8px rgba(0, 0, 0, 0.15);
+            border: 1px solid #f3f4f6;
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(-8px) scale(0.96);
+            transition: all 0.25s ease;
+            transform-origin: top left;
+            z-index: 1050;
+        }
+        .group:hover .dropdown-menu-custom {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0) scale(1);
+        }
+        .dropdown-menu-custom a {
+            display: block;
+            padding: 0.75rem 1.25rem;
+            font-size: 0.875rem;
+            color: #374151;
+            transition: background 0.2s, color 0.2s;
+        }
+        .dropdown-menu-custom a:hover {
+            background: #fdf2f8;
+            color: #e6007e;
+        }
+        .dropdown-menu-custom a:first-child {
+            border-radius: 0.75rem 0.75rem 0 0;
+        }
+        .dropdown-menu-custom a:last-child {
+            border-radius: 0 0 0.75rem 0.75rem;
+        }
+
+        .btn-primary-pink {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.75rem 1.75rem;
+            background: linear-gradient(135deg, #e6007e, #ff1493);
+            color: white;
+            font-weight: 700;
+            font-size: 0.875rem;
+            border-radius: 9999px;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 14px rgba(230, 0, 126, 0.3);
+        }
+        .btn-primary-pink:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(230, 0, 126, 0.4);
+            color: white;
+        }
+
+        /* Mobile menu panel (preserved, with slight style tweaks) */
+        .mobile-menu-panel {
+            display: none;
+            position: fixed;
+            top: 80px;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(255, 255, 255, 0.98);
+            backdrop-filter: blur(12px);
+            padding: 1.5rem;
+            overflow-y: auto;
+            z-index: 1020;
+            border-top: 1px solid rgba(0, 0, 0, 0.04);
+        }
+        .mobile-menu-panel.open {
+            display: block;
+        }
+        .mobile-menu-panel a {
+            display: block;
+            padding: 0.75rem 1rem;
+            font-size: 1rem;
+            font-weight: 500;
+            color: #1a1a2e;
+            border-radius: 0.5rem;
+            transition: background 0.2s;
+        }
+        .mobile-menu-panel a:hover {
+            background: rgba(237, 0, 142, 0.06);
+            color: #ed008e;
+        }
+        .mobile-menu-panel .mobile-dropdown-title {
+            font-weight: 700;
+            padding: 0.75rem 1rem;
+            color: #1a1a2e;
+            cursor: default;
+        }
+        .mobile-menu-panel .mobile-dropdown-items {
+            padding-left: 1rem;
+        }
+        .mobile-menu-panel .mobile-dropdown-items a {
+            font-weight: 400;
+            font-size: 0.95rem;
+        }
+
+        /* ── hero ── */
+        .hero {
+            padding: 160px 0 80px;
+            background: var(--white);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: -40%;
+            right: -10%;
+            width: 600px;
+            height: 600px;
+            border-radius: 50%;
+            background: radial-gradient(circle, rgba(236, 0, 138, 0.06) 0%, transparent 70%);
+            pointer-events: none;
+        }
+
+        .hero .container {
+            position: relative;
+            z-index: 1;
+        }
+
+        .hero-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 64px;
+            align-items: center;
+        }
+
+        .hero-content .tag {
+            display: inline-block;
+            background: rgba(236, 0, 138, 0.10);
+            color: var(--primary);
+            font-weight: 600;
+            font-size: 0.75rem;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            padding: 4px 16px;
+            border-radius: 50px;
+            margin-bottom: 16px;
+        }
+
+        .hero-content h1 {
+            font-size: 3.6rem;
+            font-weight: 800;
+            line-height: 1.12;
+            letter-spacing: -0.03em;
+            color: var(--dark);
+            margin-bottom: 16px;
+        }
+
+        .hero-content h1 span {
+            color: var(--primary);
+        }
+
+        .hero-content p {
+            font-size: 1.2rem;
+            color: var(--gray-600);
+            max-width: 480px;
+            margin-bottom: 32px;
+        }
+
+        .hero-actions {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 16px;
+        }
+
+        .hero-visual {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 16px;
+        }
+
+        .hero-visual .card-img {
+            border-radius: var(--radius);
+            overflow: hidden;
+            background: var(--gray-200);
+            box-shadow: var(--shadow-sm);
+            transition: var(--transition);
+            cursor: pointer;
+        }
+
+        .hero-visual .card-img:hover {
+            transform: scale(1.02);
+            box-shadow: var(--shadow-md);
+        }
+
+        .hero-visual .card-img img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            aspect-ratio: 1 / 1;
+            pointer-events: none;
+        }
+
+        .hero-visual .card-img.tall {
+            grid-row: span 2;
+        }
+
+        .hero-visual .card-img.tall img {
+            aspect-ratio: auto;
+            min-height: 280px;
+        }
+
+        /* ── section titles ── */
+        .section-label {
+            display: inline-block;
+            font-size: 0.7rem;
+            font-weight: 700;
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+            color: var(--primary);
+            background: rgba(236, 0, 138, 0.08);
+            padding: 4px 16px;
+            border-radius: 50px;
+            margin-bottom: 8px;
+        }
+
+        .section-title {
+            font-size: 2.4rem;
+            font-weight: 700;
+            letter-spacing: -0.02em;
+            color: var(--dark);
+            margin-bottom: 12px;
+        }
+
+        .section-sub {
+            color: var(--gray-600);
+            font-size: 1.1rem;
+            max-width: 600px;
+        }
+
+        /* ── gallery grid ── */
+        .gallery-section {
+            padding: 80px 0;
+            background: var(--white);
+        }
+
+        .gallery-section .section-header {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            align-items: flex-end;
+            margin-bottom: 48px;
+        }
+
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+            gap: 20px;
+        }
+
+        .gallery-grid .item {
+            border-radius: var(--radius-sm);
+            overflow: hidden;
+            background: var(--gray-100);
+            box-shadow: var(--shadow-sm);
+            transition: var(--transition);
+            cursor: pointer;
+            position: relative;
+        }
+
+        .gallery-grid .item:hover {
+            transform: translateY(-6px);
+            box-shadow: var(--shadow-md);
+        }
+
+        .gallery-grid .item img {
+            width: 100%;
+            aspect-ratio: 3 / 4;
+            object-fit: cover;
+            transition: var(--transition);
+        }
+
+        .gallery-grid .item:hover img {
+            transform: scale(1.03);
+        }
+
+        .gallery-grid .item .overlay {
+            position: absolute;
+            inset: 0;
+            background: rgba(15, 15, 26, 0.40);
+            backdrop-filter: blur(2px);
+            opacity: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: var(--transition);
+            color: #fff;
+            font-size: 1.8rem;
+        }
+
+        .gallery-grid .item:hover .overlay {
+            opacity: 1;
+        }
+
+        /* ── campaign card ── */
+        .campaign-section {
+            padding: 80px 0;
+            background: var(--gray-100);
+        }
+
+        .campaign-card {
+            background: var(--white);
+            border-radius: var(--radius);
+            padding: 48px 56px;
+            box-shadow: var(--shadow-sm);
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            justify-content: space-between;
+            gap: 32px;
+            transition: var(--transition);
+            border: 1px solid rgba(0, 0, 0, 0.03);
+        }
+
+        .campaign-card:hover {
+            box-shadow: var(--shadow-md);
+            transform: translateY(-4px);
+        }
+
+        .campaign-info {
+            display: flex;
+            align-items: center;
+            gap: 24px;
+        }
+
+        .campaign-icon {
+            width: 64px;
+            height: 64px;
+            border-radius: 50%;
+            background: rgba(236, 0, 138, 0.08);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--primary);
+            font-size: 1.8rem;
+            flex-shrink: 0;
+        }
+
+        .campaign-info h4 {
+            font-size: 1.2rem;
+            font-weight: 700;
+        }
+
+        .campaign-info p {
+            color: var(--gray-600);
+            font-size: 0.95rem;
+        }
+
+        /* ── social ── */
+        .social-section {
+            padding: 60px 0;
+            background: var(--white);
+            border-top: 1px solid var(--gray-200);
+        }
+
+        .social-section h3 {
+            text-align: center;
+            font-size: 0.85rem;
+            font-weight: 600;
+            letter-spacing: 0.06em;
+            text-transform: uppercase;
+            color: var(--gray-600);
+            margin-bottom: 24px;
+        }
+
+        .social-list {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+
+        .social-list a {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 48px;
+            height: 48px;
+            border-radius: 50%;
+            background: var(--gray-100);
+            color: var(--gray-800);
+            font-size: 1.2rem;
+            transition: var(--transition);
+        }
+
+        .social-list a:hover {
+            background: var(--primary);
+            color: #fff;
+            transform: translateY(-4px);
+            box-shadow: 0 8px 24px rgba(236, 0, 138, 0.25);
+        }
+
+        /* ── footer ── */
+        .footer {
+            background: var(--dark);
+            color: rgba(255, 255, 255, 0.70);
+            padding: 64px 0 32px;
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 40px;
+            margin-bottom: 48px;
+        }
+
+        .footer h5 {
+            color: #fff;
+            font-weight: 600;
+            font-size: 0.95rem;
+            margin-bottom: 16px;
+        }
+
+        .footer ul {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        .footer ul a {
+            font-size: 0.9rem;
+            transition: var(--transition);
+        }
+
+        .footer ul a:hover {
+            color: var(--primary-light);
+        }
+
+        .footer .social-row {
+            display: flex;
+            gap: 16px;
+            margin-top: 12px;
+        }
+
+        .footer .social-row a {
+            color: rgba(255, 255, 255, 0.50);
+            font-size: 1.2rem;
+            transition: var(--transition);
+        }
+
+        .footer .social-row a:hover {
+            color: #fff;
+        }
+
+        .footer .copyright {
+            border-top: 1px solid rgba(255, 255, 255, 0.06);
+            padding-top: 24px;
+            text-align: center;
+            font-size: 0.85rem;
+            color: rgba(255, 255, 255, 0.35);
+        }
+
+        /* ── scroll to top ── */
+        .scroll-top {
+            position: fixed;
+            bottom: 28px;
+            right: 28px;
+            width: 48px;
+            height: 48px;
+            border-radius: 50%;
+            background: var(--primary);
+            color: #fff;
+            border: none;
+            font-size: 1.2rem;
+            cursor: pointer;
+            box-shadow: 0 8px 24px rgba(236, 0, 138, 0.30);
+            transition: var(--transition);
+            opacity: 0;
+            transform: translateY(12px);
+            pointer-events: none;
+            z-index: 900;
+        }
+
+        .scroll-top.visible {
+            opacity: 1;
+            transform: translateY(0);
+            pointer-events: auto;
+        }
+
+        .scroll-top:hover {
+            transform: translateY(-4px) scale(1.04);
+            box-shadow: 0 12px 32px rgba(236, 0, 138, 0.40);
+        }
+
+        /* ── responsive ── */
+        @media (max-width: 1024px) {
+            .hero-grid {
+                grid-template-columns: 1fr;
+                gap: 48px;
+            }
+
+            .hero-content h1 {
+                font-size: 2.8rem;
+            }
+
+            .hero-visual {
+                grid-template-columns: 1fr 1fr;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .header-glass {
+                padding: 0 1rem;
+                height: 70px;
+            }
+            .header-glass .h-20 {
+                height: 70px !important;
+            }
+            .logo-link img {
+                height: 38px;
+            }
+            .hero {
+                padding: 120px 0 56px;
+            }
+
+            .hero-content h1 {
+                font-size: 2.2rem;
+            }
+
+            .hero-content p {
+                font-size: 1rem;
+            }
+
+            .hero-visual {
+                grid-template-columns: 1fr 1fr;
+                gap: 12px;
+            }
+
+            .section-title {
+                font-size: 1.8rem;
+            }
+
+            .gallery-grid {
+                grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+                gap: 12px;
+            }
+
+            .campaign-card {
+                padding: 32px 24px;
+                flex-direction: column;
+                align-items: flex-start;
+            }
+
+            .campaign-info {
+                flex-wrap: wrap;
+            }
+
+            .footer-grid {
+                grid-template-columns: 1fr 1fr;
+                gap: 32px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .hero-visual {
+                grid-template-columns: 1fr 1fr;
+            }
+
+            .hero-visual .card-img.tall img {
+                min-height: 180px;
+            }
+
+            .gallery-grid {
+                grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+            }
+
+            .campaign-info {
+                flex-direction: column;
+                align-items: flex-start;
+                text-align: left;
+            }
+
+            .footer-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- ─── NEW HEADER (header-glass) ─── -->
+    <header class="header-glass" id="mainHeader">
+        <div class="max-w-7xl mx-auto px-4 md:px-6">
+            <div class="flex justify-between items-center h-20">
+
+                <!-- Logo -->
+                <a href="index.html" class="flex items-center gap-3 group">
+                    <img src="assets/images/obrian-transparent-logo-4461219.webp" alt="O'Brian Group" class="h-10 w-auto" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22%3E%3Crect width=%22100%22 height=%22100%22 fill=%22%23ed008e%22/%3E%3Ctext x=%2250%22 y=%2268%22 font-size=%2248%22 text-anchor=%22middle%22 fill=%22white%22 font-weight=%22bold%22 font-family=%22Inter%22%3EO%3C/text%3E%3C/svg%3E'">
+                    <span class="font-black text-xl text-[#231e1f] tracking-tight hidden sm:inline"><span class="text-[#ed018e]"></span></span>
+                </a>
+
+                <!-- Desktop Nav -->
+                <div class="hidden lg:flex items-center gap-0.5">
+                    <a href="index.html" class="nav-link">Home</a>
+                    <a href="page8.html" class="nav-link">About</a>
+                    <a href="page30.html" class="nav-link">Our Work</a>
+                    <a href="page52.html" class="nav-link">Client Experience</a>
+
+                    <div class="relative group">
+                        <button class="nav-link flex items-center gap-1">
+                            Case Studies
+                            <svg class="w-3 h-3 transition-transform duration-300 group-hover:rotate-180" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M19 9l-7 7-7-7"></path></svg>
+                        </button>
+                        <div class="dropdown-menu-custom">
+                            <a href="page27.html">Advertising</a>
+                            <a href="page45.html">Digital</a>
+                            <a href="page43.html">Consulting</a>
+                        </div>
+                    </div>
+
+                    <div class="relative group">
+                        <button class="nav-link flex items-center gap-1">
+                            Expertise
+                            <svg class="w-3 h-3 transition-transform duration-300 group-hover:rotate-180" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M19 9l-7 7-7-7"></path></svg>
+                        </button>
+                        <div class="dropdown-menu-custom">
+                            <a href="page9.html">Advertising</a>
+                            <a href="page18.html">Digital</a>
+                            <a href="page1.html">Consulting</a>
+                        </div>
+                    </div>
+
+                    <a href="page60.html" class="nav-link">Staff News</a>
+                    <a href="page15.html" class="nav-link">Blog</a>
+                    <a href="page70.html" class="nav-link">Archives</a>
+                </div>
+
+                <!-- CTA -->
+                <div class="hidden lg:block">
+                    <a href="page5.html" class="btn-primary-pink">
+                        <span>Contact</span>
+                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M17 8l4 4m0 0l-4 4m4-4H3"></path></svg>
+                    </a>
+                </div>
+
+                <!-- Burger -->
+                <button class="lg:hidden p-2 rounded-lg hover:bg-gray-100 transition-colors" id="menuBtn" aria-label="Toggle menu">
+                    <div class="w-6 h-6 flex flex-col justify-center items-center gap-1.5">
+                        <span class="w-6 h-0.5 bg-gray-700 transition-all duration-300 menu-line-1"></span>
+                        <span class="w-6 h-0.5 bg-gray-700 transition-all duration-300 menu-line-2"></span>
+                        <span class="w-4 h-0.5 bg-gray-700 transition-all duration-300 menu-line-3 ml-auto"></span>
+                    </div>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- ─── MOBILE MENU PANEL (preserved, with updated toggle ID) ─── -->
+    <div class="mobile-menu-panel" id="mobileMenuPanel">
+        <a href="index.html">Home</a>
+        <a href="page8.html">About</a>
+        <a href="page30.html">Our Work</a>
+        <a href="page52.html">Client Experience</a>
+
+        <div class="mobile-dropdown-title">Case Studies</div>
+        <div class="mobile-dropdown-items">
+            <a href="page27.html">Advertising</a>
+            <a href="page45.html">Digital</a>
+            <a href="page43.html">Consulting</a>
+        </div>
+
+        <div class="mobile-dropdown-title">Our Expertise</div>
+        <div class="mobile-dropdown-items">
+            <a href="page9.html">Advertising</a>
+            <a href="page1.html">Digital</a>
+            <a href="page18.html">Consulting</a>
+        </div>
+
+        <a href="page60.html">Staff News</a>
+        <a href="page15.html">Blog</a>
+        <a href="page70.html">Archives</a>
+        <a href="page5.html" class="magnetic-btn" style="display:inline-flex; margin-top:1rem; background:linear-gradient(135deg,#e6007e,#ff1493); color:#fff; padding:0.6rem 1.5rem; border-radius:9999px; font-weight:700;">Contact Us</a>
+    </div>
+
+    <!-- ─── HERO ─── -->
+    <section class="hero">
+        <div class="container">
+            <div class="hero-grid">
+                <div class="hero-content">
+                    <!-- Back button -->
+                    <div class="back-link-wrapper" style="margin-bottom: 1rem;">
+                        <a href="page30.html" class="btn btn-outline btn-sm">
+                            <i class="fas fa-arrow-left"></i> Back to Our Work
+                        </a>
+                    </div>
+
+                    <span class="tag"><i class="fas fa-star" style="margin-right:6px;"></i> Case Study</span>
+                    <h1>BP <span>Gas</span></h1>
+                    <p>A Dive into Our Work Triumphs — Case Studies in Excellence.</p>
+                    <div class="hero-actions">
+                        <a href="#gallery" class="btn btn-primary"><i class="fas fa-images"></i> View Gallery</a>
+                        <a href="#campaign" class="btn btn-outline"><i class="fas fa-file-pdf"></i> Campaign PDF</a>
+                    </div>
+                </div>
+                <div class="hero-visual">
+                    <div class="card-img"><img src="assets/images/posters2.jpg" alt="BP Gas poster"></div>
+                    <div class="card-img"><img src="assets/images/posters4.jpg" alt="BP Gas poster"></div>
+                    <div class="card-img tall"><img src="assets/images/posters5.jpg" alt="BP Gas poster"></div>
+                    <div class="card-img"><img src="assets/images/bp-gas-bolloons-artwork-page-1.jpg" alt="BP Gas balloons"></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ─── GALLERY 1 ─── -->
+    <section class="gallery-section" id="gallery">
+        <div class="container">
+            <div class="section-header">
+                <div>
+                    <span class="section-label">Our Work</span>
+                    <h2 class="section-title">Campaign <span style="color:var(--primary);">Showcase</span></h2>
+                    <p class="section-sub">A curated selection of creative assets from the BP Gas campaign.</p>
+                </div>
+                <a href="#campaign" class="btn btn-outline"><i class="fas fa-arrow-right"></i> Campaign PDF</a>
+            </div>
+
+            <div class="gallery-grid">
+                <div class="item"><img src="assets/images/use-bp-gas-idea-page-10.jpg" alt="" /><div class="overlay"><i class="fas fa-search-plus"></i></div></div>
+                <div class="item"><img src="assets/images/use-bp-gas-idea-page-6.jpg" alt="" /><div class="overlay"><i class="fas fa-search-plus"></i></div></div>
+                <div class="item"><img src="assets/images/25005-bp-low-income-campaig-page-6.jpg" alt="" /><div class="overlay"><i class="fas fa-search-plus"></i></div></div>
+                <div class="item"><img src="assets/images/25005-bp-low-income-campaig-page-3.jpg" alt="" /><div class="overlay"><i class="fas fa-search-plus"></i></div></div>
+                <div class="item"><img src="assets/images/25005-bp-low-income-campaig-page-1.jpg" alt="" /><div class="overlay"><i class="fas fa-search-plus"></i></div></div>
+                <div class="item"><img src="assets/images/use-bp-gas-idea-page-4-800x400.jpg" alt="" /><div class="overlay"><i class="fas fa-search-plus"></i></div></div>
+                <div class="item"><img src="assets/images/use-bp-gas-idea-page-11.jpg" alt="" /><div class="overlay"><i class="fas fa-search-plus"></i></div></div>
+                <div class="item"><img src="assets/images/25005-bp-low-income-campaig-page-2-800x2085.jpg" alt="" /><div class="overlay"><i class="fas fa-search-plus"></i></div></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ─── GALLERY 2 ─── -->
+    <section class="gallery-section" style="background:var(--gray-100);">
+        <div class="container">
+            <div class="section-header">
+                <div>
+                    <span class="section-label">Hlal'uphephile</span>
+                    <h2 class="section-title">More <span style="color:var(--primary);">Assets</span></h2>
+                    <p class="section-sub">Posters, banners, flyers and more from the BP Gas portfolio.</p>
+                </div>
+            </div>
+
+            <div class="gallery-grid" style="grid-template-columns:repeat(auto-fill,minmax(180px,1fr));">
+                <div class="item"><img src="assets/images/bp-lpg-vaal-ao-posters-3.jpg" alt="" /><div class="overlay"><i class="fas fa-search-plus"></i></div></div>
+                <div class="item"><img src="assets/images/bp-lpg-vaal-ao-posters-4.jpg" alt="" /><div class="overlay"><i class="fas fa-search-plus"></i></div></div>
+                <div class="item"><img src="assets/images/bp-lpg-vaal-ao-posters-5.jpg" alt="" /><div class="overlay"><i class="fas fa-search-plus"></i></div></div>
+                <div class="item"><img src="assets/images/bp-pull-up-banner-1.jpg" alt="" /><div class="overlay"><i class="fas fa-search-plus"></i></div></div>
+                <div class="item"><img src="assets/images/bp-pull-up-banner-2.jpg" alt="" /><div class="overlay"><i class="fas fa-search-plus"></i></div></div>
+                <div class="item"><img src="assets/images/bp-tear-drop-banner-page-1.jpg" alt="" /><div class="overlay"><i class="fas fa-search-plus"></i></div></div>
+                <div class="item"><img src="assets/images/bp-womens-day-ad-2.jpg" alt="" /><div class="overlay"><i class="fas fa-search-plus"></i></div></div>
+                <div class="item"><img src="assets/images/leisure-adload-shedding-page-1.jpg" alt="" /><div class="overlay"><i class="fas fa-search-plus"></i></div></div>
+                <div class="item"><img src="assets/images/62205-bp-available-poster.jpg" alt="" /><div class="overlay"><i class="fas fa-search-plus"></i></div></div>
+                <div class="item"><img src="assets/images/62205-bp-exchange-poster.jpg" alt="" /><div class="overlay"><i class="fas fa-search-plus"></i></div></div>
+                <div class="item"><img src="assets/images/bp-gas-for-a-year-a1-poster.jpg" alt="" /><div class="overlay"><i class="fas fa-search-plus"></i></div></div>
+                <div class="item"><img src="assets/images/bp-gas-bunting.jpg" alt="" /><div class="overlay"><i class="fas fa-search-plus"></i></div></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ─── CAMPAIGN CARD ─── -->
+    <section class="campaign-section" id="campaign">
+        <div class="container">
+            <div style="text-align:center; margin-bottom:40px;">
+                <span class="section-label">Download</span>
+                <h2 class="section-title">Campaign <span style="color:var(--primary);">Resources</span></h2>
+                <p class="section-sub" style="margin:0 auto;">Access the full BP Low Income campaign PDF.</p>
+            </div>
+
+            <div class="campaign-card">
+                <div class="campaign-info">
+                    <div class="campaign-icon"><i class="fas fa-file-pdf"></i></div>
+                    <div>
+                        <h4>BP Low Income Campaign</h4>
+                        <p>Complete creative deck — posters, flyers, and strategic overview.</p>
+                    </div>
+                </div>
+                <a href="assets/files/Use-BPGasidea.pdf" class="btn btn-primary" target="_blank"><i class="fas fa-download"></i> Download PDF</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- ─── SOCIAL ─── -->
+    <section class="social-section">
+        <div class="container">
+            <h3><i class="fas fa-share-alt" style="margin-right:8px;"></i> Follow Us</h3>
+            <div class="social-list">
+                <a href="https://www.facebook.com/profile.php?id=100094029616085" target="_blank" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+                <a href="https://x.com/ObrianSA" target="_blank" aria-label="Twitter"><i class="fa-brands fa-twitter"></i></a>
+                <a href="https://www.instagram.com/obriandigital/" target="_blank" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                <a href="https://za.pinterest.com/OBRIANDIGITAL/" target="_blank" aria-label="Pinterest"><i class="fab fa-pinterest-p"></i></a>
+                <a href="https://za.linkedin.com/company/o-brian-digital" target="_blank" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+            </div>
+        </div>
+    </section>
+
+    <!-- ─── FOOTER ─── -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div>
+                    <h5>Johannesburg</h5>
+                    <ul>
+                        <li>2nd Floor Trumpet On Keyes, 21 Keyes Avenue, Rosebank, Johannesburg, 2196</li>
+                        <li>Phone: +27 10 035 5218</li>
+                    </ul>
+                </div>
+                <div>
+                    <h5>Durban Office</h5>
+                    <ul>
+                        <li>2 Ncondo Place, Ridgeside Dr, Umhlanga Ridge, Durban, 4319</li>
+                        <li>Phone: +27 83 325 9532</li>
+                    </ul>
+                </div>
+                <div>
+                    <h5>Email</h5>
+                    <ul>
+                        <li><a href="mailto:info@obriangroup.com" style="color:var(--primary-light);">info@obriangroup.com</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h5>About</h5>
+                    <ul>
+                        <li><a href="page8.html">History</a></li>
+                        <li><a href="page52.html">Clients</a></li>
+                        <li><a href="#">Teams</a></li>
+                        <li><a href="#">Brand</a></li>
+                        <li><a href="#">Terms</a></li>
+                    </ul>
+                </div>
+            </div>
+
+            <div style="display:flex; flex-wrap:wrap; justify-content:space-between; align-items:center; border-top:1px solid rgba(255,255,255,0.06); padding-top:24px;">
+                <div class="social-row">
+                    <a href="https://www.facebook.com/profile.php?id=100094029616085" target="_blank" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+                    <a href="https://x.com/ObrianSA" target="_blank" aria-label="Twitter"><i class="fa-brands fa-twitter"></i></a>
+                    <a href="https://www.instagram.com/obriandigital/" target="_blank" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                    <a href="https://za.linkedin.com/company/o-brian-digital" target="_blank" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+                </div>
+                <p class="copyright" style="border:none; padding-top:0; margin-top:0;">&copy; 2030 O'Brian Digital — All Rights Reserved</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- ─── SCROLL TO TOP ─── -->
+    <button class="scroll-top" id="scrollTop" aria-label="Scroll to top"><i class="fas fa-arrow-up"></i></button>
+
+    <!-- ─── SCRIPTS ─── -->
+    <script>
+        // ── Mobile menu toggle (updated to work with new burger button) ──
+        const menuBtn = document.getElementById('menuBtn');
+        const mobilePanel = document.getElementById('mobileMenuPanel');
+
+        if (menuBtn && mobilePanel) {
+            menuBtn.addEventListener('click', () => {
+                menuBtn.classList.toggle('open');
+                mobilePanel.classList.toggle('open');
+                document.body.style.overflow = mobilePanel.classList.contains('open') ? 'hidden' : '';
+            });
+
+            mobilePanel.querySelectorAll('a').forEach(link => {
+                link.addEventListener('click', () => {
+                    menuBtn.classList.remove('open');
+                    mobilePanel.classList.remove('open');
+                    document.body.style.overflow = '';
+                });
+            });
+        }
+
+        // ── Header scroll effect ──
+        const header = document.getElementById('mainHeader');
+        window.addEventListener('scroll', () => {
+            const current = window.pageYOffset || document.documentElement.scrollTop;
+            if (current > 20) {
+                header.classList.add('scrolled');
+            } else {
+                header.classList.remove('scrolled');
+            }
+
+            const btn = document.getElementById('scrollTop');
+            if (current > 400) {
+                btn.classList.add('visible');
+            } else {
+                btn.classList.remove('visible');
+            }
+        });
+
+        // ── Scroll to top ──
+        document.getElementById('scrollTop').addEventListener('click', () => {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        });
+
+        // ── Shared lightbox function ──
+        function openLightbox(imgSrc) {
+            if (!imgSrc) return;
+            const overlay = document.createElement('div');
+            overlay.style.cssText = `
+                position: fixed; inset:0; background:rgba(0,0,0,0.80);
+                display:flex; align-items:center; justify-content:center;
+                z-index:9999; cursor:pointer; padding:40px;
+                animation: fadeIn 0.3s ease;
+            `;
+            const inner = document.createElement('div');
+            inner.style.cssText = `
+                max-width:90vw; max-height:90vh; background:#fff;
+                border-radius:12px; overflow:hidden; box-shadow:0 32px 64px rgba(0,0,0,0.4);
+            `;
+            const img = document.createElement('img');
+            img.src = imgSrc;
+            img.style.cssText = 'display:block; max-width:100%; max-height:80vh; width:auto; height:auto;';
+            inner.appendChild(img);
+            overlay.appendChild(inner);
+            document.body.appendChild(overlay);
+
+            overlay.addEventListener('click', () => overlay.remove());
+            document.addEventListener('keydown', (e) => {
+                if (e.key === 'Escape') overlay.remove();
+            });
+        }
+
+        // ── Gallery items ──
+        document.querySelectorAll('.gallery-grid .item').forEach(el => {
+            el.addEventListener('click', () => {
+                const img = el.querySelector('img');
+                if (img) openLightbox(img.getAttribute('src'));
+            });
+        });
+
+        // ── Hero images ──
+        document.querySelectorAll('.hero-visual .card-img').forEach(el => {
+            el.addEventListener('click', () => {
+                const img = el.querySelector('img');
+                if (img) openLightbox(img.getAttribute('src'));
+            });
+        });
+
+        // ── Inject fade-in keyframe ──
+        if (!document.getElementById('fadeKeyframes')) {
+            const style = document.createElement('style');
+            style.id = 'fadeKeyframes';
+            style.textContent = `
+                @keyframes fadeIn { from { opacity:0; transform:scale(0.96); } to { opacity:1; transform:scale(1); } }
+            `;
+            document.head.appendChild(style);
+        }
+    </script>
+
+</body>
+</html>

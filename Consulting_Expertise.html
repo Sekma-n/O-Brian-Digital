@@ -1,0 +1,1408 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>O'Brian — Consulting Expertise</title>
+    <script src="https://cdn.tailwindcss.com">
+    </script>
+    <script src="https://unpkg.com/lucide@latest">
+    </script>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800;900&family=Open+Sans:wght@300;400;600&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        'sans': ['Montserrat', 'sans-serif'],
+                        'body': ['Open Sans', 'sans-serif'],
+                    },
+                    colors: {
+                        'obrian': {
+                            pink: '#e6007e',
+                            dark: '#1a1a1a',
+                            black: '#000000',
+                            white: '#ffffff',
+                            gray: '#f5f5f5'
+                        }
+                    },
+                    animation: {
+                        'float': 'float 6s ease-in-out infinite',
+                        'pulse-slow': 'pulse 4s cubic-bezier(0.4, 0, 0.6, 1) infinite',
+                        'slide-up': 'slideUp 0.8s ease-out forwards',
+                        'wave': 'wave 20s linear infinite',
+                    },
+                    keyframes: {
+                        float: {
+                            '0%, 100%': { transform: 'translateY(0)' },
+                            '50%': { transform: 'translateY(-20px)' },
+                        },
+                        slideUp: {
+                            '0%': { opacity: '0', transform: 'translateY(40px)' },
+                            '100%': { opacity: '1', transform: 'translateY(0)' },
+                        },
+                        wave: {
+                            '0%': { transform: 'translateX(0)' },
+                            '100%': { transform: 'translateX(-50%)' },
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        /* ===== RESET & BASE ===== */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Montserrat', sans-serif;
+            background: #ffffff;
+            color: #1a1a1a;
+            overflow-x: hidden;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        .font-body {
+            font-family: 'Open Sans', sans-serif;
+        }
+
+        .text-pink {
+            color: #e6007e;
+        }
+        .bg-pink {
+            background-color: #e6007e;
+        }
+        .border-pink {
+            border-color: #e6007e;
+        }
+
+        .gradient-text {
+            background: linear-gradient(135deg, #e6007e 0%, #ff1493 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        /* ===== HEADER GLASS ===== */
+        .header-glass {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            z-index: 50;
+            background: rgba(255, 255, 255, 0.85);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            transition: box-shadow 0.3s, background 0.3s;
+            border-bottom: 1px solid rgba(0, 0, 0, 0.04);
+        }
+        .header-glass.scrolled {
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+            background: rgba(255, 255, 255, 0.98);
+        }
+
+        .nav-link-new {
+            padding: 0.5rem 1rem;
+            font-size: 0.875rem;
+            font-weight: 600;
+            color: #374151;
+            border-radius: 0.5rem;
+            transition: all 0.3s ease;
+            display: inline-block;
+            cursor: pointer;
+        }
+        .nav-link-new:hover {
+            color: #e6007e;
+            background-color: #fdf2f8;
+        }
+
+        /* ===== DROPDOWN ===== */
+        .dropdown-menu-custom {
+            position: absolute;
+            top: 100%;
+            left: 0;
+            margin-top: 0.5rem;
+            width: 200px;
+            background: white;
+            border-radius: 0.75rem;
+            box-shadow: 0 20px 40px -8px rgba(0, 0, 0, 0.15);
+            border: 1px solid #f3f4f6;
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(-8px) scale(0.96);
+            transition: all 0.25s ease;
+            transform-origin: top left;
+            z-index: 60;
+        }
+        .group:hover .dropdown-menu-custom {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0) scale(1);
+        }
+        .dropdown-menu-custom a {
+            display: block;
+            padding: 0.75rem 1.25rem;
+            font-size: 0.875rem;
+            color: #374151;
+            transition: background 0.2s, color 0.2s;
+        }
+        .dropdown-menu-custom a:hover {
+            background: #fdf2f8;
+            color: #e6007e;
+        }
+        .dropdown-menu-custom a:first-child {
+            border-radius: 0.75rem 0.75rem 0 0;
+        }
+        .dropdown-menu-custom a:last-child {
+            border-radius: 0 0 0.75rem 0.75rem;
+        }
+
+        .btn-primary-pink {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.75rem 1.75rem;
+            background: linear-gradient(135deg, #e6007e, #ff1493);
+            color: white;
+            font-weight: 700;
+            font-size: 0.875rem;
+            border-radius: 9999px;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 14px rgba(230, 0, 126, 0.3);
+        }
+        .btn-primary-pink:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(230, 0, 126, 0.4);
+            color: white;
+        }
+
+        /* ===== MOBILE MENU PANEL ===== */
+        .mobile-menu-panel {
+            position: fixed;
+            inset: 0;
+            background: white;
+            z-index: 60;
+            transform: translateX(100%);
+            transition: transform 0.4s cubic-bezier(0.22, 1, 0.36, 1);
+        }
+        .mobile-menu-panel.open {
+            transform: translateX(0);
+        }
+
+        /* ===== PREMIUM HERO ===== */
+        .premium-hero {
+            padding: 140px 20px 80px;
+            background: linear-gradient(135deg, #f8f9fa 0%, #ffffff 100%);
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+        .premium-hero .container {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+        .premium-hero .badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: rgba(230, 0, 126, 0.10);
+            color: #e6007e;
+            padding: 6px 18px;
+            border-radius: 50px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            letter-spacing: 0.5px;
+            margin-bottom: 24px;
+        }
+        .premium-hero h1 {
+            font-size: 3.2rem;
+            font-weight: 700;
+            line-height: 1.2;
+            margin-bottom: 20px;
+            color: #1a1a1a;
+        }
+        .premium-hero h1 .accent {
+            background: linear-gradient(135deg, #e6007e, #ff1493);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        .premium-hero p {
+            font-size: 1.15rem;
+            color: #4a5568;
+            font-weight: 400;
+            max-width: 700px;
+            margin: 0 auto;
+            line-height: 1.7;
+            font-family: 'Open Sans', sans-serif;
+        }
+
+        /* ===== PREMIUM SLIDER ===== */
+        .premium-slider {
+            padding: 60px 20px 80px;
+            background: #ffffff;
+        }
+        .premium-slider .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        .slider-wrapper {
+            position: relative;
+        }
+        .embla {
+            overflow: hidden;
+            position: relative;
+            border-radius: 20px;
+        }
+        .embla__viewport {
+            overflow: hidden;
+            width: 100%;
+        }
+        .embla__container {
+            display: flex;
+            gap: 24px;
+            padding: 10px 0;
+        }
+        .embla__slide {
+            flex: 0 0 100%;
+            min-width: 0;
+        }
+        @media (min-width: 768px) {
+            .embla__slide {
+                flex: 0 0 calc(50% - 12px);
+            }
+        }
+        @media (min-width: 1024px) {
+            .embla__slide {
+                flex: 0 0 calc(33.333% - 16px);
+            }
+        }
+
+        .slide-card {
+            background: white;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.06);
+            transition: transform 0.4s ease, box-shadow 0.4s ease;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            border: 1px solid #f0f0f0;
+        }
+        .slide-card:hover {
+            transform: translateY(-6px);
+            box-shadow: 0 20px 50px rgba(230, 0, 126, 0.12);
+        }
+
+        .slide-img {
+            position: relative;
+            height: 220px;
+            overflow: hidden;
+            cursor: pointer;
+            background: #f5f5f7;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .slide-img img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+        .slide-card:hover .slide-img img {
+            transform: scale(1.04);
+        }
+        .slide-img .zoom-hint {
+            position: absolute;
+            bottom: 12px;
+            right: 12px;
+            background: rgba(0, 0, 0, 0.6);
+            color: white;
+            font-size: 0.7rem;
+            padding: 4px 12px;
+            border-radius: 50px;
+            backdrop-filter: blur(4px);
+            font-weight: 500;
+            pointer-events: none;
+        }
+
+        .slide-body {
+            padding: 24px 28px 28px;
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+        }
+        .slide-body h4 {
+            font-size: 1.2rem;
+            font-weight: 700;
+            margin-bottom: 10px;
+            color: #1a1a1a;
+        }
+        .slide-body h4 .accent {
+            color: #e6007e;
+        }
+        .slide-body p {
+            font-size: 0.92rem;
+            line-height: 1.6;
+            color: #4a5568;
+            font-family: 'Open Sans', sans-serif;
+            flex: 1;
+            margin-bottom: 16px;
+        }
+        .slide-body .tag {
+            display: inline-block;
+            background: #fdf2f8;
+            color: #e6007e;
+            font-size: 0.7rem;
+            font-weight: 600;
+            padding: 4px 14px;
+            border-radius: 50px;
+            align-self: flex-start;
+            letter-spacing: 0.3px;
+        }
+
+        /* Expertise row inside slide */
+        .expertise-row {
+            margin: 12px 0 16px;
+            font-size: 0.85rem;
+            line-height: 1.8;
+            color: #2d3748;
+        }
+        .expertise-tag {
+            display: inline-block;
+            background: #f0f0f0;
+            padding: 0 10px;
+            border-radius: 4px;
+            font-weight: 600;
+            font-size: 0.75rem;
+            margin-right: 4px;
+            color: #1a1a1a;
+        }
+
+        /* ===== SLIDER BUTTONS ===== */
+        .embla__button {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 48px;
+            height: 48px;
+            border-radius: 50%;
+            background: white;
+            border: 1px solid #e5e7eb;
+            box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08);
+            cursor: pointer;
+            z-index: 10;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.25s ease;
+            color: #1a1a1a;
+            font-size: 1.2rem;
+        }
+        .embla__button:hover {
+            background: #e6007e;
+            border-color: #e6007e;
+            color: white;
+            box-shadow: 0 6px 24px rgba(230, 0, 126, 0.3);
+        }
+        .embla__button--prev {
+            left: -20px;
+        }
+        .embla__button--next {
+            right: -20px;
+        }
+        @media (max-width: 640px) {
+            .embla__button {
+                width: 36px;
+                height: 36px;
+                font-size: 0.9rem;
+            }
+            .embla__button--prev {
+                left: -10px;
+            }
+            .embla__button--next {
+                right: -10px;
+            }
+        }
+
+        /* ===== PREMIUM GALLERY ===== */
+        .premium-gallery {
+            padding: 60px 20px 80px;
+            background: #f8f9fa;
+        }
+        .premium-gallery .container {
+            max-width: 1100px;
+            margin: 0 auto;
+        }
+        .premium-gallery .section-title {
+            font-size: 1.8rem;
+            font-weight: 700;
+            text-align: center;
+            margin-bottom: 12px;
+            color: #1a1a1a;
+        }
+        .premium-gallery .section-title .accent {
+            background: linear-gradient(135deg, #e6007e, #ff1493);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        .premium-gallery .section-desc {
+            text-align: center;
+            max-width: 750px;
+            margin: 0 auto 40px;
+            font-size: 0.98rem;
+            color: #4a5568;
+            font-family: 'Open Sans', sans-serif;
+            line-height: 1.7;
+        }
+
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 28px;
+        }
+        .gallery-item {
+            background: white;
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow: 0 4px 16px rgba(0, 0, 0, 0.05);
+            transition: transform 0.4s ease, box-shadow 0.4s ease;
+            cursor: pointer;
+            aspect-ratio: 1 / 0.8;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+            border: 1px solid #f0f0f0;
+        }
+        .gallery-item:hover {
+            transform: translateY(-6px);
+            box-shadow: 0 16px 40px rgba(230, 0, 126, 0.12);
+        }
+        .gallery-item img {
+            max-width: 100%;
+            max-height: 100%;
+            object-fit: contain;
+            filter: grayscale(0.1);
+            transition: filter 0.3s;
+        }
+        .gallery-item:hover img {
+            filter: grayscale(0);
+        }
+
+        /* ===== PREMIUM BANNER ===== */
+        .premium-banner {
+            padding: 70px 20px;
+            background: linear-gradient(135deg, #1a1a1a 0%, #2d2d2d 100%);
+            text-align: center;
+        }
+        .premium-banner .container {
+            max-width: 700px;
+            margin: 0 auto;
+        }
+        .premium-banner h2 {
+            font-size: 3rem;
+            font-weight: 800;
+            color: white;
+            margin-bottom: 4px;
+        }
+        .premium-banner h2 .accent {
+            background: linear-gradient(135deg, #e6007e, #ff1493);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        .premium-banner .sub {
+            font-size: 1.5rem;
+            color: rgba(255, 255, 255, 0.7);
+            font-weight: 300;
+            margin-bottom: 28px;
+            letter-spacing: 2px;
+        }
+        .btn-accent {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            padding: 14px 40px;
+            background: linear-gradient(135deg, #e6007e, #ff1493);
+            color: white;
+            font-weight: 700;
+            font-size: 0.95rem;
+            border-radius: 50px;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            box-shadow: 0 6px 24px rgba(230, 0, 126, 0.3);
+        }
+        .btn-accent:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 12px 40px rgba(230, 0, 126, 0.4);
+            color: white;
+        }
+
+        /* ===== PREMIUM FOOTER ===== */
+        .footer-premium {
+            background: #0f0f0f;
+            color: rgba(255, 255, 255, 0.7);
+            padding: 60px 20px 30px;
+        }
+        .footer-premium .container {
+            max-width: 1100px;
+            margin: 0 auto;
+        }
+        .footer-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+        .footer-col h5 {
+            font-size: 0.85rem;
+            font-weight: 700;
+            color: white;
+            margin-bottom: 14px;
+            letter-spacing: 0.5px;
+            text-transform: uppercase;
+        }
+        .footer-col ul {
+            list-style: none;
+            padding: 0;
+            font-size: 0.88rem;
+            line-height: 1.7;
+            font-family: 'Open Sans', sans-serif;
+        }
+        .footer-col ul li {
+            margin-bottom: 4px;
+        }
+        .footer-col ul a {
+            color: rgba(255, 255, 255, 0.6);
+            text-decoration: none;
+            transition: color 0.2s;
+        }
+        .footer-col ul a:hover {
+            color: #e6007e;
+        }
+
+        .footer-social {
+            display: flex;
+            gap: 16px;
+            justify-content: center;
+            margin: 30px 0 20px;
+        }
+        .footer-social a {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 44px;
+            height: 44px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.06);
+            color: rgba(255, 255, 255, 0.6);
+            font-size: 1.2rem;
+            transition: all 0.3s ease;
+            text-decoration: none;
+        }
+        .footer-social a:hover {
+            background: #e6007e;
+            color: white;
+            transform: translateY(-3px);
+        }
+
+        .footer-bottom {
+            text-align: center;
+            font-size: 0.78rem;
+            color: rgba(255, 255, 255, 0.3);
+            border-top: 1px solid rgba(255, 255, 255, 0.06);
+            padding-top: 24px;
+            font-family: 'Open Sans', sans-serif;
+        }
+
+        /* ===== LIGHTBOX ===== */
+        .lightbox-overlay {
+            position: fixed;
+            inset: 0;
+            background: rgba(0, 0, 0, 0.85);
+            backdrop-filter: blur(12px);
+            z-index: 200;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 30px;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.35s ease;
+        }
+        .lightbox-overlay.active {
+            opacity: 1;
+            visibility: visible;
+        }
+        .lightbox-overlay img {
+            max-width: 100%;
+            max-height: 90vh;
+            object-fit: contain;
+            border-radius: 12px;
+            box-shadow: 0 40px 80px rgba(0, 0, 0, 0.5);
+            transform: scale(0.95);
+            transition: transform 0.35s cubic-bezier(0.34, 1.56, 0.64, 1);
+        }
+        .lightbox-overlay.active img {
+            transform: scale(1);
+        }
+        .lightbox-close {
+            position: absolute;
+            top: 30px;
+            right: 30px;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.12);
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            color: white;
+            font-size: 1.8rem;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+            backdrop-filter: blur(4px);
+        }
+        .lightbox-close:hover {
+            background: rgba(255, 255, 255, 0.2);
+            transform: rotate(90deg);
+        }
+
+        /* ===== RESPONSIVE ===== */
+        @media (max-width: 768px) {
+            .premium-hero h1 {
+                font-size: 2rem;
+            }
+            .premium-hero p {
+                font-size: 1rem;
+            }
+            .premium-banner h2 {
+                font-size: 2.2rem;
+            }
+            .premium-banner .sub {
+                font-size: 1.1rem;
+            }
+            .gallery-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 16px;
+            }
+            .slide-body {
+                padding: 18px 20px 22px;
+            }
+            .slide-img {
+                height: 160px;
+            }
+            .footer-grid {
+                grid-template-columns: 1fr 1fr;
+                gap: 28px;
+            }
+            .lightbox-close {
+                top: 16px;
+                right: 16px;
+                width: 40px;
+                height: 40px;
+                font-size: 1.4rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .premium-hero h1 {
+                font-size: 1.6rem;
+            }
+            .gallery-grid {
+                grid-template-columns: 1fr 1fr;
+                gap: 12px;
+            }
+            .footer-grid {
+                grid-template-columns: 1fr;
+                gap: 24px;
+            }
+        }
+
+        /* ===== SCROLLBAR ===== */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #1a1a1a;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #e6007e;
+            border-radius: 4px;
+        }
+
+        /* ===== UTILITIES ===== */
+        .sr-only {
+            position: absolute;
+            width: 1px;
+            height: 1px;
+            padding: 0;
+            margin: -1px;
+            overflow: hidden;
+            clip: rect(0, 0, 0, 0);
+            border: 0;
+        }
+
+        .mbr-iconfont {
+            font-family: 'Font Awesome 6 Free';
+            font-weight: 900;
+        }
+
+        .scrollToTop {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            z-index: 40;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease;
+        }
+        .scrollToTop.visible {
+            opacity: 1;
+            visibility: visible;
+        }
+        .scrollToTop a {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 48px;
+            height: 48px;
+            border-radius: 50%;
+            background: #e6007e;
+            color: white;
+            box-shadow: 0 4px 20px rgba(230, 0, 126, 0.3);
+            transition: all 0.3s ease;
+            text-decoration: none;
+        }
+        .scrollToTop a:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 8px 30px rgba(230, 0, 126, 0.4);
+        }
+    </style>
+</head>
+<body class="antialiased selection:bg-obrian-pink selection:text-white">
+
+    <!-- ===== HEADER ===== -->
+    <header class="header-glass" id="mainHeader">
+        <div class="max-w-7xl mx-auto px-4 md:px-6">
+            <div class="flex justify-between items-center h-20">
+
+                <!-- Logo -->
+                <a href="#" class="flex items-center gap-3 group">
+                    <img src="assets/images/obrian-transparent-logo-4461219.webp" alt="O'Brian Group" class="h-10 w-auto" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22%3E%3Crect width=%22100%22 height=%22100%22 fill=%22%23ed008e%22/%3E%3Ctext x=%2250%22 y=%2268%22 font-size=%2248%22 text-anchor=%22middle%22 fill=%22white%22 font-weight=%22bold%22 font-family=%22Inter%22%3EO%3C/text%3E%3C/svg%3E'">
+                    <span class="font-black text-xl text-[#231e1f] tracking-tight hidden sm:inline"><span class="text-[#ed018e]"></span></span>
+                </a>
+
+                <!-- Desktop Nav -->
+                <div class="hidden lg:flex items-center gap-0.5">
+                    <a href="Home.html" class="nav-link-new">Home</a>
+                    <a href="About.html" class="nav-link-new">About</a>
+                    <a href="Our_Work.html" class="nav-link-new">Our Work</a>
+                    <a href="Client_Experience.html" class="nav-link-new">Client Experience</a>
+
+                    <div class="relative group">
+                        <button class="nav-link-new flex items-center gap-1">
+                            Case Studies
+                            <svg class="w-3 h-3 transition-transform duration-300 group-hover:rotate-180" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M19 9l-7 7-7-7"></path></svg>
+                        </button>
+                        <div class="dropdown-menu-custom">
+                            <a href="Adv_Case_Studies.html">Advertising</a>
+                            <a href="Digital_Case_Studies.html">Digital</a>
+                            <a href="Consulting_Case_Studies.html">Consulting</a>
+                        </div>
+                    </div>
+
+                    <div class="relative group">
+                        <button class="nav-link-new flex items-center gap-1">
+                            Expertise
+                            <svg class="w-3 h-3 transition-transform duration-300 group-hover:rotate-180" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M19 9l-7 7-7-7"></path></svg>
+                        </button>
+                        <div class="dropdown-menu-custom">
+                            <a href="Advertising_Expertise.html">Advertising</a>
+                            <a href="Digital_Expertise.html">Digital</a>
+                            <a href="Consulting_Expertise.html">Consulting</a>
+                        </div>
+                    </div>
+
+                    <a href="Staff_News.html" class="nav-link-new">Staff News</a>
+                    <a href="Exploring_Boundless_Horizons.html" class="nav-link-new">Blog</a>
+                    <a href="Archive_Gallery.html" class="nav-link-new">Archives</a>
+                </div>
+
+                <!-- CTA -->
+                <div class="hidden lg:block">
+                    <a href="Contact_Us.html" class="btn-primary-pink">
+                        <span>Contact</span>
+                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M17 8l4 4m0 0l-4 4m4-4H3"></path></svg>
+                    </a>
+                </div>
+
+                <!-- Burger -->
+                <button class="lg:hidden p-2 rounded-lg hover:bg-gray-100 transition-colors" id="menuBtn" aria-label="Toggle menu">
+                    <div class="w-6 h-6 flex flex-col justify-center items-center gap-1.5">
+                        <span class="w-6 h-0.5 bg-gray-700 transition-all duration-300 menu-line-1"></span>
+                        <span class="w-6 h-0.5 bg-gray-700 transition-all duration-300 menu-line-2"></span>
+                        <span class="w-4 h-0.5 bg-gray-700 transition-all duration-300 menu-line-3 ml-auto"></span>
+                    </div>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- ===== MOBILE MENU PANEL ===== -->
+    <div class="mobile-menu-panel lg:hidden" id="mobileMenu">
+        <div class="flex flex-col h-full">
+            <!-- Mobile Header -->
+            <div class="flex justify-between items-center p-6 border-b border-gray-100">
+                <a href="#" class="flex items-center gap-3">
+                    <img src="obrian-transparent-logo-101.webp" alt="O'Brian Group" class="logo-img" style="height: 40px;" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22%3E%3Crect width=%22100%22 height=%22100%22 fill=%22%23e6007e%22/%3E%3Ctext x=%2250%22 y=%2268%22 font-size=%2248%22 text-anchor=%22middle%22 fill=%22white%22 font-weight=%22bold%22 font-family=%22Arial%22%3EO%3C/text%3E%3C/svg%3E'">
+                    <span class="font-black text-xl text-gray-900">O'BRIAN</span>
+                </a>
+                <button class="p-2 rounded-lg hover:bg-gray-100 transition-colors" id="closeMenu" aria-label="Close menu">
+                    <svg class="w-6 h-6 text-gray-700" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+                    </svg>
+                </button>
+            </div>
+
+            <!-- Mobile Navigation Links -->
+            <div class="flex-1 overflow-y-auto py-6 px-6">
+                <div class="space-y-1">
+                    <a href="#" class="mobile-link block px-4 py-3 text-lg font-semibold text-gray-800 hover:text-[#e6007e] hover:bg-pink-50 rounded-xl transition-all">Home</a>
+                    <a href="#" class="mobile-link block px-4 py-3 text-lg font-semibold text-gray-800 hover:text-[#e6007e] hover:bg-pink-50 rounded-xl transition-all">About</a>
+                    <a href="#" class="mobile-link block px-4 py-3 text-lg font-semibold text-gray-800 hover:text-[#e6007e] hover:bg-pink-50 rounded-xl transition-all">Our Work</a>
+                    <a href="#" class="mobile-link block px-4 py-3 text-lg font-semibold text-gray-800 hover:text-[#e6007e] hover:bg-pink-50 rounded-xl transition-all">Client Experience</a>
+
+                    <!-- Mobile Case Studies Accordion -->
+                    <div class="mobile-accordion">
+                        <button class="w-full flex justify-between items-center px-4 py-3 text-lg font-semibold text-gray-800 hover:text-[#e6007e] hover:bg-pink-50 rounded-xl transition-all" data-accordion="case-studies">
+                            Case Studies
+                            <svg class="w-5 h-5 transition-transform duration-300 accordion-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+                            </svg>
+                        </button>
+                        <div id="case-studies" class="hidden pl-4 space-y-1 mt-1">
+                            <a href="#" class="block px-4 py-2 text-sm text-gray-600 hover:text-[#e6007e] transition-colors">Advertising</a>
+                            <a href="#" class="block px-4 py-2 text-sm text-gray-600 hover:text-[#e6007e] transition-colors">Digital</a>
+                            <a href="#" class="block px-4 py-2 text-sm text-gray-600 hover:text-[#e6007e] transition-colors">Consulting</a>
+                        </div>
+                    </div>
+
+                    <!-- Mobile Expertise Accordion -->
+                    <div class="mobile-accordion">
+                        <button class="w-full flex justify-between items-center px-4 py-3 text-lg font-semibold text-gray-800 hover:text-[#e6007e] hover:bg-pink-50 rounded-xl transition-all" data-accordion="expertise">
+                            Our Expertise
+                            <svg class="w-5 h-5 transition-transform duration-300 accordion-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+                            </svg>
+                        </button>
+                        <div id="expertise" class="hidden pl-4 space-y-1 mt-1">
+                            <a href="#" class="block px-4 py-2 text-sm text-gray-600 hover:text-[#e6007e] transition-colors">Advertising</a>
+                            <a href="#" class="block px-4 py-2 text-sm text-gray-600 hover:text-[#e6007e] transition-colors">Digital</a>
+                            <a href="#" class="block px-4 py-2 text-sm text-gray-600 hover:text-[#e6007e] transition-colors">Consulting</a>
+                        </div>
+                    </div>
+
+                    <a href="#" class="mobile-link block px-4 py-3 text-lg font-semibold text-gray-800 hover:text-[#e6007e] hover:bg-pink-50 rounded-xl transition-all">Staff News</a>
+                    <a href="#" class="mobile-link block px-4 py-3 text-lg font-semibold text-gray-800 hover:text-[#e6007e] hover:bg-pink-50 rounded-xl transition-all">Blog</a>
+                    <a href="#" class="mobile-link block px-4 py-3 text-lg font-semibold text-gray-800 hover:text-[#e6007e] hover:bg-pink-50 rounded-xl transition-all">Archives</a>
+                </div>
+            </div>
+
+            <!-- Mobile CTA -->
+            <div class="p-6 border-t border-gray-100">
+                <a href="#" class="flex items-center justify-center gap-2 w-full px-6 py-4 bg-gradient-to-r from-[#e6007e] to-[#ff1493] text-white font-bold rounded-xl hover:shadow-lg transition-all">
+                    Contact Us
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"></path>
+                    </svg>
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <!-- ===== PREMIUM HERO ===== -->
+    <section class="premium-hero">
+        <div class="container">
+            <div class="badge">
+                <i class="fas fa-briefcase"></i> Our Expertise
+            </div>
+            <h1>
+                <strong>Our Expertise –</strong> <span class="accent">Consulting</span>
+            </h1>
+            <p>Strategic consulting that transforms businesses through brand strategy, marketing intelligence, and organisational alignment.</p>
+        </div>
+    </section>
+
+    <!-- ===== PREMIUM SLIDER ===== -->
+    <section class="premium-slider">
+        <div class="container">
+            <div class="slider-wrapper">
+                <div class="embla" data-skip-snaps="true" data-align="center" data-contain-scroll="trimSnaps" data-loop="true" data-auto-play-interval="4" data-draggable="true">
+                    <div class="embla__viewport">
+                        <div class="embla__container">
+
+                            <!-- Slide 1 -->
+                            <div class="embla__slide">
+                                <div class="slide-card">
+                                    <div class="slide-img" data-image="assets/images/corporate-marketing-strategy.jpg">
+                                        <img src="assets/images/corporate-marketing-strategy.jpg" alt="Corporate Marketing Strategy" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22400%22 height=%22300%22%3E%3Crect fill=%22%23f0f0f0%22 width=%22400%22 height=%22300%22/%3E%3Ctext x=%22200%22 y=%22155%22 font-family=%22Montserrat%22 font-size=%2222%22 text-anchor=%22middle%22 fill=%22%23888%22%3EMarketing%3C/text%3E%3C/svg%3E'">
+                                        <span class="zoom-hint">+ Click to enlarge</span>
+                                    </div>
+                                    <div class="slide-body">
+                                        <h4>Corporate <span class="accent">Marketing</span> Strategy</h4>
+                                        <p>We provide input into our clients' marketing strategies. We stress-test their assumptions on choice of customer and stakeholder segments to engage, and on how to establish and sustain profitable stakeholder relationships.</p>
+                                        <span class="tag">Strategy</span>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Slide 2 -->
+                            <div class="embla__slide">
+                                <div class="slide-card">
+                                    <div class="slide-img" data-image="assets/images/corporate-brand-strategy-4.jpeg">
+                                        <img src="assets/images/corporate-brand-strategy-4.jpeg" alt="Corporate Brand Strategy" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22400%22 height=%22300%22%3E%3Crect fill=%22%23f0f0f0%22 width=%22400%22 height=%22300%22/%3E%3Ctext x=%22200%22 y=%22155%22 font-family=%22Montserrat%22 font-size=%2222%22 text-anchor=%22middle%22 fill=%22%23888%22%3EBranding%3C/text%3E%3C/svg%3E'">
+                                        <span class="zoom-hint">+ Click to enlarge</span>
+                                    </div>
+                                    <div class="slide-body">
+                                        <h4>Corporate <span class="accent">Brand</span> Strategy</h4>
+                                        <p>As a company's primary intangible asset, the corporate brand is foundational to an impactful marketing strategy. We work with clients to leverage their organisation's culture; skills, people, programmes and processes, recasting them as distinctive and relevant value propositions.</p>
+                                        <span class="tag">Branding</span>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Slide 3 -->
+                            <div class="embla__slide">
+                                <div class="slide-card">
+                                    <div class="slide-img" data-image="assets/images/communication.jpg">
+                                        <img src="assets/images/communication.jpg" alt="Corporate Communications" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22400%22 height=%22300%22%3E%3Crect fill=%22%23f0f0f0%22 width=%22400%22 height=%22300%22/%3E%3Ctext x=%22200%22 y=%22155%22 font-family=%22Montserrat%22 font-size=%2222%22 text-anchor=%22middle%22 fill=%22%23888%22%3ECommunications%3C/text%3E%3C/svg%3E'">
+                                        <span class="zoom-hint">+ Click to enlarge</span>
+                                    </div>
+                                    <div class="slide-body">
+                                        <h4>Corporate <span class="accent">Communications</span> &amp; Employee Engagement</h4>
+                                        <p>We design and implement internal communication frameworks that align employees with organizational vision, foster engagement, and drive cultural transformation from within.</p>
+                                        <span class="tag">Communications</span>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Slide 4 -->
+<div class="embla__slide">
+    <div class="slide-card digital-expertise panoramic-slide">
+        <div class="slide-img" data-image="obrian-website-image.jpeg">
+            <img src="assets/images/obrian-website-image.jpg" alt="Corporate Digital Strategy Consulting" class="panoramic-img">
+            <span class="zoom-hint">+ Click to enlarge</span>
+        </div>
+        <div class="slide-body">
+            <h4>Corporate <span class="accent">Digital</span> Resilience</h4>
+            <p style="margin-bottom: 0;">
+                We architect trust-driven digital ecosystems by embedding security, data governance, and operational agility into your corporate DNA.
+            </p>
+            <div class="expertise-row">
+                <span class="expertise-tag">👥 Culture</span> Identity &amp; workforce alignment<br />
+                <span class="expertise-tag">📄 Governance</span> Compliance &amp; data stewardship<br />
+                <span class="expertise-tag">⚙️ Agility</span> Automated &amp; secure infrastructure<br />
+                <span class="expertise-tag">🌍 Scale</span> Global zero-trust connectivity
+            </div>
+            <span class="tag" style="margin-top: 0;">Digital Transformation</span>
+        </div>
+    </div>
+</div>
+
+                        </div>
+                    </div>
+
+                    <!-- Slider Buttons -->
+                    <button class="embla__button embla__button--prev" aria-label="Previous">
+                        <i class="fas fa-chevron-left"></i>
+                    </button>
+                    <button class="embla__button embla__button--next" aria-label="Next">
+                        <i class="fas fa-chevron-right"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== CLIENTS GALLERY ===== -->
+    <section class="premium-gallery">
+        <div class="container">
+            <h4 class="section-title"><strong>Clients we are proud to </strong><span class="accent">have worked with</span></h4>
+            <p class="section-desc">DGN, Sizwe Ntsaluba Godobo, and BrandSA stand out among our esteemed clients who entrusted us with their objectives. Our successful collaboration not only met but exceeded their expectations, showcasing our expertise in delivering impactful brand campaigns.</p>
+
+            <div class="gallery-grid">
+                <div class="gallery-item" data-image="assets/images/client-logos-57.jpg">
+                    <img src="assets/images/client-logos-57.jpg" alt="Client logo 1" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22200%22 height=%22160%22%3E%3Crect fill=%22%23f0f0f0%22 width=%22200%22 height=%22160%22/%3E%3Ctext x=%22100%22 y=%2290%22 font-family=%22Montserrat%22 font-size=%2224%22 text-anchor=%22middle%22 fill=%22%23bbb%22%3ELOGO%3C/text%3E%3C/svg%3E'">
+                </div>
+                <div class="gallery-item" data-image="assets/images/client-logos-17.jpg">
+                    <img src="assets/images/client-logos-17.jpg" alt="Client logo 2" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22200%22 height=%22160%22%3E%3Crect fill=%22%23f0f0f0%22 width=%22200%22 height=%22160%22/%3E%3Ctext x=%22100%22 y=%2290%22 font-family=%22Montserrat%22 font-size=%2224%22 text-anchor=%22middle%22 fill=%22%23bbb%22%3ELOGO%3C/text%3E%3C/svg%3E'">
+                </div>
+                <div class="gallery-item" data-image="assets/images/client-logos-31-.jpg">
+                    <img src="assets/images/client-logos-31-.jpg" alt="Client logo 3" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22200%22 height=%22160%22%3E%3Crect fill=%22%23f0f0f0%22 width=%22200%22 height=%22160%22/%3E%3Ctext x=%22100%22 y=%2290%22 font-family=%22Montserrat%22 font-size=%2224%22 text-anchor=%22middle%22 fill=%22%23bbb%22%3ELOGO%3C/text%3E%3C/svg%3E'">
+                </div>
+                <div class="gallery-item" data-image="assets/images/client-logos-28.jpg">
+                    <img src="assets/images/client-logos-28.jpg" alt="Client logo 4" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22200%22 height=%22160%22%3E%3Crect fill=%22%23f0f0f0%22 width=%22200%22 height=%22160%22/%3E%3Ctext x=%22100%22 y=%2290%22 font-family=%22Montserrat%22 font-size=%2224%22 text-anchor=%22middle%22 fill=%22%23bbb%22%3ELOGO%3C/text%3E%3C/svg%3E'">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== 29 YEARS BANNER ===== -->
+    <section class="premium-banner">
+        <div class="container">
+            <h2><strong class="accent">29 Years</strong> Of</h2>
+            <div class="sub">Logic in our magic!</div>
+            <a href="#" class="btn-accent"><i class="fas fa-mug-hot"></i> TALK TO US</a>
+        </div>
+    </section>
+
+    <!-- ===== PREMIUM FOOTER ===== -->
+    <footer class="footer-premium">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-col">
+                    <h5>Johannesburg</h5>
+                    <ul>
+                        <li>2nd Floor Trumpet On Keyes, 21 Keyes Avenue, Rosebank, Johannesburg, 2196</li>
+                        <li style="margin-top: 0.5rem;">Phone: +27 10 035 5218</li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h5>Durban Office</h5>
+                    <ul>
+                        <li>2 Ncondo Place, Ridgeside Dr, Umhlanga Ridge, Durban, 4319</li>
+                        <li style="margin-top: 0.5rem;">Phone: +27 83 325 9532</li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h5>Email</h5>
+                    <ul>
+                        <li><a href="mailto:info@obriangroup.com">info@obriangroup.com</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h5>About</h5>
+                    <ul>
+                        <li><a href="About.html">History</a></li>
+                        <li><a href="Client_Experience.html">Clients</a></li>
+                        <li><a href="Teams.html">Teams</a></li>
+                        <li><a href="Brand.html">Brand</a></li>
+                        <li><a href="Terms.html">Terms</a></li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="footer-social">
+                <a href="https://www.facebook.com/profile.php?id=100094029616085" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+                <a href="https://x.com/ObrianSA" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+                <a href="https://www.instagram.com/obriandigital/" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                <a href="https://za.linkedin.com/company/o-brian-digital" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+            </div>
+
+            <div class="footer-bottom">
+                © Copyright 2030 O'Brian Group – All Rights Reserved
+            </div>
+        </div>
+    </footer>
+
+    <!-- ===== LIGHTBOX ===== -->
+    <div class="lightbox-overlay" id="lightboxOverlay">
+        <button class="lightbox-close" id="lightboxClose" aria-label="Close">&times;</button>
+        <img id="lightboxImage" src="" alt="Full view" />
+    </div>
+
+    <!-- ===== SCROLL TO TOP ===== -->
+    <div id="scrollToTop" class="scrollToTop">
+        <a href="#" aria-label="Scroll to top"><i class="fas fa-arrow-up"></i></a>
+    </div>
+
+    <!-- ============================================================ -->
+    <!-- SCRIPTS                                                      -->
+    <!-- ============================================================ -->
+
+    <script>
+        (function() {
+            'use strict';
+
+            // ----- HEADER SCROLL -----
+            const header = document.getElementById('mainHeader');
+            window.addEventListener('scroll', function() {
+                if (window.scrollY > 40) {
+                    header.classList.add('scrolled');
+                } else {
+                    header.classList.remove('scrolled');
+                }
+            });
+
+            // ----- MOBILE MENU TOGGLE -----
+            const menuBtn = document.getElementById('menuBtn');
+            const mobileMenu = document.getElementById('mobileMenu');
+            const closeMenuBtn = document.getElementById('closeMenu');
+
+            function openMobileMenu() {
+                mobileMenu.classList.add('open');
+                document.body.style.overflow = 'hidden';
+            }
+
+            function closeMobileMenu() {
+                mobileMenu.classList.remove('open');
+                document.body.style.overflow = '';
+            }
+
+            if (menuBtn) {
+                menuBtn.addEventListener('click', function(e) {
+                    e.stopPropagation();
+                    if (mobileMenu.classList.contains('open')) {
+                        closeMobileMenu();
+                    } else {
+                        openMobileMenu();
+                    }
+                });
+            }
+
+            if (closeMenuBtn) {
+                closeMenuBtn.addEventListener('click', function(e) {
+                    e.stopPropagation();
+                    closeMobileMenu();
+                });
+            }
+
+            // Close mobile menu when clicking outside
+            document.addEventListener('click', function(e) {
+                if (mobileMenu.classList.contains('open')) {
+                    if (!mobileMenu.contains(e.target) && !menuBtn.contains(e.target)) {
+                        closeMobileMenu();
+                    }
+                }
+            });
+
+            // Close on Escape
+            document.addEventListener('keydown', function(e) {
+                if (e.key === 'Escape' && mobileMenu.classList.contains('open')) {
+                    closeMobileMenu();
+                }
+            });
+
+            // ----- MOBILE ACCORDION -----
+            document.querySelectorAll('[data-accordion]').forEach(function(btn) {
+                btn.addEventListener('click', function() {
+                    const targetId = this.getAttribute('data-accordion');
+                    const panel = document.getElementById(targetId);
+                    const icon = this.querySelector('.accordion-icon');
+
+                    if (!panel) return;
+
+                    // Close all other panels
+                    document.querySelectorAll('[data-accordion]').forEach(function(otherBtn) {
+                        const otherId = otherBtn.getAttribute('data-accordion');
+                        const otherPanel = document.getElementById(otherId);
+                        if (otherId !== targetId && otherPanel) {
+                            otherPanel.classList.add('hidden');
+                            const otherIcon = otherBtn.querySelector('.accordion-icon');
+                            if (otherIcon) otherIcon.style.transform = 'rotate(0deg)';
+                        }
+                    });
+
+                    // Toggle current panel
+                    const isHidden = panel.classList.contains('hidden');
+                    if (isHidden) {
+                        panel.classList.remove('hidden');
+                        if (icon) icon.style.transform = 'rotate(180deg)';
+                    } else {
+                        panel.classList.add('hidden');
+                        if (icon) icon.style.transform = 'rotate(0deg)';
+                    }
+                });
+            });
+
+            // ----- LIGHTBOX -----
+            const overlay = document.getElementById('lightboxOverlay');
+            const lightboxImg = document.getElementById('lightboxImage');
+            const closeBtn = document.getElementById('lightboxClose');
+
+            function openLightbox(src) {
+                if (!src) return;
+                lightboxImg.src = src;
+                overlay.classList.add('active');
+                document.body.style.overflow = 'hidden';
+            }
+
+            function closeLightbox() {
+                overlay.classList.remove('active');
+                document.body.style.overflow = '';
+            }
+
+            // Click on slider images
+            document.querySelectorAll('.slide-img').forEach(function(el) {
+                el.addEventListener('click', function(e) {
+                    e.stopPropagation();
+                    const img = this.querySelector('img');
+                    const src = img ? img.src : this.getAttribute('data-image');
+                    if (src) openLightbox(src);
+                });
+            });
+
+            // Click on gallery items
+            document.querySelectorAll('.gallery-item').forEach(function(el) {
+                el.addEventListener('click', function(e) {
+                    e.stopPropagation();
+                    const img = this.querySelector('img');
+                    const src = img ? img.src : this.getAttribute('data-image');
+                    if (src) openLightbox(src);
+                });
+            });
+
+            // Close button
+            if (closeBtn) {
+                closeBtn.addEventListener('click', closeLightbox);
+            }
+
+            // Click on overlay background
+            if (overlay) {
+                overlay.addEventListener('click', function(e) {
+                    if (e.target === overlay) {
+                        closeLightbox();
+                    }
+                });
+            }
+
+            // Escape key
+            document.addEventListener('keydown', function(e) {
+                if (e.key === 'Escape' && overlay.classList.contains('active')) {
+                    closeLightbox();
+                }
+            });
+
+            // ----- SCROLL TO TOP -----
+            const scrollBtn = document.getElementById('scrollToTop');
+            if (scrollBtn) {
+                window.addEventListener('scroll', function() {
+                    if (window.scrollY > 400) {
+                        scrollBtn.classList.add('visible');
+                    } else {
+                        scrollBtn.classList.remove('visible');
+                    }
+                });
+
+                scrollBtn.querySelector('a').addEventListener('click', function(e) {
+                    e.preventDefault();
+                    window.scrollTo({ top: 0, behavior: 'smooth' });
+                });
+            }
+
+            // ----- SIMPLE EMBLA SLIDER (manual navigation) -----
+            const emblaNode = document.querySelector('.embla');
+            if (emblaNode) {
+                const viewport = emblaNode.querySelector('.embla__viewport');
+                const container = emblaNode.querySelector('.embla__container');
+                const prevBtn = emblaNode.querySelector('.embla__button--prev');
+                const nextBtn = emblaNode.querySelector('.embla__button--next');
+                const slides = container.querySelectorAll('.embla__slide');
+
+                if (viewport && container && slides.length) {
+                    let currentIndex = 0;
+                    const total = slides.length;
+
+                    function getVisibleCount() {
+                        const w = viewport.clientWidth;
+                        if (w >= 1024) return 3;
+                        if (w >= 768) return 2;
+                        return 1;
+                    }
+
+                    function getSlideWidth() {
+                        const w = viewport.clientWidth;
+                        const count = getVisibleCount();
+                        const gap = 24;
+                        return (w - gap * (count - 1)) / count;
+                    }
+
+                    function goTo(index) {
+                        const count = getVisibleCount();
+                        const maxIndex = Math.max(0, total - count);
+                        const clamped = Math.max(0, Math.min(index, maxIndex));
+                        currentIndex = clamped;
+
+                        const slideW = getSlideWidth();
+                        const gap = 24;
+                        const offset = clamped * (slideW + gap);
+                        container.style.transform = 'translateX(-' + offset + 'px)';
+                        container.style.transition = 'transform 0.4s cubic-bezier(0.22, 1, 0.36, 1)';
+                    }
+
+                    function next() {
+                        const count = getVisibleCount();
+                        const maxIndex = Math.max(0, total - count);
+                        if (currentIndex < maxIndex) {
+                            goTo(currentIndex + 1);
+                        } else {
+                            goTo(0);
+                        }
+                    }
+
+                    function prev() {
+                        if (currentIndex > 0) {
+                            goTo(currentIndex - 1);
+                        } else {
+                            const count = getVisibleCount();
+                            const maxIndex = Math.max(0, total - count);
+                            goTo(maxIndex);
+                        }
+                    }
+
+                    // Init
+                    container.style.display = 'flex';
+                    container.style.gap = '24px';
+                    container.style.transition = 'transform 0.4s cubic-bezier(0.22, 1, 0.36, 1)';
+                    slides.forEach(function(s) { s.style.flex = '0 0 auto'; });
+
+                    function updateSlideWidth() {
+                        const w = getSlideWidth();
+                        slides.forEach(function(s) { s.style.width = w + 'px'; });
+                        goTo(currentIndex);
+                    }
+
+                    // Initial setup
+                    updateSlideWidth();
+
+                    // Resize
+                    let resizeTimer;
+                    window.addEventListener('resize', function() {
+                        clearTimeout(resizeTimer);
+                        resizeTimer = setTimeout(updateSlideWidth, 150);
+                    });
+
+                    // Buttons
+                    if (nextBtn) nextBtn.addEventListener('click', next);
+                    if (prevBtn) prevBtn.addEventListener('click', prev);
+
+                    // Keyboard
+                    document.addEventListener('keydown', function(e) {
+                        if (e.key === 'ArrowRight') next();
+                        if (e.key === 'ArrowLeft') prev();
+                    });
+                }
+            }
+
+        })();
+    </script>
+
+    <!-- Cookie placeholder (hidden input) -->
+    <input name="cookieData" type="hidden" data-cookie-cookiesAlertType='false' data-cookie-customDialogSelector='null' data-cookie-colorText='#424a4d' data-cookie-colorBg='rgb(255, 255, 255)' data-cookie-opacityOverlay='0' data-cookie-bgOpacity='100' data-cookie-textButton='GOT IT' data-cookie-rejectText='REJECT' data-cookie-colorButton='#ec008a' data-cookie-rejectColor='#ffffff' data-cookie-colorLink='#424a4d' data-cookie-underlineLink='true' data-cookie-text="We use cookies to give you the best experience. Read our <a href='page72.html'>cookie policy</a>." />
+
+</body>
+</html>

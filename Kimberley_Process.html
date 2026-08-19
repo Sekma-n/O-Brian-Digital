@@ -1,0 +1,829 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="description" content="Kimberley Process case study by O'Brian Group — ethical diamond trade certification, visual storytelling and strategic communication.">
+  <meta name="keywords" content="Kimberley Process, case study, O'Brian Group, diamond certification, conflict-free diamonds, visual assets">
+  <meta name="author" content="O'Brian Group">
+  
+  <!-- Open Graph / Social -->
+  <meta property="og:title" content="Kimberley Process | O'Brian Group Case Study">
+  <meta property="og:description" content="Global initiative for conflict-free diamonds — strategic digital assets and visual identity.">
+  <meta property="og:image" content="assets/images/kimberleyprocesspix0358.jpg">
+  <meta property="og:type" content="website">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Kimberley Process Case Study">
+  
+  <link rel="shortcut icon" href="assets/images/obrian-transparent-logo-4461219.webp" type="image/x-icon">
+  <title>Kimberley Process | Ethical Diamond Initiative — O'Brian Group</title>
+  
+  <!-- Google Fonts & Modern CSS -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700;14..32,800&family=Playfair+Display:ital,wght@0,500;0,600;0,700;1,500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  
+  <!-- Tailwind CSS -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background-color: #ffffff;
+      color: #251e21;
+      line-height: 1.5;
+      scroll-behavior: smooth;
+      padding-top: 80px;
+    }
+
+    /* Color palette: primary #ed008e, dark #251e21, white #ffffff */
+    :root {
+      --primary: #ed008e;
+      --primary-dark: #b0006b;
+      --dark-bg: #251e21;
+      --text-dark: #251e21;
+      --white: #ffffff;
+      --gray-50: #faf7f8;
+      --gray-100: #f2eff0;
+      --gray-200: #e5e0e2;
+      --gray-700: #4a4145;
+      --gray-900: #251e21;
+      --shadow-sm: 0 10px 25px -5px rgba(0,0,0,0.05), 0 8px 10px -6px rgba(0,0,0,0.02);
+      --shadow-md: 0 20px 25px -12px rgba(0,0,0,0.08);
+    }
+
+    /* ── NEW HEADER STYLES ── */
+    .header-glass {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      z-index: 1030;
+      background: rgba(255, 255, 255, 0.85);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      transition: box-shadow 0.3s, background 0.3s;
+      border-bottom: 1px solid rgba(0, 0, 0, 0.04);
+    }
+    .header-glass.scrolled {
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+      background: rgba(255, 255, 255, 0.98);
+    }
+
+    .nav-link {
+      padding: 0.5rem 1rem;
+      font-size: 0.875rem;
+      font-weight: 600;
+      color: #374151;
+      border-radius: 0.5rem;
+      transition: all 0.3s ease;
+      display: inline-block;
+      cursor: pointer;
+    }
+    .nav-link:hover {
+      color: #e6007e;
+      background-color: #fdf2f8;
+    }
+
+    .dropdown-menu-custom {
+      position: absolute;
+      top: 100%;
+      left: 0;
+      margin-top: 0.5rem;
+      width: 200px;
+      background: white;
+      border-radius: 0.75rem;
+      box-shadow: 0 20px 40px -8px rgba(0, 0, 0, 0.15);
+      border: 1px solid #f3f4f6;
+      opacity: 0;
+      visibility: hidden;
+      transform: translateY(-8px) scale(0.96);
+      transition: all 0.25s ease;
+      transform-origin: top left;
+      z-index: 1050;
+    }
+    .group:hover .dropdown-menu-custom {
+      opacity: 1;
+      visibility: visible;
+      transform: translateY(0) scale(1);
+    }
+    .dropdown-menu-custom a {
+      display: block;
+      padding: 0.75rem 1.25rem;
+      font-size: 0.875rem;
+      color: #374151;
+      transition: background 0.2s, color 0.2s;
+    }
+    .dropdown-menu-custom a:hover {
+      background: #fdf2f8;
+      color: #e6007e;
+    }
+    .dropdown-menu-custom a:first-child {
+      border-radius: 0.75rem 0.75rem 0 0;
+    }
+    .dropdown-menu-custom a:last-child {
+      border-radius: 0 0 0.75rem 0.75rem;
+    }
+
+    .btn-primary-pink {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.75rem 1.75rem;
+      background: linear-gradient(135deg, #e6007e, #ff1493);
+      color: white;
+      font-weight: 700;
+      font-size: 0.875rem;
+      border-radius: 9999px;
+      transition: all 0.3s ease;
+      box-shadow: 0 4px 14px rgba(230, 0, 126, 0.3);
+    }
+    .btn-primary-pink:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 25px rgba(230, 0, 126, 0.4);
+      color: white;
+    }
+
+    /* Mobile menu panel */
+    .mobile-menu-panel {
+      display: none;
+      position: fixed;
+      top: 80px;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: rgba(255, 255, 255, 0.98);
+      backdrop-filter: blur(12px);
+      padding: 1.5rem;
+      overflow-y: auto;
+      z-index: 1020;
+      border-top: 1px solid rgba(0, 0, 0, 0.04);
+    }
+    .mobile-menu-panel.open {
+      display: block;
+    }
+    .mobile-menu-panel a {
+      display: block;
+      padding: 0.75rem 1rem;
+      font-size: 1rem;
+      font-weight: 500;
+      color: #1a1a2e;
+      border-radius: 0.5rem;
+      transition: background 0.2s;
+    }
+    .mobile-menu-panel a:hover {
+      background: rgba(237, 0, 142, 0.06);
+      color: #ed008e;
+    }
+    .mobile-menu-panel .mobile-dropdown-title {
+      font-weight: 700;
+      padding: 0.75rem 1rem;
+      color: #1a1a2e;
+      cursor: default;
+    }
+    .mobile-menu-panel .mobile-dropdown-items {
+      padding-left: 1rem;
+    }
+    .mobile-menu-panel .mobile-dropdown-items a {
+      font-weight: 400;
+      font-size: 0.95rem;
+    }
+
+    /* ===== END NEW HEADER ===== */
+
+    /* Hero */
+    .hero {
+      background: linear-gradient(135deg, #ffffff 0%, #fef7fb 100%);
+      padding: 5rem 2rem 4rem;
+      text-align: center;
+      border-bottom: 1px solid var(--gray-200);
+    }
+
+    .hero-container {
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+
+    .hero-eyebrow {
+      font-size: 0.85rem;
+      text-transform: uppercase;
+      letter-spacing: 3px;
+      font-weight: 600;
+      color: #ed008e;
+      margin-bottom: 1rem;
+    }
+
+    .hero h1 {
+      font-family: 'Playfair Display', serif;
+      font-size: 3.8rem;
+      font-weight: 700;
+      color: #251e21;
+      line-height: 1.2;
+      margin-bottom: 1.2rem;
+    }
+
+    .hero-sub {
+      font-size: 1.2rem;
+      color: #4a4145;
+      max-width: 700px;
+      margin: 0 auto 2rem;
+    }
+
+    .hero-divider {
+      width: 80px;
+      height: 4px;
+      background: #ed008e;
+      margin: 1.2rem auto 0;
+      border-radius: 4px;
+    }
+
+    /* case study intro */
+    .case-intro {
+      max-width: 1200px;
+      margin: 3rem auto;
+      padding: 0 2rem;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 3rem;
+      align-items: flex-start;
+      justify-content: space-between;
+    }
+
+    .intro-text {
+      flex: 2;
+    }
+
+    .intro-text h2 {
+      font-family: 'Playfair Display', serif;
+      font-size: 2rem;
+      color: #251e21;
+      margin-bottom: 1.2rem;
+    }
+
+    .intro-text p {
+      color: #3d3539;
+      margin-bottom: 1.2rem;
+      font-size: 1rem;
+      line-height: 1.6;
+    }
+
+    .intro-highlight {
+      flex: 1;
+      background: #faf7f8;
+      padding: 1.8rem;
+      border-radius: 32px;
+      border-left: 4px solid #ed008e;
+      box-shadow: var(--shadow-sm);
+    }
+
+    .intro-highlight h4 {
+      font-weight: 700;
+      margin-bottom: 0.8rem;
+      font-size: 1.1rem;
+      color: #251e21;
+    }
+
+    .intro-highlight p {
+      font-size: 0.9rem;
+      color: #4a4145;
+    }
+
+    /* Gallery section */
+    .gallery-section {
+      background: #ffffff;
+      padding: 4rem 2rem;
+    }
+
+    .section-title {
+      text-align: center;
+      margin-bottom: 3rem;
+    }
+
+    .section-title h3 {
+      font-family: 'Playfair Display', serif;
+      font-size: 2.2rem;
+      color: #251e21;
+    }
+
+    .section-title p {
+      color: #4a4145;
+      max-width: 600px;
+      margin: 0.8rem auto 0;
+    }
+
+    .gallery-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      gap: 1.8rem;
+      max-width: 1400px;
+      margin: 0 auto;
+    }
+
+    .gallery-card {
+      position: relative;
+      overflow: hidden;
+      border-radius: 28px;
+      cursor: pointer;
+      background: #f2eff0;
+      transition: all 0.3s cubic-bezier(0.2, 0, 0, 1);
+      box-shadow: var(--shadow-sm);
+    }
+
+    .gallery-card img {
+      width: 100%;
+      aspect-ratio: 4 / 3;
+      object-fit: cover;
+      display: block;
+      transition: transform 0.5s ease;
+    }
+
+    .gallery-card:hover {
+      transform: translateY(-6px);
+      box-shadow: var(--shadow-md);
+    }
+
+    .gallery-card:hover img {
+      transform: scale(1.03);
+    }
+
+    .overlay-icon {
+      position: absolute;
+      bottom: 16px;
+      right: 16px;
+      background: rgba(237,0,142,0.8);
+      backdrop-filter: blur(4px);
+      width: 40px;
+      height: 40px;
+      border-radius: 60px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      font-size: 1.2rem;
+      opacity: 0;
+      transition: opacity 0.2s;
+    }
+
+    .gallery-card:hover .overlay-icon {
+      opacity: 1;
+    }
+
+    /* Lightbox Modal */
+    .lightbox {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(37,30,33,0.95);
+      z-index: 2000;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      opacity: 0;
+      visibility: hidden;
+      transition: all 0.25s ease;
+    }
+
+    .lightbox.active {
+      opacity: 1;
+      visibility: visible;
+    }
+
+    .lightbox-content {
+      position: relative;
+      max-width: 85vw;
+      max-height: 85vh;
+    }
+
+    .lightbox-img {
+      max-width: 100%;
+      max-height: 80vh;
+      border-radius: 24px;
+      box-shadow: 0 20px 35px rgba(0,0,0,0.3);
+    }
+
+    .lb-close {
+      position: absolute;
+      top: -40px;
+      right: 0;
+      font-size: 2rem;
+      color: white;
+      cursor: pointer;
+      transition: 0.2s;
+    }
+
+    .lb-prev, .lb-next {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      background: rgba(255,255,255,0.2);
+      backdrop-filter: blur(5px);
+      border-radius: 60px;
+      width: 48px;
+      height: 48px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      color: white;
+      font-size: 1.6rem;
+      transition: 0.2s;
+    }
+
+    .lb-prev { left: -60px; }
+    .lb-next { right: -60px; }
+
+    .lb-prev:hover, .lb-next:hover {
+      background: #ed008e;
+    }
+
+    /* Social & footer */
+    .social-section {
+      background: #faf7f8;
+      padding: 3rem 2rem;
+      text-align: center;
+      border-top: 1px solid #e5e0e2;
+    }
+
+    .social-icons {
+      display: flex;
+      justify-content: center;
+      gap: 1.8rem;
+      margin-top: 1.2rem;
+    }
+
+    .social-icons a {
+      background: white;
+      width: 48px;
+      height: 48px;
+      border-radius: 60px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      color: #251e21;
+      font-size: 1.4rem;
+      transition: all 0.2s;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.02);
+      text-decoration: none;
+    }
+
+    .social-icons a:hover {
+      background: #ed008e;
+      color: white;
+      transform: translateY(-3px);
+    }
+
+    .footer {
+      background: #251e21;
+      color: #cdc6ca;
+      padding: 3rem 2rem 2rem;
+    }
+
+    .footer-grid {
+      max-width: 1300px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
+      gap: 2rem;
+    }
+
+    .footer-col h5 {
+      font-weight: 600;
+      color: white;
+      margin-bottom: 1rem;
+      font-size: 1.1rem;
+    }
+
+    .footer-col p, .footer-col a {
+      font-size: 0.85rem;
+      line-height: 1.5;
+      color: #b9aeb3;
+      text-decoration: none;
+      display: block;
+      margin-bottom: 0.5rem;
+    }
+
+    .footer-col a:hover {
+      color: #ed008e;
+    }
+
+    .copyright {
+      text-align: center;
+      padding-top: 2.5rem;
+      font-size: 0.75rem;
+      border-top: 1px solid #3b3135;
+      margin-top: 2rem;
+      color: #9c8f95;
+    }
+
+    @media (max-width: 1024px) {
+      .hero h1 {
+        font-size: 2.5rem;
+      }
+      .lb-prev, .lb-next {
+        width: 36px;
+        height: 36px;
+        font-size: 1.2rem;
+      }
+      .lb-prev { left: 10px; }
+      .lb-next { right: 10px; }
+    }
+    @media (max-width: 640px) {
+      .hero h1 { font-size: 2rem; }
+      .case-intro { flex-direction: column; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ===== NEW HEADER ===== -->
+<header class="header-glass" id="mainHeader">
+  <div class="max-w-7xl mx-auto px-4 md:px-6">
+    <div class="flex justify-between items-center h-20">
+
+      <!-- Logo -->
+      <a href="index.html" class="flex items-center gap-3 group">
+        <img src="assets/images/obrian-transparent-logo-4461219.webp" alt="O'Brian Group" class="h-10 w-auto" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22%3E%3Crect width=%22100%22 height=%22100%22 fill=%22%23ed008e%22/%3E%3Ctext x=%2250%22 y=%2268%22 font-size=%2248%22 text-anchor=%22middle%22 fill=%22white%22 font-weight=%22bold%22 font-family=%22Inter%22%3EO%3C/text%3E%3C/svg%3E'">
+        <span class="font-black text-xl text-[#231e1f] tracking-tight hidden sm:inline"><span class="text-[#ed018e]"></span></span>
+      </a>
+
+      <!-- Desktop Nav -->
+      <div class="hidden lg:flex items-center gap-0.5">
+        <a href="index.html" class="nav-link">Home</a>
+        <a href="page8.html" class="nav-link">About</a>
+        <a href="page30.html" class="nav-link">Our Work</a>
+        <a href="page52.html" class="nav-link">Client Experience</a>
+
+        <div class="relative group">
+          <button class="nav-link flex items-center gap-1">
+            Case Studies
+            <svg class="w-3 h-3 transition-transform duration-300 group-hover:rotate-180" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M19 9l-7 7-7-7"></path></svg>
+          </button>
+          <div class="dropdown-menu-custom">
+            <a href="page27.html">Advertising</a>
+            <a href="page45.html">Digital</a>
+            <a href="page43.html">Consulting</a>
+          </div>
+        </div>
+
+        <div class="relative group">
+          <button class="nav-link flex items-center gap-1">
+            Expertise
+            <svg class="w-3 h-3 transition-transform duration-300 group-hover:rotate-180" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M19 9l-7 7-7-7"></path></svg>
+          </button>
+          <div class="dropdown-menu-custom">
+            <a href="page9.html">Advertising</a>
+            <a href="page18.html">Digital</a>
+            <a href="page1.html">Consulting</a>
+          </div>
+        </div>
+
+        <a href="page60.html" class="nav-link">Staff News</a>
+        <a href="page15.html" class="nav-link">Blog</a>
+        <a href="page70.html" class="nav-link">Archives</a>
+      </div>
+
+      <!-- CTA -->
+      <div class="hidden lg:block">
+        <a href="page5.html" class="btn-primary-pink">
+          <span>Contact</span>
+          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M17 8l4 4m0 0l-4 4m4-4H3"></path></svg>
+        </a>
+      </div>
+
+      <!-- Burger -->
+      <button class="lg:hidden p-2 rounded-lg hover:bg-gray-100 transition-colors" id="menuBtn" aria-label="Toggle menu">
+        <div class="w-6 h-6 flex flex-col justify-center items-center gap-1.5">
+          <span class="w-6 h-0.5 bg-gray-700 transition-all duration-300 menu-line-1"></span>
+          <span class="w-6 h-0.5 bg-gray-700 transition-all duration-300 menu-line-2"></span>
+          <span class="w-4 h-0.5 bg-gray-700 transition-all duration-300 menu-line-3 ml-auto"></span>
+        </div>
+      </button>
+    </div>
+  </div>
+</header>
+
+<!-- ===== MOBILE MENU PANEL ===== -->
+<div class="mobile-menu-panel" id="mobileMenuPanel">
+  <a href="index.html">Home</a>
+  <a href="page8.html">About</a>
+  <a href="page30.html">Our Work</a>
+  <a href="page52.html">Client Experience</a>
+
+  <div class="mobile-dropdown-title">Case Studies</div>
+  <div class="mobile-dropdown-items">
+    <a href="page27.html">Advertising</a>
+    <a href="page45.html">Digital</a>
+    <a href="page43.html">Consulting</a>
+  </div>
+
+  <div class="mobile-dropdown-title">Our Expertise</div>
+  <div class="mobile-dropdown-items">
+    <a href="page9.html">Advertising</a>
+    <a href="page1.html">Digital</a>
+    <a href="page18.html">Consulting</a>
+  </div>
+
+  <a href="page60.html">Staff News</a>
+  <a href="page15.html">Blog</a>
+  <a href="page70.html">Archives</a>
+  <a href="page5.html" class="magnetic-btn" style="display:inline-flex; margin-top:1rem; background:linear-gradient(135deg,#e6007e,#ff1493); color:#fff; padding:0.6rem 1.5rem; border-radius:9999px; font-weight:700;">Contact Us</a>
+</div>
+
+<!-- Hero Section -->
+<section class="hero">
+  <div class="hero-container">
+    <div class="hero-eyebrow">CASE STUDY • ETHICAL IMPACT</div>
+    <h1>Kimberley Process<br>Certification Scheme</h1>
+    <p class="hero-sub">Global initiative to eradicate conflict diamonds — Strategic storytelling, visual identity, and advocacy assets.</p>
+    <div class="hero-divider"></div>
+  </div>
+</section>
+
+<!-- Case Study Insight -->
+<div class="case-intro">
+  <div class="intro-text">
+    <h2>Illuminate transparency,<br>empower integrity.</h2>
+    <p>The Kimberley Process (KP) is a monumental international coalition bringing together governments, industry, and civil society to stop the flow of conflict diamonds. O'Brian Group partnered with KP representatives to develop compelling visual communication tools, high-impact imagery, and narrative assets that reinforce the credibility and global reach of the certification scheme.</p>
+    <p>Through immersive photography, brand assets, and a cohesive digital presence, we amplified the message of ethical sourcing — humanizing the certification process while elevating institutional trust.</p>
+  </div>
+  <div class="intro-highlight">
+    <h4><i class="fas fa-gem" style="color: #ed008e; margin-right: 8px;"></i> Outcome focus</h4>
+    <p>Enhanced stakeholder engagement through authentic visual archives, refined digital collateral, and consistent brand narrative used across diplomatic summits, media, and industry forums.</p>
+  </div>
+</div>
+
+<!-- Gallery Showcase -->
+<section class="gallery-section">
+  <div class="section-title">
+    <h3>Visual narrative • Moments of impact</h3>
+    <p>Exploring the essence of the Kimberley Process through exclusive photography and campaign assets</p>
+  </div>
+  <div class="gallery-grid" id="galleryGrid">
+    <div class="gallery-card" data-index="0"><img src="assets/images/kimberleyprocesspix0358.jpg" alt="KP summit session" loading="lazy"><div class="overlay-icon"><i class="fas fa-expand-alt"></i></div></div>
+    <div class="gallery-card" data-index="1"><img src="assets/images/10yrs-kpcs-logo.jpg" alt="10 years KPCS logo" loading="lazy"><div class="overlay-icon"><i class="fas fa-expand-alt"></i></div></div>
+    <div class="gallery-card" data-index="2"><img src="assets/images/kimberleyprocesspix0236.jpg" alt="Dialogue session" loading="lazy"><div class="overlay-icon"><i class="fas fa-expand-alt"></i></div></div>
+    <div class="gallery-card" data-index="3"><img src="assets/images/kimberleyprocesspix0271.jpg" alt="Delegates roundtable" loading="lazy"><div class="overlay-icon"><i class="fas fa-expand-alt"></i></div></div>
+    <div class="gallery-card" data-index="4"><img src="assets/images/kimberleyprocesspix0255-copy.jpg" alt="Workshop discussion" loading="lazy"><div class="overlay-icon"><i class="fas fa-expand-alt"></i></div></div>
+    <div class="gallery-card" data-index="5"><img src="assets/images/whatsapp-image-2025-07-25-at-16.03.14.jpeg" alt="KP event moments" loading="lazy"><div class="overlay-icon"><i class="fas fa-expand-alt"></i></div></div>
+    <div class="gallery-card" data-index="6"><img src="assets/images/whatsapp-image-2025-07-25-at-16.03.13-1.jpeg" alt="Networking" loading="lazy"><div class="overlay-icon"><i class="fas fa-expand-alt"></i></div></div>
+    <div class="gallery-card" data-index="7"><img src="assets/images/whatsapp-image-2025-07-25-at-16.03.13.jpeg" alt="Keynote speech" loading="lazy"><div class="overlay-icon"><i class="fas fa-expand-alt"></i></div></div>
+    <div class="gallery-card" data-index="8"><img src="assets/images/whatsapp-image-2025-07-25-at-16.03.14-1.jpeg" alt="Ceremony" loading="lazy"><div class="overlay-icon"><i class="fas fa-expand-alt"></i></div></div>
+    <div class="gallery-card" data-index="9"><img src="assets/images/kimberleyprocesspix1238.jpg" alt="Global coalition gathering" loading="lazy"><div class="overlay-icon"><i class="fas fa-expand-alt"></i></div></div>
+  </div>
+</section>
+
+<!-- Social Links Section -->
+<section class="social-section">
+  <h4 style="font-weight: 500; color: #251e21;">Connect with O'Brian Group</h4>
+  <div class="social-icons">
+    <a href="https://www.facebook.com/profile.php?id=100094029616085" target="_blank"><i class="fab fa-facebook-f"></i></a>
+    <a href="https://x.com/ObrianSA" target="_blank"><i class="fab fa-twitter"></i></a>
+    <a href="https://www.instagram.com/obriandigital/" target="_blank"><i class="fab fa-instagram"></i></a>
+    <a href="https://za.pinterest.com/OBRIANDIGITAL/" target="_blank"><i class="fab fa-pinterest-p"></i></a>
+    <a href="https://za.linkedin.com/company/o-brian-digital" target="_blank"><i class="fab fa-linkedin-in"></i></a>
+  </div>
+</section>
+
+<!-- Footer -->
+<footer class="footer">
+  <div class="footer-grid">
+    <div class="footer-col">
+      <h5>Johannesburg</h5>
+      <p>2nd Floor Trumpet On Keyes, 21 Keyes Avenue, Rosebank, Johannesburg, 2196</p>
+      <p>Phone: +27 10 035 5218</p>
+    </div>
+    <div class="footer-col">
+      <h5>Durban Office</h5>
+      <p>2 Ncondo Place, Ridgeside Dr, Umhlanga Ridge, Durban, 4319</p>
+      <p>Phone: +27 83 325 9532</p>
+    </div>
+    <div class="footer-col">
+      <h5>Email</h5>
+      <p><a href="mailto:info@obriangroup.com">info@obriangroup.com</a></p>
+    </div>
+    <div class="footer-col">
+      <h5>About</h5>
+      <a href="page8.html">History</a>
+      <a href="page52.html">Clients</a>
+      <a href="#">Teams</a>
+      <a href="#">Brand</a>
+      <a href="#">Terms</a>
+    </div>
+  </div>
+  <div class="copyright">
+    <p>© 2030 O'Brian Group — All Rights Reserved | Designed for impact & transparency</p>
+  </div>
+</footer>
+
+<!-- Lightbox Modal -->
+<div id="lightboxModal" class="lightbox">
+  <div class="lightbox-content">
+    <span class="lb-close" id="closeLightbox"><i class="fas fa-times"></i></span>
+    <span class="lb-prev" id="prevImage"><i class="fas fa-chevron-left"></i></span>
+    <img class="lightbox-img" id="lightboxImg" src="" alt="Enlarged view">
+    <span class="lb-next" id="nextImage"><i class="fas fa-chevron-right"></i></span>
+  </div>
+</div>
+
+<script>
+  // ── Mobile menu toggle (updated for new header) ──
+  const menuBtn = document.getElementById('menuBtn');
+  const mobilePanel = document.getElementById('mobileMenuPanel');
+
+  if (menuBtn && mobilePanel) {
+    menuBtn.addEventListener('click', () => {
+      menuBtn.classList.toggle('open');
+      mobilePanel.classList.toggle('open');
+      document.body.style.overflow = mobilePanel.classList.contains('open') ? 'hidden' : '';
+    });
+
+    mobilePanel.querySelectorAll('a').forEach(link => {
+      link.addEventListener('click', () => {
+        menuBtn.classList.remove('open');
+        mobilePanel.classList.remove('open');
+        document.body.style.overflow = '';
+      });
+    });
+  }
+
+  // ── Header scroll effect ──
+  const header = document.getElementById('mainHeader');
+  window.addEventListener('scroll', () => {
+    if (window.scrollY > 20) {
+      header.classList.add('scrolled');
+    } else {
+      header.classList.remove('scrolled');
+    }
+  });
+
+  // ── LIGHTBOX FUNCTIONALITY ──
+  const galleryItems = document.querySelectorAll('.gallery-card');
+  const imagesSrc = Array.from(galleryItems).map(card => {
+    const img = card.querySelector('img');
+    return img ? img.getAttribute('src') : '';
+  }).filter(src => src);
+
+  let currentIndex = 0;
+  const lightbox = document.getElementById('lightboxModal');
+  const lightboxImg = document.getElementById('lightboxImg');
+  const closeBtn = document.getElementById('closeLightbox');
+  const prevBtn = document.getElementById('prevImage');
+  const nextBtn = document.getElementById('nextImage');
+
+  function openLightbox(index) {
+    if (!imagesSrc.length) return;
+    currentIndex = (index + imagesSrc.length) % imagesSrc.length;
+    lightboxImg.src = imagesSrc[currentIndex];
+    lightbox.classList.add('active');
+    document.body.style.overflow = 'hidden';
+  }
+
+  function closeLightbox() {
+    lightbox.classList.remove('active');
+    document.body.style.overflow = '';
+  }
+
+  function nextImage() {
+    currentIndex = (currentIndex + 1) % imagesSrc.length;
+    lightboxImg.src = imagesSrc[currentIndex];
+  }
+
+  function prevImage() {
+    currentIndex = (currentIndex - 1 + imagesSrc.length) % imagesSrc.length;
+    lightboxImg.src = imagesSrc[currentIndex];
+  }
+
+  galleryItems.forEach((item, idx) => {
+    item.addEventListener('click', () => openLightbox(idx));
+  });
+
+  if (closeBtn) closeBtn.addEventListener('click', closeLightbox);
+  if (nextBtn) nextBtn.addEventListener('click', nextImage);
+  if (prevBtn) prevBtn.addEventListener('click', prevImage);
+  lightbox.addEventListener('click', (e) => {
+    if (e.target === lightbox) closeLightbox();
+  });
+  document.addEventListener('keydown', (e) => {
+    if (!lightbox.classList.contains('active')) return;
+    if (e.key === 'Escape') closeLightbox();
+    if (e.key === 'ArrowRight') nextImage();
+    if (e.key === 'ArrowLeft') prevImage();
+  });
+
+  // Google Analytics (preserved)
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'AW-17324132021');
+</script>
+<script async src="https://www.googletagmanager.com/gtag/js?id=AW-17324132021"></script>
+</body>
+</html>

@@ -1,0 +1,889 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Archives | O'Brian Group</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800;900&family=Open+Sans:wght@300;400;600&display=swap" rel="stylesheet">
+    
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        'sans': ['Montserrat', 'sans-serif'],
+                        'body': ['Open Sans', 'sans-serif'],
+                    },
+                    colors: {
+                        'obrian': {
+                            pink: '#e6007e',
+                            dark: '#1a1a1a',
+                            black: '#000000',
+                            white: '#ffffff',
+                            gray: '#f5f5f5'
+                        }
+                    },
+                    animation: {
+                        'float': 'float 6s ease-in-out infinite',
+                        'pulse-slow': 'pulse 4s cubic-bezier(0.4, 0, 0.6, 1) infinite',
+                        'slide-up': 'slideUp 0.8s ease-out forwards',
+                    },
+                    keyframes: {
+                        float: {
+                            '0%, 100%': { transform: 'translateY(0)' },
+                            '50%': { transform: 'translateY(-20px)' },
+                        },
+                        slideUp: {
+                            '0%': { opacity: '0', transform: 'translateY(40px)' },
+                            '100%': { opacity: '1', transform: 'translateY(0)' },
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    
+    <style>
+        body {
+            font-family: 'Montserrat', sans-serif;
+            background-color: #ffffff;
+            color: #1a1a1a;
+            overflow-x: hidden;
+            padding-top: 80px;
+        }
+        
+        .font-body {
+            font-family: 'Open Sans', sans-serif;
+        }
+        
+        .text-pink {
+            color: #e6007e;
+        }
+        
+        .bg-pink {
+            background-color: #e6007e;
+        }
+        
+        .border-pink {
+            border-color: #e6007e;
+        }
+        
+        .gradient-text {
+            background: linear-gradient(135deg, #e6007e 0%, #ff1493 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #1a1a1a;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #e6007e;
+            border-radius: 4px;
+        }
+
+        /* ── HEADER STYLES ── */
+        .header-glass {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            z-index: 50;
+            background: rgba(255, 255, 255, 0.85);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            transition: box-shadow 0.3s, background 0.3s;
+            border-bottom: 1px solid rgba(0, 0, 0, 0.04);
+        }
+        .header-glass.scrolled {
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+            background: rgba(255, 255, 255, 0.98);
+        }
+
+        .nav-link-new {
+            padding: 0.5rem 1rem;
+            font-size: 0.875rem;
+            font-weight: 600;
+            color: #374151;
+            border-radius: 0.5rem;
+            transition: all 0.3s ease;
+            display: inline-block;
+            cursor: pointer;
+        }
+        .nav-link-new:hover {
+            color: #e6007e;
+            background-color: #fdf2f8;
+        }
+
+        .dropdown-menu-custom {
+            position: absolute;
+            top: 100%;
+            left: 0;
+            margin-top: 0.5rem;
+            width: 200px;
+            background: white;
+            border-radius: 0.75rem;
+            box-shadow: 0 20px 40px -8px rgba(0, 0, 0, 0.15);
+            border: 1px solid #f3f4f6;
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(-8px) scale(0.96);
+            transition: all 0.25s ease;
+            transform-origin: top left;
+            z-index: 60;
+        }
+        .group:hover .dropdown-menu-custom {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0) scale(1);
+        }
+        .dropdown-menu-custom a {
+            display: block;
+            padding: 0.75rem 1.25rem;
+            font-size: 0.875rem;
+            color: #374151;
+            transition: background 0.2s, color 0.2s;
+        }
+        .dropdown-menu-custom a:hover {
+            background: #fdf2f8;
+            color: #e6007e;
+        }
+
+        .btn-primary-pink {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.75rem 1.75rem;
+            background: linear-gradient(135deg, #e6007e, #ff1493);
+            color: white;
+            font-weight: 700;
+            font-size: 0.875rem;
+            border-radius: 9999px;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 14px rgba(230, 0, 126, 0.3);
+        }
+        .btn-primary-pink:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(230, 0, 126, 0.4);
+            color: white;
+        }
+
+        /* ── ARCHIVE GRID ── */
+        .archive-section {
+            padding: 40px 0 80px;
+            background: #ffffff;
+        }
+        .archive-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+            gap: 24px;
+        }
+        .archive-card {
+            background: white;
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow: 0 4px 16px rgba(0, 0, 0, 0.05);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            border: 1px solid #eef2f6;
+            cursor: pointer;
+        }
+        .archive-card:hover {
+            transform: translateY(-6px);
+            box-shadow: 0 20px 40px rgba(230, 0, 126, 0.12);
+        }
+        .archive-card .card-img {
+            height: 200px;
+            overflow: hidden;
+            background: #f5f5f7;
+        }
+        .archive-card .card-img img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+        .archive-card:hover .card-img img {
+            transform: scale(1.05);
+        }
+        .archive-card .card-body {
+            padding: 16px 20px 20px;
+        }
+        .archive-card .card-body .tag {
+            font-size: 0.65rem;
+            font-weight: 600;
+            color: #e6007e;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+        .archive-card .card-body h3 {
+            font-size: 0.95rem;
+            font-weight: 700;
+            margin: 4px 0 6px;
+            color: #231e1f;
+        }
+        .archive-card .card-body p {
+            font-size: 0.8rem;
+            color: #4a4a4a;
+            line-height: 1.5;
+        }
+
+        /* ── LIGHTBOX ── */
+        .lightbox-overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(35, 30, 31, 0.92);
+            z-index: 9999;
+            justify-content: center;
+            align-items: center;
+            cursor: pointer;
+            padding: 40px;
+        }
+        .lightbox-overlay.active {
+            display: flex;
+        }
+        .lightbox-overlay img {
+            max-width: 90%;
+            max-height: 90%;
+            object-fit: contain;
+            border-radius: 4px;
+            box-shadow: 0 0 40px rgba(0, 0, 0, 0.6);
+        }
+        .lightbox-overlay .close-btn {
+            position: absolute;
+            top: 20px;
+            right: 40px;
+            color: #ffffff;
+            font-size: 48px;
+            font-weight: 300;
+            cursor: pointer;
+            transition: transform 0.2s;
+            background: none;
+            border: none;
+            line-height: 1;
+        }
+        .lightbox-overlay .close-btn:hover {
+            transform: scale(1.1);
+            color: #e6007e;
+        }
+        .lightbox-overlay .nav-btn {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            color: #ffffff;
+            font-size: 48px;
+            cursor: pointer;
+            background: rgba(230, 0, 126, 0.2);
+            border: 2px solid rgba(255, 255, 255, 0.2);
+            padding: 16px 20px;
+            border-radius: 50%;
+            transition: all 0.3s;
+            line-height: 1;
+        }
+        .lightbox-overlay .nav-btn:hover {
+            background: rgba(230, 0, 126, 0.5);
+            border-color: #e6007e;
+            color: #ffffff;
+        }
+        .lightbox-overlay .prev-btn {
+            left: 20px;
+        }
+        .lightbox-overlay .next-btn {
+            right: 20px;
+        }
+        .lightbox-overlay .counter {
+            position: absolute;
+            bottom: 30px;
+            color: #ffffff;
+            font-size: 16px;
+            background: rgba(230, 0, 126, 0.3);
+            padding: 8px 18px;
+            border-radius: 20px;
+            border: 1px solid rgba(230, 0, 126, 0.4);
+        }
+        @media (max-width: 768px) {
+            .lightbox-overlay .nav-btn {
+                font-size: 28px;
+                padding: 10px 14px;
+            }
+            .lightbox-overlay .close-btn {
+                font-size: 32px;
+                right: 20px;
+                top: 12px;
+            }
+            .lightbox-overlay {
+                padding: 20px;
+            }
+            body {
+                padding-top: 64px;
+            }
+            .archive-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+        }
+        @media (max-width: 480px) {
+            .archive-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* ── BANNER ── */
+        .banner-section {
+            padding: 60px 0;
+            background: #231e1f;
+            text-align: center;
+            color: white;
+        }
+        .banner-section h2 {
+            font-size: clamp(2rem, 4vw, 3rem);
+            font-weight: 800;
+        }
+        .banner-section h2 .highlight {
+            background: linear-gradient(135deg, #e6007e, #ff1493);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        /* ── FOOTER ── */
+        .footer {
+            background: #231e1f;
+            color: #cbd5e1;
+            padding: 60px 0 32px;
+        }
+        .footer .container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            gap: 40px;
+            max-width: 1280px;
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+        .footer h5 {
+            font-size: 0.9rem;
+            font-weight: 700;
+            color: #e6007e;
+            margin-bottom: 16px;
+            letter-spacing: 0.02em;
+        }
+        .footer ul {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+        .footer ul li {
+            font-size: 0.85rem;
+            font-weight: 400;
+            color: #94a3b8;
+            transition: color 0.25s ease;
+        }
+        .footer ul li a {
+            color: inherit;
+            transition: color 0.25s ease;
+        }
+        .footer ul li a:hover {
+            color: #e6007e;
+        }
+        .footer .social {
+            display: flex;
+            gap: 16px;
+            margin-top: 8px;
+        }
+        .footer .social a {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.06);
+            color: #cbd5e1;
+            font-size: 1.1rem;
+            transition: all 0.3s ease;
+        }
+        .footer .social a:hover {
+            background: #e6007e;
+            color: #ffffff;
+            transform: translateY(-2px);
+        }
+        .footer .copyright {
+            grid-column: 1 / -1;
+            text-align: center;
+            margin-top: 32px;
+            padding-top: 24px;
+            border-top: 1px solid rgba(255, 255, 255, 0.06);
+            font-size: 0.8rem;
+            color: #64748b;
+        }
+
+        /* Mobile menu */
+        .mobile-menu-panel {
+            position: fixed;
+            inset: 0;
+            background: white;
+            z-index: 60;
+            transform: translateX(100%);
+            transition: transform 0.4s cubic-bezier(0.22, 1, 0.36, 1);
+            display: flex;
+            flex-direction: column;
+            height: 100%;
+            overflow-y: auto;
+        }
+        .mobile-menu-panel.open {
+            transform: translateX(0);
+        }
+        .mobile-menu-panel a {
+            display: block;
+            padding: 0.75rem 1rem;
+            font-size: 1rem;
+            font-weight: 600;
+            color: #231e1f;
+            border-radius: 0.5rem;
+            transition: all 0.2s;
+        }
+        .mobile-menu-panel a:hover {
+            background: rgba(230, 0, 126, 0.06);
+            color: #e6007e;
+            padding-left: 1.2rem;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- ===== HEADER ===== -->
+    <header class="header-glass" id="mainHeader">
+        <div class="max-w-7xl mx-auto px-4 md:px-6">
+            <div class="flex justify-between items-center h-20">
+
+                <a href="Home.html" class="flex items-center gap-3 group">
+                    <img src="assets/images/obrian-transparent-logo-4461219.webp" alt="O'Brian Group" class="h-10 w-auto" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22%3E%3Crect width=%22100%22 height=%22100%22 fill=%22%23e6007e%22/%3E%3Ctext x=%2250%22 y=%2268%22 font-size=%2248%22 text-anchor=%22middle%22 fill=%22white%22 font-weight=%22bold%22 font-family=%22Inter%22%3EO%3C/text%3E%3C/svg%3E'">
+                    <span class="font-black text-xl text-[#231e1f] tracking-tight hidden sm:inline"></span>
+                </a>
+
+                <!-- Desktop Nav -->
+                <div class="hidden lg:flex items-center gap-0.5">
+                    <a href="Home.html" class="nav-link-new">Home</a>
+                    <a href="About.html" class="nav-link-new">About</a>
+                    <a href="Our_Work.html" class="nav-link-new">Our Work</a>
+                    <a href="Client_Experience.html" class="nav-link-new">Client Experience</a>
+
+                    <div class="relative group">
+                        <button class="nav-link-new flex items-center gap-1">
+                            Case Studies
+                            <svg class="w-3 h-3 transition-transform duration-300 group-hover:rotate-180" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M19 9l-7 7-7-7"></path></svg>
+                        </button>
+                        <div class="dropdown-menu-custom">
+                            <a href="Adv_Case_Studies.html">Advertising</a>
+                            <a href="Digital_Case_Studies.html">Digital</a>
+                            <a href="Consulting_Case_Studies.html">Consulting</a>
+                        </div>
+                    </div>
+
+                    <div class="relative group">
+                        <button class="nav-link-new flex items-center gap-1">
+                            Expertise
+                            <svg class="w-3 h-3 transition-transform duration-300 group-hover:rotate-180" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M19 9l-7 7-7-7"></path></svg>
+                        </button>
+                        <div class="dropdown-menu-custom">
+                            <a href="Advertising_Expertise.html">Advertising</a>
+                            <a href="Digital_Expertise.html">Digital</a>
+                            <a href="Consulting_Expertise.html">Consulting</a>
+                        </div>
+                    </div>
+
+                    <a href="Staff_News.html" class="nav-link-new">Staff News</a>
+                    <a href="Exploring_Boundless_Horizons.html" class="nav-link-new">Blog</a>
+                    <a href="Archive_Gallery.html" class="nav-link-new text-pink font-bold">Archives</a>
+                </div>
+
+                <div class="hidden lg:block">
+                    <a href="Contact_Us.html" class="btn-primary-pink">
+                        <span>Contact</span>
+                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M17 8l4 4m0 0l-4 4m4-4H3"></path></svg>
+                    </a>
+                </div>
+
+                <button class="lg:hidden p-2 rounded-lg hover:bg-gray-100 transition-colors" id="menuBtn" aria-label="Toggle menu">
+                    <div class="w-6 h-6 flex flex-col justify-center items-center gap-1.5">
+                        <span class="w-6 h-0.5 bg-gray-700 transition-all duration-300 menu-line-1"></span>
+                        <span class="w-6 h-0.5 bg-gray-700 transition-all duration-300 menu-line-2"></span>
+                        <span class="w-4 h-0.5 bg-gray-700 transition-all duration-300 menu-line-3 ml-auto"></span>
+                    </div>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- ===== MOBILE MENU ===== -->
+    <div class="mobile-menu-panel lg:hidden" id="mobileMenu">
+        <div class="flex flex-col h-full">
+            <div class="flex justify-between items-center p-6 border-b border-gray-100">
+                <a href="Home.html" class="flex items-center gap-3">
+                    <img src="assets/images/obrian-transparent-logo-4461219.webp" alt="O'Brian Group" style="height: 40px;" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22%3E%3Crect width=%22100%22 height=%22100%22 fill=%22%23e6007e%22/%3E%3Ctext x=%2250%22 y=%2268%22 font-size=%2248%22 text-anchor=%22middle%22 fill=%22white%22 font-weight=%22bold%22 font-family=%22Arial%22%3EO%3C/text%3E%3C/svg%3E'">
+                    <span class="font-black text-xl text-gray-900">O'BRIAN</span>
+                </a>
+                <button class="p-2 rounded-lg hover:bg-gray-100 transition-colors" id="closeMenu" aria-label="Close menu">
+                    <svg class="w-6 h-6 text-gray-700" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+                    </svg>
+                </button>
+            </div>
+            <div class="flex-1 overflow-y-auto py-6 px-6 space-y-1">
+                <a href="Home.html">Home</a>
+                <a href="About.html">About</a>
+                <a href="Our_Work.html">Our Work</a>
+                <a href="Client_Experience.html">Client Experience</a>
+                <a href="#" onclick="toggleAccordion('case-studies-mob')">Case Studies</a>
+                <div id="case-studies-mob" class="hidden pl-4 space-y-1">
+                    <a href="Adv_Case_Studies.html" class="text-sm font-normal">Advertising</a>
+                    <a href="Digital_Case_Studies.html" class="text-sm font-normal">Digital</a>
+                    <a href="Consulting_Case_Studies.html" class="text-sm font-normal">Consulting</a>
+                </div>
+                <a href="#" onclick="toggleAccordion('expertise-mob')">Our Expertise</a>
+                <div id="expertise-mob" class="hidden pl-4 space-y-1">
+                    <a href="Advertising_Expertise.html" class="text-sm font-normal">Advertising</a>
+                    <a href="Digital_Expertise.html" class="text-sm font-normal">Digital</a>
+                    <a href="Consulting_Expertise.html" class="text-sm font-normal">Consulting</a>
+                </div>
+                <a href="Staff_News.html">Staff News</a>
+                <a href="Exploring_Boundless_Horizons.html">Blog</a>
+                <a href="Archive_Gallery.html" class="text-pink bg-pink-50">Archives</a>
+            </div>
+            <div class="p-6 border-t border-gray-100">
+                <a href="Contact_Us.html" class="flex items-center justify-center gap-2 w-full px-6 py-4 bg-gradient-to-r from-[#e6007e] to-[#ff1493] text-white font-bold rounded-xl hover:shadow-lg transition-all">
+                    Contact Us
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"></path>
+                    </svg>
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <!-- ===== HERO ===== -->
+    <section class="py-16 bg-white">
+        <div class="max-w-7xl mx-auto px-6 text-center">
+            <h1 class="text-4xl md:text-5xl font-black text-[#231e1f]">
+                <span class="gradient-text">Archive</span> Gallery
+            </h1>
+            <p class="font-body text-gray-600 text-lg mt-3 max-w-2xl mx-auto">Explore our collection of campaigns, events, and digital work.</p>
+        </div>
+    </section>
+
+    <!-- ===== ARCHIVE GRID ===== -->
+    <section class="archive-section">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="archive-grid" id="archiveGrid"></div>
+        </div>
+    </section>
+
+    <!-- ===== LIGHTBOX ===== -->
+    <div class="lightbox-overlay" id="lightboxOverlay">
+        <button class="close-btn" id="lightboxClose">&times;</button>
+        <button class="nav-btn prev-btn" id="lightboxPrev">&#10094;</button>
+        <button class="nav-btn next-btn" id="lightboxNext">&#10095;</button>
+        <img id="lightboxImage" src="" alt="Lightbox">
+        <div class="counter" id="lightboxCounter">1 / 8</div>
+    </div>
+
+    <!-- ===== BANNER ===== -->
+    <section class="banner-section">
+        <div class="max-w-7xl mx-auto px-6">
+            <h2><span class="highlight">29 Years</span> Of Logic in Our Magic!</h2>
+            <a href="Contact_Us.html" class="inline-flex items-center gap-2 mt-6 px-8 py-4 bg-gradient-to-r from-[#e6007e] to-[#ff1493] text-white font-bold rounded-full hover:shadow-lg transition-all">
+                <i class="fas fa-mug-hot"></i> TALK TO US
+            </a>
+        </div>
+    </section>
+
+    <!-- ===== FOOTER ===== -->
+    <footer class="footer">
+        <div class="container">
+            <div>
+                <h5>Johannesburg</h5>
+                <ul>
+                    <li>2nd Floor Trumpet On Keyes,<br />21 Keyes Avenue, Rosebank,<br />Johannesburg, 2196</li>
+                    <li style="margin-top:8px;">Phone: +27 10 035 5218</li>
+                </ul>
+            </div>
+            <div>
+                <h5>Durban Office</h5>
+                <ul>
+                    <li>2 Ncondo Place, Ridgeside Dr,<br />Umhlanga Ridge, Durban, 4319</li>
+                    <li style="margin-top:8px;">Phone: +27 83 325 9532</li>
+                </ul>
+            </div>
+            <div>
+                <h5>Email</h5>
+                <ul>
+                    <li><a href="mailto:info@obriangroup.com">info@obriangroup.com</a></li>
+                </ul>
+            </div>
+            <div>
+                <h5>About</h5>
+                <ul>
+                    <li><a href="About_Us.html">History</a></li>
+                    <li><a href="Client_Experience.html">Clients</a></li>
+                    <li><a href="Teams.html">Teams</a></li>
+                    <li><a href="Brand.html">Brand</a></li>
+                    <li><a href="Terms.html">Terms</a></li>
+                </ul>
+            </div>
+            <div>
+                <h5>Follow Us</h5>
+                <div class="social">
+                    <a href="https://www.facebook.com/profile.php?id=100094029616085" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+                    <a href="https://x.com/ObrianSA" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+                    <a href="https://www.instagram.com/obriandigital/" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                    <a href="https://za.linkedin.com/company/o-brian-digital" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+                </div>
+            </div>
+            <div class="copyright">
+                &copy; 2026 O'Brian Group — All Rights Reserved.
+            </div>
+        </div>
+    </footer>
+
+    <!-- Font Awesome for social icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
+
+    <script>
+        (function() {
+            // ===== HEADER SCROLL =====
+            const header = document.getElementById('mainHeader');
+            window.addEventListener('scroll', function() {
+                header.classList.toggle('scrolled', window.scrollY > 20);
+            });
+
+            // ===== MOBILE MENU =====
+            const menuBtn = document.getElementById('menuBtn');
+            const mobileMenu = document.getElementById('mobileMenu');
+            const closeBtn = document.getElementById('closeMenu');
+
+            function openMenu() { mobileMenu.classList.add('open');
+                document.body.style.overflow = 'hidden'; }
+            function closeMenu() { mobileMenu.classList.remove('open');
+                document.body.style.overflow = ''; }
+            if (menuBtn) menuBtn.addEventListener('click', openMenu);
+            if (closeBtn) closeBtn.addEventListener('click', closeMenu);
+            mobileMenu.querySelectorAll('a').forEach(link => link.addEventListener('click', closeMenu));
+            window.addEventListener('resize', function() { if (window.innerWidth >= 1024) closeMenu(); });
+
+            window.toggleAccordion = function(id) {
+                const panel = document.getElementById(id);
+                if (!panel) return;
+                panel.classList.toggle('hidden');
+            };
+
+            // ===== ALL IMAGES FROM SYNTAX =====
+            const images = [
+                // OR Tambo series
+                'assets/images/or-tambo.jpg',
+                'assets/images/or-tambo-2.jpg',
+                'assets/images/or-tambo-3.jpg',
+                'assets/images/or-tambo-6.jpg',
+                'assets/images/or-tambo-5.jpg',
+                'assets/images/or-tambo-7.jpg',
+                'assets/images/or-tambo-8.jpg',
+                'assets/images/or-tambo-9.jpg',
+                // Summer / Destin series
+                'assets/images/so-good14.jpg',
+                'assets/images/destin-suitcase8.jpg',
+                'assets/images/destin-suitcase9.jpg',
+                'assets/images/destin-suitcase10.jpg',
+                'assets/images/destin-suitcase13.jpg',
+                'assets/images/destin-suitcase14.jpg',
+                'assets/images/destin-suitcase15.jpg',
+                'assets/images/destin-suitcase115.jpg',
+                'assets/images/destin-suitcase116.jpg',
+                'assets/images/destin-suitcase-1.jpg',
+                'assets/images/destin-suitcase2.jpg',
+                'assets/images/destin-suitcase3.jpg',
+                'assets/images/destin-suitcase4.jpg',
+                'assets/images/destin-suitcase5.jpg',
+                'assets/images/destin-suitcase6-1.jpg',
+                'assets/images/destin-suitcase7.jpg',
+                'assets/images/destin-suitcase8-1.jpg',
+                'assets/images/destin-suitcase9-1.jpg',
+                'assets/images/destin-suitcase11.jpg',
+                'assets/images/destin-suitcase12.jpg',
+                'assets/images/destin-suitcase14-1.jpg',
+                'assets/images/destin-suitcase112.jpg',
+                'assets/images/destin-suitcase113.jpg',
+                'assets/images/destin-suitcase117.jpg',
+                // More so-good
+                'assets/images/so-good.jpg',
+                'assets/images/so-good2.jpg',
+                'assets/images/so-good3.jpg',
+                'assets/images/so-good4.jpg',
+                'assets/images/so-good5.jpg',
+                'assets/images/so-good6.jpg',
+                'assets/images/so-good7.jpg',
+                'assets/images/so-good8.jpg',
+                'assets/images/so-good9.jpg',
+                'assets/images/so-good11.jpg',
+                'assets/images/so-good12.jpg',
+                'assets/images/so-good13.jpg',
+                // Team/people images
+                'assets/images/600x300-banner.jpg',
+                'assets/images/free-newspaper-advert-mockup-5.jpg',
+                'assets/images/minopex-newspaper-ad-mockup-7110.jpg',
+                'assets/images/56331d64760e4.jpg',
+                'assets/images/diepklof.jpg',
+                'assets/images/ap-983725935710.jpg',
+                // Gallery 02
+                'assets/images/3x12-outdoor.jpg',
+                'assets/images/realistic-roll-up-mock-up-1104.jpg',
+                'assets/images/dsc-0281-copy.jpg',
+                'assets/images/dsc-281.jpg',
+                'assets/images/dsc-1817.jpg',
+                'assets/images/dsc0281.jpg',
+                'assets/images/facebook-psd-cover-mockup.jpg',
+                'assets/images/fb-sharkfin-2.jpg',
+                'assets/images/facebook-psd-cver-mockup.jpg',
+                'assets/images/free-newspadvert-mockup-5.jpg',
+                // Grid items
+                'assets/images/indig.jpg',
+                'assets/images/diepkloof.jpg',
+                'assets/images/163916464.jpg',
+                'assets/images/stylished-roll-up-banner-mockup-recovered.jpg',
+                'assets/images/indig7.jpg',
+                'assets/images/maxresdefault.jpg',
+                'assets/images/destin-suitcase4-1.jpg',
+                'assets/images/indig5.jpg',
+                // People items
+                'assets/images/psd-men-t-shirt-mockup-template-v2.jpg',
+                'assets/images/back-2-2048x2048.jpg',
+                'assets/images/untitled-6.jpg',
+                // Print series
+                'assets/images/print2.jpg',
+                'assets/images/print3.jpg',
+                'assets/images/print.jpg',
+                'assets/images/print4.jpg',
+                'assets/images/print5.jpg',
+                'assets/images/print6.jpg',
+                'assets/images/print7.jpg',
+                'assets/images/ekurhuleni-pitch-landscape.jpg',
+                'assets/images/ekurhuleni-pitch-landscape2.jpg',
+                'assets/images/718jrrtx8tl.-ul1500-.jpg',
+                'assets/images/0001970247-10.jpg',
+                'assets/images/facebook-psd-covmockup.jpg',
+                'assets/images/free-newspaper-advert-ockup-5.jpg',
+                'assets/images/landscape-press.jpg',
+                'assets/images/landscape-press2.jpg',
+                'assets/images/landscape-press3.jpg',
+                'assets/images/landscape-press4.jpg',
+                'assets/images/newspaper-advert-ockups.jpg',
+                'assets/images/outdoor-summer.jpg',
+                'assets/images/outdoor-summer2.jpg',
+                'assets/images/outdoor-summer3.jpg',
+                'assets/images/outdoor-summer4.jpg',
+                'assets/images/screen-shot-2017-09-26-at-11.09.21-am.jpg',
+                'assets/images/screen-shot-2017-09-26-at-11.31.09-am.jpg',
+                'assets/images/summer-fin2.jpg',
+                'assets/images/summer-fin3.jpg',
+                'assets/images/summer-fin4.jpg',
+                'assets/images/summer-fin5.jpg',
+                'assets/images/summer-fin7.jpg',
+                'assets/images/twitter2014gu40x586-copy.jpg',
+                'assets/images/twitter2014gui-preview-1140x586-copy.jpg'
+            ];
+
+            // Filter out duplicates and invalid paths
+            const uniqueImages = [...new Set(images)].filter(src => src && src.trim() !== '');
+
+            // ===== RENDER GRID =====
+            const grid = document.getElementById('archiveGrid');
+            
+            uniqueImages.forEach((src, index) => {
+                const card = document.createElement('div');
+                card.className = 'archive-card';
+                card.setAttribute('data-index', index);
+                
+                // Extract filename for title
+                const filename = src.split('/').pop().replace(/\.[^/.]+$/, '');
+                const title = filename.replace(/[-_]/g, ' ').replace(/\b\w/g, l => l.toUpperCase());
+                
+                card.innerHTML = `
+                    <div class="card-img">
+                        <img src="${src}" alt="${title}" loading="lazy" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22400%22 height=%22300%22%3E%3Crect width=%22400%22 height=%22300%22 fill=%22%23e5e7eb%22/%3E%3Ctext x=%2250%25%22 y=%2250%25%22 text-anchor=%22middle%22 dy=%22.3em%22 fill=%22%239ca3af%22 font-size=%2220%22 font-family=%22Montserrat%22%3E${title.slice(0,20)}%3C/text%3E%3C/svg%3E'">
+                    </div>
+                    <div class="card-body">
+                        <div class="tag">Archive</div>
+                        <h3>${title.length > 30 ? title.slice(0, 30) + '…' : title}</h3>
+                        <p>Campaign asset</p>
+                    </div>
+                `;
+                card.addEventListener('click', () => openLightbox(index));
+                grid.appendChild(card);
+            });
+
+            // ===== LIGHTBOX =====
+            const overlay = document.getElementById('lightboxOverlay');
+            const lightboxImg = document.getElementById('lightboxImage');
+            const closeBtnLb = document.getElementById('lightboxClose');
+            const prevBtn = document.getElementById('lightboxPrev');
+            const nextBtn = document.getElementById('lightboxNext');
+            const counter = document.getElementById('lightboxCounter');
+            let currentIndex = 0;
+
+            function openLightbox(index) {
+                if (index < 0) index = uniqueImages.length - 1;
+                if (index >= uniqueImages.length) index = 0;
+                currentIndex = index;
+                lightboxImg.src = uniqueImages[currentIndex];
+                counter.textContent = (currentIndex + 1) + ' / ' + uniqueImages.length;
+                overlay.classList.add('active');
+                document.body.style.overflow = 'hidden';
+            }
+
+            function closeLightbox() {
+                overlay.classList.remove('active');
+                document.body.style.overflow = '';
+            }
+
+            function nextImage() { openLightbox(currentIndex + 1); }
+            function prevImage() { openLightbox(currentIndex - 1); }
+
+            closeBtnLb.addEventListener('click', closeLightbox);
+            prevBtn.addEventListener('click', prevImage);
+            nextBtn.addEventListener('click', nextImage);
+
+            overlay.addEventListener('click', function(e) {
+                if (e.target === this) closeLightbox();
+            });
+
+            document.addEventListener('keydown', function(e) {
+                if (!overlay.classList.contains('active')) return;
+                if (e.key === 'Escape') closeLightbox();
+                if (e.key === 'ArrowLeft') prevImage();
+                if (e.key === 'ArrowRight') nextImage();
+            });
+
+            let touchStartX = 0, touchEndX = 0;
+            overlay.addEventListener('touchstart', function(e) { touchStartX = e.changedTouches[0].screenX; });
+            overlay.addEventListener('touchend', function(e) {
+                touchEndX = e.changedTouches[0].screenX;
+                const diff = touchStartX - touchEndX;
+                if (Math.abs(diff) > 50) {
+                    if (diff > 0) nextImage();
+                    else prevImage();
+                }
+            });
+        })();
+    </script>
+
+</body>
+</html>

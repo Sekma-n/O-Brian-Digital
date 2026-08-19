@@ -1,0 +1,1062 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>O'Brian Group · Advertising Expertise</title>
+    <meta name="description" content="O'Brian Group advertising expertise – 29 years of logic in our magic." />
+
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com">
+    </script>
+    <script src="https://unpkg.com/lucide@latest">
+    </script>
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800;900&family=Open+Sans:wght@300;400;600&display=swap" rel="stylesheet" />
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        'sans': ['Montserrat', 'sans-serif'],
+                        'body': ['Open Sans', 'sans-serif'],
+                    },
+                    colors: {
+                        'obrian': {
+                            pink: '#e6007e',
+                            dark: '#1a1a1a',
+                            black: '#000000',
+                            white: '#ffffff',
+                            gray: '#f5f5f5'
+                        }
+                    },
+                    animation: {
+                        'float': 'float 6s ease-in-out infinite',
+                        'slide-up': 'slideUp 0.8s ease-out forwards',
+                    },
+                    keyframes: {
+                        float: {
+                            '0%, 100%': { transform: 'translateY(0)' },
+                            '50%': { transform: 'translateY(-20px)' },
+                        },
+                        slideUp: {
+                            '0%': { opacity: '0', transform: 'translateY(40px)' },
+                            '100%': { opacity: '1', transform: 'translateY(0)' },
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        /* ===== RESET & BASE ===== */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Montserrat', sans-serif;
+            background: #ffffff;
+            color: #231e1f;
+            line-height: 1.6;
+            overflow-x: hidden;
+            padding-top: 80px;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        .font-body {
+            font-family: 'Open Sans', sans-serif;
+        }
+
+        .text-pink {
+            color: #e6007e;
+        }
+        .bg-pink {
+            background-color: #e6007e;
+        }
+        .border-pink {
+            border-color: #e6007e;
+        }
+
+        .gradient-text {
+            background: linear-gradient(135deg, #e6007e 0%, #ff1493 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        img {
+            max-width: 100%;
+            display: block;
+        }
+
+        .container {
+            max-width: 1280px;
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+
+        /* ===== SCROLLBAR ===== */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #e2e8f0;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #e6007e;
+            border-radius: 4px;
+        }
+
+        /* ===== HEADER ===== */
+        .header-glass {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            z-index: 50;
+            background: rgba(255, 255, 255, 0.85);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            transition: box-shadow 0.3s, background 0.3s;
+            border-bottom: 1px solid rgba(0, 0, 0, 0.04);
+        }
+        .header-glass.scrolled {
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+            background: rgba(255, 255, 255, 0.98);
+        }
+
+        .nav-link-new {
+            padding: 0.5rem 1rem;
+            font-size: 0.875rem;
+            font-weight: 600;
+            color: #374151;
+            border-radius: 0.5rem;
+            transition: all 0.3s ease;
+            display: inline-block;
+            cursor: pointer;
+        }
+        .nav-link-new:hover {
+            color: #e6007e;
+            background-color: #fdf2f8;
+        }
+
+        .dropdown-menu-custom {
+            position: absolute;
+            top: 100%;
+            left: 0;
+            margin-top: 0.5rem;
+            width: 200px;
+            background: white;
+            border-radius: 0.75rem;
+            box-shadow: 0 20px 40px -8px rgba(0, 0, 0, 0.15);
+            border: 1px solid #f3f4f6;
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(-8px) scale(0.96);
+            transition: all 0.25s ease;
+            transform-origin: top left;
+            z-index: 60;
+        }
+        .group:hover .dropdown-menu-custom {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0) scale(1);
+        }
+        .dropdown-menu-custom a {
+            display: block;
+            padding: 0.75rem 1.25rem;
+            font-size: 0.875rem;
+            color: #374151;
+            transition: background 0.2s, color 0.2s;
+        }
+        .dropdown-menu-custom a:hover {
+            background: #fdf2f8;
+            color: #e6007e;
+        }
+        .dropdown-menu-custom a:first-child {
+            border-radius: 0.75rem 0.75rem 0 0;
+        }
+        .dropdown-menu-custom a:last-child {
+            border-radius: 0 0 0.75rem 0.75rem;
+        }
+
+        .btn-primary-pink {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.75rem 1.75rem;
+            background: linear-gradient(135deg, #e6007e, #ff1493);
+            color: white;
+            font-weight: 700;
+            font-size: 0.875rem;
+            border-radius: 9999px;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 14px rgba(230, 0, 126, 0.3);
+        }
+        .btn-primary-pink:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(230, 0, 126, 0.4);
+            color: white;
+        }
+
+        /* ===== MOBILE MENU ===== */
+        .mobile-menu-panel {
+            position: fixed;
+            inset: 0;
+            background: white;
+            z-index: 60;
+            transform: translateX(100%);
+            transition: transform 0.4s cubic-bezier(0.22, 1, 0.36, 1);
+            display: flex;
+            flex-direction: column;
+            height: 100%;
+            overflow-y: auto;
+        }
+        .mobile-menu-panel.open {
+            transform: translateX(0);
+        }
+        .mobile-menu-panel a {
+            display: block;
+            padding: 0.75rem 1rem;
+            font-size: 1rem;
+            font-weight: 600;
+            color: #231e1f;
+            border-radius: 0.5rem;
+            transition: all 0.2s;
+        }
+        .mobile-menu-panel a:hover {
+            background: rgba(230, 0, 126, 0.06);
+            color: #e6007e;
+            padding-left: 1.2rem;
+        }
+        .mobile-menu-panel .mobile-dropdown-title {
+            font-weight: 700;
+            padding: 0.75rem 1rem;
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            color: #6b7280;
+        }
+        .mobile-menu-panel .mobile-dropdown-items {
+            padding-left: 1rem;
+        }
+        .mobile-menu-panel .mobile-dropdown-items a {
+            font-weight: 400;
+            font-size: 0.95rem;
+        }
+
+        /* ===== EXISTING LAYOUT STYLES (Hero, Clients, Banner, Footer) ===== */
+        /* ---------- HERO ---------- */
+        .hero {
+            padding: 2rem 0 3.5rem;
+            border-bottom: 1px solid rgba(35, 30, 31, 0.08);
+            background: #ffffff;
+        }
+
+        .hero-badge {
+            display: inline-block;
+            background: rgba(237, 0, 142, 0.08);
+            color: #ed008e;
+            padding: 0.3rem 1.2rem;
+            border-radius: 40px;
+            font-size: 0.7rem;
+            font-weight: 600;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            border: 1px solid rgba(237, 0, 142, 0.20);
+            margin-bottom: 1.5rem;
+        }
+
+        .hero h1 {
+            font-size: 4.2rem;
+            font-weight: 900;
+            line-height: 1.05;
+            letter-spacing: -0.03em;
+            max-width: 900px;
+            color: #231e1f;
+        }
+
+        .hero h1 .accent {
+            background: linear-gradient(135deg, #ff4da6, #ed008e);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .hero p {
+            font-size: 1.25rem;
+            max-width: 620px;
+            color: #6b6465;
+            margin-top: 0.5rem;
+            font-weight: 300;
+        }
+
+        .hero-stats {
+            display: flex;
+            gap: 3.5rem;
+            margin-top: 2rem;
+            flex-wrap: wrap;
+        }
+
+        .stat-item {
+            display: flex;
+            align-items: baseline;
+            gap: 0.5rem;
+        }
+
+        .stat-number {
+            font-size: 2rem;
+            font-weight: 800;
+            color: #ed008e;
+            letter-spacing: -0.02em;
+        }
+
+        .stat-label {
+            font-size: 0.9rem;
+            color: #6b6465;
+            font-weight: 400;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        /* ---------- CLIENTS SECTION ---------- */
+        .clients-section {
+            padding: 4rem 0 3rem;
+            border-bottom: 1px solid rgba(35, 30, 31, 0.08);
+            background: #f8f6f6;
+        }
+
+        .section-header {
+            text-align: center;
+            max-width: 780px;
+            margin: 0 auto 3rem;
+        }
+
+        .section-header h2 {
+            font-size: 2.8rem;
+            font-weight: 800;
+            letter-spacing: -0.02em;
+            color: #231e1f;
+        }
+
+        .section-header h2 .accent {
+            color: #ed008e;
+        }
+
+        .section-header p {
+            color: #6b6465;
+            font-size: 1.1rem;
+            margin-top: 0.8rem;
+            font-weight: 300;
+        }
+
+        .clients-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 2rem;
+        }
+
+        .client-card {
+            background: #ffffff;
+            border-radius: 20px;
+            padding: 1.8rem 1.5rem 1.8rem;
+            transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s;
+            border: 1px solid rgba(35, 30, 31, 0.06);
+            box-shadow: 0 4px 16px rgba(35, 30, 31, 0.03);
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+        }
+
+        .client-card:hover {
+            transform: translateY(-6px);
+            box-shadow: 0 20px 40px rgba(35, 30, 31, 0.06);
+            border-color: rgba(237, 0, 142, 0.20);
+        }
+
+        .client-card .card-img {
+            width: 100%;
+            height: 120px;
+            background: #f0edec;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+            margin-bottom: 1rem;
+            cursor: pointer;
+            transition: opacity 0.2s;
+        }
+
+        .client-card .card-img img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            opacity: 0.9;
+            transition: opacity 0.3s;
+            pointer-events: none;
+        }
+
+        .client-card:hover .card-img img {
+            opacity: 1;
+        }
+
+        .client-card h5 {
+            font-size: 1.1rem;
+            font-weight: 700;
+            margin-bottom: 0.4rem;
+            color: #231e1f;
+        }
+
+        .client-card h6 {
+            font-size: 0.9rem;
+            font-weight: 400;
+            color: #6b6465;
+            line-height: 1.5;
+        }
+
+        /* ---------- 29 YEARS BANNER ---------- */
+        .legacy-banner {
+            padding: 4.5rem 0;
+            text-align: center;
+            border-bottom: 1px solid rgba(35, 30, 31, 0.08);
+            background: radial-gradient(circle at 30% 30%, rgba(237, 0, 142, 0.04), transparent 70%);
+            background-color: #ffffff;
+        }
+
+        .legacy-banner h2 {
+            font-size: 3.8rem;
+            font-weight: 900;
+            letter-spacing: -0.02em;
+            line-height: 1.1;
+            color: #231e1f;
+        }
+
+        .legacy-banner h2 .accent {
+            color: #ed008e;
+        }
+
+        .legacy-banner .sub {
+            font-size: 1.8rem;
+            font-weight: 300;
+            color: #6b6465;
+            margin-top: 0.2rem;
+        }
+
+        .legacy-banner .btn-accent {
+            display: inline-block;
+            margin-top: 2rem;
+            background: #ed008e;
+            color: #ffffff;
+            padding: 0.9rem 3rem;
+            border-radius: 60px;
+            font-weight: 700;
+            font-size: 1rem;
+            letter-spacing: 0.04em;
+            transition: background 0.25s, transform 0.2s, box-shadow 0.25s;
+            box-shadow: 0 8px 30px rgba(237, 0, 142, 0.20);
+        }
+
+        .legacy-banner .btn-accent i {
+            margin-right: 0.6rem;
+        }
+
+        .legacy-banner .btn-accent:hover {
+            background: #ff4da6;
+            transform: scale(1.04);
+            box-shadow: 0 12px 40px rgba(237, 0, 142, 0.30);
+        }
+
+        /* ---------- FOOTER ---------- */
+        .footer {
+            background: #231e1f;
+            color: #cbd5e1;
+            padding: 60px 0 32px;
+        }
+        .footer .container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            gap: 40px;
+        }
+        .footer h5 {
+            font-size: 0.9rem;
+            font-weight: 700;
+            color: #e6007e;
+            margin-bottom: 16px;
+            letter-spacing: 0.02em;
+        }
+        .footer ul {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+        .footer ul li {
+            font-size: 0.85rem;
+            font-weight: 400;
+            color: #94a3b8;
+            transition: color 0.25s ease;
+        }
+        .footer ul li a {
+            color: inherit;
+            transition: color 0.25s ease;
+        }
+        .footer ul li a:hover {
+            color: #e6007e;
+        }
+        .footer .social {
+            display: flex;
+            gap: 16px;
+            margin-top: 8px;
+        }
+        .footer .social a {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.06);
+            color: #cbd5e1;
+            font-size: 1.1rem;
+            transition: all 0.3s ease;
+        }
+        .footer .social a:hover {
+            background: #e6007e;
+            color: #ffffff;
+            transform: translateY(-2px);
+        }
+        .footer .copyright {
+            grid-column: 1 / -1;
+            text-align: center;
+            margin-top: 32px;
+            padding-top: 24px;
+            border-top: 1px solid rgba(255, 255, 255, 0.06);
+            font-size: 0.8rem;
+            color: #64748b;
+        }
+
+        /* ---------- RESPONSIVE (Layout) ---------- */
+        @media (max-width: 768px) {
+            .header-glass {
+                padding: 0 1rem;
+            }
+            body {
+                padding-top: 64px;
+            }
+            .hero {
+                padding: 2rem 0 3rem;
+            }
+            .hero h1 {
+                font-size: 2.6rem;
+            }
+            .hero-stats {
+                gap: 1.8rem;
+            }
+            .section-header h2 {
+                font-size: 2rem;
+            }
+            .clients-grid {
+                grid-template-columns: 1fr;
+            }
+            .legacy-banner h2 {
+                font-size: 2.4rem;
+            }
+            .legacy-banner .sub {
+                font-size: 1.3rem;
+            }
+            .footer .container {
+                grid-template-columns: 1fr 1fr;
+            }
+        }
+        @media (max-width: 480px) {
+            .footer .container {
+                grid-template-columns: 1fr;
+            }
+            .hero h1 {
+                font-size: 2rem;
+            }
+        }
+
+        /* ===== LIGHTBOX STYLES ===== */
+        .lightbox-overlay {
+            display: none;
+            position: fixed;
+            inset: 0;
+            z-index: 99999;
+            background: rgba(0, 0, 0, 0.85);
+            backdrop-filter: blur(8px);
+            -webkit-backdrop-filter: blur(8px);
+            justify-content: center;
+            align-items: center;
+            padding: 2rem;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+        .lightbox-overlay.active {
+            display: flex;
+            opacity: 1;
+        }
+        .lightbox-overlay img {
+            max-width: 90%;
+            max-height: 90%;
+            object-fit: contain;
+            border-radius: 8px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.6);
+            transform: scale(0.95);
+            transition: transform 0.3s ease;
+        }
+        .lightbox-overlay.active img {
+            transform: scale(1);
+        }
+        .lightbox-close {
+            position: absolute;
+            top: 1.5rem;
+            right: 2rem;
+            color: #fff;
+            font-size: 2.5rem;
+            cursor: pointer;
+            background: rgba(255, 255, 255, 0.1);
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: background 0.3s, transform 0.2s;
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            font-weight: 300;
+            line-height: 1;
+        }
+        .lightbox-close:hover {
+            background: rgba(255, 255, 255, 0.2);
+            transform: rotate(90deg);
+        }
+    </style>
+</head>
+<body>
+
+    <!-- ===== HEADER (NEW PREMIUM GLASS) ===== -->
+    <header class="header-glass" id="mainHeader">
+        <div class="max-w-7xl mx-auto px-4 md:px-6">
+            <div class="flex justify-between items-center h-20">
+
+                <!-- Logo -->
+                <a href="Home.html" class="flex items-center gap-3 group">
+                    <img src="assets/images/obrian-transparent-logo-4461219.webp" alt="O'Brian Group" class="h-10 w-auto" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22%3E%3Crect width=%22100%22 height=%22100%22 fill=%22%23e6007e%22/%3E%3Ctext x=%2250%22 y=%2268%22 font-size=%2248%22 text-anchor=%22middle%22 fill=%22white%22 font-weight=%22bold%22 font-family=%22Inter%22%3EO%3C/text%3E%3C/svg%3E'">
+                    <span class="font-black text-xl text-[#231e1f] tracking-tight hidden sm:inline"><span class="text-[#e6007e]"></span></span>
+                </a>
+
+                <!-- Desktop Nav -->
+                <div class="hidden lg:flex items-center gap-0.5">
+                    <a href="Home.html" class="nav-link-new">Home</a>
+                    <a href="About.html" class="nav-link-new">About</a>
+                    <a href="Our_Work.html" class="nav-link-new">Our Work</a>
+                    <a href="Client_Experience.html" class="nav-link-new">Client Experience</a>
+
+                    <div class="relative group">
+                        <button class="nav-link-new flex items-center gap-1">
+                            Case Studies
+                            <svg class="w-3 h-3 transition-transform duration-300 group-hover:rotate-180" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M19 9l-7 7-7-7"></path></svg>
+                        </button>
+                        <div class="dropdown-menu-custom">
+                            <a href="Adv_Case_Studies.html">Advertising</a>
+                            <a href="Digital_Case_Studies.html">Digital</a>
+                            <a href="Consulting_Case_Studies.html">Consulting</a>
+                        </div>
+                    </div>
+
+                    <div class="relative group">
+                        <button class="nav-link-new flex items-center gap-1">
+                            Expertise
+                            <svg class="w-3 h-3 transition-transform duration-300 group-hover:rotate-180" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M19 9l-7 7-7-7"></path></svg>
+                        </button>
+                        <div class="dropdown-menu-custom">
+                            <a href="Advertising_Expertise.html">Advertising</a>
+                            <a href="Digital_Expertise.html">Digital</a>
+                            <a href="Consulting_Expertise.html">Consulting</a>
+                        </div>
+                    </div>
+
+                    <a href="Exploring_Boundless_Horizons.html" class="nav-link-new">Blog</a>
+                    <a href="staff_news.html" class="nav-link-new">Staff News</a>
+                    <a href="Archive_Gallery.html" class="nav-link-new">Archives</a>
+                </div>
+
+                <!-- CTA -->
+                <div class="hidden lg:block">
+                    <a href="Contact_Us.html" class="btn-primary-pink">
+                        <span>Contact</span>
+                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M17 8l4 4m0 0l-4 4m4-4H3"></path></svg>
+                    </a>
+                </div>
+
+                <!-- Burger -->
+                <button class="lg:hidden p-2 rounded-lg hover:bg-gray-100 transition-colors" id="menuBtn" aria-label="Toggle menu">
+                    <div class="w-6 h-6 flex flex-col justify-center items-center gap-1.5">
+                        <span class="w-6 h-0.5 bg-gray-700 transition-all duration-300 menu-line-1"></span>
+                        <span class="w-6 h-0.5 bg-gray-700 transition-all duration-300 menu-line-2"></span>
+                        <span class="w-4 h-0.5 bg-gray-700 transition-all duration-300 menu-line-3 ml-auto"></span>
+                    </div>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- ===== MOBILE MENU ===== -->
+    <div class="mobile-menu-panel lg:hidden" id="mobileMenu">
+        <div class="flex flex-col h-full">
+            <!-- Mobile Header -->
+            <div class="flex justify-between items-center p-6 border-b border-gray-100">
+                <a href="Home.html" class="flex items-center gap-3">
+                    <img src="assets/images/obrian-transparent-logo-4461219.webp" alt="O'Brian Group" class="logo-img" style="height: 40px;" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22%3E%3Crect width=%22100%22 height=%22100%22 fill=%22%23e6007e%22/%3E%3Ctext x=%2250%22 y=%2268%22 font-size=%2248%22 text-anchor=%22middle%22 fill=%22white%22 font-weight=%22bold%22 font-family=%22Arial%22%3EO%3C/text%3E%3C/svg%3E'">
+                    <span class="font-black text-xl text-gray-900">O'BRIAN</span>
+                </a>
+                <button class="p-2 rounded-lg hover:bg-gray-100 transition-colors" id="closeMenu" aria-label="Close menu">
+                    <svg class="w-6 h-6 text-gray-700" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+                    </svg>
+                </button>
+            </div>
+
+            <!-- Mobile Navigation Links -->
+            <div class="flex-1 overflow-y-auto py-6 px-6">
+                <div class="space-y-1">
+                    <a href="Home.html" class="block px-4 py-3 text-lg font-semibold text-gray-800 hover:text-[#e6007e] hover:bg-pink-50 rounded-xl transition-all">Home</a>
+                    <a href="About.html" class="block px-4 py-3 text-lg font-semibold text-gray-800 hover:text-[#e6007e] hover:bg-pink-50 rounded-xl transition-all">About</a>
+                    <a href="Our_Work.html" class="block px-4 py-3 text-lg font-semibold text-gray-800 hover:text-[#e6007e] hover:bg-pink-50 rounded-xl transition-all">Our Work</a>
+                    <a href="Client_Experience.html" class="block px-4 py-3 text-lg font-semibold text-gray-800 hover:text-[#e6007e] hover:bg-pink-50 rounded-xl transition-all">Client Experience</a>
+
+                    <!-- Mobile Case Studies Accordion -->
+                    <div class="mobile-accordion">
+                        <button class="w-full flex justify-between items-center px-4 py-3 text-lg font-semibold text-gray-800 hover:text-[#e6007e] hover:bg-pink-50 rounded-xl transition-all" onclick="toggleAccordion('case-studies')">
+                            Case Studies
+                            <svg class="w-5 h-5 transition-transform duration-300" id="case-studies-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+                            </svg>
+                        </button>
+                        <div id="case-studies" class="hidden pl-4 space-y-1 mt-1">
+                            <a href="Adv_Case_Studies.html" class="block px-4 py-2 text-sm text-gray-600 hover:text-[#e6007e] transition-colors">Advertising</a>
+                            <a href="Digital_Case_Studies.html" class="block px-4 py-2 text-sm text-gray-600 hover:text-[#e6007e] transition-colors">Digital</a>
+                            <a href="Consulting_Case_Studies.html" class="block px-4 py-2 text-sm text-gray-600 hover:text-[#e6007e] transition-colors">Consulting</a>
+                        </div>
+                    </div>
+
+                    <!-- Mobile Expertise Accordion -->
+                    <div class="mobile-accordion">
+                        <button class="w-full flex justify-between items-center px-4 py-3 text-lg font-semibold text-gray-800 hover:text-[#e6007e] hover:bg-pink-50 rounded-xl transition-all" onclick="toggleAccordion('expertise')">
+                            Our Expertise
+                            <svg class="w-5 h-5 transition-transform duration-300" id="expertise-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+                            </svg>
+                        </button>
+                        <div id="expertise" class="hidden pl-4 space-y-1 mt-1">
+                            <a href="Advertising_Expertise.html" class="block px-4 py-2 text-sm text-gray-600 hover:text-[#e6007e] transition-colors">Advertising</a>
+                            <a href="Digital_Expertise.html" class="block px-4 py-2 text-sm text-gray-600 hover:text-[#e6007e] transition-colors">Digital</a>
+                            <a href="Consulting_Expertise.html" class="block px-4 py-2 text-sm text-gray-600 hover:text-[#e6007e] transition-colors">Consulting</a>
+                        </div>
+                    </div>
+
+                    <a href="Exploring_Boundless_Horizons.html" class="block px-4 py-3 text-lg font-semibold text-gray-800 hover:text-[#e6007e] hover:bg-pink-50 rounded-xl transition-all">Blog</a>
+                    <a href="staff-news.html" class="block px-4 py-3 text-lg font-semibold text-gray-800 hover:text-[#e6007e] hover:bg-pink-50 rounded-xl transition-all">Staff News</a>
+                    <a href="Archive_Gallery.html" class="block px-4 py-3 text-lg font-semibold text-gray-800 hover:text-[#e6007e] hover:bg-pink-50 rounded-xl transition-all">Archives</a>
+                </div>
+            </div>
+
+            <!-- Mobile CTA -->
+            <div class="p-6 border-t border-gray-100">
+                <a href="Contact_Us.html" class="flex items-center justify-center gap-2 w-full px-6 py-4 bg-gradient-to-r from-[#e6007e] to-[#ff1493] text-white font-bold rounded-xl hover:shadow-lg transition-all">
+                    Contact Us
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"></path>
+                    </svg>
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <!-- ============================================================ -->
+    <!-- EXISTING PAGE CONTENT (Hero, Clients, Banner, Footer)         -->
+    <!-- ============================================================ -->
+
+    <!-- ===== HERO ===== -->
+    <div class="container hero">
+        <div class="hero-badge"><i class="fas fa-bullhorn" style="margin-right: 8px;"></i> Our Expertise</div>
+        <h1>Advertising · <span class="accent">Expertise</span> Impact</h1>
+        <p>We harness deep-seated industry expertise to cultivate enduring client partnerships. Our commitment is work focused on measurable results.</p>
+        <div class="hero-stats">
+            <div class="stat-item">
+                <span class="stat-number">29+</span>
+                <span class="stat-label">Years of Logic</span>
+            </div>
+            <div class="stat-item">
+                <span class="stat-number">200+</span>
+                <span class="stat-label">Clients Served</span>
+            </div>
+            <div class="stat-item">
+                <span class="stat-number">4.9</span>
+                <span class="stat-label">Client Satisfaction</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- ===== CLIENTS SECTION ===== -->
+    <div class="container clients-section">
+        <div class="section-header">
+            <h2>Clients we are proud to <span class="accent">have worked with</span></h2>
+            <p>We harness deep-seated industry expertise to cultivate enduring client partnerships. Our commitment is to deliver work focused on measurable results, directly supporting their business objectives and enhancing their brand value.</p>
+        </div>
+
+        <div class="clients-grid">
+            <!-- card 1 -->
+            <div class="client-card">
+                <div class="card-img" data-image="assets/images/client-logos-7.jpg">
+                    <img src="assets/images/client-logos-7.jpg" alt="Financial Services" />
+                </div>
+                <h5>Financial Services Communications</h5>
+                <h6>There's a reason our agency has worked with more financial institutions than any other of its size — we understand what it takes to make the market respond.</h6>
+            </div>
+            <!-- card 2 -->
+            <div class="client-card">
+                <div class="card-img" data-image="assets/images/client-logos-52.jpg">
+                    <img src="assets/images/client-logos-52.jpg" alt="Tourism & Destination" />
+                </div>
+                <h5>Tourism &amp; Destination Branding</h5>
+                <h6>Creating leading tourism &amp; destination brands through a unique selling proposition and a compelling brand promise.</h6>
+            </div>
+            <!-- card 3 -->
+            <div class="client-card">
+                <div class="card-img" data-image="assets/images/client-logos-30.jpg">
+                    <img src="assets/images/client-logos-30.jpg" alt="B2B Communications" />
+                </div>
+                <h5>B2B Communications</h5>
+                <h6>The ABC's of connecting B2B2C. When it comes to B2B, we speak the language.</h6>
+            </div>
+            <!-- card 4 -->
+            <div class="client-card">
+                <div class="card-img" data-image="assets/images/client-logos-55.jpg">
+                    <img src="assets/images/client-logos-55.jpg" alt="Hlal'uphephile" />
+                </div>
+                <h5>Hlal'uphephile</h5>
+                <h6>Use BP gas for safe and convenient cooking.</h6>
+            </div>
+            <!-- card 5 -->
+            <div class="client-card">
+                <div class="card-img" data-image="assets/images/client-logos-42.jpg">
+                    <img src="assets/images/client-logos-42.jpg" alt="Tourism & Destination 2" />
+                </div>
+                <h5>Tourism &amp; Destination Branding</h5>
+                <h6>Creating leading tourism &amp; destination brands through a unique selling proposition and a compelling brand promise.</h6>
+            </div>
+            <!-- card 6 -->
+            <div class="client-card">
+                <div class="card-img" data-image="assets/images/client-logos-60.jpg">
+                    <img src="assets/images/client-logos-60.jpg" alt="Expanded Public Works" />
+                </div>
+                <h5>Expanded Public Works</h5>
+                <h6>Expanded Public Works opportunities for the unemployed by using public sector expenditure.</h6>
+            </div>
+            <!-- card 7 -->
+            <div class="client-card">
+                <div class="card-img" data-image="assets/images/client-logos-49.jpg">
+                    <img src="assets/images/client-logos-49.jpg" alt="Financial Services 2" />
+                </div>
+                <h5>Financial Services Communications</h5>
+                <h6>There's a reason our agency has worked with more financial institutions than any other of its size — we understand what it takes to make the market respond.</h6>
+            </div>
+            <!-- card 8 -->
+            <div class="client-card">
+                <div class="card-img" data-image="assets/images/client-logos-56.jpg">
+                    <img src="assets/images/client-logos-56.jpg" alt="B2B Communications 2" />
+                </div>
+                <h5>B2B Communications</h5>
+                <h6>The ABC's of connecting B2B2C. When it comes to B2B, we speak the language.</h6>
+            </div>
+        </div>
+    </div>
+
+    <!-- ===== 29 YEARS BANNER ===== -->
+    <div class="legacy-banner">
+        <div class="container">
+            <h2><span class="accent">29 Years</span> Of</h2>
+            <div class="sub">Logic in our magic!</div>
+            <a href="page62.html" class="btn-accent"><i class="fas fa-mug-hot"></i> TALK TO US</a>
+        </div>
+    </div>
+
+    <!-- ===== FOOTER ===== -->
+    <footer class="footer">
+        <div class="container">
+            <div>
+                <h5>Johannesburg</h5>
+                <ul>
+                    <li>2nd Floor Trumpet On Keyes,<br />21 Keyes Avenue, Rosebank,<br />Johannesburg, 2196</li>
+                    <li style="margin-top:8px;">Phone: +27 10 035 5218</li>
+                </ul>
+            </div>
+            <div>
+                <h5>Durban Office</h5>
+                <ul>
+                    <li>2 Ncondo Place, Ridgeside Dr,<br />Umhlanga Ridge, Durban, 4319</li>
+                    <li style="margin-top:8px;">Phone: +27 83 325 9532</li>
+                </ul>
+            </div>
+            <div>
+                <h5>Email</h5>
+                <ul>
+                    <li><a href="mailto:info@obriangroup.com">info@obriangroup.com</a></li>
+                </ul>
+            </div>
+            <div>
+                <h5>About</h5>
+                <ul>
+                    <li><a href="About.html">History</a></li>
+                    <li><a href="Client_Experience.html">Clients</a></li>
+                    <li><a href="Teams.html">Teams</a></li>
+                    <li><a href="Brand.html">Brand</a></li>
+                    <li><a href="Terms.html">Terms</a></li>
+                </ul>
+            </div>
+            <div>
+                <h5>Follow Us</h5>
+                <div class="social">
+                    <a href="https://www.facebook.com/profile.php?id=100094029616085" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+                    <a href="https://x.com/ObrianSA" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+                    <a href="https://www.instagram.com/obriandigital/" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                    <a href="https://za.linkedin.com/company/o-brian-digital" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+                </div>
+            </div>
+            <div class="copyright">
+                &copy; 2026 O'Brian Group — All Rights Reserved.
+            </div>
+        </div>
+    </footer>
+
+    <!-- ============================================================ -->
+    <!-- LIGHTBOX OVERLAY                                             -->
+    <!-- ============================================================ -->
+    <div class="lightbox-overlay" id="lightboxOverlay">
+        <span class="lightbox-close" id="lightboxClose">&times;</span>
+        <img id="lightboxImage" src="" alt="Full view" />
+    </div>
+
+    <!-- ============================================================ -->
+    <!-- SCRIPTS                                                       -->
+    <!-- ============================================================ -->
+    <script>
+        (function() {
+            // Header scroll effect
+            const header = document.getElementById('mainHeader');
+            window.addEventListener('scroll', function() {
+                if (window.scrollY > 20) {
+                    header.classList.add('scrolled');
+                } else {
+                    header.classList.remove('scrolled');
+                }
+            });
+
+            // Mobile menu toggle
+            const menuBtn = document.getElementById('menuBtn');
+            const mobileMenu = document.getElementById('mobileMenu');
+            const closeBtn = document.getElementById('closeMenu');
+
+            function openMenu() {
+                mobileMenu.classList.add('open');
+                document.body.style.overflow = 'hidden';
+            }
+
+            function closeMenu() {
+                mobileMenu.classList.remove('open');
+                document.body.style.overflow = '';
+            }
+
+            if (menuBtn) {
+                menuBtn.addEventListener('click', openMenu);
+            }
+            if (closeBtn) {
+                closeBtn.addEventListener('click', closeMenu);
+            }
+
+            // Close menu when a link is clicked
+            mobileMenu.querySelectorAll('a').forEach(link => {
+                link.addEventListener('click', closeMenu);
+            });
+
+            // Close menu on resize to desktop
+            window.addEventListener('resize', function() {
+                if (window.innerWidth >= 1024) {
+                    closeMenu();
+                }
+            });
+
+            // Mobile accordion
+            window.toggleAccordion = function(id) {
+                const panel = document.getElementById(id);
+                if (!panel) return;
+                const icon = document.getElementById(id + '-icon');
+                if (panel.classList.contains('hidden')) {
+                    panel.classList.remove('hidden');
+                    if (icon) icon.style.transform = 'rotate(180deg)';
+                } else {
+                    panel.classList.add('hidden');
+                    if (icon) icon.style.transform = 'rotate(0deg)';
+                }
+            };
+
+            // ===== LIGHTBOX FUNCTIONALITY =====
+            const overlay = document.getElementById('lightboxOverlay');
+            const lightboxImg = document.getElementById('lightboxImage');
+            const closeLightboxBtn = document.getElementById('lightboxClose');
+
+            // Open lightbox on card-img click
+            document.querySelectorAll('.card-img').forEach(function(cardImg) {
+                cardImg.addEventListener('click', function(e) {
+                    e.stopPropagation();
+                    const imgSrc = this.getAttribute('data-image') || this.querySelector('img')?.src;
+                    if (imgSrc) {
+                        lightboxImg.src = imgSrc;
+                        overlay.classList.add('active');
+                        document.body.style.overflow = 'hidden';
+                    }
+                });
+            });
+
+            function closeLightbox() {
+                overlay.classList.remove('active');
+                document.body.style.overflow = '';
+            }
+
+            closeLightboxBtn.addEventListener('click', closeLightbox);
+
+            overlay.addEventListener('click', function(e) {
+                if (e.target === overlay) {
+                    closeLightbox();
+                }
+            });
+
+            document.addEventListener('keydown', function(e) {
+                if (e.key === 'Escape' && overlay.classList.contains('active')) {
+                    closeLightbox();
+                }
+            });
+        })();
+    </script>
+
+</body>
+</html>

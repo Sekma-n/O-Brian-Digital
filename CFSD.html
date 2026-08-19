@@ -1,0 +1,555 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Centre for Supplier Development | O'Brian Group Case Study</title>
+    <!-- Tailwind CSS + Font Awesome for icons -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Inter', system-ui, -apple-system, sans-serif; background: #ffffff; color: #1a1a1a; overflow-x: hidden; padding-top: 80px; }
+        .text-pink { color: #e6007e; }
+        .bg-pink { background-color: #e6007e; }
+        .border-pink { border-color: #e6007e; }
+        .hover-bg-pink:hover { background-color: #e6007e; }
+
+        /* ── NEW HEADER STYLES ── */
+        .header-glass {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            z-index: 1030;
+            background: rgba(255, 255, 255, 0.85);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            transition: box-shadow 0.3s, background 0.3s;
+            border-bottom: 1px solid rgba(0, 0, 0, 0.04);
+        }
+        .header-glass.scrolled {
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+            background: rgba(255, 255, 255, 0.98);
+        }
+
+        .nav-link {
+            padding: 0.5rem 1rem;
+            font-size: 0.875rem;
+            font-weight: 600;
+            color: #374151;
+            border-radius: 0.5rem;
+            transition: all 0.3s ease;
+            display: inline-block;
+            cursor: pointer;
+        }
+        .nav-link:hover {
+            color: #e6007e;
+            background-color: #fdf2f8;
+        }
+
+        .dropdown-menu-custom {
+            position: absolute;
+            top: 100%;
+            left: 0;
+            margin-top: 0.5rem;
+            width: 200px;
+            background: white;
+            border-radius: 0.75rem;
+            box-shadow: 0 20px 40px -8px rgba(0, 0, 0, 0.15);
+            border: 1px solid #f3f4f6;
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(-8px) scale(0.96);
+            transition: all 0.25s ease;
+            transform-origin: top left;
+            z-index: 1050;
+        }
+        .group:hover .dropdown-menu-custom {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0) scale(1);
+        }
+        .dropdown-menu-custom a {
+            display: block;
+            padding: 0.75rem 1.25rem;
+            font-size: 0.875rem;
+            color: #374151;
+            transition: background 0.2s, color 0.2s;
+        }
+        .dropdown-menu-custom a:hover {
+            background: #fdf2f8;
+            color: #e6007e;
+        }
+        .dropdown-menu-custom a:first-child {
+            border-radius: 0.75rem 0.75rem 0 0;
+        }
+        .dropdown-menu-custom a:last-child {
+            border-radius: 0 0 0.75rem 0.75rem;
+        }
+
+        .btn-primary-pink {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.75rem 1.75rem;
+            background: linear-gradient(135deg, #e6007e, #ff1493);
+            color: white;
+            font-weight: 700;
+            font-size: 0.875rem;
+            border-radius: 9999px;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 14px rgba(230, 0, 126, 0.3);
+        }
+        .btn-primary-pink:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(230, 0, 126, 0.4);
+            color: white;
+        }
+
+        /* Mobile menu panel */
+        .mobile-menu-panel {
+            display: none;
+            position: fixed;
+            top: 80px;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(255, 255, 255, 0.98);
+            backdrop-filter: blur(12px);
+            padding: 1.5rem;
+            overflow-y: auto;
+            z-index: 1020;
+            border-top: 1px solid rgba(0, 0, 0, 0.04);
+        }
+        .mobile-menu-panel.open {
+            display: block;
+        }
+        .mobile-menu-panel a {
+            display: block;
+            padding: 0.75rem 1rem;
+            font-size: 1rem;
+            font-weight: 500;
+            color: #1a1a2e;
+            border-radius: 0.5rem;
+            transition: background 0.2s;
+        }
+        .mobile-menu-panel a:hover {
+            background: rgba(237, 0, 142, 0.06);
+            color: #ed008e;
+        }
+        .mobile-menu-panel .mobile-dropdown-title {
+            font-weight: 700;
+            padding: 0.75rem 1rem;
+            color: #1a1a2e;
+            cursor: default;
+        }
+        .mobile-menu-panel .mobile-dropdown-items {
+            padding-left: 1rem;
+        }
+        .mobile-menu-panel .mobile-dropdown-items a {
+            font-weight: 400;
+            font-size: 0.95rem;
+        }
+
+        /* ----- REST OF PAGE STYLES (unchanged) ----- */
+        .gallery-item {
+            transition: all 0.3s cubic-bezier(0.23, 1, 0.32, 1);
+            cursor: pointer;
+        }
+        .gallery-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 30px -12px rgba(0,0,0,0.15);
+        }
+
+        .lightbox-overlay {
+            position: fixed;
+            inset: 0;
+            background: rgba(0,0,0,0.9);
+            backdrop-filter: blur(8px);
+            z-index: 1000;
+            display: none;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+        }
+        .lightbox-overlay.active { display: flex; }
+        .lightbox-content {
+            max-width: 90vw;
+            max-height: 90vh;
+            position: relative;
+        }
+        .lightbox-content img {
+            width: auto;
+            max-height: 85vh;
+            border-radius: 12px;
+            box-shadow: 0 30px 60px rgba(0,0,0,0.5);
+        }
+        .close-lightbox {
+            position: absolute;
+            top: -40px;
+            right: 0;
+            background: none;
+            border: none;
+            color: white;
+            font-size: 2rem;
+            cursor: pointer;
+        }
+        .lightbox-nav {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            padding: 0 20px;
+        }
+        .lightbox-nav button {
+            background: rgba(255,255,255,0.2);
+            border: none;
+            width: 48px;
+            height: 48px;
+            border-radius: 50%;
+            color: white;
+            cursor: pointer;
+            transition: background 0.2s;
+        }
+        .lightbox-nav button:hover { background: rgba(255,255,255,0.4); }
+
+        .reveal {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.8s ease-out;
+        }
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .footer a:hover { color: #e6007e; }
+    </style>
+</head>
+<body>
+
+<!-- ===== NEW HEADER ===== -->
+<header class="header-glass" id="mainHeader">
+  <div class="max-w-7xl mx-auto px-4 md:px-6">
+    <div class="flex justify-between items-center h-20">
+
+      <!-- Logo -->
+      <a href="index.html" class="flex items-center gap-3 group">
+        <img src="assets/images/obrian-transparent-logo-4461219.webp" alt="O'Brian Group" class="h-10 w-auto" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22%3E%3Crect width=%22100%22 height=%22100%22 fill=%22%23ed008e%22/%3E%3Ctext x=%2250%22 y=%2268%22 font-size=%2248%22 text-anchor=%22middle%22 fill=%22white%22 font-weight=%22bold%22 font-family=%22Inter%22%3EO%3C/text%3E%3C/svg%3E'">
+        <span class="font-black text-xl text-[#231e1f] tracking-tight hidden sm:inline"><span class="text-[#ed018e]"></span></span>
+      </a>
+
+      <!-- Desktop Nav -->
+      <div class="hidden lg:flex items-center gap-0.5">
+        <a href="index.html" class="nav-link">Home</a>
+        <a href="page8.html" class="nav-link">About</a>
+        <a href="page30.html" class="nav-link">Our Work</a>
+        <a href="page52.html" class="nav-link">Client Experience</a>
+
+        <div class="relative group">
+          <button class="nav-link flex items-center gap-1">
+            Case Studies
+            <svg class="w-3 h-3 transition-transform duration-300 group-hover:rotate-180" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M19 9l-7 7-7-7"></path></svg>
+          </button>
+          <div class="dropdown-menu-custom">
+            <a href="page27.html">Advertising</a>
+            <a href="page45.html">Digital</a>
+            <a href="page43.html">Consulting</a>
+          </div>
+        </div>
+
+        <div class="relative group">
+          <button class="nav-link flex items-center gap-1">
+            Expertise
+            <svg class="w-3 h-3 transition-transform duration-300 group-hover:rotate-180" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M19 9l-7 7-7-7"></path></svg>
+          </button>
+          <div class="dropdown-menu-custom">
+            <a href="page9.html">Advertising</a>
+            <a href="page18.html">Digital</a>
+            <a href="page1.html">Consulting</a>
+          </div>
+        </div>
+
+        <a href="page60.html" class="nav-link">Staff News</a>
+        <a href="page15.html" class="nav-link">Blog</a>
+        <a href="page70.html" class="nav-link">Archives</a>
+      </div>
+
+      <!-- CTA -->
+      <div class="hidden lg:block">
+        <a href="page5.html" class="btn-primary-pink">
+          <span>Contact</span>
+          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M17 8l4 4m0 0l-4 4m4-4H3"></path></svg>
+        </a>
+      </div>
+
+      <!-- Burger -->
+      <button class="lg:hidden p-2 rounded-lg hover:bg-gray-100 transition-colors" id="menuBtn" aria-label="Toggle menu">
+        <div class="w-6 h-6 flex flex-col justify-center items-center gap-1.5">
+          <span class="w-6 h-0.5 bg-gray-700 transition-all duration-300 menu-line-1"></span>
+          <span class="w-6 h-0.5 bg-gray-700 transition-all duration-300 menu-line-2"></span>
+          <span class="w-4 h-0.5 bg-gray-700 transition-all duration-300 menu-line-3 ml-auto"></span>
+        </div>
+      </button>
+    </div>
+  </div>
+</header>
+
+<!-- ===== MOBILE MENU PANEL ===== -->
+<div class="mobile-menu-panel" id="mobileMenuPanel">
+  <a href="index.html">Home</a>
+  <a href="page8.html">About</a>
+  <a href="page30.html">Our Work</a>
+  <a href="page52.html">Client Experience</a>
+
+  <div class="mobile-dropdown-title">Case Studies</div>
+  <div class="mobile-dropdown-items">
+    <a href="page27.html">Advertising</a>
+    <a href="page45.html">Digital</a>
+    <a href="page43.html">Consulting</a>
+  </div>
+
+  <div class="mobile-dropdown-title">Our Expertise</div>
+  <div class="mobile-dropdown-items">
+    <a href="page9.html">Advertising</a>
+    <a href="page1.html">Digital</a>
+    <a href="page18.html">Consulting</a>
+  </div>
+
+  <a href="page60.html">Staff News</a>
+  <a href="page15.html">Blog</a>
+  <a href="page70.html">Archives</a>
+  <a href="page5.html" class="magnetic-btn" style="display:inline-flex; margin-top:1rem; background:linear-gradient(135deg,#e6007e,#ff1493); color:#fff; padding:0.6rem 1.5rem; border-radius:9999px; font-weight:700;">Contact Us</a>
+</div>
+
+<!-- Hero Section -->
+<section class="relative pt-32 pb-20 bg-gradient-to-b from-white to-gray-50">
+    <div class="max-w-7xl mx-auto px-6 text-center">
+        <div class="reveal">
+            <p class="text-pink font-semibold tracking-wide text-sm uppercase mb-4">Case Study</p>
+            <h1 class="text-4xl md:text-6xl font-black text-gray-900 mb-6">Centre for <span class="text-pink">Supplier Development</span></h1>
+            <div class="w-24 h-1 bg-pink mx-auto mb-8"></div>
+            <p class="text-gray-600 text-lg max-w-2xl mx-auto">Empowering local businesses through strategic branding and incubation support.</p>
+        </div>
+    </div>
+</section>
+
+<!-- Project Overview -->
+<section class="py-12">
+    <div class="max-w-4xl mx-auto px-6">
+        <div class="reveal bg-white p-8 rounded-2xl shadow-sm border border-gray-100">
+            <h2 class="text-2xl font-bold mb-4">The Challenge</h2>
+            <p class="text-gray-600 mb-6">The Ekurhuleni Centre for Supplier Development (CFSD) needed to increase visibility among small and medium enterprises. The existing brand lacked a cohesive identity, making it difficult to attract participants and partners for its incubation hub.</p>
+            <h2 class="text-2xl font-bold mb-4">Our Solution</h2>
+            <p class="text-gray-600">We developed a complete brand refresh, including a new visual identity, outdoor banners, and digital assets for the CFSD Incubation Hub. The campaign highlighted success stories and created a strong sense of community, resulting in a 60% increase in applications and stronger stakeholder engagement.</p>
+        </div>
+    </div>
+</section>
+
+<!-- Gallery -->
+<section class="py-16 bg-gray-50">
+    <div class="max-w-7xl mx-auto px-6">
+        <div class="text-center mb-12 reveal">
+            <h2 class="text-3xl md:text-4xl font-black text-gray-900">Campaign Gallery</h2>
+            <p class="text-gray-500 mt-2">Click on any image to expand</p>
+        </div>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6" id="galleryGrid">
+            <div class="gallery-item rounded-xl overflow-hidden shadow-md bg-white">
+                <img src="assets/images/obrian-work14.jpg" alt="CFSD event 1" class="w-full h-80 object-cover transition-transform duration-500 hover:scale-105">
+            </div>
+            <div class="gallery-item rounded-xl overflow-hidden shadow-md bg-white">
+                <img src="assets/images/obrian-work15.jpg" alt="CFSD event 2" class="w-full h-80 object-cover transition-transform duration-500 hover:scale-105">
+            </div>
+            <div class="gallery-item rounded-xl overflow-hidden shadow-md bg-white">
+                <img src="assets/images/cfsd-incubation-hub-banners.jpg" alt="Incubation hub banner 1" class="w-full h-80 object-cover transition-transform duration-500 hover:scale-105">
+            </div>
+            <div class="gallery-item rounded-xl overflow-hidden shadow-md bg-white">
+                <img src="assets/images/cfsd-incubation-hub-banners2.jpg" alt="Incubation hub banner 2" class="w-full h-80 object-cover transition-transform duration-500 hover:scale-105">
+            </div>
+            <div class="gallery-item rounded-xl overflow-hidden shadow-md bg-white">
+                <img src="assets/images/whatsapp-image-2025-07-25-at-15.25.18-1.jpeg" alt="Workshop session" class="w-full h-80 object-cover transition-transform duration-500 hover:scale-105">
+            </div>
+            <div class="gallery-item rounded-xl overflow-hidden shadow-md bg-white">
+                <img src="assets/images/whatsapp-image-2025-07-25-at-15.34.25-1.jpeg" alt="Participant discussion" class="w-full h-80 object-cover transition-transform duration-500 hover:scale-105">
+            </div>
+            <div class="gallery-item rounded-xl overflow-hidden shadow-md bg-white">
+                <img src="assets/images/whatsapp-image-2025-07-25-at-15.34.25.jpeg" alt="Group photo" class="w-full h-80 object-cover transition-transform duration-500 hover:scale-105">
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Lightbox Modal -->
+<div id="lightbox" class="lightbox-overlay">
+    <div class="lightbox-content">
+        <button class="close-lightbox" id="closeLightboxBtn">✕</button>
+        <img id="lightboxImg" src="" alt="">
+        <div class="lightbox-nav">
+            <button id="prevBtn"><i class="fas fa-chevron-left text-2xl"></i></button>
+            <button id="nextBtn"><i class="fas fa-chevron-right text-2xl"></i></button>
+        </div>
+    </div>
+</div>
+
+<!-- Social Follow Section -->
+<section class="py-16 bg-white">
+    <div class="max-w-4xl mx-auto px-6 text-center">
+        <h3 class="text-2xl font-bold mb-6">Follow us for more case studies</h3>
+        <div class="flex justify-center gap-6">
+            <a href="https://www.facebook.com/profile.php?id=100094029616085" target="_blank" class="w-12 h-12 rounded-full bg-gray-100 flex items-center justify-center hover:bg-pink hover:text-white transition-colors text-gray-600">
+                <i class="fab fa-facebook-f"></i>
+            </a>
+            <a href="https://x.com/ObrianSA" target="_blank" class="w-12 h-12 rounded-full bg-gray-100 flex items-center justify-center hover:bg-pink hover:text-white transition-colors text-gray-600">
+                <i class="fab fa-twitter"></i>
+            </a>
+            <a href="https://www.instagram.com/obriandigital/" target="_blank" class="w-12 h-12 rounded-full bg-gray-100 flex items-center justify-center hover:bg-pink hover:text-white transition-colors text-gray-600">
+                <i class="fab fa-instagram"></i>
+            </a>
+            <a href="https://za.linkedin.com/company/o-brian-digital" target="_blank" class="w-12 h-12 rounded-full bg-gray-100 flex items-center justify-center hover:bg-pink hover:text-white transition-colors text-gray-600">
+                <i class="fab fa-linkedin-in"></i>
+            </a>
+            <a href="https://za.pinterest.com/OBRIANDIGITAL/" target="_blank" class="w-12 h-12 rounded-full bg-gray-100 flex items-center justify-center hover:bg-pink hover:text-white transition-colors text-gray-600">
+                <i class="fab fa-pinterest-p"></i>
+            </a>
+        </div>
+    </div>
+</section>
+
+<!-- Footer -->
+<footer class="bg-gray-900 text-white pt-16 pb-8">
+    <div class="max-w-7xl mx-auto px-6">
+        <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-12 mb-12">
+            <div>
+                <h4 class="font-bold text-pink mb-4">Johannesburg</h4>
+                <p class="text-sm text-gray-400 leading-relaxed mb-4">2nd Floor Trumpet On Keyes, 21 Keyes Avenue, Rosebank, Johannesburg, 2196</p>
+                <p class="text-sm text-gray-400">Phone: +27 10 035 5218</p>
+            </div>
+            <div>
+                <h4 class="font-bold text-pink mb-4">Durban Office</h4>
+                <p class="text-sm text-gray-400 leading-relaxed mb-4">2 Ncondo Place, Ridgeside Dr, Umhlanga Ridge, Durban, 4319</p>
+                <p class="text-sm text-gray-400">Phone: +27 83 325 9532</p>
+            </div>
+            <div>
+                <h4 class="font-bold text-pink mb-4">Email</h4>
+                <a href="mailto:info@obriangroup.com" class="text-sm text-gray-400 hover:text-white transition">info@obriangroup.com</a>
+            </div>
+            <div>
+                <h4 class="font-bold text-pink mb-4">About</h4>
+                <ul class="space-y-2 text-sm text-gray-400">
+                    <li><a href="page8.html" class="hover:text-white transition">History</a></li>
+                    <li><a href="page52.html" class="hover:text-white transition">Clients</a></li>
+                    <li><a href="#" class="hover:text-white transition">Teams</a></li>
+                    <li><a href="#" class="hover:text-white transition">Brand</a></li>
+                    <li><a href="#" class="hover:text-white transition">Terms</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="border-t border-gray-800 pt-8 flex flex-col md:flex-row justify-between items-center gap-4">
+            <p class="text-xs text-gray-500">© Copyright 2026 O'Brian Group - All Rights Reserved</p>
+            <div class="flex gap-4">
+                <a href="https://www.facebook.com/profile.php?id=100094029616085" class="text-gray-400 hover:text-white transition"><i class="fab fa-facebook-f"></i></a>
+                <a href="https://x.com/ObrianSA" class="text-gray-400 hover:text-white transition"><i class="fab fa-twitter"></i></a>
+                <a href="https://www.instagram.com/obriandigital/" class="text-gray-400 hover:text-white transition"><i class="fab fa-instagram"></i></a>
+                <a href="https://za.linkedin.com/company/o-brian-digital" class="text-gray-400 hover:text-white transition"><i class="fab fa-linkedin-in"></i></a>
+            </div>
+        </div>
+    </div>
+</footer>
+
+<script>
+    // ── Mobile menu toggle (updated for new header) ──
+    const menuBtn = document.getElementById('menuBtn');
+    const mobilePanel = document.getElementById('mobileMenuPanel');
+
+    if (menuBtn && mobilePanel) {
+        menuBtn.addEventListener('click', () => {
+            menuBtn.classList.toggle('open');
+            mobilePanel.classList.toggle('open');
+            document.body.style.overflow = mobilePanel.classList.contains('open') ? 'hidden' : '';
+        });
+
+        mobilePanel.querySelectorAll('a').forEach(link => {
+            link.addEventListener('click', () => {
+                menuBtn.classList.remove('open');
+                mobilePanel.classList.remove('open');
+                document.body.style.overflow = '';
+            });
+        });
+    }
+
+    // ── Header scroll effect ──
+    const header = document.getElementById('mainHeader');
+    window.addEventListener('scroll', () => {
+        if (window.scrollY > 20) {
+            header.classList.add('scrolled');
+        } else {
+            header.classList.remove('scrolled');
+        }
+    });
+
+    // ── Gallery lightbox (preserved) ──
+    const galleryImages = [
+        'assets/images/obrian-work14.jpg',
+        'assets/images/obrian-work15.jpg',
+        'assets/images/cfsd-incubation-hub-banners.jpg',
+        'assets/images/cfsd-incubation-hub-banners2.jpg',
+        'assets/images/whatsapp-image-2025-07-25-at-15.25.18-1.jpeg',
+        'assets/images/whatsapp-image-2025-07-25-at-15.34.25-1.jpeg',
+        'assets/images/whatsapp-image-2025-07-25-at-15.34.25.jpeg'
+    ];
+    let currentIndex = 0;
+    const lightbox = document.getElementById('lightbox');
+    const lightboxImg = document.getElementById('lightboxImg');
+    const prevBtn = document.getElementById('prevBtn');
+    const nextBtn = document.getElementById('nextBtn');
+    const closeBtn = document.getElementById('closeLightboxBtn');
+
+    function openLightbox(index) {
+        currentIndex = index;
+        lightboxImg.src = galleryImages[currentIndex];
+        lightbox.classList.add('active');
+        document.body.style.overflow = 'hidden';
+    }
+    function closeLightbox() {
+        lightbox.classList.remove('active');
+        document.body.style.overflow = '';
+    }
+    function showPrev() {
+        currentIndex = (currentIndex - 1 + galleryImages.length) % galleryImages.length;
+        lightboxImg.src = galleryImages[currentIndex];
+    }
+    function showNext() {
+        currentIndex = (currentIndex + 1) % galleryImages.length;
+        lightboxImg.src = galleryImages[currentIndex];
+    }
+
+    document.querySelectorAll('.gallery-item').forEach((item, idx) => {
+        item.addEventListener('click', () => openLightbox(idx));
+    });
+    prevBtn.addEventListener('click', showPrev);
+    nextBtn.addEventListener('click', showNext);
+    closeBtn.addEventListener('click', closeLightbox);
+    lightbox.addEventListener('click', (e) => { if (e.target === lightbox) closeLightbox(); });
+    document.addEventListener('keydown', (e) => {
+        if (lightbox.classList.contains('active')) {
+            if (e.key === 'Escape') closeLightbox();
+            if (e.key === 'ArrowLeft') showPrev();
+            if (e.key === 'ArrowRight') showNext();
+        }
+    });
+
+    // Scroll reveal animations
+    const revealElements = document.querySelectorAll('.reveal');
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) entry.target.classList.add('active');
+        });
+    }, { threshold: 0.1 });
+    revealElements.forEach(el => observer.observe(el));
+</script>
+</body>
+</html>

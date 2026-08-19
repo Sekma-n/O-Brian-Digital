@@ -1,0 +1,1180 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Blog | O'Brian Group</title>
+    <meta name="description" content="Exploring boundless horizons — navigating the world of branding, advertising, and digital innovation with O'BRIAN." />
+
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com">
+    </script>
+    <script src="https://unpkg.com/lucide@latest">
+    </script>
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800;900&family=Open+Sans:wght@300;400;600&display=swap" rel="stylesheet" />
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        'sans': ['Montserrat', 'sans-serif'],
+                        'body': ['Open Sans', 'sans-serif'],
+                    },
+                    colors: {
+                        'obrian': {
+                            pink: '#e6007e',
+                            dark: '#1a1a1a',
+                            black: '#000000',
+                            white: '#ffffff',
+                            gray: '#f5f5f5'
+                        }
+                    },
+                    animation: {
+                        'float': 'float 6s ease-in-out infinite',
+                        'slide-up': 'slideUp 0.8s ease-out forwards',
+                    },
+                    keyframes: {
+                        float: {
+                            '0%, 100%': { transform: 'translateY(0)' },
+                            '50%': { transform: 'translateY(-20px)' },
+                        },
+                        slideUp: {
+                            '0%': { opacity: '0', transform: 'translateY(40px)' },
+                            '100%': { opacity: '1', transform: 'translateY(0)' },
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        /* ===== RESET & BASE ===== */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Montserrat', sans-serif;
+            background: #f8fafc;
+            color: #231e1f;
+            line-height: 1.6;
+            overflow-x: hidden;
+            padding-top: 80px;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        .font-body {
+            font-family: 'Open Sans', sans-serif;
+        }
+
+        .text-pink {
+            color: #e6007e;
+        }
+        .bg-pink {
+            background-color: #e6007e;
+        }
+        .border-pink {
+            border-color: #e6007e;
+        }
+
+        .gradient-text {
+            background: linear-gradient(135deg, #e6007e 0%, #ff1493 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        img {
+            max-width: 100%;
+            display: block;
+        }
+
+        .container {
+            max-width: 1280px;
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+
+        /* ===== SCROLLBAR ===== */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #e2e8f0;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #e6007e;
+            border-radius: 4px;
+        }
+
+        /* ===== HEADER ===== */
+        .header-glass {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            z-index: 50;
+            background: rgba(255, 255, 255, 0.85);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            transition: box-shadow 0.3s, background 0.3s;
+            border-bottom: 1px solid rgba(0, 0, 0, 0.04);
+        }
+        .header-glass.scrolled {
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+            background: rgba(255, 255, 255, 0.98);
+        }
+
+        .nav-link-new {
+            padding: 0.5rem 1rem;
+            font-size: 0.875rem;
+            font-weight: 600;
+            color: #374151;
+            border-radius: 0.5rem;
+            transition: all 0.3s ease;
+            display: inline-block;
+            cursor: pointer;
+        }
+        .nav-link-new:hover {
+            color: #e6007e;
+            background-color: #fdf2f8;
+        }
+
+        .dropdown-menu-custom {
+            position: absolute;
+            top: 100%;
+            left: 0;
+            margin-top: 0.5rem;
+            width: 200px;
+            background: white;
+            border-radius: 0.75rem;
+            box-shadow: 0 20px 40px -8px rgba(0, 0, 0, 0.15);
+            border: 1px solid #f3f4f6;
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(-8px) scale(0.96);
+            transition: all 0.25s ease;
+            transform-origin: top left;
+            z-index: 60;
+        }
+        .group:hover .dropdown-menu-custom {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0) scale(1);
+        }
+        .dropdown-menu-custom a {
+            display: block;
+            padding: 0.75rem 1.25rem;
+            font-size: 0.875rem;
+            color: #374151;
+            transition: background 0.2s, color 0.2s;
+        }
+        .dropdown-menu-custom a:hover {
+            background: #fdf2f8;
+            color: #e6007e;
+        }
+        .dropdown-menu-custom a:first-child {
+            border-radius: 0.75rem 0.75rem 0 0;
+        }
+        .dropdown-menu-custom a:last-child {
+            border-radius: 0 0 0.75rem 0.75rem;
+        }
+
+        .btn-primary-pink {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.75rem 1.75rem;
+            background: linear-gradient(135deg, #e6007e, #ff1493);
+            color: white;
+            font-weight: 700;
+            font-size: 0.875rem;
+            border-radius: 9999px;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 14px rgba(230, 0, 126, 0.3);
+        }
+        .btn-primary-pink:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(230, 0, 126, 0.4);
+            color: white;
+        }
+
+        /* ===== MOBILE MENU ===== */
+        .mobile-menu-panel {
+            position: fixed;
+            inset: 0;
+            background: white;
+            z-index: 60;
+            transform: translateX(100%);
+            transition: transform 0.4s cubic-bezier(0.22, 1, 0.36, 1);
+            display: flex;
+            flex-direction: column;
+            height: 100%;
+            overflow-y: auto;
+        }
+        .mobile-menu-panel.open {
+            transform: translateX(0);
+        }
+        .mobile-menu-panel a {
+            display: block;
+            padding: 0.75rem 1rem;
+            font-size: 1rem;
+            font-weight: 600;
+            color: #231e1f;
+            border-radius: 0.5rem;
+            transition: all 0.2s;
+        }
+        .mobile-menu-panel a:hover {
+            background: rgba(230, 0, 126, 0.06);
+            color: #e6007e;
+            padding-left: 1.2rem;
+        }
+        .mobile-menu-panel .mobile-dropdown-title {
+            font-weight: 700;
+            padding: 0.75rem 1rem;
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            color: #6b7280;
+        }
+        .mobile-menu-panel .mobile-dropdown-items {
+            padding-left: 1rem;
+        }
+        .mobile-menu-panel .mobile-dropdown-items a {
+            font-weight: 400;
+            font-size: 0.95rem;
+        }
+
+        /* ===== HERO (UPDATED FOR IMAGE) ===== */
+        .hero {
+            padding: 100px 0 80px;
+            background: linear-gradient(160deg, #ffffff 0%, #f1f5f9 100%);
+            position: relative;
+            overflow: hidden;
+        }
+        .hero .container.hero-content {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 50px;
+        }
+        .hero-text {
+            flex: 1;
+            max-width: 600px;
+        }
+        .hero-text h1 {
+            font-size: clamp(2.8rem, 5vw, 4rem);
+            font-weight: 800;
+            color: #231e1f;
+            margin-bottom: 16px;
+            letter-spacing: -0.02em;
+            text-align: left;
+        }
+        .hero-text h1 .highlight {
+            background: linear-gradient(135deg, #e6007e, #ff4dab);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        .hero-text p {
+            font-size: 1.15rem;
+            color: #4a4a4a;
+            font-weight: 400;
+            line-height: 1.7;
+            text-align: left;
+        }
+        .hero-image {
+            flex: 1;
+            max-width: 600px;
+        }
+        .hero-image img {
+            width: 100%;
+            height: auto;
+            border-radius: 16px;
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.12);
+            transition: transform 0.3s ease;
+        }
+        .hero-image img:hover {
+            transform: translateY(-5px);
+        }
+
+        /* ===== BACK BUTTON ===== */
+        .back-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            font-size: 0.9rem;
+            font-weight: 600;
+            color: #6b7280;
+            transition: color 0.2s ease;
+            cursor: pointer;
+            margin-bottom: 20px;
+        }
+        .back-link:hover {
+            color: #e6007e;
+        }
+        .back-link i {
+            font-size: 1rem;
+        }
+
+        /* ===== BLOG CARDS ===== */
+        .blog-section {
+            padding: 40px 0 80px;
+            background: #ffffff;
+        }
+        .blog-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 30px;
+        }
+        .blog-card {
+            background: white;
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow: 0 4px 16px rgba(0, 0, 0, 0.05);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            border: 1px solid #eef2f6;
+        }
+        .blog-card:hover {
+            transform: translateY(-6px);
+            box-shadow: 0 20px 40px rgba(230, 0, 126, 0.12);
+        }
+        .blog-card .card-img {
+            height: 200px;
+            overflow: hidden;
+            background: #f5f5f7;
+        }
+        .blog-card .card-img img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+        .blog-card:hover .card-img img {
+            transform: scale(1.05);
+        }
+        .blog-card .card-body {
+            padding: 24px;
+        }
+        .blog-card .card-body .tag {
+            font-size: 0.7rem;
+            font-weight: 600;
+            color: #e6007e;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-bottom: 4px;
+        }
+        .blog-card .card-body h3 {
+            font-size: 1.1rem;
+            font-weight: 700;
+            margin-bottom: 8px;
+            color: #231e1f;
+        }
+        .blog-card .card-body h3 a {
+            color: inherit;
+            transition: color 0.2s;
+        }
+        .blog-card .card-body h3 a:hover {
+            color: #e6007e;
+        }
+        .blog-card .card-body p {
+            font-size: 0.9rem;
+            color: #4a4a4a;
+            line-height: 1.6;
+        }
+
+        /* ===== FEATURED SECTION ===== */
+        .featured-section {
+            padding: 40px 0 80px;
+            background: #f8fafc;
+        }
+        .featured-section .section-header {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+        .featured-section .section-header h2 {
+            font-size: 2rem;
+            font-weight: 700;
+            color: #231e1f;
+        }
+        .featured-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 24px;
+        }
+        .featured-item {
+            background: white;
+            border-radius: 16px;
+            padding: 20px;
+            box-shadow: 0 4px 16px rgba(0, 0, 0, 0.04);
+            border: 1px solid #eef2f6;
+            transition: all 0.3s ease;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+        }
+        .featured-item:hover {
+            border-color: #e6007e;
+            box-shadow: 0 8px 24px rgba(230, 0, 126, 0.08);
+        }
+        .featured-item .item-img {
+            width: 100%;
+            height: 160px;
+            overflow: hidden;
+            border-radius: 8px;
+            margin-bottom: 16px;
+        }
+        .featured-item .item-img img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.4s ease;
+        }
+        .featured-item:hover .item-img img {
+            transform: scale(1.03);
+        }
+        .featured-item .content h4 {
+            font-size: 1rem;
+            font-weight: 700;
+            margin-bottom: 4px;
+        }
+        .featured-item .content h4 a {
+            color: #231e1f;
+            transition: color 0.2s;
+        }
+        .featured-item .content h4 a:hover {
+            color: #e6007e;
+        }
+        .featured-item .content p {
+            font-size: 0.85rem;
+            color: #475569;
+        }
+
+        /* ===== BANNER ===== */
+        .banner-section {
+            padding: 80px 0;
+            background: #231e1f;
+            text-align: center;
+            color: white;
+        }
+        .banner-section h2 {
+            font-size: clamp(2.5rem, 5vw, 3.5rem);
+            font-weight: 800;
+            margin-bottom: 8px;
+        }
+        .banner-section h2 .highlight {
+            background: linear-gradient(135deg, #e6007e, #ff1493);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        .banner-section .sub {
+            font-size: 1.5rem;
+            font-weight: 300;
+            color: rgba(255, 255, 255, 0.7);
+            margin-bottom: 28px;
+        }
+        .banner-section .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            padding: 14px 40px;
+            background: linear-gradient(135deg, #e6007e, #ff1493);
+            color: white;
+            font-weight: 700;
+            border-radius: 50px;
+            transition: all 0.3s ease;
+            box-shadow: 0 6px 24px rgba(230, 0, 126, 0.3);
+        }
+        .banner-section .btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 12px 40px rgba(230, 0, 126, 0.4);
+        }
+
+        /* ===== SOCIAL ===== */
+        .social-section {
+            padding: 40px 0 60px;
+            background: #ffffff;
+            text-align: center;
+        }
+        .social-section h3 {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: #231e1f;
+            margin-bottom: 24px;
+        }
+        .social-list {
+            display: flex;
+            justify-content: center;
+            gap: 16px;
+            flex-wrap: wrap;
+        }
+        .social-list a {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 48px;
+            height: 48px;
+            border-radius: 50%;
+            background: #e5e7eb;
+            color: #1a1a1a;
+            font-size: 1.3rem;
+            transition: all 0.3s ease;
+        }
+        .social-list a:hover {
+            background: #e6007e;
+            color: white;
+            transform: translateY(-3px);
+            box-shadow: 0 8px 24px rgba(230, 0, 126, 0.25);
+        }
+
+        /* ===== FOOTER ===== */
+        .footer {
+            background: #231e1f;
+            color: #cbd5e1;
+            padding: 60px 0 32px;
+        }
+        .footer .container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            gap: 40px;
+        }
+        .footer h5 {
+            font-size: 0.9rem;
+            font-weight: 700;
+            color: #e6007e;
+            margin-bottom: 16px;
+            letter-spacing: 0.02em;
+        }
+        .footer ul {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+        .footer ul li {
+            font-size: 0.85rem;
+            font-weight: 400;
+            color: #94a3b8;
+            transition: color 0.25s ease;
+        }
+        .footer ul li a {
+            color: inherit;
+            transition: color 0.25s ease;
+        }
+        .footer ul li a:hover {
+            color: #e6007e;
+        }
+        .footer .social {
+            display: flex;
+            gap: 16px;
+            margin-top: 8px;
+        }
+        .footer .social a {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.06);
+            color: #cbd5e1;
+            font-size: 1.1rem;
+            transition: all 0.3s ease;
+        }
+        .footer .social a:hover {
+            background: #e6007e;
+            color: #ffffff;
+            transform: translateY(-2px);
+        }
+        .footer .copyright {
+            grid-column: 1 / -1;
+            text-align: center;
+            margin-top: 32px;
+            padding-top: 24px;
+            border-top: 1px solid rgba(255, 255, 255, 0.06);
+            font-size: 0.8rem;
+            color: #64748b;
+        }
+
+        /* ===== RESPONSIVE ===== */
+        @media (max-width: 992px) {
+            .hero {
+                padding: 80px 0 60px;
+            }
+            .hero .container.hero-content {
+                flex-direction: column;
+                text-align: center;
+                gap: 30px;
+            }
+            .hero-text {
+                max-width: 100%;
+            }
+            .hero-text h1 {
+                text-align: center;
+            }
+            .hero-text p {
+                text-align: center;
+            }
+            .hero-image {
+                max-width: 80%;
+                margin: 0 auto;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .header-glass {
+                height: 64px;
+                padding: 0 1rem;
+            }
+            body {
+                padding-top: 64px;
+            }
+            .hero {
+                padding: 60px 0 40px;
+            }
+            .hero-text h1 {
+                font-size: 2.2rem;
+            }
+            .hero-image {
+                max-width: 100%;
+            }
+            .blog-grid {
+                grid-template-columns: 1fr;
+            }
+            .featured-grid {
+                grid-template-columns: 1fr;
+            }
+            .footer .container {
+                grid-template-columns: 1fr 1fr;
+            }
+        }
+        @media (max-width: 480px) {
+            .footer .container {
+                grid-template-columns: 1fr;
+            }
+            .hero-text h1 {
+                font-size: 2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- ===== HEADER ===== -->
+    <header class="header-glass" id="mainHeader">
+        <div class="max-w-7xl mx-auto px-4 md:px-6">
+            <div class="flex justify-between items-center h-20">
+
+                <!-- Logo -->
+                <a href="Home.html" class="flex items-center gap-3 group">
+                    <img src="assets/images/obrian-transparent-logo-4461219.webp" alt="O'Brian Group" class="h-10 w-auto" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22%3E%3Crect width=%22100%22 height=%22100%22 fill=%22%23e6007e%22/%3E%3Ctext x=%2250%22 y=%2268%22 font-size=%2248%22 text-anchor=%22middle%22 fill=%22white%22 font-weight=%22bold%22 font-family=%22Inter%22%3EO%3C/text%3E%3C/svg%3E'">
+                    <span class="font-black text-xl text-[#231e1f] tracking-tight hidden sm:inline"><span class="text-[#e6007e]"></span></span>
+                </a>
+
+                <!-- Desktop Nav -->
+                <div class="hidden lg:flex items-center gap-0.5">
+                    <a href="Home.html" class="nav-link-new">Home</a>
+                    <a href="About.html" class="nav-link-new">About</a>
+                    <a href="Our_Work.html" class="nav-link-new">Our Work</a>
+                    <a href="Client_Experience.html" class="nav-link-new">Client Experience</a>
+
+                    <div class="relative group">
+                        <button class="nav-link-new flex items-center gap-1">
+                            Case Studies
+                            <svg class="w-3 h-3 transition-transform duration-300 group-hover:rotate-180" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M19 9l-7 7-7-7"></path></svg>
+                        </button>
+                        <div class="dropdown-menu-custom">
+                            <a href="Adv_Case_Studies.html">Advertising</a>
+                            <a href="Digital_Case_Studies.html">Digital</a>
+                            <a href="Consulting_Case_Studies.html">Consulting</a>
+                        </div>
+                    </div>
+
+                    <div class="relative group">
+                        <button class="nav-link-new flex items-center gap-1">
+                            Expertise
+                            <svg class="w-3 h-3 transition-transform duration-300 group-hover:rotate-180" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M19 9l-7 7-7-7"></path></svg>
+                        </button>
+                        <div class="dropdown-menu-custom">
+                            <a href="Advertising_Expertise.html">Advertising</a>
+                            <a href="Digital_Expertise.html">Digital</a>
+                            <a href="Consulting_Expertise.html">Consulting</a>
+                        </div>
+                    </div>
+
+                    <a href="blog.html" class="nav-link-new">Blog</a>
+                    <a href="staff-news.html" class="nav-link-new">Staff News</a>
+                    <a href="Archives_Gallery.html" class="nav-link-new">Archives</a>
+                </div>
+
+                <!-- CTA -->
+                <div class="hidden lg:block">
+                    <a href="Contact_Us.html" class="btn-primary-pink">
+                        <span>Contact</span>
+                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M17 8l4 4m0 0l-4 4m4-4H3"></path></svg>
+                    </a>
+                </div>
+
+                <!-- Burger -->
+                <button class="lg:hidden p-2 rounded-lg hover:bg-gray-100 transition-colors" id="menuBtn" aria-label="Toggle menu">
+                    <div class="w-6 h-6 flex flex-col justify-center items-center gap-1.5">
+                        <span class="w-6 h-0.5 bg-gray-700 transition-all duration-300 menu-line-1"></span>
+                        <span class="w-6 h-0.5 bg-gray-700 transition-all duration-300 menu-line-2"></span>
+                        <span class="w-4 h-0.5 bg-gray-700 transition-all duration-300 menu-line-3 ml-auto"></span>
+                    </div>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- ===== MOBILE MENU ===== -->
+    <div class="mobile-menu-panel lg:hidden" id="mobileMenu">
+        <div class="flex flex-col h-full">
+            <!-- Mobile Header -->
+            <div class="flex justify-between items-center p-6 border-b border-gray-100">
+                <a href="index.html" class="flex items-center gap-3">
+                    <img src="assets/images/obrian-transparent-logo-4461219.webp" alt="O'Brian Group" class="logo-img" style="height: 40px;" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22%3E%3Crect width=%22100%22 height=%22100%22 fill=%22%23e6007e%22/%3E%3Ctext x=%2250%22 y=%2268%22 font-size=%2248%22 text-anchor=%22middle%22 fill=%22white%22 font-weight=%22bold%22 font-family=%22Arial%22%3EO%3C/text%3E%3C/svg%3E'">
+                    <span class="font-black text-xl text-gray-900">O'BRIAN</span>
+                </a>
+                <button class="p-2 rounded-lg hover:bg-gray-100 transition-colors" id="closeMenu" aria-label="Close menu">
+                    <svg class="w-6 h-6 text-gray-700" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+                    </svg>
+                </button>
+            </div>
+
+            <!-- Mobile Navigation Links -->
+            <div class="flex-1 overflow-y-auto py-6 px-6">
+                <div class="space-y-1">
+                    <a href="Home.html" class="block px-4 py-3 text-lg font-semibold text-gray-800 hover:text-[#e6007e] hover:bg-pink-50 rounded-xl transition-all">Home</a>
+                    <a href="About.html" class="block px-4 py-3 text-lg font-semibold text-gray-800 hover:text-[#e6007e] hover:bg-pink-50 rounded-xl transition-all">About</a>
+                    <a href="Our_Work.html" class="block px-4 py-3 text-lg font-semibold text-gray-800 hover:text-[#e6007e] hover:bg-pink-50 rounded-xl transition-all">Our Work</a>
+                    <a href="Client_Experience.html" class="block px-4 py-3 text-lg font-semibold text-gray-800 hover:text-[#e6007e] hover:bg-pink-50 rounded-xl transition-all">Client Experience</a>
+
+                    <!-- Mobile Case Studies Accordion -->
+                    <div class="mobile-accordion">
+                        <button class="w-full flex justify-between items-center px-4 py-3 text-lg font-semibold text-gray-800 hover:text-[#e6007e] hover:bg-pink-50 rounded-xl transition-all" onclick="toggleAccordion('case-studies')">
+                            Case Studies
+                            <svg class="w-5 h-5 transition-transform duration-300" id="case-studies-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+                            </svg>
+                        </button>
+                        <div id="case-studies" class="hidden pl-4 space-y-1 mt-1">
+                            <a href="Adv_Case_Studies.html" class="block px-4 py-2 text-sm text-gray-600 hover:text-[#e6007e] transition-colors">Advertising</a>
+                            <a href="Digital_Case_Studies.html" class="block px-4 py-2 text-sm text-gray-600 hover:text-[#e6007e] transition-colors">Digital</a>
+                            <a href="Consulting_Case_Studies.html" class="block px-4 py-2 text-sm text-gray-600 hover:text-[#e6007e] transition-colors">Consulting</a>
+                        </div>
+                    </div>
+
+                    <!-- Mobile Expertise Accordion -->
+                    <div class="mobile-accordion">
+                        <button class="w-full flex justify-between items-center px-4 py-3 text-lg font-semibold text-gray-800 hover:text-[#e6007e] hover:bg-pink-50 rounded-xl transition-all" onclick="toggleAccordion('expertise')">
+                            Our Expertise
+                            <svg class="w-5 h-5 transition-transform duration-300" id="expertise-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+                            </svg>
+                        </button>
+                        <div id="expertise" class="hidden pl-4 space-y-1 mt-1">
+                            <a href="Advertising_Expertise.html" class="block px-4 py-2 text-sm text-gray-600 hover:text-[#e6007e] transition-colors">Advertising</a>
+                            <a href="Digital_Expertise.html" class="block px-4 py-2 text-sm text-gray-600 hover:text-[#e6007e] transition-colors">Digital</a>
+                            <a href="Consulting_Expertise.html" class="block px-4 py-2 text-sm text-gray-600 hover:text-[#e6007e] transition-colors">Consulting</a>
+                        </div>
+                    </div>
+
+                    <a href="Exploring_Boundless_Horizons.html" class="block px-4 py-3 text-lg font-semibold text-gray-800 hover:text-[#e6007e] hover:bg-pink-50 rounded-xl transition-all">Blog</a>
+                    <a href="staff-news.html" class="block px-4 py-3 text-lg font-semibold text-gray-800 hover:text-[#e6007e] hover:bg-pink-50 rounded-xl transition-all">Staff News</a>
+                    <a href="Archive_Gallery.html" class="block px-4 py-3 text-lg font-semibold text-gray-800 hover:text-[#e6007e] hover:bg-pink-50 rounded-xl transition-all">Archives</a>
+                </div>
+            </div>
+
+            <!-- Mobile CTA -->
+            <div class="p-6 border-t border-gray-100">
+                <a href="Contact_Us.html" class="flex items-center justify-center gap-2 w-full px-6 py-4 bg-gradient-to-r from-[#e6007e] to-[#ff1493] text-white font-bold rounded-xl hover:shadow-lg transition-all">
+                    Contact Us
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"></path>
+                    </svg>
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <!-- ===== UPDATED HERO WITH IMAGE ===== -->
+    <section class="hero">
+        <div class="container hero-content">
+            <div class="hero-text">
+                <h1>
+                    Exploring <span class="highlight">Boundless Horizons</span>
+                </h1>
+                <p>Navigating the world of branding, advertising, and digital innovation with O'BRIAN.</p>
+            </div>
+            <div class="hero-image">
+                <!-- Please save your uploaded image as assets/images/hero-laptop.png -->
+                <img src="assets/images/hero-laptop.png" alt="Virtual reality and digital innovation concept" />
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== BLOG CARDS ===== -->
+    <section class="blog-section">
+        <div class="container">
+            <div class="blog-grid">
+                <!-- Card 1 -->
+                <div class="blog-card">
+                    <div class="card-img">
+                        <a href="Marginalian_Editions.html">
+                            <img src="assets/images/themarginalian-org-editions-2025-12-18-08-12.jpg" alt="Marginalian Editions" />
+                        </a>
+                    </div>
+                    <div class="card-body">
+                        <div class="tag">Readmore</div>
+                        <h3><a href="Marginalian_Editions.html">Marginalian Editions</a></h3>
+                        <p>I have become a person on the pages and in the margins of books.</p>
+                    </div>
+                </div>
+
+                <!-- Card 2 -->
+                <div class="blog-card">
+                    <div class="card-img">
+                        <a href="A Year in Reading.html">
+                            <img src="assets/images/year-in-reading-brendan-3.webp" alt="Thoughtful stories" />
+                        </a>
+                    </div>
+                    <div class="card-body">
+                        <div class="tag">Readmore</div>
+                        <h3><a href="A Year in Reading.html">Thoughtful stories for thoughtless times</a></h3>
+                        <p>Longreads has published hundreds of original stories—personal essays, reported features, reading lists, and more.</p>
+                    </div>
+                </div>
+
+                <!-- Card 3 -->
+                <div class="blog-card">
+                    <div class="card-img">
+                        <a href="Blog_Digital_Marketing.html">
+                            <img src="assets/images/network-6379753.jpg" alt="O'Brian Digital" />
+                        </a>
+                    </div>
+                    <div class="card-body">
+                        <div class="tag">Readmore</div>
+                        <h3><a href="Blog_Digital_Marketing.html">Mxolisi Tyawa @ObrianSA</a></h3>
+                        <p>O’Brian Digital — insights from our team.</p>
+                    </div>
+                </div>
+
+                <!-- Card 4 -->
+                <div class="blog-card">
+                    <div class="card-img">
+                        <a href="Doing_Advertising_That_Keeps_Working.html">
+                            <img src="assets/images/doing-the-advertising-that-realy-matters.png" alt="Doing advertising that matters" />
+                        </a>
+                    </div>
+                    <div class="card-body">
+                        <div class="tag">Readmore</div>
+                        <h3><a href="Doing_Advertising_That_Keeps_Working.html">Doing Advertising That Keeps Working</a></h3>
+                        <p>By Mxolisi Tyawa @ObrianSA</p>
+                    </div>
+                </div>
+
+                <!-- Card 5 -->
+                <div class="blog-card">
+                    <div class="card-img">
+                        <a href="page25.html">
+                            <img src="assets/images/screenshot-2025-03-04-at-13.36.05-5.png" alt="Doing the Camino" />
+                        </a>
+                    </div>
+                    <div class="card-body">
+                        <div class="tag">Readmore</div>
+                        <h3><a href="page25.html">Doing the Camino</a></h3>
+                        <p>Is a large network of ancient pilgrim routes stretching across Europe and coming together at the tomb of St. James.</p>
+                    </div>
+                </div>
+
+                <!-- Card 6 -->
+                <div class="blog-card">
+                    <div class="card-img">
+                        <a href="Digital_Havoc.html">
+                            <img src="assets/images/hacking-rl-final.webp" alt="Digital Havoc" />
+                        </a>
+                    </div>
+                    <div class="card-body">
+                        <div class="tag">Readmore</div>
+                        <h3><a href="Digital_Havoc.html">Digital Havoc: A Reading List About Hacking</a></h3>
+                        <p>Behind the 1s and 0s, hackers are still people—and their motivations are more nuanced than you might think.</p>
+                    </div>
+                </div>
+
+                <!-- Card 7 -->
+                <div class="blog-card">
+                    <div class="card-img">
+                        <a href="Current_VS_F.html">
+                            <img src="assets/images/cost-vs-value-5.webp" alt="Cost vs Value" />
+                        </a>
+                    </div>
+                    <div class="card-body">
+                        <div class="tag">Readmore</div>
+                        <h3><a href="Current_VS_F.html">Current Cost versus Future Value of Advertising</a></h3>
+                        <p>By Mxolisi Tyawa @ObrianSA</p>
+                    </div>
+                </div>
+
+                <!-- Card 8 -->
+                <div class="blog-card">
+                    <div class="card-img">
+                        <a href="Transformation.html">
+                            <img src="assets/images/tranformation.webp" alt="Transformation" />
+                        </a>
+                    </div>
+                    <div class="card-body">
+                        <div class="tag">Readmore</div>
+                        <h3><a href="Transformation.html">Transformation in the Ad Industry, 25 Years On</a></h3>
+                        <p>By Mxolisi Tyawa @ObrianSA</p>
+                    </div>
+                </div>
+
+                <!-- Card 9 -->
+                <div class="blog-card">
+                    <div class="card-img">
+                        <a href="When_We_Are_Afraid.html">
+                            <img src="assets/images/when-we-are-afraid.webp" alt="When We Are Afraid" />
+                        </a>
+                    </div>
+                    <div class="card-body">
+                        <div class="tag">Readmore</div>
+                        <h3><a href="When_We_Are_Afraid.html">When We Are Afraid</a></h3>
+                        <p>By Anne P. Beatty | Anne P. Beatty writes and teaches in Greensboro, North Carolina.</p>
+                    </div>
+                </div>
+
+                <!-- Card 10 -->
+                <div class="blog-card">
+                    <div class="card-img">
+                        <a href="Clown_Motel.html">
+                            <img src="assets/images/clownsignweb-web.jpeg" alt="Clown Motel" />
+                        </a>
+                    </div>
+                    <div class="card-body">
+                        <div class="tag">Readmore</div>
+                        <h3><a href="Clown_Motel.html">In the American West, a Clown Motel and a Cemetery Tell a Story of Kitsch and Carnage</a></h3>
+                        <p>In the desert of central Nevada, somewhere between a shuttered brothel and a nuclear test site, lies the tiny town of Tonopah.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== FEATURED SECTION ===== -->
+    <section class="featured-section">
+        <div class="container">
+            <div class="section-header">
+                <h2>Fea-tured <br />THE WEEKLY READS:</h2>
+            </div>
+            <div class="featured-grid">
+                <div class="featured-item">
+                    <div class="item-img">
+                        <a href="https://www.themarginalian.org/2024/10/22/marginalian-18/" target="_blank">
+                            <img src="assets/images/themarginalian.jpg" alt="The Marginalian" />
+                        </a>
+                    </div>
+                    <div class="content">
+                        <h4><a href="https://www.themarginalian.org/2024/10/22/marginalian-18/" target="_blank">The Marginalian</a></h4>
+                        <p>By Maria Popova</p>
+                    </div>
+                </div>
+                <div class="featured-item">
+                    <div class="item-img">
+                        <a href="https://kojobaffoe.com/" target="_blank">
+                            <img src="assets/images/kojobaffoe.jpg" alt="kojobaffoe Zebraculture" />
+                        </a>
+                    </div>
+                    <div class="content">
+                        <h4><a href="https://kojobaffoe.com/" target="_blank">kojobaffoe Zebraculture</a></h4>
+                        <p>Kojobaffoe</p>
+                    </div>
+                </div>
+                <div class="featured-item">
+                    <div class="item-img">
+                        <a href="https://adage.com/article/podcast-ad-lib/consultant-avi-dan-state-industry-business-defensive/2177781/" target="_blank">
+                            <img src="assets/images/adage.jpg" alt="Avidan strategies" />
+                        </a>
+                    </div>
+                    <div class="content">
+                        <h4><a href="https://adage.com/article/podcast-ad-lib/consultant-avi-dan-state-industry-business-defensive/2177781/" target="_blank">Avidan strategies</a></h4>
+                        <p>Adage</p>
+                    </div>
+                </div>
+                <div class="featured-item">
+                    <div class="item-img">
+                        <a href="https://longreads.com/reading-lists/" target="_blank">
+                            <img src="assets/images/longreads.2.jpg" alt="Long-reads" />
+                        </a>
+                    </div>
+                    <div class="content">
+                        <h4><a href="https://longreads.com/reading-lists/" target="_blank">Long-reads</a></h4>
+                        <p>Longreads</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== BANNER ===== -->
+    <section class="banner-section">
+        <div class="container">
+            <h2><span class="highlight">29 Years</span> Of</h2>
+            <div class="sub">Logic in our magic!</div>
+            <a href="Contact_Us.html" class="btn"><i class="fas fa-mug-hot"></i> TALK TO US</a>
+        </div>
+    </section>
+
+    <!-- ===== SOCIAL ===== -->
+    <section class="social-section">
+        <div class="container">
+            <h3>Follow us</h3>
+            <div class="social-list">
+                <a href="https://www.facebook.com/profile.php?id=100094029616085" target="_blank" aria-label="Facebook">
+                    <i class="fab fa-facebook-f"></i>
+                </a>
+                <a href="https://x.com/ObrianSA" target="_blank" aria-label="Twitter">
+                    <i class="fab fa-twitter"></i>
+                </a>
+                <a href="https://www.instagram.com/obriandigital/" target="_blank" aria-label="Instagram">
+                    <i class="fab fa-instagram"></i>
+                </a>
+                <a href="https://za.linkedin.com/company/o-brian-digital" target="_blank" aria-label="LinkedIn">
+                    <i class="fab fa-linkedin-in"></i>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== FOOTER ===== -->
+    <footer class="footer">
+        <div class="container">
+            <div>
+                <h5>Johannesburg</h5>
+                <ul>
+                    <li>2nd Floor Trumpet On Keyes,<br />21 Keyes Avenue, Rosebank,<br />Johannesburg, 2196</li>
+                    <li style="margin-top:8px;">Phone: +27 10 035 5218</li>
+                </ul>
+            </div>
+            <div>
+                <h5>Durban Office</h5>
+                <ul>
+                    <li>2 Ncondo Place, Ridgeside Dr,<br />Umhlanga Ridge, Durban, 4319</li>
+                    <li style="margin-top:8px;">Phone: +27 83 325 9532</li>
+                </ul>
+            </div>
+            <div>
+                <h5>Email</h5>
+                <ul>
+                    <li><a href="mailto:info@obriangroup.com">info@obriangroup.com</a></li>
+                </ul>
+            </div>
+            <div>
+                <h5>About</h5>
+                <ul>
+                    <li><a href="About.html">History</a></li>
+                    <li><a href="Client_Experience.html">Clients</a></li>
+                    <li><a href="Teams.html">Teams</a></li>
+                    <li><a href="Brand.html">Brand</a></li>
+                    <li><a href="Terms.html">Terms</a></li>
+                </ul>
+            </div>
+            <div>
+                <h5>Follow Us</h5>
+                <div class="social">
+                    <a href="https://www.facebook.com/profile.php?id=100094029616085" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+                    <a href="https://x.com/ObrianSA" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+                    <a href="https://www.instagram.com/obriandigital/" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                    <a href="https://za.linkedin.com/company/o-brian-digital" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+                </div>
+            </div>
+            <div class="copyright">
+                &copy; 2026 O'Brian Group — All Rights Reserved.
+            </div>
+        </div>
+    </footer>
+
+    <!-- ===== SCRIPTS ===== -->
+    <script>
+        (function() {
+            // Header scroll effect
+            const header = document.getElementById('mainHeader');
+            window.addEventListener('scroll', function() {
+                if (window.scrollY > 20) {
+                    header.classList.add('scrolled');
+                } else {
+                    header.classList.remove('scrolled');
+                }
+            });
+
+            // Mobile menu toggle
+            const menuBtn = document.getElementById('menuBtn');
+            const mobileMenu = document.getElementById('mobileMenu');
+            const closeBtn = document.getElementById('closeMenu');
+
+            function openMenu() {
+                mobileMenu.classList.add('open');
+                document.body.style.overflow = 'hidden';
+            }
+
+            function closeMenu() {
+                mobileMenu.classList.remove('open');
+                document.body.style.overflow = '';
+            }
+
+            if (menuBtn) {
+                menuBtn.addEventListener('click', openMenu);
+            }
+            if (closeBtn) {
+                closeBtn.addEventListener('click', closeMenu);
+            }
+
+            // Close menu when a link is clicked
+            mobileMenu.querySelectorAll('a').forEach(link => {
+                link.addEventListener('click', closeMenu);
+            });
+
+            // Close menu on resize to desktop
+            window.addEventListener('resize', function() {
+                if (window.innerWidth >= 1024) {
+                    closeMenu();
+                }
+            });
+
+            // Mobile accordion
+            window.toggleAccordion = function(id) {
+                const panel = document.getElementById(id);
+                if (!panel) return;
+                const icon = document.getElementById(id + '-icon');
+                if (panel.classList.contains('hidden')) {
+                    panel.classList.remove('hidden');
+                    if (icon) icon.style.transform = 'rotate(180deg)';
+                } else {
+                    panel.classList.add('hidden');
+                    if (icon) icon.style.transform = 'rotate(0deg)';
+                }
+            };
+        })();
+    </script>
+
+</body>
+</html>

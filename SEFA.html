@@ -1,0 +1,1233 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="Sefa — A showcase of excellence by O'Brian Group" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:image:src" content="assets/images/page55-meta.jpg" />
+    <meta property="og:image" content="assets/images/page55-meta.jpg" />
+    <meta name="twitter:title" content="Sefa — O'Brian Group" />
+    <title>Sefa — O'Brian Group</title>
+
+    <!-- Fonts & Icons -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700;14..32,800&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <link rel="shortcut icon" href="assets/images/obrian-transparent-logo-4461219.webp" type="image/x-icon" />
+
+    <style>
+        /* ===== RESET & BASE ===== */
+        *,
+        *::before,
+        *::after {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --color-primary: #0a1a2f;
+            --color-accent: #ed008e;
+            --color-accent-hover: #c70077;
+            --color-text: #1e293b;
+            --color-text-light: #64748b;
+            --color-bg: #f8fafc;
+            --color-white: #ffffff;
+            --color-border: #e9edf2;
+            --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.06);
+            --shadow-md: 0 10px 40px rgba(0, 0, 0, 0.08);
+            --shadow-lg: 0 20px 60px rgba(0, 0, 0, 0.12);
+            --radius: 16px;
+            --radius-sm: 8px;
+            --transition: all 0.35s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        }
+
+        html {
+            scroll-behavior: smooth;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            background: var(--color-bg);
+            color: var(--color-text);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        img {
+            max-width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        ul {
+            list-style: none;
+        }
+
+        .container {
+            max-width: 1280px;
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+
+        /* ===== BUTTONS ===== */
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            padding: 12px 28px;
+            border-radius: 50px;
+            font-weight: 600;
+            font-size: 0.9rem;
+            letter-spacing: 0.3px;
+            transition: var(--transition);
+            border: none;
+            cursor: pointer;
+            background: transparent;
+            color: var(--color-text);
+        }
+
+        .btn-primary {
+            background: var(--color-accent);
+            color: var(--color-white);
+            box-shadow: 0 4px 14px rgba(236, 0, 138, 0.30);
+        }
+        .btn-primary:hover {
+            background: var(--color-accent-hover);
+            transform: translateY(-2px);
+            box-shadow: 0 8px 24px rgba(236, 0, 138, 0.35);
+            color: var(--color-white);
+        }
+
+        .btn-outline {
+            border: 2px solid var(--color-accent);
+            color: var(--color-accent);
+            background: transparent;
+        }
+        .btn-outline:hover {
+            background: var(--color-accent);
+            color: var(--color-white);
+            transform: translateY(-2px);
+            box-shadow: 0 8px 24px rgba(236, 0, 138, 0.25);
+        }
+
+        /* Back button */
+        .btn-back {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            color: var(--color-accent);
+            font-weight: 600;
+            padding: 8px 16px;
+            border: 1.5px solid var(--color-accent);
+            border-radius: 50px;
+            transition: var(--transition);
+            background: transparent;
+            text-decoration: none;
+            font-size: 0.9rem;
+        }
+        .btn-back:hover {
+            background: var(--color-accent);
+            color: var(--color-white);
+            transform: translateX(-4px);
+            box-shadow: 0 4px 12px rgba(237, 0, 142, 0.25);
+        }
+        .btn-back .mbr-iconfont {
+            font-size: 1.2rem;
+            line-height: 1;
+        }
+
+        /* ===== NEW HEADER STYLES ===== */
+        .header-glass {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            z-index: 50;
+            background: rgba(255, 255, 255, 0.85);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            transition: box-shadow 0.3s, background 0.3s;
+            border-bottom: 1px solid rgba(0, 0, 0, 0.04);
+        }
+        .header-glass.scrolled {
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+            background: rgba(255, 255, 255, 0.98);
+        }
+
+        .nav-link {
+            padding: 0.5rem 1rem;
+            font-size: 0.875rem;
+            font-weight: 600;
+            color: #374151;
+            border-radius: 0.5rem;
+            transition: all 0.3s ease;
+            display: inline-block;
+            cursor: pointer;
+        }
+        .nav-link:hover {
+            color: #e6007e;
+            background-color: #fdf2f8;
+        }
+
+        .dropdown-menu-custom {
+            position: absolute;
+            top: 100%;
+            left: 0;
+            margin-top: 0.5rem;
+            width: 200px;
+            background: white;
+            border-radius: 0.75rem;
+            box-shadow: 0 20px 40px -8px rgba(0, 0, 0, 0.15);
+            border: 1px solid #f3f4f6;
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(-8px) scale(0.96);
+            transition: all 0.25s ease;
+            transform-origin: top left;
+            z-index: 60;
+        }
+        .group:hover .dropdown-menu-custom {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0) scale(1);
+        }
+        .dropdown-menu-custom a {
+            display: block;
+            padding: 0.75rem 1.25rem;
+            font-size: 0.875rem;
+            color: #374151;
+            transition: background 0.2s, color 0.2s;
+        }
+        .dropdown-menu-custom a:hover {
+            background: #fdf2f8;
+            color: #e6007e;
+        }
+        .dropdown-menu-custom a:first-child {
+            border-radius: 0.75rem 0.75rem 0 0;
+        }
+        .dropdown-menu-custom a:last-child {
+            border-radius: 0 0 0.75rem 0.75rem;
+        }
+
+        .btn-primary-pink {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.75rem 1.75rem;
+            background: linear-gradient(135deg, #e6007e, #ff1493);
+            color: white;
+            font-weight: 700;
+            font-size: 0.875rem;
+            border-radius: 9999px;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 14px rgba(230, 0, 126, 0.3);
+        }
+        .btn-primary-pink:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(230, 0, 126, 0.4);
+            color: white;
+        }
+
+        /* Mobile menu panel (preserved) */
+        .mobile-menu-panel {
+            display: none;
+            position: fixed;
+            top: 80px;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(255, 255, 255, 0.98);
+            backdrop-filter: blur(12px);
+            padding: 1.5rem;
+            overflow-y: auto;
+            z-index: 1020;
+            border-top: 1px solid rgba(0, 0, 0, 0.04);
+        }
+        .mobile-menu-panel.open {
+            display: block;
+        }
+        .mobile-menu-panel a {
+            display: block;
+            padding: 0.75rem 1rem;
+            font-size: 1rem;
+            font-weight: 500;
+            color: #1a1a2e;
+            border-radius: 0.5rem;
+            transition: background 0.2s;
+        }
+        .mobile-menu-panel a:hover {
+            background: rgba(237, 0, 142, 0.06);
+            color: #ed008e;
+        }
+        .mobile-menu-panel .mobile-dropdown-title {
+            font-weight: 700;
+            padding: 0.75rem 1rem;
+            color: #1a1a2e;
+            cursor: default;
+        }
+        .mobile-menu-panel .mobile-dropdown-items {
+            padding-left: 1rem;
+        }
+        .mobile-menu-panel .mobile-dropdown-items a {
+            font-weight: 400;
+            font-size: 0.95rem;
+        }
+
+        /* ===== HERO ===== */
+        .hero {
+            padding: 140px 0 80px;
+            background: var(--color-white);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: -40%;
+            right: -20%;
+            width: 600px;
+            height: 600px;
+            background: radial-gradient(circle, rgba(236, 0, 138, 0.06) 0%, transparent 70%);
+            border-radius: 50%;
+            pointer-events: none;
+        }
+
+        .hero::after {
+            content: '';
+            position: absolute;
+            bottom: -30%;
+            left: -10%;
+            width: 400px;
+            height: 400px;
+            background: radial-gradient(circle, rgba(10, 26, 47, 0.04) 0%, transparent 70%);
+            border-radius: 50%;
+            pointer-events: none;
+        }
+
+        .hero .container {
+            position: relative;
+            z-index: 2;
+        }
+
+        .hero-breadcrumb {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 0.8rem;
+            font-weight: 500;
+            color: var(--color-text-light);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-bottom: 20px;
+        }
+        .hero-breadcrumb a {
+            color: var(--color-accent);
+            transition: var(--transition);
+        }
+        .hero-breadcrumb a:hover {
+            color: var(--color-accent-hover);
+        }
+
+        .hero-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+            align-items: center;
+        }
+
+        .hero-text .badge {
+            display: inline-block;
+            background: rgba(236, 0, 138, 0.10);
+            color: var(--color-accent);
+            font-size: 0.75rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.8px;
+            padding: 6px 16px;
+            border-radius: 50px;
+            margin-bottom: 20px;
+        }
+
+        .hero-text h1 {
+            font-size: clamp(2.8rem, 6vw, 4.8rem);
+            font-weight: 800;
+            line-height: 1.08;
+            letter-spacing: -2px;
+            color: var(--color-primary);
+            margin-bottom: 16px;
+        }
+
+        .hero-text h1 .highlight {
+            background: linear-gradient(135deg, var(--color-accent), #ff4da6);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .hero-text p {
+            font-size: 1.15rem;
+            color: var(--color-text-light);
+            max-width: 480px;
+            line-height: 1.7;
+            margin-bottom: 32px;
+        }
+
+        .hero-text .meta {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 24px 40px;
+            padding-top: 24px;
+            border-top: 1px solid var(--color-border);
+            margin-bottom: 28px;
+        }
+        .hero-text .meta-item {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 0.9rem;
+            color: var(--color-text-light);
+        }
+        .hero-text .meta-item i {
+            color: var(--color-accent);
+            font-size: 1rem;
+            width: 20px;
+        }
+        .hero-text .meta-item strong {
+            color: var(--color-primary);
+            font-weight: 600;
+        }
+
+        .hero-visual {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .hero-visual .image-wrapper {
+            position: relative;
+            width: 100%;
+            max-width: 540px;
+            border-radius: var(--radius);
+            overflow: hidden;
+            box-shadow: var(--shadow-lg);
+            background: var(--color-bg);
+        }
+
+        .hero-visual .image-wrapper img {
+            width: 100%;
+            height: 380px;
+            object-fit: cover;
+            transition: var(--transition);
+        }
+
+        .hero-visual .image-wrapper:hover img {
+            transform: scale(1.02);
+        }
+
+        .hero-visual .image-wrapper .floating-badge {
+            position: absolute;
+            bottom: 24px;
+            right: 24px;
+            background: rgba(255, 255, 255, 0.92);
+            backdrop-filter: blur(8px);
+            padding: 12px 20px;
+            border-radius: 12px;
+            font-weight: 600;
+            font-size: 0.85rem;
+            color: var(--color-primary);
+            box-shadow: var(--shadow-sm);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        .hero-visual .image-wrapper .floating-badge i {
+            color: var(--color-accent);
+        }
+
+        /* ===== GALLERY SECTION ===== */
+        .gallery-section {
+            padding: 80px 0 100px;
+            background: var(--color-bg);
+        }
+
+        .gallery-section .section-header {
+            text-align: center;
+            max-width: 640px;
+            margin: 0 auto 56px;
+        }
+
+        .gallery-section .section-header h2 {
+            font-size: clamp(2rem, 3.5vw, 2.8rem);
+            font-weight: 700;
+            color: var(--color-primary);
+            letter-spacing: -1px;
+            margin-bottom: 12px;
+        }
+
+        .gallery-section .section-header p {
+            color: var(--color-text-light);
+            font-size: 1.05rem;
+        }
+
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+            gap: 20px;
+        }
+
+        .gallery-grid .gallery-item {
+            border-radius: var(--radius-sm);
+            overflow: hidden;
+            background: var(--color-white);
+            box-shadow: var(--shadow-sm);
+            transition: var(--transition);
+            cursor: pointer;
+            position: relative;
+            aspect-ratio: 4 / 3;
+        }
+
+        .gallery-grid .gallery-item:hover {
+            transform: translateY(-6px);
+            box-shadow: var(--shadow-md);
+        }
+
+        .gallery-grid .gallery-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: var(--transition);
+        }
+
+        .gallery-grid .gallery-item:hover img {
+            transform: scale(1.05);
+        }
+
+        .gallery-grid .gallery-item .overlay {
+            position: absolute;
+            inset: 0;
+            background: rgba(10, 26, 47, 0.40);
+            backdrop-filter: blur(2px);
+            opacity: 0;
+            transition: var(--transition);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .gallery-grid .gallery-item:hover .overlay {
+            opacity: 1;
+        }
+
+        .gallery-grid .gallery-item .overlay i {
+            color: var(--color-white);
+            font-size: 2.4rem;
+            transform: scale(0.8);
+            transition: var(--transition);
+        }
+
+        .gallery-grid .gallery-item:hover .overlay i {
+            transform: scale(1);
+        }
+
+        /* ===== LIGHTBOX ===== */
+        .lightbox {
+            display: none;
+            position: fixed;
+            inset: 0;
+            z-index: 2000;
+            background: rgba(0, 0, 0, 0.92);
+            backdrop-filter: blur(16px);
+            align-items: center;
+            justify-content: center;
+            padding: 40px;
+        }
+
+        .lightbox.open {
+            display: flex;
+        }
+
+        .lightbox .close-btn {
+            position: absolute;
+            top: 28px;
+            right: 32px;
+            background: none;
+            border: none;
+            color: rgba(255, 255, 255, 0.7);
+            font-size: 2.4rem;
+            cursor: pointer;
+            transition: var(--transition);
+            z-index: 10;
+        }
+        .lightbox .close-btn:hover {
+            color: var(--color-white);
+            transform: rotate(90deg);
+        }
+
+        .lightbox .lightbox-content {
+            max-width: 90vw;
+            max-height: 85vh;
+            border-radius: var(--radius-sm);
+            overflow: hidden;
+            box-shadow: var(--shadow-lg);
+            animation: lightboxFade 0.3s ease;
+        }
+
+        .lightbox .lightbox-content img {
+            width: 100%;
+            height: 100%;
+            max-height: 85vh;
+            object-fit: contain;
+        }
+
+        .lightbox .lightbox-nav {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background: rgba(255, 255, 255, 0.10);
+            backdrop-filter: blur(8px);
+            border: none;
+            color: var(--color-white);
+            font-size: 1.8rem;
+            padding: 16px 20px;
+            border-radius: 50%;
+            cursor: pointer;
+            transition: var(--transition);
+            z-index: 10;
+        }
+        .lightbox .lightbox-nav:hover {
+            background: rgba(255, 255, 255, 0.20);
+        }
+        .lightbox .lightbox-nav.prev {
+            left: 24px;
+        }
+        .lightbox .lightbox-nav.next {
+            right: 24px;
+        }
+
+        .lightbox .counter {
+            position: absolute;
+            bottom: 28px;
+            left: 50%;
+            transform: translateX(-50%);
+            color: rgba(255, 255, 255, 0.6);
+            font-size: 0.85rem;
+            font-weight: 500;
+            letter-spacing: 0.5px;
+            background: rgba(0, 0, 0, 0.40);
+            backdrop-filter: blur(8px);
+            padding: 6px 18px;
+            border-radius: 50px;
+        }
+
+        @keyframes lightboxFade {
+            from {
+                opacity: 0;
+                transform: scale(0.96);
+            }
+            to {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+
+        /* ===== SOCIAL ===== */
+        .social-section {
+            padding: 60px 0;
+            background: var(--color-white);
+            border-top: 1px solid var(--color-border);
+            border-bottom: 1px solid var(--color-border);
+        }
+
+        .social-section .container {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 24px;
+        }
+
+        .social-section .label {
+            font-weight: 600;
+            font-size: 0.95rem;
+            color: var(--color-primary);
+        }
+
+        .social-links {
+            display: flex;
+            gap: 14px;
+            flex-wrap: wrap;
+        }
+
+        .social-links a {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 44px;
+            height: 44px;
+            border-radius: 50%;
+            background: var(--color-bg);
+            color: var(--color-text-light);
+            font-size: 1.1rem;
+            transition: var(--transition);
+        }
+        .social-links a:hover {
+            background: var(--color-accent);
+            color: var(--color-white);
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(236, 0, 138, 0.25);
+        }
+
+        /* ===== FOOTER ===== */
+        .footer {
+            padding: 64px 0 40px;
+            background: var(--color-primary);
+            color: #a0a0a0;
+        }
+
+        .footer .container {
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr 1fr;
+            gap: 40px;
+        }
+
+        .footer-brand img {
+            height: 44px;
+            width: auto;
+            margin-bottom: 16px;
+            /* No filter – original colors preserved */
+            transition: transform 0.3s ease;
+        }
+        .footer-brand img:hover {
+            transform: scale(1.04);
+        }
+
+        .footer-brand p {
+            font-size: 0.9rem;
+            line-height: 1.7;
+            max-width: 320px;
+            color: #a0a0a0;
+        }
+
+        .footer h5 {
+            color: #c0c0c0;
+            font-weight: 600;
+            font-size: 0.95rem;
+            margin-bottom: 16px;
+            letter-spacing: 0.3px;
+        }
+
+        .footer ul li {
+            margin-bottom: 10px;
+            font-size: 0.875rem;
+        }
+        .footer ul li a {
+            transition: var(--transition);
+            color: #a0a0a0;
+        }
+        .footer ul li a:hover {
+            color: var(--color-accent);
+            padding-left: 4px;
+        }
+
+        .footer-bottom {
+            grid-column: 1 / -1;
+            padding-top: 28px;
+            border-top: 1px solid rgba(255, 255, 255, 0.08);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 12px;
+            font-size: 0.8rem;
+            color: #888;
+        }
+
+        .footer-bottom a {
+            color: #888;
+            transition: var(--transition);
+        }
+        .footer-bottom a:hover {
+            color: var(--color-accent);
+        }
+
+        /* ===== RESPONSIVE ===== */
+        @media (max-width: 1024px) {
+            .hero-content {
+                grid-template-columns: 1fr;
+                gap: 40px;
+            }
+            .hero-text p {
+                max-width: 100%;
+            }
+            .hero-visual .image-wrapper img {
+                height: 300px;
+            }
+            .footer .container {
+                grid-template-columns: 1fr 1fr;
+            }
+        }
+
+        @media (max-width: 820px) {
+            .hero {
+                padding: 120px 0 60px;
+            }
+            .hero-text h1 {
+                font-size: 2.6rem;
+            }
+            .gallery-grid {
+                grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+            }
+            .lightbox .lightbox-nav {
+                padding: 12px 14px;
+                font-size: 1.2rem;
+            }
+            .lightbox .lightbox-nav.prev {
+                left: 12px;
+            }
+            .lightbox .lightbox-nav.next {
+                right: 12px;
+            }
+        }
+
+        @media (max-width: 640px) {
+            .hero {
+                padding: 100px 0 40px;
+            }
+            .hero-text h1 {
+                font-size: 2rem;
+            }
+            .hero-text .meta {
+                flex-direction: column;
+                gap: 12px;
+            }
+            .hero-visual .image-wrapper img {
+                height: 220px;
+            }
+            .hero-visual .image-wrapper .floating-badge {
+                bottom: 16px;
+                right: 16px;
+                padding: 8px 14px;
+                font-size: 0.75rem;
+            }
+            .gallery-grid {
+                grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+                gap: 12px;
+            }
+            .gallery-section {
+                padding: 50px 0 60px;
+            }
+            .social-section .container {
+                flex-direction: column;
+                align-items: center;
+                text-align: center;
+            }
+            .footer .container {
+                grid-template-columns: 1fr;
+                gap: 32px;
+            }
+            .footer-bottom {
+                flex-direction: column;
+                text-align: center;
+            }
+            .lightbox {
+                padding: 16px;
+            }
+            .lightbox .close-btn {
+                top: 16px;
+                right: 20px;
+                font-size: 1.8rem;
+            }
+        }
+
+        @media (max-width: 420px) {
+            .gallery-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+            .hero-text h1 {
+                font-size: 1.7rem;
+            }
+            .hero-visual .image-wrapper img {
+                height: 180px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- ===== NEW HEADER ===== -->
+    <header class="header-glass" id="mainHeader">
+        <div class="max-w-7xl mx-auto px-4 md:px-6">
+            <div class="flex justify-between items-center h-20">
+
+                <!-- Logo -->
+                <a href="index.html" class="flex items-center gap-3 group">
+                    <img src="assets/images/obrian-transparent-logo-4461219.webp" alt="O'Brian Group" class="h-10 w-auto" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22%3E%3Crect width=%22100%22 height=%22100%22 fill=%22%23ed008e%22/%3E%3Ctext x=%2250%22 y=%2268%22 font-size=%2248%22 text-anchor=%22middle%22 fill=%22white%22 font-weight=%22bold%22 font-family=%22Inter%22%3EO%3C/text%3E%3C/svg%3E'">
+                    <span class="font-black text-xl text-[#231e1f] tracking-tight hidden sm:inline"><span class="text-[#ed018e]"></span></span>
+                </a>
+
+                <!-- Desktop Nav -->
+                <div class="hidden lg:flex items-center gap-0.5">
+                    <a href="index.html" class="nav-link">Home</a>
+                    <a href="page8.html" class="nav-link">About</a>
+                    <a href="page30.html" class="nav-link">Our Work</a>
+                    <a href="page52.html" class="nav-link">Client Experience</a>
+
+                    <div class="relative group">
+                        <button class="nav-link flex items-center gap-1">
+                            Case Studies
+                            <svg class="w-3 h-3 transition-transform duration-300 group-hover:rotate-180" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M19 9l-7 7-7-7"></path></svg>
+                        </button>
+                        <div class="dropdown-menu-custom">
+                            <a href="page27.html">Advertising</a>
+                            <a href="page45.html">Digital</a>
+                            <a href="page43.html">Consulting</a>
+                        </div>
+                    </div>
+
+                    <div class="relative group">
+                        <button class="nav-link flex items-center gap-1">
+                            Expertise
+                            <svg class="w-3 h-3 transition-transform duration-300 group-hover:rotate-180" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M19 9l-7 7-7-7"></path></svg>
+                        </button>
+                        <div class="dropdown-menu-custom">
+                            <a href="page9.html">Advertising</a>
+                            <a href="page18.html">Digital</a>
+                            <a href="page1.html">Consulting</a>
+                        </div>
+                    </div>
+
+                    <a href="page60.html" class="nav-link">Staff News</a>
+                    <a href="page15.html" class="nav-link">Blog</a>
+                    <a href="page70.html" class="nav-link">Archives</a>
+                </div>
+
+                <!-- CTA -->
+                <div class="hidden lg:block">
+                    <a href="page5.html" class="btn-primary-pink">
+                        <span>Contact</span>
+                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M17 8l4 4m0 0l-4 4m4-4H3"></path></svg>
+                    </a>
+                </div>
+
+                <!-- Burger -->
+                <button class="lg:hidden p-2 rounded-lg hover:bg-gray-100 transition-colors" id="menuBtn" aria-label="Toggle menu">
+                    <div class="w-6 h-6 flex flex-col justify-center items-center gap-1.5">
+                        <span class="w-6 h-0.5 bg-gray-700 transition-all duration-300 menu-line-1"></span>
+                        <span class="w-6 h-0.5 bg-gray-700 transition-all duration-300 menu-line-2"></span>
+                        <span class="w-4 h-0.5 bg-gray-700 transition-all duration-300 menu-line-3 ml-auto"></span>
+                    </div>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- ===== MOBILE MENU PANEL (preserved) ===== -->
+    <div class="mobile-menu-panel" id="mobileMenuPanel">
+        <a href="index.html">Home</a>
+        <a href="page8.html">About</a>
+        <a href="page30.html">Our Work</a>
+        <a href="page52.html">Client Experience</a>
+
+        <div class="mobile-dropdown-title">Case Studies</div>
+        <div class="mobile-dropdown-items">
+            <a href="page27.html">Advertising</a>
+            <a href="page45.html">Digital</a>
+            <a href="page43.html">Consulting</a>
+        </div>
+
+        <div class="mobile-dropdown-title">Our Expertise</div>
+        <div class="mobile-dropdown-items">
+            <a href="page9.html">Advertising</a>
+            <a href="page1.html">Digital</a>
+            <a href="page18.html">Consulting</a>
+        </div>
+
+        <a href="page60.html">Staff News</a>
+        <a href="page15.html">Blog</a>
+        <a href="page70.html">Archives</a>
+        <a href="page5.html" class="magnetic-btn" style="display:inline-flex; margin-top:1rem; background:linear-gradient(135deg,#e6007e,#ff1493); color:#fff; padding:0.6rem 1.5rem; border-radius:9999px; font-weight:700;">Contact Us</a>
+    </div>
+
+    <!-- ===== HERO ===== -->
+    <section class="hero">
+        <div class="container">
+            <div class="hero-breadcrumb">
+                <a href="page30.html">Our Work</a>
+                <span>/</span>
+                <span>Sefa</span>
+            </div>
+
+            <div class="hero-content">
+                <div class="hero-text">
+                    <div class="badge">Case Study</div>
+                    <h1>
+                        <span class="highlight">Sefa</span>
+                    </h1>
+                    <p>
+                        A deep dive into our collaboration with Sefa — where strategy,
+                        creativity, and execution converge to deliver outstanding results.
+                    </p>
+                    <div class="meta">
+                        <div class="meta-item">
+                            <i class="fas fa-tag"></i>
+                            <span><strong>Category:</strong> Brand &amp; Digital</span>
+                        </div>
+                        <div class="meta-item">
+                            <i class="fas fa-calendar-alt"></i>
+                            <span><strong>Year:</strong> 2025</span>
+                        </div>
+                        <div class="meta-item">
+                            <i class="fas fa-award"></i>
+                            <span><strong>Status:</strong> Completed</span>
+                        </div>
+                    </div>
+
+                    <!-- Back button -->
+                    <a href="page30.html" class="btn-back">
+                        <span class="mobi-mbri mobi-mbri-left mbr-iconfont me-1"></span> Back to Our Work
+                    </a>
+
+                </div>
+
+                <div class="hero-visual">
+                    <div class="image-wrapper">
+                        <img src="assets/images/obrian-work3.jpg" alt="Sefa showcase" />
+                        <div class="floating-badge">
+                            <i class="fas fa-star"></i>
+                            Featured Project
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== GALLERY ===== -->
+    <section class="gallery-section" id="gallery">
+        <div class="container">
+            <div class="section-header">
+                <h2>Visual <span style="color:var(--color-accent);">Showcase</span></h2>
+                <p>A curated selection of moments from our work with Sefa.</p>
+            </div>
+
+            <div class="gallery-grid" id="galleryGrid">
+                <!-- Images will be populated by JS from the list below -->
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== SOCIAL ===== -->
+    <section class="social-section">
+        <div class="container">
+            <span class="label"><i class="fas fa-share-alt" style="margin-right:10px;color:var(--color-accent);"></i> Follow us</span>
+            <div class="social-links">
+                <a href="https://www.facebook.com/profile.php?id=100094029616085" target="_blank" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+                <a href="https://x.com/ObrianSA" target="_blank" aria-label="Twitter"><i class="fab fa-x-twitter"></i></a>
+                <a href="https://www.instagram.com/obriandigital/" target="_blank" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                <a href="https://za.pinterest.com/OBRIANDIGITAL/" target="_blank" aria-label="Pinterest"><i class="fab fa-pinterest-p"></i></a>
+                <a href="https://za.linkedin.com/company/o-brian-digital" target="_blank" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== FOOTER ===== -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-brand">
+                <!-- Logo with original colors (no filter) -->
+                <img src="assets/images/OBRIAN_LOGO_WHITE.png" alt="O'Brian Group" />
+                <p>Creative intelligence that drives measurable outcomes. We partner with brands to build meaningful connections.</p>
+            </div>
+
+            <div>
+                <h5>Johannesburg</h5>
+                <ul>
+                    <li>2nd Floor Trumpet On Keyes</li>
+                    <li>21 Keyes Avenue, Rosebank</li>
+                    <li>Johannesburg, 2196</li>
+                    <li style="margin-top:8px;"><a href="tel:+27100355218">+27 10 035 5218</a></li>
+                </ul>
+            </div>
+
+            <div>
+                <h5>Durban</h5>
+                <ul>
+                    <li>2 Ncondo Place, Ridgeside Dr</li>
+                    <li>Umhlanga Ridge, Durban</li>
+                    <li>4319</li>
+                    <li style="margin-top:8px;"><a href="tel:+27833259532">+27 83 325 9532</a></li>
+                </ul>
+            </div>
+
+            <div>
+                <h5>Quick Links</h5>
+                <ul>
+                    <li><a href="page8.html">About Us</a></li>
+                    <li><a href="page30.html">Our Work</a></li>
+                    <li><a href="page52.html">Clients</a></li>
+                    <li><a href="page5.html">Contact</a></li>
+                    <li><a href="mailto:info@obriangroup.com">info@obriangroup.com</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-bottom">
+                <span>&copy; 2026 O'Brian Group. All rights reserved.</span>
+                <span>
+                    <a href="#">Privacy Policy</a> &middot;
+                    <a href="#">Terms of Service</a>
+                </span>
+            </div>
+        </div>
+    </footer>
+
+    <!-- ===== LIGHTBOX ===== -->
+    <div class="lightbox" id="lightbox">
+        <button class="close-btn" id="lightboxClose"><i class="fas fa-times"></i></button>
+        <button class="lightbox-nav prev" id="lightboxPrev"><i class="fas fa-chevron-left"></i></button>
+        <button class="lightbox-nav next" id="lightboxNext"><i class="fas fa-chevron-right"></i></button>
+        <div class="lightbox-content" id="lightboxContent">
+            <img src="" alt="Full size" />
+        </div>
+        <div class="counter" id="lightboxCounter">1 / 1</div>
+    </div>
+
+    <script>
+        (function() {
+            'use strict';
+
+            // ---- IMAGE LIST ----
+            const imageList = [
+                'assets/images/obrian-work3.jpg',
+                'assets/images/dsc-1017.jpg',
+                'assets/images/dsc-1082-r.jpg',
+                'assets/images/dsc-1056.jpg',
+                'assets/images/dsc-1120.jpg',
+                'assets/images/dsc-1215.jpg',
+                'assets/images/dsc-1148.jpg',
+                'assets/images/dsc-1249.jpg',
+                'assets/images/dsc-1224.jpg',
+                'assets/images/dsc-1124.jpg',
+                'assets/images/dsc-1230.jpg',
+                'assets/images/dsc-1089.jpg',
+                'assets/images/dsc-1171.jpg',
+                'assets/images/dsc-1107.jpg',
+                'assets/images/dsc-1158.jpg',
+                'assets/images/dsc-1031.jpg',
+                'assets/images/dsc-1040.jpg',
+                'assets/images/dsc-1028.jpg',
+                'assets/images/dsc-1019.jpg'
+            ];
+
+            // ---- RENDER GALLERY ----
+            const grid = document.getElementById('galleryGrid');
+            imageList.forEach((src, index) => {
+                const item = document.createElement('div');
+                item.className = 'gallery-item';
+                item.dataset.index = index;
+                item.innerHTML = `
+                    <img src="${src}" alt="Sefa gallery image ${index + 1}" loading="lazy" />
+                    <div class="overlay"><i class="fas fa-expand"></i></div>
+                `;
+                item.addEventListener('click', () => openLightbox(index));
+                grid.appendChild(item);
+            });
+
+            // ---- LIGHTBOX STATE ----
+            let currentIndex = 0;
+            const lightbox = document.getElementById('lightbox');
+            const lightboxImg = document.querySelector('#lightboxContent img');
+            const counter = document.getElementById('lightboxCounter');
+
+            function openLightbox(index) {
+                currentIndex = index;
+                updateLightbox();
+                lightbox.classList.add('open');
+                document.body.style.overflow = 'hidden';
+            }
+
+            function closeLightbox() {
+                lightbox.classList.remove('open');
+                document.body.style.overflow = '';
+            }
+
+            function updateLightbox() {
+                lightboxImg.src = imageList[currentIndex];
+                lightboxImg.alt = `Sefa image ${currentIndex + 1}`;
+                counter.textContent = `${currentIndex + 1} / ${imageList.length}`;
+            }
+
+            function prevImage() {
+                currentIndex = (currentIndex - 1 + imageList.length) % imageList.length;
+                updateLightbox();
+            }
+
+            function nextImage() {
+                currentIndex = (currentIndex + 1) % imageList.length;
+                updateLightbox();
+            }
+
+            // ---- LIGHTBOX EVENTS ----
+            document.getElementById('lightboxClose').addEventListener('click', closeLightbox);
+            document.getElementById('lightboxPrev').addEventListener('click', prevImage);
+            document.getElementById('lightboxNext').addEventListener('click', nextImage);
+
+            lightbox.addEventListener('click', (e) => {
+                if (e.target === lightbox) closeLightbox();
+            });
+
+            document.addEventListener('keydown', (e) => {
+                if (!lightbox.classList.contains('open')) return;
+                if (e.key === 'Escape') closeLightbox();
+                if (e.key === 'ArrowLeft') prevImage();
+                if (e.key === 'ArrowRight') nextImage();
+            });
+
+            // ---- NEW HEADER MOBILE TOGGLE ----
+            const menuBtn = document.getElementById('menuBtn');
+            const mobileMenu = document.getElementById('mobileMenuPanel');
+
+            if (menuBtn && mobileMenu) {
+                menuBtn.addEventListener('click', () => {
+                    menuBtn.classList.toggle('open');
+                    mobileMenu.classList.toggle('open');
+                    document.body.style.overflow = mobileMenu.classList.contains('open') ? 'hidden' : '';
+                });
+
+                mobileMenu.querySelectorAll('a').forEach(link => {
+                    link.addEventListener('click', () => {
+                        menuBtn.classList.remove('open');
+                        mobileMenu.classList.remove('open');
+                        document.body.style.overflow = '';
+                    });
+                });
+            }
+
+            // ---- HEADER SCROLL EFFECT ----
+            const header = document.getElementById('mainHeader');
+            window.addEventListener('scroll', () => {
+                if (window.scrollY > 20) {
+                    header.classList.add('scrolled');
+                } else {
+                    header.classList.remove('scrolled');
+                }
+            });
+
+        })();
+    </script>
+</body>
+</html>

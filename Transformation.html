@@ -1,0 +1,726 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Transformation in the Ad Industry, 25 Years On | O'Brian Group</title>
+    <meta name="description" content="Transformation in the Ad Industry, 25 Years On — by @ObrianSA (Mxolisi Tyawa)." />
+
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com">
+    </script>
+    <script src="https://unpkg.com/lucide@latest">
+    </script>
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800;900&family=Open+Sans:wght@300;400;600&display=swap" rel="stylesheet" />
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        'sans': ['Montserrat', 'sans-serif'],
+                        'body': ['Open Sans', 'sans-serif'],
+                    },
+                    colors: {
+                        'obrian': {
+                            pink: '#e6007e',
+                            dark: '#231e1f',
+                            black: '#000000',
+                            white: '#ffffff',
+                            gray: '#f5f5f5'
+                        }
+                    },
+                    animation: {
+                        'float': 'float 6s ease-in-out infinite',
+                        'slide-up': 'slideUp 0.8s ease-out forwards',
+                    },
+                    keyframes: {
+                        float: {
+                            '0%, 100%': { transform: 'translateY(0)' },
+                            '50%': { transform: 'translateY(-20px)' },
+                        },
+                        slideUp: {
+                            '0%': { opacity: '0', transform: 'translateY(40px)' },
+                            '100%': { opacity: '1', transform: 'translateY(0)' },
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        /* ===== RESET & BASE ===== */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Montserrat', sans-serif;
+            background: #f8fafc;
+            color: #231e1f;
+            line-height: 1.6;
+            overflow-x: hidden;
+            padding-top: 80px;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        .font-body {
+            font-family: 'Open Sans', sans-serif;
+        }
+
+        .text-pink {
+            color: #e6007e;
+        }
+        .bg-pink {
+            background-color: #e6007e;
+        }
+        .border-pink {
+            border-color: #e6007e;
+        }
+
+        .gradient-text {
+            background: linear-gradient(135deg, #e6007e 0%, #ff1493 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        img {
+            max-width: 100%;
+            display: block;
+        }
+
+        .container {
+            max-width: 1280px;
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+
+        /* ===== SCROLLBAR ===== */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #e2e8f0;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #e6007e;
+            border-radius: 4px;
+        }
+
+        /* ===== HEADER ===== */
+        .header-glass {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            z-index: 50;
+            background: rgba(255, 255, 255, 0.85);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            transition: box-shadow 0.3s, background 0.3s;
+            border-bottom: 1px solid rgba(0, 0, 0, 0.04);
+        }
+        .header-glass.scrolled {
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+            background: rgba(255, 255, 255, 0.98);
+        }
+
+        .nav-link-new {
+            padding: 0.5rem 1rem;
+            font-size: 0.875rem;
+            font-weight: 600;
+            color: #374151;
+            border-radius: 0.5rem;
+            transition: all 0.3s ease;
+            display: inline-block;
+            cursor: pointer;
+        }
+        .nav-link-new:hover {
+            color: #e6007e;
+            background-color: #fdf2f8;
+        }
+
+        .dropdown-menu-custom {
+            position: absolute;
+            top: 100%;
+            left: 0;
+            margin-top: 0.5rem;
+            width: 200px;
+            background: white;
+            border-radius: 0.75rem;
+            box-shadow: 0 20px 40px -8px rgba(0, 0, 0, 0.15);
+            border: 1px solid #f3f4f6;
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(-8px) scale(0.96);
+            transition: all 0.25s ease;
+            transform-origin: top left;
+            z-index: 60;
+        }
+        .group:hover .dropdown-menu-custom {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0) scale(1);
+        }
+        .dropdown-menu-custom a {
+            display: block;
+            padding: 0.75rem 1.25rem;
+            font-size: 0.875rem;
+            color: #374151;
+            transition: background 0.2s, color 0.2s;
+        }
+        .dropdown-menu-custom a:hover {
+            background: #fdf2f8;
+            color: #e6007e;
+        }
+        .dropdown-menu-custom a:first-child {
+            border-radius: 0.75rem 0.75rem 0 0;
+        }
+        .dropdown-menu-custom a:last-child {
+            border-radius: 0 0 0.75rem 0.75rem;
+        }
+
+        .btn-primary-pink {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.75rem 1.75rem;
+            background: linear-gradient(135deg, #e6007e, #ff1493);
+            color: white;
+            font-weight: 700;
+            font-size: 0.875rem;
+            border-radius: 9999px;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 14px rgba(230, 0, 126, 0.3);
+        }
+        .btn-primary-pink:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(230, 0, 126, 0.4);
+            color: white;
+        }
+
+        /* ===== MOBILE MENU ===== */
+        .mobile-menu-panel {
+            position: fixed;
+            inset: 0;
+            background: white;
+            z-index: 60;
+            transform: translateX(100%);
+            transition: transform 0.4s cubic-bezier(0.22, 1, 0.36, 1);
+            display: flex;
+            flex-direction: column;
+            height: 100%;
+            overflow-y: auto;
+        }
+        .mobile-menu-panel.open {
+            transform: translateX(0);
+        }
+        .mobile-menu-panel a {
+            display: block;
+            padding: 0.75rem 1rem;
+            font-size: 1rem;
+            font-weight: 600;
+            color: #231e1f;
+            border-radius: 0.5rem;
+            transition: all 0.2s;
+        }
+        .mobile-menu-panel a:hover {
+            background: rgba(230, 0, 126, 0.06);
+            color: #e6007e;
+            padding-left: 1.2rem;
+        }
+        .mobile-menu-panel .mobile-dropdown-title {
+            font-weight: 700;
+            padding: 0.75rem 1rem;
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            color: #6b7280;
+        }
+        .mobile-menu-panel .mobile-dropdown-items {
+            padding-left: 1rem;
+        }
+        .mobile-menu-panel .mobile-dropdown-items a {
+            font-weight: 400;
+            font-size: 0.95rem;
+        }
+
+        /* ===== BLOG POST HERO ===== */
+        .post-hero {
+            padding: 60px 0 40px;
+            background: #ffffff;
+            position: relative;
+            overflow: hidden;
+        }
+        .post-hero .back-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            font-size: 0.9rem;
+            font-weight: 600;
+            color: #6b7280;
+            transition: color 0.2s ease;
+            margin-bottom: 20px;
+        }
+        .post-hero .back-link:hover {
+            color: #e6007e;
+        }
+        .post-hero h1 {
+            font-size: clamp(2.5rem, 4.5vw, 3.8rem);
+            font-weight: 800;
+            color: #231e1f;
+            line-height: 1.15;
+            margin-bottom: 12px;
+        }
+        .post-hero h1 .highlight {
+            background: linear-gradient(135deg, #e6007e, #ff1493);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        .post-hero .subtitle {
+            font-size: 1.1rem;
+            color: #4a4a4a;
+            font-weight: 400;
+            max-width: 700px;
+        }
+        .post-hero .meta {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 16px 24px;
+            margin-top: 16px;
+            font-size: 0.9rem;
+            color: #6b7280;
+        }
+        .post-hero .meta span {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+        .post-hero .meta i {
+            color: #e6007e;
+        }
+
+        /* ===== BLOG CONTENT ===== */
+        .post-content {
+            padding: 40px 0 80px;
+            background: #ffffff;
+        }
+        .post-content .content-wrapper {
+            max-width: 820px;
+            margin: 0 auto;
+        }
+        .post-content h2 {
+            font-size: 2rem;
+            font-weight: 700;
+            color: #231e1f;
+            margin-top: 40px;
+            margin-bottom: 16px;
+        }
+        .post-content h3 {
+            font-size: 1.5rem;
+            font-weight: 600;
+            color: #e6007e;
+            margin-top: 36px;
+            margin-bottom: 12px;
+        }
+        .post-content h4 {
+            font-size: 1.2rem;
+            font-weight: 600;
+            color: #231e1f;
+            margin-top: 28px;
+            margin-bottom: 8px;
+        }
+        .post-content p {
+            font-size: 1.05rem;
+            color: #231e1f;
+            margin-bottom: 20px;
+            line-height: 1.8;
+        }
+        .post-content strong {
+            color: #231e1f;
+        }
+        .post-content .quote-block {
+            background: #f8fafc;
+            padding: 32px 40px;
+            border-radius: 12px;
+            margin: 32px 0;
+            border-left: 6px solid #e6007e;
+            position: relative;
+        }
+        .post-content .quote-block p {
+            font-size: 1.2rem;
+            font-weight: 500;
+            color: #231e1f;
+            margin: 0;
+        }
+        .post-content .date-badge {
+            display: inline-block;
+            background: #fdf2f8;
+            color: #e6007e;
+            padding: 4px 16px;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            margin-bottom: 8px;
+        }
+
+        /* ===== HERO IMAGE ===== */
+        .hero-image-wrapper {
+            margin: 0 auto 40px;
+            max-width: 820px;
+        }
+        .hero-image-wrapper img {
+            width: 100%;
+            border-radius: 16px;
+            box-shadow: 0 12px 40px rgba(0, 0, 0, 0.08);
+        }
+
+        /* ===== RESPONSIVE ===== */
+        @media (max-width: 768px) {
+            body { padding-top: 64px; }
+            .header-glass { height: 64px; padding: 0 1rem; }
+            .post-hero { padding: 40px 0 24px; }
+            .post-hero h1 { font-size: 2.2rem; }
+            .post-content h2 { font-size: 1.6rem; }
+            .post-content h3 { font-size: 1.3rem; }
+            .post-content .quote-block { padding: 24px; }
+            .post-content .quote-block p { font-size: 1rem; }
+        }
+        @media (max-width: 480px) {
+            .post-hero h1 { font-size: 1.8rem; }
+            .hero-image-wrapper img { border-radius: 8px; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- ===== HEADER ===== -->
+    <header class="header-glass" id="mainHeader">
+        <div class="max-w-7xl mx-auto px-4 md:px-6">
+            <div class="flex justify-between items-center h-20">
+
+                <!-- Logo -->
+                <a href="index.html" class="flex items-center gap-3 group">
+                    <img src="assets/images/obrian-transparent-logo-4461219.webp" alt="O'Brian Group" class="h-10 w-auto" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22%3E%3Crect width=%22100%22 height=%22100%22 fill=%22%23e6007e%22/%3E%3Ctext x=%2250%22 y=%2268%22 font-size=%2248%22 text-anchor=%22middle%22 fill=%22white%22 font-weight=%22bold%22 font-family=%22Inter%22%3EO%3C/text%3E%3C/svg%3E'">
+                    <span class="font-black text-xl text-[#231e1f] tracking-tight hidden sm:inline"><span class="text-[#e6007e]"></span></span>
+                </a>
+
+                <!-- Desktop Nav -->
+                <div class="hidden lg:flex items-center gap-0.5">
+                    <a href="index.html" class="nav-link-new">Home</a>
+                    <a href="page8.html" class="nav-link-new">About</a>
+                    <a href="page30.html" class="nav-link-new">Our Work</a>
+                    <a href="page52.html" class="nav-link-new">Client Experience</a>
+
+                    <div class="relative group">
+                        <button class="nav-link-new flex items-center gap-1">
+                            Case Studies
+                            <svg class="w-3 h-3 transition-transform duration-300 group-hover:rotate-180" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M19 9l-7 7-7-7"></path></svg>
+                        </button>
+                        <div class="dropdown-menu-custom">
+                            <a href="page27.html">Advertising</a>
+                            <a href="page45.html">Digital</a>
+                            <a href="page43.html">Consulting</a>
+                        </div>
+                    </div>
+
+                    <div class="relative group">
+                        <button class="nav-link-new flex items-center gap-1">
+                            Expertise
+                            <svg class="w-3 h-3 transition-transform duration-300 group-hover:rotate-180" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M19 9l-7 7-7-7"></path></svg>
+                        </button>
+                        <div class="dropdown-menu-custom">
+                            <a href="page9.html">Advertising</a>
+                            <a href="page1.html">Digital</a>
+                            <a href="page18.html">Consulting</a>
+                        </div>
+                    </div>
+
+                    <a href="page15.html" class="nav-link-new">Blog</a>
+                    <a href="page60.html" class="nav-link-new">Staff News</a>
+                    <a href="page70.html" class="nav-link-new">Archives</a>
+                </div>
+
+                <!-- CTA -->
+                <div class="hidden lg:block">
+                    <a href="page5.html" class="btn-primary-pink">
+                        <span>Contact</span>
+                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M17 8l4 4m0 0l-4 4m4-4H3"></path></svg>
+                    </a>
+                </div>
+
+                <!-- Burger -->
+                <button class="lg:hidden p-2 rounded-lg hover:bg-gray-100 transition-colors" id="menuBtn" aria-label="Toggle menu">
+                    <div class="w-6 h-6 flex flex-col justify-center items-center gap-1.5">
+                        <span class="w-6 h-0.5 bg-gray-700 transition-all duration-300 menu-line-1"></span>
+                        <span class="w-6 h-0.5 bg-gray-700 transition-all duration-300 menu-line-2"></span>
+                        <span class="w-4 h-0.5 bg-gray-700 transition-all duration-300 menu-line-3 ml-auto"></span>
+                    </div>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- ===== MOBILE MENU ===== -->
+    <div class="mobile-menu-panel lg:hidden" id="mobileMenu">
+        <div class="flex flex-col h-full">
+            <!-- Mobile Header -->
+            <div class="flex justify-between items-center p-6 border-b border-gray-100">
+                <a href="index.html" class="flex items-center gap-3">
+                    <img src="assets/images/obrian-transparent-logo-4461219.webp" alt="O'Brian Group" class="logo-img" style="height: 40px;" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22%3E%3Crect width=%22100%22 height=%22100%22 fill=%22%23e6007e%22/%3E%3Ctext x=%2250%22 y=%2268%22 font-size=%2248%22 text-anchor=%22middle%22 fill=%22white%22 font-weight=%22bold%22 font-family=%22Arial%22%3EO%3C/text%3E%3C/svg%3E'">
+                    <span class="font-black text-xl text-gray-900">O'BRIAN</span>
+                </a>
+                <button class="p-2 rounded-lg hover:bg-gray-100 transition-colors" id="closeMenu" aria-label="Close menu">
+                    <svg class="w-6 h-6 text-gray-700" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+                    </svg>
+                </button>
+            </div>
+
+            <!-- Mobile Navigation Links -->
+            <div class="flex-1 overflow-y-auto py-6 px-6">
+                <div class="space-y-1">
+                    <a href="index.html" class="block px-4 py-3 text-lg font-semibold text-gray-800 hover:text-[#e6007e] hover:bg-pink-50 rounded-xl transition-all">Home</a>
+                    <a href="page8.html" class="block px-4 py-3 text-lg font-semibold text-gray-800 hover:text-[#e6007e] hover:bg-pink-50 rounded-xl transition-all">About</a>
+                    <a href="page30.html" class="block px-4 py-3 text-lg font-semibold text-gray-800 hover:text-[#e6007e] hover:bg-pink-50 rounded-xl transition-all">Our Work</a>
+                    <a href="page52.html" class="block px-4 py-3 text-lg font-semibold text-gray-800 hover:text-[#e6007e] hover:bg-pink-50 rounded-xl transition-all">Client Experience</a>
+
+                    <!-- Mobile Case Studies Accordion -->
+                    <div class="mobile-accordion">
+                        <button class="w-full flex justify-between items-center px-4 py-3 text-lg font-semibold text-gray-800 hover:text-[#e6007e] hover:bg-pink-50 rounded-xl transition-all" onclick="toggleAccordion('case-studies')">
+                            Case Studies
+                            <svg class="w-5 h-5 transition-transform duration-300" id="case-studies-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+                            </svg>
+                        </button>
+                        <div id="case-studies" class="hidden pl-4 space-y-1 mt-1">
+                            <a href="page27.html" class="block px-4 py-2 text-sm text-gray-600 hover:text-[#e6007e] transition-colors">Advertising</a>
+                            <a href="page45.html" class="block px-4 py-2 text-sm text-gray-600 hover:text-[#e6007e] transition-colors">Digital</a>
+                            <a href="page43.html" class="block px-4 py-2 text-sm text-gray-600 hover:text-[#e6007e] transition-colors">Consulting</a>
+                        </div>
+                    </div>
+
+                    <!-- Mobile Expertise Accordion -->
+                    <div class="mobile-accordion">
+                        <button class="w-full flex justify-between items-center px-4 py-3 text-lg font-semibold text-gray-800 hover:text-[#e6007e] hover:bg-pink-50 rounded-xl transition-all" onclick="toggleAccordion('expertise')">
+                            Our Expertise
+                            <svg class="w-5 h-5 transition-transform duration-300" id="expertise-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+                            </svg>
+                        </button>
+                        <div id="expertise" class="hidden pl-4 space-y-1 mt-1">
+                            <a href="page9.html" class="block px-4 py-2 text-sm text-gray-600 hover:text-[#e6007e] transition-colors">Advertising</a>
+                            <a href="page1.html" class="block px-4 py-2 text-sm text-gray-600 hover:text-[#e6007e] transition-colors">Digital</a>
+                            <a href="page18.html" class="block px-4 py-2 text-sm text-gray-600 hover:text-[#e6007e] transition-colors">Consulting</a>
+                        </div>
+                    </div>
+
+                    <a href="page15.html" class="block px-4 py-3 text-lg font-semibold text-gray-800 hover:text-[#e6007e] hover:bg-pink-50 rounded-xl transition-all">Blog</a>
+                    <a href="page60.html" class="block px-4 py-3 text-lg font-semibold text-gray-800 hover:text-[#e6007e] hover:bg-pink-50 rounded-xl transition-all">Staff News</a>
+                    <a href="page70.html" class="block px-4 py-3 text-lg font-semibold text-gray-800 hover:text-[#e6007e] hover:bg-pink-50 rounded-xl transition-all">Archives</a>
+                </div>
+            </div>
+
+            <!-- Mobile CTA -->
+            <div class="p-6 border-t border-gray-100">
+                <a href="page5.html" class="flex items-center justify-center gap-2 w-full px-6 py-4 bg-gradient-to-r from-[#e6007e] to-[#ff1493] text-white font-bold rounded-xl hover:shadow-lg transition-all">
+                    Contact Us
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"></path>
+                    </svg>
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <!-- ===== BLOG POST HERO ===== -->
+    <section class="post-hero">
+        <div class="container">
+            <a href="Exploring_Boundless_Horizons.html" class="back-link">
+                <i class="fas fa-arrow-left"></i> Back to Blog
+            </a>
+            <div class="flex flex-col md:flex-row md:items-start md:justify-between gap-6">
+                <div>
+                    <div class="date-badge">Blog Post</div>
+                    <h1>
+                        Transformation in the<br>
+                        <span class="highlight">Ad Industry, 25 Years On</span>
+                    </h1>
+                    <p class="subtitle">It's incredible how time flies in the fast-paced world of advertising. The industry has undergone a remarkable transformation over the past 25 years.</p>
+                    <div class="meta">
+                        <span><i class="fas fa-user"></i> @ObrianSA — Mxolisi Tyawa</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== HERO IMAGE ===== -->
+    <div class="hero-image-wrapper container">
+        <img src="assets/images/advertising-clients-2.png" alt="Transformation in the Ad Industry" />
+    </div>
+
+    <!-- ===== BLOG CONTENT ===== -->
+    <section class="post-content">
+        <div class="container">
+            <div class="content-wrapper">
+
+                <p>It's incredible how time flies in the fast-paced world of advertising. The industry has undergone a remarkable transformation over the past 25 years, and we're here to take a deep dive into the evolution that has reshaped the way we connect, engage, and influence.</p>
+
+                <p>From the early days of traditional media dominance to the digital revolution that has redefined the rules of engagement, the advertising landscape has shifted dramatically. The article at The O'Brian Group paints a vivid picture of this journey, highlighting key milestones and insights that have paved the way for today's dynamic ecosystem.</p>
+
+                <h2>The Era of Traditional Advertising</h2>
+                <p>Remember the days when TV commercials and print ads ruled the advertising world? It was an era of mass appeal, where brands relied on broad messaging to reach audiences. But as technology advanced, so did consumer behaviors.</p>
+
+                <h2>Enter the Digital Age</h2>
+                <p>With the advent of the internet, a new chapter began. The article reflects on how digital platforms transformed the way brands engage with consumers. From the rise of banner ads to the birth of social media, advertisers had to adapt to a more personalized and interactive approach.</p>
+
+                <h2>Mobile Revolution</h2>
+                <p>The proliferation of smartphones brought advertising directly into the palms of consumers' hands. The O'Brian Group's article delves into how mobile devices reshaped strategies, necessitating mobile-friendly content and location-based targeting.</p>
+
+                <div class="quote-block">
+                    <p>Artificial Intelligence emerged as a game-changer, allowing advertisers to analyze vast amounts of data to tailor campaigns with precision.</p>
+                </div>
+
+                <h2>Rise of AI and Data</h2>
+                <p>Artificial Intelligence emerged as a game-changer, allowing advertisers to analyze vast amounts of data to tailor campaigns with precision. This article explores the impact of AI-driven insights on optimizing ROI and enhancing the overall customer experience.</p>
+
+                <h2>Targeted Advertising and Privacy</h2>
+                <p>As data collection capabilities grew, so did concerns about privacy. The post contemplates how the industry grappled with balancing the benefits of targeted advertising with safeguarding user privacy, leading to new regulations and transparency measures.</p>
+
+                <h2>Content is King</h2>
+                <p>Content marketing emerged as a powerful strategy, emphasizing value-driven engagement over blatant promotion. The article offers insights into how brands shifted from pushy ads to creating meaningful narratives that resonate with audiences.</p>
+
+                <h2>Inclusivity and Diversity</h2>
+                <p>The past 25 years have witnessed a call for inclusivity and diversity in advertising. The O'Brian Group's blog post reflects on the industry's journey towards representing a broader range of voices, perspectives, and backgrounds in campaigns.</p>
+
+                <h2>What Lies Ahead</h2>
+                <p>As we stand at the crossroads of another quarter-century, the article ponders the future of advertising. Will virtual reality, augmented reality, or even more advanced technologies take the reins? Only time will tell, but the industry's adaptability remains its greatest asset.</p>
+
+                <p>Dive into the full article here to explore the rich tapestry of changes that have shaped the advertising landscape over the past 25 years. It's a journey that showcases the industry's resilience, innovation, and enduring impact on our connected world.</p>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== FOOTER ===== -->
+    <footer class="footer bg-[#231e1f] text-[#cbd5e1] py-16 px-4 md:px-6">
+        <div class="max-w-7xl mx-auto grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-10">
+            <div>
+                <h5 class="text-[#e6007e] font-bold text-sm mb-4">Johannesburg</h5>
+                <ul class="space-y-2 text-sm text-[#94a3b8]">
+                    <li>2nd Floor Trumpet On Keyes,<br />21 Keyes Avenue, Rosebank,<br />Johannesburg, 2196</li>
+                    <li class="mt-2">Phone: +27 10 035 5218</li>
+                </ul>
+            </div>
+            <div>
+                <h5 class="text-[#e6007e] font-bold text-sm mb-4">Durban Office</h5>
+                <ul class="space-y-2 text-sm text-[#94a3b8]">
+                    <li>2 Ncondo Place, Ridgeside Dr,<br />Umhlanga Ridge, Durban, 4319</li>
+                    <li class="mt-2">Phone: +27 83 325 9532</li>
+                </ul>
+            </div>
+            <div>
+                <h5 class="text-[#e6007e] font-bold text-sm mb-4">Email</h5>
+                <ul class="space-y-2 text-sm text-[#94a3b8]">
+                    <li><a href="mailto:info@obriangroup.com" class="hover:text-[#e6007e] transition-colors">info@obriangroup.com</a></li>
+                </ul>
+            </div>
+            <div>
+                <h5 class="text-[#e6007e] font-bold text-sm mb-4">About</h5>
+                <ul class="space-y-2 text-sm text-[#94a3b8]">
+                    <li><a href="page8.html" class="hover:text-[#e6007e] transition-colors">History</a></li>
+                    <li><a href="page52.html" class="hover:text-[#e6007e] transition-colors">Clients</a></li>
+                    <li>Teams</li>
+                    <li>Brand</li>
+                    <li>Terms</li>
+                </ul>
+            </div>
+            <div>
+                <h5 class="text-[#e6007e] font-bold text-sm mb-4">Follow Us</h5>
+                <div class="flex gap-4">
+                    <a href="https://www.facebook.com/profile.php?id=100094029616085" class="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center hover:bg-[#e6007e] transition-colors text-[#cbd5e1] hover:text-white"><i class="fab fa-facebook-f"></i></a>
+                    <a href="https://x.com/ObrianSA" class="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center hover:bg-[#e6007e] transition-colors text-[#cbd5e1] hover:text-white"><i class="fab fa-twitter"></i></a>
+                    <a href="https://www.instagram.com/obriandigital/" class="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center hover:bg-[#e6007e] transition-colors text-[#cbd5e1] hover:text-white"><i class="fab fa-instagram"></i></a>
+                    <a href="https://za.linkedin.com/company/o-brian-digital" class="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center hover:bg-[#e6007e] transition-colors text-[#cbd5e1] hover:text-white"><i class="fab fa-linkedin-in"></i></a>
+                </div>
+            </div>
+            <div class="col-span-1 sm:col-span-2 lg:col-span-5 text-center text-sm text-[#64748b] border-t border-white/10 pt-8 mt-4">
+                &copy; 2026 O'Brian Group — All Rights Reserved.
+            </div>
+        </div>
+    </footer>
+
+    <!-- ===== SCRIPTS ===== -->
+    <script>
+        (function() {
+            // Header scroll effect
+            const header = document.getElementById('mainHeader');
+            window.addEventListener('scroll', function() {
+                if (window.scrollY > 20) {
+                    header.classList.add('scrolled');
+                } else {
+                    header.classList.remove('scrolled');
+                }
+            });
+
+            // Mobile menu toggle
+            const menuBtn = document.getElementById('menuBtn');
+            const mobileMenu = document.getElementById('mobileMenu');
+            const closeBtn = document.getElementById('closeMenu');
+
+            function openMenu() {
+                mobileMenu.classList.add('open');
+                document.body.style.overflow = 'hidden';
+            }
+
+            function closeMenu() {
+                mobileMenu.classList.remove('open');
+                document.body.style.overflow = '';
+            }
+
+            if (menuBtn) menuBtn.addEventListener('click', openMenu);
+            if (closeBtn) closeBtn.addEventListener('click', closeMenu);
+
+            mobileMenu.querySelectorAll('a').forEach(link => {
+                link.addEventListener('click', closeMenu);
+            });
+
+            window.addEventListener('resize', function() {
+                if (window.innerWidth >= 1024) closeMenu();
+            });
+
+            window.toggleAccordion = function(id) {
+                const panel = document.getElementById(id);
+                if (!panel) return;
+                const icon = document.getElementById(id + '-icon');
+                if (panel.classList.contains('hidden')) {
+                    panel.classList.remove('hidden');
+                    if (icon) icon.style.transform = 'rotate(180deg)';
+                } else {
+                    panel.classList.add('hidden');
+                    if (icon) icon.style.transform = 'rotate(0deg)';
+                }
+            };
+        })();
+    </script>
+
+</body>
+</html>

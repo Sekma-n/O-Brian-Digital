@@ -1,0 +1,1414 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Sourceworx Vehicle Branding · Case Study</title>
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,600;14..32,700;14..32,800&display=swap" rel="stylesheet" />
+
+    <!-- Font Awesome 6 (free) -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
+
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <style>
+        /* ----- RESET & BASE ----- */
+        *,
+        *::before,
+        *::after {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary-dark: #231e1f;
+            --accent-pink: #ed008e;
+            --accent-hover: #c70073;
+            --gray-50: #f8fafc;
+            --gray-100: #f1f5f9;
+            --gray-200: #e2e8f0;
+            --gray-300: #cbd5e1;
+            --gray-600: #475569;
+            --gray-700: #334155;
+            --gray-800: #1e293b;
+            --gray-900: #0f172a;
+            --white: #ffffff;
+            --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.06);
+            --shadow-md: 0 8px 30px rgba(0, 0, 0, 0.08);
+            --shadow-lg: 0 20px 60px rgba(0, 0, 0, 0.12);
+            --radius: 16px;
+            --radius-sm: 8px;
+            --transition: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            background: var(--gray-50);
+            color: var(--gray-800);
+            line-height: 1.6;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        img {
+            max-width: 100%;
+            display: block;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+
+        /* ----- BUTTONS ----- */
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            padding: 12px 28px;
+            font-weight: 600;
+            font-size: 0.95rem;
+            border-radius: 50px;
+            border: none;
+            cursor: pointer;
+            transition: var(--transition);
+            font-family: inherit;
+            text-decoration: none;
+        }
+
+        .btn-primary {
+            background: var(--accent-pink);
+            color: var(--white);
+        }
+        .btn-primary:hover {
+            background: var(--accent-hover);
+            transform: translateY(-2px);
+            box-shadow: 0 8px 24px rgba(237, 0, 142, 0.35);
+        }
+
+        .btn-outline {
+            background: transparent;
+            color: var(--primary-dark);
+            border: 2px solid var(--primary-dark);
+        }
+        .btn-outline:hover {
+            background: var(--primary-dark);
+            color: var(--white);
+            transform: translateY(-2px);
+        }
+
+        .btn-white-outline {
+            background: transparent;
+            color: var(--white);
+            border: 2px solid rgba(255, 255, 255, 0.5);
+        }
+        .btn-white-outline:hover {
+            background: var(--white);
+            color: var(--primary-dark);
+            border-color: var(--white);
+            transform: translateY(-2px);
+        }
+
+        /* Back button specific */
+        .btn-back-right {
+            color: rgba(255, 255, 255, 0.7);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            padding: 10px 20px;
+            border-radius: 50px;
+            font-size: 0.9rem;
+            font-weight: 500;
+            transition: var(--transition);
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(4px);
+            gap: 8px;
+        }
+        .btn-back-right:hover {
+            background: rgba(255, 255, 255, 0.15);
+            color: var(--white);
+            border-color: rgba(255, 255, 255, 0.4);
+            transform: translateX(-4px);
+        }
+        .btn-back-right i {
+            font-size: 0.9rem;
+        }
+
+        /* ===== NEW HEADER STYLES ===== */
+        .header-glass {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            z-index: 1000;
+            background: rgba(255, 255, 255, 0.85);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            transition: box-shadow 0.3s, background 0.3s;
+            border-bottom: 1px solid rgba(0, 0, 0, 0.04);
+        }
+        .header-glass.scrolled {
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+            background: rgba(255, 255, 255, 0.98);
+        }
+
+        .nav-link {
+            padding: 0.5rem 1rem;
+            font-size: 0.875rem;
+            font-weight: 600;
+            color: #374151;
+            border-radius: 0.5rem;
+            transition: all 0.3s ease;
+            display: inline-block;
+            cursor: pointer;
+        }
+        .nav-link:hover {
+            color: #e6007e;
+            background-color: #fdf2f8;
+        }
+
+        .dropdown-menu-custom {
+            position: absolute;
+            top: 100%;
+            left: 0;
+            margin-top: 0.5rem;
+            width: 200px;
+            background: white;
+            border-radius: 0.75rem;
+            box-shadow: 0 20px 40px -8px rgba(0, 0, 0, 0.15);
+            border: 1px solid #f3f4f6;
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(-8px) scale(0.96);
+            transition: all 0.25s ease;
+            transform-origin: top left;
+            z-index: 1001;
+        }
+        .group:hover .dropdown-menu-custom {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0) scale(1);
+        }
+        .dropdown-menu-custom a {
+            display: block;
+            padding: 0.75rem 1.25rem;
+            font-size: 0.875rem;
+            color: #374151;
+            transition: background 0.2s, color 0.2s;
+        }
+        .dropdown-menu-custom a:hover {
+            background: #fdf2f8;
+            color: #e6007e;
+        }
+        .dropdown-menu-custom a:first-child {
+            border-radius: 0.75rem 0.75rem 0 0;
+        }
+        .dropdown-menu-custom a:last-child {
+            border-radius: 0 0 0.75rem 0.75rem;
+        }
+
+        .btn-primary-pink {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.75rem 1.75rem;
+            background: linear-gradient(135deg, #e6007e, #ff1493);
+            color: white;
+            font-weight: 700;
+            font-size: 0.875rem;
+            border-radius: 9999px;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 14px rgba(230, 0, 126, 0.3);
+        }
+        .btn-primary-pink:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(230, 0, 126, 0.4);
+            color: white;
+        }
+
+        /* Mobile menu panel */
+        .mobile-menu-panel {
+            display: none;
+            position: fixed;
+            top: 80px;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(255, 255, 255, 0.98);
+            backdrop-filter: blur(12px);
+            padding: 1.5rem;
+            overflow-y: auto;
+            z-index: 999;
+            border-top: 1px solid rgba(0, 0, 0, 0.04);
+        }
+        .mobile-menu-panel.open {
+            display: block;
+        }
+        .mobile-menu-panel a {
+            display: block;
+            padding: 0.75rem 1rem;
+            font-size: 1rem;
+            font-weight: 500;
+            color: #1a1a2e;
+            border-radius: 0.5rem;
+            transition: background 0.2s;
+        }
+        .mobile-menu-panel a:hover {
+            background: rgba(237, 0, 142, 0.06);
+            color: #ed008e;
+        }
+        .mobile-menu-panel .mobile-dropdown-title {
+            font-weight: 700;
+            padding: 0.75rem 1rem;
+            color: #1a1a2e;
+            cursor: default;
+        }
+        .mobile-menu-panel .mobile-dropdown-items {
+            padding-left: 1rem;
+        }
+        .mobile-menu-panel .mobile-dropdown-items a {
+            font-weight: 400;
+            font-size: 0.95rem;
+        }
+
+        /* ----- HERO / HEADER ----- */
+        .hero {
+            padding: 140px 0 80px;
+            background: var(--primary-dark);
+            color: var(--white);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::after {
+            content: '';
+            position: absolute;
+            top: -40%;
+            right: -20%;
+            width: 600px;
+            height: 600px;
+            background: rgba(237, 0, 142, 0.12);
+            border-radius: 50%;
+            pointer-events: none;
+        }
+
+        .hero .container {
+            position: relative;
+            z-index: 2;
+        }
+
+        .hero-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+            align-items: center;
+        }
+
+        .hero-badge {
+            display: inline-block;
+            padding: 6px 18px;
+            background: rgba(237, 0, 142, 0.2);
+            border-radius: 50px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            letter-spacing: 0.5px;
+            text-transform: uppercase;
+            color: var(--accent-pink);
+            margin-bottom: 20px;
+        }
+
+        .hero h1 {
+            font-size: clamp(2.4rem, 5vw, 3.8rem);
+            font-weight: 800;
+            line-height: 1.1;
+            letter-spacing: -0.03em;
+            margin-bottom: 20px;
+        }
+
+        .hero h1 span {
+            color: var(--accent-pink);
+        }
+
+        .hero p {
+            font-size: 1.15rem;
+            color: rgba(255, 255, 255, 0.75);
+            max-width: 480px;
+            margin-bottom: 32px;
+        }
+
+        .hero .btn-group {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            gap: 14px;
+        }
+
+        .hero-stats {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+            margin-top: 48px;
+            padding-top: 40px;
+            border-top: 1px solid rgba(237, 0, 142, 0.3);
+        }
+
+        .hero-stats .stat-value {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: var(--white);
+        }
+
+        .hero-stats .stat-label {
+            font-size: 0.85rem;
+            color: rgba(255, 255, 255, 0.55);
+            font-weight: 400;
+        }
+
+        /* hero image placeholder */
+        .hero-visual {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .hero-visual .image-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 16px;
+            width: 100%;
+        }
+
+        .hero-visual .image-grid img {
+            border-radius: var(--radius);
+            box-shadow: var(--shadow-lg);
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            transition: var(--transition);
+            cursor: pointer;
+        }
+
+        .hero-visual .image-grid img:hover {
+            transform: scale(1.02);
+        }
+
+        .hero-visual .image-grid img:first-child {
+            grid-row: span 2;
+            height: 416px;
+        }
+
+        /* ----- SECTION: OVERVIEW ----- */
+        .section {
+            padding: 80px 0;
+        }
+
+        .section-label {
+            display: inline-block;
+            font-size: 0.75rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            color: var(--accent-pink);
+            margin-bottom: 12px;
+        }
+
+        .section-title {
+            font-size: clamp(2rem, 3.5vw, 2.8rem);
+            font-weight: 700;
+            letter-spacing: -0.02em;
+            line-height: 1.2;
+            margin-bottom: 16px;
+        }
+
+        .section-title .highlight {
+            color: var(--accent-pink);
+        }
+
+        .section-subtitle {
+            font-size: 1.1rem;
+            color: var(--gray-600);
+            max-width: 600px;
+        }
+
+        .overview-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+            align-items: start;
+            margin-top: 40px;
+        }
+
+        .overview-content p {
+            color: var(--gray-600);
+            font-size: 1.05rem;
+            margin-bottom: 20px;
+        }
+
+        .overview-content .feature-list {
+            list-style: none;
+            margin-top: 24px;
+        }
+
+        .overview-content .feature-list li {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+            padding: 10px 0;
+            border-bottom: 1px solid var(--gray-200);
+            font-weight: 500;
+        }
+
+        .overview-content .feature-list li:last-child {
+            border-bottom: none;
+        }
+
+        .overview-content .feature-list i {
+            color: var(--accent-pink);
+            font-size: 1.2rem;
+            width: 24px;
+        }
+
+        .overview-sidebar {
+            background: var(--white);
+            padding: 36px 32px;
+            border-radius: var(--radius);
+            box-shadow: var(--shadow-md);
+            border: 1px solid var(--gray-200);
+        }
+
+        .overview-sidebar h4 {
+            font-size: 1.1rem;
+            font-weight: 700;
+            margin-bottom: 20px;
+            color: var(--primary-dark);
+        }
+
+        .overview-sidebar h4 i {
+            color: var(--accent-pink);
+        }
+
+        .overview-sidebar .detail-item {
+            display: flex;
+            justify-content: space-between;
+            padding: 12px 0;
+            border-bottom: 1px solid var(--gray-100);
+            font-size: 0.95rem;
+        }
+
+        .overview-sidebar .detail-item:last-child {
+            border-bottom: none;
+        }
+
+        .overview-sidebar .detail-item .label {
+            color: var(--gray-600);
+            font-weight: 400;
+        }
+
+        .overview-sidebar .detail-item .value {
+            font-weight: 600;
+            color: var(--gray-800);
+        }
+
+        /* ----- GALLERY ----- */
+        .gallery-section {
+            background: var(--white);
+        }
+
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+            margin-top: 40px;
+        }
+
+        .gallery-grid .gallery-item {
+            border-radius: var(--radius);
+            overflow: hidden;
+            box-shadow: var(--shadow-sm);
+            transition: var(--transition);
+            cursor: pointer;
+            position: relative;
+            aspect-ratio: 4 / 3;
+        }
+
+        .gallery-grid .gallery-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: var(--transition);
+        }
+
+        .gallery-grid .gallery-item:hover img {
+            transform: scale(1.04);
+        }
+
+        .gallery-grid .gallery-item .overlay {
+            position: absolute;
+            inset: 0;
+            background: rgba(35, 30, 31, 0.6);
+            backdrop-filter: blur(2px);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            transition: var(--transition);
+        }
+
+        .gallery-grid .gallery-item:hover .overlay {
+            opacity: 1;
+        }
+
+        .gallery-grid .gallery-item .overlay i {
+            color: var(--white);
+            font-size: 2.4rem;
+            background: rgba(237, 0, 142, 0.3);
+            padding: 16px;
+            border-radius: 50%;
+            backdrop-filter: blur(4px);
+            border: 2px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .gallery-grid .gallery-item:first-child {
+            grid-row: span 2;
+            aspect-ratio: auto;
+        }
+
+        /* ----- LIGHTBOX (ZOOM) ----- */
+        .lightbox {
+            display: none;
+            position: fixed;
+            inset: 0;
+            z-index: 9999;
+            background: rgba(35, 30, 31, 0.92);
+            backdrop-filter: blur(8px);
+            -webkit-backdrop-filter: blur(8px);
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            padding: 24px;
+        }
+
+        .lightbox.active {
+            display: flex;
+        }
+
+        .lightbox-image {
+            max-width: 92vw;
+            max-height: 82vh;
+            object-fit: contain;
+            border-radius: var(--radius-sm);
+            box-shadow: var(--shadow-lg);
+            border: 2px solid rgba(255, 255, 255, 0.08);
+            animation: zoomIn 0.3s ease;
+        }
+
+        @keyframes zoomIn {
+            from {
+                transform: scale(0.92);
+                opacity: 0;
+            }
+            to {
+                transform: scale(1);
+                opacity: 1;
+            }
+        }
+
+        .lightbox-close {
+            position: absolute;
+            top: 24px;
+            right: 32px;
+            background: none;
+            border: none;
+            color: var(--white);
+            font-size: 2.8rem;
+            line-height: 1;
+            cursor: pointer;
+            transition: var(--transition);
+            opacity: 0.7;
+            font-weight: 300;
+        }
+        .lightbox-close:hover {
+            opacity: 1;
+            transform: rotate(90deg);
+            color: var(--accent-pink);
+        }
+
+        .lightbox-prev,
+        .lightbox-next {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background: rgba(255, 255, 255, 0.06);
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            color: var(--white);
+            font-size: 2rem;
+            padding: 16px 20px;
+            border-radius: 50%;
+            cursor: pointer;
+            transition: var(--transition);
+            backdrop-filter: blur(4px);
+            line-height: 1;
+        }
+
+        .lightbox-prev {
+            left: 24px;
+        }
+        .lightbox-next {
+            right: 24px;
+        }
+
+        .lightbox-prev:hover,
+        .lightbox-next:hover {
+            background: var(--accent-pink);
+            border-color: var(--accent-pink);
+            color: var(--white);
+            box-shadow: 0 0 30px rgba(237, 0, 142, 0.3);
+        }
+
+        .lightbox-counter {
+            position: absolute;
+            bottom: 32px;
+            left: 50%;
+            transform: translateX(-50%);
+            color: rgba(255, 255, 255, 0.5);
+            font-size: 0.9rem;
+            letter-spacing: 1px;
+            background: rgba(0, 0, 0, 0.3);
+            padding: 6px 18px;
+            border-radius: 50px;
+            backdrop-filter: blur(4px);
+        }
+
+        /* ----- TESTIMONIAL / QUOTE ----- */
+        .quote-section {
+            background: var(--primary-dark);
+            color: var(--white);
+            text-align: center;
+            padding: 80px 0;
+        }
+
+        .quote-section blockquote {
+            max-width: 780px;
+            margin: 0 auto;
+            font-size: 1.6rem;
+            font-weight: 400;
+            line-height: 1.5;
+            color: rgba(255, 255, 255, 0.9);
+        }
+
+        .quote-section blockquote .quote-mark {
+            font-size: 4rem;
+            line-height: 1;
+            color: var(--accent-pink);
+            opacity: 0.4;
+            font-family: Georgia, serif;
+        }
+
+        .quote-section .attribution {
+            margin-top: 24px;
+            font-weight: 600;
+            color: rgba(255, 255, 255, 0.6);
+            font-size: 0.95rem;
+        }
+
+        .quote-section .attribution span {
+            color: var(--accent-pink);
+        }
+
+        /* ----- SOCIAL ----- */
+        .social-section {
+            background: var(--gray-100);
+            text-align: center;
+            padding: 48px 0;
+        }
+
+        .social-section h3 {
+            font-size: 1.1rem;
+            font-weight: 600;
+            margin-bottom: 20px;
+            color: var(--gray-700);
+        }
+
+        .social-section h3 i {
+            color: var(--accent-pink);
+        }
+
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 16px;
+            flex-wrap: wrap;
+        }
+
+        .social-links a {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 48px;
+            height: 48px;
+            border-radius: 50%;
+            background: var(--white);
+            color: var(--gray-700);
+            font-size: 1.2rem;
+            box-shadow: var(--shadow-sm);
+            transition: var(--transition);
+            border: 1px solid var(--gray-200);
+        }
+
+        .social-links a:hover {
+            transform: translateY(-4px);
+            box-shadow: var(--shadow-md);
+            color: var(--accent-pink);
+            border-color: var(--accent-pink);
+        }
+
+        /* ----- FOOTER ----- */
+        .footer {
+            background: var(--primary-dark);
+            color: rgba(255, 255, 255, 0.7);
+            padding: 60px 0 30px;
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr 1fr;
+            gap: 40px;
+            padding-bottom: 40px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+        }
+
+        .footer h5 {
+            color: var(--white);
+            font-weight: 600;
+            font-size: 0.95rem;
+            margin-bottom: 16px;
+        }
+
+        .footer p,
+        .footer li {
+            font-size: 0.9rem;
+            color: rgba(255, 255, 255, 0.6);
+            line-height: 1.8;
+        }
+
+        .footer ul {
+            list-style: none;
+        }
+
+        .footer ul li a {
+            transition: var(--transition);
+        }
+        .footer ul li a:hover {
+            color: var(--accent-pink);
+        }
+
+        .footer .footer-bottom {
+            padding-top: 30px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 16px;
+            font-size: 0.85rem;
+            color: rgba(255, 255, 255, 0.4);
+        }
+
+        .footer .footer-social a {
+            color: rgba(255, 255, 255, 0.4);
+            margin-left: 16px;
+            transition: var(--transition);
+            font-size: 1.1rem;
+        }
+
+        .footer .footer-social a:hover {
+            color: var(--accent-pink);
+        }
+
+        /* ----- RESPONSIVE ----- */
+        @media (max-width: 1024px) {
+            .hero-grid {
+                grid-template-columns: 1fr;
+                gap: 40px;
+            }
+
+            .hero-visual .image-grid img:first-child {
+                height: 240px;
+                grid-row: auto;
+            }
+
+            .hero-visual .image-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+
+            .overview-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .gallery-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+
+            .gallery-grid .gallery-item:first-child {
+                grid-row: auto;
+            }
+
+            .footer-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .hero {
+                padding: 120px 0 60px;
+            }
+
+            .hero h1 {
+                font-size: 2.2rem;
+            }
+
+            .hero-stats {
+                grid-template-columns: 1fr 1fr;
+            }
+
+            .gallery-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .hero-visual .image-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+            .hero-visual .image-grid img {
+                height: 140px;
+            }
+
+            .footer-grid {
+                grid-template-columns: 1fr;
+                gap: 24px;
+            }
+
+            .footer .footer-bottom {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .quote-section blockquote {
+                font-size: 1.2rem;
+            }
+
+            .lightbox-prev,
+            .lightbox-next {
+                padding: 10px 14px;
+                font-size: 1.4rem;
+            }
+            .lightbox-close {
+                top: 16px;
+                right: 20px;
+                font-size: 2.2rem;
+            }
+            .lightbox-prev {
+                left: 8px;
+            }
+            .lightbox-next {
+                right: 8px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .hero-visual .image-grid {
+                grid-template-columns: 1fr;
+            }
+            .hero-visual .image-grid img {
+                height: 180px;
+            }
+            .hero-stats {
+                grid-template-columns: 1fr;
+                gap: 12px;
+            }
+            .container {
+                padding: 0 16px;
+            }
+        }
+
+        /* animation helper */
+        .fade-up {
+            opacity: 0;
+            transform: translateY(30px);
+            animation: fadeUp 0.8s ease forwards;
+        }
+
+        @keyframes fadeUp {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .delay-1 {
+            animation-delay: 0.1s;
+        }
+        .delay-2 {
+            animation-delay: 0.2s;
+        }
+        .delay-3 {
+            animation-delay: 0.3s;
+        }
+        .delay-4 {
+            animation-delay: 0.4s;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- ===== NEW HEADER ===== -->
+    <header class="header-glass" id="mainHeader">
+        <div class="max-w-7xl mx-auto px-4 md:px-6">
+            <div class="flex justify-between items-center h-20">
+
+                <!-- Logo -->
+                <a href="index.html" class="flex items-center gap-3 group">
+                    <img src="assets/images/obrian-transparent-logo-4461219.webp" alt="O'Brian Group" class="h-10 w-auto" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22%3E%3Crect width=%22100%22 height=%22100%22 fill=%22%23ed008e%22/%3E%3Ctext x=%2250%22 y=%2268%22 font-size=%2248%22 text-anchor=%22middle%22 fill=%22white%22 font-weight=%22bold%22 font-family=%22Inter%22%3EO%3C/text%3E%3C/svg%3E'">
+                    <span class="font-black text-xl text-[#231e1f] tracking-tight hidden sm:inline"><span class="text-[#ed018e]"></span></span>
+                </a>
+
+                <!-- Desktop Nav -->
+                <div class="hidden lg:flex items-center gap-0.5">
+                    <a href="index.html" class="nav-link">Home</a>
+                    <a href="page8.html" class="nav-link">About</a>
+                    <a href="page30.html" class="nav-link">Our Work</a>
+                    <a href="page52.html" class="nav-link">Client Experience</a>
+
+                    <div class="relative group">
+                        <button class="nav-link flex items-center gap-1">
+                            Case Studies
+                            <svg class="w-3 h-3 transition-transform duration-300 group-hover:rotate-180" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M19 9l-7 7-7-7"></path></svg>
+                        </button>
+                        <div class="dropdown-menu-custom">
+                            <a href="page27.html">Advertising</a>
+                            <a href="page45.html">Digital</a>
+                            <a href="page43.html">Consulting</a>
+                        </div>
+                    </div>
+
+                    <div class="relative group">
+                        <button class="nav-link flex items-center gap-1">
+                            Expertise
+                            <svg class="w-3 h-3 transition-transform duration-300 group-hover:rotate-180" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M19 9l-7 7-7-7"></path></svg>
+                        </button>
+                        <div class="dropdown-menu-custom">
+                            <a href="page9.html">Advertising</a>
+                            <a href="page18.html">Digital</a>
+                            <a href="page1.html">Consulting</a>
+                        </div>
+                    </div>
+
+                    <a href="page60.html" class="nav-link">Staff News</a>
+                    <a href="page15.html" class="nav-link">Blog</a>
+                    <a href="page70.html" class="nav-link">Archives</a>
+                </div>
+
+                <!-- CTA -->
+                <div class="hidden lg:block">
+                    <a href="page5.html" class="btn-primary-pink">
+                        <span>Contact</span>
+                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M17 8l4 4m0 0l-4 4m4-4H3"></path></svg>
+                    </a>
+                </div>
+
+                <!-- Burger -->
+                <button class="lg:hidden p-2 rounded-lg hover:bg-gray-100 transition-colors" id="menuBtn" aria-label="Toggle menu">
+                    <div class="w-6 h-6 flex flex-col justify-center items-center gap-1.5">
+                        <span class="w-6 h-0.5 bg-gray-700 transition-all duration-300 menu-line-1"></span>
+                        <span class="w-6 h-0.5 bg-gray-700 transition-all duration-300 menu-line-2"></span>
+                        <span class="w-4 h-0.5 bg-gray-700 transition-all duration-300 menu-line-3 ml-auto"></span>
+                    </div>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- ===== MOBILE MENU PANEL ===== -->
+    <div class="mobile-menu-panel" id="mobileMenuPanel">
+        <a href="index.html">Home</a>
+        <a href="page8.html">About</a>
+        <a href="page30.html">Our Work</a>
+        <a href="page52.html">Client Experience</a>
+
+        <div class="mobile-dropdown-title">Case Studies</div>
+        <div class="mobile-dropdown-items">
+            <a href="page27.html">Advertising</a>
+            <a href="page45.html">Digital</a>
+            <a href="page43.html">Consulting</a>
+        </div>
+
+        <div class="mobile-dropdown-title">Our Expertise</div>
+        <div class="mobile-dropdown-items">
+            <a href="page9.html">Advertising</a>
+            <a href="page1.html">Digital</a>
+            <a href="page18.html">Consulting</a>
+        </div>
+
+        <a href="page60.html">Staff News</a>
+        <a href="page15.html">Blog</a>
+        <a href="page70.html">Archives</a>
+        <a href="page5.html" class="magnetic-btn" style="display:inline-flex; margin-top:1rem; background:linear-gradient(135deg,#e6007e,#ff1493); color:#fff; padding:0.6rem 1.5rem; border-radius:9999px; font-weight:700;">Contact Us</a>
+    </div>
+
+    <!-- ========== HERO ========== -->
+    <section class="hero">
+        <div class="container">
+            <div class="hero-grid">
+                <div class="hero-text">
+                    <span class="hero-badge fade-up"><i class="fas fa-star" style="margin-right: 8px;"></i> Featured Case Study</span>
+                    <h1 class="fade-up delay-1">Sourceworx <br /><span>Vehicle Branding</span></h1>
+                    <p class="fade-up delay-2">
+                        A complete fleet makeover that turned commercial vehicles into moving billboards — bold, consistent, and impossible to ignore.
+                    </p>
+                    <div class="btn-group fade-up delay-3">
+                        <a href="#gallery" class="btn btn-primary"><i class="fas fa-images"></i> View Gallery</a>
+                        <a href="#overview" class="btn btn-white-outline"><i class="fas fa-arrow-right"></i> Read More</a>
+                        <!-- Back to Our Work button -->
+                        <a href="page30.html" class="btn-back-right d-inline-flex align-items-center">
+                            <i class="fas fa-arrow-left"></i> Back to Our Work
+                        </a>
+                    </div>
+
+                    <div class="hero-stats fade-up delay-4">
+                        <div>
+                            <div class="stat-value">12</div>
+                            <div class="stat-label">Vehicles Branded</div>
+                        </div>
+                        <div>
+                            <div class="stat-value">4</div>
+                            <div class="stat-label">Locations</div>
+                        </div>
+                        <div>
+                            <div class="stat-value">3×</div>
+                            <div class="stat-label">Brand Visibility</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="hero-visual fade-up delay-2">
+                    <div class="image-grid">
+                        <img src="assets/images/sourceworx-vehicle-branding.jpg" alt="Sourceworx vehicle branding main" />
+                        <img src="assets/images/sourceworx-vehicle-branding2.jpg" alt="Sourceworx vehicle branding side" />
+                        <img src="assets/images/sourceworx-vehicle-branding3.jpg" alt="Sourceworx vehicle branding rear" />
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ========== OVERVIEW ========== -->
+    <section class="section" id="overview">
+        <div class="container">
+            <span class="section-label"><i class="fas fa-flag-checkered" style="margin-right: 8px;"></i> The Project</span>
+            <h2 class="section-title">Turning <span class="highlight">fleet</span> into <span class="highlight">brand</span> ambassadors</h2>
+            <p class="section-subtitle">A deep dive into how we transformed Sourceworx's commercial vehicles into a cohesive, high-impact brand experience.</p>
+
+            <div class="overview-grid">
+                <div class="overview-content">
+                    <p>
+                        Sourceworx approached us with a clear goal: make their fleet instantly recognisable and reflect the precision, reliability, and innovation of their brand. We designed a full-vehicle wrap system that works across multiple vehicle types while maintaining a unified visual language.
+                    </p>
+                    <p>
+                        From the bold colour palette to the strategic placement of logos and messaging, every detail was crafted to maximise visibility on the road and at job sites. The result is a fleet that doesn't just transport — it communicates.
+                    </p>
+
+                    <ul class="feature-list">
+                        <li><i class="fas fa-check-circle"></i> Full-vehicle vinyl wraps with anti-scratch protection</li>
+                        <li><i class="fas fa-check-circle"></i> Consistent brand identity across 12 vehicles</li>
+                        <li><i class="fas fa-check-circle"></i> High-contrast typography for maximum readability</li>
+                        <li><i class="fas fa-check-circle"></i> Seamless integration of contact &amp; service info</li>
+                    </ul>
+                </div>
+
+                <div class="overview-sidebar">
+                    <h4><i class="fas fa-clipboard-list" style="margin-right: 10px;"></i> Project Snapshot</h4>
+                    <div class="detail-item">
+                        <span class="label">Client</span>
+                        <span class="value">Sourceworx</span>
+                    </div>
+                    <div class="detail-item">
+                        <span class="label">Service</span>
+                        <span class="value">Vehicle Branding &amp; Wraps</span>
+                    </div>
+                    <div class="detail-item">
+                        <span class="label">Fleet Size</span>
+                        <span class="value">12 vehicles</span>
+                    </div>
+                    <div class="detail-item">
+                        <span class="label">Timeline</span>
+                        <span class="value">4 weeks</span>
+                    </div>
+                    <div class="detail-item">
+                        <span class="label">Deliverables</span>
+                        <span class="value">Design · Production · Installation</span>
+                    </div>
+                    <div style="margin-top: 20px;">
+                        <a href="#gallery" class="btn btn-primary" style="width: 100%; justify-content: center;">
+                            <i class="fas fa-images"></i> See the results
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ========== GALLERY ========== -->
+    <section class="section gallery-section" id="gallery">
+        <div class="container">
+            <span class="section-label"><i class="fas fa-camera-retro" style="margin-right: 8px;"></i> Gallery</span>
+            <h2 class="section-title">Behind the <span class="highlight">wrap</span></h2>
+            <p class="section-subtitle">A closer look at the design, production, and final installation of the Sourceworx fleet.</p>
+
+            <div class="gallery-grid" id="galleryGrid">
+                <div class="gallery-item" data-index="0">
+                    <img src="assets/images/sourceworx-vehicle-branding.jpg" alt="Sourceworx vehicle branding front view" />
+                    <div class="overlay"><i class="fas fa-expand"></i></div>
+                </div>
+                <div class="gallery-item" data-index="1">
+                    <img src="assets/images/sourceworx-vehicle-branding2.jpg" alt="Sourceworx vehicle branding side profile" />
+                    <div class="overlay"><i class="fas fa-expand"></i></div>
+                </div>
+                <div class="gallery-item" data-index="2">
+                    <img src="assets/images/sourceworx-vehicle-branding3.jpg" alt="Sourceworx vehicle branding rear detail" />
+                    <div class="overlay"><i class="fas fa-expand"></i></div>
+                </div>
+                <div class="gallery-item" data-index="3">
+                    <img src="assets/images/whatsapp-image-2025-07-25-at-17.18.25.jpeg" alt="Sourceworx vehicle branding installation process" />
+                    <div class="overlay"><i class="fas fa-expand"></i></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ========== QUOTE / TESTIMONIAL ========== -->
+    <section class="quote-section">
+        <div class="container">
+            <blockquote>
+                <span class="quote-mark">“</span><br />
+                The new fleet branding has completely changed how people perceive Sourceworx on the road. It's professional, memorable, and aligns perfectly with our brand values.
+                <br /><span class="quote-mark">”</span>
+            </blockquote>
+            <div class="attribution">
+                — <span>Michael van der Merwe</span> · Operations Director, Sourceworx
+            </div>
+        </div>
+    </section>
+
+    <!-- ========== SOCIAL ========== -->
+    <section class="social-section">
+        <div class="container">
+            <h3><i class="fas fa-share-alt" style="margin-right: 12px;"></i> Follow our work</h3>
+            <div class="social-links">
+                <a href="https://www.facebook.com/profile.php?id=100094029616085" target="_blank" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+                <a href="https://x.com/ObrianSA" target="_blank" aria-label="Twitter"><i class="fa-brands fa-twitter"></i></a>
+                <a href="https://www.instagram.com/obriandigital/" target="_blank" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                <a href="https://za.pinterest.com/OBRIANDIGITAL/" target="_blank" aria-label="Pinterest"><i class="fab fa-pinterest-p"></i></a>
+                <a href="https://za.linkedin.com/company/o-brian-digital" target="_blank" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+            </div>
+        </div>
+    </section>
+
+    <!-- ========== FOOTER ========== -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div>
+                    <h5>O'Brian Digital</h5>
+                    <p style="max-width: 300px;">
+                        We build brands that move — from fleet branding to full digital experiences. Based in South Africa, working globally.
+                    </p>
+                </div>
+                <div>
+                    <h5>Johannesburg</h5>
+                    <p>2nd Floor Trumpet On Keyes,<br />21 Keyes Avenue, Rosebank,<br />Johannesburg, 2196</p>
+                    <p style="margin-top: 8px;">+27 10 035 5218</p>
+                </div>
+                <div>
+                    <h5>Durban</h5>
+                    <p>2 Ncondo Place, Ridgeside Dr,<br />Umhlanga Ridge, Durban, 4319</p>
+                    <p style="margin-top: 8px;">+27 83 325 9532</p>
+                </div>
+                <div>
+                    <h5>Quick Links</h5>
+                    <ul>
+                        <li><a href="page8.html">About</a></li>
+                        <li><a href="page30.html">Our Work</a></li>
+                        <li><a href="page52.html">Clients</a></li>
+                        <li><a href="page5.html">Contact</a></li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="footer-bottom">
+                <span>&copy; 2030 O'Brian Group · All Rights Reserved</span>
+                <div class="footer-social">
+                    <a href="https://www.facebook.com/profile.php?id=100094029616085" target="_blank"><i class="fab fa-facebook-f"></i></a>
+                    <a href="https://x.com/ObrianSA" target="_blank"><i class="fa-brands fa-twitter"></i></a>
+                    <a href="https://www.instagram.com/obriandigital/" target="_blank"><i class="fab fa-instagram"></i></a>
+                    <a href="https://za.linkedin.com/company/o-brian-digital" target="_blank"><i class="fab fa-linkedin-in"></i></a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- ========== LIGHTBOX MODAL ========== -->
+    <div class="lightbox" id="lightbox">
+        <button class="lightbox-close" id="lightboxClose" aria-label="Close">&times;</button>
+        <button class="lightbox-prev" id="lightboxPrev" aria-label="Previous">&#10094;</button>
+        <button class="lightbox-next" id="lightboxNext" aria-label="Next">&#10095;</button>
+        <img class="lightbox-image" id="lightboxImage" src="" alt="Enlarged view" />
+        <div class="lightbox-counter" id="lightboxCounter">1 / 4</div>
+    </div>
+
+    <!-- ========== SCRIPTS ========== -->
+    <script>
+        // ---- Mobile menu toggle (updated for new header) ----
+        const menuBtn = document.getElementById('menuBtn');
+        const mobilePanel = document.getElementById('mobileMenuPanel');
+
+        if (menuBtn && mobilePanel) {
+            menuBtn.addEventListener('click', () => {
+                menuBtn.classList.toggle('open');
+                mobilePanel.classList.toggle('open');
+                document.body.style.overflow = mobilePanel.classList.contains('open') ? 'hidden' : '';
+            });
+
+            mobilePanel.querySelectorAll('a').forEach(link => {
+                link.addEventListener('click', () => {
+                    menuBtn.classList.remove('open');
+                    mobilePanel.classList.remove('open');
+                    document.body.style.overflow = '';
+                });
+            });
+        }
+
+        // ---- Header scroll effect ----
+        const header = document.getElementById('mainHeader');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 20) {
+                header.classList.add('scrolled');
+            } else {
+                header.classList.remove('scrolled');
+            }
+        });
+
+        // ---- LIGHTBOX LOGIC ----
+        const galleryItems = document.querySelectorAll('.gallery-item');
+        const lightbox = document.getElementById('lightbox');
+        const lightboxImage = document.getElementById('lightboxImage');
+        const lightboxCounter = document.getElementById('lightboxCounter');
+        const closeBtn = document.getElementById('lightboxClose');
+        const prevBtn = document.getElementById('lightboxPrev');
+        const nextBtn = document.getElementById('lightboxNext');
+
+        // Gather all image sources from the gallery
+        const imageSources = [];
+        galleryItems.forEach(item => {
+            const img = item.querySelector('img');
+            if (img) imageSources.push(img.src);
+        });
+
+        let currentIndex = 0;
+
+        function openLightbox(index) {
+            if (index < 0) index = imageSources.length - 1;
+            if (index >= imageSources.length) index = 0;
+            currentIndex = index;
+            lightboxImage.src = imageSources[currentIndex];
+            lightboxCounter.textContent = `${currentIndex + 1} / ${imageSources.length}`;
+            lightbox.classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeLightbox() {
+            lightbox.classList.remove('active');
+            document.body.style.overflow = '';
+        }
+
+        function changeImage(direction) {
+            openLightbox(currentIndex + direction);
+        }
+
+        // Click on gallery items
+        galleryItems.forEach((item, idx) => {
+            item.addEventListener('click', (e) => {
+                e.stopPropagation();
+                openLightbox(idx);
+            });
+        });
+
+        // Click on hero images to open lightbox too (optional)
+        document.querySelectorAll('.hero-visual .image-grid img').forEach((img, idx) => {
+            img.addEventListener('click', () => {
+                // Map hero images to gallery indices (first 3 match first 3 gallery items)
+                // If hero has extra images, adjust mapping.
+                // For simplicity, we map hero images 0,1,2 to gallery 0,1,2
+                if (idx < imageSources.length) {
+                    openLightbox(idx);
+                }
+            });
+        });
+
+        // Close button
+        closeBtn.addEventListener('click', closeLightbox);
+
+        // Prev / Next
+        prevBtn.addEventListener('click', (e) => {
+            e.stopPropagation();
+            changeImage(-1);
+        });
+        nextBtn.addEventListener('click', (e) => {
+            e.stopPropagation();
+            changeImage(1);
+        });
+
+        // Keyboard support
+        document.addEventListener('keydown', (e) => {
+            if (!lightbox.classList.contains('active')) return;
+            if (e.key === 'Escape') closeLightbox();
+            if (e.key === 'ArrowLeft') changeImage(-1);
+            if (e.key === 'ArrowRight') changeImage(1);
+        });
+
+        // Click on backdrop to close
+        lightbox.addEventListener('click', (e) => {
+            if (e.target === lightbox) closeLightbox();
+        });
+
+        // ---- Gallery reveal animation (optional) ----
+        const galleryObsItems = document.querySelectorAll('.gallery-item');
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, { threshold: 0.1 });
+
+        galleryObsItems.forEach((item, i) => {
+            item.style.opacity = '0';
+            item.style.transform = 'translateY(30px)';
+            item.style.transition = `opacity 0.6s ease ${i * 0.08}s, transform 0.6s ease ${i * 0.08}s`;
+            observer.observe(item);
+        });
+    </script>
+
+</body>
+</html>

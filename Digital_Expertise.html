@@ -1,0 +1,1034 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Our Expertise – Digital | O'Brian Group</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800;900&family=Open+Sans:wght@300;400;600&display=swap" rel="stylesheet">
+    
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        'sans': ['Montserrat', 'sans-serif'],
+                        'body': ['Open Sans', 'sans-serif'],
+                    },
+                    colors: {
+                        'obrian': {
+                            pink: '#e6007e',
+                            dark: '#1a1a1a',
+                            black: '#000000',
+                            white: '#ffffff',
+                            gray: '#f5f5f5'
+                        }
+                    },
+                    animation: {
+                        'float': 'float 6s ease-in-out infinite',
+                        'pulse-slow': 'pulse 4s cubic-bezier(0.4, 0, 0.6, 1) infinite',
+                        'slide-up': 'slideUp 0.8s ease-out forwards',
+                    },
+                    keyframes: {
+                        float: {
+                            '0%, 100%': { transform: 'translateY(0)' },
+                            '50%': { transform: 'translateY(-20px)' },
+                        },
+                        slideUp: {
+                            '0%': { opacity: '0', transform: 'translateY(40px)' },
+                            '100%': { opacity: '1', transform: 'translateY(0)' },
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    
+    <style>
+        body {
+            font-family: 'Montserrat', sans-serif;
+            background-color: #ffffff;
+            color: #1a1a1a;
+            overflow-x: hidden;
+            padding-top: 80px;
+        }
+        
+        .font-body {
+            font-family: 'Open Sans', sans-serif;
+        }
+        
+        .text-pink {
+            color: #e6007e;
+        }
+        .bg-pink {
+            background-color: #e6007e;
+        }
+        .border-pink {
+            border-color: #e6007e;
+        }
+        .gradient-text {
+            background: linear-gradient(135deg, #e6007e 0%, #ff1493 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #1a1a1a;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #e6007e;
+            border-radius: 4px;
+        }
+
+        /* ── HEADER STYLES ── */
+        .header-glass {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            z-index: 50;
+            background: rgba(255, 255, 255, 0.85);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            transition: box-shadow 0.3s, background 0.3s;
+            border-bottom: 1px solid rgba(0, 0, 0, 0.04);
+        }
+        .header-glass.scrolled {
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+            background: rgba(255, 255, 255, 0.98);
+        }
+
+        .nav-link-new {
+            padding: 0.5rem 1rem;
+            font-size: 0.875rem;
+            font-weight: 600;
+            color: #374151;
+            border-radius: 0.5rem;
+            transition: all 0.3s ease;
+            display: inline-block;
+            cursor: pointer;
+        }
+        .nav-link-new:hover {
+            color: #e6007e;
+            background-color: #fdf2f8;
+        }
+
+        .dropdown-menu-custom {
+            position: absolute;
+            top: 100%;
+            left: 0;
+            margin-top: 0.5rem;
+            width: 200px;
+            background: white;
+            border-radius: 0.75rem;
+            box-shadow: 0 20px 40px -8px rgba(0, 0, 0, 0.15);
+            border: 1px solid #f3f4f6;
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(-8px) scale(0.96);
+            transition: all 0.25s ease;
+            transform-origin: top left;
+            z-index: 60;
+        }
+        .group:hover .dropdown-menu-custom {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0) scale(1);
+        }
+        .dropdown-menu-custom a {
+            display: block;
+            padding: 0.75rem 1.25rem;
+            font-size: 0.875rem;
+            color: #374151;
+            transition: background 0.2s, color 0.2s;
+        }
+        .dropdown-menu-custom a:hover {
+            background: #fdf2f8;
+            color: #e6007e;
+        }
+
+        .btn-primary-pink {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.75rem 1.75rem;
+            background: linear-gradient(135deg, #e6007e, #ff1493);
+            color: white;
+            font-weight: 700;
+            font-size: 0.875rem;
+            border-radius: 9999px;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 14px rgba(230, 0, 126, 0.3);
+        }
+        .btn-primary-pink:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(230, 0, 126, 0.4);
+            color: white;
+        }
+
+        /* ── HERO ── */
+        .premium-hero {
+            padding: 60px 0 50px;
+            background: #ffffff;
+            border-bottom: 1px solid rgba(35,30,31,0.06);
+        }
+        .premium-hero h1 {
+            font-size: 3.5rem;
+            font-weight: 900;
+            line-height: 1.1;
+            letter-spacing: -0.02em;
+            color: #231e1f;
+        }
+        .premium-hero h1 .accent {
+            background: linear-gradient(135deg, #ff4da6, #ed008e);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        .premium-hero p {
+            font-size: 1.15rem;
+            color: #6b6465;
+            max-width: 600px;
+            margin-top: 12px;
+            font-weight: 300;
+            line-height: 1.7;
+        }
+
+        /* ── CLIENTS GALLERY ── */
+        .premium-gallery {
+            padding: 50px 0;
+            background: #f8f6f6;
+        }
+        .premium-gallery .section-title {
+            font-size: 2.4rem;
+            font-weight: 800;
+            color: #231e1f;
+            text-align: center;
+        }
+        .premium-gallery .section-title .accent { color: #ed008e; }
+        .premium-gallery .section-desc {
+            font-size: 1rem;
+            color: #6b6465;
+            max-width: 720px;
+            margin: 12px auto 32px;
+            font-weight: 300;
+            text-align: center;
+            line-height: 1.7;
+        }
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(170px, 1fr));
+            gap: 1.5rem;
+        }
+        .gallery-item {
+            background: #ffffff;
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow: 0 4px 16px rgba(0,0,0,0.02);
+            transition: transform 0.4s cubic-bezier(0.22, 1, 0.36, 1), box-shadow 0.4s ease;
+            border: 1px solid rgba(35,30,31,0.04);
+            cursor: pointer;
+        }
+        .gallery-item:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 20px 48px rgba(0,0,0,0.06);
+            border-color: rgba(237,0,142,0.12);
+        }
+        .gallery-item img {
+            width: 100%;
+            height: 120px;
+            object-fit: cover;
+            display: block;
+            transition: transform 0.5s cubic-bezier(0.22, 1, 0.36, 1);
+        }
+        .gallery-item:hover img { transform: scale(1.04); }
+
+        /* ── TABS ── */
+        .premium-tabs {
+            padding: 50px 0;
+            background: #ffffff;
+        }
+        .premium-tabs .nav-tabs {
+            border-bottom: none;
+            gap: 0.6rem;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+        .premium-tabs .nav-tabs .nav-link {
+            border: none;
+            border-radius: 50px;
+            padding: 0.7rem 2rem;
+            font-weight: 600;
+            font-size: 0.75rem;
+            color: #6b6465;
+            background: #f1edee;
+            transition: all 0.3s cubic-bezier(0.22, 1, 0.36, 1);
+            text-transform: uppercase;
+            letter-spacing: 0.04em;
+            font-family: 'Montserrat', sans-serif;
+            cursor: pointer;
+        }
+        .premium-tabs .nav-tabs .nav-link.active,
+        .premium-tabs .nav-tabs .nav-link:hover {
+            background: linear-gradient(135deg, #ed008e, #c40078);
+            color: #fff;
+            box-shadow: 0 6px 24px rgba(237,0,142,0.25);
+            transform: translateY(-2px);
+        }
+        .premium-tabs .tab-content { margin-top: 2.5rem; }
+        .premium-tabs .tab-pane {
+            background: #faf8f9;
+            border-radius: 24px;
+            padding: 2.5rem;
+            border: 1px solid rgba(35,30,31,0.04);
+            box-shadow: 0 4px 20px rgba(0,0,0,0.02);
+        }
+        .premium-tabs .tab-pane .item-title {
+            font-size: 1.6rem;
+            font-weight: 800;
+            color: #231e1f;
+            margin-bottom: 1.2rem;
+            letter-spacing: -0.01em;
+        }
+        .premium-tabs .tab-pane .item-content {
+            display: flex;
+            flex-direction: column;
+            gap: 2rem;
+        }
+        @media (min-width: 768px) {
+            .premium-tabs .tab-pane .item-content {
+                flex-direction: row;
+                align-items: flex-start;
+            }
+        }
+        .premium-tabs .tab-pane .image-wrap {
+            flex: 0 0 42%;
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow: 0 8px 28px rgba(0,0,0,0.04);
+            cursor: pointer;
+        }
+        .premium-tabs .tab-pane .image-wrap img {
+            width: 100%;
+            height: auto;
+            display: block;
+            transition: transform 0.3s ease;
+        }
+        .premium-tabs .tab-pane .image-wrap:hover img {
+            transform: scale(1.02);
+        }
+        .premium-tabs .tab-pane .text-wrapper { flex: 1; }
+        .premium-tabs .tab-pane .item-text {
+            font-size: 0.92rem;
+            line-height: 1.8;
+            color: #4a4546;
+        }
+        .premium-tabs .tab-pane .item-text strong {
+            color: #231e1f;
+            font-weight: 700;
+        }
+        .btn-outline-pink {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.6rem;
+            background: transparent;
+            border: 2px solid #ed008e;
+            color: #ed008e;
+            border-radius: 50px;
+            padding: 0.6rem 2rem;
+            font-weight: 700;
+            font-size: 0.7rem;
+            text-transform: uppercase;
+            letter-spacing: 0.04em;
+            transition: all 0.3s cubic-bezier(0.22, 1, 0.36, 1);
+            font-family: 'Montserrat', sans-serif;
+            cursor: pointer;
+            text-decoration: none;
+            margin-top: 1.2rem;
+        }
+        .btn-outline-pink:hover {
+            background: #ed008e;
+            color: #fff;
+            box-shadow: 0 8px 28px rgba(237,0,142,0.25);
+            transform: translateY(-2px);
+        }
+        .btn-outline-pink i { font-size: 0.9rem; }
+
+        /* ── BANNER ── */
+        .premium-banner {
+            padding: 60px 0;
+            text-align: center;
+            background: #ffffff;
+            border-top: 1px solid rgba(35,30,31,0.04);
+            border-bottom: 1px solid rgba(35,30,31,0.04);
+        }
+        .premium-banner h2 {
+            font-size: 3.5rem;
+            font-weight: 900;
+            letter-spacing: -0.02em;
+            line-height: 1.1;
+            color: #231e1f;
+        }
+        .premium-banner h2 .accent { color: #ed008e; }
+        .premium-banner .sub {
+            font-size: 1.6rem;
+            font-weight: 300;
+            color: #6b6465;
+            margin-top: 0.3rem;
+        }
+        .premium-banner .btn-accent {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.7rem;
+            margin-top: 2rem;
+            background: linear-gradient(135deg, #ed008e, #c40078);
+            color: #ffffff;
+            padding: 0.9rem 3rem;
+            border-radius: 60px;
+            font-weight: 700;
+            font-size: 0.9rem;
+            letter-spacing: 0.04em;
+            transition: all 0.3s cubic-bezier(0.22, 1, 0.36, 1);
+            box-shadow: 0 8px 30px rgba(237,0,142,0.20);
+            text-decoration: none;
+            border: none;
+            cursor: pointer;
+        }
+        .premium-banner .btn-accent i { font-size: 1.1rem; }
+        .premium-banner .btn-accent:hover {
+            transform: scale(1.04) translateY(-3px);
+            box-shadow: 0 12px 44px rgba(237,0,142,0.30);
+            color: #fff;
+        }
+
+        /* ── FOOTER ── */
+        .footer-premium {
+            background: #231e1f;
+            padding: 50px 0 32px;
+        }
+        .footer-premium .footer-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            gap: 2.5rem;
+            max-width: 1280px;
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+        .footer-premium .footer-col h5 {
+            font-size: 0.8rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.06em;
+            color: #ed008e;
+            margin-bottom: 1rem;
+        }
+        .footer-premium .footer-col ul {
+            list-style: none;
+            padding: 0;
+        }
+        .footer-premium .footer-col ul li {
+            margin-bottom: 0.5rem;
+            font-size: 0.85rem;
+            color: #b5aea3;
+            line-height: 1.6;
+        }
+        .footer-premium .footer-col ul li a {
+            transition: color 0.2s;
+            color: #b5aea3;
+            text-decoration: none;
+        }
+        .footer-premium .footer-col ul li a:hover { color: #ffffff; }
+        .footer-premium .footer-social {
+            display: flex;
+            gap: 1.2rem;
+            justify-content: center;
+            margin-top: 2rem;
+        }
+        .footer-premium .footer-social a {
+            color: #b5aea3;
+            font-size: 1.3rem;
+            transition: color 0.2s, transform 0.2s;
+        }
+        .footer-premium .footer-social a:hover {
+            color: #ed008e;
+            transform: translateY(-3px);
+        }
+        .footer-premium .footer-bottom {
+            margin-top: 2rem;
+            padding-top: 1.5rem;
+            border-top: 1px solid rgba(255,255,255,0.06);
+            text-align: center;
+            font-size: 0.75rem;
+            color: #6b6560;
+            letter-spacing: 0.02em;
+            max-width: 1280px;
+            margin-left: auto;
+            margin-right: auto;
+            padding-left: 24px;
+            padding-right: 24px;
+        }
+
+        /* ── LIGHTBOX ── */
+        .lightbox-overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(35, 30, 31, 0.92);
+            z-index: 9999;
+            justify-content: center;
+            align-items: center;
+            cursor: pointer;
+            padding: 40px;
+        }
+        .lightbox-overlay.active {
+            display: flex;
+        }
+        .lightbox-overlay img {
+            max-width: 90%;
+            max-height: 90%;
+            object-fit: contain;
+            border-radius: 4px;
+            box-shadow: 0 0 40px rgba(0, 0, 0, 0.6);
+        }
+        .lightbox-overlay .close-btn {
+            position: absolute;
+            top: 20px;
+            right: 40px;
+            color: #ffffff;
+            font-size: 48px;
+            font-weight: 300;
+            cursor: pointer;
+            transition: transform 0.2s;
+            background: none;
+            border: none;
+            line-height: 1;
+        }
+        .lightbox-overlay .close-btn:hover {
+            transform: scale(1.1);
+            color: #e6007e;
+        }
+        .lightbox-overlay .nav-btn {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            color: #ffffff;
+            font-size: 48px;
+            cursor: pointer;
+            background: rgba(230, 0, 126, 0.2);
+            border: 2px solid rgba(255, 255, 255, 0.2);
+            padding: 16px 20px;
+            border-radius: 50%;
+            transition: all 0.3s;
+            line-height: 1;
+        }
+        .lightbox-overlay .nav-btn:hover {
+            background: rgba(230, 0, 126, 0.5);
+            border-color: #e6007e;
+            color: #ffffff;
+        }
+        .lightbox-overlay .prev-btn { left: 20px; }
+        .lightbox-overlay .next-btn { right: 20px; }
+        .lightbox-overlay .counter {
+            position: absolute;
+            bottom: 30px;
+            color: #ffffff;
+            font-size: 16px;
+            background: rgba(230, 0, 126, 0.3);
+            padding: 8px 18px;
+            border-radius: 20px;
+            border: 1px solid rgba(230, 0, 126, 0.4);
+        }
+        @media (max-width: 768px) {
+            .lightbox-overlay .nav-btn {
+                font-size: 28px;
+                padding: 10px 14px;
+            }
+            .lightbox-overlay .close-btn {
+                font-size: 32px;
+                right: 20px;
+                top: 12px;
+            }
+            .lightbox-overlay { padding: 20px; }
+            body { padding-top: 64px; }
+            .premium-hero h1 { font-size: 2.4rem; }
+            .premium-hero p { font-size: 1rem; }
+            .premium-gallery .section-title { font-size: 2rem; }
+            .gallery-grid { grid-template-columns: repeat(3, 1fr); }
+            .gallery-item img { height: 90px; }
+            .premium-tabs .tab-pane { padding: 1.5rem; }
+            .premium-tabs .tab-pane .item-content { flex-direction: column; }
+            .premium-tabs .tab-pane .image-wrap { flex: 1 1 auto; }
+            .premium-tabs .nav-tabs .nav-link { font-size: 0.65rem; padding: 0.5rem 1.2rem; }
+            .premium-banner h2 { font-size: 2.6rem; }
+            .premium-banner .sub { font-size: 1.3rem; }
+            .footer-premium .footer-grid { grid-template-columns: 1fr 1fr; gap: 1.5rem; }
+        }
+        @media (max-width: 480px) {
+            .gallery-grid { grid-template-columns: repeat(2, 1fr); }
+            .gallery-item img { height: 70px; }
+        }
+
+        /* Mobile menu */
+        .mobile-menu-panel {
+            position: fixed;
+            inset: 0;
+            background: white;
+            z-index: 60;
+            transform: translateX(100%);
+            transition: transform 0.4s cubic-bezier(0.22, 1, 0.36, 1);
+            display: flex;
+            flex-direction: column;
+            height: 100%;
+            overflow-y: auto;
+        }
+        .mobile-menu-panel.open { transform: translateX(0); }
+        .mobile-menu-panel a {
+            display: block;
+            padding: 0.75rem 1rem;
+            font-size: 1rem;
+            font-weight: 600;
+            color: #231e1f;
+            border-radius: 0.5rem;
+            transition: all 0.2s;
+        }
+        .mobile-menu-panel a:hover {
+            background: rgba(230, 0, 126, 0.06);
+            color: #e6007e;
+            padding-left: 1.2rem;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- ===== HEADER ===== -->
+    <header class="header-glass" id="mainHeader">
+        <div class="max-w-7xl mx-auto px-4 md:px-6">
+            <div class="flex justify-between items-center h-20">
+
+                <a href="Home.html" class="flex items-center gap-3 group">
+                    <img src="assets/images/obrian-transparent-logo-4461219.webp" alt="O'Brian Group" class="h-10 w-auto" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22%3E%3Crect width=%22100%22 height=%22100%22 fill=%22%23e6007e%22/%3E%3Ctext x=%2250%22 y=%2268%22 font-size=%2248%22 text-anchor=%22middle%22 fill=%22white%22 font-weight=%22bold%22 font-family=%22Inter%22%3EO%3C/text%3E%3C/svg%3E'">
+                    <span class="font-black text-xl text-[#231e1f] tracking-tight hidden sm:inline"></span>
+                </a>
+
+                <!-- Desktop Nav -->
+                <div class="hidden lg:flex items-center gap-0.5">
+                    <a href="Home.html" class="nav-link-new">Home</a>
+                    <a href="About.html" class="nav-link-new">About</a>
+                    <a href="Our_Work.html" class="nav-link-new">Our Work</a>
+                    <a href="Client_Experience.html" class="nav-link-new">Client Experience</a>
+
+                    <div class="relative group">
+                        <button class="nav-link-new flex items-center gap-1">
+                            Case Studies
+                            <svg class="w-3 h-3 transition-transform duration-300 group-hover:rotate-180" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M19 9l-7 7-7-7"></path></svg>
+                        </button>
+                        <div class="dropdown-menu-custom">
+                            <a href="Adv_Case_Studies.html">Advertising</a>
+                            <a href="Digital_Case_Studies.html">Digital</a>
+                            <a href="Consulting_Case_Studies.html">Consulting</a>
+                        </div>
+                    </div>
+
+                    <div class="relative group">
+                        <button class="nav-link-new flex items-center gap-1">
+                            Expertise
+                            <svg class="w-3 h-3 transition-transform duration-300 group-hover:rotate-180" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M19 9l-7 7-7-7"></path></svg>
+                        </button>
+                        <div class="dropdown-menu-custom">
+                            <a href="Advertising_Expertise.html">Advertising</a>
+                            <a href="Digital_Expertise.html" class="text-pink">Digital</a>
+                            <a href="Consulting_Expertise.html">Consulting</a>
+                        </div>
+                    </div>
+
+                    <a href="Staff_News.html" class="nav-link-new">Staff News</a>
+                    <a href="Exploring_Boundless_Horizons.html" class="nav-link-new">Blog</a>
+                    <a href="Archive_Gallery.html" class="nav-link-new">Archives</a>
+                </div>
+
+                <div class="hidden lg:block">
+                    <a href="Contact_Us.html" class="btn-primary-pink">
+                        <span>Contact</span>
+                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M17 8l4 4m0 0l-4 4m4-4H3"></path></svg>
+                    </a>
+                </div>
+
+                <button class="lg:hidden p-2 rounded-lg hover:bg-gray-100 transition-colors" id="menuBtn" aria-label="Toggle menu">
+                    <div class="w-6 h-6 flex flex-col justify-center items-center gap-1.5">
+                        <span class="w-6 h-0.5 bg-gray-700 transition-all duration-300 menu-line-1"></span>
+                        <span class="w-6 h-0.5 bg-gray-700 transition-all duration-300 menu-line-2"></span>
+                        <span class="w-4 h-0.5 bg-gray-700 transition-all duration-300 menu-line-3 ml-auto"></span>
+                    </div>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- ===== MOBILE MENU ===== -->
+    <div class="mobile-menu-panel lg:hidden" id="mobileMenu">
+        <div class="flex flex-col h-full">
+            <div class="flex justify-between items-center p-6 border-b border-gray-100">
+                <a href="index.html" class="flex items-center gap-3">
+                    <img src="assets/images/obrian-transparent-logo-4461219.webp" alt="O'Brian Group" style="height: 40px;" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22%3E%3Crect width=%22100%22 height=%22100%22 fill=%22%23e6007e%22/%3E%3Ctext x=%2250%22 y=%2268%22 font-size=%2248%22 text-anchor=%22middle%22 fill=%22white%22 font-weight=%22bold%22 font-family=%22Arial%22%3EO%3C/text%3E%3C/svg%3E'">
+                    <span class="font-black text-xl text-gray-900">O'BRIAN</span>
+                </a>
+                <button class="p-2 rounded-lg hover:bg-gray-100 transition-colors" id="closeMenu" aria-label="Close menu">
+                    <svg class="w-6 h-6 text-gray-700" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+                    </svg>
+                </button>
+            </div>
+            <div class="flex-1 overflow-y-auto py-6 px-6 space-y-1">
+                <a href="Home.html">Home</a>
+                <a href="About.html">About</a>
+                <a href="Our_Work.html">Our Work</a>
+                <a href="Client_Experience.html">Client Experience</a>
+                <a href="#" onclick="toggleAccordion('case-studies-mob')">Case Studies</a>
+                <div id="case-studies-mob" class="hidden pl-4 space-y-1">
+                    <a href="Adv_Case_Studies.html" class="text-sm font-normal">Advertising</a>
+                    <a href="Digital_Case_Studies.html" class="text-sm font-normal">Digital</a>
+                    <a href="Consulting_Case_Studies.html" class="text-sm font-normal">Consulting</a>
+                </div>
+                <a href="#" onclick="toggleAccordion('expertise-mob')">Our Expertise</a>
+                <div id="expertise-mob" class="hidden pl-4 space-y-1">
+                    <a href="Advertising_Expertise.html" class="text-sm font-normal">Advertising</a>
+                    <a href="Digital_Expertise.html" class="text-sm font-normal text-pink">Digital</a>
+                    <a href="Consulting_Expertise.html" class="text-sm font-normal">Consulting</a>
+                </div>
+                <a href="Staff_News.html">Staff News</a>
+                <a href="Exploring_Boundless_Horizons.html">Blog</a>
+                <a href="Archives.html">Archives</a>
+            </div>
+            <div class="p-6 border-t border-gray-100">
+                <a href="Contact_Us.html" class="flex items-center justify-center gap-2 w-full px-6 py-4 bg-gradient-to-r from-[#e6007e] to-[#ff1493] text-white font-bold rounded-xl hover:shadow-lg transition-all">
+                    Contact Us
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"></path>
+                    </svg>
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <!-- ===== HERO ===== -->
+    <section class="premium-hero">
+        <div class="max-w-7xl mx-auto px-6">
+            <h1><strong>Our Expertise –</strong> <span class="accent">Digital</span></h1>
+            <p>We help brands navigate the digital landscape with strategic precision, creative excellence, and measurable results.</p>
+        </div>
+    </section>
+
+    <!-- ===== CLIENTS GALLERY ===== -->
+    <section class="premium-gallery">
+        <div class="max-w-7xl mx-auto px-6">
+            <h4 class="section-title"><strong>Clients we are proud to </strong><span class="accent">have worked with</span></h4>
+            <p class="section-desc">The South African Investment Conference, Proudly SA, and the City of Ekurhuleni are notable clients who entrusted us with their objectives. Through successful collaboration, we surpassed their expectations, particularly in executing impactful digital campaigns.</p>
+            <div class="gallery-grid" id="clientGallery">
+                <div class="gallery-item" data-image="assets/images/client-logos-10.jpg"><img src="assets/images/client-logos-10.jpg" alt="Client logo"></div>
+                <div class="gallery-item" data-image="assets/images/client-logos-53.jpg"><img src="assets/images/client-logos-53.jpg" alt="Client logo"></div>
+                <div class="gallery-item" data-image="assets/images/client-logos-54.jpg"><img src="assets/images/client-logos-54.jpg" alt="Client logo"></div>
+                <div class="gallery-item" data-image="assets/images/client-logos-23.jpg"><img src="assets/images/client-logos-23.jpg" alt="Client logo"></div>
+                <div class="gallery-item" data-image="assets/images/client-logos-27.jpg"><img src="assets/images/client-logos-27.jpg" alt="Client logo"></div>
+                <div class="gallery-item" data-image="assets/images/client-logos-58.jpg"><img src="assets/images/client-logos-58.jpg" alt="Client logo"></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== TABS ===== -->
+    <section class="premium-tabs">
+        <div class="max-w-7xl mx-auto px-6">
+            <ul class="nav-tabs flex" role="tablist" id="tabList">
+                <li class="nav-item"><a class="nav-link active" role="tab" data-toggle="tab" data-bs-toggle="tab" href="#tab1">Our Expertise – Digital</a></li>
+                <li class="nav-item"><a class="nav-link" role="tab" data-toggle="tab" data-bs-toggle="tab" href="#tab2">Digital Marketing Tools</a></li>
+                <li class="nav-item"><a class="nav-link" role="tab" data-toggle="tab" data-bs-toggle="tab" href="#tab3">Digital Strategy Planning</a></li>
+                <li class="nav-item"><a class="nav-link" role="tab" data-toggle="tab" data-bs-toggle="tab" href="#tab4">Campaign Integration</a></li>
+            </ul>
+            <div class="tab-content mt-8" id="tabContent">
+                <!-- Tab 1 -->
+                <div id="tab1" class="tab-pane active" role="tabpanel">
+                    <h4 class="item-title"><strong>Our Expertise – Digital</strong></h4>
+                    <div class="item-content">
+                        <div class="image-wrap" data-image="assets/images/screenshot-2025-03-11-at-12.14.52-2288x1164.jpeg"><img src="assets/images/screenshot-2025-03-11-at-12.14.52-2288x1164.jpeg" alt="Digital expertise"></div>
+                        <div class="text-wrapper">
+                            <p class="item-text">
+                                <strong>Why Choose Us?</strong><br><br>
+                                • <strong>Locally Grounded Expertise</strong><br>We understand your market and your community — because we're part of it.<br><br>
+                                • <strong>Tailored for Transition</strong><br>Most agencies miss the nuance of moving from legacy systems to modern digital culture. We don't.<br><br>
+                                • <strong>Focused on ROI, Not Just Reach</strong><br>Our strategies are built to perform — with clear results and storytelling that resonates.<br><br>
+                                • <strong>Transformation-Aligned</strong><br>Especially suited for mid-to-large South African businesses driving inclusive growth and innovation.<br><br>
+                                <strong>Who It's For</strong><br>
+                                • Businesses struggling with outdated digital assets<br>
+                                • Teams tired of generic agency work that lacks cultural context<br>
+                                • Brands ready to scale with strategic digital marketing<br>
+                                • Organisations that value storytelling and results<br><br>
+                                <strong>Let's Build Your Digital Future — Together.</strong><br>Your brand has a story. We help you tell it in the language of performance.
+                            </p>
+                            <a href="Contact_Us.html" class="btn-outline-pink"><i class="fas fa-arrow-right"></i> Contact now</a>
+                        </div>
+                    </div>
+                </div>
+                <!-- Tab 2 -->
+                <div id="tab2" class="tab-pane" role="tabpanel" style="display:none;">
+                    <h4 class="item-title"><strong>Digital Marketing Tools</strong></h4>
+                    <div class="item-content">
+                        <div class="image-wrap" data-image="assets/images/screenshot-2025-02-14-at-11.10.54-2.png"><img src="assets/images/screenshot-2025-02-14-at-11.10.54-2.png" alt="Digital marketing tools"></div>
+                        <div class="text-wrapper">
+                            <p class="item-text">
+                                <strong>Our digital marketing operations are proficient in MarTech stacks that comprise;</strong><br><br>
+                                • Web development and design<br><br>
+                                • Online advertising<br><br>
+                                • Content development and distribution<br><br>
+                                • Digital marketing campaigns<br><br>
+                                • Social media campaigns<br><br>
+                                <strong>A practical and performance-based digital marketing solution offering:</strong><br><br>
+                                • Social media strategy &amp; content creation<br><br>
+                                • Campaign development &amp; management<br><br>
+                                • Paid media (Google Ads, Meta, LinkedIn)<br><br>
+                                • Brand positioning &amp; digital storytelling<br><br>
+                                • Email marketing &amp; basic automation<br><br>
+                                • Website updates and SEO readiness
+                            </p>
+                            <a href="Contact_Us.html" class="btn-outline-pink"><i class="fas fa-arrow-right"></i> Contact now</a>
+                        </div>
+                    </div>
+                </div>
+                <!-- Tab 3 -->
+                <div id="tab3" class="tab-pane" role="tabpanel" style="display:none;">
+                    <h4 class="item-title"><strong>Digital Strategy Planning</strong></h4>
+                    <div class="item-content">
+                        <div class="image-wrap" data-image="assets/images/screenshot-2025-03-13-at-11.51.51.png"><img src="assets/images/screenshot-2025-03-13-at-11.51.51.png" alt="Digital strategy"></div>
+                        <div class="text-wrapper">
+                            <p class="item-text">
+                                <strong>We work closely with our clients, encouraging them to have clear objectives, keep decisions simple, be steadfast in their choice of digital marketing strategic options, and let performance outcomes be the guide.</strong><br><br>
+                                In today's digital age, a well-crafted digital strategy is crucial for driving growth, enhancing customer experiences, and staying ahead of the competition. Here's how you can leverage digital transformation to propel your business forward:<br><br>
+                                <strong>Key Benefits</strong><br><br>
+                                • <strong>Enhanced Efficiency:</strong> Streamline operations and reduce costs.<br><br>
+                                • <strong>Improved Customer Experience:</strong> Engage more effectively with personalized interactions.<br><br>
+                                • <strong>Competitive Advantage:</strong> Innovate faster and respond to market changes quickly.<br><br>
+                                • <strong>New Revenue Streams:</strong> Explore untapped markets and expand offerings.
+                            </p>
+                            <a href="Contact_Us.html" class="btn-outline-pink"><i class="fas fa-arrow-right"></i> Contact now</a>
+                        </div>
+                    </div>
+                </div>
+                <!-- Tab 4 -->
+                <div id="tab4" class="tab-pane" role="tabpanel" style="display:none;">
+                    <h4 class="item-title"><strong>Digital Campaign Integration &amp; Implementation</strong></h4>
+                    <div class="item-content">
+                        <div class="image-wrap" data-image="assets/images/screenshot-2025-03-13-at-11.51.24.png"><img src="assets/images/screenshot-2025-03-13-at-11.51.24.png" alt="Campaign integration"></div>
+                        <div class="text-wrapper">
+                            <p class="item-text">
+                                <strong>Introducing Our In-House Digital Marketing &amp; Advertising Service</strong><br>
+                                Practical. Performance-Based. Purpose-Driven.<br><br>
+                                We've launched a powerful new offering for emerging and established brands looking to elevate their digital presence with measurable impact.<br><br>
+                                <strong>Digital Campaign Integration and Implementation:</strong><br>
+                                Customer touch-points span digital and non-digital channels. As a result, customers continuously synthesize and integrate their perceptions and experiences, arriving at holistic assessments of various brands.<br><br>
+                                Our skill-set and tools, resident both in-house and in our partner ecosystem, include channel-agnostic content creation, API-driven tools for seamless software integration between platforms, systems, and customer touchpoints.<br><br>
+                                When offline channels are part of the overall communication effort, we ensure that there is coherence and harmony among all channels.
+                            </p>
+                            <a href="Contact_Us.html" class="btn-outline-pink"><i class="fas fa-arrow-right"></i> Contact now</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== BANNER ===== -->
+    <section class="premium-banner">
+        <div class="max-w-7xl mx-auto px-6">
+            <h2><strong class="accent">29 Years</strong> Of</h2>
+            <div class="sub">Logic in our magic!</div>
+            <a href="Contact_Us.html" class="btn-accent"><i class="fas fa-mug-hot"></i> TALK TO US</a>
+        </div>
+    </section>
+
+    <!-- ===== FOOTER ===== -->
+    <footer class="footer-premium">
+        <div class="footer-grid">
+            <div class="footer-col">
+                <h5>Johannesburg</h5>
+                <ul>
+                    <li>2nd Floor Trumpet On Keyes,<br />21 Keyes Avenue, Rosebank,<br />Johannesburg, 2196</li>
+                    <li style="margin-top:0.5rem;">Phone: +27 10 035 5218</li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h5>Durban Office</h5>
+                <ul>
+                    <li>2 Ncondo Place, Ridgeside Dr,<br />Umhlanga Ridge, Durban, 4319</li>
+                    <li style="margin-top:0.5rem;">Phone: +27 83 325 9532</li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h5>Email</h5>
+                <ul>
+                    <li><a href="mailto:info@obriangroup.com">info@obriangroup.com</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h5>About</h5>
+                <ul>
+                    <li><a href="About_Us.html">History</a></li>
+                    <li><a href="Client_Experience.html">Clients</a></li>
+                    <li>Teams</li>
+                    <li>Brand</li>
+                    <li>Terms</li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-social">
+            <a href="https://www.facebook.com/profile.php?id=100094029616085" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+            <a href="https://x.com/ObrianSA" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+            <a href="https://www.instagram.com/obriandigital/" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+            <a href="https://za.linkedin.com/company/o-brian-digital" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+        </div>
+        <div class="footer-bottom">
+            © Copyright 2030 O'Brian Group – All Rights Reserved
+        </div>
+    </footer>
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+
+    <!-- ===== LIGHTBOX ===== -->
+    <div class="lightbox-overlay" id="lightboxOverlay">
+        <button class="close-btn" id="lightboxClose">&times;</button>
+        <button class="nav-btn prev-btn" id="lightboxPrev">&#10094;</button>
+        <button class="nav-btn next-btn" id="lightboxNext">&#10095;</button>
+        <img id="lightboxImage" src="" alt="Lightbox">
+        <div class="counter" id="lightboxCounter">1 / 8</div>
+    </div>
+
+    <script>
+        // ===== HEADER SCROLL =====
+        const header = document.getElementById('mainHeader');
+        window.addEventListener('scroll', function() {
+            header.classList.toggle('scrolled', window.scrollY > 20);
+        });
+
+        // ===== MOBILE MENU =====
+        const menuBtn = document.getElementById('menuBtn');
+        const mobileMenu = document.getElementById('mobileMenu');
+        const closeBtn = document.getElementById('closeMenu');
+
+        function openMenu() { mobileMenu.classList.add('open'); document.body.style.overflow = 'hidden'; }
+        function closeMenu() { mobileMenu.classList.remove('open'); document.body.style.overflow = ''; }
+        if (menuBtn) menuBtn.addEventListener('click', openMenu);
+        if (closeBtn) closeBtn.addEventListener('click', closeMenu);
+        mobileMenu.querySelectorAll('a').forEach(link => link.addEventListener('click', closeMenu));
+        window.addEventListener('resize', function() { if (window.innerWidth >= 1024) closeMenu(); });
+
+        window.toggleAccordion = function(id) {
+            const panel = document.getElementById(id);
+            if (!panel) return;
+            panel.classList.toggle('hidden');
+        };
+
+        // ===== TABS =====
+        const tabLinks = document.querySelectorAll('#tabList .nav-link');
+        const tabPanes = {
+            tab1: document.getElementById('tab1'),
+            tab2: document.getElementById('tab2'),
+            tab3: document.getElementById('tab3'),
+            tab4: document.getElementById('tab4')
+        };
+
+        tabLinks.forEach(link => {
+            link.addEventListener('click', function(e) {
+                e.preventDefault();
+                tabLinks.forEach(l => l.classList.remove('active'));
+                this.classList.add('active');
+                const target = this.getAttribute('href').replace('#', '');
+                Object.keys(tabPanes).forEach(key => {
+                    tabPanes[key].style.display = key === target ? 'block' : 'none';
+                    if (key === target) tabPanes[key].classList.add('active');
+                    else tabPanes[key].classList.remove('active');
+                });
+            });
+        });
+
+        // ===== LIGHTBOX =====
+        const overlay = document.getElementById('lightboxOverlay');
+        const lightboxImg = document.getElementById('lightboxImage');
+        const closeBtnLb = document.getElementById('lightboxClose');
+        const prevBtn = document.getElementById('lightboxPrev');
+        const nextBtn = document.getElementById('lightboxNext');
+        const counter = document.getElementById('lightboxCounter');
+        let allImages = [];
+        let currentIndex = 0;
+
+        // Collect all images with data-image attribute
+        document.querySelectorAll('[data-image]').forEach(el => {
+            const src = el.getAttribute('data-image');
+            if (src && !allImages.includes(src)) {
+                allImages.push(src);
+            }
+            // Also click on the element itself to open lightbox
+            el.addEventListener('click', function(e) {
+                e.stopPropagation();
+                const imgSrc = this.getAttribute('data-image');
+                if (imgSrc) {
+                    const idx = allImages.indexOf(imgSrc);
+                    openLightbox(idx >= 0 ? idx : 0);
+                }
+            });
+        });
+
+        function openLightbox(index) {
+            if (index < 0) index = allImages.length - 1;
+            if (index >= allImages.length) index = 0;
+            currentIndex = index;
+            lightboxImg.src = allImages[currentIndex];
+            counter.textContent = (currentIndex + 1) + ' / ' + allImages.length;
+            overlay.classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeLightbox() {
+            overlay.classList.remove('active');
+            document.body.style.overflow = '';
+        }
+
+        function nextImage() { openLightbox(currentIndex + 1); }
+        function prevImage() { openLightbox(currentIndex - 1); }
+
+        closeBtnLb.addEventListener('click', closeLightbox);
+        prevBtn.addEventListener('click', prevImage);
+        nextBtn.addEventListener('click', nextImage);
+
+        overlay.addEventListener('click', function(e) {
+            if (e.target === this) closeLightbox();
+        });
+
+        document.addEventListener('keydown', function(e) {
+            if (!overlay.classList.contains('active')) return;
+            if (e.key === 'Escape') closeLightbox();
+            if (e.key === 'ArrowLeft') prevImage();
+            if (e.key === 'ArrowRight') nextImage();
+        });
+
+        let touchStartX = 0, touchEndX = 0;
+        overlay.addEventListener('touchstart', function(e) { touchStartX = e.changedTouches[0].screenX; });
+        overlay.addEventListener('touchend', function(e) {
+            touchEndX = e.changedTouches[0].screenX;
+            const diff = touchStartX - touchEndX;
+            if (Math.abs(diff) > 50) {
+                if (diff > 0) nextImage();
+                else prevImage();
+            }
+        });
+    </script>
+
+</body>
+</html>

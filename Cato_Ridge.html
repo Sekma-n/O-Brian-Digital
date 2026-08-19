@@ -1,0 +1,900 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <meta name="description" content="Cato Ridge Dry Port case study – brand development, strategic storytelling, and digital excellence by O'Brien Group.">
+    <title>Cato Ridge Dry Port | O'Brien Group — Case Study</title>
+
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700;14..32,800&display=swap" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <!-- Tailwind CSS (for new header) -->
+    <script src="https://cdn.tailwindcss.com">
+    </script>
+
+    <style>
+        /* ----- CUSTOM RESET & BASE ----- */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #ffffff;
+            color: #1e2a3e;
+            line-height: 1.5;
+            scroll-behavior: smooth;
+        }
+
+        :root {
+            --accent: #ec008a;
+            --accent-dark: #c2006f;
+            --gray-50: #f8fafc;
+            --gray-100: #f1f5f9;
+            --gray-200: #e2e8f0;
+            --gray-700: #334155;
+            --gray-900: #0f172a;
+            --shadow-sm: 0 10px 25px -5px rgba(0, 0, 0, 0.05), 0 8px 10px -6px rgba(0, 0, 0, 0.02);
+            --shadow-md: 0 20px 25px -12px rgba(0, 0, 0, 0.08);
+        }
+
+        .container {
+            max-width: 1280px;
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+            transition: all 0.25s ease;
+        }
+
+        /* ----- NEW HEADER CUSTOM STYLES (Tailwind supplement) ----- */
+        .logo-img {
+            height: 52px;
+            width: auto;
+            display: block;
+        }
+
+        .nav-link {
+            position: relative;
+            font-weight: 600;
+            font-size: 0.9rem;
+            letter-spacing: -0.01em;
+            transition: all 0.3s ease;
+        }
+
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            bottom: 4px;
+            left: 50%;
+            width: 0;
+            height: 2px;
+            background: #ec008a;
+            transition: all 0.3s ease;
+            transform: translateX(-50%);
+            border-radius: 4px;
+        }
+
+        .nav-link:hover::after {
+            width: 60%;
+        }
+
+        /* Magnetic button – subtle hover effect */
+        .magnetic-btn {
+            position: relative;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.65rem 1.8rem;
+            background: linear-gradient(135deg, #ec008a, #ff1493);
+            color: #fff;
+            font-weight: 700;
+            font-size: 0.85rem;
+            border-radius: 60px;
+            border: none;
+            transition: all 0.3s cubic-bezier(0.23, 1, 0.32, 1);
+            box-shadow: 0 4px 14px rgba(236, 0, 138, 0.3);
+        }
+
+        .magnetic-btn:hover {
+            transform: translateY(-3px) scale(1.02);
+            box-shadow: 0 12px 28px rgba(236, 0, 138, 0.4);
+        }
+
+        /* Mobile menu lines animation */
+        .menu-line-1,
+        .menu-line-2,
+        .menu-line-3 {
+            transition: all 0.3s ease;
+        }
+
+        .menu-open .menu-line-1 {
+            transform: translateY(6px) rotate(45deg);
+            width: 24px;
+        }
+        .menu-open .menu-line-2 {
+            opacity: 0;
+            transform: scaleX(0);
+        }
+        .menu-open .menu-line-3 {
+            transform: translateY(-6px) rotate(-45deg);
+            width: 24px;
+        }
+
+        /* Dropdown arrow animation */
+        .dropdown-arrow {
+            transition: transform 0.3s ease;
+        }
+        .group:hover .dropdown-arrow {
+            transform: rotate(180deg);
+        }
+
+        /* Dropdown menu */
+        .dropdown-menu {
+            opacity: 0;
+            visibility: hidden;
+            transform: scale(0.95) translateY(4px);
+            transition: all 0.25s ease;
+            transform-origin: top center;
+        }
+        .group:hover .dropdown-menu {
+            opacity: 1;
+            visibility: visible;
+            transform: scale(1) translateY(0);
+        }
+
+        /* ----- HERO SECTION ----- */
+        .hero {
+            background: linear-gradient(135deg, #fef9ff 0%, #ffffff 100%);
+            padding: 140px 0 80px 0;
+            text-align: center;
+            border-bottom: 1px solid var(--gray-200);
+        }
+
+        .hero-badge {
+            display: inline-block;
+            background: rgba(236, 0, 138, 0.10);
+            color: var(--accent);
+            font-weight: 600;
+            font-size: 0.85rem;
+            padding: 0.3rem 1rem;
+            border-radius: 40px;
+            letter-spacing: 0.3px;
+            margin-bottom: 1.5rem;
+        }
+
+        .hero h1 {
+            font-size: 3.8rem;
+            font-weight: 800;
+            letter-spacing: -0.02em;
+            color: var(--gray-900);
+            margin-bottom: 1rem;
+        }
+
+        .hero p {
+            font-size: 1.25rem;
+            color: var(--gray-700);
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        .hero-divider {
+            width: 80px;
+            height: 4px;
+            background: var(--accent);
+            margin: 2rem auto 0;
+            border-radius: 4px;
+        }
+
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2.4rem;
+            }
+            .hero {
+                padding: 120px 0 60px;
+            }
+        }
+
+        /* ----- CASE HEADER ----- */
+        .case-header {
+            padding: 56px 0 32px;
+            border-bottom: 1px solid var(--gray-200);
+        }
+
+        .case-header .subtitle {
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            font-size: 0.85rem;
+            color: var(--accent);
+            margin-bottom: 0.75rem;
+        }
+
+        .case-header h2 {
+            font-size: 3rem;
+            font-weight: 700;
+            letter-spacing: -0.02em;
+            margin-bottom: 1rem;
+        }
+
+        .case-header p {
+            font-size: 1.1rem;
+            color: var(--gray-700);
+            max-width: 720px;
+        }
+
+        /* ----- BACK BUTTON ----- */
+        .btn-back {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            margin-top: 1.5rem;
+            padding: 0.6rem 1.6rem;
+            background: var(--gray-100);
+            color: var(--gray-900);
+            font-weight: 600;
+            font-size: 0.9rem;
+            border-radius: 60px;
+            border: 1px solid var(--gray-200);
+            transition: all 0.25s ease;
+            box-shadow: var(--shadow-sm);
+        }
+
+        .btn-back:hover {
+            background: var(--accent);
+            color: #fff;
+            border-color: var(--accent);
+            transform: translateX(-4px) translateY(-2px);
+            box-shadow: 0 8px 20px rgba(236, 0, 138, 0.25);
+        }
+
+        .btn-back i {
+            font-size: 0.9rem;
+            transition: transform 0.25s ease;
+        }
+
+        .btn-back:hover i {
+            transform: translateX(-3px);
+        }
+
+        /* ----- GALLERY ----- */
+        .gallery-section {
+            padding: 64px 0;
+        }
+
+        .section-title {
+            font-size: 1.8rem;
+            font-weight: 700;
+            margin-bottom: 2rem;
+            text-align: center;
+        }
+
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 28px;
+        }
+
+        .gallery-item {
+            position: relative;
+            overflow: hidden;
+            border-radius: 24px;
+            cursor: pointer;
+            background: var(--gray-100);
+            aspect-ratio: 4 / 3;
+            box-shadow: var(--shadow-sm);
+            transition: transform 0.3s ease, box-shadow 0.3s;
+        }
+
+        .gallery-item:hover {
+            transform: translateY(-6px);
+            box-shadow: var(--shadow-md);
+        }
+
+        .gallery-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.4s ease;
+        }
+
+        .gallery-item:hover img {
+            transform: scale(1.03);
+        }
+
+        .overlay-icon {
+            position: absolute;
+            bottom: 16px;
+            right: 16px;
+            background: rgba(0, 0, 0, 0.55);
+            backdrop-filter: blur(4px);
+            border-radius: 60px;
+            padding: 8px 14px;
+            color: #fff;
+            font-size: 0.8rem;
+            font-weight: 500;
+            opacity: 0;
+            transition: 0.2s;
+            pointer-events: none;
+        }
+
+        .gallery-item:hover .overlay-icon {
+            opacity: 1;
+        }
+
+        /* ----- LIGHTBOX ----- */
+        .lightbox {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.92);
+            backdrop-filter: blur(12px);
+            z-index: 2000;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            visibility: hidden;
+            opacity: 0;
+            transition: 0.25s ease;
+        }
+
+        .lightbox.active {
+            visibility: visible;
+            opacity: 1;
+        }
+
+        .lb-content {
+            position: relative;
+            max-width: 90vw;
+            max-height: 85vh;
+        }
+
+        .lb-content img {
+            width: auto;
+            max-width: 100%;
+            max-height: 85vh;
+            border-radius: 20px;
+            box-shadow: 0 25px 40px rgba(0, 0, 0, 0.4);
+        }
+
+        .lb-close {
+            position: absolute;
+            top: -40px;
+            right: -10px;
+            background: none;
+            border: none;
+            color: #fff;
+            font-size: 2rem;
+            cursor: pointer;
+            transition: 0.2s;
+        }
+
+        .lb-close:hover {
+            color: var(--accent);
+            transform: scale(1.1);
+        }
+
+        .lb-prev,
+        .lb-next {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background: rgba(20, 20, 30, 0.7);
+            border: none;
+            color: #fff;
+            font-size: 2rem;
+            padding: 0.8rem 1rem;
+            border-radius: 60px;
+            cursor: pointer;
+            transition: 0.2s;
+            backdrop-filter: blur(4px);
+        }
+
+        .lb-prev {
+            left: -60px;
+        }
+        .lb-next {
+            right: -60px;
+        }
+
+        .lb-prev:hover,
+        .lb-next:hover {
+            background: var(--accent);
+            color: #fff;
+        }
+
+        @media (max-width: 768px) {
+            .lb-prev {
+                left: 10px;
+            }
+            .lb-next {
+                right: 10px;
+            }
+            .lb-prev,
+            .lb-next {
+                font-size: 1.4rem;
+                padding: 0.5rem 0.8rem;
+            }
+            .lb-close {
+                top: -30px;
+                right: 0;
+            }
+        }
+
+        /* ----- FOLLOW SECTION ----- */
+        .follow-section {
+            background: var(--gray-50);
+            padding: 64px 0;
+            text-align: center;
+            border-top: 1px solid var(--gray-200);
+        }
+
+        .follow-title {
+            font-weight: 700;
+            font-size: 1.6rem;
+            margin-bottom: 2rem;
+        }
+
+        .social-icons {
+            display: flex;
+            gap: 2rem;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .social-icon {
+            background: #fff;
+            width: 56px;
+            height: 56px;
+            border-radius: 60px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.8rem;
+            color: #1e2a3e;
+            box-shadow: var(--shadow-sm);
+            transition: 0.2s;
+        }
+
+        .social-icon:hover {
+            background: var(--accent);
+            color: #fff;
+            transform: translateY(-4px);
+        }
+
+        /* ----- FOOTER ----- */
+        .footer {
+            background: #0f172a;
+            color: #cbd5e1;
+            padding: 64px 0 40px;
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 2rem;
+            margin-bottom: 3rem;
+        }
+
+        .footer-col h4 {
+            color: #fff;
+            font-size: 1.1rem;
+            font-weight: 600;
+            margin-bottom: 1.2rem;
+        }
+
+        .footer-col p,
+        .footer-col a {
+            font-size: 0.9rem;
+            line-height: 1.5;
+            color: #94a3b8;
+            margin-bottom: 0.5rem;
+            display: block;
+        }
+
+        .footer-col a:hover {
+            color: var(--accent);
+        }
+
+        .footer-copyright {
+            text-align: center;
+            padding-top: 2rem;
+            border-top: 1px solid #1e293b;
+            font-size: 0.85rem;
+        }
+
+        .footer-social-row {
+            display: flex;
+            gap: 1.5rem;
+            margin-top: 1rem;
+        }
+
+        .footer-social-row a {
+            color: #cbd5e1;
+            font-size: 1.2rem;
+        }
+
+        .footer-social-row a:hover {
+            color: var(--accent);
+        }
+
+        /* ----- MOBILE OVERRIDES FOR HEADER ----- */
+        @media (max-width: 1024px) {
+            .logo-img {
+                height: 44px;
+            }
+        }
+
+        @media (max-width: 640px) {
+            .logo-img {
+                height: 38px;
+            }
+        }
+
+        /* Fix for header on scroll */
+        .navbar-fixed {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            z-index: 1000;
+            background: rgba(255, 255, 255, 0.96);
+            backdrop-filter: blur(12px);
+            box-shadow: var(--shadow-sm);
+        }
+
+        /* Tailwind overrides for dropdown */
+        .group:hover .dropdown-menu {
+            opacity: 1 !important;
+            visibility: visible !important;
+            transform: scale(1) !important;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- ====== NEW HEADER (replaces old navbar) ====== -->
+    <header class="fixed top-0 left-0 w-full z-1000 bg-white/96 backdrop-blur-md shadow-sm transition-all duration-300" id="mainHeader">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="flex justify-between items-center h-20">
+
+                <!-- Logo Section -->
+                <a href="index.html" class="flex items-center gap-3 group">
+                    <img src="assets/images/obrian-transparent-logo-4461219.webp" alt="O'Brien Group" class="logo-img" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22%3E%3Crect width=%22100%22 height=%22100%22 fill=%22%23ed008e%22/%3E%3Ctext x=%2250%22 y=%2268%22 font-size=%2248%22 text-anchor=%22middle%22 fill=%22white%22 font-weight=%22bold%22 font-family=%22Arial%22%3EO%3C/text%3E%3C/svg%3E'">
+                </a>
+
+                <!-- Desktop Menu -->
+                <div class="hidden lg:flex items-center gap-1">
+                    <a href="index.html" class="nav-link px-4 py-2 text-sm font-semibold text-gray-700 hover:text-[#ed008e] hover:bg-pink-50 rounded-lg transition-all duration-300">Home</a>
+                    <a href="page8.html" class="nav-link px-4 py-2 text-sm font-semibold text-gray-700 hover:text-[#ed008e] hover:bg-pink-50 rounded-lg transition-all duration-300">About</a>
+                    <a href="page30.html" class="nav-link px-4 py-2 text-sm font-semibold text-gray-700 hover:text-[#ed008e] hover:bg-pink-50 rounded-lg transition-all duration-300">Our Work</a>
+                    <a href="page52.html" class="nav-link px-4 py-2 text-sm font-semibold text-gray-700 hover:text-[#ed008e] hover:bg-pink-50 rounded-lg transition-all duration-300">Client Experience</a>
+
+                    <!-- Case Studies Dropdown -->
+                    <div class="relative group">
+                        <button class="nav-link px-4 py-2 text-sm font-semibold text-gray-700 hover:text-[#ed008e] hover:bg-pink-50 rounded-lg transition-all duration-300 flex items-center gap-1">
+                            Case Studies
+                            <svg class="w-4 h-4 dropdown-arrow" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+                            </svg>
+                        </button>
+                        <div class="dropdown-menu absolute top-full left-0 mt-2 w-48 bg-white rounded-xl shadow-xl border border-gray-100 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 transform origin-top scale-95 group-hover:scale-100">
+                            <a href="page27.html" class="block px-4 py-3 text-sm text-gray-700 hover:text-[#ed008e] hover:bg-pink-50 first:rounded-t-xl transition-colors">Digital</a>
+                            <a href="page45.html" class="block px-4 py-3 text-sm text-gray-700 hover:text-[#ed008e] hover:bg-pink-50 transition-colors">Consulting</a>
+                            <a href="page43.html" class="block px-4 py-3 text-sm text-gray-700 hover:text-[#ed008e] hover:bg-pink-50 last:rounded-b-xl transition-colors">Advertising</a>
+                        </div>
+                    </div>
+
+                    <!-- Our Expertise Dropdown -->
+                    <div class="relative group">
+                        <button class="nav-link px-4 py-2 text-sm font-semibold text-gray-700 hover:text-[#ed008e] hover:bg-pink-50 rounded-lg transition-all duration-300 flex items-center gap-1">
+                            Our Expertise
+                            <svg class="w-4 h-4 dropdown-arrow" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+                            </svg>
+                        </button>
+                        <div class="dropdown-menu absolute top-full left-0 mt-2 w-48 bg-white rounded-xl shadow-xl border border-gray-100 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 transform origin-top scale-95 group-hover:scale-100">
+                            <a href="page9.html" class="block px-4 py-3 text-sm text-gray-700 hover:text-[#ed008e] hover:bg-pink-50 first:rounded-t-xl transition-colors">Digital</a>
+                            <a href="page18.html" class="block px-4 py-3 text-sm text-gray-700 hover:text-[#ed008e] hover:bg-pink-50 transition-colors">Consulting</a>
+                            <a href="page1.html" class="block px-4 py-3 text-sm text-gray-700 hover:text-[#ed008e] hover:bg-pink-50 last:rounded-b-xl transition-colors">Advertising</a>
+                        </div>
+                    </div>
+
+                    <a href="page60.html" class="nav-link px-4 py-2 text-sm font-semibold text-gray-700 hover:text-[#ed008e] hover:bg-pink-50 rounded-lg transition-all duration-300">Staff News</a>
+                    <a href="page15.html" class="nav-link px-4 py-2 text-sm font-semibold text-gray-700 hover:text-[#ed008e] hover:bg-pink-50 rounded-lg transition-all duration-300">Blog</a>
+                    <a href="page70.html" class="nav-link px-4 py-2 text-sm font-semibold text-gray-700 hover:text-[#ed008e] hover:bg-pink-50 rounded-lg transition-all duration-300">Archives</a>
+                </div>
+
+                <!-- CTA Button -->
+                <div class="hidden lg:block">
+                    <a href="page5.html" class="magnetic-btn inline-flex items-center gap-2 px-6 py-3 bg-gradient-to-r from-[#ed008e] to-[#ff1493] text-white text-sm font-bold rounded-full hover:shadow-lg hover:shadow-pink-500/30 transition-all duration-300 transform hover:-translate-y-0.5">
+                        Contact Us
+                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"></path>
+                        </svg>
+                    </a>
+                </div>
+
+                <!-- Mobile Menu Button (Burger) -->
+                <button class="lg:hidden p-2 rounded-lg hover:bg-gray-100 transition-colors" id="menuBtn" aria-label="Toggle menu">
+                    <div class="w-6 h-6 flex flex-col justify-center items-center gap-1.5">
+                        <span class="w-6 h-0.5 bg-gray-700 transition-all duration-300 menu-line-1"></span>
+                        <span class="w-6 h-0.5 bg-gray-700 transition-all duration-300 menu-line-2"></span>
+                        <span class="w-4 h-0.5 bg-gray-700 transition-all duration-300 menu-line-3 ml-auto"></span>
+                    </div>
+                </button>
+            </div>
+        </div>
+
+        <!-- Mobile Menu Panel (hidden by default, toggled via JS) -->
+        <div class="lg:hidden fixed top-20 left-0 w-full bg-white/98 backdrop-blur-md shadow-xl border-t border-gray-100 transition-all duration-300 ease-in-out overflow-hidden" id="mobileMenu" style="max-height:0; opacity:0; visibility:hidden;">
+            <div class="px-6 py-6 flex flex-col gap-2 max-h-[80vh] overflow-y-auto">
+                <a href="index.html" class="block px-4 py-3 text-gray-700 font-semibold hover:text-[#ed008e] hover:bg-pink-50 rounded-lg transition-colors">Home</a>
+                <a href="page8.html" class="block px-4 py-3 text-gray-700 font-semibold hover:text-[#ed008e] hover:bg-pink-50 rounded-lg transition-colors">About</a>
+                <a href="page30.html" class="block px-4 py-3 text-gray-700 font-semibold hover:text-[#ed008e] hover:bg-pink-50 rounded-lg transition-colors">Our Work</a>
+                <a href="page52.html" class="block px-4 py-3 text-gray-700 font-semibold hover:text-[#ed008e] hover:bg-pink-50 rounded-lg transition-colors">Client Experience</a>
+
+                <div class="border-t border-gray-100 my-1"></div>
+                <div class="px-2 py-1 text-xs font-bold text-gray-400 uppercase tracking-wider">Case Studies</div>
+                <a href="page27.html" class="block px-4 py-2.5 text-gray-700 hover:text-[#ed008e] hover:bg-pink-50 rounded-lg transition-colors pl-6">Digital</a>
+                <a href="page45.html" class="block px-4 py-2.5 text-gray-700 hover:text-[#ed008e] hover:bg-pink-50 rounded-lg transition-colors pl-6">Consulting</a>
+                <a href="page43.html" class="block px-4 py-2.5 text-gray-700 hover:text-[#ed008e] hover:bg-pink-50 rounded-lg transition-colors pl-6">Advertising</a>
+
+                <div class="border-t border-gray-100 my-1"></div>
+                <div class="px-2 py-1 text-xs font-bold text-gray-400 uppercase tracking-wider">Our Expertise</div>
+                <a href="page9.html" class="block px-4 py-2.5 text-gray-700 hover:text-[#ed008e] hover:bg-pink-50 rounded-lg transition-colors pl-6">Digital</a>
+                <a href="page18.html" class="block px-4 py-2.5 text-gray-700 hover:text-[#ed008e] hover:bg-pink-50 rounded-lg transition-colors pl-6">Consulting</a>
+                <a href="page1.html" class="block px-4 py-2.5 text-gray-700 hover:text-[#ed008e] hover:bg-pink-50 rounded-lg transition-colors pl-6">Advertising</a>
+
+                <div class="border-t border-gray-100 my-1"></div>
+                <a href="page60.html" class="block px-4 py-3 text-gray-700 font-semibold hover:text-[#ed008e] hover:bg-pink-50 rounded-lg transition-colors">Staff News</a>
+                <a href="page15.html" class="block px-4 py-3 text-gray-700 font-semibold hover:text-[#ed008e] hover:bg-pink-50 rounded-lg transition-colors">Blog</a>
+                <a href="page70.html" class="block px-4 py-3 text-gray-700 font-semibold hover:text-[#ed008e] hover:bg-pink-50 rounded-lg transition-colors">Archives</a>
+
+                <div class="border-t border-gray-100 my-2"></div>
+                <a href="page5.html" class="magnetic-btn inline-flex items-center justify-center gap-2 px-6 py-3 bg-gradient-to-r from-[#ed008e] to-[#ff1493] text-white text-sm font-bold rounded-full shadow-lg shadow-pink-500/30 mt-2">
+                    Contact Us
+                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"></path>
+                    </svg>
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <!-- ====== HERO ====== -->
+    <section class="hero">
+        <div class="container">
+            <div class="hero-badge">Case Studies in Excellence</div>
+            <h1>OUR WORK</h1>
+            <p>A Dive into Our Work Triumphs — strategic, bold, and results-driven.</p>
+            <div class="hero-divider"></div>
+        </div>
+    </section>
+
+    <!-- ====== CASE STUDY INTRO + BACK BUTTON ====== -->
+    <div class="container case-header">
+        <div class="subtitle">✦ Featured Project</div>
+        <h2>Cato Ridge Dry Port</h2>
+        <p>Brand development, identity architecture, and digital storytelling for one of Africa's most ambitious logistics hubs. A case study in clarity, trust, and industrial prestige.</p>
+        <!-- Back to Our Work button -->
+        <a href="page30.html" class="btn-back">
+            <i class="fas fa-arrow-left me-1"></i> Back to Our Work
+        </a>
+    </div>
+
+    <!-- ====== GALLERY ====== -->
+    <section class="gallery-section">
+        <div class="container">
+            <div class="section-title">
+                <span style="background: linear-gradient(135deg, var(--accent), #ff4da6); background-clip: text; -webkit-background-clip: text; color: transparent;">Cato Ridge</span> Brand Development
+            </div>
+            <div class="gallery-grid" id="galleryGrid">
+                <!-- injected by JS -->
+            </div>
+        </div>
+    </section>
+
+    <!-- ====== FOLLOW ====== -->
+    <section class="follow-section">
+        <div class="container">
+            <div class="follow-title">Follow our journey</div>
+            <div class="social-icons">
+                <a href="https://www.facebook.com/profile.php?id=100094029616085" target="_blank" class="social-icon"><i class="fab fa-facebook-f"></i></a>
+                <a href="https://x.com/ObrianSA" target="_blank" class="social-icon"><i class="fab fa-x-twitter"></i></a>
+                <a href="https://www.instagram.com/obriandigital/" target="_blank" class="social-icon"><i class="fab fa-instagram"></i></a>
+                <a href="https://za.pinterest.com/OBRIANDIGITAL/" target="_blank" class="social-icon"><i class="fab fa-pinterest-p"></i></a>
+                <a href="https://za.linkedin.com/company/o-brian-digital" target="_blank" class="social-icon"><i class="fab fa-linkedin-in"></i></a>
+            </div>
+        </div>
+    </section>
+
+    <!-- ====== FOOTER ====== -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-col">
+                    <h4>Johannesburg</h4>
+                    <p>2nd Floor Trumpet On Keyes, 21 Keyes Avenue, Rosebank, Johannesburg, 2196</p>
+                    <p>Phone: +27 10 035 5218</p>
+                </div>
+                <div class="footer-col">
+                    <h4>Durban Office</h4>
+                    <p>2 Ncondo Place, Ridgeside Dr, Umhlanga Ridge, Durban, 4319</p>
+                    <p>Phone: +27 83 325 9532</p>
+                </div>
+                <div class="footer-col">
+                    <h4>Email</h4>
+                    <a href="mailto:info@obriangroup.com">info@obriangroup.com</a>
+                </div>
+                <div class="footer-col">
+                    <h4>About</h4>
+                    <a href="#">History</a>
+                    <a href="#">Clients</a>
+                    <a href="#">Teams</a>
+                    <a href="#">Brand</a>
+                    <a href="#">Terms</a>
+                </div>
+            </div>
+            <div class="footer-social-row">
+                <a href="https://www.facebook.com/profile.php?id=100094029616085" target="_blank"><i class="fab fa-facebook-f"></i></a>
+                <a href="https://x.com/ObrianSA" target="_blank"><i class="fab fa-x-twitter"></i></a>
+                <a href="https://www.instagram.com/obriandigital/" target="_blank"><i class="fab fa-instagram"></i></a>
+                <a href="https://za.linkedin.com/company/o-brian-digital" target="_blank"><i class="fab fa-linkedin-in"></i></a>
+            </div>
+            <div class="footer-copyright">
+                © 2025 O'Brien Group — All Rights Reserved. Redesigned with purpose.
+            </div>
+        </div>
+    </footer>
+
+    <!-- ====== LIGHTBOX ====== -->
+    <div id="lightboxModal" class="lightbox">
+        <div class="lb-content">
+            <button class="lb-close" id="lbClose"><i class="fas fa-times"></i></button>
+            <button class="lb-prev" id="lbPrev"><i class="fas fa-chevron-left"></i></button>
+            <img id="lbImage" src="" alt="Full view">
+            <button class="lb-next" id="lbNext"><i class="fas fa-chevron-right"></i></button>
+        </div>
+    </div>
+
+    <!-- ============================================================ -->
+    <!-- JAVASCRIPT                                                   -->
+    <!-- ============================================================ -->
+    <script>
+        // ---------- GALLERY DATA (8 images) ----------
+        const galleryImages = [
+            "assets/images/cato-ridge-dry-port-website-re-1.jpg",
+            "assets/images/cato-ridge-dry-port-website-re-2.jpg",
+            "assets/images/cato-ridge-dry-port-website-re-3.jpg",
+            "assets/images/cato-ridge-dry-port-website-re-4.jpg",
+            "assets/images/cato-ridge-dry-port-website-re-6.jpg",
+            "assets/images/obrian-work16.jpg",
+            "assets/images/obrian-work18.jpg",
+            "assets/images/obrian-work17.jpg"
+        ];
+
+        const galleryGrid = document.getElementById('galleryGrid');
+
+        function buildGallery() {
+            galleryGrid.innerHTML = '';
+            galleryImages.forEach((src, idx) => {
+                const item = document.createElement('div');
+                item.className = 'gallery-item';
+                item.setAttribute('data-index', idx);
+                const img = document.createElement('img');
+                img.src = src;
+                img.alt = 'Cato Ridge brand visual ' + (idx + 1);
+                img.loading = 'lazy';
+                const overlaySpan = document.createElement('div');
+                overlaySpan.className = 'overlay-icon';
+                overlaySpan.innerHTML = '<i class="fas fa-expand-alt"></i> View';
+                item.appendChild(img);
+                item.appendChild(overlaySpan);
+                item.addEventListener('click', (e) => {
+                    e.stopPropagation();
+                    openLightbox(idx);
+                });
+                galleryGrid.appendChild(item);
+            });
+        }
+
+        // ---------- LIGHTBOX ----------
+        let currentIndex = 0;
+        const lightbox = document.getElementById('lightboxModal');
+        const lbImage = document.getElementById('lbImage');
+        const lbClose = document.getElementById('lbClose');
+        const lbPrev = document.getElementById('lbPrev');
+        const lbNext = document.getElementById('lbNext');
+
+        function openLightbox(index) {
+            currentIndex = index;
+            lbImage.src = galleryImages[currentIndex];
+            lightbox.classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeLightbox() {
+            lightbox.classList.remove('active');
+            document.body.style.overflow = '';
+        }
+
+        function showPrev() {
+            currentIndex = (currentIndex - 1 + galleryImages.length) % galleryImages.length;
+            lbImage.src = galleryImages[currentIndex];
+        }
+
+        function showNext() {
+            currentIndex = (currentIndex + 1) % galleryImages.length;
+            lbImage.src = galleryImages[currentIndex];
+        }
+
+        lbClose.addEventListener('click', closeLightbox);
+        lbPrev.addEventListener('click', showPrev);
+        lbNext.addEventListener('click', showNext);
+        lightbox.addEventListener('click', (e) => {
+            if (e.target === lightbox) closeLightbox();
+        });
+        document.addEventListener('keydown', (e) => {
+            if (!lightbox.classList.contains('active')) return;
+            if (e.key === 'Escape') closeLightbox();
+            if (e.key === 'ArrowLeft') showPrev();
+            if (e.key === 'ArrowRight') showNext();
+        });
+
+        // ---------- NEW HEADER: MOBILE MENU TOGGLE ----------
+        const menuBtn = document.getElementById('menuBtn');
+        const mobileMenu = document.getElementById('mobileMenu');
+        let menuOpen = false;
+
+        menuBtn.addEventListener('click', () => {
+            menuOpen = !menuOpen;
+            menuBtn.classList.toggle('menu-open', menuOpen);
+            if (menuOpen) {
+                mobileMenu.style.maxHeight = mobileMenu.scrollHeight + 80 + 'px';
+                mobileMenu.style.opacity = '1';
+                mobileMenu.style.visibility = 'visible';
+            } else {
+                mobileMenu.style.maxHeight = '0';
+                mobileMenu.style.opacity = '0';
+                mobileMenu.style.visibility = 'hidden';
+            }
+        });
+
+        // Close mobile menu when a link is clicked
+        document.querySelectorAll('#mobileMenu a').forEach(link => {
+            link.addEventListener('click', () => {
+                menuOpen = false;
+                menuBtn.classList.remove('menu-open');
+                mobileMenu.style.maxHeight = '0';
+                mobileMenu.style.opacity = '0';
+                mobileMenu.style.visibility = 'hidden';
+            });
+        });
+
+        // Close mobile menu on window resize to desktop
+        window.addEventListener('resize', () => {
+            if (window.innerWidth >= 1024 && menuOpen) {
+                menuOpen = false;
+                menuBtn.classList.remove('menu-open');
+                mobileMenu.style.maxHeight = '0';
+                mobileMenu.style.opacity = '0';
+                mobileMenu.style.visibility = 'hidden';
+            }
+        });
+
+        // ---------- BUILD GALLERY ----------
+        buildGallery();
+    </script>
+
+</body>
+</html>

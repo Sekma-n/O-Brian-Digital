@@ -1,0 +1,1306 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>SA Express — O'Brien Digital Case Study</title>
+    <meta name="description" content="A Dive into Our Work Triumphs — Case Studies in Excellence. SA Express: We fly for you." />
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,600;14..32,700;14..32,800;14..32,900&display=swap" rel="stylesheet" />
+
+    <!-- Font Awesome 6 (free) -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
+
+    <!-- Tailwind CSS via CDN -->
+    <script src="https://cdn.tailwindcss.com">
+    </script>
+
+    <style>
+        /* ---------- RESET & BASE ---------- */
+        *,
+        *::before,
+        *::after {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary: #ed008e;
+            --primary-dark: #c20074;
+            --secondary: #231e1f;
+            --secondary-light: #3a3234;
+            --white: #ffffff;
+            --cream: #f8f6f0;
+            --gray: #6b7a8a;
+            --gray-light: #eef0f2;
+            --shadow: 0 20px 60px rgba(35, 30, 31, 0.15);
+            --radius: 16px;
+            --transition: 0.35s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        }
+
+        /* Override Tailwind's default font to match Inter */
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            background: var(--cream);
+            color: var(--secondary);
+            line-height: 1.6;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+        img {
+            max-width: 100%;
+            display: block;
+        }
+        ul {
+            list-style: none;
+        }
+
+        .container {
+            max-width: 1240px;
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+
+        /* ---------- BUTTONS ---------- */
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            padding: 14px 34px;
+            border-radius: 60px;
+            font-weight: 600;
+            font-size: 0.95rem;
+            letter-spacing: 0.3px;
+            border: none;
+            cursor: pointer;
+            transition: var(--transition);
+            font-family: inherit;
+        }
+
+        .btn-primary {
+            background: var(--primary);
+            color: var(--white);
+        }
+        .btn-primary:hover {
+            background: var(--primary-dark);
+            transform: translateY(-3px);
+            box-shadow: 0 12px 30px rgba(237, 0, 142, 0.4);
+        }
+
+        .btn-outline {
+            background: transparent;
+            color: var(--white);
+            border: 2px solid rgba(255, 255, 255, 0.35);
+        }
+        .btn-outline:hover {
+            background: var(--white);
+            color: var(--secondary);
+            border-color: var(--white);
+            transform: translateY(-3px);
+        }
+
+        .btn-dark {
+            background: var(--secondary);
+            color: var(--white);
+        }
+        .btn-dark:hover {
+            background: var(--secondary-light);
+            transform: translateY(-3px);
+            box-shadow: 0 12px 30px rgba(35, 30, 31, 0.25);
+        }
+
+        .btn-sm {
+            padding: 10px 24px;
+            font-size: 0.85rem;
+        }
+
+        /* ---------- NEW HEADER STYLES ---------- */
+        .header-glass {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            z-index: 50;
+            background: rgba(255, 255, 255, 0.85);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            transition: box-shadow 0.3s, background 0.3s;
+            border-bottom: 1px solid rgba(0, 0, 0, 0.04);
+        }
+        .header-glass.scrolled {
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+            background: rgba(255, 255, 255, 0.98);
+        }
+
+        .nav-link {
+            padding: 0.5rem 1rem;
+            font-size: 0.875rem;
+            font-weight: 600;
+            color: #374151;
+            border-radius: 0.5rem;
+            transition: all 0.3s ease;
+            display: inline-block;
+            cursor: pointer;
+        }
+        .nav-link:hover {
+            color: #e6007e;
+            background-color: #fdf2f8;
+        }
+
+        .dropdown-menu-custom {
+            position: absolute;
+            top: 100%;
+            left: 0;
+            margin-top: 0.5rem;
+            width: 200px;
+            background: white;
+            border-radius: 0.75rem;
+            box-shadow: 0 20px 40px -8px rgba(0, 0, 0, 0.15);
+            border: 1px solid #f3f4f6;
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(-8px) scale(0.96);
+            transition: all 0.25s ease;
+            transform-origin: top left;
+            z-index: 60;
+        }
+        .group:hover .dropdown-menu-custom {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0) scale(1);
+        }
+        .dropdown-menu-custom a {
+            display: block;
+            padding: 0.75rem 1.25rem;
+            font-size: 0.875rem;
+            color: #374151;
+            transition: background 0.2s, color 0.2s;
+        }
+        .dropdown-menu-custom a:hover {
+            background: #fdf2f8;
+            color: #e6007e;
+        }
+        .dropdown-menu-custom a:first-child {
+            border-radius: 0.75rem 0.75rem 0 0;
+        }
+        .dropdown-menu-custom a:last-child {
+            border-radius: 0 0 0.75rem 0.75rem;
+        }
+
+        .btn-primary-pink {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.75rem 1.75rem;
+            background: linear-gradient(135deg, #e6007e, #ff1493);
+            color: white;
+            font-weight: 700;
+            font-size: 0.875rem;
+            border-radius: 9999px;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 14px rgba(230, 0, 126, 0.3);
+        }
+        .btn-primary-pink:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(230, 0, 126, 0.4);
+            color: white;
+        }
+
+        /* Mobile menu panel (preserved from original) */
+        .mobile-menu-panel {
+            display: none;
+            position: fixed;
+            top: 80px;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(255, 255, 255, 0.98);
+            backdrop-filter: blur(12px);
+            padding: 1.5rem;
+            overflow-y: auto;
+            z-index: 1020;
+            border-top: 1px solid rgba(0, 0, 0, 0.04);
+        }
+        .mobile-menu-panel.open {
+            display: block;
+        }
+        .mobile-menu-panel a {
+            display: block;
+            padding: 0.75rem 1rem;
+            font-size: 1rem;
+            font-weight: 500;
+            color: #1a1a2e;
+            border-radius: 0.5rem;
+            transition: background 0.2s;
+        }
+        .mobile-menu-panel a:hover {
+            background: rgba(237, 0, 142, 0.06);
+            color: #ed008e;
+        }
+        .mobile-menu-panel .mobile-dropdown-title {
+            font-weight: 700;
+            padding: 0.75rem 1rem;
+            color: #1a1a2e;
+            cursor: default;
+        }
+        .mobile-menu-panel .mobile-dropdown-items {
+            padding-left: 1rem;
+        }
+        .mobile-menu-panel .mobile-dropdown-items a {
+            font-weight: 400;
+            font-size: 0.95rem;
+        }
+
+        /* ---------- HERO ---------- */
+        .hero {
+            position: relative;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            background: var(--secondary);
+            overflow: hidden;
+            padding-top: 80px;
+        }
+
+        .hero-bg {
+            position: absolute;
+            inset: 0;
+            z-index: 0;
+        }
+        .hero-bg::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: radial-gradient(ellipse at 30% 40%, rgba(237, 0, 142, 0.25) 0%, transparent 70%),
+                radial-gradient(ellipse at 80% 70%, rgba(35, 30, 31, 0.9) 0%, var(--secondary) 100%);
+            z-index: 1;
+        }
+        .hero-bg .plane-icon {
+            position: absolute;
+            right: -80px;
+            bottom: -60px;
+            font-size: 34rem;
+            color: rgba(255, 255, 255, 0.03);
+            transform: rotate(-12deg);
+            z-index: 0;
+        }
+
+        .hero-grid {
+            position: relative;
+            z-index: 2;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+            align-items: center;
+            padding: 40px 0 60px;
+        }
+
+        .hero-content h6 {
+            color: var(--primary);
+            font-size: 0.85rem;
+            font-weight: 600;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            margin-bottom: 16px;
+        }
+        .hero-content h1 {
+            font-size: clamp(2.8rem, 6vw, 4.8rem);
+            font-weight: 900;
+            line-height: 1.05;
+            color: #fff;
+            margin-bottom: 20px;
+        }
+        .hero-content h1 span {
+            color: var(--primary);
+        }
+        .hero-content p {
+            color: rgba(255, 255, 255, 0.7);
+            font-size: 1.2rem;
+            max-width: 480px;
+            margin-bottom: 36px;
+            line-height: 1.7;
+        }
+        .hero-content .btn-group {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 16px;
+        }
+
+        .hero-stats {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 24px;
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: var(--radius);
+            padding: 36px 32px;
+        }
+        .hero-stats .stat h3 {
+            font-size: 2.4rem;
+            font-weight: 800;
+            color: var(--primary);
+            line-height: 1;
+        }
+        .hero-stats .stat h3 small {
+            font-size: 1rem;
+            font-weight: 400;
+            color: rgba(255, 255, 255, 0.5);
+        }
+        .hero-stats .stat p {
+            color: rgba(255, 255, 255, 0.6);
+            font-size: 0.85rem;
+            margin-top: 6px;
+            font-weight: 400;
+        }
+
+        /* ---------- SECTION TITLES ---------- */
+        .section-label {
+            display: inline-block;
+            font-size: 0.75rem;
+            font-weight: 700;
+            letter-spacing: 2.5px;
+            text-transform: uppercase;
+            color: var(--primary);
+            margin-bottom: 12px;
+        }
+        .section-title {
+            font-size: clamp(2rem, 4vw, 3.2rem);
+            font-weight: 800;
+            line-height: 1.15;
+            color: var(--secondary);
+        }
+        .section-title .highlight {
+            color: var(--primary);
+        }
+        .section-sub {
+            font-size: 1.1rem;
+            color: var(--gray);
+            max-width: 580px;
+            line-height: 1.7;
+        }
+
+        /* ---------- CASE OVERVIEW ---------- */
+        .case-overview {
+            padding: 100px 0 80px;
+            background: var(--white);
+        }
+        .case-overview .grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+            align-items: center;
+        }
+        .case-overview .text-block h2 {
+            font-size: clamp(2rem, 3.5vw, 2.8rem);
+            font-weight: 800;
+            line-height: 1.15;
+            margin-bottom: 20px;
+        }
+        .case-overview .text-block h2 span {
+            color: var(--primary);
+        }
+        .case-overview .text-block p {
+            color: var(--gray);
+            font-size: 1.05rem;
+            line-height: 1.8;
+            margin-bottom: 16px;
+        }
+        .case-overview .text-block .tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+            margin-top: 24px;
+        }
+        .case-overview .text-block .tags span {
+            background: var(--gray-light);
+            padding: 6px 18px;
+            border-radius: 40px;
+            font-size: 0.8rem;
+            font-weight: 500;
+            color: var(--secondary);
+        }
+
+        .case-overview .image-block {
+            border-radius: var(--radius);
+            overflow: hidden;
+            box-shadow: var(--shadow);
+        }
+        .case-overview .image-block img {
+            width: 100%;
+            height: 320px;
+            object-fit: cover;
+            transition: var(--transition);
+        }
+        .case-overview .image-block:hover img {
+            transform: scale(1.02);
+        }
+
+        /* ---------- VIDEO SECTION ---------- */
+        .video-section {
+            padding: 80px 0 100px;
+            background: var(--cream);
+        }
+        .video-section .section-head {
+            text-align: center;
+            margin-bottom: 48px;
+        }
+        .video-section .section-head h2 {
+            font-size: clamp(2rem, 3vw, 2.6rem);
+            font-weight: 800;
+        }
+        .video-section .section-head p {
+            color: var(--gray);
+            font-size: 1.05rem;
+            max-width: 500px;
+            margin: 12px auto 0;
+        }
+
+        .video-wrapper {
+            position: relative;
+            border-radius: var(--radius);
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            background: #000;
+            aspect-ratio: 16 / 9;
+        }
+        .video-wrapper iframe {
+            width: 100%;
+            height: 100%;
+            border: none;
+            display: block;
+        }
+
+        /* ---------- GALLERY ---------- */
+        .gallery-section {
+            padding: 80px 0 100px;
+            background: var(--white);
+        }
+        .gallery-section .section-head {
+            text-align: center;
+            margin-bottom: 48px;
+        }
+        .gallery-section .section-head h2 {
+            font-size: clamp(2rem, 3vw, 2.6rem);
+            font-weight: 800;
+        }
+        .gallery-section .section-head p {
+            color: var(--gray);
+            font-size: 1.05rem;
+            max-width: 500px;
+            margin: 12px auto 0;
+        }
+
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 20px;
+        }
+
+        .gallery-item {
+            position: relative;
+            border-radius: var(--radius);
+            overflow: hidden;
+            cursor: pointer;
+            aspect-ratio: 1 / 1;
+            background: var(--gray-light);
+            transition: var(--transition);
+        }
+        .gallery-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: var(--transition);
+        }
+        .gallery-item:hover img {
+            transform: scale(1.05);
+        }
+        .gallery-item .overlay {
+            position: absolute;
+            inset: 0;
+            background: rgba(35, 30, 31, 0.7);
+            backdrop-filter: blur(2px);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            transition: var(--transition);
+        }
+        .gallery-item:hover .overlay {
+            opacity: 1;
+        }
+        .gallery-item .overlay i {
+            color: #fff;
+            font-size: 2.2rem;
+            transform: scale(0.8);
+            transition: var(--transition);
+        }
+        .gallery-item:hover .overlay i {
+            transform: scale(1);
+        }
+
+        /* ---------- RADIO SECTION ---------- */
+        .radio-section {
+            padding: 80px 0 100px;
+            background: var(--cream);
+        }
+        .radio-section .section-head {
+            text-align: center;
+            margin-bottom: 48px;
+        }
+        .radio-section .section-head h2 {
+            font-size: clamp(2rem, 3vw, 2.6rem);
+            font-weight: 800;
+        }
+        .radio-section .section-head p {
+            color: var(--gray);
+            font-size: 1.05rem;
+            max-width: 500px;
+            margin: 12px auto 0;
+        }
+
+        .radio-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+        }
+
+        .radio-card {
+            background: var(--white);
+            border-radius: var(--radius);
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+        }
+        .radio-card:hover {
+            transform: translateY(-6px);
+            box-shadow: 0 30px 70px rgba(35, 30, 31, 0.18);
+        }
+
+        .radio-card .video-wrapper {
+            border-radius: var(--radius) var(--radius) 0 0;
+            aspect-ratio: 16 / 9;
+            box-shadow: none;
+        }
+
+        .radio-card .card-body {
+            padding: 28px 30px 32px;
+        }
+        .radio-card .card-body h4 {
+            font-size: 1.2rem;
+            font-weight: 700;
+            color: var(--secondary);
+            margin-bottom: 8px;
+        }
+        .radio-card .card-body p {
+            color: var(--gray);
+            font-size: 0.95rem;
+            line-height: 1.6;
+        }
+        .radio-card .card-body .badge {
+            display: inline-block;
+            margin-top: 14px;
+            background: var(--gray-light);
+            padding: 4px 16px;
+            border-radius: 40px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            color: var(--secondary);
+            letter-spacing: 0.5px;
+        }
+        .radio-card .card-body .badge i {
+            color: var(--primary);
+            margin-right: 6px;
+        }
+
+        /* ---------- SOCIAL ---------- */
+        .social-section {
+            padding: 60px 0;
+            background: var(--cream);
+            text-align: center;
+        }
+        .social-section h3 {
+            font-weight: 600;
+            font-size: 1.1rem;
+            letter-spacing: 1px;
+            color: var(--gray);
+            margin-bottom: 24px;
+        }
+        .social-icons {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+        .social-icons a {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 52px;
+            height: 52px;
+            border-radius: 50%;
+            background: var(--white);
+            color: var(--secondary);
+            font-size: 1.3rem;
+            transition: var(--transition);
+            box-shadow: 0 4px 16px rgba(0, 0, 0, 0.04);
+        }
+        .social-icons a:hover {
+            background: var(--primary);
+            color: #fff;
+            transform: translateY(-4px);
+            box-shadow: 0 12px 28px rgba(237, 0, 142, 0.35);
+        }
+
+        /* ---------- FOOTER ---------- */
+        .footer {
+            background: var(--secondary);
+            color: rgba(255, 255, 255, 0.7);
+            padding: 60px 0 32px;
+        }
+        .footer-grid {
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr 1fr;
+            gap: 40px;
+            padding-bottom: 40px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+            margin-bottom: 32px;
+        }
+        .footer-brand img {
+            height: 44px;
+            margin-bottom: 16px;
+        }
+        .footer-brand p {
+            font-size: 0.9rem;
+            max-width: 320px;
+            line-height: 1.7;
+            color: rgba(255, 255, 255, 0.5);
+        }
+        .footer-col h5 {
+            color: #fff;
+            font-weight: 600;
+            font-size: 1rem;
+            margin-bottom: 16px;
+        }
+        .footer-col ul li {
+            margin-bottom: 10px;
+        }
+        .footer-col ul li a {
+            font-size: 0.9rem;
+            color: rgba(255, 255, 255, 0.5);
+            transition: var(--transition);
+        }
+        .footer-col ul li a:hover {
+            color: var(--primary);
+        }
+
+        .footer-bottom {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 16px;
+        }
+        .footer-bottom p {
+            font-size: 0.85rem;
+            color: rgba(255, 255, 255, 0.3);
+        }
+        .footer-bottom .social-mini {
+            display: flex;
+            gap: 14px;
+        }
+        .footer-bottom .social-mini a {
+            color: rgba(255, 255, 255, 0.3);
+            transition: var(--transition);
+            font-size: 1.1rem;
+        }
+        .footer-bottom .social-mini a:hover {
+            color: var(--primary);
+        }
+
+        /* ---------- LIGHTBOX (modal) ---------- */
+        .lightbox {
+            display: none;
+            position: fixed;
+            inset: 0;
+            z-index: 2000;
+            background: rgba(0, 0, 0, 0.92);
+            backdrop-filter: blur(16px);
+            align-items: center;
+            justify-content: center;
+            padding: 40px;
+        }
+        .lightbox.active {
+            display: flex;
+        }
+        .lightbox .close-lb {
+            position: absolute;
+            top: 28px;
+            right: 36px;
+            color: #fff;
+            font-size: 2.2rem;
+            cursor: pointer;
+            transition: var(--transition);
+            background: none;
+            border: none;
+        }
+        .lightbox .close-lb:hover {
+            transform: rotate(90deg);
+            color: var(--primary);
+        }
+        .lightbox img {
+            max-width: 100%;
+            max-height: 85vh;
+            border-radius: 12px;
+            box-shadow: 0 30px 80px rgba(0, 0, 0, 0.6);
+            object-fit: contain;
+        }
+
+        /* ---------- RESPONSIVE ---------- */
+        @media (max-width: 1024px) {
+            .gallery-grid {
+                grid-template-columns: repeat(3, 1fr);
+            }
+            .hero-grid {
+                grid-template-columns: 1fr;
+                gap: 40px;
+            }
+            .hero-stats {
+                max-width: 500px;
+            }
+            .case-overview .grid {
+                grid-template-columns: 1fr;
+                gap: 40px;
+            }
+            .footer-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+            .radio-grid {
+                grid-template-columns: 1fr;
+                gap: 32px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .hero {
+                min-height: auto;
+                padding: 120px 0 60px;
+            }
+            .hero-content h1 {
+                font-size: 2.6rem;
+            }
+            .hero-stats {
+                grid-template-columns: repeat(3, 1fr);
+                padding: 24px 20px;
+                gap: 16px;
+            }
+            .hero-stats .stat h3 {
+                font-size: 1.8rem;
+            }
+
+            .gallery-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 14px;
+            }
+
+            .footer-grid {
+                grid-template-columns: 1fr;
+                gap: 32px;
+            }
+            .footer-bottom {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .case-overview {
+                padding: 60px 0 50px;
+            }
+            .video-section {
+                padding: 50px 0 60px;
+            }
+            .gallery-section {
+                padding: 50px 0 60px;
+            }
+            .radio-section {
+                padding: 50px 0 60px;
+            }
+
+            .lightbox {
+                padding: 20px;
+            }
+            .lightbox .close-lb {
+                top: 16px;
+                right: 20px;
+                font-size: 1.8rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .hero-stats {
+                grid-template-columns: 1fr 1fr;
+            }
+            .hero-stats .stat:last-child {
+                grid-column: span 2;
+                text-align: center;
+            }
+            .gallery-grid {
+                grid-template-columns: 1fr 1fr;
+                gap: 10px;
+            }
+            .btn {
+                padding: 12px 24px;
+                font-size: 0.85rem;
+            }
+            .radio-card .card-body {
+                padding: 20px 22px 24px;
+            }
+            .radio-card .card-body h4 {
+                font-size: 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- ===== NEW HEADER ===== -->
+    <header class="header-glass" id="mainHeader">
+        <div class="max-w-7xl mx-auto px-4 md:px-6">
+            <div class="flex justify-between items-center h-20">
+
+                <!-- Logo -->
+                <a href="index.html" class="flex items-center gap-3 group">
+                    <img src="assets/images/obrian-transparent-logo-4461219.webp" alt="O'Brian Group" class="h-10 w-auto" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22%3E%3Crect width=%22100%22 height=%22100%22 fill=%22%23ed008e%22/%3E%3Ctext x=%2250%22 y=%2268%22 font-size=%2248%22 text-anchor=%22middle%22 fill=%22white%22 font-weight=%22bold%22 font-family=%22Inter%22%3EO%3C/text%3E%3C/svg%3E'">
+                    <span class="font-black text-xl text-[#231e1f] tracking-tight hidden sm:inline"><span class="text-[#ed018e]"></span></span>
+                </a>
+
+                <!-- Desktop Nav -->
+                <div class="hidden lg:flex items-center gap-0.5">
+                    <a href="index.html" class="nav-link">Home</a>
+                    <a href="page8.html" class="nav-link">About</a>
+                    <a href="page30.html" class="nav-link">Our Work</a>
+                    <a href="page52.html" class="nav-link">Client Experience</a>
+
+                    <div class="relative group">
+                        <button class="nav-link flex items-center gap-1">
+                            Case Studies
+                            <svg class="w-3 h-3 transition-transform duration-300 group-hover:rotate-180" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M19 9l-7 7-7-7"></path></svg>
+                        </button>
+                        <div class="dropdown-menu-custom">
+                            <a href="page27.html">Advertising</a>
+                            <a href="page45.html">Digital</a>
+                            <a href="page43.html">Consulting</a>
+                        </div>
+                    </div>
+
+                    <div class="relative group">
+                        <button class="nav-link flex items-center gap-1">
+                            Expertise
+                            <svg class="w-3 h-3 transition-transform duration-300 group-hover:rotate-180" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M19 9l-7 7-7-7"></path></svg>
+                        </button>
+                        <div class="dropdown-menu-custom">
+                            <a href="page9.html">Advertising</a>
+                            <a href="page18.html">Digital</a>
+                            <a href="page1.html">Consulting</a>
+                        </div>
+                    </div>
+
+                    <a href="page60.html" class="nav-link">Staff News</a>
+                    <a href="page15.html" class="nav-link">Blog</a>
+                    <a href="page70.html" class="nav-link">Archives</a>
+                </div>
+
+                <!-- CTA -->
+                <div class="hidden lg:block">
+                    <a href="page5.html" class="btn-primary-pink">
+                        <span>Contact</span>
+                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M17 8l4 4m0 0l-4 4m4-4H3"></path></svg>
+                    </a>
+                </div>
+
+                <!-- Burger -->
+                <button class="lg:hidden p-2 rounded-lg hover:bg-gray-100 transition-colors" id="menuBtn" aria-label="Toggle menu">
+                    <div class="w-6 h-6 flex flex-col justify-center items-center gap-1.5">
+                        <span class="w-6 h-0.5 bg-gray-700 transition-all duration-300 menu-line-1"></span>
+                        <span class="w-6 h-0.5 bg-gray-700 transition-all duration-300 menu-line-2"></span>
+                        <span class="w-4 h-0.5 bg-gray-700 transition-all duration-300 menu-line-3 ml-auto"></span>
+                    </div>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- ===== MOBILE MENU PANEL (preserved from original) ===== -->
+    <div class="mobile-menu-panel" id="mobileMenuPanel">
+        <a href="index.html">Home</a>
+        <a href="page8.html">About</a>
+        <a href="page30.html">Our Work</a>
+        <a href="page52.html">Client Experience</a>
+
+        <div class="mobile-dropdown-title">Case Studies</div>
+        <div class="mobile-dropdown-items">
+            <a href="page27.html">Advertising</a>
+            <a href="page45.html">Digital</a>
+            <a href="page43.html">Consulting</a>
+        </div>
+
+        <div class="mobile-dropdown-title">Our Expertise</div>
+        <div class="mobile-dropdown-items">
+            <a href="page9.html">Advertising</a>
+            <a href="page1.html">Digital</a>
+            <a href="page18.html">Consulting</a>
+        </div>
+
+        <a href="page60.html">Staff News</a>
+        <a href="page15.html">Blog</a>
+        <a href="page70.html">Archives</a>
+        <a href="page5.html" class="magnetic-btn" style="display:inline-flex; margin-top:1rem; background:linear-gradient(135deg,#e6007e,#ff1493); color:#fff; padding:0.6rem 1.5rem; border-radius:9999px; font-weight:700;">Contact Us</a>
+    </div>
+
+    <!-- ===== HERO ===== -->
+    <section class="hero" id="top">
+        <div class="hero-bg">
+            <div class="plane-icon"><i class="fas fa-plane"></i></div>
+        </div>
+        <div class="container">
+            <div class="hero-grid">
+                <div class="hero-content">
+                    <h6>Case Study</h6>
+                    <h1>SA <span>EXPRESS</span></h1>
+                    <p>From launch to legacy — a complete brand &amp; advertising transformation for South Africa's regional airline.</p>
+                    <div class="btn-group">
+                        <a href="#video" class="btn btn-primary"><i class="fas fa-play"></i> Watch the story</a>
+                        <a href="#gallery" class="btn btn-outline">View campaign</a>
+                    </div>
+                </div>
+                <div class="hero-stats">
+                    <div class="stat">
+                        <h3>12+ <small>yrs</small></h3>
+                        <p>Partnership duration</p>
+                    </div>
+                    <div class="stat">
+                        <h3>47 <small>M</small></h3>
+                        <p>Impressions generated</p>
+                    </div>
+                    <div class="stat">
+                        <h3>23 <small>%</small></h3>
+                        <p>Brand recall lift</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== CASE OVERVIEW ===== -->
+    <section class="case-overview">
+        <div class="container">
+            <div class="grid">
+                <div class="text-block">
+                    <span class="section-label">Our Work</span>
+                    <h2>We fly <span>for you</span></h2>
+                    <p>
+                        SA Express entrusted us with a comprehensive brand overhaul — from
+                        reimagining their visual identity to orchestrating multi-channel campaigns
+                        that resonated with both business and leisure travellers across South Africa.
+                    </p>
+                    <p>
+                        Our integrated approach combined high-impact print, digital advertising,
+                        and strategic consulting to position SA Express as the country's most
+                        trusted regional carrier.
+                    </p>
+                    <div class="tags">
+                        <span>Advertising</span>
+                        <span>Digital</span>
+                        <span>Consulting</span>
+                        <span>Brand Strategy</span>
+                    </div>
+                </div>
+                <!-- ===== UPDATED IMAGE BLOCK WITH LIGHTBOX TRIGGER ===== -->
+                <div class="image-block relative overview-lightbox" id="overviewLightboxTrigger" style="cursor: pointer;">
+                    <img src="assets/images/launch-print.jpg" alt="SA Express campaign launch" />
+                    <!-- Overlay to indicate lightbox action -->
+                    <div class="absolute inset-0 bg-black/30 flex items-center justify-center opacity-0 hover:opacity-100 transition-opacity duration-300">
+                        <i class="fas fa-expand text-white text-3xl"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== VIDEO SECTION ===== -->
+    <section class="video-section" id="video">
+        <div class="container">
+            <div class="section-head">
+                <span class="section-label">Watch</span>
+                <h2>Campaign in <span class="highlight">motion</span></h2>
+                <p>See how we brought the SA Express story to life across every touchpoint.</p>
+            </div>
+            <div class="video-wrapper">
+                <iframe src="https://www.youtube.com/embed/XqBwhkswpvM?rel=0&mute=1&showinfo=0&autoplay=1&loop=0" allow="autoplay; encrypted-media" allowfullscreen loading="lazy" title="SA Express campaign video"></iframe>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== GALLERY ===== -->
+    <section class="gallery-section" id="gallery">
+        <div class="container">
+            <div class="section-head">
+                <span class="section-label">Portfolio</span>
+                <h2>Campaign <span class="highlight">gallery</span></h2>
+                <p>A selection of print, digital &amp; outdoor assets created for SA Express.</p>
+            </div>
+
+            <div class="gallery-grid" id="galleryGrid">
+                <!-- 10 items – matching original assets -->
+                <div class="gallery-item" data-src="assets/images/promo-ads1.jpg">
+                    <img src="assets/images/promo-ads1.jpg" alt="Promo ad 1" loading="lazy" />
+                    <div class="overlay"><i class="fas fa-expand"></i></div>
+                </div>
+                <div class="gallery-item" data-src="assets/images/biz-day-top-ad-2.jpeg">
+                    <img src="assets/images/biz-day-top-ad-2.jpeg" alt="Business Day ad" loading="lazy" />
+                    <div class="overlay"><i class="fas fa-expand"></i></div>
+                </div>
+                <div class="gallery-item" data-src="assets/images/launch-print.jpg">
+                    <img src="assets/images/launch-print.jpg" alt="Launch print" loading="lazy" />
+                    <div class="overlay"><i class="fas fa-expand"></i></div>
+                </div>
+                <div class="gallery-item" data-src="assets/images/promo-ads2.jpg">
+                    <img src="assets/images/promo-ads2.jpg" alt="Promo ad 2" loading="lazy" />
+                    <div class="overlay"><i class="fas fa-expand"></i></div>
+                </div>
+                <div class="gallery-item" data-src="assets/images/print-product2.jpg">
+                    <img src="assets/images/print-product2.jpg" alt="Print product 2" loading="lazy" />
+                    <div class="overlay"><i class="fas fa-expand"></i></div>
+                </div>
+                <div class="gallery-item" data-src="assets/images/print-product4.jpg">
+                    <img src="assets/images/print-product4.jpg" alt="Print product 4" loading="lazy" />
+                    <div class="overlay"><i class="fas fa-expand"></i></div>
+                </div>
+                <div class="gallery-item" data-src="assets/images/ad-banner-73.jpg">
+                    <img src="assets/images/ad-banner-73.jpg" alt="Ad banner" loading="lazy" />
+                    <div class="overlay"><i class="fas fa-expand"></i></div>
+                </div>
+                <div class="gallery-item" data-src="assets/images/print-product1.jpg">
+                    <img src="assets/images/print-product1.jpg" alt="Print product 1" loading="lazy" />
+                    <div class="overlay"><i class="fas fa-expand"></i></div>
+                </div>
+                <div class="gallery-item" data-src="assets/images/print-product6.jpg">
+                    <img src="assets/images/print-product6.jpg" alt="Print product 6" loading="lazy" />
+                    <div class="overlay"><i class="fas fa-expand"></i></div>
+                </div>
+                <div class="gallery-item" data-src="assets/images/promo-ads3.jpg">
+                    <img src="assets/images/promo-ads3.jpg" alt="Promo ad 3" loading="lazy" />
+                    <div class="overlay"><i class="fas fa-expand"></i></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== RADIO SECTION ===== -->
+    <section class="radio-section" id="radio">
+        <div class="container">
+            <div class="section-head">
+                <span class="section-label">Audio</span>
+                <h2>Radio <span class="highlight">campaigns</span></h2>
+                <p>Powerful audio storytelling that put SA Express on the airwaves — and in the ears of travellers nationwide.</p>
+            </div>
+
+            <div class="radio-grid">
+                <!-- Radio Card 1 -->
+                <div class="radio-card">
+                    <div class="video-wrapper">
+                        <iframe src="https://www.youtube.com/embed/OomwPUVggzE?rel=0&mute=1&showinfo=0&autoplay=0" allow="encrypted-media" allowfullscreen loading="lazy" title="SA Express radio campaign 1"></iframe>
+                    </div>
+                    <div class="card-body">
+                        <h4>« We Fly for You » — Radio Spot</h4>
+                        <p>High-energy 30‑second radio ad featuring the SA Express brand anthem, broadcast across national and regional stations.</p>
+                        <span class="badge"><i class="fas fa-microphone"></i> 30″ · 2025</span>
+                    </div>
+                </div>
+
+                <!-- Radio Card 2 -->
+                <div class="radio-card">
+                    <div class="video-wrapper">
+                        <iframe src="https://www.youtube.com/embed/c8QFNRnkZbA?rel=0&mute=1&showinfo=0&autoplay=0" allow="encrypted-media" allowfullscreen loading="lazy" title="SA Express radio campaign 2"></iframe>
+                    </div>
+                    <div class="card-body">
+                        <h4>« Fly Smart » — Audio Feature</h4>
+                        <p>A warm, conversational radio piece that highlights SA Express's on‑time performance, friendly service, and unbeatable regional routes.</p>
+                        <span class="badge"><i class="fas fa-microphone"></i> 60″ · 2025</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== LIGHTBOX ===== -->
+    <div class="lightbox" id="lightbox">
+        <button class="close-lb" id="closeLb" aria-label="Close lightbox">&times;</button>
+        <img src="" alt="Enlarged view" id="lbImage" />
+    </div>
+
+    <!-- ===== SOCIAL ===== -->
+    <section class="social-section">
+        <div class="container">
+            <h3><strong>Follow us</strong></h3>
+            <div class="social-icons">
+                <a href="https://www.facebook.com/profile.php?id=100094029616085" target="_blank" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+                <a href="https://x.com/ObrianSA" target="_blank" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+                <a href="https://www.instagram.com/obriandigital/" target="_blank" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                <a href="https://za.pinterest.com/OBRIANDIGITAL/" target="_blank" aria-label="Pinterest"><i class="fab fa-pinterest-p"></i></a>
+                <a href="https://za.linkedin.com/company/o-brian-digital" target="_blank" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== FOOTER ===== -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-brand">
+                    <!-- Using the white logo as requested -->
+                    <img src="assets/images/OBRIAN_LOGO_WHITE.png" alt="O'Brien Digital" />
+                    <p>2nd Floor Trumpet On Keyes, 21 Keyes Avenue, Rosebank, Johannesburg, 2196</p>
+                    <p style="margin-top:8px;">+27 10 035 5218 &nbsp;·&nbsp; info@obriangroup.com</p>
+                </div>
+                <div class="footer-col">
+                    <h5>Johannesburg</h5>
+                    <ul>
+                        <li>2nd Floor Trumpet On Keyes</li>
+                        <li>21 Keyes Avenue, Rosebank</li>
+                        <li>+27 10 035 5218</li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h5>Durban</h5>
+                    <ul>
+                        <li>2 Ncondo Place, Ridgeside Dr</li>
+                        <li>Umhlanga Ridge, 4319</li>
+                        <li>+27 83 325 9532</li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h5>About</h5>
+                    <ul>
+                        <li><a href="page8.html">History</a></li>
+                        <li><a href="page52.html">Clients</a></li>
+                        <li><a href="#">Teams</a></li>
+                        <li><a href="#">Brand</a></li>
+                        <li><a href="#">Terms</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2030 O'Brien Digital — All Rights Reserved</p>
+                <div class="social-mini">
+                    <a href="https://www.facebook.com/profile.php?id=100094029616085" target="_blank" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+                    <a href="https://x.com/ObrianSA" target="_blank" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+                    <a href="https://www.instagram.com/obriandigital/" target="_blank" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                    <a href="https://za.linkedin.com/company/o-brian-digital" target="_blank" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- ===== SCRIPTS ===== -->
+    <script>
+        // ---- Mobile menu toggle (updated for new header) ----
+        const menuBtn = document.getElementById('menuBtn');
+        const mobilePanel = document.getElementById('mobileMenuPanel');
+
+        if (menuBtn && mobilePanel) {
+            menuBtn.addEventListener('click', () => {
+                menuBtn.classList.toggle('open');
+                mobilePanel.classList.toggle('open');
+                document.body.style.overflow = mobilePanel.classList.contains('open') ? 'hidden' : '';
+            });
+
+            mobilePanel.querySelectorAll('a').forEach(link => {
+                link.addEventListener('click', () => {
+                    menuBtn.classList.remove('open');
+                    mobilePanel.classList.remove('open');
+                    document.body.style.overflow = '';
+                });
+            });
+        }
+
+        // ---- Header scroll effect ----
+        const header = document.getElementById('mainHeader');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 20) {
+                header.classList.add('scrolled');
+            } else {
+                header.classList.remove('scrolled');
+            }
+        });
+
+        // ---- Gallery lightbox ----
+        const galleryItems = document.querySelectorAll('.gallery-item');
+        const lightbox = document.getElementById('lightbox');
+        const lbImage = document.getElementById('lbImage');
+        const closeLb = document.getElementById('closeLb');
+
+        galleryItems.forEach(item => {
+            item.addEventListener('click', () => {
+                const src = item.getAttribute('data-src');
+                if (src) {
+                    lbImage.src = src;
+                    lightbox.classList.add('active');
+                    document.body.style.overflow = 'hidden';
+                }
+            });
+        });
+
+        // ---- NEW: Overview image lightbox trigger ----
+        const overviewTrigger = document.getElementById('overviewLightboxTrigger');
+        if (overviewTrigger) {
+            overviewTrigger.addEventListener('click', function() {
+                const img = this.querySelector('img');
+                if (img) {
+                    lbImage.src = img.src;
+                    lightbox.classList.add('active');
+                    document.body.style.overflow = 'hidden';
+                }
+            });
+        }
+
+        function closeLightbox() {
+            lightbox.classList.remove('active');
+            document.body.style.overflow = '';
+        }
+
+        closeLb.addEventListener('click', closeLightbox);
+
+        lightbox.addEventListener('click', (e) => {
+            if (e.target === lightbox) closeLightbox();
+        });
+
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape') {
+                closeLightbox();
+                closeMobileMenu();
+            }
+        });
+
+        // ---- Smooth anchor scroll ----
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    e.preventDefault();
+                    target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                }
+            });
+        });
+    </script>
+
+</body>
+</html>

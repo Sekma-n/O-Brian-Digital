@@ -1,0 +1,1376 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Our Work — O'Brian Group</title>
+    <meta name="description" content="A Dive into Our Work Triumphs — Case Studies in Excellence" />
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet" />
+
+    <!-- Font Awesome 6 (free) -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
+
+    <!-- Tailwind CSS via CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <style>
+        /* ── Reset & Base ── */
+        *,
+        *::before,
+        *::after {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --brand-pink: #ec008a;
+            --brand-pink-dark: #c40073;
+            --brand-pink-light: #ff4da6;
+            --brand-pink-soft: #fce4f2;
+            --dark: #1a1a2e;
+            --dark-soft: #2d2d44;
+            --gray: #6b6b7a;
+            --gray-light: #e8e8ee;
+            --white: #ffffff;
+            --bg-soft: #f8f7fc;
+            --shadow: 0 20px 60px rgba(0, 0, 0, 0.08);
+            --shadow-hover: 0 30px 80px rgba(236, 0, 138, 0.15);
+            --radius: 20px;
+            --transition: 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Montserrat', sans-serif;
+            background: var(--bg-soft);
+            color: var(--dark);
+            line-height: 1.6;
+            overflow-x: hidden;
+            -webkit-font-smoothing: antialiased;
+            padding-top: 80px; /* Make space for fixed header */
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+        img {
+            max-width: 100%;
+            display: block;
+        }
+
+        .container {
+            max-width: 1280px;
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+
+        /* ── Scrollbar ── */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: var(--bg-soft);
+        }
+        ::-webkit-scrollbar-thumb {
+            background: var(--brand-pink);
+            border-radius: 10px;
+        }
+
+        /* ── Buttons ── */
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            padding: 14px 36px;
+            border-radius: 60px;
+            font-weight: 600;
+            font-size: 0.95rem;
+            letter-spacing: 0.3px;
+            transition: var(--transition);
+            border: none;
+            cursor: pointer;
+            background: var(--brand-pink);
+            color: var(--white);
+            box-shadow: 0 8px 28px rgba(236, 0, 138, 0.3);
+        }
+        .btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 14px 40px rgba(236, 0, 138, 0.4);
+            background: var(--brand-pink-dark);
+        }
+        .btn-outline {
+            background: transparent;
+            color: var(--brand-pink);
+            border: 2px solid var(--brand-pink);
+            box-shadow: none;
+        }
+        .btn-outline:hover {
+            background: var(--brand-pink);
+            color: var(--white);
+            box-shadow: 0 8px 28px rgba(236, 0, 138, 0.3);
+        }
+        .btn-sm {
+            padding: 10px 24px;
+            font-size: 0.85rem;
+        }
+
+        /* ── ✦ PREMIUM HEADER STYLES ✦ ── */
+        .header-glass {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            z-index: 1030;
+            background: rgba(255, 255, 255, 0.72);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.4);
+            box-shadow: 0 1px 2px rgba(0, 0, 0, 0.02);
+            height: 80px;
+            display: flex;
+            align-items: center;
+        }
+        .header-glass.scrolled {
+            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.06);
+            background: rgba(255, 255, 255, 0.94);
+            border-bottom: 1px solid rgba(0, 0, 0, 0.03);
+        }
+
+        /* Premium Logo */
+        .logo-premium {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            transition: transform 0.3s ease;
+        }
+        .logo-premium:hover {
+            transform: scale(1.01);
+        }
+        .logo-text {
+            font-size: 1.35rem;
+            font-weight: 800;
+            letter-spacing: -0.5px;
+            color: #231e1f;
+        }
+        .logo-text .highlight {
+            color: #e6007e;
+            position: relative;
+        }
+        .logo-text .highlight::after {
+            content: '';
+            position: absolute;
+            bottom: -2px;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            background: #e6007e;
+            transform: scaleX(0);
+            transform-origin: right;
+            transition: transform 0.4s ease;
+        }
+        .logo-premium:hover .logo-text .highlight::after {
+            transform: scaleX(1);
+            transform-origin: left;
+        }
+
+        /* Premium Nav Links */
+        .nav-link-premium {
+            position: relative;
+            padding: 0.5rem 1.2rem;
+            font-size: 0.75rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.8px;
+            color: #4b5563;
+            border-radius: 8px;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            display: inline-block;
+            cursor: pointer;
+            background: transparent;
+        }
+        .nav-link-premium::after {
+            content: '';
+            position: absolute;
+            bottom: 4px;
+            left: 50%;
+            width: 0;
+            height: 2px;
+            background: linear-gradient(90deg, #e6007e, #ff1493);
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            transform: translateX(-50%);
+            border-radius: 2px;
+        }
+        .nav-link-premium:hover {
+            color: #e6007e;
+            background: rgba(230, 0, 126, 0.06);
+        }
+        .nav-link-premium:hover::after {
+            width: 60%;
+        }
+        .nav-link-premium.active-link {
+            color: #e6007e;
+            background: rgba(230, 0, 126, 0.08);
+        }
+        .nav-link-premium.active-link::after {
+            width: 70%;
+        }
+
+        /* Premium Dropdown */
+        .dropdown-wrapper {
+            position: relative;
+        }
+        .dropdown-wrapper:hover .dropdown-menu-premium {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0) scale(1);
+        }
+        .dropdown-menu-premium {
+            position: absolute;
+            top: calc(100% + 12px);
+            left: 0;
+            min-width: 200px;
+            background: rgba(255, 255, 255, 0.98);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border-radius: 12px;
+            box-shadow: 0 20px 50px -12px rgba(0, 0, 0, 0.15);
+            border: 1px solid rgba(230, 0, 126, 0.08);
+            padding: 8px 0;
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(-8px) scale(0.96);
+            transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            transform-origin: top left;
+            z-index: 1050;
+        }
+        .dropdown-menu-premium::before {
+            content: '';
+            position: absolute;
+            top: -6px;
+            left: 20px;
+            width: 10px;
+            height: 10px;
+            background: rgba(255, 255, 255, 0.98);
+            border-left: 1px solid rgba(230, 0, 126, 0.08);
+            border-top: 1px solid rgba(230, 0, 126, 0.08);
+            transform: rotate(45deg);
+            border-radius: 2px;
+        }
+        .dropdown-menu-premium a {
+            display: block;
+            padding: 0.7rem 1.4rem;
+            font-size: 0.8rem;
+            font-weight: 500;
+            color: #374151;
+            transition: all 0.2s ease;
+            letter-spacing: 0.3px;
+        }
+        .dropdown-menu-premium a:hover {
+            background: rgba(230, 0, 126, 0.05);
+            color: #e6007e;
+            padding-left: 1.8rem;
+        }
+        .dropdown-menu-premium a:first-child {
+            border-radius: 12px 12px 0 0;
+        }
+        .dropdown-menu-premium a:last-child {
+            border-radius: 0 0 12px 12px;
+        }
+
+        /* Premium CTA Button */
+        .btn-premium-cta {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 0.65rem 1.8rem;
+            background: linear-gradient(135deg, #e6007e 0%, #ff1493 100%);
+            color: white;
+            font-weight: 700;
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 0.6px;
+            border-radius: 9999px;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            box-shadow: 0 4px 15px rgba(230, 0, 126, 0.3);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+        .btn-premium-cta:hover {
+            transform: translateY(-3px) scale(1.02);
+            box-shadow: 0 10px 30px rgba(230, 0, 126, 0.4);
+            color: white;
+        }
+
+        /* Premium Burger */
+        .burger-premium {
+            width: 36px;
+            height: 36px;
+            border-radius: 10px;
+            border: 1px solid rgba(0, 0, 0, 0.04);
+            background: rgba(255, 255, 255, 0.5);
+            backdrop-filter: blur(4px);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            gap: 5px;
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+        .burger-premium:hover {
+            background: rgba(230, 0, 126, 0.05);
+            border-color: rgba(230, 0, 126, 0.15);
+        }
+        .burger-line {
+            display: block;
+            width: 18px;
+            height: 2px;
+            background: #374151;
+            border-radius: 2px;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        .burger-line:nth-child(3) {
+            width: 12px;
+            margin-left: auto;
+        }
+        .burger-premium.open .burger-line:nth-child(1) {
+            transform: rotate(45deg) translate(5px, 5px);
+            width: 20px;
+        }
+        .burger-premium.open .burger-line:nth-child(2) {
+            opacity: 0;
+            transform: scaleX(0);
+        }
+        .burger-premium.open .burger-line:nth-child(3) {
+            transform: rotate(-45deg) translate(5px, -5px);
+            width: 20px;
+            margin-left: 0;
+        }
+
+        /* Mobile menu panel (from CFSD) - kept as is but with premium touch */
+        .mobile-menu-panel {
+            display: none;
+            position: fixed;
+            top: 80px;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(255, 255, 255, 0.98);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            padding: 2rem 1.5rem;
+            overflow-y: auto;
+            z-index: 1020;
+            border-top: 1px solid rgba(0, 0, 0, 0.03);
+        }
+        .mobile-menu-panel.open {
+            display: block;
+            animation: fadeSlideDown 0.4s ease forwards;
+        }
+        @keyframes fadeSlideDown {
+            from {
+                opacity: 0;
+                transform: translateY(-10px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        .mobile-menu-panel a {
+            display: block;
+            padding: 0.75rem 1rem;
+            font-size: 1rem;
+            font-weight: 500;
+            color: #1a1a2e;
+            border-radius: 0.5rem;
+            transition: all 0.2s;
+        }
+        .mobile-menu-panel a:hover {
+            background: rgba(237, 0, 142, 0.06);
+            color: #ed008e;
+            padding-left: 1.2rem;
+        }
+        .mobile-menu-panel .mobile-dropdown-title {
+            font-weight: 700;
+            padding: 0.75rem 1rem;
+            color: #1a1a2e;
+            cursor: default;
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            color: #6b7280;
+        }
+        .mobile-menu-panel .mobile-dropdown-items {
+            padding-left: 1rem;
+        }
+        .mobile-menu-panel .mobile-dropdown-items a {
+            font-weight: 400;
+            font-size: 0.95rem;
+        }
+
+        /* ── Hero ── */
+        .hero {
+            padding: 160px 0 80px;
+            background: linear-gradient(165deg, var(--white) 0%, var(--bg-soft) 100%);
+            position: relative;
+            overflow: hidden;
+            text-align: center;
+        }
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: -30%;
+            right: -10%;
+            width: 600px;
+            height: 600px;
+            background: radial-gradient(circle, rgba(236, 0, 138, 0.06) 0%, transparent 70%);
+            border-radius: 50%;
+            pointer-events: none;
+        }
+        .hero::after {
+            content: '';
+            position: absolute;
+            bottom: -20%;
+            left: -10%;
+            width: 500px;
+            height: 500px;
+            background: radial-gradient(circle, rgba(236, 0, 138, 0.04) 0%, transparent 70%);
+            border-radius: 50%;
+            pointer-events: none;
+        }
+        .hero .container {
+            position: relative;
+            z-index: 2;
+        }
+        .hero-badge {
+            display: inline-block;
+            background: var(--brand-pink-soft);
+            color: var(--brand-pink);
+            padding: 6px 20px;
+            border-radius: 60px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            letter-spacing: 0.5px;
+            text-transform: uppercase;
+            margin-bottom: 20px;
+        }
+        .hero h1 {
+            font-size: clamp(2.8rem, 6vw, 5rem);
+            font-weight: 900;
+            line-height: 1.1;
+            margin-bottom: 16px;
+            background: linear-gradient(135deg, var(--dark) 40%, var(--brand-pink));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        .hero p {
+            font-size: clamp(1.1rem, 1.5vw, 1.4rem);
+            color: var(--gray);
+            max-width: 620px;
+            margin: 0 auto 32px;
+            font-weight: 400;
+        }
+        .hero .highlight {
+            color: var(--brand-pink);
+            font-weight: 600;
+        }
+        .hero-stats {
+            display: flex;
+            justify-content: center;
+            gap: 48px;
+            margin-top: 40px;
+            flex-wrap: wrap;
+        }
+        .hero-stats .stat {
+            text-align: center;
+        }
+        .hero-stats .stat .number {
+            font-size: 2.2rem;
+            font-weight: 800;
+            color: var(--brand-pink);
+        }
+        .hero-stats .stat .label {
+            font-size: 0.85rem;
+            color: var(--gray);
+            font-weight: 500;
+        }
+
+        /* ── Filter Tabs ── */
+        .filter-section {
+            padding: 40px 0 20px;
+            text-align: center;
+        }
+        .filter-tabs {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 10px;
+        }
+        .filter-tabs button {
+            padding: 10px 28px;
+            border-radius: 60px;
+            border: 2px solid var(--gray-light);
+            background: var(--white);
+            font-family: 'Montserrat', sans-serif;
+            font-size: 0.85rem;
+            font-weight: 600;
+            color: var(--gray);
+            cursor: pointer;
+            transition: var(--transition);
+        }
+        .filter-tabs button:hover {
+            border-color: var(--brand-pink);
+            color: var(--brand-pink);
+        }
+        .filter-tabs button.active {
+            background: var(--brand-pink);
+            border-color: var(--brand-pink);
+            color: var(--white);
+            box-shadow: 0 8px 28px rgba(236, 0, 138, 0.25);
+        }
+
+        /* ── Case Study Grid ── */
+        .cases {
+            padding: 40px 0 80px;
+        }
+        .cases-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 28px;
+        }
+
+        .case-card {
+            background: var(--white);
+            border-radius: var(--radius);
+            padding: 32px 28px 28px;
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+            border: 1px solid rgba(0, 0, 0, 0.03);
+            position: relative;
+            overflow: hidden;
+            cursor: pointer;
+            display: flex;
+            flex-direction: column;
+        }
+        .case-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, var(--brand-pink), var(--brand-pink-light));
+            transform: scaleX(0);
+            transform-origin: left;
+            transition: var(--transition);
+        }
+        .case-card:hover {
+            transform: translateY(-8px);
+            box-shadow: var(--shadow-hover);
+            border-color: rgba(236, 0, 138, 0.1);
+        }
+        .case-card:hover::before {
+            transform: scaleX(1);
+        }
+
+        .case-card .category-tag {
+            display: inline-block;
+            font-size: 0.65rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.8px;
+            color: var(--brand-pink);
+            background: var(--brand-pink-soft);
+            padding: 4px 14px;
+            border-radius: 60px;
+            margin-bottom: 14px;
+            align-self: flex-start;
+        }
+        .case-card h3 {
+            font-size: 1.2rem;
+            font-weight: 700;
+            margin-bottom: 8px;
+            color: var(--dark);
+        }
+        .case-card .client-desc {
+            font-size: 0.9rem;
+            color: var(--gray);
+            margin-bottom: 16px;
+            flex: 1;
+        }
+        .case-card .card-footer {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-top: 4px;
+            border-top: 1px solid var(--gray-light);
+            padding-top: 16px;
+        }
+        .case-card .card-footer .arrow {
+            color: var(--brand-pink);
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            font-size: 0.85rem;
+            transition: var(--transition);
+        }
+        .case-card .card-footer .arrow span {
+            transition: var(--transition);
+        }
+        .case-card:hover .card-footer .arrow span {
+            transform: translateX(4px);
+        }
+
+        .case-card .stretched-link {
+            position: absolute;
+            inset: 0;
+            z-index: 1;
+        }
+
+        /* ── No Results ── */
+        .no-results {
+            text-align: center;
+            padding: 60px 0;
+            color: var(--gray);
+            display: none;
+        }
+        .no-results.show {
+            display: block;
+        }
+
+        /* ── Footer ── */
+        .footer {
+            background: var(--dark);
+            color: rgba(255, 255, 255, 0.7);
+            padding: 60px 0 30px;
+            margin-top: 20px;
+        }
+        .footer .container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 40px;
+        }
+        .footer h5 {
+            color: var(--white);
+            font-size: 1rem;
+            font-weight: 700;
+            margin-bottom: 16px;
+        }
+        .footer ul {
+            list-style: none;
+        }
+        .footer ul li {
+            margin-bottom: 10px;
+            font-size: 0.9rem;
+        }
+        .footer ul li a {
+            transition: var(--transition);
+        }
+        .footer ul li a:hover {
+            color: var(--brand-pink);
+        }
+        .footer .social-row {
+            display: flex;
+            gap: 16px;
+            margin-top: 12px;
+        }
+        .footer .social-row a {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.06);
+            transition: var(--transition);
+            color: rgba(255, 255, 255, 0.6);
+            font-size: 1.1rem;
+        }
+        .footer .social-row a:hover {
+            background: var(--brand-pink);
+            color: var(--white);
+            transform: translateY(-3px);
+        }
+        .footer .copyright {
+            grid-column: 1 / -1;
+            text-align: center;
+            padding-top: 30px;
+            border-top: 1px solid rgba(255, 255, 255, 0.06);
+            margin-top: 20px;
+            font-size: 0.85rem;
+        }
+
+        /* ── Responsive ── */
+        @media (max-width: 1024px) {
+            .cases-grid {
+                grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+                gap: 20px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .header-glass {
+                height: 70px;
+                padding: 0 1rem;
+            }
+            .logo-text {
+                font-size: 1.1rem;
+            }
+            .hero {
+                padding: 130px 0 60px;
+            }
+            .hero h1 {
+                font-size: 2.4rem;
+            }
+            .hero-stats {
+                gap: 24px;
+            }
+            .hero-stats .stat .number {
+                font-size: 1.6rem;
+            }
+            .cases-grid {
+                grid-template-columns: 1fr 1fr;
+                gap: 16px;
+            }
+            .case-card {
+                padding: 24px 20px 20px;
+            }
+            .filter-tabs button {
+                padding: 8px 18px;
+                font-size: 0.75rem;
+            }
+            .footer .container {
+                grid-template-columns: 1fr 1fr;
+                gap: 30px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .cases-grid {
+                grid-template-columns: 1fr;
+            }
+            .hero h1 {
+                font-size: 2rem;
+            }
+            .hero-stats {
+                flex-direction: column;
+                gap: 12px;
+            }
+            .footer .container {
+                grid-template-columns: 1fr;
+                gap: 24px;
+            }
+        }
+
+        /* ── Animations ── */
+        @keyframes fadeUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        .case-card {
+            animation: fadeUp 0.6s ease forwards;
+            opacity: 0;
+        }
+        .case-card:nth-child(1) {
+            animation-delay: 0.05s;
+        }
+        .case-card:nth-child(2) {
+            animation-delay: 0.10s;
+        }
+        .case-card:nth-child(3) {
+            animation-delay: 0.15s;
+        }
+        .case-card:nth-child(4) {
+            animation-delay: 0.20s;
+        }
+        .case-card:nth-child(5) {
+            animation-delay: 0.25s;
+        }
+        .case-card:nth-child(6) {
+            animation-delay: 0.30s;
+        }
+        .case-card:nth-child(7) {
+            animation-delay: 0.35s;
+        }
+        .case-card:nth-child(8) {
+            animation-delay: 0.40s;
+        }
+        .case-card:nth-child(9) {
+            animation-delay: 0.45s;
+        }
+        .case-card:nth-child(10) {
+            animation-delay: 0.50s;
+        }
+        .case-card:nth-child(11) {
+            animation-delay: 0.55s;
+        }
+        .case-card:nth-child(12) {
+            animation-delay: 0.60s;
+        }
+        .case-card:nth-child(13) {
+            animation-delay: 0.65s;
+        }
+        .case-card:nth-child(14) {
+            animation-delay: 0.70s;
+        }
+        .case-card:nth-child(15) {
+            animation-delay: 0.75s;
+        }
+        .case-card:nth-child(16) {
+            animation-delay: 0.80s;
+        }
+        .case-card:nth-child(17) {
+            animation-delay: 0.85s;
+        }
+        .case-card:nth-child(18) {
+            animation-delay: 0.90s;
+        }
+        .case-card:nth-child(19) {
+            animation-delay: 0.95s;
+        }
+        .case-card:nth-child(20) {
+            animation-delay: 1.00s;
+        }
+        .case-card:nth-child(21) {
+            animation-delay: 1.05s;
+        }
+        .case-card:nth-child(22) {
+            animation-delay: 1.10s;
+        }
+        .case-card:nth-child(23) {
+            animation-delay: 1.15s;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- ─── PREMIUM HEADER ─── -->
+    <header class="header-glass" id="mainHeader">
+        <div class="max-w-7xl mx-auto px-4 md:px-6 w-full">
+            <div class="flex justify-between items-center">
+
+                <!-- Premium Logo -->
+                <a href="Home.html" class="logo-premium group">
+                    <img src="assets/images/obrian-transparent-logo-4461219.webp" alt="O'Brian Group" class="h-9 w-auto" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22%3E%3Crect width=%22100%22 height=%22100%22 fill=%22%23ed008e%22/%3E%3Ctext x=%2250%22 y=%2268%22 font-size=%2248%22 text-anchor=%22middle%22 fill=%22white%22 font-weight=%22bold%22 font-family=%22Inter%22%3EO%3C/text%3E%3C/svg%3E'">
+                    <span class="logo-text hidden sm:inline-block">
+                        O'<span class="highlight">Brian</span> Digital
+                    </span>
+                </a>
+
+                <!-- Premium Desktop Nav -->
+                <div class="hidden lg:flex items-center gap-0.5">
+                    <a href="Home.html" class="nav-link-premium">Home</a>
+                    <a href="About.html" class="nav-link-premium">About</a>
+                    <a href="Our_Work.html" class="nav-link-premium active-link">Our Work</a>
+                    <a href="Client_Experience.html" class="nav-link-premium">Client Experience</a>
+
+                    <div class="dropdown-wrapper">
+                        <button class="nav-link-premium flex items-center gap-1">
+                            Case Studies
+                            <svg class="w-3 h-3 transition-transform duration-300 dropdown-wrapper:hover:rotate-180" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M19 9l-7 7-7-7"></path></svg>
+                        </button>
+                        <div class="dropdown-menu-premium">
+                            <a href="Adv_Case_Studies.html">Advertising</a>
+                            <a href="Digital_Case_Studies.html">Digital</a>
+                            <a href="Consulting_Case_Studies.html">Consulting</a>
+                        </div>
+                    </div>
+
+                    <div class="dropdown-wrapper">
+                        <button class="nav-link-premium flex items-center gap-1">
+                            Expertise
+                            <svg class="w-3 h-3 transition-transform duration-300 dropdown-wrapper:hover:rotate-180" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M19 9l-7 7-7-7"></path></svg>
+                        </button>
+                        <div class="dropdown-menu-premium">
+                            <a href="Advertising_Expertise.html">Advertising</a>
+                            <a href="Digital_Expertise.html">Digital</a>
+                            <a href="Consulting_Expertise.html">Consulting</a>
+                        </div>
+                    </div>
+
+                    <a href="Staff_News.html" class="nav-link-premium">Staff News</a>
+                    <a href="Exploring_Boundless_Horizons.html" class="nav-link-premium">Blog</a>
+                    <a href="Archive_Gallery.html" class="nav-link-premium">Archives</a>
+                </div>
+
+                <!-- Premium CTA -->
+                <div class="hidden lg:block">
+                    <a href="Contact_Us.html" class="btn-premium-cta">
+                        <span>Contact</span>
+                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M17 8l4 4m0 0l-4 4m4-4H3"></path></svg>
+                    </a>
+                </div>
+
+                <!-- Premium Burger -->
+                <button class="burger-premium lg:hidden" id="menuBtn" aria-label="Toggle menu">
+                    <span class="burger-line"></span>
+                    <span class="burger-line"></span>
+                    <span class="burger-line"></span>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- ===== MOBILE MENU PANEL (from CFSD) ===== -->
+    <div class="mobile-menu-panel" id="mobileMenuPanel">
+        <a href="Home.html">Home</a>
+        <a href="About.html">About</a>
+        <a href="Our_Work.html">Our Work</a>
+        <a href="Client_Experience.html">Client Experience</a>
+
+        <div class="mobile-dropdown-title">Case Studies</div>
+        <div class="mobile-dropdown-items">
+            <a href="page27.html">Advertising</a>
+            <a href="page45.html">Digital</a>
+            <a href="page43.html">Consulting</a>
+        </div>
+
+        <div class="mobile-dropdown-title">Our Expertise</div>
+        <div class="mobile-dropdown-items">
+            <a href="Advertising_Expertise.html">Advertising</a>
+            <a href="Digital_Expertise.html">Digital</a>
+            <a href="Consulting_Expertise.html">Consulting</a>
+        </div>
+
+        <a href="Staff_News.html">Staff News</a>
+        <a href="Exploring_Boundless_Horizons.html">Blog</a>
+        <a href="Archive_Gallery.html">Archives</a>
+        <a href="Contact_Us.html" class="magnetic-btn" style="display:inline-flex; margin-top:1rem; background:linear-gradient(135deg,#e6007e,#ff1493); color:#fff; padding:0.6rem 1.5rem; border-radius:9999px; font-weight:700;">Contact Us</a>
+    </div>
+
+    <!-- ===== HERO ===== -->
+    <section class="hero">
+        <div class="container">
+            <span class="hero-badge">✦ Our Portfolio</span>
+            <h1>Our Work</h1>
+            <p>
+                A dive into our work triumphs — <span class="highlight">case studies in excellence</span>.
+                Each project reflects our commitment to creativity, strategy, and measurable impact.
+            </p>
+            <div class="hero-stats">
+                <div class="stat">
+                    <div class="number">23+</div>
+                    <div class="label">Case Studies</div>
+                </div>
+                <div class="stat">
+                    <div class="number">12</div>
+                    <div class="label">Industries Served</div>
+                </div>
+                <div class="stat">
+                    <div class="number">100%</div>
+                    <div class="label">Client Satisfaction</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== FILTERS ===== -->
+    <section class="filter-section">
+        <div class="container">
+            <div class="filter-tabs" id="filterTabs">
+                <button class="active" data-filter="all">All Projects</button>
+                <button data-filter="advertising">Advertising</button>
+                <button data-filter="digital">Digital</button>
+                <button data-filter="consulting">Consulting</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== CASE STUDIES ===== -->
+    <section class="cases">
+        <div class="container">
+            <div class="cases-grid" id="casesGrid">
+                <!-- Each card: data-category, href, client name, description -->
+                <div class="case-card" data-category="advertising">
+                    <span class="category-tag">Advertising</span>
+                    <h3>Sunbet — GTI</h3>
+                    <p class="client-desc">Integrated campaign driving brand awareness and engagement.</p>
+                    <div class="card-footer">
+                        <span class="arrow">View Case <span>→</span></span>
+                    </div>
+                    <a href="SUNBET GTI.html" class="stretched-link" aria-label="Sunbet GTI case study"></a>
+                </div>
+
+                <div class="case-card" data-category="advertising">
+                    <span class="category-tag">Advertising</span>
+                    <h3>ABSA</h3>
+                    <p class="client-desc">Strategic brand campaign reinforcing market leadership.</p>
+                    <div class="card-footer">
+                        <span class="arrow">View Case <span>→</span></span>
+                    </div>
+                    <a href="ABSA.html" class="stretched-link" aria-label="ABSA case study"></a>
+                </div>
+
+                <div class="case-card" data-category="advertising">
+                    <span class="category-tag">Advertising</span>
+                    <h3>AfriPortico Brand</h3>
+                    <p class="client-desc">Brand identity &amp; launch strategy for a premium lifestyle destination.</p>
+                    <div class="card-footer">
+                        <span class="arrow">View Case <span>→</span></span>
+                    </div>
+                    <a href="AfriPortico.html" class="stretched-link" aria-label="AfriPortico Brand case study"></a>
+                </div>
+
+                <div class="case-card" data-category="digital">
+                    <span class="category-tag">Digital</span>
+                    <h3>Artmosphere Art</h3>
+                    <p class="client-desc">Digital presence &amp; e‑commerce strategy for a contemporary art platform.</p>
+                    <div class="card-footer">
+                        <span class="arrow">View Case <span>→</span></span>
+                    </div>
+                    <a href="Artmosphere_ArtFair.html" class="stretched-link" aria-label="Artmosphere Art case study"></a>
+                </div>
+
+                <div class="case-card" data-category="advertising">
+                    <span class="category-tag">Advertising</span>
+                    <h3>BrandSA</h3>
+                    <p class="client-desc">Nation‑brand campaign showcasing South African excellence.</p>
+                    <div class="card-footer">
+                        <span class="arrow">View Case <span>→</span></span>
+                    </div>
+                    <a href="BrandSA.html" class="stretched-link" aria-label="BrandSA case study"></a>
+                </div>
+
+                <div class="case-card" data-category="digital">
+                    <span class="category-tag">Digital</span>
+                    <h3>Nestlife</h3>
+                    <p class="client-desc">Digital transformation and customer experience for a financial services brand.</p>
+                    <div class="card-footer">
+                        <span class="arrow">View Case <span>→</span></span>
+                    </div>
+                    <a href="Nestlife.html" class="stretched-link" aria-label="Nestlife case study"></a>
+                </div>
+
+                <div class="case-card" data-category="advertising">
+                    <span class="category-tag">Advertising</span>
+                    <h3>TKZN</h3>
+                    <p class="client-desc">Tourism campaign driving domestic and international visitation.</p>
+                    <div class="card-footer">
+                        <span class="arrow">View Case <span>→</span></span>
+                    </div>
+                    <a href="TKZN.html" class="stretched-link" aria-label="TKZN case study"></a>
+                </div>
+
+                <div class="case-card" data-category="consulting">
+                    <span class="category-tag">Consulting</span>
+                    <h3>Cato Ridge</h3>
+                    <p class="client-desc">Strategic development and master planning for a mixed‑use precinct.</p>
+                    <div class="card-footer">
+                        <span class="arrow">View Case <span>→</span></span>
+                    </div>
+                    <a href="Cato_Ridge.html" class="stretched-link" aria-label="Cato Ridge case study"></a>
+                </div>
+
+                <div class="case-card" data-category="digital">
+                    <span class="category-tag">Digital</span>
+                    <h3>CFSD</h3>
+                    <p class="client-desc">Digital ecosystem for a community‑focused development initiative.</p>
+                    <div class="card-footer">
+                        <span class="arrow">View Case <span>→</span></span>
+                    </div>
+                    <a href="CFSD.html" class="stretched-link" aria-label="CFSD case study"></a>
+                </div>
+
+                <div class="case-card" data-category="consulting">
+                    <span class="category-tag">Consulting</span>
+                    <h3>Ekurhuleni</h3>
+                    <p class="client-desc">Strategic advisory and stakeholder engagement for municipal transformation.</p>
+                    <div class="card-footer">
+                        <span class="arrow">View Case <span>→</span></span>
+                    </div>
+                    <a href="Ekurhuleni.html" class="stretched-link" aria-label="Ekurhuleni case study"></a>
+                </div>
+
+                <div class="case-card" data-category="consulting">
+                    <span class="category-tag">Consulting</span>
+                    <h3>IDC</h3>
+                    <p class="client-desc">Investment strategy and market positioning for a development finance institution.</p>
+                    <div class="card-footer">
+                        <span class="arrow">View Case <span>→</span></span>
+                    </div>
+                    <a href="IDC.html" class="stretched-link" aria-label="IDC case study"></a>
+                </div>
+
+                <div class="case-card" data-category="consulting">
+                    <span class="category-tag">Consulting</span>
+                    <h3>Kimberley Process</h3>
+                    <p class="client-desc">Policy and governance framework for diamond certification.</p>
+                    <div class="card-footer">
+                        <span class="arrow">View Case <span>→</span></span>
+                    </div>
+                    <a href="Kimberley_Process.html" class="stretched-link" aria-label="Kimberley Process case study"></a>
+                </div>
+
+                <div class="case-card" data-category="advertising">
+                    <span class="category-tag">Advertising</span>
+                    <h3>MINA BRAND</h3>
+                    <p class="client-desc">Full‑service brand launch and market penetration strategy.</p>
+                    <div class="card-footer">
+                        <span class="arrow">View Case <span>→</span></span>
+                    </div>
+                    <a href="MINA_BRAND.html" class="stretched-link" aria-label="MINA BRAND case study"></a>
+                </div>
+
+                <div class="case-card" data-category="consulting">
+                    <span class="category-tag">Consulting</span>
+                    <h3>GAUTENG</h3>
+                    <p class="client-desc">Provincial economic development and investment attraction.</p>
+                    <div class="card-footer">
+                        <span class="arrow">View Case <span>→</span></span>
+                    </div>
+                    <a href="GAUTENG.html" class="stretched-link" aria-label="GAUTENG case study"></a>
+                </div>
+
+                <div class="case-card" data-category="consulting">
+                    <span class="category-tag">Consulting</span>
+                    <h3>PMC</h3>
+                    <p class="client-desc">Project management and delivery oversight for large‑scale infrastructure.</p>
+                    <div class="card-footer">
+                        <span class="arrow">View Case <span>→</span></span>
+                    </div>
+                    <a href="PMC.html" class="stretched-link" aria-label="PMC case study"></a>
+                </div>
+
+                <div class="case-card" data-category="consulting">
+                    <span class="category-tag">Consulting</span>
+                    <h3>SAIC</h3>
+                    <p class="client-desc">Strategic advisory for a major industrial conglomerate.</p>
+                    <div class="card-footer">
+                        <span class="arrow">View Case <span>→</span></span>
+                    </div>
+                    <a href="SAIC.html" class="stretched-link" aria-label="SAIC case study"></a>
+                </div>
+
+                <div class="case-card" data-category="consulting">
+                    <span class="category-tag">Consulting</span>
+                    <h3>SEFA</h3>
+                    <p class="client-desc">Access to finance and SME development strategy.</p>
+                    <div class="card-footer">
+                        <span class="arrow">View Case <span>→</span></span>
+                    </div>
+                    <a href="SEFA.html" class="stretched-link" aria-label="SEFA case study"></a>
+                </div>
+
+                <div class="case-card" data-category="digital">
+                    <span class="category-tag">Digital</span>
+                    <h3>Sourceworx</h3>
+                    <p class="client-desc">Digital supply chain and procurement platform design.</p>
+                    <div class="card-footer">
+                        <span class="arrow">View Case <span>→</span></span>
+                    </div>
+                    <a href="Sourceworx.html" class="stretched-link" aria-label="Sourceworx case study"></a>
+                </div>
+
+                <div class="case-card" data-category="advertising">
+                    <span class="category-tag">Advertising</span>
+                    <h3>SA EXPRESS</h3>
+                    <p class="client-desc">Brand refresh and customer acquisition campaign.</p>
+                    <div class="card-footer">
+                        <span class="arrow">View Case <span>→</span></span>
+                    </div>
+                    <a href="SA_EXPRESS.html" class="stretched-link" aria-label="SA EXPRESS case study"></a>
+                </div>
+
+                <div class="case-card" data-category="advertising">
+                    <span class="category-tag">Advertising</span>
+                    <h3>BP GAS</h3>
+                    <p class="client-desc">Energy sector brand campaign focused on sustainability and reliability.</p>
+                    <div class="card-footer">
+                        <span class="arrow">View Case <span>→</span></span>
+                    </div>
+                    <a href="BP_GAS.html" class="stretched-link" aria-label="BP GAS case study"></a>
+                </div>
+
+                <div class="case-card" data-category="digital">
+                    <span class="category-tag">Digital</span>
+                    <h3>O'Brian Movie</h3>
+                    <p class="client-desc">Content production and digital distribution for a feature film.</p>
+                    <div class="card-footer">
+                        <span class="arrow">View Case <span>→</span></span>
+                    </div>
+                    <a href="O'Brian_Movie.html" class="stretched-link" aria-label="O'Brian Movie case study"></a>
+                </div>
+
+                <div class="case-card" data-category="consulting">
+                    <span class="category-tag">Consulting</span>
+                    <h3>EPWP</h3>
+                    <p class="client-desc">Public employment programme design and implementation support.</p>
+                    <div class="card-footer">
+                        <span class="arrow">View Case <span>→</span></span>
+                    </div>
+                    <a href="EPWP.html" class="stretched-link" aria-label="EPWP case study"></a>
+                </div>
+
+                <div class="case-card" data-category="digital">
+                    <span class="category-tag">Digital</span>
+                    <h3>O'Brian Podcast</h3>
+                    <p class="client-desc">Podcast production and audience growth strategy.</p>
+                    <div class="card-footer">
+                        <span class="arrow">View Case <span>→</span></span>
+                    </div>
+                    <a href="O'Brian_Podcast.html" class="stretched-link" aria-label="O'Brian Podcast case study"></a>
+                </div>
+
+                <div class="case-card" data-category="digital">
+                    <span class="category-tag">Digital</span>
+                    <h3>ANC NPGE Campaign</h3>
+                    <p class="client-desc">African National Congress 2024 Election campaign.</p>
+                    <div class="card-footer">
+                        <span class="arrow">View Case <span>→</span></span>
+                    </div>
+                    <a href="ANC_NPGE_CAMPAIGN.html" class="stretched-link" aria-label="ANC NPGE Campaign case study"></a>
+                </div>
+
+            </div>
+
+            <!-- No results message -->
+            <div class="no-results" id="noResults">
+                <p style="font-size:1.2rem; font-weight:600;">No projects found</p>
+                <p style="color:var(--gray);">Try selecting a different category.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== FOOTER ===== -->
+    <footer class="footer">
+        <div class="container">
+            <div>
+                <h5>Johannesburg</h5>
+                <ul>
+                    <li>2nd Floor Trumpet On Keyes,</li>
+                    <li>21 Keyes Avenue, Rosebank,</li>
+                    <li>Johannesburg, 2196</li>
+                    <li style="margin-top:8px;">Tel: +27 10 035 5218</li>
+                </ul>
+            </div>
+            <div>
+                <h5>Durban Office</h5>
+                <ul>
+                    <li>2 Ncondo Place, Ridgeside Dr,</li>
+                    <li>Umhlanga Ridge, Durban, 4319</li>
+                    <li style="margin-top:8px;">Tel: +27 83 325 9532</li>
+                </ul>
+            </div>
+            <div>
+                <h5>Email</h5>
+                <ul>
+                    <li><a href="mailto:info@obriangroup.com" style="color:var(--brand-pink);">info@obriangroup.com</a></li>
+                </ul>
+            </div>
+            <div>
+                <h5>About</h5>
+                <ul>
+                    <li><a href="About.html">History</a></li>
+                    <li><a href="Client_Experience.html">Clients</a></li>
+                    <li><a href="Teams.html">Teams</a></li>
+                    <li><a href="Brand.html">Brand</a></li>
+                    <li><a href="Terms.html">Terms</a></li>
+                </ul>
+            </div>
+            <div class="social-row">
+                <a href="https://www.facebook.com/profile.php?id=100094029616085" target="_blank" aria-label="Facebook">f</a>
+                <a href="https://x.com/ObrianSA" target="_blank" aria-label="Twitter">𝕏</a>
+                <a href="https://www.instagram.com/obriandigital/" target="_blank" aria-label="Instagram">📷</a>
+                <a href="https://za.linkedin.com/company/o-brian-digital" target="_blank" aria-label="LinkedIn">in</a>
+            </div>
+            <div class="copyright">
+                &copy; 2030 O'Brian Group — All Rights Reserved
+            </div>
+        </div>
+    </footer>
+
+    <!-- ===== SCRIPTS ===== -->
+    <script>
+        // ── Mobile menu toggle ──
+        const menuBtn = document.getElementById('menuBtn');
+        const mobilePanel = document.getElementById('mobileMenuPanel');
+
+        if (menuBtn && mobilePanel) {
+            menuBtn.addEventListener('click', () => {
+                menuBtn.classList.toggle('open');
+                mobilePanel.classList.toggle('open');
+                document.body.style.overflow = mobilePanel.classList.contains('open') ? 'hidden' : '';
+            });
+
+            mobilePanel.querySelectorAll('a').forEach(link => {
+                link.addEventListener('click', () => {
+                    menuBtn.classList.remove('open');
+                    mobilePanel.classList.remove('open');
+                    document.body.style.overflow = '';
+                });
+            });
+        }
+
+        // ── Header scroll effect ──
+        const header = document.getElementById('mainHeader');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 20) {
+                header.classList.add('scrolled');
+            } else {
+                header.classList.remove('scrolled');
+            }
+        });
+
+        // ── Filtering ──
+        const filterTabs = document.querySelectorAll('#filterTabs button');
+        const cards = document.querySelectorAll('.case-card');
+        const noResults = document.getElementById('noResults');
+
+        filterTabs.forEach(btn => {
+            btn.addEventListener('click', () => {
+                filterTabs.forEach(b => b.classList.remove('active'));
+                btn.classList.add('active');
+
+                const filter = btn.getAttribute('data-filter');
+                let visibleCount = 0;
+
+                cards.forEach(card => {
+                    const category = card.getAttribute('data-category');
+                    if (filter === 'all' || category === filter) {
+                        card.style.display = 'flex';
+                        visibleCount++;
+                    } else {
+                        card.style.display = 'none';
+                    }
+                });
+
+                if (visibleCount === 0) {
+                    noResults.classList.add('show');
+                } else {
+                    noResults.classList.remove('show');
+                }
+            });
+        });
+
+        // ── Smooth card link ──
+        document.querySelectorAll('.case-card').forEach(card => {
+            const link = card.querySelector('a.stretched-link');
+            if (link) {
+                card.addEventListener('click', (e) => {
+                    if (e.target.closest('a') || e.target.closest('button')) return;
+                    link.click();
+                });
+            }
+        });
+    </script>
+
+</body>
+</html>
