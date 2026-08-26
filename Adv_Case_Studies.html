@@ -129,132 +129,288 @@
             border-radius: 4px;
         }
 
-        /* ===== HEADER GLASS (NEW) ===== */
+        /* ── ✦ PREMIUM HEADER STYLES (from Our Work) ✦ ── */
         .header-glass {
             position: fixed;
             top: 0;
             left: 0;
             width: 100%;
-            z-index: 50;
-            background: rgba(255, 255, 255, 0.85);
-            backdrop-filter: blur(12px);
-            -webkit-backdrop-filter: blur(12px);
-            transition: box-shadow 0.3s, background 0.3s;
-            border-bottom: 1px solid rgba(0, 0, 0, 0.04);
+            z-index: 1030;
+            background: rgba(255, 255, 255, 0.72);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.4);
+            box-shadow: 0 1px 2px rgba(0, 0, 0, 0.02);
+            height: 80px;
+            display: flex;
+            align-items: center;
         }
         .header-glass.scrolled {
-            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
-            background: rgba(255, 255, 255, 0.98);
+            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.06);
+            background: rgba(255, 255, 255, 0.94);
+            border-bottom: 1px solid rgba(0, 0, 0, 0.03);
         }
 
-        .nav-link-new {
-            padding: 0.5rem 1rem;
-            font-size: 0.875rem;
-            font-weight: 600;
-            color: #374151;
-            border-radius: 0.5rem;
-            transition: all 0.3s ease;
+        /* Premium Logo */
+        .logo-premium {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            transition: transform 0.3s ease;
+        }
+        .logo-premium:hover {
+            transform: scale(1.01);
+        }
+        .logo-text {
+            font-size: 1.35rem;
+            font-weight: 800;
+            letter-spacing: -0.5px;
+            color: #231e1f;
+        }
+        .logo-text .highlight {
+            color: #e6007e;
+            position: relative;
+        }
+        .logo-text .highlight::after {
+            content: '';
+            position: absolute;
+            bottom: -2px;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            background: #e6007e;
+            transform: scaleX(0);
+            transform-origin: right;
+            transition: transform 0.4s ease;
+        }
+        .logo-premium:hover .logo-text .highlight::after {
+            transform: scaleX(1);
+            transform-origin: left;
+        }
+
+        /* Premium Nav Links */
+        .nav-link-premium {
+            position: relative;
+            padding: 0.5rem 1.2rem;
+            font-size: 0.75rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.8px;
+            color: #4b5563;
+            border-radius: 8px;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
             display: inline-block;
             cursor: pointer;
+            background: transparent;
         }
-        .nav-link-new:hover {
+        .nav-link-premium::after {
+            content: '';
+            position: absolute;
+            bottom: 4px;
+            left: 50%;
+            width: 0;
+            height: 2px;
+            background: linear-gradient(90deg, #e6007e, #ff1493);
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            transform: translateX(-50%);
+            border-radius: 2px;
+        }
+        .nav-link-premium:hover {
             color: #e6007e;
-            background-color: #fdf2f8;
+            background: rgba(230, 0, 126, 0.06);
+        }
+        .nav-link-premium:hover::after {
+            width: 60%;
+        }
+        .nav-link-premium.active-link {
+            color: #e6007e;
+            background: rgba(230, 0, 126, 0.08);
+        }
+        .nav-link-premium.active-link::after {
+            width: 70%;
         }
 
-        /* ===== DROPDOWN (NEW) ===== */
-        .dropdown-menu-custom {
-            position: absolute;
-            top: 100%;
-            left: 0;
-            margin-top: 0.5rem;
-            width: 200px;
-            background: white;
-            border-radius: 0.75rem;
-            box-shadow: 0 20px 40px -8px rgba(0, 0, 0, 0.15);
-            border: 1px solid #f3f4f6;
-            opacity: 0;
-            visibility: hidden;
-            transform: translateY(-8px) scale(0.96);
-            transition: all 0.25s ease;
-            transform-origin: top left;
-            z-index: 60;
+        /* Premium Dropdown */
+        .dropdown-wrapper {
+            position: relative;
         }
-        .group:hover .dropdown-menu-custom {
+        .dropdown-wrapper:hover .dropdown-menu-premium {
             opacity: 1;
             visibility: visible;
             transform: translateY(0) scale(1);
         }
-        .dropdown-menu-custom a {
+        .dropdown-menu-premium {
+            position: absolute;
+            top: calc(100% + 12px);
+            left: 0;
+            min-width: 200px;
+            background: rgba(255, 255, 255, 0.98);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border-radius: 12px;
+            box-shadow: 0 20px 50px -12px rgba(0, 0, 0, 0.15);
+            border: 1px solid rgba(230, 0, 126, 0.08);
+            padding: 8px 0;
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(-8px) scale(0.96);
+            transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            transform-origin: top left;
+            z-index: 1050;
+        }
+        .dropdown-menu-premium::before {
+            content: '';
+            position: absolute;
+            top: -6px;
+            left: 20px;
+            width: 10px;
+            height: 10px;
+            background: rgba(255, 255, 255, 0.98);
+            border-left: 1px solid rgba(230, 0, 126, 0.08);
+            border-top: 1px solid rgba(230, 0, 126, 0.08);
+            transform: rotate(45deg);
+            border-radius: 2px;
+        }
+        .dropdown-menu-premium a {
             display: block;
-            padding: 0.75rem 1.25rem;
-            font-size: 0.875rem;
+            padding: 0.7rem 1.4rem;
+            font-size: 0.8rem;
+            font-weight: 500;
             color: #374151;
-            transition: background 0.2s, color 0.2s;
+            transition: all 0.2s ease;
+            letter-spacing: 0.3px;
         }
-        .dropdown-menu-custom a:hover {
-            background: #fdf2f8;
+        .dropdown-menu-premium a:hover {
+            background: rgba(230, 0, 126, 0.05);
             color: #e6007e;
+            padding-left: 1.8rem;
         }
-        .dropdown-menu-custom a:first-child {
-            border-radius: 0.75rem 0.75rem 0 0;
+        .dropdown-menu-premium a:first-child {
+            border-radius: 12px 12px 0 0;
         }
-        .dropdown-menu-custom a:last-child {
-            border-radius: 0 0 0.75rem 0.75rem;
+        .dropdown-menu-premium a:last-child {
+            border-radius: 0 0 12px 12px;
         }
 
-        .btn-primary-pink {
+        /* Premium CTA Button */
+        .btn-premium-cta {
             display: inline-flex;
             align-items: center;
-            gap: 0.5rem;
-            padding: 0.75rem 1.75rem;
-            background: linear-gradient(135deg, #e6007e, #ff1493);
+            gap: 8px;
+            padding: 0.65rem 1.8rem;
+            background: linear-gradient(135deg, #e6007e 0%, #ff1493 100%);
             color: white;
             font-weight: 700;
-            font-size: 0.875rem;
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 0.6px;
             border-radius: 9999px;
-            transition: all 0.3s ease;
-            box-shadow: 0 4px 14px rgba(230, 0, 126, 0.3);
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            box-shadow: 0 4px 15px rgba(230, 0, 126, 0.3);
+            border: 1px solid rgba(255, 255, 255, 0.2);
         }
-        .btn-primary-pink:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 8px 25px rgba(230, 0, 126, 0.4);
+        .btn-premium-cta:hover {
+            transform: translateY(-3px) scale(1.02);
+            box-shadow: 0 10px 30px rgba(230, 0, 126, 0.4);
             color: white;
         }
 
-        /* ===== MOBILE MENU (NEW) ===== */
-        .mobile-menu-panel {
-            position: fixed;
-            inset: 0;
-            background: white;
-            z-index: 60;
-            transform: translateX(100%);
-            transition: transform 0.4s cubic-bezier(0.22, 1, 0.36, 1);
+        /* Premium Burger */
+        .burger-premium {
+            width: 36px;
+            height: 36px;
+            border-radius: 10px;
+            border: 1px solid rgba(0, 0, 0, 0.04);
+            background: rgba(255, 255, 255, 0.5);
+            backdrop-filter: blur(4px);
             display: flex;
             flex-direction: column;
-            height: 100%;
+            justify-content: center;
+            align-items: center;
+            gap: 5px;
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+        .burger-premium:hover {
+            background: rgba(230, 0, 126, 0.05);
+            border-color: rgba(230, 0, 126, 0.15);
+        }
+        .burger-line {
+            display: block;
+            width: 18px;
+            height: 2px;
+            background: #374151;
+            border-radius: 2px;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        .burger-line:nth-child(3) {
+            width: 12px;
+            margin-left: auto;
+        }
+        .burger-premium.open .burger-line:nth-child(1) {
+            transform: rotate(45deg) translate(5px, 5px);
+            width: 20px;
+        }
+        .burger-premium.open .burger-line:nth-child(2) {
+            opacity: 0;
+            transform: scaleX(0);
+        }
+        .burger-premium.open .burger-line:nth-child(3) {
+            transform: rotate(-45deg) translate(5px, -5px);
+            width: 20px;
+            margin-left: 0;
+        }
+
+        /* Mobile menu panel (from CFSD) */
+        .mobile-menu-panel {
+            display: none;
+            position: fixed;
+            top: 80px;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(255, 255, 255, 0.98);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            padding: 2rem 1.5rem;
             overflow-y: auto;
+            z-index: 1020;
+            border-top: 1px solid rgba(0, 0, 0, 0.03);
         }
         .mobile-menu-panel.open {
-            transform: translateX(0);
+            display: block;
+            animation: fadeSlideDown 0.4s ease forwards;
+        }
+        @keyframes fadeSlideDown {
+            from {
+                opacity: 0;
+                transform: translateY(-10px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
         }
         .mobile-menu-panel a {
             display: block;
             padding: 0.75rem 1rem;
             font-size: 1rem;
-            font-weight: 600;
-            color: #231e1f;
+            font-weight: 500;
+            color: #1a1a2e;
             border-radius: 0.5rem;
             transition: all 0.2s;
         }
         .mobile-menu-panel a:hover {
-            background: rgba(230, 0, 126, 0.06);
-            color: #e6007e;
+            background: rgba(237, 0, 142, 0.06);
+            color: #ed008e;
             padding-left: 1.2rem;
         }
         .mobile-menu-panel .mobile-dropdown-title {
             font-weight: 700;
             padding: 0.75rem 1rem;
+            color: #1a1a2e;
+            cursor: default;
             font-size: 0.85rem;
             text-transform: uppercase;
             letter-spacing: 0.5px;
@@ -629,11 +785,11 @@
         }
         @media (max-width: 768px) {
             .header-glass {
-                height: 64px;
+                height: 70px;
                 padding: 0 1rem;
             }
             body {
-                padding-top: 64px;
+                padding-top: 70px;
             }
             .hero {
                 padding: 80px 0 60px;
@@ -672,143 +828,98 @@
 </head>
 <body>
 
-    <!-- ===== NEW HEADER ===== -->
+    <!-- ===== PREMIUM HEADER (from Our Work) ===== -->
     <header class="header-glass" id="mainHeader">
-        <div class="max-w-7xl mx-auto px-4 md:px-6">
-            <div class="flex justify-between items-center h-20">
+        <div class="max-w-7xl mx-auto px-4 md:px-6 w-full">
+            <div class="flex justify-between items-center">
 
-                <!-- Logo -->
-                <a href="index.html" class="flex items-center gap-3 group">
-                    <img src="assets/images/obrian-transparent-logo-4461219.webp" alt="O'Brian Group" class="h-10 w-auto" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22%3E%3Crect width=%22100%22 height=%22100%22 fill=%22%23e6007e%22/%3E%3Ctext x=%2250%22 y=%2268%22 font-size=%2248%22 text-anchor=%22middle%22 fill=%22white%22 font-weight=%22bold%22 font-family=%22Inter%22%3EO%3C/text%3E%3C/svg%3E'">
-                    <span class="font-black text-xl text-[#231e1f] tracking-tight hidden sm:inline"><span class="text-[#e6007e]"></span></span>
+                <!-- Premium Logo -->
+                <a href="Home.html" class="logo-premium group">
+                    <img src="obrian-transparent-logo-4461219.webp" alt="O'Brian Group" class="h-9 w-auto" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22%3E%3Crect width=%22100%22 height=%22100%22 fill=%22%23ed008e%22/%3E%3Ctext x=%2250%22 y=%2268%22 font-size=%2248%22 text-anchor=%22middle%22 fill=%22white%22 font-weight=%22bold%22 font-family=%22Inter%22%3EO%3C/text%3E%3C/svg%3E'">
+                    <span class="logo-text hidden sm:inline-block">
+                        <span class="highlight"></span>
+                    </span>
                 </a>
 
-                <!-- Desktop Nav -->
+                <!-- Premium Desktop Nav -->
                 <div class="hidden lg:flex items-center gap-0.5">
-                    <a href="index.html" class="nav-link-new">Home</a>
-                    <a href="page8.html" class="nav-link-new">About</a>
-                    <a href="page30.html" class="nav-link-new">Our Work</a>
-                    <a href="page52.html" class="nav-link-new">Client Experience</a>
+                    <a href="Home.html" class="nav-link-premium">Home</a>
+                    <a href="About.html" class="nav-link-premium">About</a>
+                    <a href="Our_Work.html" class="nav-link-premium">Our Work</a>
+                    <a href="Client_Experience.html" class="nav-link-premium">Client Experience</a>
 
-                    <div class="relative group">
-                        <button class="nav-link-new flex items-center gap-1">
+                    <div class="dropdown-wrapper">
+                        <button class="nav-link-premium flex items-center gap-1">
                             Case Studies
-                            <svg class="w-3 h-3 transition-transform duration-300 group-hover:rotate-180" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M19 9l-7 7-7-7"></path></svg>
+                            <svg class="w-3 h-3 transition-transform duration-300 dropdown-wrapper:hover:rotate-180" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M19 9l-7 7-7-7"></path></svg>
                         </button>
-                        <div class="dropdown-menu-custom">
+                        <div class="dropdown-menu-premium">
                             <a href="Adv_Case_Studies.html">Advertising</a>
                             <a href="Digital_Case_Studies.html">Digital</a>
                             <a href="Consulting_Case_Studies.html">Consulting</a>
                         </div>
                     </div>
 
-                    <div class="relative group">
-                        <button class="nav-link-new flex items-center gap-1">
+                    <div class="dropdown-wrapper">
+                        <button class="nav-link-premium flex items-center gap-1">
                             Expertise
-                            <svg class="w-3 h-3 transition-transform duration-300 group-hover:rotate-180" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M19 9l-7 7-7-7"></path></svg>
+                            <svg class="w-3 h-3 transition-transform duration-300 dropdown-wrapper:hover:rotate-180" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M19 9l-7 7-7-7"></path></svg>
                         </button>
-                        <div class="dropdown-menu-custom">
-                            <a href="page9.html">Advertising</a>
-                            <a href="page1.html">Digital</a>
-                            <a href="page18.html">Consulting</a>
+                        <div class="dropdown-menu-premium">
+                            <a href="Advertising_Expertise.html">Advertising</a>
+                            <a href="Digital_Expertise.html">Digital</a>
+                            <a href="Consulting_Expertise.html">Consulting</a>
                         </div>
                     </div>
 
-                    <a href="page60.html" class="nav-link-new">Staff News</a>
-                    <a href="page15.html" class="nav-link-new">Blog</a>
-                    <a href="page70.html" class="nav-link-new">Archives</a>
+                    <a href="Staff_News.html" class="nav-link-premium">Staff News</a>
+                    <a href="Exploring_Boundless_Horizons.html" class="nav-link-premium">Blog</a>
+                    <a href="Archive_Gallery.html" class="nav-link-premium">Archives</a>
                 </div>
 
-                <!-- CTA -->
+                <!-- Premium CTA -->
                 <div class="hidden lg:block">
-                    <a href="page5.html" class="btn-primary-pink">
+                    <a href="Contact_Us.html" class="btn-premium-cta">
                         <span>Contact</span>
                         <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M17 8l4 4m0 0l-4 4m4-4H3"></path></svg>
                     </a>
                 </div>
 
-                <!-- Burger -->
-                <button class="lg:hidden p-2 rounded-lg hover:bg-gray-100 transition-colors" id="menuBtn" aria-label="Toggle menu">
-                    <div class="w-6 h-6 flex flex-col justify-center items-center gap-1.5">
-                        <span class="w-6 h-0.5 bg-gray-700 transition-all duration-300 menu-line-1"></span>
-                        <span class="w-6 h-0.5 bg-gray-700 transition-all duration-300 menu-line-2"></span>
-                        <span class="w-4 h-0.5 bg-gray-700 transition-all duration-300 menu-line-3 ml-auto"></span>
-                    </div>
+                <!-- Premium Burger -->
+                <button class="burger-premium lg:hidden" id="menuBtn" aria-label="Toggle menu">
+                    <span class="burger-line"></span>
+                    <span class="burger-line"></span>
+                    <span class="burger-line"></span>
                 </button>
             </div>
         </div>
     </header>
 
-    <!-- ===== MOBILE MENU ===== -->
-    <div class="mobile-menu-panel lg:hidden" id="mobileMenu">
-        <div class="flex flex-col h-full">
-            <!-- Mobile Header -->
-            <div class="flex justify-between items-center p-6 border-b border-gray-100">
-                <a href="index.html" class="flex items-center gap-3">
-                    <img src="assets/images/obrian-transparent-logo-4461219.webp" alt="O'Brian Group" class="logo-img" style="height: 40px;" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22%3E%3Crect width=%22100%22 height=%22100%22 fill=%22%23e6007e%22/%3E%3Ctext x=%2250%22 y=%2268%22 font-size=%2248%22 text-anchor=%22middle%22 fill=%22white%22 font-weight=%22bold%22 font-family=%22Arial%22%3EO%3C/text%3E%3C/svg%3E'">
-                    <span class="font-black text-xl text-gray-900">O'BRIAN</span>
-                </a>
-                <button class="p-2 rounded-lg hover:bg-gray-100 transition-colors" id="closeMenu" aria-label="Close menu">
-                    <svg class="w-6 h-6 text-gray-700" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
-                    </svg>
-                </button>
-            </div>
+    <!-- ===== MOBILE MENU PANEL ===== -->
+    <div class="mobile-menu-panel" id="mobileMenuPanel">
+        <a href="Home.html">Home</a>
+        <a href="About.html">About</a>
+        <a href="Our_Work.html">Our Work</a>
+        <a href="Client_Experience.html">Client Experience</a>
 
-            <!-- Mobile Navigation Links -->
-            <div class="flex-1 overflow-y-auto py-6 px-6">
-                <div class="space-y-1">
-                    <a href="index.html" class="block px-4 py-3 text-lg font-semibold text-gray-800 hover:text-[#e6007e] hover:bg-pink-50 rounded-xl transition-all">Home</a>
-                    <a href="page8.html" class="block px-4 py-3 text-lg font-semibold text-gray-800 hover:text-[#e6007e] hover:bg-pink-50 rounded-xl transition-all">About</a>
-                    <a href="page30.html" class="block px-4 py-3 text-lg font-semibold text-gray-800 hover:text-[#e6007e] hover:bg-pink-50 rounded-xl transition-all">Our Work</a>
-                    <a href="page52.html" class="block px-4 py-3 text-lg font-semibold text-gray-800 hover:text-[#e6007e] hover:bg-pink-50 rounded-xl transition-all">Client Experience</a>
-
-                    <!-- Mobile Case Studies Accordion -->
-                    <div class="mobile-accordion">
-                        <button class="w-full flex justify-between items-center px-4 py-3 text-lg font-semibold text-gray-800 hover:text-[#e6007e] hover:bg-pink-50 rounded-xl transition-all" onclick="toggleAccordion('case-studies')">
-                            Case Studies
-                            <svg class="w-5 h-5 transition-transform duration-300" id="case-studies-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
-                            </svg>
-                        </button>
-                        <div id="case-studies" class="hidden pl-4 space-y-1 mt-1">
-                            <a href="Adv_Case_Studies.html" class="block px-4 py-2 text-sm text-gray-600 hover:text-[#e6007e] transition-colors">Advertising</a>
-                            <a href="Digital_Case_Studies.html" class="block px-4 py-2 text-sm text-gray-600 hover:text-[#e6007e] transition-colors">Digital</a>
-                            <a href="Consulting_Case_Studies.html" class="block px-4 py-2 text-sm text-gray-600 hover:text-[#e6007e] transition-colors">Consulting</a>
-                        </div>
-                    </div>
-
-                    <!-- Mobile Expertise Accordion -->
-                    <div class="mobile-accordion">
-                        <button class="w-full flex justify-between items-center px-4 py-3 text-lg font-semibold text-gray-800 hover:text-[#e6007e] hover:bg-pink-50 rounded-xl transition-all" onclick="toggleAccordion('expertise')">
-                            Our Expertise
-                            <svg class="w-5 h-5 transition-transform duration-300" id="expertise-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
-                            </svg>
-                        </button>
-                        <div id="expertise" class="hidden pl-4 space-y-1 mt-1">
-                            <a href="page9.html" class="block px-4 py-2 text-sm text-gray-600 hover:text-[#e6007e] transition-colors">Advertising</a>
-                            <a href="page1.html" class="block px-4 py-2 text-sm text-gray-600 hover:text-[#e6007e] transition-colors">Digital</a>
-                            <a href="page18.html" class="block px-4 py-2 text-sm text-gray-600 hover:text-[#e6007e] transition-colors">Consulting</a>
-                        </div>
-                    </div>
-
-                    <a href="page60.html" class="block px-4 py-3 text-lg font-semibold text-gray-800 hover:text-[#e6007e] hover:bg-pink-50 rounded-xl transition-all">Staff News</a>
-                    <a href="page15.html" class="block px-4 py-3 text-lg font-semibold text-gray-800 hover:text-[#e6007e] hover:bg-pink-50 rounded-xl transition-all">Blog</a>
-                    <a href="page70.html" class="block px-4 py-3 text-lg font-semibold text-gray-800 hover:text-[#e6007e] hover:bg-pink-50 rounded-xl transition-all">Archives</a>
-                </div>
-            </div>
-
-            <!-- Mobile CTA -->
-            <div class="p-6 border-t border-gray-100">
-                <a href="page5.html" class="flex items-center justify-center gap-2 w-full px-6 py-4 bg-gradient-to-r from-[#e6007e] to-[#ff1493] text-white font-bold rounded-xl hover:shadow-lg transition-all">
-                    Contact Us
-                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"></path>
-                    </svg>
-                </a>
-            </div>
+        <div class="mobile-dropdown-title">Case Studies</div>
+        <div class="mobile-dropdown-items">
+            <a href="Adv_Case_Studies.html">Advertising</a>
+            <a href="Digital_Case_Studies.html">Digital</a>
+            <a href="Consulting_Case_Studies.html">Consulting</a>
         </div>
+
+        <div class="mobile-dropdown-title">Our Expertise</div>
+        <div class="mobile-dropdown-items">
+            <a href="Advertising_Expertise.html">Advertising</a>
+            <a href="Digital_Expertise.html">Digital</a>
+            <a href="Consulting_Expertise.html">Consulting</a>
+        </div>
+
+        <a href="Staff_News.html">Staff News</a>
+        <a href="Exploring_Boundless_Horizons.html">Blog</a>
+        <a href="Archive_Gallery.html">Archives</a>
+        <a href="Contact_Us.html" class="magnetic-btn" style="display:inline-flex; margin-top:1rem; background:linear-gradient(135deg,#e6007e,#ff1493); color:#fff; padding:0.6rem 1.5rem; border-radius:9999px; font-weight:700;">Contact Us</a>
     </div>
 
     <!-- ===== HERO ===== -->
@@ -826,7 +937,7 @@
                     </p>
                 </div>
                 <div class="hero-image-wrapper">
-                    <img src="assets/images/advertising-c2-.3copy-1.png" alt="Advertising case study hero" loading="eager" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22500%22 height=%22300%22%3E%3Crect fill=%22%23e6007e%22 width=%22500%22 height=%22300%22/%3E%3Ctext x=%22250%22 y=%22165%22 font-family=%22Montserrat%22 font-size=%2232%22 text-anchor=%22middle%22 fill=%22white%22 font-weight=%22bold%22%3EAdvertising%3C/text%3E%3C/svg%3E'" />
+                    <img src="advertising-c2-.3copy-1.png" alt="Advertising case study hero" loading="eager" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22500%22 height=%22300%22%3E%3Crect fill=%22%23e6007e%22 width=%22500%22 height=%22300%22/%3E%3Ctext x=%22250%22 y=%22165%22 font-family=%22Montserrat%22 font-size=%2232%22 text-anchor=%22middle%22 fill=%22white%22 font-weight=%22bold%22%3EAdvertising%3C/text%3E%3C/svg%3E'" />
                 </div>
             </div>
         </div>
@@ -862,7 +973,7 @@
                 <!-- ABSA Microloans -->
                 <div class="case-card">
                     <div class="image-wrapper" onclick="openLightbox(this.querySelector('img'))">
-                        <img src="assets/images/8-1.jpg" alt="ABSA Microloans" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22400%22 height=%22300%22%3E%3Crect fill=%22%23f0f0f0%22 width=%22400%22 height=%22300%22/%3E%3Ctext x=%22200%22 y=%22155%22 font-family=%22Montserrat%22 font-size=%2222%22 text-anchor=%22middle%22 fill=%22%23888%22%3EABSA%3C/text%3E%3C/svg%3E'" />
+                        <img src="8-1.jpg" alt="ABSA Microloans" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22400%22 height=%22300%22%3E%3Crect fill=%22%23f0f0f0%22 width=%22400%22 height=%22300%22/%3E%3Ctext x=%22200%22 y=%22155%22 font-family=%22Montserrat%22 font-size=%2222%22 text-anchor=%22middle%22 fill=%22%23888%22%3EABSA%3C/text%3E%3C/svg%3E'" />
                     </div>
                     <div class="text-wrapper">
                         <div class="case-number">Case Study 02</div>
@@ -876,7 +987,7 @@
                 <!-- AfriPortico -->
                 <div class="case-card">
                     <div class="image-wrapper" onclick="openLightbox(this.querySelector('img'))">
-                        <img src="assets/images/7-2.jpg" alt="AfriPortico" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22400%22 height=%22300%22%3E%3Crect fill=%22%23f0f0f0%22 width=%22400%22 height=%22300%22/%3E%3Ctext x=%22200%22 y=%22155%22 font-family=%22Montserrat%22 font-size=%2222%22 text-anchor=%22middle%22 fill=%22%23888%22%3EAfriPortico%3C/text%3E%3C/svg%3E'" />
+                        <img src="7-2.jpg" alt="AfriPortico" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22400%22 height=%22300%22%3E%3Crect fill=%22%23f0f0f0%22 width=%22400%22 height=%22300%22/%3E%3Ctext x=%22200%22 y=%22155%22 font-family=%22Montserrat%22 font-size=%2222%22 text-anchor=%22middle%22 fill=%22%23888%22%3EAfriPortico%3C/text%3E%3C/svg%3E'" />
                     </div>
                     <div class="text-wrapper">
                         <div class="case-number">Case Study 03</div>
@@ -890,7 +1001,7 @@
                 <!-- MZANSI Money Transfer -->
                 <div class="case-card">
                     <div class="image-wrapper" onclick="openLightbox(this.querySelector('img'))">
-                        <img src="assets/images/mzansimoneytranfer.jpg" alt="MZANSI Money Transfer" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22400%22 height=%22300%22%3E%3Crect fill=%22%23f0f0f0%22 width=%22400%22 height=%22300%22/%3E%3Ctext x=%22200%22 y=%22155%22 font-family=%22Montserrat%22 font-size=%2222%22 text-anchor=%22middle%22 fill=%22%23888%22%3EMZANSI%3C/text%3E%3C/svg%3E'" />
+                        <img src="mzansimoneytranfer.jpg" alt="MZANSI Money Transfer" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22400%22 height=%22300%22%3E%3Crect fill=%22%23f0f0f0%22 width=%22400%22 height=%22300%22/%3E%3Ctext x=%22200%22 y=%22155%22 font-family=%22Montserrat%22 font-size=%2222%22 text-anchor=%22middle%22 fill=%22%23888%22%3EMZANSI%3C/text%3E%3C/svg%3E'" />
                     </div>
                     <div class="text-wrapper">
                         <div class="case-number">Case Study 04</div>
@@ -904,7 +1015,7 @@
                 <!-- SizweNtsalubaGobodo -->
                 <div class="case-card">
                     <div class="image-wrapper" onclick="openLightbox(this.querySelector('img'))">
-                        <img src="assets/images/sizwentsaluba.jpg" alt="SizweNtsalubaGobodo" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22400%22 height=%22300%22%3E%3Crect fill=%22%23f0f0f0%22 width=%22400%22 height=%22300%22/%3E%3Ctext x=%22200%22 y=%22155%22 font-family=%22Montserrat%22 font-size=%2222%22 text-anchor=%22middle%22 fill=%22%23888%22%3ESNG%3C/text%3E%3C/svg%3E'" />
+                        <img src="sizwentsaluba.jpg" alt="SizweNtsalubaGobodo" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22400%22 height=%22300%22%3E%3Crect fill=%22%23f0f0f0%22 width=%22400%22 height=%22300%22/%3E%3Ctext x=%22200%22 y=%22155%22 font-family=%22Montserrat%22 font-size=%2222%22 text-anchor=%22middle%22 fill=%22%23888%22%3ESNG%3C/text%3E%3C/svg%3E'" />
                     </div>
                     <div class="text-wrapper">
                         <div class="case-number">Case Study 05</div>
@@ -918,7 +1029,7 @@
                 <!-- Aberdare Cables -->
                 <div class="case-card">
                     <div class="image-wrapper" onclick="openLightbox(this.querySelector('img'))">
-                        <img src="assets/images/11-1.jpg" alt="Aberdare Cables" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22400%22 height=%22300%22%3E%3Crect fill=%22%23f0f0f0%22 width=%22400%22 height=%22300%22/%3E%3Ctext x=%22200%22 y=%22155%22 font-family=%22Montserrat%22 font-size=%2222%22 text-anchor=%22middle%22 fill=%22%23888%22%3EAberdare%3C/text%3E%3C/svg%3E'" />
+                        <img src="11-1.jpg" alt="Aberdare Cables" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22400%22 height=%22300%22%3E%3Crect fill=%22%23f0f0f0%22 width=%22400%22 height=%22300%22/%3E%3Ctext x=%22200%22 y=%22155%22 font-family=%22Montserrat%22 font-size=%2222%22 text-anchor=%22middle%22 fill=%22%23888%22%3EAberdare%3C/text%3E%3C/svg%3E'" />
                     </div>
                     <div class="text-wrapper">
                         <div class="case-number">Case Study 06</div>
@@ -932,7 +1043,7 @@
                 <!-- EPWP -->
                 <div class="case-card">
                     <div class="image-wrapper" onclick="openLightbox(this.querySelector('img'))">
-                        <img src="assets/images/epwp-3.jpeg" alt="EPWP" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22400%22 height=%22300%22%3E%3Crect fill=%22%23f0f0f0%22 width=%22400%22 height=%22300%22/%3E%3Ctext x=%22200%22 y=%22155%22 font-family=%22Montserrat%22 font-size=%2222%22 text-anchor=%22middle%22 fill=%22%23888%22%3EEPWP%3C/text%3E%3C/svg%3E'" />
+                        <img src="epwp-3.jpeg" alt="EPWP" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22400%22 height=%22300%22%3E%3Crect fill=%22%23f0f0f0%22 width=%22400%22 height=%22300%22/%3E%3Ctext x=%22200%22 y=%22155%22 font-family=%22Montserrat%22 font-size=%2222%22 text-anchor=%22middle%22 fill=%22%23888%22%3EEPWP%3C/text%3E%3C/svg%3E'" />
                     </div>
                     <div class="text-wrapper">
                         <div class="case-number">Case Study 07</div>
@@ -946,7 +1057,7 @@
                 <!-- BP Gas -->
                 <div class="case-card">
                     <div class="image-wrapper" onclick="openLightbox(this.querySelector('img'))">
-                        <img src="assets/images/bp-gas.jpeg" alt="BP Gas" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22400%22 height=%22300%22%3E%3Crect fill=%22%23f0f0f0%22 width=%22400%22 height=%22300%22/%3E%3Ctext x=%22200%22 y=%22155%22 font-family=%22Montserrat%22 font-size=%2222%22 text-anchor=%22middle%22 fill=%22%23888%22%3EBP%20Gas%3C/text%3E%3C/svg%3E'" />
+                        <img src="bp-gas.jpeg" alt="BP Gas" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22400%22 height=%22300%22%3E%3Crect fill=%22%23f0f0f0%22 width=%22400%22 height=%22300%22/%3E%3Ctext x=%22200%22 y=%22155%22 font-family=%22Montserrat%22 font-size=%2222%22 text-anchor=%22middle%22 fill=%22%23888%22%3EBP%20Gas%3C/text%3E%3C/svg%3E'" />
                     </div>
                     <div class="text-wrapper">
                         <div class="case-number">Case Study 08</div>
@@ -970,8 +1081,8 @@
                 digital, or consulting — we're here to bring your vision to life.
             </p>
             <div class="btn-group">
-                <a href="page5.html" class="btn btn-primary">Start Your Journey</a>
-                <a href="page30.html" class="btn btn-outline">View Our Work</a>
+                <a href="Contact_Us.html" class="btn btn-primary">Start Your Journey</a>
+                <a href="Our_Work.html" class="btn btn-outline">View Our Work</a>
             </div>
         </div>
     </section>
@@ -1002,11 +1113,11 @@
             <div>
                 <h5>About</h5>
                 <ul>
-                    <li><a href="page8.html">History</a></li>
-                    <li><a href="page52.html">Clients</a></li>
-                    <li>Teams</li>
-                    <li>Brand</li>
-                    <li>Terms</li>
+                    <li><a href="About.html">History</a></li>
+                    <li><a href="Client_Experience.html">Clients</a></li>
+                    <li><a href="Teams.html">Teams</a></li>
+                    <li><a href="Brand.html">Brand</a></li>
+                    <li><a href="Terms.html">Terms</a></li>
                 </ul>
             </div>
             <div>
@@ -1049,51 +1160,23 @@
 
             // ── Mobile menu toggle ──
             const menuBtn = document.getElementById('menuBtn');
-            const mobileMenu = document.getElementById('mobileMenu');
-            const closeBtn = document.getElementById('closeMenu');
+            const mobilePanel = document.getElementById('mobileMenuPanel');
 
-            function openMenu() {
-                mobileMenu.classList.add('open');
-                document.body.style.overflow = 'hidden';
+            if (menuBtn && mobilePanel) {
+                menuBtn.addEventListener('click', () => {
+                    menuBtn.classList.toggle('open');
+                    mobilePanel.classList.toggle('open');
+                    document.body.style.overflow = mobilePanel.classList.contains('open') ? 'hidden' : '';
+                });
+
+                mobilePanel.querySelectorAll('a').forEach(link => {
+                    link.addEventListener('click', () => {
+                        menuBtn.classList.remove('open');
+                        mobilePanel.classList.remove('open');
+                        document.body.style.overflow = '';
+                    });
+                });
             }
-
-            function closeMenu() {
-                mobileMenu.classList.remove('open');
-                document.body.style.overflow = '';
-            }
-
-            if (menuBtn) {
-                menuBtn.addEventListener('click', openMenu);
-            }
-            if (closeBtn) {
-                closeBtn.addEventListener('click', closeMenu);
-            }
-
-            // Close menu when a link is clicked
-            mobileMenu.querySelectorAll('a').forEach(link => {
-                link.addEventListener('click', closeMenu);
-            });
-
-            // Close menu on resize to desktop
-            window.addEventListener('resize', function() {
-                if (window.innerWidth >= 1024) {
-                    closeMenu();
-                }
-            });
-
-            // ── Mobile accordion ──
-            window.toggleAccordion = function(id) {
-                const panel = document.getElementById(id);
-                if (!panel) return;
-                const icon = document.getElementById(id + '-icon');
-                if (panel.classList.contains('hidden')) {
-                    panel.classList.remove('hidden');
-                    if (icon) icon.style.transform = 'rotate(180deg)';
-                } else {
-                    panel.classList.add('hidden');
-                    if (icon) icon.style.transform = 'rotate(0deg)';
-                }
-            };
 
             // ── Lightbox ──
             const lightbox = document.getElementById('lightbox');
@@ -1122,12 +1205,6 @@
                 }
             });
 
-            // ── Burger animation toggle ──
-            if (menuBtn) {
-                menuBtn.addEventListener('click', function() {
-                    this.classList.toggle('open');
-                });
-            }
         })();
     </script>
 
