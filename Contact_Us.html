@@ -4,21 +4,21 @@
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-  <meta name="description" content="Get in touch with O'Brien Group – advertising, digital, and consulting experts. Reach out via our contact form or office details.">
-  <title>O'Brien Group | Contact – Let's create impact</title>
+  <meta name="description" content="Contact O'Brien Group – advertising, digital, and consulting experts in Durban and Johannesburg. View office locations on Google Maps and reach us via our secure contact form.">
+  <title>O'Brien Group | Contact – Offices & Maps</title>
   
   <!-- Favicon -->
   <link rel="shortcut icon" href="assets/images/obrian-transparent-logo-4461219.webp" type="image/x-icon">
   
   <!-- Google Fonts + modern font stack -->
-  <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700;14..32,800&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;400;500;600;700;800&display=swap" rel="stylesheet">
   <!-- Font Awesome 6 -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 
   <!-- Tailwind CSS -->
   <script src="https://cdn.tailwindcss.com"></script>
   
-  <!-- Google tag -->
+  <!-- Google tag (gtag.js) preserved -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=AW-17324132021"></script>
   <script>
     window.dataLayer = window.dataLayer || [];
@@ -54,96 +54,241 @@
       transition: all 0.2s ease;
     }
 
-    /* ── NEW HEADER STYLES ── */
+    /* ── PREMIUM GLASS HEADER STYLES ── */
     .header-glass {
       position: fixed;
       top: 0;
       left: 0;
       width: 100%;
       z-index: 1030;
-      background: rgba(255, 255, 255, 0.85);
-      backdrop-filter: blur(12px);
-      -webkit-backdrop-filter: blur(12px);
-      transition: box-shadow 0.3s, background 0.3s;
-      border-bottom: 1px solid rgba(0, 0, 0, 0.04);
+      background: rgba(255, 255, 255, 0.72);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.4);
+      box-shadow: 0 1px 2px rgba(0, 0, 0, 0.02);
+      height: 80px;
+      display: flex;
+      align-items: center;
+      padding: 0 1rem;
     }
     .header-glass.scrolled {
-      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
-      background: rgba(255, 255, 255, 0.98);
+      box-shadow: 0 4px 30px rgba(0, 0, 0, 0.06);
+      background: rgba(255, 255, 255, 0.94);
+      border-bottom: 1px solid rgba(0, 0, 0, 0.03);
     }
 
-    .nav-link {
-      padding: 0.5rem 1rem;
-      font-size: 0.875rem;
-      font-weight: 600;
-      color: #374151;
-      border-radius: 0.5rem;
-      transition: all 0.3s ease;
+    /* Premium Logo */
+    .logo-premium {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      transition: transform 0.3s ease;
+    }
+    .logo-premium:hover {
+      transform: scale(1.01);
+    }
+    .logo-text {
+      font-size: 1.35rem;
+      font-weight: 800;
+      letter-spacing: -0.5px;
+      color: #231e1f;
+    }
+    .logo-text .highlight {
+      color: #e6007e;
+      position: relative;
+    }
+    .logo-text .highlight::after {
+      content: '';
+      position: absolute;
+      bottom: -2px;
+      left: 0;
+      width: 100%;
+      height: 2px;
+      background: #e6007e;
+      transform: scaleX(0);
+      transform-origin: right;
+      transition: transform 0.4s ease;
+    }
+    .logo-premium:hover .logo-text .highlight::after {
+      transform: scaleX(1);
+      transform-origin: left;
+    }
+
+    /* Premium Nav Links */
+    .nav-link-premium {
+      position: relative;
+      padding: 0.5rem 1.2rem;
+      font-size: 0.75rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.8px;
+      color: #4b5563;
+      border-radius: 8px;
+      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
       display: inline-block;
       cursor: pointer;
+      background: transparent;
+      text-decoration: none;
     }
-    .nav-link:hover {
+    .nav-link-premium::after {
+      content: '';
+      position: absolute;
+      bottom: 4px;
+      left: 50%;
+      width: 0;
+      height: 2px;
+      background: linear-gradient(90deg, #e6007e, #ff1493);
+      transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+      transform: translateX(-50%);
+      border-radius: 2px;
+    }
+    .nav-link-premium:hover {
       color: #e6007e;
-      background-color: #fdf2f8;
+      background: rgba(230, 0, 126, 0.06);
+    }
+    .nav-link-premium:hover::after {
+      width: 60%;
+    }
+    .nav-link-premium.active-link {
+      color: #e6007e;
+      background: rgba(230, 0, 126, 0.08);
+    }
+    .nav-link-premium.active-link::after {
+      width: 70%;
     }
 
-    .dropdown-menu-custom {
-      position: absolute;
-      top: 100%;
-      left: 0;
-      margin-top: 0.5rem;
-      width: 200px;
-      background: white;
-      border-radius: 0.75rem;
-      box-shadow: 0 20px 40px -8px rgba(0, 0, 0, 0.15);
-      border: 1px solid #f3f4f6;
-      opacity: 0;
-      visibility: hidden;
-      transform: translateY(-8px) scale(0.96);
-      transition: all 0.25s ease;
-      transform-origin: top left;
-      z-index: 1050;
+    /* Premium Dropdown */
+    .dropdown-wrapper {
+      position: relative;
     }
-    .group:hover .dropdown-menu-custom {
+    .dropdown-wrapper:hover .dropdown-menu-premium {
       opacity: 1;
       visibility: visible;
       transform: translateY(0) scale(1);
     }
-    .dropdown-menu-custom a {
+    .dropdown-menu-premium {
+      position: absolute;
+      top: calc(100% + 12px);
+      left: 0;
+      min-width: 200px;
+      background: rgba(255, 255, 255, 0.98);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border-radius: 12px;
+      box-shadow: 0 20px 50px -12px rgba(0, 0, 0, 0.15);
+      border: 1px solid rgba(230, 0, 126, 0.08);
+      padding: 8px 0;
+      opacity: 0;
+      visibility: hidden;
+      transform: translateY(-8px) scale(0.96);
+      transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+      transform-origin: top left;
+      z-index: 1050;
+    }
+    .dropdown-menu-premium::before {
+      content: '';
+      position: absolute;
+      top: -6px;
+      left: 20px;
+      width: 10px;
+      height: 10px;
+      background: rgba(255, 255, 255, 0.98);
+      border-left: 1px solid rgba(230, 0, 126, 0.08);
+      border-top: 1px solid rgba(230, 0, 126, 0.08);
+      transform: rotate(45deg);
+      border-radius: 2px;
+    }
+    .dropdown-menu-premium a {
       display: block;
-      padding: 0.75rem 1.25rem;
-      font-size: 0.875rem;
+      padding: 0.7rem 1.4rem;
+      font-size: 0.8rem;
+      font-weight: 500;
       color: #374151;
-      transition: background 0.2s, color 0.2s;
+      transition: all 0.2s ease;
+      letter-spacing: 0.3px;
+      text-decoration: none;
     }
-    .dropdown-menu-custom a:hover {
-      background: #fdf2f8;
+    .dropdown-menu-premium a:hover {
+      background: rgba(230, 0, 126, 0.05);
       color: #e6007e;
+      padding-left: 1.8rem;
     }
-    .dropdown-menu-custom a:first-child {
-      border-radius: 0.75rem 0.75rem 0 0;
+    .dropdown-menu-premium a:first-child {
+      border-radius: 12px 12px 0 0;
     }
-    .dropdown-menu-custom a:last-child {
-      border-radius: 0 0 0.75rem 0.75rem;
+    .dropdown-menu-premium a:last-child {
+      border-radius: 0 0 12px 12px;
     }
 
-    .btn-primary-pink {
+    /* Premium CTA Button */
+    .btn-premium-cta {
       display: inline-flex;
       align-items: center;
-      gap: 0.5rem;
-      padding: 0.75rem 1.75rem;
-      background: linear-gradient(135deg, #e6007e, #ff1493);
+      gap: 8px;
+      padding: 0.65rem 1.8rem;
+      background: linear-gradient(135deg, #e6007e 0%, #ff1493 100%);
       color: white;
       font-weight: 700;
-      font-size: 0.875rem;
+      font-size: 0.75rem;
+      text-transform: uppercase;
+      letter-spacing: 0.6px;
       border-radius: 9999px;
-      transition: all 0.3s ease;
-      box-shadow: 0 4px 14px rgba(230, 0, 126, 0.3);
+      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      box-shadow: 0 4px 15px rgba(230, 0, 126, 0.3);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      text-decoration: none;
     }
-    .btn-primary-pink:hover {
-      transform: translateY(-2px);
-      box-shadow: 0 8px 25px rgba(230, 0, 126, 0.4);
+    .btn-premium-cta:hover {
+      transform: translateY(-3px) scale(1.02);
+      box-shadow: 0 10px 30px rgba(230, 0, 126, 0.4);
       color: white;
+    }
+
+    /* Premium Burger */
+    .burger-premium {
+      width: 36px;
+      height: 36px;
+      border-radius: 10px;
+      border: 1px solid rgba(0, 0, 0, 0.04);
+      background: rgba(255, 255, 255, 0.5);
+      backdrop-filter: blur(4px);
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      gap: 5px;
+      transition: all 0.3s ease;
+      cursor: pointer;
+    }
+    .burger-premium:hover {
+      background: rgba(230, 0, 126, 0.05);
+      border-color: rgba(230, 0, 126, 0.15);
+    }
+    .burger-line {
+      display: block;
+      width: 18px;
+      height: 2px;
+      background: #374151;
+      border-radius: 2px;
+      transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+    .burger-line:nth-child(3) {
+      width: 12px;
+      margin-left: auto;
+    }
+    .burger-premium.open .burger-line:nth-child(1) {
+      transform: rotate(45deg) translate(5px, 5px);
+      width: 20px;
+    }
+    .burger-premium.open .burger-line:nth-child(2) {
+      opacity: 0;
+      transform: scaleX(0);
+    }
+    .burger-premium.open .burger-line:nth-child(3) {
+      transform: rotate(-45deg) translate(5px, -5px);
+      width: 20px;
+      margin-left: 0;
     }
 
     /* Mobile menu panel */
@@ -155,14 +300,26 @@
       right: 0;
       bottom: 0;
       background: rgba(255, 255, 255, 0.98);
-      backdrop-filter: blur(12px);
-      padding: 1.5rem;
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      padding: 2rem 1.5rem;
       overflow-y: auto;
       z-index: 1020;
-      border-top: 1px solid rgba(0, 0, 0, 0.04);
+      border-top: 1px solid rgba(0, 0, 0, 0.03);
     }
     .mobile-menu-panel.open {
       display: block;
+      animation: fadeSlideDown 0.4s ease forwards;
+    }
+    @keyframes fadeSlideDown {
+      from {
+        opacity: 0;
+        transform: translateY(-10px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
     }
     .mobile-menu-panel a {
       display: block;
@@ -171,17 +328,23 @@
       font-weight: 500;
       color: #1a1a2e;
       border-radius: 0.5rem;
-      transition: background 0.2s;
+      transition: all 0.2s;
+      text-decoration: none;
     }
     .mobile-menu-panel a:hover {
       background: rgba(237, 0, 142, 0.06);
       color: #ed008e;
+      padding-left: 1.2rem;
     }
     .mobile-menu-panel .mobile-dropdown-title {
       font-weight: 700;
       padding: 0.75rem 1rem;
       color: #1a1a2e;
       cursor: default;
+      font-size: 0.85rem;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      color: #6b7280;
     }
     .mobile-menu-panel .mobile-dropdown-items {
       padding-left: 1rem;
@@ -191,12 +354,11 @@
       font-size: 0.95rem;
     }
 
-    /* ----- PAGE CONTENT ----- */
+    /* ----- REST OF PAGE STYLES (unchanged) ----- */
     .hero {
       background: linear-gradient(135deg, #fef9fc 0%, #ffffff 100%);
       padding: 4rem 0 3rem;
       text-align: center;
-      border-bottom: 1px solid #f0eef3;
     }
 
     .hero h1 {
@@ -218,7 +380,7 @@
     }
 
     .contact-section {
-      padding: 5rem 0 5rem;
+      padding: 4rem 0 3rem;
     }
 
     .contact-grid {
@@ -230,8 +392,8 @@
     .info-card {
       background: #ffffff;
       border-radius: 2rem;
-      padding: 2rem 2rem 2.5rem;
-      box-shadow: 0 20px 35px -12px rgba(0, 0, 0, 0.05), 0 1px 2px rgba(0,0,0,0.02);
+      padding: 2rem;
+      box-shadow: 0 20px 35px -12px rgba(0, 0, 0, 0.05);
       border: 1px solid #f0eef3;
     }
 
@@ -239,7 +401,6 @@
       display: flex;
       gap: 1.2rem;
       margin-bottom: 2rem;
-      align-items: flex-start;
     }
 
     .info-icon {
@@ -258,7 +419,6 @@
       font-size: 1.2rem;
       font-weight: 700;
       margin-bottom: 0.3rem;
-      color: #111827;
     }
 
     .info-text p, .info-text a {
@@ -276,10 +436,25 @@
       margin: 1.5rem 0;
     }
 
+    .map-container {
+      margin: 1.5rem 0;
+      border-radius: 1.2rem;
+      overflow: hidden;
+      box-shadow: 0 8px 20px rgba(0,0,0,0.05);
+      border: 1px solid #edf2f7;
+    }
+
+    .map-container iframe {
+      width: 100%;
+      height: 220px;
+      border: 0;
+      display: block;
+    }
+
     .form-card {
       background: #ffffff;
       border-radius: 2rem;
-      padding: 2rem 2rem 2.5rem;
+      padding: 2rem;
       box-shadow: 0 20px 35px -12px rgba(0, 0, 0, 0.05);
       border: 1px solid #f0eef3;
     }
@@ -290,7 +465,7 @@
       margin-bottom: 0.5rem;
     }
 
-    .form-card .form-sub {
+    .form-sub {
       color: #6b7280;
       margin-bottom: 2rem;
       border-left: 3px solid #ec008a;
@@ -301,7 +476,7 @@
       margin-bottom: 1.5rem;
     }
 
-    input, textarea, select {
+    input, textarea {
       width: 100%;
       padding: 0.9rem 1.2rem;
       border-radius: 1.2rem;
@@ -309,7 +484,6 @@
       font-family: 'Inter', sans-serif;
       font-size: 1rem;
       transition: 0.2s;
-      background-color: #fefefe;
     }
 
     input:focus, textarea:focus {
@@ -331,35 +505,28 @@
       accent-color: #ec008a;
     }
 
-    .checkbox-group label {
-      font-size: 0.85rem;
-      color: #4b5563;
-    }
-
     .btn-submit {
       background: #ec008a;
       color: white;
       border: none;
-      padding: 1rem 1.6rem;
+      padding: 1rem;
       font-weight: 700;
       border-radius: 2rem;
       font-size: 1rem;
       cursor: pointer;
-      transition: 0.2s;
       width: 100%;
       display: flex;
       justify-content: center;
-      align-items: center;
       gap: 8px;
+      transition: 0.2s;
     }
 
     .btn-submit:hover {
       background: #c4006f;
       transform: translateY(-2px);
-      box-shadow: 0 10px 20px -8px rgba(236, 0, 138, 0.3);
     }
 
-    .form-status {
+    .fs-message {
       margin-top: 1rem;
       padding: 0.75rem;
       border-radius: 1rem;
@@ -367,12 +534,12 @@
       text-align: center;
     }
 
-    .success-status {
+    .fs-success {
       background: #e6f9ed;
       color: #166534;
     }
 
-    .error-status {
+    .fs-error {
       background: #fee2e2;
       color: #b91c1c;
     }
@@ -380,7 +547,7 @@
     .footer {
       background: #fafafc;
       border-top: 1px solid #eaecf0;
-      padding: 3.5rem 0 2rem;
+      padding: 3rem 0 2rem;
       margin-top: 2rem;
     }
 
@@ -388,14 +555,13 @@
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
       gap: 2rem;
-      margin-bottom: 2.5rem;
+      margin-bottom: 2rem;
     }
 
     .footer-col h4 {
       font-size: 1rem;
       font-weight: 700;
       margin-bottom: 1rem;
-      color: #111827;
     }
 
     .footer-col ul {
@@ -408,51 +574,40 @@
       color: #4b5563;
     }
 
-    .footer-col a {
-      color: #4b5563;
-    }
-
-    .footer-col a:hover {
-      color: #ec008a;
-    }
-
     .social-icons {
       display: flex;
-      gap: 1.2rem;
+      gap: 1rem;
       margin-top: 1rem;
     }
 
     .social-icons a {
       background: #ffffff;
-      width: 38px;
-      height: 38px;
+      width: 36px;
+      height: 36px;
       border-radius: 40px;
       display: inline-flex;
       align-items: center;
       justify-content: center;
       color: #ec008a;
       border: 1px solid #e2e8f0;
-      transition: 0.2s;
     }
 
     .social-icons a:hover {
       background: #ec008a;
       color: white;
-      transform: translateY(-3px);
     }
 
     .copyright {
       text-align: center;
       font-size: 0.75rem;
       color: #6c757d;
-      border-top: 1px solid #e9edf2;
       padding-top: 2rem;
+      border-top: 1px solid #e9edf2;
     }
 
     @media (max-width: 900px) {
       .contact-grid {
         grid-template-columns: 1fr;
-        gap: 2rem;
       }
       .hero h1 {
         font-size: 2.4rem;
@@ -461,72 +616,93 @@
         padding: 0 24px;
       }
     }
+
+    @media (max-width: 768px) {
+      body {
+        padding-top: 70px;
+      }
+      .header-glass {
+        height: 70px;
+        padding: 0 1rem;
+      }
+      .mobile-menu-panel {
+        top: 70px;
+      }
+      .logo-text {
+        font-size: 1rem;
+      }
+    }
+    @media (max-width: 480px) {
+      .logo-text {
+        font-size: 0.9rem;
+      }
+    }
   </style>
 </head>
 <body>
 
-<!-- ===== NEW HEADER ===== -->
+<!-- ===== PREMIUM GLASS HEADER ===== -->
 <header class="header-glass" id="mainHeader">
-  <div class="max-w-7xl mx-auto px-4 md:px-6">
-    <div class="flex justify-between items-center h-20">
+  <div class="max-w-7xl mx-auto px-4 md:px-6 w-full">
+    <div class="flex justify-between items-center">
 
-      <!-- Logo -->
-      <a href="index.html" class="flex items-center gap-3 group">
-        <img src="assets/images/obrian-transparent-logo-4461219.webp" alt="O'Brian Group" class="h-10 w-auto" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22%3E%3Crect width=%22100%22 height=%22100%22 fill=%22%23ed008e%22/%3E%3Ctext x=%2250%22 y=%2268%22 font-size=%2248%22 text-anchor=%22middle%22 fill=%22white%22 font-weight=%22bold%22 font-family=%22Inter%22%3EO%3C/text%3E%3C/svg%3E'">
-        <span class="font-black text-xl text-[#231e1f] tracking-tight hidden sm:inline"><span class="text-[#ed018e]"></span></span>
+      <!-- Premium Logo -->
+      <a href="Home.html" class="logo-premium group">
+        <img src="assets/images/obrian-transparent-logo-4461219.webp" alt="O'Brian Group" class="h-9 w-auto" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22%3E%3Crect width=%22100%22 height=%22100%22 fill=%22%23ed008e%22/%3E%3Ctext x=%2250%22 y=%2268%22 font-size=%2248%22 text-anchor=%22middle%22 fill=%22white%22 font-weight=%22bold%22 font-family=%22Inter%22%3EO%3C/text%3E%3C/svg%3E'">
+        <span class="logo-text hidden sm:inline-block">
+          <span class="highlight"></span> 
+        </span>
       </a>
 
-      <!-- Desktop Nav -->
+      <!-- Premium Desktop Nav -->
       <div class="hidden lg:flex items-center gap-0.5">
-        <a href="index.html" class="nav-link">Home</a>
-        <a href="page8.html" class="nav-link">About</a>
-        <a href="page30.html" class="nav-link">Our Work</a>
-        <a href="page52.html" class="nav-link">Client Experience</a>
+        <a href="Home.html" class="nav-link-premium">Home</a>
+        <a href="About.html" class="nav-link-premium">About</a>
+        <a href="Our_Work.html" class="nav-link-premium">Our Work</a>
+        <a href="Client_Experience.html" class="nav-link-premium">Client Experience</a>
 
-        <div class="relative group">
-          <button class="nav-link flex items-center gap-1">
+        <div class="dropdown-wrapper">
+          <button class="nav-link-premium flex items-center gap-1">
             Case Studies
-            <svg class="w-3 h-3 transition-transform duration-300 group-hover:rotate-180" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M19 9l-7 7-7-7"></path></svg>
+            <svg class="w-3 h-3 transition-transform duration-300 dropdown-wrapper:hover:rotate-180" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M19 9l-7 7-7-7"></path></svg>
           </button>
-          <div class="dropdown-menu-custom">
-            <a href="page27.html">Advertising</a>
-            <a href="page45.html">Digital</a>
-            <a href="page43.html">Consulting</a>
+          <div class="dropdown-menu-premium">
+            <a href="Adv_Case_Studies.html">Advertising</a>
+            <a href="Digital_Case_Studies.html">Digital</a>
+            <a href="Consulting_Case_Studies.html">Consulting</a>
           </div>
         </div>
 
-        <div class="relative group">
-          <button class="nav-link flex items-center gap-1">
+        <div class="dropdown-wrapper">
+          <button class="nav-link-premium flex items-center gap-1">
             Expertise
-            <svg class="w-3 h-3 transition-transform duration-300 group-hover:rotate-180" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M19 9l-7 7-7-7"></path></svg>
+            <svg class="w-3 h-3 transition-transform duration-300 dropdown-wrapper:hover:rotate-180" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M19 9l-7 7-7-7"></path></svg>
           </button>
-          <div class="dropdown-menu-custom">
-            <a href="page9.html">Advertising</a>
-            <a href="page18.html">Digital</a>
-            <a href="page1.html">Consulting</a>
+          <div class="dropdown-menu-premium">
+            <a href="Advertising_Expertise.html">Advertising</a>
+            <a href="Digital_Expertise.html">Digital</a>
+            <a href="Consulting_Expertise.html">Consulting</a>
           </div>
         </div>
 
-        <a href="page60.html" class="nav-link">Staff News</a>
-        <a href="page15.html" class="nav-link">Blog</a>
-        <a href="page70.html" class="nav-link">Archives</a>
+        <a href="Staff_News.html" class="nav-link-premium">Staff News</a>
+        <a href="Exploring_Boundless_Horizons.html" class="nav-link-premium">Blog</a>
+        <a href="Archive_Gallery.html" class="nav-link-premium">Archives</a>
       </div>
 
-      <!-- CTA -->
+      <!-- Premium CTA -->
       <div class="hidden lg:block">
-        <a href="page5.html" class="btn-primary-pink">
+        <a href="Contact_Us.html" class="btn-premium-cta">
           <span>Contact</span>
           <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M17 8l4 4m0 0l-4 4m4-4H3"></path></svg>
         </a>
       </div>
 
-      <!-- Burger -->
-      <button class="lg:hidden p-2 rounded-lg hover:bg-gray-100 transition-colors" id="menuBtn" aria-label="Toggle menu">
-        <div class="w-6 h-6 flex flex-col justify-center items-center gap-1.5">
-          <span class="w-6 h-0.5 bg-gray-700 transition-all duration-300 menu-line-1"></span>
-          <span class="w-6 h-0.5 bg-gray-700 transition-all duration-300 menu-line-2"></span>
-          <span class="w-4 h-0.5 bg-gray-700 transition-all duration-300 menu-line-3 ml-auto"></span>
-        </div>
+      <!-- Premium Burger -->
+      <button class="burger-premium lg:hidden" id="menuBtn" aria-label="Toggle menu">
+        <span class="burger-line"></span>
+        <span class="burger-line"></span>
+        <span class="burger-line"></span>
       </button>
     </div>
   </div>
@@ -534,61 +710,88 @@
 
 <!-- ===== MOBILE MENU PANEL ===== -->
 <div class="mobile-menu-panel" id="mobileMenuPanel">
-  <a href="index.html">Home</a>
-  <a href="page8.html">About</a>
-  <a href="page30.html">Our Work</a>
-  <a href="page52.html">Client Experience</a>
+  <a href="Home.html">Home</a>
+  <a href="About.html">About</a>
+  <a href="Our_Work.html">Our Work</a>
+  <a href="Client_Experience.html">Client Experience</a>
 
   <div class="mobile-dropdown-title">Case Studies</div>
   <div class="mobile-dropdown-items">
-    <a href="page27.html">Advertising</a>
-    <a href="page45.html">Digital</a>
-    <a href="page43.html">Consulting</a>
+    <a href="Adv_Case_Studies.html">Advertising</a>
+    <a href="Digital_Case_Studies.html">Digital</a>
+    <a href="Consulting_Case_Studies.html">Consulting</a>
   </div>
 
   <div class="mobile-dropdown-title">Our Expertise</div>
   <div class="mobile-dropdown-items">
-    <a href="page9.html">Advertising</a>
-    <a href="page1.html">Digital</a>
-    <a href="page18.html">Consulting</a>
+    <a href="Advertising_Expertise.html">Advertising</a>
+    <a href="Digital_Expertise.html">Digital</a>
+    <a href="Consulting_Expertise.html">Consulting</a>
   </div>
 
-  <a href="page60.html">Staff News</a>
-  <a href="page15.html">Blog</a>
-  <a href="page70.html">Archives</a>
-  <a href="page5.html" class="magnetic-btn" style="display:inline-flex; margin-top:1rem; background:linear-gradient(135deg,#e6007e,#ff1493); color:#fff; padding:0.6rem 1.5rem; border-radius:9999px; font-weight:700;">Contact Us</a>
+  <a href="Staff_News.html">Staff News</a>
+  <a href="Exploring_Boundless_Horizons.html">Blog</a>
+  <a href="Archive_Gallery.html">Archives</a>
+  <a href="Contact_Us.html" style="display:inline-flex; margin-top:1rem; background:linear-gradient(135deg,#e6007e,#ff1493); color:#fff; padding:0.6rem 1.5rem; border-radius:9999px; font-weight:700; text-decoration:none;">Contact Us</a>
 </div>
 
 <!-- Hero -->
 <section class="hero">
   <div class="container">
-    <h1>Let's build something <br>remarkable</h1>
-    <p>We're ready to listen — whether it's a partnership, a project, or just a conversation.</p>
+    <h1>Visit our studios</h1>
+    <p>Find us in Durban and Johannesburg — we're always happy to welcome you.</p>
   </div>
 </section>
 
-<!-- Contact -->
+<!-- Contact + Maps + Formspree Form -->
 <section class="contact-section">
   <div class="container">
     <div class="contact-grid">
+      <!-- Left column: contact details + embedded maps -->
       <div class="info-card">
+        <!-- Durban -->
         <div class="info-item">
           <div class="info-icon"><i class="fas fa-map-marker-alt"></i></div>
           <div class="info-text">
-            <h4>Durban (HQ)</h4>
+            <h4>Durban Office (HQ)</h4>
             <p>2 Ncondo Place, Ridgeside Dr, Umhlanga Ridge, Durban, 4319</p>
             <p><strong>Phone:</strong> +27 83 325 9532</p>
           </div>
         </div>
+        <div class="map-container">
+          <iframe 
+            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3461.3578640054467!2d31.04392531546866!3d-29.725642581999362!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x1ef7075c6b3d9e2f%3A0x5b7c6b3b3b3b3b3b!2s2%20Ncondo%20Pl%2C%20Umhlanga%20Ridge%2C%20Durban%2C%204319!5e0!3m2!1sen!2sza!4v1647863311111!5m2!1sen!2sza" 
+            allowfullscreen="" loading="lazy"></iframe>
+        </div>
+        
+        <div class="divider-light"></div>
+        
+        <!-- Johannesburg -->
         <div class="info-item">
           <div class="info-icon"><i class="fas fa-building"></i></div>
           <div class="info-text">
-            <h4>Johannesburg</h4>
+            <h4>Johannesburg Office</h4>
             <p>2nd Floor Trumpet On Keyes, 21 Keyes Avenue, Rosebank, 2196</p>
             <p><strong>Phone:</strong> +27 10 035 5218</p>
           </div>
         </div>
+        <div class="map-container">
+          <iframe 
+            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3581.703716375053!2d28.03852511546884!3d-26.145647883473757!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x1e950d1f7b3b3b3b%3A0x5b7c6b3b3b3b3b3b!2s21%20Keyes%20Ave%2C%20Rosebank%2C%20Johannesburg%2C%202196!5e0!3m2!1sen!2sza!4v1647863411111!5m2!1sen!2sza" 
+            allowfullscreen="" loading="lazy"></iframe>
+        </div>
+        
         <div class="divider-light"></div>
+        
+        <!-- Email and web -->
+        <div class="info-item">
+          <div class="info-icon"><i class="fas fa-envelope"></i></div>
+          <div class="info-text">
+            <h4>Email us directly</h4>
+            <p><a href="mailto:info@obriangroup.com">info@obriangroup.com</a></p>
+            <p style="font-size:0.85rem; margin-top:5px;">We respond within 24 hours.</p>
+          </div>
+        </div>
         <div class="info-item">
           <div class="info-icon"><i class="fas fa-globe"></i></div>
           <div class="info-text">
@@ -596,49 +799,49 @@
             <p>obriangroup.com</p>
           </div>
         </div>
-        <div class="info-item">
-          <div class="info-icon"><i class="fas fa-envelope"></i></div>
-          <div class="info-text">
-            <h4>Email (direct)</h4>
-            <p><a href="mailto:sekang@obriangroup.com">sekang@obriangroup.com</a></p>
-            <p class="small" style="font-size: 0.8rem; margin-top: 6px;">Reach out — we reply within 24h</p>
-          </div>
-        </div>
       </div>
 
+      <!-- Right column: Formspree form (endpoint xpqnyeep) -->
       <div class="form-card">
         <h3>Send a message</h3>
-        <div class="form-sub">We'd love to hear about your vision.</div>
-        <!-- FORM: action points to your new Formspree endpoint -->
-        <form id="contactForm" action="https://formspree.io/f/xpqnyeep" method="POST">
+        <div class="form-sub">We'll route your inquiry to the right team.</div>
+
+        <!-- Formspree success/error placeholders -->
+        <div data-fs-success class="fs-message"></div>
+        <div data-fs-error class="fs-message"></div>
+
+        <form id="contact-form" method="POST">
           <div class="form-group">
-            <input type="text" id="fullName" name="name" placeholder="Full name *" required maxlength="100">
+            <input type="text" name="name" id="name" placeholder="Full name *" data-fs-field required>
+            <span data-fs-error="name" style="color:#e11d48; font-size:0.75rem;"></span>
           </div>
           <div class="form-group">
-            <input type="email" id="emailAddress" name="email" placeholder="Email address *" required>
+            <input type="email" name="email" id="email" placeholder="Email address *" data-fs-field required>
+            <span data-fs-error="email" style="color:#e11d48; font-size:0.75rem;"></span>
           </div>
           <div class="form-group">
-            <input type="text" id="subjectLine" name="subject" placeholder="Subject" required maxlength="200">
+            <input type="text" name="subject" id="subject" placeholder="Subject *" data-fs-field required>
+            <span data-fs-error="subject" style="color:#e11d48; font-size:0.75rem;"></span>
           </div>
           <div class="form-group">
-            <textarea rows="4" id="messageContent" name="message" placeholder="How can we help you? *" required maxlength="2000"></textarea>
+            <textarea name="message" id="message" rows="4" placeholder="How can we help? *" data-fs-field required></textarea>
+            <span data-fs-error="message" style="color:#e11d48; font-size:0.75rem;"></span>
           </div>
           <div class="checkbox-group">
             <input type="checkbox" id="gdprConsent" required>
-            <label for="gdprConsent">By continuing you agree to our <a href="terms.html" style="color:#ec008a;">Terms of Service</a> and <a href="policy.html" style="color:#ec008a;">Privacy Policy</a>.</label>
+            <label for="gdprConsent">I agree to the <a href="terms.html" style="color:#ec008a;">Terms</a> and <a href="policy.html" style="color:#ec008a;">Privacy Policy</a>.</label>
           </div>
-          <button type="submit" class="btn-submit" id="submitBtn">
+          <button type="submit" data-fs-submit-btn class="btn-submit">
             <i class="fas fa-paper-plane"></i> Send message
           </button>
-          <div id="formStatus" class="form-status" style="display: none;"></div>
         </form>
-        <p style="font-size: 0.7rem; margin-top: 1rem; color: #9ca3af; text-align: center;">Your data is secure. We'll get back within 1 business day.</p>
+        <p style="font-size:0.7rem; text-align:center; margin-top:1rem; color:#9ca3af;">Your data is secure. Powered by Formspree.</p>
       </div>
     </div>
   </div>
 </section>
 
-<!-- Footer -->
+<!-- Footer with maps preview and email -->
 <footer class="footer">
   <div class="container">
     <div class="footer-grid">
@@ -646,63 +849,62 @@
         <h4>Johannesburg</h4>
         <p>2nd Floor Trumpet On Keyes,<br>21 Keyes Avenue, Rosebank, 2196</p>
         <p>📞 +27 10 035 5218</p>
+        <div class="map-container" style="margin-top:0.8rem; height:120px;">
+          <iframe src="https://maps.google.com/maps?q=21%20Keyes%20Avenue%20Rosebank&t=&z=14&ie=UTF8&iwloc=&output=embed" style="height:120px;" allowfullscreen="" loading="lazy"></iframe>
+        </div>
       </div>
       <div class="footer-col">
         <h4>Durban Office</h4>
         <p>2 Ncondo Place, Ridgeside Dr,<br>Umhlanga Ridge, Durban, 4319</p>
         <p>📞 +27 83 325 9532</p>
+        <div class="map-container" style="margin-top:0.8rem; height:120px;">
+          <iframe src="https://maps.google.com/maps?q=2%20Ncondo%20Place%20Umhlanga&t=&z=14&ie=UTF8&iwloc=&output=embed" style="height:120px;" allowfullscreen="" loading="lazy"></iframe>
+        </div>
       </div>
       <div class="footer-col">
         <h4>Email</h4>
-        <p><a href="mailto:sekang@obriangroup.com">sekang@obriangroup.com</a></p>
+        <p><a href="mailto:info@obriangroup.com">info@obriangroup.com</a></p>
         <div class="social-icons">
-          <a href="https://www.facebook.com/profile.php?id=100094029616085" target="_blank" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
-          <a href="https://x.com/ObrianSA" target="_blank" aria-label="X"><i class="fab fa-twitter"></i></a>
-          <a href="https://www.instagram.com/obriandigital/" target="_blank" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
-          <a href="https://za.linkedin.com/company/o-brian-digital" target="_blank" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+          <a href="https://www.facebook.com/profile.php?id=100094029616085"><i class="fab fa-facebook-f"></i></a>
+          <a href="https://x.com/ObrianSA"><i class="fab fa-twitter"></i></a>
+          <a href="https://www.instagram.com/obriandigital/"><i class="fab fa-instagram"></i></a>
+          <a href="https://za.linkedin.com/company/o-brian-digital"><i class="fab fa-linkedin-in"></i></a>
         </div>
       </div>
       <div class="footer-col">
         <h4>About</h4>
         <ul>
-          <li><a href="page8.html">History</a></li>
-          <li><a href="page52.html">Clients</a></li>
+          <li><a href="About.html">History</a></li>
+          <li><a href="Client_Experience.html">Clients</a></li>
           <li><a href="#">Teams</a></li>
           <li><a href="#">Brand</a></li>
-          <li><a href="#">Terms</a></li>
+          <li><a href="Terms.html">Terms</a></li>
         </ul>
       </div>
     </div>
     <div class="copyright">
-      <p>© 2025 O'Brien Group — All rights reserved. Innovation-driven.</p>
+      <p>© 2025 O'Brien Group — Innovation-driven. All rights reserved.</p>
     </div>
   </div>
 </footer>
 
+<!-- Formspree AJAX library + initialization -->
 <script>
-  // ── Mobile menu toggle (updated for new header) ──
-  const menuBtn = document.getElementById('menuBtn');
-  const mobilePanel = document.getElementById('mobileMenuPanel');
+  window.formspree = window.formspree || function () { (formspree.q = formspree.q || []).push(arguments); };
+  formspree('initForm', { 
+    formElement: '#contact-form', 
+    formId: 'xpqnyeep',
+    onSuccess: function() {
+      document.getElementById('gdprConsent').checked = false;
+    }
+  });
+</script>
+<script src="https://unpkg.com/@formspree/ajax@1" defer></script>
 
-  if (menuBtn && mobilePanel) {
-    menuBtn.addEventListener('click', () => {
-      menuBtn.classList.toggle('open');
-      mobilePanel.classList.toggle('open');
-      document.body.style.overflow = mobilePanel.classList.contains('open') ? 'hidden' : '';
-    });
-
-    mobilePanel.querySelectorAll('a').forEach(link => {
-      link.addEventListener('click', () => {
-        menuBtn.classList.remove('open');
-        mobilePanel.classList.remove('open');
-        document.body.style.overflow = '';
-      });
-    });
-  }
-
+<script>
   // ── Header scroll effect ──
-  const header = document.getElementById('mainHeader');
-  window.addEventListener('scroll', () => {
+  var header = document.getElementById('mainHeader');
+  window.addEventListener('scroll', function() {
     if (window.scrollY > 20) {
       header.classList.add('scrolled');
     } else {
@@ -710,87 +912,34 @@
     }
   });
 
-  // ── FORM SUBMISSION (preserved) ──
-  const contactForm = document.getElementById('contactForm');
-  const statusDiv = document.getElementById('formStatus');
-  const submitBtn = document.getElementById('submitBtn');
+  // ── Mobile menu toggle ──
+  var menuBtn = document.getElementById('menuBtn');
+  var mobilePanel = document.getElementById('mobileMenuPanel');
 
-  if (contactForm) {
-    contactForm.addEventListener('submit', async (e) => {
-      e.preventDefault();
+  if (menuBtn && mobilePanel) {
+    menuBtn.addEventListener('click', function() {
+      this.classList.toggle('open');
+      mobilePanel.classList.toggle('open');
+      document.body.style.overflow = mobilePanel.classList.contains('open') ? 'hidden' : '';
+    });
 
-      const name = document.getElementById('fullName').value.trim();
-      const email = document.getElementById('emailAddress').value.trim();
-      const subject = document.getElementById('subjectLine').value.trim();
-      const message = document.getElementById('messageContent').value.trim();
-      const gdprChecked = document.getElementById('gdprConsent').checked;
-
-      if (!name || !email || !subject || !message) {
-        showStatus('Please fill all required fields.', 'error');
-        return;
-      }
-      if (!/^\S+@\S+\.\S+$/.test(email)) {
-        showStatus('Enter a valid email address.', 'error');
-        return;
-      }
-      if (!gdprChecked) {
-        showStatus('You must agree to the Terms and Privacy Policy.', 'error');
-        return;
-      }
-
-      const formData = new FormData();
-      formData.append('name', name);
-      formData.append('email', email);
-      formData.append('subject', subject);
-      formData.append('message', message);
-
-      submitBtn.disabled = true;
-      submitBtn.innerHTML = '<i class="fas fa-spinner fa-pulse"></i> Sending...';
-      statusDiv.style.display = 'block';
-      statusDiv.className = 'form-status';
-
-      try {
-        const response = await fetch('https://formspree.io/f/xpqnyeep', {
-          method: 'POST',
-          body: formData,
-          headers: { 'Accept': 'application/json' }
-        });
-
-        const result = await response.json();
-
-        if (response.ok && result.success !== false) {
-          showStatus('✅ Message sent! We\'ll get back to you shortly.', 'success');
-          contactForm.reset();
-          document.getElementById('gdprConsent').checked = false;
-        } else {
-          const errorMsg = result.error || 'Something went wrong. Please try again.';
-          showStatus('⚠️ ' + errorMsg, 'error');
-        }
-      } catch (err) {
-        console.error(err);
-        showStatus('Network error. Please check your connection or try again later.', 'error');
-      } finally {
-        submitBtn.disabled = false;
-        submitBtn.innerHTML = '<i class="fas fa-paper-plane"></i> Send message';
-
-        if (statusDiv.classList.contains('success-status')) {
-          setTimeout(() => {
-            statusDiv.style.opacity = '0';
-            setTimeout(() => {
-              statusDiv.style.display = 'none';
-              statusDiv.style.opacity = '1';
-            }, 400);
-          }, 6000);
-        }
-      }
+    mobilePanel.querySelectorAll('a').forEach(function(link) {
+      link.addEventListener('click', function() {
+        menuBtn.classList.remove('open');
+        mobilePanel.classList.remove('open');
+        document.body.style.overflow = '';
+      });
     });
   }
 
-  function showStatus(msg, type) {
-    statusDiv.style.display = 'block';
-    statusDiv.textContent = msg;
-    statusDiv.className = `form-status ${type === 'success' ? 'success-status' : 'error-status'}`;
-  }
+  // Close menu on resize to desktop
+  window.addEventListener('resize', function() {
+    if (window.innerWidth >= 1024) {
+      if (mobilePanel) mobilePanel.classList.remove('open');
+      if (menuBtn) menuBtn.classList.remove('open');
+      document.body.style.overflow = '';
+    }
+  });
 </script>
 
 </body>
