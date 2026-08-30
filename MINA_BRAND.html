@@ -40,96 +40,241 @@
             background-color: #e6007e;
         }
 
-        /* ── NEW HEADER STYLES ── */
+        /* ── PREMIUM GLASS HEADER STYLES ── */
         .header-glass {
             position: fixed;
             top: 0;
             left: 0;
             width: 100%;
             z-index: 1030;
-            background: rgba(255, 255, 255, 0.85);
-            backdrop-filter: blur(12px);
-            -webkit-backdrop-filter: blur(12px);
-            transition: box-shadow 0.3s, background 0.3s;
-            border-bottom: 1px solid rgba(0, 0, 0, 0.04);
+            background: rgba(255, 255, 255, 0.72);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.4);
+            box-shadow: 0 1px 2px rgba(0, 0, 0, 0.02);
+            height: 80px;
+            display: flex;
+            align-items: center;
+            padding: 0 1rem;
         }
         .header-glass.scrolled {
-            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
-            background: rgba(255, 255, 255, 0.98);
+            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.06);
+            background: rgba(255, 255, 255, 0.94);
+            border-bottom: 1px solid rgba(0, 0, 0, 0.03);
         }
 
-        .nav-link {
-            padding: 0.5rem 1rem;
-            font-size: 0.875rem;
-            font-weight: 600;
-            color: #374151;
-            border-radius: 0.5rem;
-            transition: all 0.3s ease;
+        /* Premium Logo */
+        .logo-premium {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            transition: transform 0.3s ease;
+        }
+        .logo-premium:hover {
+            transform: scale(1.01);
+        }
+        .logo-text {
+            font-size: 1.35rem;
+            font-weight: 800;
+            letter-spacing: -0.5px;
+            color: #231e1f;
+        }
+        .logo-text .highlight {
+            color: #e6007e;
+            position: relative;
+        }
+        .logo-text .highlight::after {
+            content: '';
+            position: absolute;
+            bottom: -2px;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            background: #e6007e;
+            transform: scaleX(0);
+            transform-origin: right;
+            transition: transform 0.4s ease;
+        }
+        .logo-premium:hover .logo-text .highlight::after {
+            transform: scaleX(1);
+            transform-origin: left;
+        }
+
+        /* Premium Nav Links */
+        .nav-link-premium {
+            position: relative;
+            padding: 0.5rem 1.2rem;
+            font-size: 0.75rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.8px;
+            color: #4b5563;
+            border-radius: 8px;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
             display: inline-block;
             cursor: pointer;
+            background: transparent;
+            text-decoration: none;
         }
-        .nav-link:hover {
+        .nav-link-premium::after {
+            content: '';
+            position: absolute;
+            bottom: 4px;
+            left: 50%;
+            width: 0;
+            height: 2px;
+            background: linear-gradient(90deg, #e6007e, #ff1493);
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            transform: translateX(-50%);
+            border-radius: 2px;
+        }
+        .nav-link-premium:hover {
             color: #e6007e;
-            background-color: #fdf2f8;
+            background: rgba(230, 0, 126, 0.06);
+        }
+        .nav-link-premium:hover::after {
+            width: 60%;
+        }
+        .nav-link-premium.active-link {
+            color: #e6007e;
+            background: rgba(230, 0, 126, 0.08);
+        }
+        .nav-link-premium.active-link::after {
+            width: 70%;
         }
 
-        .dropdown-menu-custom {
-            position: absolute;
-            top: 100%;
-            left: 0;
-            margin-top: 0.5rem;
-            width: 200px;
-            background: white;
-            border-radius: 0.75rem;
-            box-shadow: 0 20px 40px -8px rgba(0, 0, 0, 0.15);
-            border: 1px solid #f3f4f6;
-            opacity: 0;
-            visibility: hidden;
-            transform: translateY(-8px) scale(0.96);
-            transition: all 0.25s ease;
-            transform-origin: top left;
-            z-index: 1050;
+        /* Premium Dropdown */
+        .dropdown-wrapper {
+            position: relative;
         }
-        .group:hover .dropdown-menu-custom {
+        .dropdown-wrapper:hover .dropdown-menu-premium {
             opacity: 1;
             visibility: visible;
             transform: translateY(0) scale(1);
         }
-        .dropdown-menu-custom a {
+        .dropdown-menu-premium {
+            position: absolute;
+            top: calc(100% + 12px);
+            left: 0;
+            min-width: 200px;
+            background: rgba(255, 255, 255, 0.98);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border-radius: 12px;
+            box-shadow: 0 20px 50px -12px rgba(0, 0, 0, 0.15);
+            border: 1px solid rgba(230, 0, 126, 0.08);
+            padding: 8px 0;
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(-8px) scale(0.96);
+            transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            transform-origin: top left;
+            z-index: 1050;
+        }
+        .dropdown-menu-premium::before {
+            content: '';
+            position: absolute;
+            top: -6px;
+            left: 20px;
+            width: 10px;
+            height: 10px;
+            background: rgba(255, 255, 255, 0.98);
+            border-left: 1px solid rgba(230, 0, 126, 0.08);
+            border-top: 1px solid rgba(230, 0, 126, 0.08);
+            transform: rotate(45deg);
+            border-radius: 2px;
+        }
+        .dropdown-menu-premium a {
             display: block;
-            padding: 0.75rem 1.25rem;
-            font-size: 0.875rem;
+            padding: 0.7rem 1.4rem;
+            font-size: 0.8rem;
+            font-weight: 500;
             color: #374151;
-            transition: background 0.2s, color 0.2s;
+            transition: all 0.2s ease;
+            letter-spacing: 0.3px;
+            text-decoration: none;
         }
-        .dropdown-menu-custom a:hover {
-            background: #fdf2f8;
+        .dropdown-menu-premium a:hover {
+            background: rgba(230, 0, 126, 0.05);
             color: #e6007e;
+            padding-left: 1.8rem;
         }
-        .dropdown-menu-custom a:first-child {
-            border-radius: 0.75rem 0.75rem 0 0;
+        .dropdown-menu-premium a:first-child {
+            border-radius: 12px 12px 0 0;
         }
-        .dropdown-menu-custom a:last-child {
-            border-radius: 0 0 0.75rem 0.75rem;
+        .dropdown-menu-premium a:last-child {
+            border-radius: 0 0 12px 12px;
         }
 
-        .btn-primary-pink {
+        /* Premium CTA Button */
+        .btn-premium-cta {
             display: inline-flex;
             align-items: center;
-            gap: 0.5rem;
-            padding: 0.75rem 1.75rem;
-            background: linear-gradient(135deg, #e6007e, #ff1493);
+            gap: 8px;
+            padding: 0.65rem 1.8rem;
+            background: linear-gradient(135deg, #e6007e 0%, #ff1493 100%);
             color: white;
             font-weight: 700;
-            font-size: 0.875rem;
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 0.6px;
             border-radius: 9999px;
-            transition: all 0.3s ease;
-            box-shadow: 0 4px 14px rgba(230, 0, 126, 0.3);
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            box-shadow: 0 4px 15px rgba(230, 0, 126, 0.3);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            text-decoration: none;
         }
-        .btn-primary-pink:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 8px 25px rgba(230, 0, 126, 0.4);
+        .btn-premium-cta:hover {
+            transform: translateY(-3px) scale(1.02);
+            box-shadow: 0 10px 30px rgba(230, 0, 126, 0.4);
             color: white;
+        }
+
+        /* Premium Burger */
+        .burger-premium {
+            width: 36px;
+            height: 36px;
+            border-radius: 10px;
+            border: 1px solid rgba(0, 0, 0, 0.04);
+            background: rgba(255, 255, 255, 0.5);
+            backdrop-filter: blur(4px);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            gap: 5px;
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+        .burger-premium:hover {
+            background: rgba(230, 0, 126, 0.05);
+            border-color: rgba(230, 0, 126, 0.15);
+        }
+        .burger-line {
+            display: block;
+            width: 18px;
+            height: 2px;
+            background: #374151;
+            border-radius: 2px;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        .burger-line:nth-child(3) {
+            width: 12px;
+            margin-left: auto;
+        }
+        .burger-premium.open .burger-line:nth-child(1) {
+            transform: rotate(45deg) translate(5px, 5px);
+            width: 20px;
+        }
+        .burger-premium.open .burger-line:nth-child(2) {
+            opacity: 0;
+            transform: scaleX(0);
+        }
+        .burger-premium.open .burger-line:nth-child(3) {
+            transform: rotate(-45deg) translate(5px, -5px);
+            width: 20px;
+            margin-left: 0;
         }
 
         /* Mobile menu panel */
@@ -141,14 +286,26 @@
             right: 0;
             bottom: 0;
             background: rgba(255, 255, 255, 0.98);
-            backdrop-filter: blur(12px);
-            padding: 1.5rem;
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            padding: 2rem 1.5rem;
             overflow-y: auto;
             z-index: 1020;
-            border-top: 1px solid rgba(0, 0, 0, 0.04);
+            border-top: 1px solid rgba(0, 0, 0, 0.03);
         }
         .mobile-menu-panel.open {
             display: block;
+            animation: fadeSlideDown 0.4s ease forwards;
+        }
+        @keyframes fadeSlideDown {
+            from {
+                opacity: 0;
+                transform: translateY(-10px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
         }
         .mobile-menu-panel a {
             display: block;
@@ -157,17 +314,23 @@
             font-weight: 500;
             color: #1a1a2e;
             border-radius: 0.5rem;
-            transition: background 0.2s;
+            transition: all 0.2s;
+            text-decoration: none;
         }
         .mobile-menu-panel a:hover {
             background: rgba(237, 0, 142, 0.06);
             color: #ed008e;
+            padding-left: 1.2rem;
         }
         .mobile-menu-panel .mobile-dropdown-title {
             font-weight: 700;
             padding: 0.75rem 1rem;
             color: #1a1a2e;
             cursor: default;
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            color: #6b7280;
         }
         .mobile-menu-panel .mobile-dropdown-items {
             padding-left: 1rem;
@@ -485,7 +648,21 @@
             transform: scale(1.15);
         }
 
+        /* ── Responsive ── */
         @media (max-width: 768px) {
+            body {
+                padding-top: 70px;
+            }
+            .header-glass {
+                height: 70px;
+                padding: 0 1rem;
+            }
+            .mobile-menu-panel {
+                top: 70px;
+            }
+            .logo-text {
+                font-size: 1rem;
+            }
             .lightbox-nav {
                 padding: 0 10px;
             }
@@ -497,72 +674,77 @@
                 height: 160px;
             }
         }
+        @media (max-width: 480px) {
+            .logo-text {
+                font-size: 0.9rem;
+            }
+        }
     </style>
 </head>
 <body>
 
-    <!-- ===== NEW HEADER ===== -->
+    <!-- ===== PREMIUM GLASS HEADER ===== -->
     <header class="header-glass" id="mainHeader">
-        <div class="max-w-7xl mx-auto px-4 md:px-6">
-            <div class="flex justify-between items-center h-20">
+        <div class="max-w-7xl mx-auto px-4 md:px-6 w-full">
+            <div class="flex justify-between items-center">
 
-                <!-- Logo -->
-                <a href="index.html" class="flex items-center gap-3 group">
-                    <img src="assets/images/obrian-transparent-logo-4461219.webp" alt="O'Brian Group" class="h-10 w-auto" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22%3E%3Crect width=%22100%22 height=%22100%22 fill=%22%23ed008e%22/%3E%3Ctext x=%2250%22 y=%2268%22 font-size=%2248%22 text-anchor=%22middle%22 fill=%22white%22 font-weight=%22bold%22 font-family=%22Inter%22%3EO%3C/text%3E%3C/svg%3E'">
-                    <span class="font-black text-xl text-[#231e1f] tracking-tight hidden sm:inline"><span class="text-[#ed018e]"></span></span>
+                <!-- Premium Logo -->
+                <a href="Home.html" class="logo-premium group">
+                    <img src="obrian-transparent-logo-4461219.webp" alt="O'Brian Group" class="h-9 w-auto" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22%3E%3Crect width=%22100%22 height=%22100%22 fill=%22%23ed008e%22/%3E%3Ctext x=%2250%22 y=%2268%22 font-size=%2248%22 text-anchor=%22middle%22 fill=%22white%22 font-weight=%22bold%22 font-family=%22Inter%22%3EO%3C/text%3E%3C/svg%3E'">
+                    <span class="logo-text hidden sm:inline-block">
+                        <span class="highlight"></span> 
+                    </span>
                 </a>
 
-                <!-- Desktop Nav -->
+                <!-- Premium Desktop Nav -->
                 <div class="hidden lg:flex items-center gap-0.5">
-                    <a href="index.html" class="nav-link">Home</a>
-                    <a href="page8.html" class="nav-link">About</a>
-                    <a href="page30.html" class="nav-link">Our Work</a>
-                    <a href="page52.html" class="nav-link">Client Experience</a>
+                    <a href="Home.html" class="nav-link-premium">Home</a>
+                    <a href="About.html" class="nav-link-premium">About</a>
+                    <a href="Our_Work.html" class="nav-link-premium">Our Work</a>
+                    <a href="Client_Experience.html" class="nav-link-premium">Client Experience</a>
 
-                    <div class="relative group">
-                        <button class="nav-link flex items-center gap-1">
+                    <div class="dropdown-wrapper">
+                        <button class="nav-link-premium flex items-center gap-1">
                             Case Studies
-                            <svg class="w-3 h-3 transition-transform duration-300 group-hover:rotate-180" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M19 9l-7 7-7-7"></path></svg>
+                            <svg class="w-3 h-3 transition-transform duration-300 dropdown-wrapper:hover:rotate-180" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M19 9l-7 7-7-7"></path></svg>
                         </button>
-                        <div class="dropdown-menu-custom">
-                            <a href="page27.html">Advertising</a>
-                            <a href="page45.html">Digital</a>
-                            <a href="page43.html">Consulting</a>
+                        <div class="dropdown-menu-premium">
+                            <a href="Adv_Case_Studies.html">Advertising</a>
+                            <a href="Digital_Case_Studies.html">Digital</a>
+                            <a href="Consulting_Case_Studies.html">Consulting</a>
                         </div>
                     </div>
 
-                    <div class="relative group">
-                        <button class="nav-link flex items-center gap-1">
+                    <div class="dropdown-wrapper">
+                        <button class="nav-link-premium flex items-center gap-1">
                             Expertise
-                            <svg class="w-3 h-3 transition-transform duration-300 group-hover:rotate-180" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M19 9l-7 7-7-7"></path></svg>
+                            <svg class="w-3 h-3 transition-transform duration-300 dropdown-wrapper:hover:rotate-180" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M19 9l-7 7-7-7"></path></svg>
                         </button>
-                        <div class="dropdown-menu-custom">
-                            <a href="page9.html">Advertising</a>
-                            <a href="page18.html">Digital</a>
-                            <a href="page1.html">Consulting</a>
+                        <div class="dropdown-menu-premium">
+                            <a href="Advertising_Expertise.html">Advertising</a>
+                            <a href="Digital_Expertise.html">Digital</a>
+                            <a href="Consulting_Expertise.html">Consulting</a>
                         </div>
                     </div>
 
-                    <a href="page60.html" class="nav-link">Staff News</a>
-                    <a href="page15.html" class="nav-link">Blog</a>
-                    <a href="page70.html" class="nav-link">Archives</a>
+                    <a href="Staff_News.html" class="nav-link-premium">Staff News</a>
+                    <a href="Exploring_Boundless_Horizons.html" class="nav-link-premium">Blog</a>
+                    <a href="Archive_Gallery.html" class="nav-link-premium">Archives</a>
                 </div>
 
-                <!-- CTA -->
+                <!-- Premium CTA -->
                 <div class="hidden lg:block">
-                    <a href="page5.html" class="btn-primary-pink">
+                    <a href="Contact_Us.html" class="btn-premium-cta">
                         <span>Contact</span>
                         <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M17 8l4 4m0 0l-4 4m4-4H3"></path></svg>
                     </a>
                 </div>
 
-                <!-- Burger -->
-                <button class="lg:hidden p-2 rounded-lg hover:bg-gray-100 transition-colors" id="menuBtn" aria-label="Toggle menu">
-                    <div class="w-6 h-6 flex flex-col justify-center items-center gap-1.5">
-                        <span class="w-6 h-0.5 bg-gray-700 transition-all duration-300 menu-line-1"></span>
-                        <span class="w-6 h-0.5 bg-gray-700 transition-all duration-300 menu-line-2"></span>
-                        <span class="w-4 h-0.5 bg-gray-700 transition-all duration-300 menu-line-3 ml-auto"></span>
-                    </div>
+                <!-- Premium Burger -->
+                <button class="burger-premium lg:hidden" id="menuBtn" aria-label="Toggle menu">
+                    <span class="burger-line"></span>
+                    <span class="burger-line"></span>
+                    <span class="burger-line"></span>
                 </button>
             </div>
         </div>
@@ -570,29 +752,29 @@
 
     <!-- ===== MOBILE MENU PANEL ===== -->
     <div class="mobile-menu-panel" id="mobileMenuPanel">
-        <a href="index.html">Home</a>
-        <a href="page8.html">About</a>
-        <a href="page30.html">Our Work</a>
-        <a href="page52.html">Client Experience</a>
+        <a href="Home.html">Home</a>
+        <a href="About.html">About</a>
+        <a href="Our_Work.html">Our Work</a>
+        <a href="Client_Experience.html">Client Experience</a>
 
         <div class="mobile-dropdown-title">Case Studies</div>
         <div class="mobile-dropdown-items">
-            <a href="page27.html">Advertising</a>
-            <a href="page45.html">Digital</a>
-            <a href="page43.html">Consulting</a>
+            <a href="Adv_Case_Studies.html">Advertising</a>
+            <a href="Digital_Case_Studies.html">Digital</a>
+            <a href="Consulting_Case_Studies.html">Consulting</a>
         </div>
 
         <div class="mobile-dropdown-title">Our Expertise</div>
         <div class="mobile-dropdown-items">
-            <a href="page9.html">Advertising</a>
-            <a href="page1.html">Digital</a>
-            <a href="page18.html">Consulting</a>
+            <a href="Advertising_Expertise.html">Advertising</a>
+            <a href="Digital_Expertise.html">Digital</a>
+            <a href="Consulting_Expertise.html">Consulting</a>
         </div>
 
-        <a href="page60.html">Staff News</a>
-        <a href="page15.html">Blog</a>
-        <a href="page70.html">Archives</a>
-        <a href="page5.html" class="magnetic-btn" style="display:inline-flex; margin-top:1rem; background:linear-gradient(135deg,#e6007e,#ff1493); color:#fff; padding:0.6rem 1.5rem; border-radius:9999px; font-weight:700;">Contact Us</a>
+        <a href="Staff_News.html">Staff News</a>
+        <a href="Exploring_Boundless_Horizons.html">Blog</a>
+        <a href="Archive_Gallery.html">Archives</a>
+        <a href="Contact_Us.html" style="display:inline-flex; margin-top:1rem; background:linear-gradient(135deg,#e6007e,#ff1493); color:#fff; padding:0.6rem 1.5rem; border-radius:9999px; font-weight:700; text-decoration:none;">Contact Us</a>
     </div>
 
     <!-- ========== HERO ========== -->
@@ -632,31 +814,31 @@
             <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6" id="galleryGrid">
                 <!-- Original 4 Images -->
                 <div class="gallery-item cursor-pointer rounded-xl overflow-hidden shadow-md bg-white" data-index="0">
-                    <img src="assets/images/mina-brand-outdoor-campaign3.jpg" alt="Mina outdoor ad - I'm on my HIV treatment full time" class="w-full h-64 object-cover transition-transform duration-500 hover:scale-105">
+                    <img src="mina-brand-outdoor-campaign3.jpg" alt="Mina outdoor ad - I'm on my HIV treatment full time" class="w-full h-64 object-cover transition-transform duration-500 hover:scale-105">
                     <div class="overlay">"MINA, I'M ON MY HIV TREATMENT FULL TIME."</div>
                 </div>
                 <div class="gallery-item cursor-pointer rounded-xl overflow-hidden shadow-md bg-white" data-index="1">
-                    <img src="assets/images/mina-brand-outdoor-campaign10.jpg" alt="Mina outdoor ad - I choose health, I choose to win" class="w-full h-64 object-cover transition-transform duration-500 hover:scale-105">
+                    <img src="mina-brand-outdoor-campaign10.jpg" alt="Mina outdoor ad - I choose health, I choose to win" class="w-full h-64 object-cover transition-transform duration-500 hover:scale-105">
                     <div class="overlay">"MINA, I CHOOSE HEALTH. I CHOOSE TO WIN."</div>
                 </div>
                 <div class="gallery-item cursor-pointer rounded-xl overflow-hidden shadow-md bg-white" data-index="2">
-                    <img src="assets/images/mina-brand-outdoor-campaign9.jpg" alt="Mina outdoor ad - Ngise Formini, I choose health" class="w-full h-64 object-cover transition-transform duration-500 hover:scale-105">
+                    <img src="mina-brand-outdoor-campaign9.jpg" alt="Mina outdoor ad - Ngise Formini, I choose health" class="w-full h-64 object-cover transition-transform duration-500 hover:scale-105">
                     <div class="overlay">"MINA, NGISE FORMINI. I CHOOSE HEALTH."</div>
                 </div>
                 <div class="gallery-item cursor-pointer rounded-xl overflow-hidden shadow-md bg-white" data-index="3">
-                    <img src="assets/images/mina-brand-outdoor-campaign4.jpg" alt="Mina outdoor ad 4" class="w-full h-64 object-cover transition-transform duration-500 hover:scale-105">
+                    <img src="mina-brand-outdoor-campaign4.jpg" alt="Mina outdoor ad 4" class="w-full h-64 object-cover transition-transform duration-500 hover:scale-105">
                     <div class="overlay">"LET ME HELP YOU STAY ON THE BALL"</div>
                 </div>
 
                 <!-- Added 4 New Images -->
                 <div class="gallery-item cursor-pointer rounded-xl overflow-hidden shadow-md bg-white" data-index="4">
-                    <img src="assets/images/billboard-tower.jpg" alt="Mina Brand tall vertical billboard" class="w-full h-64 object-cover transition-transform duration-500 hover:scale-105">
+                    <img src=billboard-tower.jpg" alt="Mina Brand tall vertical billboard" class="w-full h-64 object-cover transition-transform duration-500 hover:scale-105">
                     <div class="overlay">"MINA, NGIY'NJA YE GAME. I TAKE MY HIV TREATMENT."</div>
                 </div>
                 
                 
                 <div class="gallery-item cursor-pointer rounded-xl overflow-hidden shadow-md bg-white" data-index="7">
-                    <img src="assets/images/wall-teamplayer.jpg" alt="Mina Brand Team Player painted wall" class="w-full h-64 object-cover transition-transform duration-500 hover:scale-105">
+                    <img src="wall-teamplayer.jpg" alt="Mina Brand Team Player painted wall" class="w-full h-64 object-cover transition-transform duration-500 hover:scale-105">
                     <div class="overlay">"MINA, I'M A TEAM PLAYER. MY PARTNER KNOWS MY STATUS."</div>
                 </div>
             </div>
@@ -697,8 +879,8 @@
                 <div>
                     <h4>About</h4>
                     <ul style="list-style: none; padding: 0;">
-                        <li><a href="page8.html">History</a></li>
-                        <li><a href="page52.html">Clients</a></li>
+                        <li><a href="About.html">History</a></li>
+                        <li><a href="Client_Experience.html">Clients</a></li>
                         <li>Teams</li>
                         <li>Brand</li>
                         <li>Terms</li>
@@ -715,29 +897,9 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js">
     </script>
     <script>
-        // ── Mobile menu toggle (updated for new header) ──
-        const menuBtn = document.getElementById('menuBtn');
-        const mobilePanel = document.getElementById('mobileMenuPanel');
-
-        if (menuBtn && mobilePanel) {
-            menuBtn.addEventListener('click', () => {
-                menuBtn.classList.toggle('open');
-                mobilePanel.classList.toggle('open');
-                document.body.style.overflow = mobilePanel.classList.contains('open') ? 'hidden' : '';
-            });
-
-            mobilePanel.querySelectorAll('a').forEach(link => {
-                link.addEventListener('click', () => {
-                    menuBtn.classList.remove('open');
-                    mobilePanel.classList.remove('open');
-                    document.body.style.overflow = '';
-                });
-            });
-        }
-
         // ── Header scroll effect ──
         const header = document.getElementById('mainHeader');
-        window.addEventListener('scroll', () => {
+        window.addEventListener('scroll', function() {
             if (window.scrollY > 20) {
                 header.classList.add('scrolled');
             } else {
@@ -745,10 +907,39 @@
             }
         });
 
+        // ── Mobile menu toggle ──
+        const menuBtn = document.getElementById('menuBtn');
+        const mobilePanel = document.getElementById('mobileMenuPanel');
+
+        if (menuBtn && mobilePanel) {
+            menuBtn.addEventListener('click', function() {
+                this.classList.toggle('open');
+                mobilePanel.classList.toggle('open');
+                document.body.style.overflow = mobilePanel.classList.contains('open') ? 'hidden' : '';
+            });
+
+            mobilePanel.querySelectorAll('a').forEach(function(link) {
+                link.addEventListener('click', function() {
+                    menuBtn.classList.remove('open');
+                    mobilePanel.classList.remove('open');
+                    document.body.style.overflow = '';
+                });
+            });
+        }
+
+        // Close menu on resize to desktop
+        window.addEventListener('resize', function() {
+            if (window.innerWidth >= 1024) {
+                if (mobilePanel) mobilePanel.classList.remove('open');
+                if (menuBtn) menuBtn.classList.remove('open');
+                document.body.style.overflow = '';
+            }
+        });
+
         // ── Lucide icons ──
         if (typeof lucide !== 'undefined') lucide.createIcons();
 
-        // ── Campaign Gallery data (UPDATED to match the new gallery items) ──
+        // ── Campaign Gallery data ──
         const galleryData = [
             { src: 'assets/images/mina-brand-outdoor-campaign3.jpg', caption: '"MINA, I\'M ON MY HIV TREATMENT FULL TIME. LET ME HELP YOU STAY ON THE BALL CALL, SMS, WHATSAPP COACH MPILO ON 082 5100 344"' },
             { src: 'assets/images/mina-brand-outdoor-campaign10.jpg', caption: '"MINA, I CHOOSE HEALTH. I CHOOSE TO WIN. LET ME HELP YOU STAY ON THE BALL CALL, SMS, WHATSAPP COACH MPILO ON 082 5100 344 COACH MPILO"' },
@@ -794,18 +985,18 @@
             updateLightboxContent();
         }
 
-        document.querySelectorAll('#galleryGrid .gallery-item').forEach(item => {
-            const idx = parseInt(item.dataset.index);
-            item.addEventListener('click', () => openLightbox(idx));
+        document.querySelectorAll('#galleryGrid .gallery-item').forEach(function(item) {
+            var idx = parseInt(item.dataset.index);
+            item.addEventListener('click', function() { openLightbox(idx); });
         });
 
         if (prevBtn) prevBtn.addEventListener('click', showPrev);
         if (nextBtn) nextBtn.addEventListener('click', showNext);
         if (closeLightboxBtn) closeLightboxBtn.addEventListener('click', closeLightbox);
-        lightbox.addEventListener('click', (e) => {
+        lightbox.addEventListener('click', function(e) {
             if (e.target === lightbox) closeLightbox();
         });
-        document.addEventListener('keydown', (e) => {
+        document.addEventListener('keydown', function(e) {
             if (lightbox.classList.contains('active')) {
                 if (e.key === 'Escape') closeLightbox();
                 if (e.key === 'ArrowLeft') showPrev();
@@ -814,13 +1005,13 @@
         });
 
         // ── Reveal animation ──
-        const revealElements = document.querySelectorAll('.reveal');
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
+        var revealElements = document.querySelectorAll('.reveal');
+        var observer = new IntersectionObserver(function(entries) {
+            entries.forEach(function(entry) {
                 if (entry.isIntersecting) entry.target.classList.add('active');
             });
         }, { threshold: 0.1 });
-        revealElements.forEach(el => observer.observe(el));
+        revealElements.forEach(function(el) { observer.observe(el); });
     </script>
 </body>
 </html>
