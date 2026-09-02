@@ -26,6 +26,7 @@
             background: #ffffff;
             color: #1a1a1a;
             overflow-x: hidden;
+            padding-top: 80px;
         }
         .text-pink {
             color: #e6007e;
@@ -40,214 +41,304 @@
             background-color: #e6007e;
         }
 
-        /* ===== NEW HEADER STYLES ===== */
+        /* ===== NEW PREMIUM HEADER STYLES ===== */
         .header-glass {
             position: fixed;
             top: 0;
             left: 0;
-            right: 0;
-            z-index: 1000;
-            background: rgba(255, 255, 255, 0.88);
-            backdrop-filter: blur(12px) saturate(180%);
-            -webkit-backdrop-filter: blur(12px) saturate(180%);
-            border-bottom: 1px solid rgba(0, 0, 0, 0.04);
-            transition: background 0.3s ease, box-shadow 0.3s ease;
+            width: 100%;
+            z-index: 1030;
+            background: rgba(255, 255, 255, 0.72);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.4);
+            box-shadow: 0 1px 2px rgba(0, 0, 0, 0.02);
+            height: 80px;
+            display: flex;
+            align-items: center;
             padding: 0 1rem;
         }
         .header-glass.scrolled {
-            background: rgba(255, 255, 255, 0.96);
             box-shadow: 0 4px 30px rgba(0, 0, 0, 0.06);
+            background: rgba(255, 255, 255, 0.94);
+            border-bottom: 1px solid rgba(0, 0, 0, 0.03);
         }
-        .nav-link {
-            font-weight: 600;
-            font-size: 0.875rem;
-            color: #374151;
-            padding: 0.5rem 1rem;
-            border-radius: 0.75rem;
-            transition: all 0.25s ease;
-            text-decoration: none;
-            display: inline-flex;
+
+        /* Premium Logo */
+        .logo-premium {
+            display: flex;
             align-items: center;
-            gap: 0.25rem;
+            gap: 12px;
+            transition: transform 0.3s ease;
         }
-        .nav-link:hover {
+        .logo-premium:hover {
+            transform: scale(1.01);
+        }
+        .logo-text {
+            font-size: 1.35rem;
+            font-weight: 800;
+            letter-spacing: -0.5px;
+            color: #231e1f;
+        }
+        .logo-text .highlight {
+            color: #e6007e;
+            position: relative;
+        }
+        .logo-text .highlight::after {
+            content: '';
+            position: absolute;
+            bottom: -2px;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            background: #e6007e;
+            transform: scaleX(0);
+            transform-origin: right;
+            transition: transform 0.4s ease;
+        }
+        .logo-premium:hover .logo-text .highlight::after {
+            transform: scaleX(1);
+            transform-origin: left;
+        }
+
+        /* Premium Nav Links */
+        .nav-link-premium {
+            position: relative;
+            padding: 0.5rem 1.2rem;
+            font-size: 0.75rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.8px;
+            color: #4b5563;
+            border-radius: 8px;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            display: inline-block;
+            cursor: pointer;
+            background: transparent;
+            text-decoration: none;
+        }
+        .nav-link-premium::after {
+            content: '';
+            position: absolute;
+            bottom: 4px;
+            left: 50%;
+            width: 0;
+            height: 2px;
+            background: linear-gradient(90deg, #e6007e, #ff1493);
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            transform: translateX(-50%);
+            border-radius: 2px;
+        }
+        .nav-link-premium:hover {
             color: #e6007e;
             background: rgba(230, 0, 126, 0.06);
         }
-        .dropdown-menu-custom {
-            position: absolute;
-            top: 100%;
-            left: 0;
-            margin-top: 0.5rem;
-            min-width: 180px;
-            background: #ffffff;
-            border-radius: 1rem;
-            box-shadow: 0 20px 40px -8px rgba(0, 0, 0, 0.12);
-            border: 1px solid #f0ecee;
-            padding: 0.4rem 0;
-            opacity: 0;
-            visibility: hidden;
-            transform: translateY(8px) scale(0.96);
-            transition: all 0.25s cubic-bezier(0.22, 1, 0.36, 1);
-            transform-origin: top center;
-            z-index: 50;
+        .nav-link-premium:hover::after {
+            width: 60%;
         }
-        .group:hover .dropdown-menu-custom {
+        .nav-link-premium.active-link {
+            color: #e6007e;
+            background: rgba(230, 0, 126, 0.08);
+        }
+        .nav-link-premium.active-link::after {
+            width: 70%;
+        }
+
+        /* Premium Dropdown */
+        .dropdown-wrapper {
+            position: relative;
+        }
+        .dropdown-wrapper:hover .dropdown-menu-premium {
             opacity: 1;
             visibility: visible;
             transform: translateY(0) scale(1);
         }
-        .dropdown-menu-custom a {
+        .dropdown-menu-premium {
+            position: absolute;
+            top: calc(100% + 12px);
+            left: 0;
+            min-width: 200px;
+            background: rgba(255, 255, 255, 0.98);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border-radius: 12px;
+            box-shadow: 0 20px 50px -12px rgba(0, 0, 0, 0.15);
+            border: 1px solid rgba(230, 0, 126, 0.08);
+            padding: 8px 0;
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(-8px) scale(0.96);
+            transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            transform-origin: top left;
+            z-index: 1050;
+        }
+        .dropdown-menu-premium::before {
+            content: '';
+            position: absolute;
+            top: -6px;
+            left: 20px;
+            width: 10px;
+            height: 10px;
+            background: rgba(255, 255, 255, 0.98);
+            border-left: 1px solid rgba(230, 0, 126, 0.08);
+            border-top: 1px solid rgba(230, 0, 126, 0.08);
+            transform: rotate(45deg);
+            border-radius: 2px;
+        }
+        .dropdown-menu-premium a {
             display: block;
-            padding: 0.6rem 1.2rem;
-            font-size: 0.875rem;
+            padding: 0.7rem 1.4rem;
+            font-size: 0.8rem;
             font-weight: 500;
             color: #374151;
             transition: all 0.2s ease;
+            letter-spacing: 0.3px;
             text-decoration: none;
         }
-        .dropdown-menu-custom a:hover {
+        .dropdown-menu-premium a:hover {
+            background: rgba(230, 0, 126, 0.05);
             color: #e6007e;
-            background: rgba(230, 0, 126, 0.06);
+            padding-left: 1.8rem;
         }
-        .btn-primary-pink {
+        .dropdown-menu-premium a:first-child {
+            border-radius: 12px 12px 0 0;
+        }
+        .dropdown-menu-premium a:last-child {
+            border-radius: 0 0 12px 12px;
+        }
+
+        /* Premium CTA Button */
+        .btn-premium-cta {
             display: inline-flex;
             align-items: center;
-            gap: 0.5rem;
-            padding: 0.6rem 1.6rem;
-            background: linear-gradient(135deg, #e6007e, #ff1493);
-            color: #fff;
+            gap: 8px;
+            padding: 0.65rem 1.8rem;
+            background: linear-gradient(135deg, #e6007e 0%, #ff1493 100%);
+            color: white;
             font-weight: 700;
-            font-size: 0.875rem;
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 0.6px;
             border-radius: 9999px;
-            transition: all 0.3s ease;
-            box-shadow: 0 4px 14px rgba(230, 0, 126, 0.25);
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            box-shadow: 0 4px 15px rgba(230, 0, 126, 0.3);
+            border: 1px solid rgba(255, 255, 255, 0.2);
             text-decoration: none;
-            border: none;
+        }
+        .btn-premium-cta:hover {
+            transform: translateY(-3px) scale(1.02);
+            box-shadow: 0 10px 30px rgba(230, 0, 126, 0.4);
+            color: white;
+        }
+
+        /* Premium Burger */
+        .burger-premium {
+            width: 36px;
+            height: 36px;
+            border-radius: 10px;
+            border: 1px solid rgba(0, 0, 0, 0.04);
+            background: rgba(255, 255, 255, 0.5);
+            backdrop-filter: blur(4px);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            gap: 5px;
+            transition: all 0.3s ease;
             cursor: pointer;
         }
-        .btn-primary-pink:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 10px 28px -4px rgba(230, 0, 126, 0.4);
-            color: #fff;
+        .burger-premium:hover {
+            background: rgba(230, 0, 126, 0.05);
+            border-color: rgba(230, 0, 126, 0.15);
         }
-        /* Mobile menu */
-        #mobileNav {
-            display: none;
-            flex-direction: column;
-            padding: 1rem 0 2rem;
-            background: #ffffff;
-            border-top: 1px solid rgba(0, 0, 0, 0.04);
-            gap: 0.25rem;
-        }
-        #mobileNav.open {
-            display: flex;
-        }
-        #mobileNav .nav-link {
-            width: 100%;
-            justify-content: flex-start;
-            padding: 0.7rem 0.5rem;
-        }
-        #mobileNav .dropdown-menu-custom {
-            position: static;
-            box-shadow: none;
-            border: none;
-            padding-left: 1rem;
-            opacity: 1;
-            visibility: visible;
-            transform: none;
-            background: transparent;
-            margin-top: 0;
-            width: 100%;
-        }
-        #mobileNav .dropdown-menu-custom a {
-            padding-left: 1rem;
-        }
-        /* Burger animation */
-        .menu-line-1,
-        .menu-line-2,
-        .menu-line-3 {
+        .burger-line {
             display: block;
+            width: 18px;
             height: 2px;
             background: #374151;
             border-radius: 2px;
-            transition: all 0.3s ease;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
         }
-        .menu-line-1 {
-            width: 24px;
+        .burger-line:nth-child(3) {
+            width: 12px;
+            margin-left: auto;
         }
-        .menu-line-2 {
-            width: 24px;
+        .burger-premium.open .burger-line:nth-child(1) {
+            transform: rotate(45deg) translate(5px, 5px);
+            width: 20px;
         }
-        .menu-line-3 {
-            width: 16px;
-        }
-        .menu-btn-active .menu-line-1 {
-            transform: rotate(45deg) translate(4px, 4px);
-            width: 24px;
-        }
-        .menu-btn-active .menu-line-2 {
+        .burger-premium.open .burger-line:nth-child(2) {
             opacity: 0;
             transform: scaleX(0);
         }
-        .menu-btn-active .menu-line-3 {
-            transform: rotate(-45deg) translate(6px, -6px);
-            width: 24px;
+        .burger-premium.open .burger-line:nth-child(3) {
+            transform: rotate(-45deg) translate(5px, -5px);
+            width: 20px;
+            margin-left: 0;
         }
 
-        /* ===== NEW FOOTER STYLES ===== */
-        .footer {
-            background: #0a1a2f;
-            color: #a0a0a0;
-            padding: 64px 0 40px;
+        /* Mobile menu panel */
+        .mobile-menu-panel {
+            display: none;
+            position: fixed;
+            top: 80px;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(255, 255, 255, 0.98);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            padding: 2rem 1.5rem;
+            overflow-y: auto;
+            z-index: 1020;
+            border-top: 1px solid rgba(0, 0, 0, 0.03);
         }
-        .footer .container {
-            max-width: 1280px;
-            margin: 0 auto;
-            padding: 0 24px;
+        .mobile-menu-panel.open {
+            display: block;
+            animation: fadeSlideDown 0.4s ease forwards;
         }
-        .footer-grid {
-            display: grid;
-            grid-template-columns: 2fr 1fr 1fr 1fr;
-            gap: 40px;
-            margin-bottom: 2.5rem;
+        @keyframes fadeSlideDown {
+            from {
+                opacity: 0;
+                transform: translateY(-10px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
         }
-        .footer-grid h4 {
-            color: #c0c0c0;
-            font-weight: 600;
-            font-size: 0.95rem;
-            margin-bottom: 1rem;
-            letter-spacing: 0.3px;
-        }
-        .footer-grid p,
-        .footer-grid li {
-            font-size: 0.875rem;
-            line-height: 1.7;
-            color: #a0a0a0;
-        }
-        .footer-grid a {
-            color: #a0a0a0;
+        .mobile-menu-panel a {
+            display: block;
+            padding: 0.75rem 1rem;
+            font-size: 1rem;
+            font-weight: 500;
+            color: #1a1a2e;
+            border-radius: 0.5rem;
+            transition: all 0.2s;
             text-decoration: none;
-            transition: color 0.2s;
         }
-        .footer-grid a:hover {
-            color: #e6007e;
-            padding-left: 4px;
+        .mobile-menu-panel a:hover {
+            background: rgba(237, 0, 142, 0.06);
+            color: #ed008e;
+            padding-left: 1.2rem;
         }
-        .footer-grid ul {
-            list-style: none;
-            padding: 0;
-            margin: 0;
+        .mobile-menu-panel .mobile-dropdown-title {
+            font-weight: 700;
+            padding: 0.75rem 1rem;
+            color: #1a1a2e;
+            cursor: default;
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            color: #6b7280;
         }
-        .footer-grid ul li {
-            margin-bottom: 0.5rem;
+        .mobile-menu-panel .mobile-dropdown-items {
+            padding-left: 1rem;
         }
-        .copyright {
-            border-top: 1px solid rgba(255, 255, 255, 0.08);
-            padding-top: 1.5rem;
-            text-align: center;
-            font-size: 0.8rem;
-            color: #888;
+        .mobile-menu-panel .mobile-dropdown-items a {
+            font-weight: 400;
+            font-size: 0.95rem;
         }
 
         /* ===== EXISTING PAGE STYLES ===== */
@@ -696,6 +787,61 @@
             box-shadow: 0 8px 20px rgba(230, 0, 126, 0.3);
         }
 
+        /* ===== NEW FOOTER STYLES ===== */
+        .footer {
+            background: #0a1a2f;
+            color: #a0a0a0;
+            padding: 64px 0 40px;
+        }
+        .footer .container {
+            max-width: 1280px;
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+        .footer-grid {
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr 1fr;
+            gap: 40px;
+            margin-bottom: 2.5rem;
+        }
+        .footer-grid h4 {
+            color: #c0c0c0;
+            font-weight: 600;
+            font-size: 0.95rem;
+            margin-bottom: 1rem;
+            letter-spacing: 0.3px;
+        }
+        .footer-grid p,
+        .footer-grid li {
+            font-size: 0.875rem;
+            line-height: 1.7;
+            color: #a0a0a0;
+        }
+        .footer-grid a {
+            color: #a0a0a0;
+            text-decoration: none;
+            transition: color 0.2s;
+        }
+        .footer-grid a:hover {
+            color: #e6007e;
+            padding-left: 4px;
+        }
+        .footer-grid ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+        .footer-grid ul li {
+            margin-bottom: 0.5rem;
+        }
+        .copyright {
+            border-top: 1px solid rgba(255, 255, 255, 0.08);
+            padding-top: 1.5rem;
+            text-align: center;
+            font-size: 0.8rem;
+            color: #888;
+        }
+
         @media (max-width: 768px) {
             .footer-grid {
                 grid-template-columns: 1fr;
@@ -703,124 +849,125 @@
             }
             .header-glass {
                 padding: 0 0.5rem;
+                height: 70px;
+            }
+            body {
+                padding-top: 70px;
+            }
+            .ooh-filter-bar {
+                top: 70px;
+            }
+            .mobile-menu-panel {
+                top: 70px;
+            }
+        }
+        @media (max-width: 480px) {
+            .logo-text {
+                font-size: 1rem;
             }
         }
     </style>
 </head>
 <body>
 
-    <!-- ========== NEW HEADER ========== -->
-    <header class="header-glass scrolled" id="mainHeader">
-        <div class="max-w-7xl mx-auto px-4 md:px-6">
-            <div class="flex justify-between items-center h-20">
+    <!-- ========== NEW PREMIUM HEADER ========== -->
+    <header class="header-glass" id="mainHeader">
+        <div class="max-w-7xl mx-auto px-4 md:px-6 w-full">
+            <div class="flex justify-between items-center">
 
-                <!-- Logo -->
-                <a href="index.html" class="flex items-center gap-3 group">
-                    <img src="assets/images/obrian-transparent-logo-4461219.webp" alt="O'Brian Group" class="h-10 w-auto" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22%3E%3Crect width=%22100%22 height=%22100%22 fill=%22%23ed008e%22/%3E%3Ctext x=%2250%22 y=%2268%22 font-size=%2248%22 text-anchor=%22middle%22 fill=%22white%22 font-weight=%22bold%22 font-family=%22Inter%22%3EO%3C/text%3E%3C/svg%3E'">
-                    <span class="font-black text-xl text-[#231e1f] tracking-tight hidden sm:inline"><span class="text-[#ed018e]"></span></span>
+                <!-- Premium Logo -->
+                <a href="Home.html" class="logo-premium group">
+                    <img src="obrian-transparent-logo-4461219.webp" alt="O'Brian Group" class="h-9 w-auto" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22%3E%3Crect width=%22100%22 height=%22100%22 fill=%22%23ed008e%22/%3E%3Ctext x=%2250%22 y=%2268%22 font-size=%2248%22 text-anchor=%22middle%22 fill=%22white%22 font-weight=%22bold%22 font-family=%22Inter%22%3EO%3C/text%3E%3C/svg%3E'">
+                    <span class="logo-text hidden sm:inline-block">
+                        O'<span class="highlight">Brian</span> Digital
+                    </span>
                 </a>
 
-                <!-- Desktop Nav -->
+                <!-- Premium Desktop Nav -->
                 <div class="hidden lg:flex items-center gap-0.5">
-                    <a href="index.html" class="nav-link">Home</a>
-                    <a href="page8.html" class="nav-link">About</a>
-                    <a href="page30.html" class="nav-link">Our Work</a>
-                    <a href="page52.html" class="nav-link">Client Experience</a>
+                    <a href="Home.html" class="nav-link-premium">Home</a>
+                    <a href="About.html" class="nav-link-premium">About</a>
+                    <a href="Our_Work.html" class="nav-link-premium">Our Work</a>
+                    <a href="Client_Experience.html" class="nav-link-premium">Client Experience</a>
 
-                    <div class="relative group">
-                        <button class="nav-link flex items-center gap-1">
+                    <div class="dropdown-wrapper">
+                        <button class="nav-link-premium flex items-center gap-1">
                             Case Studies
-                            <svg class="w-3 h-3 transition-transform duration-300 group-hover:rotate-180" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M19 9l-7 7-7-7"></path></svg>
+                            <svg class="w-3 h-3 transition-transform duration-300 dropdown-wrapper:hover:rotate-180" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M19 9l-7 7-7-7"></path></svg>
                         </button>
-                        <div class="dropdown-menu-custom">
-                            <a href="page27.html">Advertising</a>
-                            <a href="page45.html">Digital</a>
-                            <a href="page43.html">Consulting</a>
+                        <div class="dropdown-menu-premium">
+                            <a href="Adv_Case_Studies.html">Advertising</a>
+                            <a href="Digital_Case_Studies.html">Digital</a>
+                            <a href="Consulting_Case_Studies.html">Consulting</a>
                         </div>
                     </div>
 
-                    <div class="relative group">
-                        <button class="nav-link flex items-center gap-1">
+                    <div class="dropdown-wrapper">
+                        <button class="nav-link-premium flex items-center gap-1">
                             Expertise
-                            <svg class="w-3 h-3 transition-transform duration-300 group-hover:rotate-180" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M19 9l-7 7-7-7"></path></svg>
+                            <svg class="w-3 h-3 transition-transform duration-300 dropdown-wrapper:hover:rotate-180" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M19 9l-7 7-7-7"></path></svg>
                         </button>
-                        <div class="dropdown-menu-custom">
-                            <a href="page9.html">Advertising</a>
-                            <a href="page18.html">Digital</a>
-                            <a href="page1.html">Consulting</a>
+                        <div class="dropdown-menu-premium">
+                            <a href="Advertising_Expertise.html">Advertising</a>
+                            <a href="Digital_Expertise.html">Digital</a>
+                            <a href="Consulting_Expertise.html">Consulting</a>
                         </div>
                     </div>
 
-                    <a href="page60.html" class="nav-link">Staff News</a>
-                    <a href="page15.html" class="nav-link">Blog</a>
-                    <a href="page70.html" class="nav-link">Archives</a>
+                    <a href="Staff_News.html" class="nav-link-premium">Staff News</a>
+                    <a href="Exploring_Boundless_Horizons.html" class="nav-link-premium">Blog</a>
+                    <a href="Archive_Gallery.html" class="nav-link-premium">Archives</a>
                 </div>
 
-                <!-- CTA -->
+                <!-- Premium CTA -->
                 <div class="hidden lg:block">
-                    <a href="page5.html" class="btn-primary-pink">
+                    <a href="Contact_Us.html" class="btn-premium-cta">
                         <span>Contact</span>
                         <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M17 8l4 4m0 0l-4 4m4-4H3"></path></svg>
                     </a>
                 </div>
 
-                <!-- Burger -->
-                <button class="lg:hidden p-2 rounded-lg hover:bg-gray-100 transition-colors" id="menuBtn" aria-label="Toggle menu">
-                    <div class="w-6 h-6 flex flex-col justify-center items-center gap-1.5">
-                        <span class="w-6 h-0.5 bg-gray-700 transition-all duration-300 menu-line-1"></span>
-                        <span class="w-6 h-0.5 bg-gray-700 transition-all duration-300 menu-line-2"></span>
-                        <span class="w-4 h-0.5 bg-gray-700 transition-all duration-300 menu-line-3 ml-auto"></span>
-                    </div>
+                <!-- Premium Burger -->
+                <button class="burger-premium lg:hidden" id="menuBtn" aria-label="Toggle menu">
+                    <span class="burger-line"></span>
+                    <span class="burger-line"></span>
+                    <span class="burger-line"></span>
                 </button>
-            </div>
-
-            <!-- Mobile Navigation -->
-            <div id="mobileNav" class="lg:hidden">
-                <a href="index.html" class="nav-link">Home</a>
-                <a href="page8.html" class="nav-link">About</a>
-                <a href="page30.html" class="nav-link">Our Work</a>
-                <a href="page52.html" class="nav-link">Client Experience</a>
-
-                <div class="relative group w-full">
-                    <button class="nav-link flex items-center gap-1 w-full justify-between">
-                        Case Studies
-                        <svg class="w-3 h-3 transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M19 9l-7 7-7-7"></path></svg>
-                    </button>
-                    <div class="dropdown-menu-custom">
-                        <a href="page27.html">Advertising</a>
-                        <a href="page45.html">Digital</a>
-                        <a href="page43.html">Consulting</a>
-                    </div>
-                </div>
-
-                <div class="relative group w-full">
-                    <button class="nav-link flex items-center gap-1 w-full justify-between">
-                        Expertise
-                        <svg class="w-3 h-3 transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M19 9l-7 7-7-7"></path></svg>
-                    </button>
-                    <div class="dropdown-menu-custom">
-                        <a href="page9.html">Advertising</a>
-                        <a href="page18.html">Digital</a>
-                        <a href="page1.html">Consulting</a>
-                    </div>
-                </div>
-
-                <a href="page60.html" class="nav-link">Staff News</a>
-                <a href="page15.html" class="nav-link">Blog</a>
-                <a href="page70.html" class="nav-link">Archives</a>
-
-                <a href="page5.html" class="btn-primary-pink mt-3 w-full justify-center">
-                    <span>Contact</span>
-                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M17 8l4 4m0 0l-4 4m4-4H3"></path></svg>
-                </a>
             </div>
         </div>
     </header>
 
+    <!-- ===== MOBILE MENU PANEL ===== -->
+    <div class="mobile-menu-panel" id="mobileMenuPanel">
+        <a href="Home.html">Home</a>
+        <a href="About.html">About</a>
+        <a href="Our_Work.html">Our Work</a>
+        <a href="Client_Experience.html">Client Experience</a>
+
+        <div class="mobile-dropdown-title">Case Studies</div>
+        <div class="mobile-dropdown-items">
+            <a href="Adv_Case_Studies.html">Advertising</a>
+            <a href="Digital_Case_Studies.html">Digital</a>
+            <a href="Consulting_Case_Studies.html">Consulting</a>
+        </div>
+
+        <div class="mobile-dropdown-title">Our Expertise</div>
+        <div class="mobile-dropdown-items">
+            <a href="Advertising_Expertise.html">Advertising</a>
+            <a href="Digital_Expertise.html">Digital</a>
+            <a href="Consulting_Expertise.html">Consulting</a>
+        </div>
+
+        <a href="Staff_News.html">Staff News</a>
+        <a href="Exploring_Boundless_Horizons.html">Blog</a>
+        <a href="Archive_Gallery.html">Archives</a>
+        <a href="Contact_Us.html" style="display:inline-flex; margin-top:1rem; background:linear-gradient(135deg,#e6007e,#ff1493); color:#fff; padding:0.6rem 1.5rem; border-radius:9999px; font-weight:700; text-decoration:none;">Contact Us</a>
+    </div>
+
     <!-- ========== PAGE CONTENT ========== -->
 
     <!-- ===== NEW HERO / PUBLICCOMMS BANNER SECTION ===== -->
-    <section class="py-16 bg-white" style="margin-top: 80px;">
+    <section class="py-16 bg-white" style="margin-top: 0px;">
         <div class="max-w-7xl mx-auto px-6">
             <div class="text-center mb-12 reveal active">
                 <span class="inline-block text-pink font-semibold tracking-wide text-sm uppercase mb-2">anc</span>
@@ -835,7 +982,7 @@
             <!-- ===== PUBLICCOMMS BANNER ===== -->
             <div class="publiccomms-banner" data-index="71" data-title="ANC CAMPAIGN · NPGE 2024" data-description="African National Congress 2024 Election campaign" data-image="assets/images/npge_campaign_2024.jpg" data-link="#" onclick="openLightbox(this)">
                 <div class="banner-overlay">
-                    <img src="assets/images/npge_campaign_2024.jpg" alt="ANC NPGE Campaign 2024" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%221200%22 height=%22300%22 viewBox=%220 0 1200 300%22%3E%3Crect width=%221200%22 height=%22300%22 fill=%22%230b0b0f%22/%3E%3Ctext x=%22600%22 y=%22140%22 text-anchor=%22middle%22 font-family=%22Inter, sans-serif%22 font-size=%2252%22 font-weight=%22700%22 fill=%22%23ffffff%22%3ENPGE CAMPAIGN%3C/text%3E%3Ctext x=%22600%22 y=%22190%22 text-anchor=%22middle%22 font-family=%22Inter, sans-serif%22 font-size=%2218%22 fill=%22%237aaaff%22 letter-spacing=%2210%22%3E2024%3C/text%3E%3Ctext x=%22600%22 y=%22230%22 text-anchor=%22middle%22 font-family=%22Inter, sans-serif%22 font-size=%2212%22 fill=%22%23666%22 letter-spacing=%224%22%3ELET'S DO MORE, TOGETHER%3C/text%3E%3C/svg%3E'">
+                    <img src="npge_campaign_2024.jpg" alt="ANC NPGE Campaign 2024" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%221200%22 height=%22300%22 viewBox=%220 0 1200 300%22%3E%3Crect width=%221200%22 height=%22300%22 fill=%22%230b0b0f%22/%3E%3Ctext x=%22600%22 y=%22140%22 text-anchor=%22middle%22 font-family=%22Inter, sans-serif%22 font-size=%2252%22 font-weight=%22700%22 fill=%22%23ffffff%22%3ENPGE CAMPAIGN%3C/text%3E%3Ctext x=%22600%22 y=%22190%22 text-anchor=%22middle%22 font-family=%22Inter, sans-serif%22 font-size=%2218%22 fill=%22%237aaaff%22 letter-spacing=%2210%22%3E2024%3C/text%3E%3Ctext x=%22600%22 y=%22230%22 text-anchor=%22middle%22 font-family=%22Inter, sans-serif%22 font-size=%2212%22 fill=%22%23666%22 letter-spacing=%224%22%3ELET'S DO MORE, TOGETHER%3C/text%3E%3C/svg%3E'">
                     <span class="click-badge"><i class="fas fa-expand"></i> click to expand</span>
                 </div>
             </div>
@@ -852,17 +999,14 @@
 
             <div class="flex justify-center">
                 <div class="w-full max-w-4xl cursor-pointer relative group" onclick="openVideoModal('m9b01zJ8CRk', 'NPGE 2024 - ANC')">
-                    <!-- User provided image element (only one) -->
                     <img src="https://img.youtube.com/vi/m9b01zJ8CRk/maxresdefault.jpg" alt="ANC NPGE 2024 Campaign" class="w-full h-[200px] object-cover rounded-xl shadow-lg">
 
-                    <!-- Play overlay -->
                     <div class="absolute inset-0 flex items-center justify-center bg-black/30 opacity-0 group-hover:opacity-100 transition-opacity duration-300 rounded-xl">
                         <div class="w-14 h-14 bg-pink rounded-full flex items-center justify-center text-white text-xl">
                             <i class="fas fa-play"></i>
                         </div>
                     </div>
 
-                    <!-- Bookmark -->
                     <div class="absolute top-4 right-4 text-white text-xl hover:text-pink transition-colors z-10">
                         <a href="#" title="Bookmark" onclick="event.stopPropagation();"><i class="far fa-bookmark"></i></a>
                     </div>
@@ -903,49 +1047,49 @@
 
                     <!-- Slide 1: Title -->
                     <div class="gallery-item cursor-pointer rounded-xl overflow-hidden shadow-md bg-white" data-index="28">
-                        <img src="assets/images/storyboard_01.jpg" alt="NPGE TV Ad 4 April" class="w-full h-auto object-cover transition-transform duration-500 hover:scale-105">
+                        <img src="storyboard_01.jpg" alt="NPGE TV Ad 4 April" class="w-full h-auto object-cover transition-transform duration-500 hover:scale-105">
                         <div class="overlay">NPGE TV AD – 4 April 2024 Launch</div>
                     </div>
 
                     <!-- Slide 2: Creative Note -->
                     <div class="gallery-item cursor-pointer rounded-xl overflow-hidden shadow-md bg-white" data-index="29">
-                        <img src="assets/images/storyboard_02.jpg" alt="Creative Note" class="w-full h-auto object-cover transition-transform duration-500 hover:scale-105">
+                        <img src="storyboard_02.jpg" alt="Creative Note" class="w-full h-auto object-cover transition-transform duration-500 hover:scale-105">
                         <div class="overlay">Creative Note &amp; Director's Brief</div>
                     </div>
 
                     <!-- Slide 3: Scenes 1 & 2 -->
                     <div class="gallery-item cursor-pointer rounded-xl overflow-hidden shadow-md bg-white" data-index="30">
-                        <img src="assets/images/storyboard_03.jpg" alt="Opening Shot Scene 1 &amp; 2" class="w-full h-auto object-cover transition-transform duration-500 hover:scale-105">
+                        <img src="storyboard_03.jpg" alt="Opening Shot Scene 1 &amp; 2" class="w-full h-auto object-cover transition-transform duration-500 hover:scale-105">
                         <div class="overlay">Scene 1 &amp; 2: The First Vote</div>
                     </div>
 
                     <!-- Slide 4: Scene 3 -->
                     <div class="gallery-item cursor-pointer rounded-xl overflow-hidden shadow-md bg-white" data-index="31">
-                        <img src="assets/images/storyboard_04.jpg" alt="Scene 3" class="w-full h-auto object-cover transition-transform duration-500 hover:scale-105">
+                        <img src="storyboard_04.jpg" alt="Scene 3" class="w-full h-auto object-cover transition-transform duration-500 hover:scale-105">
                         <div class="overlay">Scene 3: Restoring Dignity – RDP Housing</div>
                     </div>
 
                     <!-- Slide 5: Scene 4 -->
                     <div class="gallery-item cursor-pointer rounded-xl overflow-hidden shadow-md bg-white" data-index="32">
-                        <img src="assets/images/storyboard_05.jpg" alt="Scene 4" class="w-full h-auto object-cover transition-transform duration-500 hover:scale-105">
+                        <img src="storyboard_05.jpg" alt="Scene 4" class="w-full h-auto object-cover transition-transform duration-500 hover:scale-105">
                         <div class="overlay">Scene 4: Levelling the Playing Field – Women in Power</div>
                     </div>
 
                     <!-- Slide 6: Scenes 5 & 6 -->
                     <div class="gallery-item cursor-pointer rounded-xl overflow-hidden shadow-md bg-white" data-index="33">
-                        <img src="assets/images/storyboard_06.jpg" alt="Scene 5 &amp; 6" class="w-full h-auto object-cover transition-transform duration-500 hover:scale-105">
+                        <img src="storyboard_06.jpg" alt="Scene 5 &amp; 6" class="w-full h-auto object-cover transition-transform duration-500 hover:scale-105">
                         <div class="overlay">Scene 5 &amp; 6: Job Creation &amp; Education</div>
                     </div>
 
                     <!-- Slide 7: Scenes 7 & 8 -->
                     <div class="gallery-item cursor-pointer rounded-xl overflow-hidden shadow-md bg-white" data-index="34">
-                        <img src="assets/images/storyboard_07.jpg" alt="Scene 7 &amp; 8" class="w-full h-auto object-cover transition-transform duration-500 hover:scale-105">
+                        <img src="storyboard_07.jpg" alt="Scene 7 &amp; 8" class="w-full h-auto object-cover transition-transform duration-500 hover:scale-105">
                         <div class="overlay">Scene 7 &amp; 8: Bridging Divisions &amp; Healthcare</div>
                     </div>
 
                     <!-- Slide 8: Scene 9 -->
                     <div class="gallery-item cursor-pointer rounded-xl overflow-hidden shadow-md bg-white" data-index="35">
-                        <img src="assets/images/storyboard_08.jpg" alt="Scene 9" class="w-full h-auto object-cover transition-transform duration-500 hover:scale-105">
+                        <img src="storyboard_08.jpg" alt="Scene 9" class="w-full h-auto object-cover transition-transform duration-500 hover:scale-105">
                         <div class="overlay">Scene 9: Let's Do More, Together – Vote ANC</div>
                     </div>
 
@@ -996,7 +1140,7 @@
                     <div class="progress-container mt-4 h-1.5 bg-gray-200 rounded-full cursor-pointer" onclick="seekAudio(this, event)">
                         <div class="progress-bar h-full bg-pink rounded-full" style="width: 0%;"></div>
                     </div>
-                    <audio src="assets/audio/spot1.mp3" preload="metadata"></audio>
+                    <audio src="audio/spot1.mp3" preload="metadata"></audio>
                 </div>
 
                 <!-- Radio Spot 2 -->
@@ -1019,7 +1163,7 @@
                     <div class="progress-container mt-4 h-1.5 bg-gray-200 rounded-full cursor-pointer" onclick="seekAudio(this, event)">
                         <div class="progress-bar h-full bg-pink rounded-full" style="width: 0%;"></div>
                     </div>
-                    <audio src="assets/audio/spot2.mp3" preload="metadata"></audio>
+                    <audio src="audio/spot2.mp3" preload="metadata"></audio>
                 </div>
 
                 <!-- Radio Spot 3 -->
@@ -1042,7 +1186,7 @@
                     <div class="progress-container mt-4 h-1.5 bg-gray-200 rounded-full cursor-pointer" onclick="seekAudio(this, event)">
                         <div class="progress-bar h-full bg-pink rounded-full" style="width: 0%;"></div>
                     </div>
-                    <audio src="assets/audio/spot3.mp3" preload="metadata"></audio>
+                    <audio src="audio/spot3.mp3" preload="metadata"></audio>
                 </div>
 
                 <!-- Radio Spot 4 -->
@@ -1082,19 +1226,19 @@
 
             <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6" id="printGrid">
                 <div class="gallery-item cursor-pointer rounded-xl overflow-hidden shadow-md bg-white" data-index="9">
-                    <img src="assets/images/Print Ad.jpeg" alt="Funded and Dressed for Success" class="w-full h-64 object-cover transition-transform duration-500 hover:scale-105" />
+                    <img src="Print Ad.jpeg" alt="Funded and Dressed for Success" class="w-full h-64 object-cover transition-transform duration-500 hover:scale-105" />
                     <div class="overlay">"Funded and Dressed for Success"</div>
                 </div>
                 <div class="gallery-item cursor-pointer rounded-xl overflow-hidden shadow-md bg-white" data-index="10">
-                    <img src="assets/images/Cotton SA Magazine_Post-Unrest Business Recovery Fund_print.jpg" alt="Cotton SA Magazine" class="w-full h-64 object-cover transition-transform duration-500 hover:scale-105" />
+                    <img src="Cotton SA Magazine_Post-Unrest Business Recovery Fund_print.jpg" alt="Cotton SA Magazine" class="w-full h-64 object-cover transition-transform duration-500 hover:scale-105" />
                     <div class="overlay">"Funded and Dressed for Success"</div>
                 </div>
                 <div class="gallery-item cursor-pointer rounded-xl overflow-hidden shadow-md bg-white" data-index="11">
-                    <img src="assets/images/Isolezwe_Post-Unrest Business Recovery Fund_print.jpg" alt="Isolezwe - Funding ignites Recovery" class="w-full h-64 object-cover transition-transform duration-500 hover:scale-105" />
+                    <img src="Isolezwe_Post-Unrest Business Recovery Fund_print.jpg" alt="Isolezwe - Funding ignites Recovery" class="w-full h-64 object-cover transition-transform duration-500 hover:scale-105" />
                     <div class="overlay">"Funding ignites Recovery"</div>
                 </div>
                 <div class="gallery-item cursor-pointer rounded-xl overflow-hidden shadow-md bg-white" data-index="12">
-                    <img src="assets/images/Sowetan_Post-Unrest Business Recovery Fund_print.jpg" alt="Sowetan - The fund that got SA working again" class="w-full h-64 object-cover transition-transform duration-500 hover:scale-105" />
+                    <img src="Sowetan_Post-Unrest Business Recovery Fund_print.jpg" alt="Sowetan - The fund that got SA working again" class="w-full h-64 object-cover transition-transform duration-500 hover:scale-105" />
                     <div class="overlay">"The fund that got SA working... again"</div>
                 </div>
             </div>
@@ -1111,19 +1255,19 @@
 
             <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6" id="galleryGrid">
                 <div class="gallery-item cursor-pointer rounded-xl overflow-hidden shadow-md bg-white" data-index="0">
-                    <img src="assets/images/Post-unrest Business Recovery Fund_advertorial_HEARTLAND_Page_1.jpg" alt="Heartland Foods - The Heart of the Matter" class="w-full h-64 object-cover transition-transform duration-500 hover:scale-105" />
+                    <img src="Post-unrest Business Recovery Fund_advertorial_HEARTLAND_Page_1.jpg" alt="Heartland Foods - The Heart of the Matter" class="w-full h-64 object-cover transition-transform duration-500 hover:scale-105" />
                     <div class="overlay">"The Heart of the Matter - Heartland Foods"</div>
                 </div>
                 <div class="gallery-item cursor-pointer rounded-xl overflow-hidden shadow-md bg-white" data-index="1">
-                    <img src="assets/images/Post-unrest Business Recovery Fund_advertorial_ZAGear.jpg" alt="ZAGear - Gearing up for Business" class="w-full h-64 object-cover transition-transform duration-500 hover:scale-105" />
+                    <img src="Post-unrest Business Recovery Fund_advertorial_ZAGear.jpg" alt="ZAGear - Gearing up for Business" class="w-full h-64 object-cover transition-transform duration-500 hover:scale-105" />
                     <div class="overlay">"Gearing up for Business - ZAGear"</div>
                 </div>
                 <div class="gallery-item cursor-pointer rounded-xl overflow-hidden shadow-md bg-white" data-index="2">
-                    <img src="assets/images/Post-unrest Business Recovery Fund_advertorial.jpg" alt="Passion is the Best Medicine - Pharmacy" class="w-full h-64 object-cover transition-transform duration-500 hover:scale-105" />
+                    <img src="Post-unrest Business Recovery Fund_advertorial.jpg" alt="Passion is the Best Medicine - Pharmacy" class="w-full h-64 object-cover transition-transform duration-500 hover:scale-105" />
                     <div class="overlay">"Passion is the Best Medicine"</div>
                 </div>
                 <div class="gallery-item cursor-pointer rounded-xl overflow-hidden shadow-md bg-white" data-index="3">
-                    <img src="assets/images/Post-unrest Business Recovery Fund_advertorial2.jpg" alt="Gauteng Schoolwear - Back in Business" class="w-full h-64 object-cover transition-transform duration-500 hover:scale-105" />
+                    <img src="Post-unrest Business Recovery Fund_advertorial2.jpg" alt="Gauteng Schoolwear - Back in Business" class="w-full h-64 object-cover transition-transform duration-500 hover:scale-105" />
                     <div class="overlay">"Back in Business - Gauteng Schoolwear"</div>
                 </div>
             </div>
@@ -1161,49 +1305,49 @@
 
                 <!-- ANC Campaign images -->
                 <div class="gallery-item cursor-pointer rounded-xl overflow-hidden shadow-md bg-white" data-index="13">
-                    <img src="assets/images/anc_two_phones.jpg" alt="ANC Social Media – Two Phones" class="w-full h-72 object-cover transition-transform duration-500 hover:scale-105" />
+                    <img src="anc_two_phones.jpg" alt="ANC Social Media – Two Phones" class="w-full h-72 object-cover transition-transform duration-500 hover:scale-105" />
                 </div>
                 <div class="gallery-item cursor-pointer rounded-xl overflow-hidden shadow-md bg-white" data-index="14">
-                    <img src="assets/images/anc_women_smiling.jpg" alt="ANC – Leveling the playing field" class="w-full h-72 object-cover transition-transform duration-500 hover:scale-105" />
+                    <img src="anc_women_smiling.jpg" alt="ANC – Leveling the playing field" class="w-full h-72 object-cover transition-transform duration-500 hover:scale-105" />
                 </div>
                 <div class="gallery-item cursor-pointer rounded-xl overflow-hidden shadow-md bg-white" data-index="15">
-                    <img src="assets/images/anc_farm_workers.jpg" alt="ANC – Fostering job creation" class="w-full h-72 object-cover transition-transform duration-500 hover:scale-105" />
+                    <img src="anc_farm_workers.jpg" alt="ANC – Fostering job creation" class="w-full h-72 object-cover transition-transform duration-500 hover:scale-105" />
                 </div>
                 <div class="gallery-item cursor-pointer rounded-xl overflow-hidden shadow-md bg-white" data-index="16">
-                    <img src="assets/images/anc_banner_collage.jpg" alt="ANC – Let's Do More, Together banner collage" class="w-full h-72 object-cover transition-transform duration-500 hover:scale-105" />
+                    <img src="anc_banner_collage.jpg" alt="ANC – Let's Do More, Together banner collage" class="w-full h-72 object-cover transition-transform duration-500 hover:scale-105" />
                 </div>
                 <div class="gallery-item cursor-pointer rounded-xl overflow-hidden shadow-md bg-white" data-index="17">
-                    <img src="assets/images/anc_police.jpg" alt="ANC – Building safer communities" class="w-full h-72 object-cover transition-transform duration-500 hover:scale-105" />
+                    <img src="anc_police.jpg" alt="ANC – Building safer communities" class="w-full h-72 object-cover transition-transform duration-500 hover:scale-105" />
                 </div>
                 <div class="gallery-item cursor-pointer rounded-xl overflow-hidden shadow-md bg-white" data-index="18">
-                    <img src="assets/images/anc_braai.jpg" alt="ANC – Bridging the divisions" class="w-full h-72 object-cover transition-transform duration-500 hover:scale-105" />
+                    <img src="anc_braai.jpg" alt="ANC – Bridging the divisions" class="w-full h-72 object-cover transition-transform duration-500 hover:scale-105" />
                 </div>
                 <div class="gallery-item cursor-pointer rounded-xl overflow-hidden shadow-md bg-white" data-index="19">
-                    <img src="assets/images/anc_kids_outdoors.jpg" alt="ANC – Universal access to healthcare" class="w-full h-72 object-cover transition-transform duration-500 hover:scale-105" />
+                    <img src="anc_kids_outdoors.jpg" alt="ANC – Universal access to healthcare" class="w-full h-72 object-cover transition-transform duration-500 hover:scale-105" />
                 </div>
                 <div class="gallery-item cursor-pointer rounded-xl overflow-hidden shadow-md bg-white" data-index="20">
-                    <img src="assets/images/anc_stadium_flags.jpg" alt="ANC – Achieving victories together" class="w-full h-72 object-cover transition-transform duration-500 hover:scale-105" />
+                    <img src="anc_stadium_flags.jpg" alt="ANC – Achieving victories together" class="w-full h-72 object-cover transition-transform duration-500 hover:scale-105" />
                 </div>
                 <div class="gallery-item cursor-pointer rounded-xl overflow-hidden shadow-md bg-white" data-index="21">
-                    <img src="assets/images/anc_green_house.jpg" alt="ANC – Restored people's dignity" class="w-full h-72 object-cover transition-transform duration-500 hover:scale-105" />
+                    <img src="anc_green_house.jpg" alt="ANC – Restored people's dignity" class="w-full h-72 object-cover transition-transform duration-500 hover:scale-105" />
                 </div>
                 <div class="gallery-item cursor-pointer rounded-xl overflow-hidden shadow-md bg-white" data-index="22">
-                    <img src="assets/images/anc_banner_collage.jpg" alt="ANC – Multi-format creatives" class="w-full h-72 object-cover transition-transform duration-500 hover:scale-105" />
+                    <img src="anc_banner_collage.jpg" alt="ANC – Multi-format creatives" class="w-full h-72 object-cover transition-transform duration-500 hover:scale-105" />
                 </div>
                 <div class="gallery-item cursor-pointer rounded-xl overflow-hidden shadow-md bg-white" data-index="23">
-                    <img src="assets/images/anc_horizontal_banner.jpg" alt="ANC – Let's do more together banner" class="w-full h-72 object-cover transition-transform duration-500 hover:scale-105" />
+                    <img src="anc_horizontal_banner.jpg" alt="ANC – Let's do more together banner" class="w-full h-72 object-cover transition-transform duration-500 hover:scale-105" />
                 </div>
                 <div class="gallery-item cursor-pointer rounded-xl overflow-hidden shadow-md bg-white" data-index="24">
-                    <img src="assets/images/anc_ramaphosa_portrait.jpg" alt="ANC – President Cyril Ramaphosa" class="w-full h-72 object-cover transition-transform duration-500 hover:scale-105" />
+                    <img src="anc_ramaphosa_portrait.jpg" alt="ANC – President Cyril Ramaphosa" class="w-full h-72 object-cover transition-transform duration-500 hover:scale-105" />
                 </div>
                 <div class="gallery-item cursor-pointer rounded-xl overflow-hidden shadow-md bg-white" data-index="25">
-                    <img src="assets/images/anc_horizontal_banner_01.jpg" alt="ANC – Let's Do More, Together banner 1" class="w-full h-72 object-cover transition-transform duration-500 hover:scale-105" />
+                    <img src="anc_horizontal_banner_01.jpg" alt="ANC – Let's Do More, Together banner 1" class="w-full h-72 object-cover transition-transform duration-500 hover:scale-105" />
                 </div>
                 <div class="gallery-item cursor-pointer rounded-xl overflow-hidden shadow-md bg-white" data-index="26">
-                    <img src="assets/images/anc_horizontal_banner_02.jpg" alt="ANC – Let's Do More, Together banner 2" class="w-full h-72 object-cover transition-transform duration-500 hover:scale-105" />
+                    <img src="anc_horizontal_banner_02.jpg" alt="ANC – Let's Do More, Together banner 2" class="w-full h-72 object-cover transition-transform duration-500 hover:scale-105" />
                 </div>
                 <div class="gallery-item cursor-pointer rounded-xl overflow-hidden shadow-md bg-white" data-index="27">
-                    <img src="assets/images/anc_ramaphosa_vertical.jpg" alt="ANC – Let's Do More, Together vertical portrait" class="w-full h-72 object-cover transition-transform duration-500 hover:scale-105" />
+                    <img src="anc_ramaphosa_vertical.jpg" alt="ANC – Let's Do More, Together vertical portrait" class="w-full h-72 object-cover transition-transform duration-500 hover:scale-105" />
                 </div>
 
             </div>
@@ -1234,149 +1378,149 @@
 
                 <!-- Digital / Animated -->
                 <div class="gallery-item cursor-pointer rounded-xl overflow-hidden shadow-md bg-white ooh-item" data-index="45" data-category="digital">
-                    <img src="assets/images/outdoor_45.jpg" alt="Digital LED screen" class="w-full h-72 object-cover transition-transform duration-500 hover:scale-105">
+                    <img src="outdoor_45.jpg" alt="Digital LED screen" class="w-full h-72 object-cover transition-transform duration-500 hover:scale-105">
                     <div class="overlay">Digital Screen – Primedia display</div>
                 </div>
                 <div class="gallery-item cursor-pointer rounded-xl overflow-hidden shadow-md bg-white ooh-item" data-index="56" data-category="digital">
-                    <img src="assets/images/Anc_Social_Media_Poster.jpg" alt="Horizontal video still" class="w-full h-72 object-cover transition-transform duration-500 hover:scale-105">
+                    <img src="Anc_Social_Media_Poster.jpg" alt="Horizontal video still" class="w-full h-72 object-cover transition-transform duration-500 hover:scale-105">
                     <div class="overlay">Social media board card-image – Digital still</div>
                 </div>
 
                 <!-- Billboard / Static Large Format -->
                 <div class="gallery-item cursor-pointer rounded-xl overflow-hidden shadow-md bg-white ooh-item" data-index="38" data-category="billboard">
-                    <img src="assets/images/outdoor_38.jpg" alt="Vertical billboard residential" class="w-full h-72 object-cover transition-transform duration-500 hover:scale-105">
+                    <img src="outdoor_38.jpg" alt="Vertical billboard residential" class="w-full h-72 object-cover transition-transform duration-500 hover:scale-105">
                     <div class="overlay">Billboard – Large format in residential area</div>
                 </div>
                 <div class="gallery-item cursor-pointer rounded-xl overflow-hidden shadow-md bg-white ooh-item" data-index="40" data-category="billboard">
-                    <img src="assets/images/outdoor_40.jpg" alt="Horizontal billboard Setswana" class="w-full h-72 object-cover transition-transform duration-500 hover:scale-105">
+                    <img src="outdoor_40.jpg" alt="Horizontal billboard Setswana" class="w-full h-72 object-cover transition-transform duration-500 hover:scale-105">
                     <div class="overlay">Billboard – "A re direng go feta, mmogo. Voutela ANC"</div>
                 </div>
                 <div class="gallery-item cursor-pointer rounded-xl overflow-hidden shadow-md bg-white ooh-item" data-index="41" data-category="billboard">
-                    <img src="assets/images/outdoor_41.jpg" alt="Vertical billboard blue sky" class="w-full h-72 object-cover transition-transform duration-500 hover:scale-105">
+                    <img src="outdoor_41.jpg" alt="Vertical billboard blue sky" class="w-full h-72 object-cover transition-transform duration-500 hover:scale-105">
                     <div class="overlay">Billboard – Vertical roadside placement</div>
                 </div>
                 <div class="gallery-item cursor-pointer rounded-xl overflow-hidden shadow-md bg-white ooh-item" data-index="42" data-category="billboard">
-                    <img src="assets/images/outdoor_42.jpg" alt="Master poster design" class="w-full h-72 object-cover transition-transform duration-500 hover:scale-105">
+                    <img src="outdoor_42.jpg" alt="Master poster design" class="w-full h-72 object-cover transition-transform duration-500 hover:scale-105">
                     <div class="overlay">Master Poster – Official campaign design</div>
                 </div>
                 <div class="gallery-item cursor-pointer rounded-xl overflow-hidden shadow-md bg-white ooh-item" data-index="43" data-category="billboard">
-                    <img src="assets/images/outdoor_43.jpg" alt="Wide horizontal banner" class="w-full h-72 object-cover transition-transform duration-500 hover:scale-105">
+                    <img src="outdoor_43.jpg" alt="Wide horizontal banner" class="w-full h-72 object-cover transition-transform duration-500 hover:scale-105">
                     <div class="overlay">Wide Horizontal Banner – "Let's Do More, Together"</div>
                 </div>
                 <div class="gallery-item cursor-pointer rounded-xl overflow-hidden shadow-md bg-white ooh-item" data-index="44" data-category="billboard">
-                    <img src="assets/images/outdoor_44.jpg" alt="Horizontal billboard TRU DIGITAL" class="w-full h-72 object-cover transition-transform duration-500 hover:scale-105">
+                    <img src="outdoor_44.jpg" alt="Horizontal billboard TRU DIGITAL" class="w-full h-72 object-cover transition-transform duration-500 hover:scale-105">
                     <div class="overlay">Billboard – Urban commercial district (TRU DIGITAL)</div>
                 </div>
                 <div class="gallery-item cursor-pointer rounded-xl overflow-hidden shadow-md bg-white ooh-item" data-index="46" data-category="billboard">
-                    <img src="assets/images/outdoor_46.jpg" alt="Vertical billboard bicycle" class="w-full h-72 object-cover transition-transform duration-500 hover:scale-105">
+                    <img src="outdoor_46.jpg" alt="Vertical billboard bicycle" class="w-full h-72 object-cover transition-transform duration-500 hover:scale-105">
                     <div class="overlay">Billboard – Overlooking a rural road with a cyclist</div>
                 </div>
                 <div class="gallery-item cursor-pointer rounded-xl overflow-hidden shadow-md bg-white ooh-item" data-index="47" data-category="billboard">
-                    <img src="assets/images/outdoor_47.jpg" alt="Horizontal billboard taxi rank" class="w-full h-72 object-cover transition-transform duration-500 hover:scale-105">
+                    <img src="outdoor_47.jpg" alt="Horizontal billboard taxi rank" class="w-full h-72 object-cover transition-transform duration-500 hover:scale-105">
                     <div class="overlay">Billboard – Mounted over a busy taxi rank</div>
                 </div>
                 <div class="gallery-item cursor-pointer rounded-xl overflow-hidden shadow-md bg-white ooh-item" data-index="48" data-category="billboard">
-                    <img src="assets/images/outdoor_48.jpg" alt="Overhead gantry billboard" class="w-full h-72 object-cover transition-transform duration-500 hover:scale-105">
+                    <img src="outdoor_48.jpg" alt="Overhead gantry billboard" class="w-full h-72 object-cover transition-transform duration-500 hover:scale-105">
                     <div class="overlay">Billboard – Overhead gantry spanning the road</div>
                 </div>
                 <div class="gallery-item cursor-pointer rounded-xl overflow-hidden shadow-md bg-white ooh-item" data-index="49" data-category="billboard">
-                    <img src="assets/images/outdoor_49.jpg" alt="Vertical billboard sky" class="w-full h-72 object-cover transition-transform duration-500 hover:scale-105">
+                    <img src="outdoor_49.jpg" alt="Vertical billboard sky" class="w-full h-72 object-cover transition-transform duration-500 hover:scale-105">
                     <div class="overlay">Billboard – Vertical situated near business area</div>
                 </div>
                 <div class="gallery-item cursor-pointer rounded-xl overflow-hidden shadow-md bg-white ooh-item" data-index="50" data-category="billboard">
-                    <img src="assets/images/outdoor_50.jpg" alt="Billboard behind brick wall" class="w-full h-72 object-cover transition-transform duration-500 hover:scale-105">
+                    <img src="outdoor_50.jpg" alt="Billboard behind brick wall" class="w-full h-72 object-cover transition-transform duration-500 hover:scale-105">
                     <div class="overlay">Billboard – Placed behind a red brick wall (JCDecaux)</div>
                 </div>
                 <div class="gallery-item cursor-pointer rounded-xl overflow-hidden shadow-md bg-white ooh-item" data-index="51" data-category="billboard">
-                    <img src="assets/images/outdoor_51.jpg" alt="Horizontal billboard pedestrian" class="w-full h-72 object-cover transition-transform duration-500 hover:scale-105">
+                    <img src="outdoor_51.jpg" alt="Horizontal billboard pedestrian" class="w-full h-72 object-cover transition-transform duration-500 hover:scale-105">
                     <div class="overlay">Billboard – Featuring a pedestrian crossing the street</div>
                 </div>
                 <div class="gallery-item cursor-pointer rounded-xl overflow-hidden shadow-md bg-white ooh-item" data-index="52" data-category="billboard">
-                    <img src="assets/images/outdoor_52.jpg" alt="Twin billboards" class="w-full h-72 object-cover transition-transform duration-500 hover:scale-105">
+                    <img src="outdoor_52.jpg" alt="Twin billboards" class="w-full h-72 object-cover transition-transform duration-500 hover:scale-105">
                     <div class="overlay">Billboard – Twin displays side-by-side</div>
                 </div>
                 <div class="gallery-item cursor-pointer rounded-xl overflow-hidden shadow-md bg-white ooh-item" data-index="61" data-category="billboard">
-                    <img src="assets/images/outdoor_61.jpg" alt="Billboard garden" class="w-full h-72 object-cover transition-transform duration-500 hover:scale-105">
+                    <img src="outdoor_61.jpg" alt="Billboard garden" class="w-full h-72 object-cover transition-transform duration-500 hover:scale-105">
                     <div class="overlay">Billboard – Positioned above a landscaped garden</div>
                 </div>
                 <div class="gallery-item cursor-pointer rounded-xl overflow-hidden shadow-md bg-white ooh-item" data-index="62" data-category="billboard">
-                    <img src="assets/images/outdoor_62.jpg" alt="Billboard trees" class="w-full h-72 object-cover transition-transform duration-500 hover:scale-105">
+                    <img src="outdoor_62.jpg" alt="Billboard trees" class="w-full h-72 object-cover transition-transform duration-500 hover:scale-105">
                     <div class="overlay">Billboard – Framed by tall trees</div>
                 </div>
                 <div class="gallery-item cursor-pointer rounded-xl overflow-hidden shadow-md bg-white ooh-item" data-index="63" data-category="billboard">
-                    <img src="assets/images/outdoor_63.jpg" alt="Billboard grassy field" class="w-full h-72 object-cover transition-transform duration-500 hover:scale-105">
+                    <img src="outdoor_63.jpg" alt="Billboard grassy field" class="w-full h-72 object-cover transition-transform duration-500 hover:scale-105">
                     <div class="overlay">Billboard – Positioned in a grassy open field</div>
                 </div>
                 <div class="gallery-item cursor-pointer rounded-xl overflow-hidden shadow-md bg-white ooh-item" data-index="64" data-category="billboard">
-                    <img src="assets/images/outdoor_64.jpg" alt="Billboard dry landscape" class="w-full h-72 object-cover transition-transform duration-500 hover:scale-105">
+                    <img src="outdoor_64.jpg" alt="Billboard dry landscape" class="w-full h-72 object-cover transition-transform duration-500 hover:scale-105">
                     <div class="overlay">Billboard – Situated in a dry, open landscape</div>
                 </div>
                 <div class="gallery-item cursor-pointer rounded-xl overflow-hidden shadow-md bg-white ooh-item" data-index="65" data-category="billboard">
-                    <img src="assets/images/outdoor_65.jpg" alt="Vertical billboard steel structure" class="w-full h-72 object-cover transition-transform duration-500 hover:scale-105">
+                    <img src="outdoor_65.jpg" alt="Vertical billboard steel structure" class="w-full h-72 object-cover transition-transform duration-500 hover:scale-105">
                     <div class="overlay">Billboard – Mounted on a robust steel structure</div>
                 </div>
                 <div class="gallery-item cursor-pointer rounded-xl overflow-hidden shadow-md bg-white ooh-item" data-index="66" data-category="billboard">
-                    <img src="assets/images/outdoor_66.jpg" alt="Billboard sunset" class="w-full h-72 object-cover transition-transform duration-500 hover:scale-105">
+                    <img src="outdoor_66.jpg" alt="Billboard sunset" class="w-full h-72 object-cover transition-transform duration-500 hover:scale-105">
                     <div class="overlay">Billboard – Captured at golden hour sunset</div>
                 </div>
                 <div class="gallery-item cursor-pointer rounded-xl overflow-hidden shadow-md bg-white ooh-item" data-index="67" data-category="billboard">
-                    <img src="assets/images/outdoor_67.jpg" alt="Billboard fuel station" class="w-full h-72 object-cover transition-transform duration-500 hover:scale-105">
+                    <img src="outdoor_67.jpg" alt="Billboard fuel station" class="w-full h-72 object-cover transition-transform duration-500 hover:scale-105">
                     <div class="overlay">Billboard – Adjacent to a local fuel station</div>
                 </div>
 
                 <!-- Street Furniture / Poles / Containers -->
                 <div class="gallery-item cursor-pointer rounded-xl overflow-hidden shadow-md bg-white ooh-item" data-index="36" data-category="street">
-                    <img src="assets/images/outdoor_36.jpg" alt="Italian poster" class="w-full h-72 object-cover transition-transform duration-500 hover:scale-105">
+                    <img src="outdoor_36.jpg" alt="Italian poster" class="w-full h-72 object-cover transition-transform duration-500 hover:scale-105">
                     <div class="overlay">Street Poster – Italian translation: "Facciamo di più, insieme. Vota ANC"</div>
                 </div>
                 <div class="gallery-item cursor-pointer rounded-xl overflow-hidden shadow-md bg-white ooh-item" data-index="37" data-category="street">
-                    <img src="assets/images/outdoor_37.jpg" alt="Person holding poster" class="w-full h-72 object-cover transition-transform duration-500 hover:scale-105">
+                    <img src="outdoor_37.jpg" alt="Person holding poster" class="w-full h-72 object-cover transition-transform duration-500 hover:scale-105">
                     <div class="overlay">Street Poster – Held by a supporter</div>
                 </div>
                 <div class="gallery-item cursor-pointer rounded-xl overflow-hidden shadow-md bg-white ooh-item" data-index="39" data-category="street">
-                    <img src="assets/images/outdoor_39.jpg" alt="Street pole banner" class="w-full h-72 object-cover transition-transform duration-500 hover:scale-105">
+                    <img src="outdoor_39.jpg" alt="Street pole banner" class="w-full h-72 object-cover transition-transform duration-500 hover:scale-105">
                     <div class="overlay">Street Pole Banner – Positioned over a busy sidewalk</div>
                 </div>
                 <div class="gallery-item cursor-pointer rounded-xl overflow-hidden shadow-md bg-white ooh-item" data-index="55" data-category="street">
-                    <img src="assets/images/outdoor_55.jpg" alt="Container wrap" class="w-full h-72 object-cover transition-transform duration-500 hover:scale-105">
+                    <img src="outdoor_55.jpg" alt="Container wrap" class="w-full h-72 object-cover transition-transform duration-500 hover:scale-105">
                     <div class="overlay">Street Installation – Creative wrap on a shipping container</div>
                 </div>
                 <div class="gallery-item cursor-pointer rounded-xl overflow-hidden shadow-md bg-white ooh-item" data-index="57" data-category="street">
-                    <img src="assets/images/outdoor_57.jpg" alt="Afrikaans street pole" class="w-full h-72 object-cover transition-transform duration-500 hover:scale-105">
+                    <img src="outdoor_57.jpg" alt="Afrikaans street pole" class="w-full h-72 object-cover transition-transform duration-500 hover:scale-105">
                     <div class="overlay">Street Pole Banner – Afrikaans translation: "Saam doen ons meer. Stem ANC"</div>
                 </div>
                 <div class="gallery-item cursor-pointer rounded-xl overflow-hidden shadow-md bg-white ooh-item" data-index="68" data-category="street">
-                    <img src="assets/images/outdoor_68.jpg" alt="Bridge installation" class="w-full h-72 object-cover transition-transform duration-500 hover:scale-105">
+                    <img src="outdoor_68.jpg" alt="Bridge installation" class="w-full h-72 object-cover transition-transform duration-500 hover:scale-105">
                     <div class="overlay">Street Installation – Signage being installed over a railway bridge</div>
                 </div>
                 <div class="gallery-item cursor-pointer rounded-xl overflow-hidden shadow-md bg-white ooh-item" data-index="69" data-category="street">
-                    <img src="assets/images/outdoor_69.jpg" alt="Street pole banner duplicate" class="w-full h-72 object-cover transition-transform duration-500 hover:scale-105">
+                    <img src="outdoor_69.jpg" alt="Street pole banner duplicate" class="w-full h-72 object-cover transition-transform duration-500 hover:scale-105">
                     <div class="overlay">Street Pole Banner – Along a busy thoroughfare</div>
                 </div>
                 <div class="gallery-item cursor-pointer rounded-xl overflow-hidden shadow-md bg-white ooh-item" data-index="70" data-category="street">
-                    <img src="assets/images/outdoor_70.jpg" alt="Row of street poles" class="w-full h-72 object-cover transition-transform duration-500 hover:scale-105">
+                    <img src="outdoor_70.jpg" alt="Row of street poles" class="w-full h-72 object-cover transition-transform duration-500 hover:scale-105">
                     <div class="overlay">Street Poles – A row of multiple banners lining the street</div>
                 </div>
 
                 <!-- Transit / Taxis & Mobile Trailers -->
                 <div class="gallery-item cursor-pointer rounded-xl overflow-hidden shadow-md bg-white ooh-item" data-index="53" data-category="transit">
-                    <img src="assets/images/outdoor_53.jpg" alt="Mobile trailer" class="w-full h-72 object-cover transition-transform duration-500 hover:scale-105">
+                    <img src="outdoor_53.jpg" alt="Mobile trailer" class="w-full h-72 object-cover transition-transform duration-500 hover:scale-105">
                     <div class="overlay">Mobile Billboard – Trailer being towed on a dirt road</div>
                 </div>
                 <div class="gallery-item cursor-pointer rounded-xl overflow-hidden shadow-md bg-white ooh-item" data-index="54" data-category="transit">
-                    <img src="assets/images/outdoor_54.jpg" alt="Mobile trailers parked" class="w-full h-72 object-cover transition-transform duration-500 hover:scale-105">
+                    <img src="outdoor_54.jpg" alt="Mobile trailers parked" class="w-full h-72 object-cover transition-transform duration-500 hover:scale-105">
                     <div class="overlay">Mobile Billboard – Trailers parked along the roadside</div>
                 </div>
                 <div class="gallery-item cursor-pointer rounded-xl overflow-hidden shadow-md bg-white ooh-item" data-index="58" data-category="transit">
-                    <img src="assets/images/outdoor_58.jpg" alt="Taxi wrap" class="w-full h-72 object-cover transition-transform duration-500 hover:scale-105">
+                    <img src="outdoor_58.jpg" alt="Taxi wrap" class="w-full h-72 object-cover transition-transform duration-500 hover:scale-105">
                     <div class="overlay">Taxi Wrap – Full vehicle branding</div>
                 </div>
                 <div class="gallery-item cursor-pointer rounded-xl overflow-hidden shadow-md bg-white ooh-item" data-index="59" data-category="transit">
-                    <img src="assets/images/outdoor_59.jpg" alt="Taxi side profile" class="w-full h-72 object-cover transition-transform duration-500 hover:scale-105">
+                    <img src="outdoor_59.jpg" alt="Taxi side profile" class="w-full h-72 object-cover transition-transform duration-500 hover:scale-105">
                     <div class="overlay">Taxi Wrap – Side profile display</div>
                 </div>
                 <div class="gallery-item cursor-pointer rounded-xl overflow-hidden shadow-md bg-white ooh-item" data-index="60" data-category="transit">
-                    <img src="assets/images/outdoor_60.jpg" alt="Taxi rear view" class="w-full h-72 object-cover transition-transform duration-500 hover:scale-105">
+                    <img src="outdoor_60.jpg" alt="Taxi rear view" class="w-full h-72 object-cover transition-transform duration-500 hover:scale-105">
                     <div class="overlay">Taxi Wrap – Rear view with campaign branding</div>
                 </div>
 
@@ -1444,11 +1588,11 @@
                 <div>
                     <h4>About</h4>
                     <ul>
-                        <li><a href="page8.html">History</a></li>
-                        <li><a href="page52.html">Clients</a></li>
-                        <li>Teams</li>
-                        <li>Brand</li>
-                        <li>Terms</li>
+                        <li><a href="About.html">History</a></li>
+                        <li><a href="Client_Experience.html">Clients</a></li>
+                        <li><a href="Teams.html">Teams</a></li>
+                        <li><a href="Brand.html">Brand</a></li>
+                        <li><a href="Terms.html">Terms</a></li>
                     </ul>
                 </div>
             </div>
@@ -1467,17 +1611,17 @@
 
         // ===== NEW HEADER TOGGLE =====
         const menuBtn = document.getElementById('menuBtn');
-        const mobileNav = document.getElementById('mobileNav');
-        if (menuBtn && mobileNav) {
+        const mobilePanel = document.getElementById('mobileMenuPanel');
+        if (menuBtn && mobilePanel) {
             menuBtn.addEventListener('click', function() {
-                this.classList.toggle('menu-btn-active');
-                mobileNav.classList.toggle('open');
-                document.body.style.overflow = mobileNav.classList.contains('open') ? 'hidden' : '';
+                this.classList.toggle('open');
+                mobilePanel.classList.toggle('open');
+                document.body.style.overflow = mobilePanel.classList.contains('open') ? 'hidden' : '';
             });
-            mobileNav.querySelectorAll('a').forEach(link => {
+            mobilePanel.querySelectorAll('a').forEach(link => {
                 link.addEventListener('click', function() {
-                    mobileNav.classList.remove('open');
-                    menuBtn.classList.remove('menu-btn-active');
+                    mobilePanel.classList.remove('open');
+                    menuBtn.classList.remove('open');
                     document.body.style.overflow = '';
                 });
             });
