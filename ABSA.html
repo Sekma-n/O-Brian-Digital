@@ -75,7 +75,7 @@
             line-height: 1.6;
             overflow-x: hidden;
             -webkit-font-smoothing: antialiased;
-            padding-top: 80px; /* Make space for fixed header */
+            padding-top: 80px;
         }
 
         a {
@@ -93,7 +93,6 @@
             padding: 0 24px;
         }
 
-        /* ── Scrollbar ── */
         ::-webkit-scrollbar {
             width: 8px;
         }
@@ -127,23 +126,8 @@
             box-shadow: 0 14px 40px rgba(237, 0, 142, 0.4);
             background: var(--brand-pink-dark);
         }
-        .btn-outline {
-            background: transparent;
-            color: var(--brand-pink);
-            border: 2px solid var(--brand-pink);
-            box-shadow: none;
-        }
-        .btn-outline:hover {
-            background: var(--brand-pink);
-            color: var(--white);
-            box-shadow: 0 8px 28px rgba(237, 0, 142, 0.3);
-        }
-        .btn-sm {
-            padding: 10px 24px;
-            font-size: 0.85rem;
-        }
 
-        /* ── ✦ PREMIUM HEADER STYLES ✦ ── */
+        /* ── Header (from Our Work page) ── */
         .header-glass {
             position: fixed;
             top: 0;
@@ -166,7 +150,6 @@
             border-bottom: 1px solid rgba(0, 0, 0, 0.03);
         }
 
-        /* Premium Logo */
         .logo-premium {
             display: flex;
             align-items: center;
@@ -203,7 +186,6 @@
             transform-origin: left;
         }
 
-        /* Premium Nav Links */
         .nav-link-premium {
             position: relative;
             padding: 0.5rem 1.2rem;
@@ -245,7 +227,6 @@
             width: 70%;
         }
 
-        /* Premium Dropdown */
         .dropdown-wrapper {
             position: relative;
         }
@@ -300,14 +281,7 @@
             color: #e6007e;
             padding-left: 1.8rem;
         }
-        .dropdown-menu-premium a:first-child {
-            border-radius: 12px 12px 0 0;
-        }
-        .dropdown-menu-premium a:last-child {
-            border-radius: 0 0 12px 12px;
-        }
 
-        /* Premium CTA Button */
         .btn-premium-cta {
             display: inline-flex;
             align-items: center;
@@ -330,7 +304,6 @@
             color: white;
         }
 
-        /* Premium Burger */
         .burger-premium {
             width: 36px;
             height: 36px;
@@ -376,7 +349,6 @@
             margin-left: 0;
         }
 
-        /* Mobile menu panel (from CFSD) */
         .mobile-menu-panel {
             display: none;
             position: fixed;
@@ -595,7 +567,7 @@
             background: var(--white);
         }
 
-        /* ── LIGHTBOX ── */
+        /* ── LIGHTBOX with arrows and back button ── */
         .lightbox-overlay {
             position: fixed;
             inset: 0;
@@ -649,6 +621,121 @@
         }
         .lightbox-close:hover {
             transform: scale(1.1);
+        }
+
+        /* ── LIGHTBOX ARROWS ── */
+        .lightbox-arrow {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background: rgba(255, 255, 255, 0.9);
+            border: none;
+            width: 52px;
+            height: 52px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            z-index: 30;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+            transition: all 0.3s ease;
+            color: #231e1f;
+        }
+        .lightbox-arrow:hover {
+            background: var(--brand-pink);
+            color: white;
+            transform: translateY(-50%) scale(1.08);
+            box-shadow: 0 6px 25px rgba(237, 0, 142, 0.4);
+        }
+        .lightbox-arrow svg {
+            width: 24px;
+            height: 24px;
+        }
+        .lightbox-prev {
+            left: -70px;
+        }
+        .lightbox-next {
+            right: -70px;
+        }
+
+        /* ── BACK TO OUR WORK BUTTON ── */
+        .btn-back {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            padding: 14px 36px;
+            border-radius: 60px;
+            font-weight: 600;
+            font-size: 0.95rem;
+            letter-spacing: 0.3px;
+            transition: var(--transition);
+            border: none;
+            cursor: pointer;
+            background: var(--brand-pink);
+            color: var(--white);
+            box-shadow: 0 8px 28px rgba(237, 0, 142, 0.3);
+            text-decoration: none;
+            z-index: 30;
+            white-space: nowrap;
+        }
+        .btn-back:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 14px 40px rgba(237, 0, 142, 0.4);
+            background: var(--brand-pink-dark);
+            color: var(--white);
+        }
+        .btn-back .mobi-mbri {
+            display: inline-flex;
+            align-items: center;
+            font-size: 1.1rem;
+        }
+        
+        .btn-back-lightbox {
+            position: absolute;
+            bottom: -25px;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+        .btn-back-lightbox:hover {
+            transform: translateX(-50%) translateY(-3px);
+        }
+
+        /* ── SCROLL TO TOP BUTTON ── */
+        .scroll-top-btn {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            width: 52px;
+            height: 52px;
+            border-radius: 50%;
+            background: var(--brand-pink);
+            color: white;
+            border: none;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 1000;
+            box-shadow: 0 6px 25px rgba(237, 0, 142, 0.4);
+            transition: all 0.3s ease;
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(20px);
+        }
+        .scroll-top-btn.visible {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
+        }
+        .scroll-top-btn:hover {
+            background: var(--brand-pink-dark);
+            transform: translateY(-5px);
+            box-shadow: 0 10px 35px rgba(237, 0, 142, 0.5);
+        }
+        .scroll-top-btn svg {
+            width: 24px;
+            height: 24px;
         }
 
         /* ── Footer ── */
@@ -735,18 +822,9 @@
             .hero h1 {
                 font-size: 2.4rem;
             }
-            .hero-stats {
-                gap: 24px;
-            }
-            .hero-stats .stat .number {
-                font-size: 1.6rem;
-            }
             .case-detail .video-grid {
                 grid-template-columns: 1fr;
                 gap: 20px;
-            }
-            .case-detail .content-grid h2 {
-                font-size: 1.8rem;
             }
             .gallery-section .gallery-grid {
                 grid-template-columns: 1fr 1fr;
@@ -755,6 +833,27 @@
             .footer .container {
                 grid-template-columns: 1fr 1fr;
                 gap: 30px;
+            }
+            .lightbox-arrow {
+                width: 42px;
+                height: 42px;
+            }
+            .lightbox-prev {
+                left: -12px;
+            }
+            .lightbox-next {
+                right: -12px;
+            }
+            .btn-back-lightbox {
+                bottom: -20px;
+                padding: 10px 24px;
+                font-size: 0.85rem;
+            }
+            .scroll-top-btn {
+                bottom: 20px;
+                right: 20px;
+                width: 46px;
+                height: 46px;
             }
         }
 
@@ -768,6 +867,21 @@
             .footer .container {
                 grid-template-columns: 1fr;
                 gap: 24px;
+            }
+            .lightbox-arrow {
+                width: 38px;
+                height: 38px;
+            }
+            .btn-back-lightbox {
+                bottom: -15px;
+                padding: 8px 18px;
+                font-size: 0.8rem;
+            }
+            .scroll-top-btn {
+                bottom: 15px;
+                right: 15px;
+                width: 42px;
+                height: 42px;
             }
         }
 
@@ -805,13 +919,18 @@
 </head>
 <body>
 
-    <!-- ===== PREMIUM HEADER ===== -->
+    <!-- ===== SCROLL TO TOP BUTTON ===== -->
+    <button class="scroll-top-btn" id="scrollTopBtn" aria-label="Scroll to top">
+        <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 15l7-7 7 7"/></svg>
+    </button>
+
+    <!-- ===== HEADER (from Our Work page) ===== -->
     <header class="header-glass" id="mainHeader">
         <div class="max-w-7xl mx-auto px-4 md:px-6 w-full">
             <div class="flex justify-between items-center">
 
                 <!-- Premium Logo -->
-                <a href="#" class="logo-premium group">
+                <a href="Home.html" class="logo-premium group">
                     <img src="obrian-transparent-logo-4461219.webp" alt="O'Brian Group" class="h-9 w-auto" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22%3E%3Crect width=%22100%22 height=%22100%22 fill=%22%23ed008e%22/%3E%3Ctext x=%2250%22 y=%2268%22 font-size=%2248%22 text-anchor=%22middle%22 fill=%22white%22 font-weight=%22bold%22 font-family=%22Inter%22%3EO%3C/text%3E%3C/svg%3E'">
                     <span class="logo-text hidden sm:inline-block">
                         <span class="highlight"></span> 
@@ -820,10 +939,10 @@
 
                 <!-- Premium Desktop Nav -->
                 <div class="hidden lg:flex items-center gap-0.5">
-                    <a href="#" class="nav-link-premium">Home</a>
-                    <a href="#" class="nav-link-premium">About</a>
-                    <a href="#" class="nav-link-premium">Our Work</a>
-                    <a href="#" class="nav-link-premium">Client Experience</a>
+                    <a href="Home.html" class="nav-link-premium">Home</a>
+                    <a href="About.html" class="nav-link-premium">About</a>
+                    <a href="Our_Work.html" class="nav-link-premium active-link">Our Work</a>
+                    <a href="Client_Experience.html" class="nav-link-premium">Client Experience</a>
 
                     <div class="dropdown-wrapper">
                         <button class="nav-link-premium flex items-center gap-1">
@@ -831,9 +950,9 @@
                             <svg class="w-3 h-3 transition-transform duration-300 dropdown-wrapper:hover:rotate-180" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M19 9l-7 7-7-7"></path></svg>
                         </button>
                         <div class="dropdown-menu-premium">
-                            <a href="#">Advertising</a>
-                            <a href="#">Digital</a>
-                            <a href="#">Consulting</a>
+                            <a href="Adv_Case_Studies.html">Advertising</a>
+                            <a href="Digital_Case_Studies.html">Digital</a>
+                            <a href="Consulting_Case_Studies.html">Consulting</a>
                         </div>
                     </div>
 
@@ -843,20 +962,20 @@
                             <svg class="w-3 h-3 transition-transform duration-300 dropdown-wrapper:hover:rotate-180" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M19 9l-7 7-7-7"></path></svg>
                         </button>
                         <div class="dropdown-menu-premium">
-                            <a href="#">Advertising</a>
-                            <a href="#">Digital</a>
-                            <a href="#">Consulting</a>
+                            <a href="Advertising_Expertise.html">Advertising</a>
+                            <a href="Digital_Expertise.html">Digital</a>
+                            <a href="Consulting_Expertise.html">Consulting</a>
                         </div>
                     </div>
 
-                    <a href="#" class="nav-link-premium">Staff News</a>
-                    <a href="#" class="nav-link-premium">Blog</a>
-                    <a href="#" class="nav-link-premium">Archives</a>
+                    <a href="Staff_News.html" class="nav-link-premium">Staff News</a>
+                    <a href="Exploring_Boundless_Horizons.html" class="nav-link-premium">Blog</a>
+                    <a href="Archive_Gallery.html" class="nav-link-premium">Archives</a>
                 </div>
 
                 <!-- Premium CTA -->
                 <div class="hidden lg:block">
-                    <a href="#" class="btn-premium-cta">
+                    <a href="Contact_Us.html" class="btn-premium-cta">
                         <span>Contact</span>
                         <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M17 8l4 4m0 0l-4 4m4-4H3"></path></svg>
                     </a>
@@ -872,31 +991,31 @@
         </div>
     </header>
 
-    <!-- ===== MOBILE MENU PANEL (from CFSD) ===== -->
+    <!-- ===== MOBILE MENU PANEL ===== -->
     <div class="mobile-menu-panel" id="mobileMenuPanel">
-        <a href="#">Home</a>
-        <a href="#">About</a>
-        <a href="#">Our Work</a>
-        <a href="#">Client Experience</a>
+        <a href="Home.html">Home</a>
+        <a href="About.html">About</a>
+        <a href="Our_Work.html">Our Work</a>
+        <a href="Client_Experience.html">Client Experience</a>
 
         <div class="mobile-dropdown-title">Case Studies</div>
         <div class="mobile-dropdown-items">
-            <a href="#">Advertising</a>
-            <a href="#">Digital</a>
-            <a href="#">Consulting</a>
+            <a href="Adv_Case_Studies.html">Advertising</a>
+            <a href="Digital_Case_Studies.html">Digital</a>
+            <a href="Consulting_Case_Studies.html">Consulting</a>
         </div>
 
         <div class="mobile-dropdown-title">Our Expertise</div>
         <div class="mobile-dropdown-items">
-            <a href="#">Advertising</a>
-            <a href="#">Digital</a>
-            <a href="#">Consulting</a>
+            <a href="Advertising_Expertise.html">Advertising</a>
+            <a href="Digital_Expertise.html">Digital</a>
+            <a href="Consulting_Expertise.html">Consulting</a>
         </div>
 
-        <a href="#">Staff News</a>
-        <a href="#">Blog</a>
-        <a href="#">Archives</a>
-        <a href="#" class="magnetic-btn" style="display:inline-flex; margin-top:1rem; background:linear-gradient(135deg,#e6007e,#ff1493); color:#fff; padding:0.6rem 1.5rem; border-radius:9999px; font-weight:700;">Contact Us</a>
+        <a href="Staff_News.html">Staff News</a>
+        <a href="Exploring_Boundless_Horizons.html">Blog</a>
+        <a href="Archive_Gallery.html">Archives</a>
+        <a href="Contact_Us.html" class="magnetic-btn" style="display:inline-flex; margin-top:1rem; background:linear-gradient(135deg,#e6007e,#ff1493); color:#fff; padding:0.6rem 1.5rem; border-radius:9999px; font-weight:700;">Contact Us</a>
     </div>
 
     <!-- ===== HERO ===== -->
@@ -953,78 +1072,93 @@
         </div>
     </section>
 
-    <!-- ===== GALLERY (with click-to-open lightbox) ===== -->
+    <!-- ===== GALLERY ===== -->
     <section class="gallery-section">
         <div class="container">
             <h2 class="text-3xl font-bold mb-8 text-center fade-up">Campaign Gallery</h2>
             <div class="gallery-grid">
-                <!-- Each gallery item has a data-full attribute for the full image URL -->
                 <div class="gallery-item fade-up fade-up-d1" onclick="openLightbox(this)">
-                    <img src="https://obriangroup.com/assets/images/absa2.jpg" alt="ABSA Micro-Loan campaign image" loading="lazy" data-full="https://obriangroup.com/assets/images/absa2.jpg">
+                    <img src="https://obriangroup.com/absa2.jpg" alt="ABSA Micro-Loan campaign image" loading="lazy" data-full="https://obriangroup.com/assets/images/absa2.jpg" data-label="ABSA MICRO-LOAN">
                     <div class="gallery-label">ABSA MICRO-LOAN</div>
                 </div>
                 <div class="gallery-item fade-up fade-up-d2" onclick="openLightbox(this)">
-                    <img src="https://obriangroup.com/assets/images/absa-1.jpg" alt="ABSA Micro-Loan campaign image" loading="lazy" data-full="https://obriangroup.com/assets/images/absa-1.jpg">
+                    <img src="https://obriangroup.com/absa-1.jpg" alt="ABSA Micro-Loan campaign image" loading="lazy" data-full="https://obriangroup.com/assets/images/absa-1.jpg" data-label="ABSA MICRO-LOAN">
                     <div class="gallery-label">ABSA MICRO-LOAN</div>
                 </div>
                 <div class="gallery-item fade-up fade-up-d3" onclick="openLightbox(this)">
-                    <img src="https://obriangroup.com/assets/images/atm1.jpg" alt="ABSA ATM campaign" loading="lazy" data-full="https://obriangroup.com/assets/images/atm1.jpg">
+                    <img src="https://obriangroup.com/atm1.jpg" alt="ABSA ATM campaign" loading="lazy" data-full="https://obriangroup.com/assets/images/atm1.jpg" data-label="ABSA MICRO-LOAN">
                     <div class="gallery-label">ABSA MICRO-LOAN</div>
                 </div>
                 <div class="gallery-item fade-up fade-up-d4" onclick="openLightbox(this)">
-                    <img src="https://obriangroup.com/assets/images/bs-dl-leaflet-1.jpg" alt="ABSA leaflet" loading="lazy" data-full="https://obriangroup.com/assets/images/bs-dl-leaflet-1.jpg">
+                    <img src="https://obriangroup.com/bs-dl-leaflet-1.jpg" alt="ABSA leaflet" loading="lazy" data-full="https://obriangroup.com/assets/images/bs-dl-leaflet-1.jpg" data-label="ABSA MICRO-LOAN">
                     <div class="gallery-label">ABSA MICRO-LOAN</div>
                 </div>
                 <div class="gallery-item fade-up fade-up-d5" onclick="openLightbox(this)">
-                    <img src="https://obriangroup.com/assets/images/atm2.jpg" alt="ABSA ATM campaign" loading="lazy" data-full="https://obriangroup.com/assets/images/atm2.jpg">
+                    <img src="https://obriangroup.com/atm2.jpg" alt="ABSA ATM campaign" loading="lazy" data-full="https://obriangroup.com/assets/images/atm2.jpg" data-label="ABSA MICRO-LOAN">
                     <div class="gallery-label">ABSA MICRO-LOAN</div>
                 </div>
                 <div class="gallery-item fade-up fade-up-d1" onclick="openLightbox(this)">
-                    <img src="https://obriangroup.com/assets/images/a5-leaflet-1.jpg" alt="ABSA leaflet" loading="lazy" data-full="https://obriangroup.com/assets/images/a5-leaflet-1.jpg">
+                    <img src="https://obriangroup.com/a5-leaflet-1.jpg" alt="ABSA leaflet" loading="lazy" data-full="https://obriangroup.com/assets/images/a5-leaflet-1.jpg" data-label="ABSA MICRO-LOAN">
                     <div class="gallery-label">ABSA MICRO-LOAN</div>
                 </div>
                 <div class="gallery-item fade-up fade-up-d2" onclick="openLightbox(this)">
-                    <img src="https://obriangroup.com/assets/images/atm7.jpg" alt="ABSA ATM campaign" loading="lazy" data-full="https://obriangroup.com/assets/images/atm7.jpg">
+                    <img src="https://obriangroup.com/atm7.jpg" alt="ABSA ATM campaign" loading="lazy" data-full="https://obriangroup.com/assets/images/atm7.jpg" data-label="ABSA MICRO-LOAN">
                     <div class="gallery-label">ABSA MICRO-LOAN</div>
                 </div>
                 <div class="gallery-item fade-up fade-up-d3" onclick="openLightbox(this)">
-                    <img src="https://obriangroup.com/assets/images/atm6.jpg" alt="ABSA ATM campaign" loading="lazy" data-full="https://obriangroup.com/assets/images/atm6.jpg">
+                    <img src="https://obriangroup.com/atm6.jpg" alt="ABSA ATM campaign" loading="lazy" data-full="https://obriangroup.com/assets/images/atm6.jpg" data-label="ABSA MICRO-LOAN">
                     <div class="gallery-label">ABSA MICRO-LOAN</div>
                 </div>
                 <div class="gallery-item fade-up fade-up-d4" onclick="openLightbox(this)">
-                    <img src="https://obriangroup.com/assets/images/atm5.jpg" alt="ABSA ATM campaign" loading="lazy" data-full="https://obriangroup.com/assets/images/atm5.jpg">
+                    <img src="https://obriangroup.com/atm5.jpg" alt="ABSA ATM campaign" loading="lazy" data-full="https://obriangroup.com/assets/images/atm5.jpg" data-label="ABSA MICRO-LOAN">
                     <div class="gallery-label">ABSA MICRO-LOAN</div>
                 </div>
                 <div class="gallery-item fade-up fade-up-d5" onclick="openLightbox(this)">
-                    <img src="https://obriangroup.com/assets/images/atm4.jpg" alt="ABSA ATM campaign" loading="lazy" data-full="https://obriangroup.com/assets/images/atm4.jpg">
+                    <img src="https://obriangroup.com/atm4.jpg" alt="ABSA ATM campaign" loading="lazy" data-full="https://obriangroup.com/assets/images/atm4.jpg" data-label="ABSA MICRO-LOAN">
                     <div class="gallery-label">ABSA MICRO-LOAN</div>
                 </div>
                 <div class="gallery-item fade-up fade-up-d1" onclick="openLightbox(this)">
-                    <img src="https://obriangroup.com/assets/images/atm3.jpg" alt="ABSA ATM campaign" loading="lazy" data-full="https://obriangroup.com/assets/images/atm3.jpg">
+                    <img src="https://obriangroup.com/atm3.jpg" alt="ABSA ATM campaign" loading="lazy" data-full="https://obriangroup.com/assets/images/atm3.jpg" data-label="ABSA MICRO-LOAN">
                     <div class="gallery-label">ABSA MICRO-LOAN</div>
                 </div>
                 <div class="gallery-item fade-up fade-up-d2" onclick="openLightbox(this)">
-                    <img src="https://obriangroup.com/assets/images/card-convt-2.jpg" alt="ABSA card conversion" loading="lazy" data-full="https://obriangroup.com/assets/images/card-convt-2.jpg">
+                    <img src="https://obriangroup.com/card-convt-2.jpg" alt="ABSA card conversion" loading="lazy" data-full="https://obriangroup.com/assets/images/card-convt-2.jpg" data-label="ABSA MICRO-LOAN">
                     <div class="gallery-label">ABSA MICRO-LOAN</div>
                 </div>
                 <div class="gallery-item fade-up fade-up-d3" onclick="openLightbox(this)">
-                    <img src="https://obriangroup.com/assets/images/card-convt-1.jpg" alt="ABSA card conversion" loading="lazy" data-full="https://obriangroup.com/assets/images/card-convt-1.jpg">
+                    <img src="https://obriangroup.com/card-convt-1.jpg" alt="ABSA card conversion" loading="lazy" data-full="https://obriangroup.com/assets/images/card-convt-1.jpg" data-label="ABSA MICRO-LOAN">
                     <div class="gallery-label">ABSA MICRO-LOAN</div>
                 </div>
                 <div class="gallery-item fade-up fade-up-d4" onclick="openLightbox(this)">
-                    <img src="https://obriangroup.com/assets/images/absa2.png" alt="ABSA campaign image" loading="lazy" data-full="https://obriangroup.com/assets/images/absa2.png">
+                    <img src="https://obriangroup.com/absa2.png" alt="ABSA campaign image" loading="lazy" data-full="https://obriangroup.com/assets/images/absa2.png" data-label="ABSA MICRO-LOAN">
                     <div class="gallery-label">ABSA MICRO-LOAN</div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- ===== LIGHTBOX ===== -->
+    <!-- ===== LIGHTBOX WITH ARROWS AND BACK BUTTON ===== -->
     <div class="lightbox-overlay" id="lightbox" onclick="closeLightbox(event)">
         <div class="lightbox-content" onclick="event.stopPropagation();">
             <button class="lightbox-close" onclick="closeLightbox(event)">✕</button>
+            
+            <!-- PREV ARROW -->
+            <button class="lightbox-arrow lightbox-prev" onclick="prevLightboxImage(event)" aria-label="Previous image">
+                <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M15 19l-7-7 7-7"/></svg>
+            </button>
+            
+            <!-- NEXT ARROW -->
+            <button class="lightbox-arrow lightbox-next" onclick="nextLightboxImage(event)" aria-label="Next image">
+                <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M9 5l7 7-7 7"/></svg>
+            </button>
+            
             <img id="lightbox-image" src="" alt="Full view">
             <div class="lightbox-caption" id="lightbox-caption"></div>
+            
+            <!-- BACK TO OUR WORK BUTTON -->
+            <a href="Our_Work.html" class="btn-back btn-back-lightbox">
+                <span class="mobi-mbri mobi-mbri-left mbr-iconfont me-1"></span> Back to Our Work
+            </a>
         </div>
     </div>
 
@@ -1057,11 +1191,11 @@
             <div>
                 <h5>About</h5>
                 <ul>
-                    <li><a href="page8.html">History</a></li>
-                    <li><a href="page52.html">Clients</a></li>
-                    <li><a href="#">Teams</a></li>
-                    <li><a href="#">Brand</a></li>
-                    <li><a href="#">Terms</a></li>
+                    <li><a href="About.html">History</a></li>
+                    <li><a href="Client_Experience.html">Clients</a></li>
+                    <li><a href="Teams.html">Teams</a></li>
+                    <li><a href="Brand.html">Brand</a></li>
+                    <li><a href="Terms.html">Terms</a></li>
                 </ul>
             </div>
             <div class="social-row">
@@ -1108,27 +1242,90 @@
             }
         });
 
-        // ── LIGHTBOX ──
+        // ── SCROLL TO TOP BUTTON ──
+        const scrollTopBtn = document.getElementById('scrollTopBtn');
+        
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 400) {
+                scrollTopBtn.classList.add('visible');
+            } else {
+                scrollTopBtn.classList.remove('visible');
+            }
+        });
+        
+        scrollTopBtn.addEventListener('click', () => {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        });
+
+        // ── LIGHTBOX with ARROWS and BACK BUTTON ──
         const lightboxOverlay = document.getElementById('lightbox');
         const lightboxImg = document.getElementById('lightbox-image');
         const lightboxCaption = document.getElementById('lightbox-caption');
+        
+        // Get all gallery items and their image data
+        const galleryItems = document.querySelectorAll('.gallery-item');
+        let currentIndex = 0;
+
+        // Build an array of image data from gallery items
+        const lightboxImages = [];
+        galleryItems.forEach((item, idx) => {
+            const img = item.querySelector('img');
+            if (img) {
+                lightboxImages.push({
+                    src: img.getAttribute('data-full') || img.src,
+                    label: img.getAttribute('data-label') || item.querySelector('.gallery-label')?.textContent || 'ABSA MICRO-LOAN'
+                });
+            }
+        });
+
+        function updateLightbox() {
+            if (lightboxImages.length === 0) return;
+            const item = lightboxImages[currentIndex];
+            lightboxImg.src = item.src;
+            lightboxCaption.textContent = item.label;
+        }
 
         function openLightbox(element) {
-            const img = element.querySelector('img');
-            if (img) {
-                const fullSrc = img.getAttribute('data-full') || img.src;
-                lightboxImg.src = fullSrc;
-                const label = element.querySelector('.gallery-label')?.textContent || '';
-                lightboxCaption.textContent = label;
-                lightboxOverlay.classList.add('active');
-                document.body.style.overflow = 'hidden';
+            // Find the index of the clicked item
+            const clickedItem = element;
+            // Find index in galleryItems
+            let index = 0;
+            for (let i = 0; i < galleryItems.length; i++) {
+                if (galleryItems[i] === clickedItem) {
+                    index = i;
+                    break;
+                }
             }
+            currentIndex = index;
+            updateLightbox();
+            lightboxOverlay.classList.add('active');
+            document.body.style.overflow = 'hidden';
         }
 
         function closeLightbox(e) {
             if (e) e.stopPropagation();
             lightboxOverlay.classList.remove('active');
             document.body.style.overflow = '';
+            // If it's a link click (back to work), allow navigation
+            if (e && e.target && e.target.closest('a')) {
+                return true;
+            }
+            return false;
+        }
+
+        function prevLightboxImage(e) {
+            e.stopPropagation();
+            currentIndex = (currentIndex - 1 + lightboxImages.length) % lightboxImages.length;
+            updateLightbox();
+        }
+
+        function nextLightboxImage(e) {
+            e.stopPropagation();
+            currentIndex = (currentIndex + 1) % lightboxImages.length;
+            updateLightbox();
         }
 
         // Close lightbox on overlay click
@@ -1142,6 +1339,12 @@
         document.addEventListener('keydown', (e) => {
             if (e.key === 'Escape') {
                 closeLightbox(e);
+            }
+            if (e.key === 'ArrowLeft' && lightboxOverlay.classList.contains('active')) {
+                prevLightboxImage(e);
+            }
+            if (e.key === 'ArrowRight' && lightboxOverlay.classList.contains('active')) {
+                nextLightboxImage(e);
             }
         });
     </script>
