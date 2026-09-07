@@ -1,0 +1,1213 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Mxolisi Evan Tyawa: Doing the Camino | O'Brian Group</title>
+    <meta name="description" content="The Camino de Santiago (the Way of St. James) is a large network of ancient pilgrim routes stretching across Europe and coming together at the tomb of St. James." />
+
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/lucide@latest"></script>
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800;900&family=Open+Sans:wght@300;400;600&display=swap" rel="stylesheet" />
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        'sans': ['Montserrat', 'sans-serif'],
+                        'body': ['Open Sans', 'sans-serif'],
+                    },
+                    colors: {
+                        'obrian': {
+                            pink: '#e6007e',
+                            dark: '#1a1a1a',
+                            black: '#000000',
+                            white: '#ffffff',
+                            gray: '#f5f5f5'
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Montserrat', sans-serif;
+            background: #f8fafc;
+            color: #231e1f;
+            line-height: 1.7;
+            overflow-x: hidden;
+            padding-top: 80px;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        .font-body {
+            font-family: 'Open Sans', sans-serif;
+        }
+
+        .text-pink {
+            color: #e6007e;
+        }
+
+        .bg-pink {
+            background-color: #e6007e;
+        }
+
+        .border-pink {
+            border-color: #e6007e;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        img {
+            max-width: 100%;
+            display: block;
+            border-radius: 12px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .container {
+            max-width: 1280px;
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+
+        /* ===== PREMIUM HEADER STYLES ===== */
+        .header-glass {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            z-index: 1030;
+            background: rgba(255, 255, 255, 0.72);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.4);
+            box-shadow: 0 1px 2px rgba(0, 0, 0, 0.02);
+            height: 80px;
+            display: flex;
+            align-items: center;
+            padding: 0 1rem;
+        }
+        .header-glass.scrolled {
+            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.06);
+            background: rgba(255, 255, 255, 0.94);
+            border-bottom: 1px solid rgba(0, 0, 0, 0.03);
+        }
+
+        .logo-premium {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            transition: transform 0.3s ease;
+        }
+        .logo-premium:hover {
+            transform: scale(1.01);
+        }
+        .logo-text {
+            font-size: 1.35rem;
+            font-weight: 800;
+            letter-spacing: -0.5px;
+            color: #231e1f;
+        }
+        .logo-text .highlight {
+            color: #e6007e;
+            position: relative;
+        }
+        .logo-text .highlight::after {
+            content: '';
+            position: absolute;
+            bottom: -2px;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            background: #e6007e;
+            transform: scaleX(0);
+            transform-origin: right;
+            transition: transform 0.4s ease;
+        }
+        .logo-premium:hover .logo-text .highlight::after {
+            transform: scaleX(1);
+            transform-origin: left;
+        }
+
+        .nav-link-premium {
+            position: relative;
+            padding: 0.5rem 1.2rem;
+            font-size: 0.75rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.8px;
+            color: #4b5563;
+            border-radius: 8px;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            display: inline-block;
+            cursor: pointer;
+            background: transparent;
+            text-decoration: none;
+        }
+        .nav-link-premium::after {
+            content: '';
+            position: absolute;
+            bottom: 4px;
+            left: 50%;
+            width: 0;
+            height: 2px;
+            background: linear-gradient(90deg, #e6007e, #ff1493);
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            transform: translateX(-50%);
+            border-radius: 2px;
+        }
+        .nav-link-premium:hover {
+            color: #e6007e;
+            background: rgba(230, 0, 126, 0.06);
+        }
+        .nav-link-premium:hover::after {
+            width: 60%;
+        }
+        .nav-link-premium.active-link {
+            color: #e6007e;
+            background: rgba(230, 0, 126, 0.08);
+        }
+        .nav-link-premium.active-link::after {
+            width: 70%;
+        }
+
+        .dropdown-wrapper {
+            position: relative;
+        }
+        .dropdown-wrapper:hover .dropdown-menu-premium {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0) scale(1);
+        }
+        .dropdown-menu-premium {
+            position: absolute;
+            top: calc(100% + 12px);
+            left: 0;
+            min-width: 200px;
+            background: rgba(255, 255, 255, 0.98);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border-radius: 12px;
+            box-shadow: 0 20px 50px -12px rgba(0, 0, 0, 0.15);
+            border: 1px solid rgba(230, 0, 126, 0.08);
+            padding: 8px 0;
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(-8px) scale(0.96);
+            transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            transform-origin: top left;
+            z-index: 1050;
+        }
+        .dropdown-menu-premium::before {
+            content: '';
+            position: absolute;
+            top: -6px;
+            left: 20px;
+            width: 10px;
+            height: 10px;
+            background: rgba(255, 255, 255, 0.98);
+            border-left: 1px solid rgba(230, 0, 126, 0.08);
+            border-top: 1px solid rgba(230, 0, 126, 0.08);
+            transform: rotate(45deg);
+            border-radius: 2px;
+        }
+        .dropdown-menu-premium a {
+            display: block;
+            padding: 0.7rem 1.4rem;
+            font-size: 0.8rem;
+            font-weight: 500;
+            color: #374151;
+            transition: all 0.2s ease;
+            letter-spacing: 0.3px;
+            text-decoration: none;
+        }
+        .dropdown-menu-premium a:hover {
+            background: rgba(230, 0, 126, 0.05);
+            color: #e6007e;
+            padding-left: 1.8rem;
+        }
+        .dropdown-menu-premium a:first-child {
+            border-radius: 12px 12px 0 0;
+        }
+        .dropdown-menu-premium a:last-child {
+            border-radius: 0 0 12px 12px;
+        }
+
+        .btn-premium-cta {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 0.65rem 1.8rem;
+            background: linear-gradient(135deg, #e6007e 0%, #ff1493 100%);
+            color: white;
+            font-weight: 700;
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 0.6px;
+            border-radius: 9999px;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            box-shadow: 0 4px 15px rgba(230, 0, 126, 0.3);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            text-decoration: none;
+        }
+        .btn-premium-cta:hover {
+            transform: translateY(-3px) scale(1.02);
+            box-shadow: 0 10px 30px rgba(230, 0, 126, 0.4);
+            color: white;
+        }
+
+        .burger-premium {
+            width: 36px;
+            height: 36px;
+            border-radius: 10px;
+            border: 1px solid rgba(0, 0, 0, 0.04);
+            background: rgba(255, 255, 255, 0.5);
+            backdrop-filter: blur(4px);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            gap: 5px;
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+        .burger-premium:hover {
+            background: rgba(230, 0, 126, 0.05);
+            border-color: rgba(230, 0, 126, 0.15);
+        }
+        .burger-line {
+            display: block;
+            width: 18px;
+            height: 2px;
+            background: #374151;
+            border-radius: 2px;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        .burger-line:nth-child(3) {
+            width: 12px;
+            margin-left: auto;
+        }
+        .burger-premium.open .burger-line:nth-child(1) {
+            transform: rotate(45deg) translate(5px, 5px);
+            width: 20px;
+        }
+        .burger-premium.open .burger-line:nth-child(2) {
+            opacity: 0;
+            transform: scaleX(0);
+        }
+        .burger-premium.open .burger-line:nth-child(3) {
+            transform: rotate(-45deg) translate(5px, -5px);
+            width: 20px;
+            margin-left: 0;
+        }
+
+        .mobile-menu-panel {
+            display: none;
+            position: fixed;
+            top: 80px;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(255, 255, 255, 0.98);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            padding: 2rem 1.5rem;
+            overflow-y: auto;
+            z-index: 1020;
+            border-top: 1px solid rgba(0, 0, 0, 0.03);
+        }
+        .mobile-menu-panel.open {
+            display: block;
+            animation: fadeSlideDown 0.4s ease forwards;
+        }
+        @keyframes fadeSlideDown {
+            from {
+                opacity: 0;
+                transform: translateY(-10px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        .mobile-menu-panel a {
+            display: block;
+            padding: 0.75rem 1rem;
+            font-size: 1rem;
+            font-weight: 500;
+            color: #1a1a2e;
+            border-radius: 0.5rem;
+            transition: all 0.2s;
+            text-decoration: none;
+        }
+        .mobile-menu-panel a:hover {
+            background: rgba(237, 0, 142, 0.06);
+            color: #ed008e;
+            padding-left: 1.2rem;
+        }
+        .mobile-menu-panel .mobile-dropdown-title {
+            font-weight: 700;
+            padding: 0.75rem 1rem;
+            color: #1a1a2e;
+            cursor: default;
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            color: #6b7280;
+        }
+        .mobile-menu-panel .mobile-dropdown-items {
+            padding-left: 1rem;
+        }
+        .mobile-menu-panel .mobile-dropdown-items a {
+            font-weight: 400;
+            font-size: 0.95rem;
+        }
+
+        /* Hero */
+        .hero {
+            padding: 140px 0 60px;
+            background: linear-gradient(160deg, #ffffff 0%, #f1f5f9 100%);
+            text-align: center;
+            position: relative;
+        }
+
+        .hero h1 {
+            font-size: clamp(2.5rem, 5vw, 4rem);
+            font-weight: 800;
+            letter-spacing: -0.02em;
+            margin-bottom: 16px;
+        }
+
+        .hero h1 .highlight {
+            background: linear-gradient(135deg, #e6007e, #ff4dab);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            color: #4b5563;
+            max-width: 640px;
+            margin: 0 auto;
+        }
+
+        /* Section titles */
+        .section-title {
+            font-size: 2rem;
+            font-weight: 800;
+            margin-bottom: 32px;
+            color: #1a1a1a;
+        }
+
+        .section-subtitle {
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: #e6007e;
+            margin-bottom: 16px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        /* Day cards */
+        .day-card {
+            background: white;
+            border-radius: 16px;
+            padding: 32px;
+            margin-bottom: 32px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.04);
+            border-left: 5px solid #e6007e;
+        }
+
+        .day-card h3 {
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: 12px;
+            color: #1a1a1a;
+        }
+
+        .day-card p {
+            color: #4a5568;
+            line-height: 1.8;
+            margin-bottom: 16px;
+        }
+
+        /* Image grid */
+        .img-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 20px;
+            margin: 40px 0;
+        }
+
+        .img-grid img {
+            width: 100%;
+            height: 280px;
+            object-fit: cover;
+            border-radius: 12px;
+            box-shadow: 0 8px 24px rgba(0,0,0,0.08);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .img-grid img:hover {
+            transform: scale(1.02);
+            box-shadow: 0 12px 32px rgba(0,0,0,0.12);
+        }
+
+        /* Back to Blog Button */
+        .back-to-blog {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 12px 24px;
+            background: linear-gradient(135deg, #e6007e 0%, #ff1493 100%);
+            color: white;
+            font-weight: 700;
+            font-size: 0.9rem;
+            border-radius: 9999px;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(230, 0, 126, 0.3);
+            margin-bottom: 24px;
+            text-decoration: none;
+            cursor: pointer;
+        }
+        .back-to-blog:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 30px rgba(230, 0, 126, 0.4);
+        }
+
+        /* Scroll to Top Button */
+        .scroll-top-btn {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #e6007e 0%, #ff1493 100%);
+            color: white;
+            font-size: 1.4rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 4px 20px rgba(230, 0, 126, 0.4);
+            cursor: pointer;
+            z-index: 999;
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(20px);
+            transition: all 0.4s ease;
+            border: none;
+        }
+        .scroll-top-btn.visible {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
+        }
+        .scroll-top-btn:hover {
+            transform: translateY(-5px) scale(1.1);
+            box-shadow: 0 8px 30px rgba(230, 0, 126, 0.5);
+        }
+
+        /* Lightbox */
+        .lightbox-modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.95);
+            z-index: 9999;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+            padding: 20px;
+        }
+        .lightbox-modal.open {
+            display: flex;
+        }
+        .lightbox-content {
+            max-width: 95vw;
+            max-height: 85vh;
+            border-radius: 8px;
+            box-shadow: 0 0 40px rgba(0, 0, 0, 0.5);
+            object-fit: contain;
+        }
+        .lightbox-close {
+            position: absolute;
+            top: 20px;
+            right: 30px;
+            width: 48px;
+            height: 48px;
+            background: rgba(255,255,255,0.15);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 1.8rem;
+            cursor: pointer;
+            transition: all 0.3s;
+            border: none;
+        }
+        .lightbox-close:hover {
+            background: #e6007e;
+            transform: rotate(90deg);
+        }
+        .lightbox-caption {
+            color: white;
+            font-size: 1rem;
+            margin-top: 20px;
+            text-align: center;
+            max-width: 90vw;
+        }
+
+        /* Social section */
+        .social-section {
+            background: #1a1a1a;
+            color: white;
+            text-align: center;
+            padding: 80px 20px;
+        }
+
+        .social-icon {
+            width: 48px;
+            height: 48px;
+            border-radius: 50%;
+            background: rgba(255,255,255,0.1);
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.3rem;
+            margin: 0 10px;
+            transition: all 0.3s;
+            color: white;
+        }
+
+        .social-icon:hover {
+            background: #e6007e;
+            transform: translateY(-4px);
+        }
+
+        /* Footer */
+        .footer {
+            background: #111827;
+            color: #9ca3af;
+            padding: 60px 0 32px;
+        }
+
+        .footer h5 {
+            font-size: 0.95rem;
+            font-weight: 700;
+            color: #e6007e;
+            margin-bottom: 20px;
+            letter-spacing: 0.02em;
+        }
+
+        .footer ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .footer ul li {
+            font-size: 0.85rem;
+            margin-bottom: 10px;
+            color: #9ca3af;
+            transition: color 0.2s;
+        }
+
+        .footer ul li a {
+            color: inherit;
+            transition: color 0.2s;
+        }
+
+        .footer ul li a:hover {
+            color: #e6007e;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .header-glass {
+                height: 70px;
+            }
+            body {
+                padding-top: 70px;
+            }
+            .mobile-menu-panel {
+                top: 70px;
+            }
+            .hero {
+                padding: 120px 0 40px;
+            }
+            .hero h1 {
+                font-size: 2.2rem;
+            }
+            .section-title {
+                font-size: 1.6rem;
+            }
+            .scroll-top-btn {
+                bottom: 20px;
+                right: 20px;
+                width: 45px;
+                height: 45px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- ===== PREMIUM HEADER ===== -->
+    <header class="header-glass" id="mainHeader">
+        <div class="max-w-7xl mx-auto px-4 md:px-6 w-full">
+            <div class="flex justify-between items-center">
+
+                <!-- Premium Logo -->
+                <a href="index.html" class="logo-premium group">
+                    <img src="assets/images/obrian-transparent-logo-4461219.webp" alt="O'Brian Group" class="h-9 w-auto" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22%3E%3Crect width=%22100%22 height=%22100%22 fill=%22%23ed008e%22/%3E%3Ctext x=%2250%22 y=%2268%22 font-size=%2248%22 text-anchor=%22middle%22 fill=%22white%22 font-weight=%22bold%22 font-family=%22Inter%22%3EO%3C/text%3E%3C/svg%3E'">
+                    <span class="logo-text hidden sm:inline-block">
+                        <span class="highlight">O'Brian</span> Group
+                    </span>
+                </a>
+
+                <!-- Premium Desktop Nav -->
+                <div class="hidden lg:flex items-center gap-0.5">
+                    <a href="index.html" class="nav-link-premium">Home</a>
+                    <a href="page8.html" class="nav-link-premium">About</a>
+                    <a href="page30.html" class="nav-link-premium">Our Work</a>
+                    <a href="page52.html" class="nav-link-premium">Client Experience</a>
+
+                    <div class="dropdown-wrapper">
+                        <button class="nav-link-premium flex items-center gap-1">
+                            Case Studies
+                            <svg class="w-3 h-3 transition-transform duration-300 dropdown-wrapper:hover:rotate-180" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M19 9l-7 7-7-7"></path></svg>
+                        </button>
+                        <div class="dropdown-menu-premium">
+                            <a href="page27.html">Advertising</a>
+                            <a href="page45.html">Digital</a>
+                            <a href="page43.html">Consulting</a>
+                        </div>
+                    </div>
+
+                    <div class="dropdown-wrapper">
+                        <button class="nav-link-premium flex items-center gap-1">
+                            Expertise
+                            <svg class="w-3 h-3 transition-transform duration-300 dropdown-wrapper:hover:rotate-180" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M19 9l-7 7-7-7"></path></svg>
+                        </button>
+                        <div class="dropdown-menu-premium">
+                            <a href="page9.html">Advertising</a>
+                            <a href="page1.html">Digital</a>
+                            <a href="page18.html">Consulting</a>
+                        </div>
+                    </div>
+
+                    <a href="page60.html" class="nav-link-premium">Staff News</a>
+                    <a href="page15.html" class="nav-link-premium active-link">Blog</a>
+                    <a href="page70.html" class="nav-link-premium">Archives</a>
+                </div>
+
+                <!-- Premium CTA -->
+                <div class="hidden lg:block">
+                    <a href="page5.html" class="btn-premium-cta">
+                        <span>Contact</span>
+                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M17 8l4 4m0 0l-4 4m4-4H3"></path></svg>
+                    </a>
+                </div>
+
+                <!-- Premium Burger -->
+                <button class="burger-premium lg:hidden" id="menuBtn" aria-label="Toggle menu">
+                    <span class="burger-line"></span>
+                    <span class="burger-line"></span>
+                    <span class="burger-line"></span>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- ===== MOBILE MENU PANEL ===== -->
+    <div class="mobile-menu-panel" id="mobileMenuPanel">
+        <a href="index.html">Home</a>
+        <a href="page8.html">About</a>
+        <a href="page30.html">Our Work</a>
+        <a href="page52.html">Client Experience</a>
+
+        <div class="mobile-dropdown-title">Case Studies</div>
+        <div class="mobile-dropdown-items">
+            <a href="page27.html">Advertising</a>
+            <a href="page45.html">Digital</a>
+            <a href="page43.html">Consulting</a>
+        </div>
+
+        <div class="mobile-dropdown-title">Our Expertise</div>
+        <div class="mobile-dropdown-items">
+            <a href="page9.html">Advertising</a>
+            <a href="page1.html">Digital</a>
+            <a href="page18.html">Consulting</a>
+        </div>
+
+        <a href="page60.html">Staff News</a>
+        <a href="page15.html">Blog</a>
+        <a href="page70.html">Archives</a>
+        <a href="page5.html" style="display:inline-flex; margin-top:1rem; background:linear-gradient(135deg,#e6007e,#ff1493); color:#fff; padding:0.6rem 1.5rem; border-radius:9999px; font-weight:700; text-decoration:none;">Contact Us</a>
+    </div>
+
+    <!-- ===== LIGHTBOX MODAL ===== -->
+    <div class="lightbox-modal" id="lightboxModal" onclick="closeLightbox(event)">
+        <button class="lightbox-close" onclick="closeLightbox(event)" aria-label="Close">
+            <i class="fas fa-times"></i>
+        </button>
+        <img class="lightbox-content" id="lightboxImage" src="" alt="Fullscreen view">
+        <div class="lightbox-caption" id="lightboxCaption"></div>
+    </div>
+
+    <!-- ===== HERO ===== -->
+    <section class="hero">
+        <div class="container">
+            <!-- Back to Blog Button -->
+            <a href="page15.html" class="back-to-blog">
+                <i class="fas fa-arrow-left"></i> Back to Blog
+            </a>
+            <p class="text-pink font-semibold uppercase tracking-widest text-sm mb-4">Blog Post · Camino de Santiago</p>
+            <h1>Mxolisi Evan Tyawa<br><span class="highlight">Doing the Camino</span></h1>
+            <p class="text-gray-600 font-body text-lg mt-6">The Camino de Santiago (the Way of St. James) is a large network of ancient pilgrim routes stretching across Europe and coming together at the tomb of St. James in Santiago de Compostela, north-west Spain.</p>
+            
+            <div class="mt-10">
+                <img src="assets/images/obrian-cost-vs-value.png" alt="Camino Route" class="w-full max-w-4xl mx-auto rounded-2xl shadow-xl cursor-pointer" onclick="openLightbox(this)">
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== MAIN ARTICLE CONTENT ===== -->
+    <section class="py-16 bg-white">
+        <div class="max-w-5xl mx-auto px-4 md:px-6">
+            
+            <!-- Intro -->
+            <div class="day-card">
+                <h3>Mxolisi Evan Tyawa Doing the Camino</h3>
+                <p class="text-pink font-semibold">CAMINO 2: Portuguese Coastal Route, 18 – 30 July 2024</p>
+                <img src="assets/images/screenshot-2025-03-04-at-13.36.05-5.png" alt="Camino screenshot" class="w-full max-w-4xl mx-auto mb-6 rounded-2xl shadow-lg cursor-pointer" onclick="openLightbox(this)">
+            </div>
+
+            <!-- Day 1 -->
+            <div class="day-card">
+                <p class="section-subtitle">Day 1</p>
+                <h3>Porto to Povao de Varzim — 32km</h3>
+                <p>The plan was to do Camino 2 with University buddies. And as it turned out, I ended up starting on this second pilgrimage alone.</p>
+                <p>Today the first day (seven years after the first Camino) was brutal. Although relatively fit (been doing my three times a week, 5km run for the past 3 months) I was not walking fit as my dearest Big Sister forewarned.</p>
+                <p>I am hoping to get better and stronger as I track forward. The next three days will see me cover about 110km of the 215km route.</p>
+                <p>I had mixed emotions with the reality of doing this Camino solo, but once I got to Porto I soon realized that the stars, synchronicity and my guides/ancestors had destined that I do this one alone. Where the first Camino was a conclusion of a chapter in my life, this second Camino is certainly the consummation and confirmation of a new start I had embraced and embarked on 18 months ago.</p>
+                <p><strong>Walking the Camino gives you invaluable time to reflect and put your thoughts, emotions, choices and actions (past, present and future) into perspective.</strong></p>
+                
+                <div class="img-grid">
+                    <img src="assets/images/c1.jpg" alt="Day 1 Start" onclick="openLightbox(this)">
+                    <img src="assets/images/c2.jpg" alt="Day 1 Finish" onclick="openLightbox(this)">
+                </div>
+            </div>
+
+            <!-- Day 2 -->
+            <div class="day-card">
+                <p class="section-subtitle">Day 2</p>
+                <h3>Povao de Varzim to Esposende — 20km</h3>
+                <p>The Day 2 walk was a free style type of walk which started with a Cock and Bull story and ended in a misty forest near a beach where the furthest one could see was a mere 10meters or so.</p>
+                <p>It took me some 7km to recover from the C&B or the free styling and find the right path. Oh boy was I glad I did, for the first time on the walk I encountered fellow pilgrims; a rather vocal but pleasant group of Americans, a hurried business like Swiss (from the Flag on their rucksacks) couple and a few European young females doing their thing. With the Camino you are never alone even if you are. The shorter 5hrs or 20km walk also made up for an easier day all around.</p>
+                
+                <div class="img-grid">
+                    <img src="assets/images/image.jpg" alt="Day 2 Start" onclick="openLightbox(this)">
+                    <img src="assets/images/c4.jpg" alt="Day 2 Path" onclick="openLightbox(this)">
+                    <img src="assets/images/c5.jpg" alt="Day 2 Finish" onclick="openLightbox(this)">
+                </div>
+            </div>
+
+            <!-- Day 3 -->
+            <div class="day-card">
+                <p class="section-subtitle">Day 3</p>
+                <h3>Esposende to Viana do Castelo — 25km</h3>
+                <p><strong>Water, water everywhere!</strong> Today was a rain filled day with some spot of occasional sunshine, although one felt the sun through the thick mist rather than actually see it. I am happy I was prepared for the rain to some extent, what with my Waterproof 'big name brand' jacket, a recommendation from the Hiking Shop in Porto. At least it was as functional as it was fashionable.</p>
+                <p>Apparently water can at times be a good sign, especially when it is a positive force, as it may signify cleansing, nourishment and purification amongst other things. So I gladly welcomed the wash down or was it a wash away? Anyway I am good with either.</p>
+                <p>As I set my sight on my day's destination it occurred to me that the actual highlight of the day was not only the cleansing water. Remarkably so, my track today started with a walk across a bridge and ended with a walk across another bridge.</p>
+                
+                <div class="img-grid">
+                    <img src="assets/images/image-2.jpg" alt="Day 3 Rain" onclick="openLightbox(this)">
+                    <img src="assets/images/image-1.jpg" alt="Day 3 Bridge" onclick="openLightbox(this)">
+                    <img src="assets/images/image-3.jpg" alt="Day 3 Start" onclick="openLightbox(this)">
+                    <img src="assets/images/image-4.jpg" alt="Day 3 Path" onclick="openLightbox(this)">
+                </div>
+            </div>
+
+            <!-- Day 4 -->
+            <div class="day-card">
+                <p class="section-subtitle">Day 4</p>
+                <h3>Viana do Castelo to V P do Ancora — 18.6km</h3>
+                <p>Day 4 was the shortest and easiest walk thus far. I guess a Sunday called for a break from the pace and intensity of the past 3 days.</p>
+                <p><strong>So be a bridge where you are and can be.</strong></p>
+                
+                <div class="img-grid">
+                    <img src="assets/images/image-5.jpg" alt="Day 4 Morning" onclick="openLightbox(this)">
+                    <img src="assets/images/image-6.jpg" alt="Day 4 Coast" onclick="openLightbox(this)">
+                    <img src="assets/images/d4.jpg" alt="Day 4 Scenery" onclick="openLightbox(this)">
+                    <img src="assets/images/d4ss.jpg" alt="Day 4 Scenery" onclick="openLightbox(this)">
+                    <img src="assets/images/d4s.jpg" alt="Day 4 Scenery" onclick="openLightbox(this)">
+                    <img src="assets/images/image-7.jpg" alt="Day 4 Profile" onclick="openLightbox(this)">
+                </div>
+            </div>
+
+            <!-- Day 5 -->
+            <div class="day-card">
+                <p class="section-subtitle">Day 5</p>
+                <h3>V P do Ancora to A Guarda — 14.61km</h3>
+                <p>Today's topic presented itself a few paces into my walk, when I came across an American couple. The first thing I noticed was that the American gentleman was frustratingly looking and using his mobile to check today's path out of town.</p>
+                <p>The one key thing about the Camino is that it is well sign posted or should I say marked. And there is a definite method and structure to the signage system. My simple rule of thumb to find and keep to my path is: I constantly look on the left and right, look down in front of me and most importantly I always look up and ahead for a sign on an approaching pole or wall. So it is <strong>Left, Right, Down and Up Ahead</strong>.</p>
+                <p><strong>Steffen and Line.</strong> Thanks to Issac and Lynette from Dallas Texas, USA for their inspiration.</p>
+                
+                <div class="img-grid">
+                    <img src="assets/images/usa.jpg" alt="Issac and Lynette" onclick="openLightbox(this)">
+                    <img src="assets/images/d5.jpg" alt="Day 5 Route" onclick="openLightbox(this)">
+                    <img src="assets/images/image-8.jpg" alt="Day 5 Fellow Pilgrims" onclick="openLightbox(this)">
+                </div>
+            </div>
+
+            <!-- Day 6 -->
+            <div class="day-card">
+                <p class="section-subtitle">Day 6</p>
+                <h3>A Guarda to Oia — 13.5km</h3>
+                <p>The walk today was short and functional (I had to get to where I was headed), and the dominance and forever presence of the majestic North Atlantic Ocean, with its splashing waves and distant vistas, dwarfed everything else.</p>
+                <p>Having said Goodbye to Portugal and crossing over to Spain earlier this afternoon. It occurred to me that perhaps I must write about Portugal, alas I quickly realized that I had not seen enough to write meaningfully and more inclusively.</p>
+                
+                <div class="img-grid">
+                    <img src="assets/images/img-2760.jpg" alt="Joaquin Miranda" onclick="openLightbox(this)">
+                    <img src="assets/images/img-2765.jpg" alt="Taxi Boat Driver" onclick="openLightbox(this)">
+                    <img src="assets/images/image-9.jpg" alt="Villager Gift" onclick="openLightbox(this)">
+                </div>
+            </div>
+
+            <!-- Day 7 -->
+            <div class="day-card">
+                <p class="section-subtitle">Day 7</p>
+                <h3>Oia to Biaona — 18.58km</h3>
+                <p><strong>Over the two Camino's I have embarked on, it is clear to me, though unproven yet, that more females (especially young ones) than males do the Camino.</strong></p>
+                <p>The unproven theory from Day 6 will remain exactly that, unproven. Today it was well and truly challenged, as the first fellow pilgrims I encountered this morning on my way to the greatly anticipated Biaona were 3 young men, one of whom looked like he was in trouble.</p>
+                
+                <div class="img-grid">
+                    <img src="assets/images/image-11.jpg" alt="Day 7 Pilgrims" onclick="openLightbox(this)">
+                </div>
+            </div>
+
+            <!-- Day 8 -->
+            <div class="day-card">
+                <p class="section-subtitle">Day 8</p>
+                <h3>Biaona to Vigo — 26.06km</h3>
+                <p>In celebration of reaching slightly beyond the half way mark, I thought to revisit and reshare a post from our Camino 1 in 2017.</p>
+                <p><strong>Day 10: Vilalba to Santa Leo Cadia — July 15, 2017</strong></p>
+                <p>Guess what? We are indeed stronger and fitter than when we started two Sundays ago. We did 61km without breaking a sweat, we arrived at both destinations with time to spare. Today (day 11) we did 33km with only a 30minutes break, courtesy of my friend and fellow pilgrim, Advocate Tsholanku.</p>
+                <p>Walking the two longest distances, one after the other, got me thinking about things the Camino teaches you:</p>
+                <ol class="list-decimal pl-6 space-y-2 mt-4">
+                    <li>Practice makes perfect.</li>
+                    <li>Focus, commitment, repetition and consistency begets results.</li>
+                    <li>Stick to the goal you have in mind.</li>
+                    <li>To achieve anything the only movement you need make is forward.</li>
+                    <li>What seems far, once undertaken, becomes within reach.</li>
+                    <li>With the Camino you are never ahead or behind anyone.</li>
+                    <li>When the objective is clear and shared, strangers become friends.</li>
+                    <li>What you see and feel are less important than what you get done.</li>
+                </ol>
+                
+                <div class="img-grid">
+                    <img src="assets/images/img-2885.jpg" alt="Day 8 Walk" onclick="openLightbox(this)">
+                    <img src="assets/images/image-12.jpg" alt="Day 8 Group" onclick="openLightbox(this)">
+                    <img src="assets/images/image-13.jpg" alt="Day 8 Kudrat" onclick="openLightbox(this)">
+                </div>
+            </div>
+
+            <!-- Day 9 -->
+            <div class="day-card">
+                <p class="section-subtitle">Day 9</p>
+                <h3>Vigo to Cesantes — 19.36km</h3>
+                <p>Following the disappointment of Baiona, where I failed to spot any Ferrari or Lamborghini and Vigo, which I found Camino and Pilgrim unfriendly, Day 9 was a welcome surprise and gift.</p>
+                <p><strong>Today I walked with 'My Peers' (O'Ntanga).</strong> This brought with it not only a change in the average pilgrim age (55+) but also a change in pace, conversation and renewed energy.</p>
+                <p>As I made my way out of Vigo I met with Chris and Monica from Detroit Michigan, and along the way we linked up with Darren Robinson from Luxembourg via England.</p>
+                
+                <div class="img-grid">
+                    <img src="assets/images/image-14.jpg" alt="Day 9 Group" onclick="openLightbox(this)">
+                    <img src="assets/images/image-15.jpg" alt="Day 9 Walk" onclick="openLightbox(this)">
+                    <img src="assets/images/image-16.jpg" alt="Chris and Monica" onclick="openLightbox(this)">
+                    <img src="assets/images/image-17.jpg" alt="Darren" onclick="openLightbox(this)">
+                </div>
+            </div>
+
+            <!-- Day 10 -->
+            <div class="day-card">
+                <p class="section-subtitle">Day 10</p>
+                <h3>Cesantes to Pontevedra — 19.36km</h3>
+                <p>It looks like I have struck on or found a different stride and tone for the final leg of this Camino 2. I am also now walking fit, no more sore muscles and joints during and after the walk.</p>
+                <p>Whereas the first 7 days were spent walking in solitude and contemplation, which is what I needed. The last 6 days, if yesterday and today are good indicators, are probably going to be spent meeting and walking in the company of my age mates.</p>
+                <p><strong>This 10th day is dedicated to the memory of a dear friend Andrea Vinassa.</strong></p>
+                
+                <div class="img-grid">
+                    <img src="assets/images/image-18.jpg" alt="Day 10 Group" onclick="openLightbox(this)">
+                    <img src="assets/images/image-19.jpg" alt="Day 10 Memory" onclick="openLightbox(this)">
+                    <img src="assets/images/image-20.jpg" alt="Day 10 Walk" onclick="openLightbox(this)">
+                    <img src="assets/images/image-21.jpg" alt="Day 10 Scenery" onclick="openLightbox(this)">
+                </div>
+            </div>
+
+            <!-- Day 11 -->
+            <div class="day-card">
+                <p class="section-subtitle">Day 11</p>
+                <h3>Pontevedra to Caldas de Reis — 21.05km</h3>
+                <p>No two or even three days are the same on the Camino ever. Today I traveled the whole stage on my own. It was a walk done in total contemplative solitude and was a welcome opportunity to work through some unfinished ideas and unprocessed thoughts from the first 7 days.</p>
+                <p>The other highlight of the 10th Day of the Camino 2, is that reaching Pontevedra means we only are now left with 63 km to reach Santiago de Compostela. <strong>So as they say the 'end is nigh' or is it the 'end is in sight'.</strong></p>
+                
+                <div class="img-grid">
+                    <img src="assets/images/image-22.jpg" alt="Maryanne and Ana" onclick="openLightbox(this)">
+                    <img src="assets/images/image-25.jpeg" alt="Day 11 Reflection" onclick="openLightbox(this)">
+                </div>
+            </div>
+
+            <!-- Day 12 -->
+            <div class="day-card">
+                <p class="section-subtitle">Day 12</p>
+                <h3>Caldas de Reis to Padron — 18.77km</h3>
+                <p>And then, it was only 25km to the finish line.</p>
+                <p>11 days ago when I set out to walk this leg of the Camino, I had such apprehension. The prospect of doing this solo, loomed large in my head. I however had set my mind to doing this, the moment i stepped onto that plane to Porto.</p>
+                <p>Looking back, It turns out that the concern was actually the fuel that I needed to start. To keep going however, the people I met along the way, some who called from home and the beautiful welcoming places I stayed in, were the top up fuel that got me this far.</p>
+                
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mt-6">
+                    <div class="bg-gray-50 rounded-xl p-6">
+                        <p class="font-semibold">1. Steffen and Line from Denmark</p>
+                        <p class="font-semibold mt-3">2. Francis and Innes from Madrid and their kids</p>
+                        <p class="font-semibold mt-3">3. Lynette and Isaac from Dallas Texas</p>
+                        <p class="font-semibold mt-3">4. Joaquin Miranda from Viana do Castello</p>
+                        <p class="font-semibold mt-3">5. The Guy from Guatemala</p>
+                        <p class="font-semibold mt-3">6. Chris and Monica from Florida USA</p>
+                        <p class="font-semibold mt-3">7. Darren Robinson from Luxembourg via England</p>
+                    </div>
+                    <div class="bg-gray-50 rounded-xl p-6">
+                        <p class="font-semibold">8. Maryanne the 'road runner' from Chile</p>
+                        <p class="font-semibold mt-3">9. Anna 'my Spanish teacher' from Madrid</p>
+                        <p class="font-semibold mt-3">10. Dennis and Carolyn Cosso, from Los Angeles</p>
+                        <p class="font-semibold mt-3">11. All the young people who 'agreed' that I take pics for the blog</p>
+                        <p class="font-semibold mt-3">12. Micheal Monyokolo for checking on me regularly</p>
+                        <p class="font-semibold mt-3">13. The O'Brian and PLDDT teams</p>
+                        <p class="font-semibold mt-3">14. My siblings, nieces and nephews</p>
+                    </div>
+                </div>
+                
+                <div class="img-grid mt-6">
+                    <img src="assets/images/img-2703.jpg" alt="Day 12 Scenery" onclick="openLightbox(this)">
+                    <img src="assets/images/img-2685.jpg" alt="Day 12 Walk" onclick="openLightbox(this)">
+                    <img src="assets/images/img-2690.jpg" alt="Day 12 Path" onclick="openLightbox(this)">
+                    <img src="assets/images/img-2699.jpg" alt="Day 12 View" onclick="openLightbox(this)">
+                    <img src="assets/images/img-2702.jpg" alt="Day 12 Friends" onclick="openLightbox(this)">
+                </div>
+            </div>
+
+            <!-- Day 13 -->
+            <div class="day-card">
+                <p class="section-subtitle">Day 13</p>
+                <h3>Padron to Santiago De Compostela — 24.47km</h3>
+                <p><strong>IT IS DONE!</strong></p>
+                <p>After 13 days and 216km, I have finally arrived in Santiago de Compostela!</p>
+                
+                <div class="img-grid">
+                    <img src="assets/images/img-2805.jpg" alt="Day 13 Cathedral" onclick="openLightbox(this)">
+                    <img src="assets/images/img-2814.jpg" alt="Day 13 Finish" onclick="openLightbox(this)">
+                    <img src="assets/images/img-3174.jpg" alt="Day 13 Scenery" onclick="openLightbox(this)">
+                    <img src="assets/images/img-3175.jpg" alt="Day 13 Walk" onclick="openLightbox(this)">
+                    <img src="assets/images/img-3178.jpg" alt="Day 13 View" onclick="openLightbox(this)">
+                    <img src="assets/images/img-3181.jpg" alt="Day 13 Landmark" onclick="openLightbox(this)">
+                    <img src="assets/images/img-3183.jpg" alt="Day 13 Scenery" onclick="openLightbox(this)">
+                    <img src="assets/images/img-3184.jpg" alt="Day 13 Scenery" onclick="openLightbox(this)">
+                    <img src="assets/images/img-3189.jpg" alt="Day 13 Scenery" onclick="openLightbox(this)">
+                </div>
+            </div>
+
+            <!-- Gallery -->
+            <div class="mt-16">
+                <h2 class="section-title">Camino Gallery</h2>
+                <div class="img-grid">
+                    <img src="assets/images/img-3194.jpg" alt="Camino Photo 1" onclick="openLightbox(this)">
+                    <img src="assets/images/img-3195.jpg" alt="Camino Photo 2" onclick="openLightbox(this)">
+                    <img src="assets/images/img-3196.jpg" alt="Camino Photo 3" onclick="openLightbox(this)">
+                    <img src="assets/images/img-3198.jpg" alt="Camino Photo 4" onclick="openLightbox(this)">
+                    <img src="assets/images/img-3200.jpg" alt="Camino Photo 5" onclick="openLightbox(this)">
+                    <img src="assets/images/img-3258.jpg" alt="Camino Photo 6" onclick="openLightbox(this)">
+                    <img src="assets/images/image-23.jpg" alt="Camino Photo 7" onclick="openLightbox(this)">
+                    <img src="assets/images/image-24.jpg" alt="Camino Photo 8" onclick="openLightbox(this)">
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- ===== SOCIAL ===== -->
+    <section class="social-section">
+        <div class="container">
+            <h3 class="text-3xl font-bold mb-8">Follow the Journey</h3>
+            <div>
+                <a href="https://www.facebook.com/profile.php?id=100094029616085" target="_blank" class="social-icon"><i class="fab fa-facebook-f"></i></a>
+                <a href="https://x.com/ObrianSA" target="_blank" class="social-icon"><i class="fab fa-twitter"></i></a>
+                <a href="https://www.instagram.com/obriandigital/" target="_blank" class="social-icon"><i class="fab fa-instagram"></i></a>
+                <a href="https://za.linkedin.com/company/o-brian-digital" target="_blank" class="social-icon"><i class="fab fa-linkedin-in"></i></a>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== FOOTER ===== -->
+    <footer class="footer">
+        <div class="container">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+                <div>
+                    <h5>Johannesburg</h5>
+                    <ul>
+                        <li>2nd Floor Trumpet On Keyes,<br>21 Keyes Avenue, Rosebank,<br>Johannesburg, 2196</li>
+                        <li class="mt-3">Phone: +27 10 035 5218</li>
+                    </ul>
+                </div>
+                <div>
+                    <h5>Durban Office</h5>
+                    <ul>
+                        <li>2 Ncondo Place, Ridgeside Dr,<br>Umhlanga Ridge, Durban, 4319</li>
+                        <li class="mt-3">Phone: +27 83 325 9532</li>
+                    </ul>
+                </div>
+                <div>
+                    <h5>Email</h5>
+                    <ul>
+                        <li><a href="mailto:info@obriangroup.com">info@obriangroup.com</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h5>About</h5>
+                    <ul>
+                        <li><a href="page8.html">History</a></li>
+                        <li><a href="page52.html">Clients</a></li>
+                        <li>Teams</li>
+                        <li>Brand</li>
+                        <li>Terms</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="text-center mt-12 pt-8 border-t border-white/10 text-sm text-gray-600">
+                &copy; 2026 O'Brian Group — All Rights Reserved.
+            </div>
+        </div>
+    </footer>
+
+    <!-- ===== SCROLL TO TOP BUTTON ===== -->
+    <button class="scroll-top-btn" id="scrollTopBtn" aria-label="Scroll to top">
+        <i class="fas fa-arrow-up"></i>
+    </button>
+
+    <!-- ===== SCRIPTS ===== -->
+    <script>
+        (function() {
+            // Header scroll effect
+            const header = document.getElementById('mainHeader');
+            window.addEventListener('scroll', function() {
+                if (window.scrollY > 20) {
+                    header.classList.add('scrolled');
+                } else {
+                    header.classList.remove('scrolled');
+                }
+            });
+
+            // Mobile menu toggle
+            const menuBtn = document.getElementById('menuBtn');
+            const mobilePanel = document.getElementById('mobileMenuPanel');
+
+            if (menuBtn && mobilePanel) {
+                menuBtn.addEventListener('click', function() {
+                    this.classList.toggle('open');
+                    mobilePanel.classList.toggle('open');
+                    document.body.style.overflow = mobilePanel.classList.contains('open') ? 'hidden' : '';
+                });
+
+                mobilePanel.querySelectorAll('a').forEach(link => {
+                    link.addEventListener('click', function() {
+                        menuBtn.classList.remove('open');
+                        mobilePanel.classList.remove('open');
+                        document.body.style.overflow = '';
+                    });
+                });
+            }
+
+            // Close menu on resize to desktop
+            window.addEventListener('resize', function() {
+                if (window.innerWidth >= 1024) {
+                    if (mobilePanel) mobilePanel.classList.remove('open');
+                    if (menuBtn) menuBtn.classList.remove('open');
+                    document.body.style.overflow = '';
+                }
+            });
+
+            // Scroll to Top Button
+            const scrollTopBtn = document.getElementById('scrollTopBtn');
+            
+            window.addEventListener('scroll', function() {
+                if (window.scrollY > 500) {
+                    scrollTopBtn.classList.add('visible');
+                } else {
+                    scrollTopBtn.classList.remove('visible');
+                }
+            });
+
+            scrollTopBtn.addEventListener('click', function() {
+                window.scrollTo({
+                    top: 0,
+                    behavior: 'smooth'
+                });
+            });
+
+            // Lightbox functionality
+            const lightboxModal = document.getElementById('lightboxModal');
+            const lightboxImage = document.getElementById('lightboxImage');
+            const lightboxCaption = document.getElementById('lightboxCaption');
+
+            window.openLightbox = function(imgElement) {
+                lightboxImage.src = imgElement.src;
+                lightboxImage.alt = imgElement.alt || '';
+                lightboxCaption.textContent = imgElement.alt || '';
+                lightboxModal.classList.add('open');
+                document.body.style.overflow = 'hidden';
+            };
+
+            window.closeLightbox = function(event) {
+                if (event.target === lightboxModal || event.target.closest('.lightbox-close')) {
+                    lightboxModal.classList.remove('open');
+                    document.body.style.overflow = '';
+                }
+            };
+
+            // Close on Escape key
+            document.addEventListener('keydown', (e) => {
+                if (e.key === 'Escape' && lightboxModal.classList.contains('open')) {
+                    lightboxModal.classList.remove('open');
+                    document.body.style.overflow = '';
+                }
+            });
+        })();
+    </script>
+</body>
+</html>
