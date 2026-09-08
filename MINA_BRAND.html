@@ -340,6 +340,63 @@
             font-size: 0.95rem;
         }
 
+        /* ── BACK TO BUTTON STYLES ── */
+        .back-to-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            padding: 14px 28px;
+            background: linear-gradient(135deg, #e6007e 0%, #ff1493 100%);
+            color: white;
+            font-weight: 700;
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            border-radius: 50px;
+            border: none;
+            cursor: pointer;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            box-shadow: 0 4px 15px rgba(230, 0, 126, 0.3);
+            text-decoration: none;
+            margin-bottom: 20px;
+        }
+        .back-to-btn:hover {
+            transform: translateY(-2px) scale(1.02);
+            box-shadow: 0 10px 30px rgba(230, 0, 126, 0.4);
+            background: linear-gradient(135deg, #c40073 0%, #e6007e 100%);
+        }
+        .back-to-btn i {
+            font-size: 1rem;
+        }
+
+        /* ── Floating Back Button (sticky) ── */
+        .floating-back {
+            position: fixed;
+            bottom: 20px;
+            left: 20px;
+            z-index: 999;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 10px 20px;
+            background: #e6007e;
+            color: white;
+            font-weight: 600;
+            font-size: 0.85rem;
+            border-radius: 50px;
+            text-decoration: none;
+            box-shadow: 0 4px 15px rgba(230, 0, 126, 0.3);
+            transition: all 0.3s ease;
+        }
+        .floating-back:hover {
+            transform: translateY(-3px);
+            background: #c40073;
+            box-shadow: 0 8px 25px rgba(230, 0, 126, 0.5);
+        }
+        .floating-back i {
+            font-size: 1rem;
+        }
+
         /* Gallery grid */
         .gallery-item {
             transition: all 0.3s cubic-bezier(0.23, 1, 0.32, 1);
@@ -651,6 +708,14 @@
                 font-size: 0.8rem;
                 padding: 6px 12px;
             }
+            .back-to-btn {
+                padding: 12px 24px;
+                font-size: 0.8rem;
+            }
+            .floating-back {
+                padding: 8px 16px;
+                font-size: 0.8rem;
+            }
         }
         @media (max-width: 480px) {
             .logo-text {
@@ -759,8 +824,23 @@
         <a href="Contact_Us.html" style="display:inline-flex; margin-top:1rem; background:linear-gradient(135deg,#e6007e,#ff1493); color:#fff; padding:0.6rem 1.5rem; border-radius:9999px; font-weight:700; text-decoration:none;">Contact Us</a>
     </div>
 
+    <!-- ========== BACK TO BUTTONS ========== -->
+    <!-- Main Back Button (Top) -->
+    <div class="container" style="max-width: 1280px; margin: 0 auto; padding: 20px 24px 0;">
+        <a href="Our_Work.html" class="back-to-btn">
+            <i class="fas fa-arrow-left"></i>
+            Back to Our Work
+        </a>
+    </div>
+
+    <!-- Floating Back Button (Bottom Left) -->
+    <a href="Our_Work.html" class="floating-back" title="Back to Our Work">
+        <i class="fas fa-arrow-left"></i>
+        Back
+    </a>
+
     <!-- ========== HERO ========== -->
-    <section class="relative pt-32 pb-20 bg-gradient-to-b from-white to-gray-50">
+    <section class="relative pt-20 pb-20 bg-gradient-to-b from-white to-gray-50">
         <div class="max-w-7xl mx-auto px-6 text-center">
             <div class="reveal">
                 <p class="text-pink font-semibold tracking-wide text-sm uppercase mb-4">Case Study</p>
