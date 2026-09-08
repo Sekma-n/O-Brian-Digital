@@ -332,13 +332,142 @@
     .section-title { font-size: 2.2rem; font-weight: 700; letter-spacing: -0.02em; }
     @media (max-width: 768px) { .section-title { font-size: 1.8rem; } }
     .gallery-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 1.75rem; }
-    .gallery-item { cursor: pointer; transition: transform 0.25s ease, box-shadow 0.2s; border-radius: 1.25rem; overflow: hidden; background: #f9f9f9; }
+    .gallery-item { cursor: pointer; transition: transform 0.25s ease, box-shadow 0.2s; border-radius: 1.25rem; overflow: hidden; background: #f9f9f9; position: relative; }
     .gallery-item:hover { transform: translateY(-5px); box-shadow: 0 20px 25px -12px rgba(0,0,0,0.15); }
-    .modal-lightbox { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.92); z-index: 1000; justify-content: center; align-items: center; backdrop-filter: blur(8px); }
+    
+    /* Arrow indicator on gallery items */
+    .gallery-item .arrow-indicator {
+      position: absolute;
+      bottom: 40px;
+      right: 10px;
+      background: rgba(237, 0, 142, 0.9);
+      color: white;
+      width: 28px;
+      height: 28px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.8rem;
+      opacity: 0;
+      transition: all 0.3s ease;
+      z-index: 2;
+      pointer-events: none;
+      border: 2px solid white;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+    }
+    .gallery-item:hover .arrow-indicator {
+      opacity: 1;
+      transform: scale(1.1);
+    }
+
+    /* ── Enhanced Lightbox Modal ── */
+    .modal-lightbox { 
+      display: none; 
+      position: fixed; 
+      top: 0; 
+      left: 0; 
+      width: 100%; 
+      height: 100%; 
+      background: rgba(0,0,0,0.92); 
+      z-index: 1000; 
+      justify-content: center; 
+      align-items: center; 
+      backdrop-filter: blur(8px); 
+    }
     .modal-lightbox.active { display: flex; }
-    .modal-content-inner { max-width: 85vw; max-height: 85vh; position: relative; }
-    .modal-content-inner img { width: auto; max-height: 85vh; border-radius: 1rem; box-shadow: 0 25px 40px rgba(0,0,0,0.3); }
-    .close-modal { position: absolute; top: -2rem; right: -0.5rem; background: white; border-radius: 50%; width: 36px; height: 36px; display: flex; align-items: center; justify-content: center; cursor: pointer; font-size: 1.4rem; font-weight: bold; }
+    
+    .modal-content-inner { 
+      max-width: 85vw; 
+      max-height: 85vh; 
+      position: relative; 
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+    
+    .modal-content-inner img { 
+      width: auto; 
+      max-height: 75vh; 
+      border-radius: 1rem; 
+      box-shadow: 0 25px 40px rgba(0,0,0,0.3); 
+      transition: opacity 0.3s ease;
+    }
+    
+    .close-modal { 
+      position: absolute; 
+      top: -2rem; 
+      right: -0.5rem; 
+      background: white; 
+      border-radius: 50%; 
+      width: 36px; 
+      height: 36px; 
+      display: flex; 
+      align-items: center; 
+      justify-content: center; 
+      cursor: pointer; 
+      font-size: 1.4rem; 
+      font-weight: bold; 
+      z-index: 10;
+    }
+    
+    /* Lightbox navigation arrows */
+    .lightbox-nav {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 100%;
+      display: flex;
+      justify-content: space-between;
+      padding: 0 15px;
+      z-index: 10;
+    }
+    
+    .lightbox-nav-btn {
+      background: rgba(255, 255, 255, 0.2);
+      border: none;
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+      color: white;
+      cursor: pointer;
+      transition: background 0.2s;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.2rem;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+      border: 2px solid rgba(255, 255, 255, 0.3);
+    }
+    
+    .lightbox-nav-btn:hover {
+      background: rgba(237, 0, 142, 0.8);
+      border-color: #ed008e;
+      transform: scale(1.08);
+    }
+    
+    .lightbox-nav-btn:disabled {
+      opacity: 0.3;
+      cursor: not-allowed;
+      transform: none;
+    }
+    
+    /* Lightbox counter */
+    .lightbox-counter {
+      position: absolute;
+      bottom: 10px;
+      right: 20px;
+      color: white;
+      background: rgba(237, 0, 142, 0.8);
+      padding: 8px 16px;
+      border-radius: 20px;
+      font-size: 0.9rem;
+      font-weight: 600;
+      z-index: 10;
+      backdrop-filter: blur(4px);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+    }
+    
     .pdf-btn-group { display: flex; flex-wrap: wrap; gap: 1rem; justify-content: center; }
     footer a { transition: color 0.2s; }
     footer a:hover { color: var(--brand-pink); }
@@ -348,15 +477,54 @@
     .btn-dark-custom:hover { background: #3a2e30; }
     .gradient-pink { background: linear-gradient(135deg, var(--brand-pink) 0%, #ff4da6 100%); }
 
+    /* ── BACK TO TOP BUTTON ── */
+    .back-to-top {
+      position: fixed;
+      bottom: 30px;
+      right: 30px;
+      width: 55px;
+      height: 55px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, #e6007e 0%, #ff1493 100%);
+      color: white;
+      border: none;
+      font-size: 1.3rem;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 4px 15px rgba(230, 0, 126, 0.4);
+      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      z-index: 999;
+      opacity: 0;
+      transform: translateY(20px);
+      pointer-events: none;
+    }
+    .back-to-top.visible {
+      opacity: 1;
+      transform: translateY(0);
+      pointer-events: auto;
+    }
+    .back-to-top:hover {
+      transform: translateY(-4px) scale(1.1);
+      box-shadow: 0 8px 25px rgba(230, 0, 126, 0.5);
+      background: linear-gradient(135deg, #c40073 0%, #e6007e 100%);
+    }
+
     /* ── Responsive ── */
     @media (max-width: 768px) {
       body { padding-top: 70px; }
       .header-glass { height: 70px; padding: 0 1rem; }
       .mobile-menu-panel { top: 70px; }
       .logo-text { font-size: 1rem; }
+      .back-to-top { width: 48px; height: 48px; font-size: 1.1rem; bottom: 20px; right: 20px; }
+      .lightbox-nav-btn { width: 42px; height: 42px; font-size: 1rem; }
+      .lightbox-counter { bottom: 8px; right: 12px; font-size: 0.8rem; padding: 6px 12px; }
     }
     @media (max-width: 480px) {
       .logo-text { font-size: 0.9rem; }
+      .back-to-top { width: 44px; height: 44px; font-size: 1rem; }
+      .lightbox-nav-btn { width: 38px; height: 38px; }
     }
   </style>
 </head>
@@ -485,7 +653,7 @@
     </div>
     <div class="mt-12 flex justify-center">
       <div class="relative w-full max-w-4xl rounded-2xl overflow-hidden shadow-2xl border-4 border-white">
-        <img src="brand-south-africa-copy.jpg" alt="BrandSA campaign hero" class="w-full object-cover" onerror="this.src='https://placehold.co/1200x600/231e1f/white?text=BrandSA+Visual'">
+        <img src="assets/images/brand-south-africa-copy.jpg" alt="BrandSA campaign hero" class="w-full object-cover" onerror="this.src='https://placehold.co/1200x600/231e1f/white?text=BrandSA+Visual'">
       </div>
     </div>
   </div>
@@ -505,26 +673,32 @@
       <div class="gallery-item" data-img-src="brand-south-africa-copy.jpg">
         <img src="brand-south-africa-copy.jpg" alt="Brand South Africa cover" class="w-full h-64 object-cover" onerror="this.src='https://placehold.co/500x400/231e1f/white?text=Brand+Guidelines'">
         <div class="p-3 text-center text-sm font-medium text-gray-600">Brand Identity Guidelines – Cover</div>
+        <span class="arrow-indicator">→</span>
       </div>
       <div class="gallery-item" data-img-src="brandsa.jpg">
         <img src="brandsa.jpg" alt="Play Your Part campaign" class="w-full h-64 object-cover" onerror="this.src='https://placehold.co/500x400/231e1f/white?text=Play+Your+Part'">
         <div class="p-3 text-center text-sm font-medium text-gray-600">"Play Your Part" hero visual</div>
+        <span class="arrow-indicator">→</span>
       </div>
       <div class="gallery-item" data-img-src="brandsa-digital-case-studies-solution.png">
         <img src="brandsa-digital-case-studies-solution.png" alt="Digital toolkit solution" class="w-full h-64 object-cover" onerror="this.src='https://placehold.co/500x400/231e1f/white?text=Digital+Asset+Suite'">
         <div class="p-3 text-center text-sm font-medium text-gray-600">Digital toolkit – asset suite</div>
+        <span class="arrow-indicator">→</span>
       </div>
       <div class="gallery-item" data-img-src="obrian-work19.jpg">
         <img src="obrian-work19.jpg" alt="Logo variations" class="w-full h-64 object-cover" onerror="this.src='https://placehold.co/500x400/231e1f/white?text=Logo+Lockups'">
         <div class="p-3 text-center text-sm font-medium text-gray-600">Logo lockups & colour palette</div>
+        <span class="arrow-indicator">→</span>
       </div>
-      <div class="gallery-item" data-img-src="whatsapp-image-2025-07-04-at-14.51.29.jpg">
-        <img src="whatsapp-image-2025-07-04-at-14.51.29.jpg" alt="Print collateral" class="w-full h-64 object-cover" onerror="this.src='https://placehold.co/500x400/231e1f/white?text=Print+Brochure'">
+      <div class="gallery-item" data-img-src="whatsapp-image-2025-07-04-at-14.51.29.jpeg">
+        <img src="whatsapp-image-2025-07-04-at-14.51.29.jpeg" alt="Print collateral" class="w-full h-64 object-cover" onerror="this.src='https://placehold.co/500x400/231e1f/white?text=Print+Brochure'">
         <div class="p-3 text-center text-sm font-medium text-gray-600">Print collateral – brochure spreads</div>
+        <span class="arrow-indicator">→</span>
       </div>
-      <div class="gallery-item" data-img-src="whatsapp-image-2025-07-04-at-14.51.30.jpg">
-        <img src="whatsapp-image-2025-07-04-at-14.51.30.jpg" alt="Campaign impact" class="w-full h-64 object-cover" onerror="this.src='https://placehold.co/500x400/ed008e/ffffff?text=Impact+Metrics'">
+      <div class="gallery-item" data-img-src="whatsapp-image-2025-07-04-at-14.51.30.jpeg">
+        <img src="whatsapp-image-2025-07-04-at-14.51.30.jpeg" alt="Campaign impact" class="w-full h-64 object-cover" onerror="this.src='https://placehold.co/500x400/ed008e/ffffff?text=Impact+Metrics'">
         <div class="p-3 text-center text-sm font-medium text-gray-600">Campaign impact & reach metrics</div>
+        <span class="arrow-indicator">→</span>
       </div>
     </div>
   </div>
@@ -612,11 +786,25 @@
   </div>
 </footer>
 
+<!-- ======================== BACK TO TOP BUTTON ======================== -->
+<button class="back-to-top" id="backToTop" aria-label="Back to top">
+  <i class="fas fa-arrow-up"></i>
+</button>
+
 <!-- ======================== LIGHTBOX MODAL ======================== -->
 <div id="lightboxModal" class="modal-lightbox">
   <div class="modal-content-inner">
     <span class="close-modal">&times;</span>
     <img id="lightboxImg" src="" alt="gallery preview">
+    <div class="lightbox-nav">
+      <button class="lightbox-nav-btn" id="prevBtn" title="Previous Image">
+        <i class="fas fa-chevron-left"></i>
+      </button>
+      <button class="lightbox-nav-btn" id="nextBtn" title="Next Image">
+        <i class="fas fa-chevron-right"></i>
+      </button>
+    </div>
+    <div class="lightbox-counter" id="lightboxCounter">1 / 6</div>
   </div>
 </div>
 
@@ -630,6 +818,14 @@
         header.classList.add('scrolled');
       } else {
         header.classList.remove('scrolled');
+      }
+      
+      // Back to top button visibility
+      const backToTop = document.getElementById('backToTop');
+      if (window.scrollY > 400) {
+        backToTop.classList.add('visible');
+      } else {
+        backToTop.classList.remove('visible');
       }
     });
 
@@ -661,37 +857,114 @@
         document.body.style.overflow = '';
       }
     });
+
+    // Back to top button click
+    document.getElementById('backToTop').addEventListener('click', function() {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
   })();
 
-  // ===== LIGHTBOX FUNCTIONALITY =====
+  // ===== LIGHTBOX FUNCTIONALITY WITH ARROWS =====
   (function() {
     const modal = document.getElementById('lightboxModal');
     const modalImg = document.getElementById('lightboxImg');
     const closeModal = document.querySelector('.close-modal');
+    const prevBtn = document.getElementById('prevBtn');
+    const nextBtn = document.getElementById('nextBtn');
+    const lightboxCounter = document.getElementById('lightboxCounter');
     const galleryItems = document.querySelectorAll('.gallery-item');
+    
+    // Collect all image sources
+    const imageSources = [];
+    galleryItems.forEach(item => {
+      const imgSrc = item.getAttribute('data-img-src');
+      const fallbackSrc = item.querySelector('img')?.src;
+      imageSources.push(imgSrc || fallbackSrc);
+    });
+    
+    let currentIndex = 0;
 
-    function openLightbox(imgSrc) {
-      modalImg.src = imgSrc;
+    function openLightbox(index) {
+      if (index < 0) index = imageSources.length - 1;
+      if (index >= imageSources.length) index = 0;
+      currentIndex = index;
+      
+      modalImg.style.opacity = '0';
+      setTimeout(function() {
+        modalImg.src = imageSources[currentIndex];
+        modalImg.style.opacity = '1';
+      }, 100);
+      
+      lightboxCounter.textContent = (currentIndex + 1) + ' / ' + imageSources.length;
+      
+      // Update button states
+      prevBtn.disabled = currentIndex === 0;
+      nextBtn.disabled = currentIndex === imageSources.length - 1;
+      
       modal.classList.add('active');
       document.body.style.overflow = 'hidden';
     }
+    
     function closeLightbox() {
       modal.classList.remove('active');
       document.body.style.overflow = '';
     }
-    galleryItems.forEach(item => {
+    
+    function showPrev() {
+      if (currentIndex > 0) {
+        currentIndex--;
+        openLightbox(currentIndex);
+      }
+    }
+    
+    function showNext() {
+      if (currentIndex < imageSources.length - 1) {
+        currentIndex++;
+        openLightbox(currentIndex);
+      }
+    }
+
+    // Attach click handlers to gallery items
+    galleryItems.forEach((item, index) => {
       item.addEventListener('click', () => {
-        const imgUrl = item.getAttribute('data-img-src');
-        if (imgUrl) openLightbox(imgUrl);
-        else {
-          const fallbackImg = item.querySelector('img')?.src;
-          if (fallbackImg) openLightbox(fallbackImg);
-        }
+        openLightbox(index);
       });
     });
+
+    // Lightbox controls
+    if (prevBtn) prevBtn.addEventListener('click', showPrev);
+    if (nextBtn) nextBtn.addEventListener('click', showNext);
     if (closeModal) closeModal.addEventListener('click', closeLightbox);
-    modal.addEventListener('click', (e) => { if (e.target === modal) closeLightbox(); });
-    document.addEventListener('keydown', (e) => { if (e.key === 'Escape' && modal.classList.contains('active')) closeLightbox(); });
+    
+    modal.addEventListener('click', (e) => { 
+      if (e.target === modal) closeLightbox(); 
+    });
+    
+    // Keyboard navigation
+    document.addEventListener('keydown', (e) => { 
+      if (modal.classList.contains('active')) {
+        if (e.key === 'Escape') closeLightbox();
+        if (e.key === 'ArrowLeft') showPrev();
+        if (e.key === 'ArrowRight') showNext();
+      }
+    });
+
+    // Touch swipe support
+    let touchStartX = 0;
+    let touchEndX = 0;
+    
+    modal.addEventListener('touchstart', function(e) {
+      touchStartX = e.changedTouches[0].screenX;
+    });
+    
+    modal.addEventListener('touchend', function(e) {
+      touchEndX = e.changedTouches[0].screenX;
+      const diff = touchStartX - touchEndX;
+      if (Math.abs(diff) > 50) {
+        if (diff > 0) showNext();
+        else showPrev();
+      }
+    });
   })();
 
   // Smooth anchor scroll
