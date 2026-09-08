@@ -580,25 +580,6 @@
             max-width: 600px;
         }
 
-        /* ── HERO IMAGE SECTION ── */
-        .hero-image-section {
-            padding: 0 0 60px;
-            background: var(--dark);
-        }
-
-        .hero-image-section .feature-hero {
-            border-radius: var(--radius);
-            overflow: hidden;
-            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.30);
-            border: 2px solid rgba(237, 0, 142, 0.15);
-        }
-
-        .hero-image-section .feature-hero img {
-            width: 100%;
-            height: auto;
-            display: block;
-        }
-
         /* ── CONTENT SECTION ── */
         .content-section {
             padding: 80px 0;
@@ -738,6 +719,157 @@
 
         .gallery-grid .item:hover .overlay {
             opacity: 1;
+        }
+
+        /* ── ARROW INDICATOR ON GALLERY ITEMS ── */
+        .gallery-grid .item .arrow-indicator {
+            position: absolute;
+            bottom: 8px;
+            right: 8px;
+            background: rgba(237, 0, 142, 0.9);
+            color: white;
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.9rem;
+            opacity: 0;
+            transition: all 0.3s ease;
+            z-index: 2;
+            pointer-events: none;
+            border: 2px solid white;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+        }
+
+        .gallery-grid .item:hover .arrow-indicator {
+            opacity: 1;
+            transform: scale(1.1);
+        }
+
+        /* ── LIGHTBOX WITH ARROW NAVIGATION ── */
+        .lightbox-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(35, 30, 31, 0.95);
+            backdrop-filter: blur(8px);
+            -webkit-backdrop-filter: blur(8px);
+            z-index: 9999;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 0.3s ease;
+            padding: 20px;
+        }
+
+        .lightbox-overlay.active {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .lightbox-container {
+            position: relative;
+            max-width: 90vw;
+            max-height: 90vh;
+            background: #fff;
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow: 0 32px 64px rgba(0, 0, 0, 0.5);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .lightbox-image-wrapper {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 100%;
+            height: calc(90vh - 60px);
+            overflow: hidden;
+            background: #111;
+        }
+
+        .lightbox-image-wrapper img {
+            max-width: 100%;
+            max-height: 100%;
+            object-fit: contain;
+            transition: opacity 0.3s ease;
+        }
+
+        .lightbox-controls {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            width: 100%;
+            padding: 12px 20px;
+            background: rgba(35, 30, 31, 0.9);
+            border-top: 1px solid rgba(255,255,255,0.1);
+        }
+
+        .lightbox-nav-btn {
+            width: 44px;
+            height: 44px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.15);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            color: white;
+            font-size: 1.2rem;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.2s ease;
+            backdrop-filter: blur(4px);
+        }
+
+        .lightbox-nav-btn:hover {
+            background: var(--primary);
+            border-color: var(--primary);
+            transform: scale(1.1);
+        }
+
+        .lightbox-nav-btn:disabled {
+            opacity: 0.3;
+            cursor: not-allowed;
+            transform: none;
+        }
+
+        .lightbox-counter {
+            color: white;
+            font-size: 0.9rem;
+            font-weight: 600;
+            letter-spacing: 0.05em;
+            background: rgba(255,255,255,0.1);
+            padding: 6px 16px;
+            border-radius: 20px;
+        }
+
+        .lightbox-close-btn {
+            width: 44px;
+            height: 44px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.15);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            color: white;
+            font-size: 1.2rem;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.2s ease;
+        }
+
+        .lightbox-close-btn:hover {
+            background: #e74c3c;
+            border-color: #e74c3c;
+            transform: scale(1.1);
         }
 
         /* ── SOCIAL ── */
@@ -950,6 +1082,19 @@
                 grid-template-columns: 1fr 1fr;
                 gap: 32px;
             }
+
+            .lightbox-container {
+                max-width: 95vw;
+                max-height: 95vh;
+            }
+
+            .lightbox-image-wrapper {
+                height: calc(95vh - 80px);
+            }
+
+            .lightbox-controls {
+                padding: 10px 12px;
+            }
         }
 
         @media (max-width: 480px) {
@@ -1119,7 +1264,7 @@
                 </div>
                 <div class="hero-visual">
                     <div class="feature-img" data-lightbox="true">
-                        <img src="epwp-copy.jpg" alt="EPWP Campaign" />
+                        <img src="assets/images/epwp-copy.jpg" alt="EPWP Campaign" />
                     </div>
                 </div>
             </div>
@@ -1155,7 +1300,7 @@
                     </div>
                 </div>
                 <div class="content-image" data-lightbox="true">
-                    <img src="earspace.jpg" alt="EPWP Program" />
+                    <img src="earspace.jpeg" alt="EPWP Program" />
                 </div>
             </div>
         </div>
@@ -1167,33 +1312,54 @@
             <div style="text-align:center; margin-bottom:48px;">
                 <span class="section-label">Gallery</span>
                 <h2 class="section-title" style="text-align:center;">Campaign <span style="color:var(--primary);">Highlights</span></h2>
-                <p class="section-sub" style="margin:0 auto;">Click any image to view it full screen.</p>
+                <p class="section-sub" style="margin:0 auto;">Click any image to view it full screen with arrows to navigate.</p>
             </div>
 
             <div class="gallery-grid">
-                <div class="item"><img src="1.jpg" alt="" /><div class="overlay"><i class="fas fa-search-plus"></i></div></div>
-                <div class="item"><img src="2.jpg" alt="" /><div class="overlay"><i class="fas fa-search-plus"></i></div></div>
-                <div class="item"><img src="3.jpg" alt="" /><div class="overlay"><i class="fas fa-search-plus"></i></div></div>
-                <div class="item"><img src="4-copy.jpg" alt="" /><div class="overlay"><i class="fas fa-search-plus"></i></div></div>
-                <div class="item"><img src="5.jpg" alt="" /><div class="overlay"><i class="fas fa-search-plus"></i></div></div>
-                <div class="item"><img src="6.jpg" alt="" /><div class="overlay"><i class="fas fa-search-plus"></i></div></div>
-                <div class="item"><img src="7.jpg" alt="" /><div class="overlay"><i class="fas fa-search-plus"></i></div></div>
-                <div class="item"><img src="8.jpg" alt="" /><div class="overlay"><i class="fas fa-search-plus"></i></div></div>
-                <div class="item"><img src="9.jpg" alt="" /><div class="overlay"><i class="fas fa-search-plus"></i></div></div>
-                <div class="item"><img src="10.jpg" alt="" /><div class="overlay"><i class="fas fa-search-plus"></i></div></div>
-                <div class="item"><img src="11.jpg" alt="" /><div class="overlay"><i class="fas fa-search-plus"></i></div></div>
-                <div class="item"><img src="12.jpg" alt="" /><div class="overlay"><i class="fas fa-search-plus"></i></div></div>
-                <div class="item"><img src="13.jpg" alt="" /><div class="overlay"><i class="fas fa-search-plus"></i></div></div>
-                <div class="item"><img src="14-1.jpg" alt="" /><div class="overlay"><i class="fas fa-search-plus"></i></div></div>
-                <div class="item"><img src="15.jpg" alt="" /><div class="overlay"><i class="fas fa-search-plus"></i></div></div>
-                <div class="item"><img src="16.jpg" alt="" /><div class="overlay"><i class="fas fa-search-plus"></i></div></div>
-                <div class="item"><img src="slide.jpg" alt="" /><div class="overlay"><i class="fas fa-search-plus"></i></div></div>
-                <div class="item"><img src="1-logo.png" alt="" /><div class="overlay"><i class="fas fa-search-plus"></i></div></div>
-                <div class="item"><img src="2-14.jpg" alt="" /><div class="overlay"><i class="fas fa-search-plus"></i></div></div>
-                <div class="item"><img src="client-logos-60.jpg" alt="" /><div class="overlay"><i class="fas fa-search-plus"></i></div></div>
+                <div class="item" data-index="0"><img src="1.jpeg" alt="" /><div class="overlay"><i class="fas fa-search-plus"></i></div><span class="arrow-indicator">→</span></div>
+                <div class="item" data-index="1"><img src="2.jpeg" alt="" /><div class="overlay"><i class="fas fa-search-plus"></i></div><span class="arrow-indicator">→</span></div>
+                <div class="item" data-index="2"><img src="3.jpeg" alt="" /><div class="overlay"><i class="fas fa-search-plus"></i></div><span class="arrow-indicator">→</span></div>
+                <div class="item" data-index="3"><img src="4-copy.jpg" alt="" /><div class="overlay"><i class="fas fa-search-plus"></i></div><span class="arrow-indicator">→</span></div>
+                <div class="item" data-index="4"><img src="5.jpeg" alt="" /><div class="overlay"><i class="fas fa-search-plus"></i></div><span class="arrow-indicator">→</span></div>
+                <div class="item" data-index="5"><img src="6.jpeg" alt="" /><div class="overlay"><i class="fas fa-search-plus"></i></div><span class="arrow-indicator">→</span></div>
+                <div class="item" data-index="6"><img src="7.jpeg" alt="" /><div class="overlay"><i class="fas fa-search-plus"></i></div><span class="arrow-indicator">→</span></div>
+                <div class="item" data-index="7"><img src="8.jpeg" alt="" /><div class="overlay"><i class="fas fa-search-plus"></i></div><span class="arrow-indicator">→</span></div>
+                <div class="item" data-index="8"><img src="9.jpeg" alt="" /><div class="overlay"><i class="fas fa-search-plus"></i></div><span class="arrow-indicator">→</span></div>
+                <div class="item" data-index="9"><img src="10.jpeg" alt="" /><div class="overlay"><i class="fas fa-search-plus"></i></div><span class="arrow-indicator">→</span></div>
+                <div class="item" data-index="10"><img src="11.jpeg" alt="" /><div class="overlay"><i class="fas fa-search-plus"></i></div><span class="arrow-indicator">→</span></div>
+                <div class="item" data-index="11"><img src="12.jpeg" alt="" /><div class="overlay"><i class="fas fa-search-plus"></i></div><span class="arrow-indicator">→</span></div>
+                <div class="item" data-index="12"><img src="13.jpeg" alt="" /><div class="overlay"><i class="fas fa-search-plus"></i></div><span class="arrow-indicator">→</span></div>
+                <div class="item" data-index="13"><img src="14-1.jpeg" alt="" /><div class="overlay"><i class="fas fa-search-plus"></i></div><span class="arrow-indicator">→</span></div>
+                <div class="item" data-index="14"><img src="15.jpeg" alt="" /><div class="overlay"><i class="fas fa-search-plus"></i></div><span class="arrow-indicator">→</span></div>
+                <div class="item" data-index="15"><img src="16.jpeg" alt="" /><div class="overlay"><i class="fas fa-search-plus"></i></div><span class="arrow-indicator">→</span></div>
+                <div class="item" data-index="16"><img src="slide.jpeg" alt="" /><div class="overlay"><i class="fas fa-search-plus"></i></div><span class="arrow-indicator">→</span></div>
+                <div class="item" data-index="17"><img src="1-logo.png" alt="" /><div class="overlay"><i class="fas fa-search-plus"></i></div><span class="arrow-indicator">→</span></div>
+                <div class="item" data-index="18"><img src="2-14.jpg" alt="" /><div class="overlay"><i class="fas fa-search-plus"></i></div><span class="arrow-indicator">→</span></div>
+                <div class="item" data-index="19"><img src="client-logos-60.jpg" alt="" /><div class="overlay"><i class="fas fa-search-plus"></i></div><span class="arrow-indicator">→</span></div>
             </div>
         </div>
     </section>
+
+    <!-- ─── LIGHTBOX WITH ARROWS ─── -->
+    <div class="lightbox-overlay" id="lightboxOverlay">
+        <div class="lightbox-container">
+            <div class="lightbox-image-wrapper">
+                <img id="lightboxImage" src="" alt="Full view" />
+            </div>
+            <div class="lightbox-controls">
+                <button class="lightbox-nav-btn" id="lightboxPrev" aria-label="Previous image">
+                    <i class="fas fa-chevron-left"></i>
+                </button>
+                <div class="lightbox-counter" id="lightboxCounter">1 / 20</div>
+                <button class="lightbox-nav-btn" id="lightboxNext" aria-label="Next image">
+                    <i class="fas fa-chevron-right"></i>
+                </button>
+            </div>
+            <button class="lightbox-close-btn" id="lightboxClose" aria-label="Close lightbox" style="position: absolute; top: 10px; right: 10px;">
+                <i class="fas fa-times"></i>
+            </button>
+        </div>
+    </div>
 
     <!-- ─── SOCIAL ─── -->
     <section class="social-section">
@@ -1240,7 +1406,7 @@
                         <li><a href="Client_Experience.html">Clients</a></li>
                         <li><a href="#">Teams</a></li>
                         <li><a href="#">Brand</a></li>
-                        <li><a href="#">Terms</a></li>
+                        <li><a href="Terms.html">Terms</a></li>
                     </ul>
                 </div>
             </div>
@@ -1324,67 +1490,198 @@
             });
         });
 
-        // ── LIGHTBOX FUNCTION ──
-        function openLightbox(imgSrc) {
-            if (!imgSrc) return;
-            var overlay = document.createElement('div');
-            overlay.style.cssText = `
-                position: fixed; inset:0; background:rgba(35,30,31,0.92);
-                display:flex; align-items:center; justify-content:center;
-                z-index:9999; cursor:pointer; padding:40px;
-                animation: fadeIn 0.3s ease;
-            `;
-            var inner = document.createElement('div');
-            inner.style.cssText = `
-                max-width:90vw; max-height:90vh; background:#fff;
-                border-radius:12px; overflow:hidden; box-shadow:0 32px 64px rgba(0,0,0,0.6);
-            `;
-            var img = document.createElement('img');
-            img.src = imgSrc;
-            img.style.cssText = 'display:block; max-width:100%; max-height:80vh; width:auto; height:auto;';
-            inner.appendChild(img);
-            overlay.appendChild(inner);
-            document.body.appendChild(overlay);
+        // ── LIGHTBOX WITH ARROW NAVIGATION ──
+        const lightboxOverlay = document.getElementById('lightboxOverlay');
+        const lightboxImage = document.getElementById('lightboxImage');
+        const lightboxPrev = document.getElementById('lightboxPrev');
+        const lightboxNext = document.getElementById('lightboxNext');
+        const lightboxClose = document.getElementById('lightboxClose');
+        const lightboxCounter = document.getElementById('lightboxCounter');
+        
+        // Collect all gallery images
+        const galleryItems = document.querySelectorAll('.gallery-grid .item');
+        const imageSources = [];
+        let currentIndex = 0;
 
-            overlay.addEventListener('click', function() { overlay.remove(); });
-            document.addEventListener('keydown', function(e) {
-                if (e.key === 'Escape') overlay.remove();
-            });
+        // Collect image sources from gallery items
+        galleryItems.forEach(function(item) {
+            const img = item.querySelector('img');
+            if (img) {
+                imageSources.push(img.getAttribute('src'));
+            }
+        });
+
+        // Also include hero image and content image
+        const heroImg = document.querySelector('.hero-visual .feature-img img');
+        const contentImg = document.querySelector('.content-image img');
+        
+        // We'll collect all images for navigation
+        const allImages = [];
+        
+        // Add gallery images first
+        imageSources.forEach(function(src) {
+            allImages.push(src);
+        });
+        
+        // Add hero and content images if they exist
+        if (heroImg) allImages.push(heroImg.getAttribute('src'));
+        if (contentImg) allImages.push(contentImg.getAttribute('src'));
+
+        function openLightbox(index) {
+            if (index < 0) index = allImages.length - 1;
+            if (index >= allImages.length) index = 0;
+            currentIndex = index;
+            lightboxImage.setAttribute('src', allImages[currentIndex]);
+            lightboxImage.style.opacity = '0';
+            
+            // Fade in the image
+            setTimeout(function() {
+                lightboxImage.style.opacity = '1';
+            }, 50);
+            
+            lightboxCounter.textContent = (currentIndex + 1) + ' / ' + allImages.length;
+            
+            // Update nav button states
+            lightboxPrev.disabled = false;
+            lightboxNext.disabled = false;
+            
+            if (currentIndex === 0) {
+                lightboxPrev.disabled = true;
+            }
+            if (currentIndex === allImages.length - 1) {
+                lightboxNext.disabled = true;
+            }
+            
+            lightboxOverlay.classList.add('active');
+            document.body.style.overflow = 'hidden';
         }
 
-        // ── Attach lightbox to Gallery Items ──
-        document.querySelectorAll('.gallery-grid .item').forEach(function(el) {
-            el.addEventListener('click', function() {
-                var img = this.querySelector('img');
-                if (img) openLightbox(img.getAttribute('src'));
-            });
-        });
-
-        // ── Attach lightbox to Hero Image ──
-        document.querySelectorAll('.hero-visual .feature-img[data-lightbox="true"]').forEach(function(el) {
-            el.addEventListener('click', function() {
-                var img = this.querySelector('img');
-                if (img) openLightbox(img.getAttribute('src'));
-            });
-        });
-
-        // ── Attach lightbox to Content Image ──
-        document.querySelectorAll('.content-image[data-lightbox="true"]').forEach(function(el) {
-            el.addEventListener('click', function() {
-                var img = this.querySelector('img');
-                if (img) openLightbox(img.getAttribute('src'));
-            });
-        });
-
-        // ── Inject fade-in keyframe ──
-        if (!document.getElementById('fadeKeyframes')) {
-            var style = document.createElement('style');
-            style.id = 'fadeKeyframes';
-            style.textContent = `
-                @keyframes fadeIn { from { opacity:0; transform:scale(0.96); } to { opacity:1; transform:scale(1); } }
-            `;
-            document.head.appendChild(style);
+        function closeLightbox() {
+            lightboxOverlay.classList.remove('active');
+            document.body.style.overflow = '';
         }
+
+        function prevImage() {
+            openLightbox(currentIndex - 1);
+        }
+
+        function nextImage() {
+            openLightbox(currentIndex + 1);
+        }
+
+        // Add click listeners to gallery items
+        galleryItems.forEach(function(item) {
+            item.addEventListener('click', function() {
+                const img = item.querySelector('img');
+                if (img) {
+                    const src = img.getAttribute('src');
+                    const index = allImages.indexOf(src);
+                    if (index >= 0) {
+                        openLightbox(index);
+                    }
+                }
+            });
+        });
+
+        // Add click listeners to hero and content images
+        document.querySelectorAll('[data-lightbox="true"]').forEach(function(el) {
+            el.addEventListener('click', function() {
+                const img = this.querySelector('img');
+                if (img) {
+                    const src = img.getAttribute('src');
+                    const index = allImages.indexOf(src);
+                    if (index >= 0) {
+                        openLightbox(index);
+                    }
+                }
+            });
+        });
+
+        // Lightbox controls
+        lightboxPrev.addEventListener('click', function(e) {
+            e.stopPropagation();
+            prevImage();
+        });
+
+        lightboxNext.addEventListener('click', function(e) {
+            e.stopPropagation();
+            nextImage();
+        });
+
+        lightboxClose.addEventListener('click', function(e) {
+            e.stopPropagation();
+            closeLightbox();
+        });
+
+        // Close on overlay click (not on container)
+        lightboxOverlay.addEventListener('click', function(e) {
+            if (e.target === lightboxOverlay) {
+                closeLightbox();
+            }
+        });
+
+        // Keyboard navigation
+        document.addEventListener('keydown', function(e) {
+            if (!lightboxOverlay.classList.contains('active')) return;
+            if (e.key === 'Escape') closeLightbox();
+            if (e.key === 'ArrowLeft') prevImage();
+            if (e.key === 'ArrowRight') nextImage();
+        });
+
+        // Touch swipe support
+        let touchStartX = 0;
+        let touchEndX = 0;
+
+        lightboxOverlay.addEventListener('touchstart', function(e) {
+            touchStartX = e.changedTouches[0].screenX;
+        });
+
+        lightboxOverlay.addEventListener('touchend', function(e) {
+            touchEndX = e.changedTouches[0].screenX;
+            const diff = touchStartX - touchEndX;
+            if (Math.abs(diff) > 50) {
+                if (diff > 0) nextImage();
+                else prevImage();
+            }
+        });
+
+        // Add arrow indicators to gallery items
+        galleryItems.forEach(function(item) {
+            const arrow = document.createElement('span');
+            arrow.className = 'arrow-indicator';
+            arrow.innerHTML = '→';
+            item.appendChild(arrow);
+        });
+
+        // Ensure arrow indicators are visible on hover
+        const styleSheet = document.createElement('style');
+        styleSheet.textContent = `
+            .gallery-grid .item .arrow-indicator {
+                position: absolute;
+                bottom: 8px;
+                right: 8px;
+                background: rgba(237, 0, 142, 0.9);
+                color: white;
+                width: 30px;
+                height: 30px;
+                border-radius: 50%;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                font-size: 0.9rem;
+                opacity: 0;
+                transition: all 0.3s ease;
+                z-index: 2;
+                pointer-events: none;
+                border: 2px solid white;
+                box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+            }
+            .gallery-grid .item:hover .arrow-indicator {
+                opacity: 1;
+                transform: scale(1.1);
+            }
+        `;
+        document.head.appendChild(styleSheet);
     </script>
 
 </body>
