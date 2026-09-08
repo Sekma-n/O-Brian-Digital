@@ -585,6 +585,142 @@
             max-width: 90vw;
         }
 
+        /* ===== SLIDER GALLERY STYLES ===== */
+        .slider-gallery {
+            position: relative;
+            width: 100%;
+            max-width: 1100px;
+            margin: 0 auto 40px;
+            background: #fff;
+            border-radius: 20px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.1);
+            overflow: hidden;
+            padding: 20px;
+        }
+
+        .slider-main {
+            position: relative;
+            width: 100%;
+            height: 500px;
+            border-radius: 16px;
+            overflow: hidden;
+            background: #f8fafc;
+            margin-bottom: 20px;
+        }
+
+        .slider-main img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+            border-radius: 16px;
+            display: none;
+            animation: fadeIn 0.5s ease;
+        }
+
+        .slider-main img.active {
+            display: block;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: scale(0.98); }
+            to { opacity: 1; transform: scale(1); }
+        }
+
+        .slider-arrow {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background: rgba(255,255,255,0.9);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            z-index: 10;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.2);
+            transition: all 0.3s ease;
+            border: none;
+        }
+
+        .slider-arrow:hover {
+            background: #e6007e;
+            color: white;
+            transform: translateY(-50%) scale(1.1);
+        }
+
+        .slider-arrow.prev {
+            left: 20px;
+        }
+
+        .slider-arrow.next {
+            right: 20px;
+        }
+
+        .slider-counter {
+            position: absolute;
+            bottom: 20px;
+            right: 20px;
+            background: rgba(0,0,0,0.7);
+            color: white;
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            font-weight: 600;
+            z-index: 10;
+        }
+
+        .slider-thumbnails {
+            display: flex;
+            gap: 12px;
+            overflow-x: auto;
+            padding: 10px 0;
+            scrollbar-width: thin;
+        }
+
+        .slider-thumbnails::-webkit-scrollbar {
+            height: 6px;
+        }
+
+        .slider-thumbnails::-webkit-scrollbar-track {
+            background: #f1f5f9;
+            border-radius: 10px;
+        }
+
+        .slider-thumbnails::-webkit-scrollbar-thumb {
+            background: #e6007e;
+            border-radius: 10px;
+        }
+
+        .slider-thumb {
+            flex: 0 0 80px;
+            height: 60px;
+            border-radius: 10px;
+            overflow: hidden;
+            cursor: pointer;
+            border: 3px solid transparent;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .slider-thumb img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 8px;
+            cursor: pointer;
+        }
+
+        .slider-thumb.active {
+            border-color: #e6007e;
+            box-shadow: 0 0 0 2px rgba(230, 0, 126, 0.3);
+        }
+
+        .slider-thumb:hover {
+            transform: translateY(-3px);
+        }
+
         /* Social section */
         .social-section {
             background: #1a1a1a;
@@ -674,6 +810,13 @@
                 width: 45px;
                 height: 45px;
             }
+            .slider-main {
+                height: 350px;
+            }
+            .slider-arrow {
+                width: 40px;
+                height: 40px;
+            }
         }
     </style>
 </head>
@@ -688,7 +831,7 @@
                 <a href="index.html" class="logo-premium group">
                     <img src="obrian-transparent-logo-4461219.webp" alt="O'Brian Group" class="h-9 w-auto" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22%3E%3Crect width=%22100%22 height=%22100%22 fill=%22%23ed008e%22/%3E%3Ctext x=%2250%22 y=%2268%22 font-size=%2248%22 text-anchor=%22middle%22 fill=%22white%22 font-weight=%22bold%22 font-family=%22Inter%22%3EO%3C/text%3E%3C/svg%3E'">
                     <span class="logo-text hidden sm:inline-block">
-                        <span class="highlight"Digital</span> 
+                        <span class="highlight">O'Brian</span> Group
                     </span>
                 </a>
 
@@ -724,13 +867,13 @@
                     </div>
 
                     <a href="Staff_News.html" class="nav-link-premium">Staff News</a>
-                    <a href="Exploring_Boundless_Horizons.html" class="nav-link-premium active-link">Blog</a>
-                    <a href="Archive_Gallery.html" class="nav-link-premium">Archives</a>
+                    <a href="Blog.html" class="nav-link-premium active-link">Blog</a>
+                    <a href="Archives.html" class="nav-link-premium">Archives</a>
                 </div>
 
                 <!-- Premium CTA -->
                 <div class="hidden lg:block">
-                    <a href="Contact.html" class="btn-premium-cta">
+                    <a href="Contact_Us.html" class="btn-premium-cta">
                         <span>Contact</span>
                         <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M17 8l4 4m0 0l-4 4m4-4H3"></path></svg>
                     </a>
@@ -748,8 +891,8 @@
 
     <!-- ===== MOBILE MENU PANEL ===== -->
     <div class="mobile-menu-panel" id="mobileMenuPanel">
-        <a href="Home.html">Home</a>
-        <a href="About.html">About</a>
+        <a href="index.html">Home</a>
+        <a href="About_Us.html">About</a>
         <a href="Our_Work.html">Our Work</a>
         <a href="Client_Experience.html">Client Experience</a>
 
@@ -768,9 +911,9 @@
         </div>
 
         <a href="Staff_News.html">Staff News</a>
-        <a href="Exploring_Boundless_Horizons.html">Blog</a>
-        <a href="Archive_Gallery.html">Archives</a>
-        <a href="Contact.html" style="display:inline-flex; margin-top:1rem; background:linear-gradient(135deg,#e6007e,#ff1493); color:#fff; padding:0.6rem 1.5rem; border-radius:9999px; font-weight:700; text-decoration:none;">Contact Us</a>
+        <a href="Blog.html">Blog</a>
+        <a href="Archives.html">Archives</a>
+        <a href="Contact_Us.html" style="display:inline-flex; margin-top:1rem; background:linear-gradient(135deg,#e6007e,#ff1493); color:#fff; padding:0.6rem 1.5rem; border-radius:9999px; font-weight:700; text-decoration:none;">Contact Us</a>
     </div>
 
     <!-- ===== LIGHTBOX MODAL ===== -->
@@ -786,7 +929,7 @@
     <section class="hero">
         <div class="container">
             <!-- Back to Blog Button -->
-            <a href="Exploring_Boundless_Horizons.html" class="back-to-blog">
+            <a href="Blog.html" class="back-to-blog">
                 <i class="fas fa-arrow-left"></i> Back to Blog
             </a>
             <p class="text-pink font-semibold uppercase tracking-widest text-sm mb-4">Blog Post · Camino de Santiago</p>
@@ -866,7 +1009,7 @@
                 <div class="img-grid">
                     <img src="image-5.jpg" alt="Day 4 Morning" onclick="openLightbox(this)">
                     <img src="image-6.jpg" alt="Day 4 Coast" onclick="openLightbox(this)">
-                    <img src="image-4.jpg" alt="Day 4 Scenery" onclick="openLightbox(this)">
+                    <img src="d4.jpg" alt="Day 4 Scenery" onclick="openLightbox(this)">
                     <img src="d4ss.jpg" alt="Day 4 Scenery" onclick="openLightbox(this)">
                     <img src="d4s.jpg" alt="Day 4 Scenery" onclick="openLightbox(this)">
                     <img src="image-7.jpg" alt="Day 4 Profile" onclick="openLightbox(this)">
@@ -1043,21 +1186,86 @@
                 </div>
             </div>
 
-            <!-- Gallery -->
-            <div class="mt-16">
-                <h2 class="section-title">Camino Gallery</h2>
-                <div class="img-grid">
-                    <img src="img-3194.jpg" alt="Camino Photo 1" onclick="openLightbox(this)">
-                    <img src="img-3195.jpg" alt="Camino Photo 2" onclick="openLightbox(this)">
-                    <img src="img-3196.jpg" alt="Camino Photo 3" onclick="openLightbox(this)">
-                    <img src="img-3198.jpg" alt="Camino Photo 4" onclick="openLightbox(this)">
-                    <img src="img-3200.jpg" alt="Camino Photo 5" onclick="openLightbox(this)">
-                    <img src="img-3258.jpg" alt="Camino Photo 6" onclick="openLightbox(this)">
-                    <img src="image-23.jpg" alt="Camino Photo 7" onclick="openLightbox(this)">
-                    <img src="image-24.jpg" alt="Camino Photo 8" onclick="openLightbox(this)">
+        </div>
+    </section>
+
+    <!-- ===== SLIDER GALLERY SECTION ===== -->
+    <section class="py-16 bg-gray-50">
+        <div class="container">
+            <div class="text-center mb-10">
+                <h2 class="section-title">Camino Photo Gallery</h2>
+                <p class="text-gray-600 max-w-2xl mx-auto">Swipe through the journey — click any image to view in fullscreen.</p>
+            </div>
+            
+            <div class="slider-gallery" id="mainSlider">
+                <div class="slider-main">
+                    <img src="c1.jpg" alt="Day 1 Start" class="active">
+                    <img src="c2.jpg" alt="Day 1 Finish">
+                    <img src="image.jpg" alt="Day 2 Start">
+                    <img src="c4.jpg" alt="Day 2 Path">
+                    <img src="c5.jpg" alt="Day 2 Finish">
+                    <img src="image-2.jpg" alt="Day 3 Rain">
+                    <img src="image-1.jpg" alt="Day 3 Bridge">
+                    <img src="image-3.jpg" alt="Day 3 Start">
+                    <img src="image-4.jpg" alt="Day 3 Path">
+                    <img src="image-5.jpg" alt="Day 4 Morning">
+                    <img src="image-6.jpg" alt="Day 4 Coast">
+                    <img src="d4.jpg" alt="Day 4 Scenery">
+                    <img src="d4ss.jpg" alt="Day 4 Scenery">
+                    <img src="d4s.jpg" alt="Day 4 Scenery">
+                    <img src="image-7.jpg" alt="Day 4 Profile">
+                    <img src="usa.jpg" alt="Issac and Lynette">
+                    <img src="d5.jpg" alt="Day 5 Route">
+                    <img src="image-8.jpg" alt="Day 5 Fellow Pilgrims">
+                    <img src="img-2760.jpg" alt="Joaquin Miranda">
+                    <img src="img-2765.jpg" alt="Taxi Boat Driver">
+                    <img src="image-9.jpg" alt="Villager Gift">
+                    <img src="image-11.jpg" alt="Day 7 Pilgrims">
+                    <img src="img-2885.jpg" alt="Day 8 Walk">
+                    <img src="image-12.jpg" alt="Day 8 Group">
+                    <img src="image-13.jpg" alt="Day 8 Kudrat">
+                    <img src="image-14.jpg" alt="Day 9 Group">
+                    <img src="image-15.jpg" alt="Day 9 Walk">
+                    <img src="image-16.jpg" alt="Chris and Monica">
+                    <img src="image-17.jpg" alt="Darren">
+                    <img src="image-18.jpg" alt="Day 10 Group">
+                    <img src="image-19.jpg" alt="Day 10 Memory">
+                    <img src="image-20.jpg" alt="Day 10 Walk">
+                    <img src="image-21.jpg" alt="Day 10 Scenery">
+                    <img src="image-22.jpg" alt="Maryanne and Ana">
+                    <img src="image-25.jpeg" alt="Day 11 Reflection">
+                    <img src="img-2703.jpg" alt="Day 12 Scenery">
+                    <img src="img-2685.jpg" alt="Day 12 Walk">
+                    <img src="img-2690.jpg" alt="Day 12 Path">
+                    <img src="img-2699.jpg" alt="Day 12 View">
+                    <img src="img-2702.jpg" alt="Day 12 Friends">
+                    <img src="img-2805.jpg" alt="Day 13 Cathedral">
+                    <img src="img-2814.jpg" alt="Day 13 Finish">
+                    <img src="img-3174.jpg" alt="Day 13 Scenery">
+                    <img src="img-3175.jpg" alt="Day 13 Walk">
+                    <img src="img-3178.jpg" alt="Day 13 View">
+                    <img src="img-3181.jpg" alt="Day 13 Landmark">
+                    <img src="img-3183.jpg" alt="Day 13 Scenery">
+                    <img src="img-3184.jpg" alt="Day 13 Scenery">
+                    <img src="img-3189.jpg" alt="Day 13 Scenery">
+                    <img src="img-3194.jpg" alt="Camino Photo 1">
+                    <img src="img-3195.jpg" alt="Camino Photo 2">
+                    <img src="img-3196.jpg" alt="Camino Photo 3">
+                    <img src="img-3198.jpg" alt="Camino Photo 4">
+                    <img src="img-3200.jpg" alt="Camino Photo 5">
+                    <img src="img-3258.jpg" alt="Camino Photo 6">
+                    <img src="image-23.jpg" alt="Camino Photo 7">
+                    <img src="image-24.jpg" alt="Camino Photo 8">
+
+                    <button class="slider-arrow prev" onclick="changeSlide(-1)"><i class="fas fa-chevron-left"></i></button>
+                    <button class="slider-arrow next" onclick="changeSlide(1)"><i class="fas fa-chevron-right"></i></button>
+                    <div class="slider-counter" id="sliderCounter">1 / 58</div>
+                </div>
+                
+                <div class="slider-thumbnails" id="sliderThumbnails">
+                    <!-- Thumbnails will be populated by JS -->
                 </div>
             </div>
-
         </div>
     </section>
 
@@ -1101,7 +1309,7 @@
                 <div>
                     <h5>About</h5>
                     <ul>
-                        <li><a href="About_us.html">History</a></li>
+                        <li><a href="About_Us.html">History</a></li>
                         <li><a href="Client_Experience.html">Clients</a></li>
                         <li><a href="Teams.html">Teams</a></li>
                         <li><a href="Brand.html">Brand</a></li>
@@ -1207,6 +1415,60 @@
                     document.body.style.overflow = '';
                 }
             });
+
+            // ===== SLIDER GALLERY FUNCTIONALITY =====
+            let currentSlide = 0;
+            const slides = document.querySelectorAll('.slider-main img');
+            const counter = document.getElementById('sliderCounter');
+            const thumbnailsContainer = document.getElementById('sliderThumbnails');
+
+            // Build thumbnails
+            slides.forEach((slide, index) => {
+                const thumb = document.createElement('div');
+                thumb.className = 'slider-thumb' + (index === 0 ? ' active' : '');
+                thumb.innerHTML = `<img src="${slide.src}" alt="${slide.alt}">`;
+                thumb.addEventListener('click', () => goToSlide(index));
+                thumbnailsContainer.appendChild(thumb);
+            });
+
+            const thumbs = document.querySelectorAll('.slider-thumb');
+
+            // Show slide
+            function showSlide(index) {
+                slides.forEach(slide => slide.classList.remove('active'));
+                thumbs.forEach(thumb => thumb.classList.remove('active'));
+                
+                slides[index].classList.add('active');
+                thumbs[index].classList.add('active');
+                counter.textContent = `${index + 1} / ${slides.length}`;
+                currentSlide = index;
+            }
+
+            // Change slide
+            window.changeSlide = function(direction) {
+                let newIndex = currentSlide + direction;
+                if (newIndex >= slides.length) newIndex = 0;
+                if (newIndex < 0) newIndex = slides.length - 1;
+                showSlide(newIndex);
+            };
+
+            // Go to specific slide
+            function goToSlide(index) {
+                showSlide(index);
+            }
+
+            // Keyboard navigation
+            document.addEventListener('keydown', (e) => {
+                if (e.key === 'ArrowLeft') {
+                    changeSlide(-1);
+                } else if (e.key === 'ArrowRight') {
+                    changeSlide(1);
+                }
+            });
+
+            // Show first slide initially
+            showSlide(0);
+
         })();
     </script>
 </body>
