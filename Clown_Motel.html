@@ -520,6 +520,40 @@
             padding-top: 1.8rem;
         }
 
+        /* ===== BACK TO TOP BUTTON ===== */
+        .back-to-top-btn {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            width: 52px;
+            height: 52px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #ed008e 0%, #ff1493 100%);
+            color: white;
+            border: none;
+            font-size: 1.2rem;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 4px 15px rgba(237, 0, 142, 0.4);
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            z-index: 999;
+            opacity: 0;
+            transform: translateY(20px);
+            pointer-events: none;
+        }
+        .back-to-top-btn.visible {
+            opacity: 1;
+            transform: translateY(0);
+            pointer-events: auto;
+        }
+        .back-to-top-btn:hover {
+            transform: translateY(-4px) scale(1.1);
+            box-shadow: 0 8px 25px rgba(237, 0, 142, 0.5);
+            background: linear-gradient(135deg, #c40073 0%, #ed008e 100%);
+        }
+
         /* ===== FOOTER ===== */
         .footer {
             background: #231e1f;
@@ -606,6 +640,13 @@
             .footer .container {
                 grid-template-columns: 1fr 1fr;
             }
+            .back-to-top-btn { 
+                width: 46px; 
+                height: 46px; 
+                font-size: 1rem; 
+                bottom: 20px; 
+                right: 20px; 
+            }
         }
         @media (max-width: 480px) {
             .footer .container {
@@ -613,6 +654,11 @@
             }
             .post-hero .subtitle {
                 font-size: 1rem;
+            }
+            .back-to-top-btn { 
+                width: 42px; 
+                height: 42px; 
+                font-size: 0.9rem; 
             }
         }
     </style>
@@ -626,7 +672,7 @@
 
                 <!-- Logo -->
                 <a href="index.html" class="flex items-center gap-3 group">
-                    <img src="assets/images/obrian-transparent-logo-4461219.webp" alt="O'Brian Group" class="h-10 w-auto" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22%3E%3Crect width=%22100%22 height=%22100%22 fill=%22%23ed008e%22/%3E%3Ctext x=%2250%22 y=%2268%22 font-size=%2248%22 text-anchor=%22middle%22 fill=%22white%22 font-weight=%22bold%22 font-family=%22Inter%22%3EO%3C/text%3E%3C/svg%3E'">
+                    <img src="obrian-transparent-logo-4461219.webp" alt="O'Brian Group" class="h-10 w-auto" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22%3E%3Crect width=%22100%22 height=%22100%22 fill=%22%23ed008e%22/%3E%3Ctext x=%2250%22 y=%2268%22 font-size=%2248%22 text-anchor=%22middle%22 fill=%22white%22 font-weight=%22bold%22 font-family=%22Inter%22%3EO%3C/text%3E%3C/svg%3E'">
                     <span class="font-black text-xl text-[#231e1f] tracking-tight hidden sm:inline"><span class="text-[#ed008e]"></span></span>
                 </a>
 
@@ -691,7 +737,7 @@
         <div class="flex flex-col h-full">
             <div class="flex justify-between items-center p-6 border-b border-gray-100">
                 <a href="Home.html" class="flex items-center gap-3">
-                    <img src="assets/images/obrian-transparent-logo-4461219.webp" alt="O'Brian Group" class="logo-img" style="height: 40px;" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22%3E%3Crect width=%22100%22 height=%22100%22 fill=%22%23ed008e%22/%3E%3Ctext x=%2250%22 y=%2268%22 font-size=%2248%22 text-anchor=%22middle%22 fill=%22white%22 font-weight=%22bold%22 font-family=%22Arial%22%3EO%3C/text%3E%3C/svg%3E'">
+                    <img src="obrian-transparent-logo-4461219.webp" alt="O'Brian Group" class="logo-img" style="height: 40px;" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22%3E%3Crect width=%22100%22 height=%22100%22 fill=%22%23ed008e%22/%3E%3Ctext x=%2250%22 y=%2268%22 font-size=%2248%22 text-anchor=%22middle%22 fill=%22white%22 font-weight=%22bold%22 font-family=%22Arial%22%3EO%3C/text%3E%3C/svg%3E'">
                     <span class="font-black text-xl text-gray-900">O'BRIAN</span>
                 </a>
                 <button class="p-2 rounded-lg hover:bg-gray-100 transition-colors" id="closeMenu" aria-label="Close menu">
@@ -786,7 +832,7 @@
 
         <!-- feature image: clownsignweb-web.jpeg -->
         <div class="feature-image">
-            <img src="assets/images/clownsignweb-web.jpeg" alt="Clown Motel signage, January 2023. (Andrew Chamings)"
+            <img src="clownsignweb-web.jpeg" alt="Clown Motel signage, January 2023. (Andrew Chamings)"
             onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22800%22 height=%22450%22 viewBox=%220 0 800 450%22%3E%3Crect width=%22800%22 height=%22450%22 fill=%22%23b8aba0%22/%3E%3Ctext x=%22400%22 y=%22225%22 font-family=%22Georgia%22 font-size=%2228%22 fill=%22%23fcf9f6%22 text-anchor=%22middle%22 dominant-baseline=%22middle%22%3EClown Motel%3C/text%3E%3C/svg%3E'">
         </div>
 
@@ -799,15 +845,15 @@
             <!-- image grid from original: 5-1.svg, screenshot-2025-03-13-at-10.37.27.png, screenshot-2025-03-13-at-11.12.55.png -->
             <div class="image-grid">
                 <div class="grid-item">
-                    <img src="assets/images/5-1.svg" alt="The Clown Motel office">
+                    <img src="5-1.svg" alt="The Clown Motel office">
                     <div class="caption">The Clown Motel office, January 2023. (Andrew Chamings)</div>
                 </div>
                 <div class="grid-item">
-                    <img src="assets/images/screenshot-2025-03-13-at-10.37.27.png" alt="Old Tonopah Cemetery">
+                    <img src="screenshot-2025-03-13-at-10.37.27.png" alt="Old Tonopah Cemetery">
                     <div class="caption">Old Tonopah Cemetery, located across from the motel’s parking lot, January 2023. (Andrew Chamings)</div>
                 </div>
                 <div class="grid-item">
-                    <img src="assets/images/screenshot-2025-03-13-at-11.12.55.png" alt="Large wooden clown adorns the front">
+                    <img src="screenshot-2025-03-13-at-11.12.55.png" alt="Large wooden clown adorns the front">
                     <div class="caption">A large wooden clown adorns the front of the motel, January 2023. (Andrew Chamings)</div>
                 </div>
             </div>
@@ -824,15 +870,15 @@
             <div class="slider-wrapper" id="imageSlider">
                 <div class="slide-track" id="slideTrack">
                     <div class="slide">
-                        <img src="assets/images/screenshot-2025-03-13-at-10.39.36.png" alt="Clown collection in lobby">
+                        <img src="screenshot-2025-03-13-at-10.39.36.png" alt="Clown collection in lobby">
                         <div class="slide-caption">A clown collection in the motel lobby, January 2023. Many of the clowns have been donated by visitors. (Andrew Chamings)</div>
                     </div>
                     <div class="slide">
-                        <img src="assets/images/screenshot-2025-03-13-at-10.37.56.png" alt="Shuttered brothel">
+                        <img src="screenshot-2025-03-13-at-10.37.56.png" alt="Shuttered brothel">
                         <div class="slide-caption">A shuttered brothel near the Clown Motel on U.S. Route 95, Tonopah, Nevada, January 2023. (Andrew Chamings)</div>
                     </div>
                     <div class="slide">
-                        <img src="assets/images/screenshot-2025-03-13-at-10.38.09.png" alt="Clownvis room">
+                        <img src="screenshot-2025-03-13-at-10.38.09.png" alt="Clownvis room">
                         <div class="slide-caption">The Clownvis room, January 2023. (Andrew Chamings)</div>
                     </div>
                 </div>
@@ -924,6 +970,11 @@
         </div>
     </div>
 
+    <!-- ===== BACK TO TOP BUTTON ===== -->
+    <button class="back-to-top-btn" id="backToTop" aria-label="Back to top">
+        <i class="fas fa-arrow-up"></i>
+    </button>
+
     <!-- ===== FOOTER ===== -->
     <footer class="footer">
         <div class="container">
@@ -983,6 +1034,19 @@
                 } else {
                     header.classList.remove('scrolled');
                 }
+                
+                // Back to top button visibility
+                const backToTop = document.getElementById('backToTop');
+                if (window.scrollY > 400) {
+                    backToTop.classList.add('visible');
+                } else {
+                    backToTop.classList.remove('visible');
+                }
+            });
+
+            // Back to top button click
+            document.getElementById('backToTop').addEventListener('click', function() {
+                window.scrollTo({ top: 0, behavior: 'smooth' });
             });
 
             // Mobile menu toggle
