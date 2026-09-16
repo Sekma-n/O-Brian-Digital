@@ -272,35 +272,48 @@
             background: none;
             border: none;
             line-height: 1;
+            z-index: 10;
         }
         .lightbox-overlay .close-btn:hover {
             transform: scale(1.1);
             color: #e6007e;
         }
+        /* ===== LIGHTBOX NAVIGATION ARROWS ===== */
         .lightbox-overlay .nav-btn {
             position: absolute;
             top: 50%;
             transform: translateY(-50%);
             color: #ffffff;
-            font-size: 48px;
+            font-size: 32px;
             cursor: pointer;
-            background: rgba(230, 0, 126, 0.2);
-            border: 2px solid rgba(255, 255, 255, 0.2);
-            padding: 16px 20px;
+            background: rgba(230, 0, 126, 0.25);
+            border: 2px solid rgba(255, 255, 255, 0.3);
+            width: 56px;
+            height: 56px;
             border-radius: 50%;
-            transition: all 0.3s;
+            transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
             line-height: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 10;
+            padding: 0;
         }
         .lightbox-overlay .nav-btn:hover {
-            background: rgba(230, 0, 126, 0.5);
+            background: rgba(230, 0, 126, 0.7);
             border-color: #e6007e;
             color: #ffffff;
+            transform: translateY(-50%) scale(1.1);
+            box-shadow: 0 8px 25px rgba(230, 0, 126, 0.5);
+        }
+        .lightbox-overlay .nav-btn:active {
+            transform: translateY(-50%) scale(0.95);
         }
         .lightbox-overlay .prev-btn {
-            left: 20px;
+            left: 30px;
         }
         .lightbox-overlay .next-btn {
-            right: 20px;
+            right: 30px;
         }
         .lightbox-overlay .counter {
             position: absolute;
@@ -314,8 +327,15 @@
         }
         @media (max-width: 768px) {
             .lightbox-overlay .nav-btn {
-                font-size: 28px;
-                padding: 10px 14px;
+                width: 44px;
+                height: 44px;
+                font-size: 22px;
+            }
+            .lightbox-overlay .prev-btn {
+                left: 10px;
+            }
+            .lightbox-overlay .next-btn {
+                right: 10px;
             }
             .lightbox-overlay .close-btn {
                 font-size: 32px;
@@ -426,6 +446,62 @@
             border-top: 1px solid rgba(255, 255, 255, 0.06);
             font-size: 0.8rem;
             color: #64748b;
+        }
+
+        /* ===== BACK TO TOP BUTTON ===== */
+        .back-to-top {
+            position: fixed;
+            bottom: 32px;
+            right: 32px;
+            width: 52px;
+            height: 52px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #e6007e 0%, #b0006a 100%);
+            color: #ffffff;
+            border: none;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            z-index: 1500;
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(20px);
+            transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            box-shadow: 0 8px 24px rgba(230, 0, 126, 0.35);
+            border: 2px solid rgba(255, 255, 255, 0.25);
+        }
+        .back-to-top.visible {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
+        }
+        .back-to-top:hover {
+            transform: translateY(-4px) scale(1.06);
+            box-shadow: 0 14px 32px rgba(230, 0, 126, 0.45);
+        }
+        .back-to-top:active {
+            transform: translateY(-1px) scale(0.98);
+        }
+        .back-to-top svg {
+            width: 22px;
+            height: 22px;
+            transition: transform 0.3s ease;
+        }
+        .back-to-top:hover svg {
+            transform: translateY(-2px);
+        }
+        @media (max-width: 768px) {
+            .back-to-top {
+                bottom: 24px;
+                right: 20px;
+                width: 46px;
+                height: 46px;
+            }
+            .back-to-top svg {
+                width: 18px;
+                height: 18px;
+            }
         }
 
         /* Mobile menu */
@@ -656,6 +732,13 @@
         </div>
     </footer>
 
+    <!-- ===== BACK TO TOP BUTTON ===== -->
+    <button class="back-to-top" id="backToTopBtn" aria-label="Back to top">
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M5 15l7-7 7 7" />
+        </svg>
+    </button>
+
     <!-- Font Awesome for social icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
 
@@ -881,6 +964,24 @@
                     if (diff > 0) nextImage();
                     else prevImage();
                 }
+            });
+
+            // ===== BACK TO TOP BUTTON LOGIC =====
+            const backToTopBtn = document.getElementById('backToTopBtn');
+            
+            window.addEventListener('scroll', function() {
+                if (window.scrollY > 400) {
+                    backToTopBtn.classList.add('visible');
+                } else {
+                    backToTopBtn.classList.remove('visible');
+                }
+            });
+
+            backToTopBtn.addEventListener('click', function() {
+                window.scrollTo({
+                    top: 0,
+                    behavior: 'smooth'
+                });
             });
         })();
     </script>
