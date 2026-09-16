@@ -954,6 +954,145 @@
             transform: rotate(90deg);
         }
 
+        /* ===== LIGHTBOX NAVIGATION ARROWS ===== */
+        .lightbox-nav {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 56px;
+            height: 56px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.12);
+            backdrop-filter: blur(8px);
+            -webkit-backdrop-filter: blur(8px);
+            border: 2px solid rgba(255, 255, 255, 0.25);
+            color: #ffffff;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            z-index: 10;
+            padding: 0;
+        }
+        .lightbox-nav:hover {
+            background: rgba(237, 0, 142, 0.85);
+            border-color: rgba(255, 255, 255, 0.6);
+            transform: translateY(-50%) scale(1.1);
+            box-shadow: 0 8px 25px rgba(237, 0, 142, 0.5);
+        }
+        .lightbox-nav:active {
+            transform: translateY(-50%) scale(0.95);
+        }
+        .lightbox-nav svg {
+            width: 24px;
+            height: 24px;
+            stroke: currentColor;
+            fill: none;
+            stroke-width: 2.5;
+        }
+        .lightbox-nav.prev {
+            left: -80px;
+        }
+        .lightbox-nav.next {
+            right: -80px;
+        }
+        .lightbox-nav.hidden {
+            display: none;
+        }
+
+        @media (max-width: 1024px) {
+            .lightbox-nav.prev {
+                left: 8px;
+            }
+            .lightbox-nav.next {
+                right: 8px;
+            }
+            .lightbox-content {
+                max-width: 95vw;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .lightbox-nav {
+                width: 44px;
+                height: 44px;
+            }
+            .lightbox-nav svg {
+                width: 18px;
+                height: 18px;
+            }
+            .lightbox-nav.prev {
+                left: 6px;
+            }
+            .lightbox-nav.next {
+                right: 6px;
+            }
+            .lightbox-close {
+                top: -44px;
+                right: 0;
+                width: 40px;
+                height: 40px;
+                font-size: 1.6rem;
+            }
+        }
+
+        /* ===== BACK TO TOP BUTTON ===== */
+        .back-to-top {
+            position: fixed;
+            bottom: 32px;
+            right: 32px;
+            width: 52px;
+            height: 52px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #ed008e 0%, #b0006a 100%);
+            color: #ffffff;
+            border: none;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            z-index: 1500;
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(20px);
+            transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            box-shadow: 0 8px 24px rgba(237, 0, 142, 0.35);
+            border: 2px solid rgba(255, 255, 255, 0.25);
+        }
+        .back-to-top.visible {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
+        }
+        .back-to-top:hover {
+            transform: translateY(-4px) scale(1.06);
+            box-shadow: 0 14px 32px rgba(237, 0, 142, 0.45);
+        }
+        .back-to-top:active {
+            transform: translateY(-1px) scale(0.98);
+        }
+        .back-to-top svg {
+            width: 22px;
+            height: 22px;
+            transition: transform 0.3s ease;
+        }
+        .back-to-top:hover svg {
+            transform: translateY(-2px);
+        }
+        @media (max-width: 768px) {
+            .back-to-top {
+                bottom: 24px;
+                right: 20px;
+                width: 46px;
+                height: 46px;
+            }
+            .back-to-top svg {
+                width: 18px;
+                height: 18px;
+            }
+        }
+
         /* ── Mobile menu panel (premium) ── */
         .mobile-menu-panel-premium {
             position: fixed;
@@ -1323,37 +1462,37 @@
                     relationship built on results, respect, and shared ambition.
                 </p>
             </div>
-            <div class="client-grid">
-                <!-- 29 client logos – clickable for lightbox -->
-                <div class="client-card" onclick="openLightbox(this.querySelector('img'))"><img src="client-logos-30.jpg" alt="Client logo" /></div>
-                <div class="client-card" onclick="openLightbox(this.querySelector('img'))"><img src="client-logos-55.jpg" alt="Client logo" /></div>
-                <div class="client-card" onclick="openLightbox(this.querySelector('img'))"><img src="client-logos-60.jpg" alt="Client logo" /></div>
-                <div class="client-card" onclick="openLightbox(this.querySelector('img'))"><img src="client-logos-53.jpg" alt="Client logo" /></div>
-                <div class="client-card" onclick="openLightbox(this.querySelector('img'))"><img src="client-logos-42.jpg" alt="Client logo" /></div>
-                <div class="client-card" onclick="openLightbox(this.querySelector('img'))"><img src="client-logos-5.jpg" alt="Client logo" /></div>
-                <div class="client-card" onclick="openLightbox(this.querySelector('img'))"><img src="client-logos-36.jpg" alt="Client logo" /></div>
-                <div class="client-card" onclick="openLightbox(this.querySelector('img'))"><img src="client-logos-7.jpg" alt="Client logo" /></div>
-                <div class="client-card" onclick="openLightbox(this.querySelector('img'))"><img src="client-logos-49.jpg" alt="Client logo" /></div>
-                <div class="client-card" onclick="openLightbox(this.querySelector('img'))"><img src="client-logos-9.jpg" alt="Client logo" /></div>
-                <div class="client-card" onclick="openLightbox(this.querySelector('img'))"><img src="client-logos-10.jpg" alt="Client logo" /></div>
-                <div class="client-card" onclick="openLightbox(this.querySelector('img'))"><img src="client-logos-11.jpg" alt="Client logo" /></div>
-                <div class="client-card" onclick="openLightbox(this.querySelector('img'))"><img src="client-logos-44.jpg" alt="Client logo" /></div>
-                <div class="client-card" onclick="openLightbox(this.querySelector('img'))"><img src="client-logos-33.jpg" alt="Client logo" /></div>
-                <div class="client-card" onclick="openLightbox(this.querySelector('img'))"><img src="client-logos-37.jpg" alt="Client logo" /></div>
-                <div class="client-card" onclick="openLightbox(this.querySelector('img'))"><img src="client-logos-38.jpg" alt="Client logo" /></div>
-                <div class="client-card" onclick="openLightbox(this.querySelector('img'))"><img src="client-logos-57.jpg" alt="Client logo" /></div>
-                <div class="client-card" onclick="openLightbox(this.querySelector('img'))"><img src="client-logos-17.jpg" alt="Client logo" /></div>
-                <div class="client-card" onclick="openLightbox(this.querySelector('img'))"><img src="client-logos-54.jpg" alt="Client logo" /></div>
-                <div class="client-card" onclick="openLightbox(this.querySelector('img'))"><img src="client-logos-80.jpg" alt="Client logo" /></div>
-                <div class="client-card" onclick="openLightbox(this.querySelector('img'))"><img src="client-logos-47.jpg" alt="Client logo" /></div>
-                <div class="client-card" onclick="openLightbox(this.querySelector('img'))"><img src="client-logos-21.jpg" alt="Client logo" /></div>
-                <div class="client-card" onclick="openLightbox(this.querySelector('img'))"><img src="client-logos-56.jpg" alt="Client logo" /></div>
-                <div class="client-card" onclick="openLightbox(this.querySelector('img'))"><img src="client-logos-23.jpg" alt="Client logo" /></div>
-                <div class="client-card" onclick="openLightbox(this.querySelector('img'))"><img src="client-logos-50.jpg" alt="Client logo" /></div>
-                <div class="client-card" onclick="openLightbox(this.querySelector('img'))"><img src="client-logos-34.jpg" alt="Client logo" /></div>
-                <div class="client-card" onclick="openLightbox(this.querySelector('img'))"><img src="client-logos-28.jpg" alt="Client logo" /></div>
-                <div class="client-card" onclick="openLightbox(this.querySelector('img'))"><img src="client-logos-52.jpg" alt="Client logo" /></div>
-                <div class="client-card" onclick="openLightbox(this.querySelector('img'))"><img src="client-logos-81.jpg" alt="Client logo" /></div>
+            <div class="client-grid" id="clientGrid">
+                <!-- 29 client logos – clickable for lightbox, data-index for navigation -->
+                <div class="client-card" data-index="0"><img src="client-logos-30.jpg" alt="Client logo" /></div>
+                <div class="client-card" data-index="1"><img src="client-logos-55.jpg" alt="Client logo" /></div>
+                <div class="client-card" data-index="2"><img src="client-logos-60.jpg" alt="Client logo" /></div>
+                <div class="client-card" data-index="3"><img src="client-logos-53.jpg" alt="Client logo" /></div>
+                <div class="client-card" data-index="4"><img src="client-logos-42.jpg" alt="Client logo" /></div>
+                <div class="client-card" data-index="5"><img src="client-logos-5.jpg" alt="Client logo" /></div>
+                <div class="client-card" data-index="6"><img src="client-logos-36.jpg" alt="Client logo" /></div>
+                <div class="client-card" data-index="7"><img src="client-logos-7.jpg" alt="Client logo" /></div>
+                <div class="client-card" data-index="8"><img src="client-logos-49.jpg" alt="Client logo" /></div>
+                <div class="client-card" data-index="9"><img src="client-logos-9.jpg" alt="Client logo" /></div>
+                <div class="client-card" data-index="10"><img src="client-logos-10.jpg" alt="Client logo" /></div>
+                <div class="client-card" data-index="11"><img src="client-logos-11.jpg" alt="Client logo" /></div>
+                <div class="client-card" data-index="12"><img src="client-logos-44.jpg" alt="Client logo" /></div>
+                <div class="client-card" data-index="13"><img src="client-logos-33.jpg" alt="Client logo" /></div>
+                <div class="client-card" data-index="14"><img src="client-logos-37.jpg" alt="Client logo" /></div>
+                <div class="client-card" data-index="15"><img src="client-logos-38.jpg" alt="Client logo" /></div>
+                <div class="client-card" data-index="16"><img src="client-logos-57.jpg" alt="Client logo" /></div>
+                <div class="client-card" data-index="17"><img src="client-logos-17.jpg" alt="Client logo" /></div>
+                <div class="client-card" data-index="18"><img src="client-logos-54.jpg" alt="Client logo" /></div>
+                <div class="client-card" data-index="19"><img src="client-logos-80.jpg" alt="Client logo" /></div>
+                <div class="client-card" data-index="20"><img src="client-logos-47.jpg" alt="Client logo" /></div>
+                <div class="client-card" data-index="21"><img src="client-logos-21.jpg" alt="Client logo" /></div>
+                <div class="client-card" data-index="22"><img src="client-logos-56.jpg" alt="Client logo" /></div>
+                <div class="client-card" data-index="23"><img src="client-logos-23.jpg" alt="Client logo" /></div>
+                <div class="client-card" data-index="24"><img src="client-logos-50.jpg" alt="Client logo" /></div>
+                <div class="client-card" data-index="25"><img src="client-logos-34.jpg" alt="Client logo" /></div>
+                <div class="client-card" data-index="26"><img src="client-logos-28.jpg" alt="Client logo" /></div>
+                <div class="client-card" data-index="27"><img src="client-logos-52.jpg" alt="Client logo" /></div>
+                <div class="client-card" data-index="28"><img src="client-logos-81.jpg" alt="Client logo" /></div>
             </div>
         </div>
     </section>
@@ -1514,15 +1653,33 @@
         </div>
     </footer>
 
-    <!-- ===== LIGHTBOX HTML ===== -->
+    <!-- ===== LIGHTBOX HTML (with navigation arrows) ===== -->
     <div class="lightbox-overlay" id="lightbox" onclick="closeLightbox()">
         <div class="lightbox-content" onclick="event.stopPropagation()">
             <button class="lightbox-close" onclick="closeLightbox()">
                 <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
             </button>
+            <!-- Navigation Arrows -->
+            <button class="lightbox-nav prev" id="lightboxPrev" aria-label="Previous image">
+                <svg viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M15 19l-7-7 7-7" />
+                </svg>
+            </button>
+            <button class="lightbox-nav next" id="lightboxNext" aria-label="Next image">
+                <svg viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7" />
+                </svg>
+            </button>
             <img id="lightboxImage" src="" alt="Enlarged client logo" />
         </div>
     </div>
+
+    <!-- ===== BACK TO TOP BUTTON ===== -->
+    <button class="back-to-top" id="backToTopBtn" aria-label="Back to top">
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M5 15l7-7 7 7" />
+        </svg>
+    </button>
 
     <!-- ===== SCRIPTS ===== -->
     <!-- Font Awesome for header icons -->
@@ -1573,31 +1730,51 @@
             });
 
             // ===== Dropdown toggle: works on ALL screen sizes =====
-            // Clicking the parent link toggles the .open class (both desktop & mobile)
             document.querySelectorAll('.dropdown > a').forEach(dropdownToggle => {
                 dropdownToggle.addEventListener('click', (e) => {
-                    // On desktop, we still want the click to toggle .open
-                    // On mobile, we also want the click to toggle .open
                     e.preventDefault();
                     const dropdown = dropdownToggle.closest('.dropdown');
-                    // Toggle this dropdown
                     dropdown.classList.toggle('open');
-                    // Close other open dropdowns (keep only one open at a time)
                     document.querySelectorAll('.dropdown.open').forEach(d => {
                         if (d !== dropdown) d.classList.remove('open');
                     });
-                    // Arrow rotation is handled by CSS
                 });
             });
 
-            // ── LIGHTBOX ──
+            // ===== LIGHTBOX WITH NAVIGATION =====
             const lightbox = document.getElementById('lightbox');
             const lightboxImage = document.getElementById('lightboxImage');
+            const lightboxPrev = document.getElementById('lightboxPrev');
+            const lightboxNext = document.getElementById('lightboxNext');
+            const clientCards = document.querySelectorAll('.client-card');
+            let currentIndex = 0;
+            let totalImages = clientCards.length;
 
-            window.openLightbox = function(imgElement) {
-                if (!imgElement) return;
-                lightboxImage.src = imgElement.src;
-                lightboxImage.alt = imgElement.alt || 'Enlarged client logo';
+            // Hide arrows if only one image
+            if (totalImages <= 1) {
+                lightboxPrev.classList.add('hidden');
+                lightboxNext.classList.add('hidden');
+            }
+
+            function showImage(index) {
+                if (totalImages === 0) return;
+                // Wrap around
+                if (index < 0) index = totalImages - 1;
+                if (index >= totalImages) index = 0;
+                currentIndex = index;
+                const card = clientCards[currentIndex];
+                const img = card.querySelector('img');
+                if (img) {
+                    lightboxImage.src = img.src;
+                    lightboxImage.alt = img.alt || 'Enlarged client logo';
+                }
+            }
+
+            window.openLightbox = function(card) {
+                if (!card) return;
+                const index = parseInt(card.getAttribute('data-index'), 10);
+                if (isNaN(index)) return;
+                showImage(index);
                 lightbox.classList.add('active');
                 document.body.style.overflow = 'hidden';
             };
@@ -1605,18 +1782,65 @@
             window.closeLightbox = function() {
                 lightbox.classList.remove('active');
                 document.body.style.overflow = '';
-                // Clear src to free memory
                 setTimeout(() => {
                     lightboxImage.src = '';
                 }, 300);
             };
 
-            // Keyboard: ESC to close
+            // Attach click handlers to client cards
+            clientCards.forEach(function(card) {
+                card.addEventListener('click', function() {
+                    openLightbox(this);
+                });
+            });
+
+            // Navigation handlers
+            lightboxPrev.addEventListener('click', function(e) {
+                e.stopPropagation();
+                showImage(currentIndex - 1);
+            });
+            lightboxNext.addEventListener('click', function(e) {
+                e.stopPropagation();
+                showImage(currentIndex + 1);
+            });
+
+            // Keyboard navigation
             document.addEventListener('keydown', function(e) {
+                if (!lightbox.classList.contains('active')) return;
                 if (e.key === 'Escape') {
+                    closeLightbox();
+                } else if (e.key === 'ArrowLeft') {
+                    showImage(currentIndex - 1);
+                } else if (e.key === 'ArrowRight') {
+                    showImage(currentIndex + 1);
+                }
+            });
+
+            // Click on overlay to close
+            lightbox.addEventListener('click', function(e) {
+                if (e.target === lightbox) {
                     closeLightbox();
                 }
             });
+
+            // ===== BACK TO TOP BUTTON LOGIC =====
+            const backToTopBtn = document.getElementById('backToTopBtn');
+            
+            window.addEventListener('scroll', function() {
+                if (window.scrollY > 400) {
+                    backToTopBtn.classList.add('visible');
+                } else {
+                    backToTopBtn.classList.remove('visible');
+                }
+            });
+
+            backToTopBtn.addEventListener('click', function() {
+                window.scrollTo({
+                    top: 0,
+                    behavior: 'smooth'
+                });
+            });
+
         })();
     </script>
 </body>
