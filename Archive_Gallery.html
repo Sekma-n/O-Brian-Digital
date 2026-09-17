@@ -408,6 +408,8 @@
             transition: transform 0.3s ease, box-shadow 0.3s ease;
             border: 1px solid #eef2f6;
             cursor: pointer;
+            /* Prevents layout shift */
+            contain: content;
         }
         .archive-card:hover {
             transform: translateY(-6px);
@@ -417,12 +419,26 @@
             height: 200px;
             overflow: hidden;
             background: #f5f5f7;
+            position: relative;
+            /* Fast image loading placeholder */
+            background-image: linear-gradient(135deg, #f0f0f2 0%, #e8e8ea 100%);
         }
         .archive-card .card-img img {
             width: 100%;
             height: 100%;
             object-fit: cover;
-            transition: transform 0.5s ease;
+            transition: transform 0.5s ease, opacity 0.3s ease;
+            display: block;
+            /* Ensures no layout shift while loading */
+            aspect-ratio: 4 / 3;
+        }
+        .archive-card .card-img img.lazy-loading {
+            opacity: 0;
+            filter: blur(4px);
+        }
+        .archive-card .card-img img.lazy-loaded {
+            opacity: 1;
+            filter: blur(0);
         }
         .archive-card:hover .card-img img {
             transform: scale(1.05);
@@ -473,6 +489,7 @@
             object-fit: contain;
             border-radius: 4px;
             box-shadow: 0 0 40px rgba(0, 0, 0, 0.6);
+            background: #1a1a1a;
         }
         .lightbox-overlay .close-btn {
             position: absolute;
@@ -751,7 +768,7 @@
 
                 <!-- Premium Logo -->
                 <a href="Home.html" class="logo-premium group">
-                    <img src="obrian-transparent-logo-4461219.webp" alt="O'Brian Group" class="h-9 w-auto" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22%3E%3Crect width=%22100%22 height=%22100%22 fill=%22%23ed008e%22/%3E%3Ctext x=%2250%22 y=%2268%22 font-size=%2248%22 text-anchor=%22middle%22 fill=%22white%22 font-weight=%22bold%22 font-family=%22Inter%22%3EO%3C/text%3E%3C/svg%3E'">
+                    <img src="obrian-transparent-logo-4461219.webp" alt="O'Brian Group" class="h-9 w-auto" width="40" height="36" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22%3E%3Crect width=%22100%22 height=%22100%22 fill=%22%23ed008e%22/%3E%3Ctext x=%2250%22 y=%2268%22 font-size=%2248%22 text-anchor=%22middle%22 fill=%22white%22 font-weight=%22bold%22 font-family=%22Inter%22%3EO%3C/text%3E%3C/svg%3E'">
                     <span class="logo-text hidden sm:inline-block">
                         <span class="highlight"></span> 
                     </span>
@@ -1108,7 +1125,15 @@
                 
                 card.innerHTML = `
                     <div class="card-img">
-                        <img src="${src}" alt="${title}" loading="lazy" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22400%22 height=%22300%22%3E%3Crect width=%22400%22 height=%22300%22 fill=%22%23e5e7eb%22/%3E%3Ctext x=%2250%25%22 y=%2250%25%22 text-anchor=%22middle%22 dy=%22.3em%22 fill=%22%239ca3af%22 font-size=%2220%22 font-family=%22Montserrat%22%3E${title.slice(0,20)}%3C/text%3E%3C/svg%3E'">
+                        <img src="${src}" 
+                             alt="${title}" 
+                             loading="lazy" 
+                             decoding="async"
+                             width="400" 
+                             height="300"
+                             class="lazy-loading"
+                             onload="this.classList.remove('lazy-loading'); this.classList.add('lazy-loaded');"
+                             onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22400%22 height=%22300%22%3E%3Crect width=%22400%22 height=%22300%22 fill=%22%23e5e7eb%22/%3E%3Ctext x=%2250%25%22 y=%2250%25%22 text-anchor=%22middle%22 dy=%22.3em%22 fill=%22%239ca3af%22 font-size=%2220%22 font-family=%22Montserrat%22%3E${title.slice(0,20)}%3C/text%3E%3C/svg%3E'; this.classList.remove('lazy-loading'); this.classList.add('lazy-loaded');">
                     </div>
                     <div class="card-body">
                         <div class="tag">Archive</div>
