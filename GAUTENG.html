@@ -1,109 +1,911 @@
 <!DOCTYPE html>
-<html lang="en">
+<html  >
 <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
-    <title>Gauteng | O'Brian Group — It Starts Here</title>
-    <meta name="description" content="Gauteng brand identity & FIFA World Cup legacy campaign by O'Brian Group. Case study in excellence." />
+  
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1">
+  <link rel="shortcut icon" href="assets/images/photo-1661273714315-43546846c175.jpeg" type="image/x-icon">
+  <meta name="description" content="SSDesigns — Award-winning premium creative studio crafting authentic brand experiences through strategic design, innovation, and storytelling.">
+  
+  
+  <title>SSDesigns — Premium Creative Studio</title>
+  
+  <!-- Font Awesome 6 (Free) -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  
+  <link rel="stylesheet" href="assets/web/assets/mobirise-icons2/mobirise2.css">
+  <link rel="stylesheet" href="assets/bootstrap/css/bootstrap.min.css">
+  <link rel="stylesheet" href="assets/parallax/jarallax.css">
+  <link rel="stylesheet" href="assets/smart-cart/minicart-theme.css">
+  <link rel="stylesheet" href="assets/dropdown/css/style.css">
+  <link rel="stylesheet" href="assets/socicon/css/styles.css">
+  <link rel="stylesheet" href="assets/theme/css/style.css">
+  <link rel="preload" as="style" href="assets/mobirise/css/mbr-additional.css?v=4pq01D"><link rel="stylesheet" href="assets/mobirise/css/mbr-additional.css?v=4pq01D" type="text/css">
 
-    <!-- Tailwind CSS CDN -->
-    <script src="https://cdn.tailwindcss.com">
-    </script>
+  <style>
+    /* ----- PREMIUM REDESIGN ----- */
+    :root {
+      --gold: #C9A87C;
+      --gold-light: #E8D5B8;
+      --gold-dark: #B8955E;
+      --gold-gradient: linear-gradient(135deg, #C9A87C, #B8955E);
+      --dark: #0A0A0A;
+      --dark-gray: #1A1A1A;
+      --light: #FAF8F6;
+      --white: #FFFFFF;
+      --text-primary: #1A1A1A;
+      --text-secondary: #555555;
+      --text-light: #888888;
+    }
 
-    <!-- Google Fonts + Icons -->
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,600;14..32,700;14..32,800&display=swap" rel="stylesheet" />
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
 
-    <!-- Lightbox CSS -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.11.4/css/lightbox.min.css" />
+    body {
+      font-family: 'Inter', sans-serif !important;
+      background: var(--light);
+      color: var(--text-primary);
+      overflow-x: hidden;
+    }
 
-    <style>
-        /* ── reset & base ── */
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
+    /* ----- Typography ----- */
+    .display-1, .display-2, .display-3 {
+      font-family: 'Playfair Display', serif !important;
+    }
 
-        body {
-            font-family: 'Inter', sans-serif;
-            background: #ffffff;
-            color: #251e21;
-            line-height: 1.5;
-            scroll-behavior: smooth;
-            padding-top: 80px;
-        }
+    .display-1 {
+      font-size: 4.5rem !important;
+      font-weight: 700 !important;
+      letter-spacing: -0.03em !important;
+      line-height: 1.1 !important;
+    }
 
-        :root {
-            --magenta: #ed008e;
-            --magenta-dark: #c20074;
-            --charcoal: #251e21;
-            --white: #ffffff;
-            --gray-light: #faf7f9;
-        }
+    .display-2 {
+      font-size: 3.2rem !important;
+      font-weight: 600 !important;
+      letter-spacing: -0.02em !important;
+      line-height: 1.2 !important;
+    }
 
-        .container {
-            max-width: 1280px;
-            margin: 0 auto;
-            padding: 0 24px;
-        }
+    .display-5 {
+      font-family: 'Playfair Display', serif !important;
+      font-weight: 600 !important;
+      letter-spacing: -0.01em !important;
+    }
 
-        /* ── PREMIUM GLASS HEADER STYLES ── */
-        .header-glass {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            z-index: 1030;
-            background: rgba(255, 255, 255, 0.72);
-            backdrop-filter: blur(20px);
-            -webkit-backdrop-filter: blur(20px);
-            transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-            border-bottom: 1px solid rgba(255, 255, 255, 0.4);
-            box-shadow: 0 1px 2px rgba(0, 0, 0, 0.02);
-            height: 80px;
-            display: flex;
-            align-items: center;
-            padding: 0 1rem;
-        }
-        .header-glass.scrolled {
-            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.06);
-            background: rgba(255, 255, 255, 0.94);
-            border-bottom: 1px solid rgba(0, 0, 0, 0.03);
-        }
+    .display-7 {
+      font-family: 'Inter', sans-serif !important;
+      font-weight: 400 !important;
+      letter-spacing: 0.01em !important;
+      line-height: 1.7 !important;
+    }
 
-        /* Premium Logo */
-        .logo-premium {
-            display: flex;
-            align-items: center;
-            gap: 12px;
-            transition: transform 0.3s ease;
-        }
-        .logo-premium:hover {
-            transform: scale(1.01);
-        }
-        .logo-text {
-            font-size: 1.35rem;
-            font-weight: 800;
-            letter-spacing: -0.5px;
-            color: #231e1f;
-        }
-        .logo-text .highlight {
-            color: #e6007e;
-            position: relative;
-        }
-        .logo-text .highlight::after {
-            content: '';
-            position: absolute;
-            bottom: -2px;
-            left: 0;
-            width: 100%;
-            height: 2px;
-            background: #e6007e;
-            transform: scaleX(0);
-            transform-origin: right;
+    /* ----- Buttons ----- */
+    .btn-primary {
+      background: var(--gold-gradient) !important;
+      border: none !important;
+      box-shadow: 0 4px 24px rgba(201, 168, 124, 0.35);
+      transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94) !important;
+      letter-spacing: 0.06em !important;
+      font-weight: 600 !important;
+      padding: 14px 40px !important;
+      border-radius: 50px !important;
+      font-size: 14px !important;
+      text-transform: uppercase !important;
+    }
+
+    .btn-primary:hover {
+      transform: translateY(-3px) !important;
+      box-shadow: 0 8px 40px rgba(201, 168, 124, 0.5) !important;
+      background: linear-gradient(135deg, #DBC096, #C9A87C) !important;
+    }
+
+    .btn-outline {
+      background: transparent !important;
+      border: 2px solid var(--gold) !important;
+      color: var(--gold) !important;
+      box-shadow: none !important;
+      padding: 12px 36px !important;
+      border-radius: 50px !important;
+      font-weight: 600 !important;
+      font-size: 14px !important;
+      text-transform: uppercase !important;
+      letter-spacing: 0.06em !important;
+      transition: all 0.4s ease !important;
+    }
+
+    .btn-outline:hover {
+      background: var(--gold) !important;
+      color: #fff !important;
+      transform: translateY(-3px) !important;
+      box-shadow: 0 8px 32px rgba(201, 168, 124, 0.3) !important;
+    }
+
+    /* ----- Premium Navbar ----- */
+    .navbar {
+      background: rgba(10, 10, 10, 0.97) !important;
+      backdrop-filter: blur(24px);
+      -webkit-backdrop-filter: blur(24px);
+      border-bottom: 1px solid rgba(201, 168, 124, 0.08);
+      padding: 16px 0 !important;
+      transition: all 0.3s ease;
+    }
+
+    .navbar.scrolled {
+      padding: 10px 0 !important;
+      box-shadow: 0 4px 30px rgba(0, 0, 0, 0.3);
+    }
+
+    .nav-link {
+      color: rgba(255, 255, 255, 0.75) !important;
+      font-weight: 500 !important;
+      letter-spacing: 0.04em !important;
+      font-size: 13px !important;
+      text-transform: uppercase !important;
+      transition: color 0.3s ease !important;
+      padding: 8px 20px !important;
+      position: relative;
+    }
+
+    .nav-link::after {
+      content: '';
+      position: absolute;
+      bottom: 2px;
+      left: 50%;
+      width: 0;
+      height: 2px;
+      background: var(--gold);
+      transition: all 0.3s ease;
+      transform: translateX(-50%);
+    }
+
+    .nav-link:hover {
+      color: var(--gold) !important;
+    }
+
+    .nav-link:hover::after {
+      width: 60%;
+    }
+
+    /* ----- Hero Section ----- */
+    .hero-section {
+      position: relative;
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      background: var(--dark);
+      overflow: hidden;
+    }
+
+    .hero-section::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: url('assets/images/photo-1653596046750-dfb68e9d962d.jpeg') center/cover no-repeat;
+      opacity: 0.3;
+      z-index: 0;
+    }
+
+    .hero-section .overlay {
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: linear-gradient(135deg, rgba(10,10,10,0.85), rgba(10,10,10,0.4));
+      z-index: 1;
+    }
+
+    .hero-section .container {
+      position: relative;
+      z-index: 2;
+    }
+
+    .hero-section .hero-badge {
+      display: inline-block;
+      background: rgba(201, 168, 124, 0.15);
+      border: 1px solid rgba(201, 168, 124, 0.2);
+      padding: 6px 20px;
+      border-radius: 50px;
+      font-size: 12px;
+      color: var(--gold);
+      font-weight: 500;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      margin-bottom: 24px;
+    }
+
+    .hero-section h1 {
+      color: #fff;
+      margin-bottom: 20px;
+    }
+
+    .hero-section h1 span {
+      background: var(--gold-gradient);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .hero-section p {
+      color: rgba(255, 255, 255, 0.7);
+      font-size: 18px;
+      max-width: 540px;
+      line-height: 1.8;
+      margin-bottom: 32px;
+    }
+
+    .hero-section .hero-image {
+      border-radius: 20px;
+      overflow: hidden;
+      box-shadow: 0 30px 80px rgba(0, 0, 0, 0.4);
+      transition: transform 0.6s ease;
+    }
+
+    .hero-section .hero-image:hover {
+      transform: scale(1.02);
+    }
+
+    .hero-section .hero-image img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    /* ----- Section Styles ----- */
+    section {
+      padding: 100px 0;
+      position: relative;
+    }
+
+    .section-label {
+      display: inline-block;
+      font-size: 11px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.15em;
+      color: var(--gold);
+      margin-bottom: 12px;
+      position: relative;
+    }
+
+    .section-label::before {
+      content: '';
+      display: inline-block;
+      width: 30px;
+      height: 2px;
+      background: var(--gold);
+      margin-right: 12px;
+      vertical-align: middle;
+    }
+
+    .section-title {
+      font-family: 'Playfair Display', serif;
+      font-size: 3.2rem;
+      font-weight: 700;
+      letter-spacing: -0.02em;
+      line-height: 1.2;
+      margin-bottom: 16px;
+      color: var(--text-primary);
+    }
+
+    .section-subtitle {
+      font-size: 18px;
+      color: var(--text-secondary);
+      max-width: 600px;
+      line-height: 1.7;
+    }
+
+    /* ----- Cards Premium ----- */
+    .premium-card {
+      background: var(--white);
+      padding: 40px 32px;
+      border-radius: 20px;
+      border: 1px solid rgba(0, 0, 0, 0.04);
+      transition: all 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .premium-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 4px;
+      background: var(--gold-gradient);
+      opacity: 0;
+      transition: opacity 0.4s ease;
+    }
+
+    .premium-card:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 30px 60px rgba(0, 0, 0, 0.06);
+    }
+
+    .premium-card:hover::before {
+      opacity: 1;
+    }
+
+    .premium-card .icon {
+      font-size: 40px;
+      color: var(--gold);
+      margin-bottom: 16px;
+      display: inline-block;
+    }
+
+    .premium-card h4 {
+      font-family: 'Playfair Display', serif;
+      font-size: 22px;
+      font-weight: 600;
+      margin-bottom: 10px;
+      color: var(--text-primary);
+    }
+
+    .premium-card p {
+      font-size: 15px;
+      color: var(--text-secondary);
+      line-height: 1.7;
+    }
+
+    /* ----- Stats ----- */
+    .stat-item {
+      text-align: center;
+      padding: 20px;
+    }
+
+    .stat-item .number {
+      font-family: 'Playfair Display', serif;
+      font-size: 4rem;
+      font-weight: 700;
+      color: var(--gold);
+      line-height: 1;
+      margin-bottom: 8px;
+    }
+
+    .stat-item .label {
+      font-size: 14px;
+      color: var(--text-secondary);
+      font-weight: 500;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+    }
+
+    /* ----- Testimonial ----- */
+    .testimonial-card {
+      background: var(--white);
+      padding: 40px 36px;
+      border-radius: 20px;
+      border: 1px solid rgba(0, 0, 0, 0.04);
+      transition: all 0.4s ease;
+    }
+
+    .testimonial-card:hover {
+      box-shadow: 0 20px 50px rgba(0, 0, 0, 0.05);
+    }
+
+    .testimonial-card .stars {
+      color: var(--gold);
+      font-size: 18px;
+      letter-spacing: 4px;
+      margin-bottom: 16px;
+    }
+
+    .testimonial-card blockquote {
+      font-family: 'Playfair Display', serif;
+      font-size: 18px;
+      font-style: italic;
+      color: var(--text-primary);
+      line-height: 1.7;
+      margin-bottom: 16px;
+    }
+
+    .testimonial-card .author {
+      font-weight: 600;
+      font-size: 15px;
+      color: var(--text-primary);
+    }
+
+    .testimonial-card .role {
+      font-size: 13px;
+      color: var(--text-light);
+    }
+
+    /* ----- CTA Section ----- */
+    .cta-premium {
+      background: var(--dark);
+      border-radius: 30px;
+      padding: 80px 60px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .cta-premium::before {
+      content: '';
+      position: absolute;
+      top: -50%;
+      right: -20%;
+      width: 400px;
+      height: 400px;
+      background: radial-gradient(circle, rgba(201,168,124,0.08), transparent 70%);
+      border-radius: 50%;
+    }
+
+    .cta-premium h2 {
+      color: #fff;
+      font-family: 'Playfair Display', serif;
+      font-size: 3rem;
+      font-weight: 700;
+      margin-bottom: 12px;
+    }
+
+    .cta-premium p {
+      color: rgba(255, 255, 255, 0.6);
+      font-size: 18px;
+      max-width: 500px;
+      line-height: 1.7;
+    }
+
+    /* ----- Footer ----- */
+    .footer-premium {
+      background: var(--dark);
+      padding: 60px 0 40px;
+      border-top: 1px solid rgba(255,255,255,0.05);
+    }
+
+    .footer-premium .footer-logo {
+      font-family: 'Playfair Display', serif;
+      font-size: 28px;
+      font-weight: 700;
+      color: #fff;
+    }
+
+    .footer-premium .footer-logo span {
+      color: var(--gold);
+    }
+
+    .footer-premium p {
+      color: rgba(255, 255, 255, 0.4);
+      font-size: 14px;
+      line-height: 1.8;
+    }
+
+    .footer-premium .social-links a {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 44px;
+      height: 44px;
+      border-radius: 50%;
+      background: rgba(255,255,255,0.05);
+      color: rgba(255,255,255,0.5);
+      transition: all 0.3s ease;
+      margin-right: 8px;
+      text-decoration: none;
+      font-size: 18px;
+    }
+
+    .footer-premium .social-links a:hover {
+      background: var(--gold);
+      color: #fff;
+      transform: translateY(-3px);
+    }
+
+    /* ----- WhatsApp Floating Button ----- */
+    .whatsapp-float {
+      position: fixed;
+      bottom: 28px;
+      right: 28px;
+      z-index: 9999;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: linear-gradient(135deg, #25d366, #128C7E);
+      color: #fff;
+      border-radius: 60px;
+      width: 64px;
+      height: 64px;
+      box-shadow: 0 8px 32px rgba(37, 211, 102, 0.35);
+      transition: all 0.3s ease;
+      text-decoration: none;
+      font-size: 36px;
+      animation: pulse-whatsapp 2s infinite;
+    }
+
+    .whatsapp-float:hover {
+      transform: scale(1.08);
+      box-shadow: 0 12px 48px rgba(37, 211, 102, 0.5);
+      color: #fff;
+    }
+
+    @keyframes pulse-whatsapp {
+      0%, 100% { box-shadow: 0 8px 32px rgba(37, 211, 102, 0.35); }
+      50% { box-shadow: 0 8px 48px rgba(37, 211, 102, 0.55); }
+    }
+
+    .whatsapp-float .tooltip {
+      display: none;
+      position: absolute;
+      right: 76px;
+      background: rgba(10, 10, 10, 0.9);
+      color: #fff;
+      padding: 6px 16px;
+      border-radius: 30px;
+      font-size: 14px;
+      font-weight: 500;
+      white-space: nowrap;
+      backdrop-filter: blur(10px);
+      border: 1px solid rgba(255,255,255,0.05);
+    }
+
+    .whatsapp-float:hover .tooltip {
+      display: block;
+    }
+
+    /* ----- Responsive ----- */
+    @media (max-width: 992px) {
+      .display-1 { font-size: 3.2rem !important; }
+      .display-2 { font-size: 2.6rem !important; }
+      .section-title { font-size: 2.6rem !important; }
+      .hero-section { min-height: auto; padding: 120px 0; }
+      .cta-premium { padding: 50px 30px; }
+    }
+
+    @media (max-width: 640px) {
+      .display-1 { font-size: 2.4rem !important; }
+      .display-2 { font-size: 2rem !important; }
+      .section-title { font-size: 2rem !important; }
+      .hero-section { padding: 80px 0; }
+      .cta-premium { padding: 40px 20px; }
+      .whatsapp-float {
+        width: 56px;
+        height: 56px;
+        font-size: 30px;
+        bottom: 20px;
+        right: 20px;
+      }
+    }
+  </style>
+  
+</head>
+<body>
+  
+  <!-- ===== NAVBAR ===== -->
+  <section data-bs-version="5.1" class="menu menu01 fabm5 cid-vbESZ9MAon" once="menu" id="menu-1-vbESZ9MAon">
+    <nav class="navbar navbar-dropdown navbar-expand-lg">
+        <div class="menu_box container">
+            <div class="navbar-brand d-flex">
+                <span class="navbar-logo">
+                    <a href="#">
+                        <img src="assets/images/photo-1661273714315-43546846c175.jpeg" alt="SSDesigns" style="height: 3rem;">
+                    </a>
+                </span>
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-bs-toggle="collapse" data-target="#navbarSupportedContent" data-bs-target="#navbarSupportedContent" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+                    <div class="hamburger">
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                    </div>
+                </button>
+            </div>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav nav-dropdown" data-app-modern-menu="true">
+                    <li class="nav-item"><a class="nav-link link display-4" href="#">Home</a></li>
+                    <li class="nav-item"><a class="nav-link link display-4" href="#">Work</a></li>
+                    <li class="nav-item"><a class="nav-link link display-4" href="#">About</a></li>
+                    <li class="nav-item"><a class="nav-link link display-4" href="#">Services</a></li>
+                    <li class="nav-item"><a class="nav-link link display-4" href="#">Contact</a></li>
+                </ul>
+                <div class="mbr-section-btn-main" role="tablist">
+                    <a class="btn btn-primary display-4" href="#">Get In Touch</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+  </section>
+
+  <!-- ===== HERO SECTION ===== -->
+  <section class="hero-section">
+    <div class="overlay"></div>
+    <div class="container">
+      <div class="row align-items-center">
+        <div class="col-12 col-lg-6">
+          <div class="hero-badge"><i class="fas fa-crown" style="margin-right: 8px;"></i> Award-Winning Studio</div>
+          <h1 class="display-1">We Build <span>Authentic</span> Brands Through <span>Creative</span> Design</h1>
+          <p>We're not just another agency; we're a collective of rebels with a cause. We believe in the power of creativity to shape the future and make a real impact.</p>
+          <div class="d-flex flex-wrap gap-3">
+            <a class="btn btn-primary" href="#">See Our Work</a>
+            <a class="btn btn-outline" href="#">Let's Talk</a>
+          </div>
+        </div>
+        <div class="col-12 col-lg-6 mt-5 mt-lg-0">
+          <div class="hero-image">
+            <img src="assets/images/photo-1653596046750-dfb68e9d962d.jpeg" alt="SSDesigns Studio">
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== ABOUT / DIFFERENCE ===== -->
+  <section>
+    <div class="container">
+      <div class="row">
+        <div class="col-12 col-lg-6">
+          <span class="section-label">Who We Are</span>
+          <h2 class="section-title">The SSDesigns <br>Difference</h2>
+          <p class="section-subtitle">What makes us tick? We're a bunch of brilliant minds who thrive on challenging the status quo.</p>
+        </div>
+        <div class="col-12 col-lg-6">
+          <p style="font-size: 17px; color: var(--text-secondary); line-height: 1.8; margin-bottom: 20px;">Our approach is simple: think big, act boldly, and never settle for 'good enough.' We craft campaigns that don't just get noticed; they get remembered.</p>
+          <p style="font-size: 17px; color: var(--text-secondary); line-height: 1.8;">Forget boring. We're here to stir things up, provoke thought, and create work that resonates. From groundbreaking ideas to flawless execution, we're the partners you need to make your brand unforgettable.</p>
+          <div style="margin-top: 30px; display: flex; gap: 12px; flex-wrap: wrap;">
+            <span style="background: var(--gold-light); padding: 6px 20px; border-radius: 50px; font-size: 13px; font-weight: 500; color: var(--gold-dark);">Strategy</span>
+            <span style="background: var(--gold-light); padding: 6px 20px; border-radius: 50px; font-size: 13px; font-weight: 500; color: var(--gold-dark);">Branding</span>
+            <span style="background: var(--gold-light); padding: 6px 20px; border-radius: 50px; font-size: 13px; font-weight: 500; color: var(--gold-dark);">Innovation</span>
+            <span style="background: var(--gold-light); padding: 6px 20px; border-radius: 50px; font-size: 13px; font-weight: 500; color: var(--gold-dark);">Storytelling</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== VIDEO SECTION ===== -->
+  <section style="padding: 60px 0; background: var(--dark);">
+    <div class="container">
+      <div class="row">
+        <div class="col-12">
+          <div style="border-radius: 20px; overflow: hidden; box-shadow: 0 30px 80px rgba(0,0,0,0.4);">
+            <iframe class="mbr-embedded-video" src="https://www.youtube.com/embed/eCHaiEjCDFM?rel=0&amp;mute=1&amp;showinfo=0&amp;autoplay=1&amp;loop=1&amp;playlist=eCHaiEjCDFM" width="100%" height="500" frameborder="0" allowfullscreen style="display: block;"></iframe>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== SERVICES ===== -->
+  <section>
+    <div class="container">
+      <div class="row text-center mb-5">
+        <div class="col-12">
+          <span class="section-label">What We Do</span>
+          <h2 class="section-title">Our Premium Services</h2>
+          <p class="section-subtitle" style="margin: 0 auto;">From strategy to execution, we provide everything you need to build a strong brand presence.</p>
+        </div>
+      </div>
+      <div class="row g-4">
+        <div class="col-12 col-md-6 col-lg-4">
+          <div class="premium-card">
+            <div class="icon"><i class="fas fa-paint-brush"></i></div>
+            <h4>Brand Identity</h4>
+            <p>Logo design, visual identity systems, color palettes, and comprehensive brand guidelines that tell your story.</p>
+          </div>
+        </div>
+        <div class="col-12 col-md-6 col-lg-4">
+          <div class="premium-card">
+            <div class="icon"><i class="fas fa-mobile-alt"></i></div>
+            <h4>Digital Design</h4>
+            <p>Website design, mobile app interfaces, and digital experiences that engage users and convert visitors into customers.</p>
+          </div>
+        </div>
+        <div class="col-12 col-md-6 col-lg-4">
+          <div class="premium-card">
+            <div class="icon"><i class="fas fa-box"></i></div>
+            <h4>Packaging Design</h4>
+            <p>Structural design and packaging that stands out on shelves, communicates brand values, and builds customer loyalty.</p>
+          </div>
+        </div>
+        <div class="col-12 col-md-6 col-lg-4">
+          <div class="premium-card">
+            <div class="icon"><i class="fas fa-bullhorn"></i></div>
+            <h4>Brand Strategy</h4>
+            <p>Strategic thinking to position your brand for growth, differentiate from competitors, and create meaningful impact.</p>
+          </div>
+        </div>
+        <div class="col-12 col-md-6 col-lg-4">
+          <div class="premium-card">
+            <div class="icon"><i class="fas fa-print"></i></div>
+            <h4>Print Design</h4>
+            <p>Premium print materials including brochures, catalogs, posters, and marketing collateral that leave a lasting impression.</p>
+          </div>
+        </div>
+        <div class="col-12 col-md-6 col-lg-4">
+          <div class="premium-card">
+            <div class="icon"><i class="fas fa-chart-line"></i></div>
+            <h4>Marketing Collateral</h4>
+            <p>Design assets that support your marketing campaigns, drive engagement, and deliver measurable results.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== STATS ===== -->
+  <section style="background: var(--dark); padding: 80px 0;">
+    <div class="container">
+      <div class="row g-4">
+        <div class="col-6 col-lg-3">
+          <div class="stat-item">
+            <div class="number">120+</div>
+            <div class="label">Projects</div>
+          </div>
+        </div>
+        <div class="col-6 col-lg-3">
+          <div class="stat-item">
+            <div class="number">95%</div>
+            <div class="label">Satisfaction</div>
+          </div>
+        </div>
+        <div class="col-6 col-lg-3">
+          <div class="stat-item">
+            <div class="number">8</div>
+            <div class="label">Awards</div>
+          </div>
+        </div>
+        <div class="col-6 col-lg-3">
+          <div class="stat-item">
+            <div class="number">50+</div>
+            <div class="label">Clients</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== TESTIMONIALS ===== -->
+  <section>
+    <div class="container">
+      <div class="row text-center mb-5">
+        <div class="col-12">
+          <span class="section-label">Testimonials</span>
+          <h2 class="section-title">What Our Clients Say</h2>
+          <p class="section-subtitle" style="margin: 0 auto;">Real stories from real brands we've helped transform.</p>
+        </div>
+      </div>
+      <div class="row g-4">
+        <div class="col-12 col-lg-6">
+          <div class="testimonial-card">
+            <div class="stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
+            <blockquote>"They took our tired brand and injected it with pure adrenaline. Sales are through the roof, and our customers are actually excited. It's like they read our minds."</blockquote>
+            <div class="author">Sarah Jenkins</div>
+            <div class="role">Brand Director, Alpha Brand</div>
+          </div>
+        </div>
+        <div class="col-12 col-lg-6">
+          <div class="testimonial-card">
+            <div class="stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
+            <blockquote>"They developed a revolutionary structural design for Vintage Wine, which led to increased shelf visibility and a modernised image. The bold way they approached a traditional brand impressed us."</blockquote>
+            <div class="author">Mark Thompson</div>
+            <div class="role">Brand Director, Vintage Wine</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== CTA SECTION ===== -->
+  <section style="padding: 60px 0 100px;">
+    <div class="container">
+      <div class="cta-premium">
+        <div class="row align-items-center">
+          <div class="col-12 col-lg-7">
+            <h2>Ready to Create Something Legendary?</h2>
+            <p>Stop settling for beige. Let's make something that makes people talk. We're here to turn your ideas into authentic brand experiences.</p>
+          </div>
+          <div class="col-12 col-lg-5 text-lg-end mt-4 mt-lg-0">
+            <a class="btn btn-primary" href="#" style="margin-right: 12px;">Start a Project</a>
+            <a class="btn btn-outline" href="#">Learn More</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== FOOTER ===== -->
+  <footer class="footer-premium">
+    <div class="container">
+      <div class="row">
+        <div class="col-12 col-lg-4">
+          <div class="footer-logo">SS<span>Designs</span></div>
+          <p style="margin-top: 16px; max-width: 320px;">Creative solutions for small and large brands alike. We build authentic product identities that perform in the marketplace.</p>
+          <div class="social-links mt-3">
+            <a href="#"><i class="fab fa-instagram"></i></a>
+            <a href="#"><i class="fab fa-dribbble"></i></a>
+            <a href="#"><i class="fab fa-behance"></i></a>
+            <a href="#"><i class="fab fa-linkedin-in"></i></a>
+            <a href="#"><i class="fab fa-twitter"></i></a>
+          </div>
+        </div>
+        <div class="col-12 col-lg-2 mt-4 mt-lg-0">
+          <h6 style="color: #fff; font-weight: 600; margin-bottom: 16px;">Explore</h6>
+          <ul style="list-style: none; padding: 0;">
+            <li style="margin-bottom: 8px;"><a href="#" style="color: rgba(255,255,255,0.4); text-decoration: none; font-size: 14px; transition: color 0.3s;">Home</a></li>
+            <li style="margin-bottom: 8px;"><a href="#" style="color: rgba(255,255,255,0.4); text-decoration: none; font-size: 14px; transition: color 0.3s;">Work</a></li>
+            <li style="margin-bottom: 8px;"><a href="#" style="color: rgba(255,255,255,0.4); text-decoration: none; font-size: 14px; transition: color 0.3s;">About</a></li>
+            <li style="margin-bottom: 8px;"><a href="#" style="color: rgba(255,255,255,0.4); text-decoration: none; font-size: 14px; transition: color 0.3s;">Services</a></li>
+          </ul>
+        </div>
+        <div class="col-12 col-lg-3 mt-4 mt-lg-0">
+          <h6 style="color: #fff; font-weight: 600; margin-bottom: 16px;">Contact</h6>
+          <p style="color: rgba(255,255,255,0.4); font-size: 14px; margin-bottom: 8px;"><i class="fas fa-envelope" style="color: var(--gold); margin-right: 10px; width: 18px;"></i>sekang.segotso@moov.life</p>
+          <p style="color: rgba(255,255,255,0.4); font-size: 14px; margin-bottom: 8px;"><i class="fas fa-phone" style="color: var(--gold); margin-right: 10px; width: 18px;"></i>+27 61 454 8884</p>
+          <p style="color: rgba(255,255,255,0.4); font-size: 14px; margin-bottom: 8px;"><i class="fas fa-map-pin" style="color: var(--gold); margin-right: 10px; width: 18px;"></i>25060 Diepkloof Z4 Bopang street</p>
+        </div>
+        <div class="col-12 col-lg-3 mt-4 mt-lg-0">
+          <h6 style="color: #fff; font-weight: 600; margin-bottom: 16px;">Newsletter</h6>
+          <p style="color: rgba(255,255,255,0.4); font-size: 14px;">Subscribe to get the latest insights and inspiration.</p>
+          <div style="display: flex; gap: 8px;">
+            <input type="email" placeholder="Your email" style="flex: 1; padding: 10px 16px; border-radius: 50px; border: 1px solid rgba(255,255,255,0.1); background: rgba(255,255,255,0.05); color: #fff; font-size: 14px;">
+            <button style="background: var(--gold-gradient); border: none; border-radius: 50px; padding: 10px 20px; color: #fff; font-weight: 600; font-size: 13px; cursor: pointer;">Subscribe</button>
+          </div>
+        </div>
+      </div>
+      <hr style="border-color: rgba(255,255,255,0.05); margin: 40px 0 20px;">
+      <div class="row">
+        <div class="col-12 text-center">
+          <p style="color: rgba(255,255,255,0.25); font-size: 13px;">&copy; 2026 SSDesigns. All rights reserved. Design is in everything we do.</p>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ===== WHATSAPP FLOATING BUTTON ===== -->
+  <a href="https://wa.me/27614548884?text=Hi%20SSDesigns%2C%20I'd%20like%20to%20know%20more%20about%20your%20premium%20services." 
+     class="whatsapp-float" 
+     target="_blank" 
+     rel="noopener noreferrer"
+     aria-label="Chat on WhatsApp">
+    <i class="fab fa-whatsapp"></i>
+    <span class="tooltip">Chat with us</span>
+  </a>
+
+  <!-- ===== SCRIPTS ===== -->
+  <script src="assets/bootstrap/js/bootstrap.bundle.min.js"></script>
+  <script src="assets/parallax/jarallax.js"></script>
+  <script src="assets/smoothscroll/smooth-scroll.js"></script>
+  <script src="assets/ytplayer/index.js"></script>
+  <script src="assets/smart-cart/minicart.js"></script>
+  <script src="assets/smart-cart/minicart-customizer.js"></script>
+  <script src="assets/dropdown/js/navbar-dropdown.js"></script>
+  <script src="assets/playervimeo/vimeo_player.js"></script>
+  <script src="assets/embla/embla.min.js"></script>
+  <script src="assets/embla/script.js"></script>
+  <script src="assets/mbr-tabs/mbr-tabs.js"></script>
+  <script src="assets/mbr-switch-arrow/mbr-switch-arrow.js"></script>
+  <script src="assets/scrollgallery/scroll-gallery.js"></script>
+  <script src="assets/vimeoplayer/player.js"></script>
+  <script src="assets/theme/js/script.js"></script>
+  <script src="assets/formoid/formoid.min.js"></script>
+  
+  <script>
+    // Navbar scroll effect
+    window.addEventListener('scroll', function() {
+      const navbar = document.querySelector('.navbar');
+      if (window.scrollY > 50) {
+        navbar.classList.add('scrolled');
+      } else {
+        navbar.classList.remove('scrolled');
+      }
+    });
+  </script>
+  
+</body>
+</html>            transform-origin: right;
             transition: transform 0.4s ease;
         }
         .logo-premium:hover .logo-text .highlight::after {
