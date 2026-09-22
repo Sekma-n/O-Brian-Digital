@@ -227,6 +227,38 @@
       font-size: 0.85rem; margin-top: 1.8rem; color: var(--primary-dark);
     }
 
+    /* ── BACK TO OUR WORK BUTTON ── */
+    .btn-back-work {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      padding: 0.75rem 1.8rem;
+      border-radius: 60px;
+      font-weight: 600;
+      font-size: 0.95rem;
+      letter-spacing: 0.3px;
+      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      border: 2px solid var(--primary);
+      background: transparent;
+      color: var(--primary);
+      text-decoration: none;
+      margin-top: 2rem;
+      cursor: pointer;
+    }
+    .btn-back-work:hover {
+      background: var(--primary);
+      color: #ffffff;
+      transform: translateY(-3px);
+      box-shadow: 0 10px 25px -6px rgba(237, 0, 142, 0.4);
+    }
+    .btn-back-work i {
+      font-size: 1rem;
+      transition: transform 0.3s ease;
+    }
+    .btn-back-work:hover i {
+      transform: translateX(-4px);
+    }
+
     .overview { padding: 3rem 0 2rem; background: white; }
     .overview-grid {
       display: flex; flex-wrap: wrap; gap: 2.5rem;
@@ -439,6 +471,7 @@
         gap: 1rem;
       }
       .scroll-top-btn { bottom: 20px; right: 20px; width: 48px; height: 48px; font-size: 1.1rem; }
+      .btn-back-work { padding: 0.6rem 1.4rem; font-size: 0.85rem; margin-top: 1.5rem; }
     }
 
     @media (max-width: 768px) {
@@ -449,6 +482,7 @@
     }
     @media (max-width: 480px) {
       .logo-text { font-size: 0.9rem; }
+      .btn-back-work { padding: 0.55rem 1.2rem; font-size: 0.8rem; }
     }
   </style>
 </head>
@@ -554,6 +588,14 @@
     <h1>Excellence in<br>Brand Identity</h1>
     <div class="hero-tagline">A Dive into Our Work Triumphs · Strategic CI & Visual Governance</div>
     <div class="project-badge"><i class="fas fa-building"></i> City of Ekurhuleni · Brand CI Manual Development</div>
+
+    <!-- ===== BACK TO OUR WORK BUTTON ===== -->
+    <div style="margin-top: 2rem;">
+      <a href="Our_Work.html" class="btn-back-work">
+        <i class="fas fa-arrow-left"></i>
+        Back to Our Work
+      </a>
+    </div>
   </div>
 </section>
 
@@ -775,12 +817,10 @@
       var img = document.createElement('img');
 
       if (idx < 4) {
-        // First 4 load immediately
         img.src = src;
         img.loading = 'eager';
         img.addEventListener('load', function() { img.classList.add('loaded'); }, { once: true });
       } else {
-        // Rest load lazily via observer
         img.dataset.src = src;
         img.loading = 'lazy';
         img.decoding = 'async';
