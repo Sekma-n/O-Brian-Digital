@@ -6,8 +6,7 @@
     <title>O'Brien Podcast | Coming Soon</title>
 
     <!-- Tailwind CSS -->
-    <script src="https://cdn.tailwindcss.com">
-    </script>
+    <script src="https://cdn.tailwindcss.com"></script>
 
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -39,7 +38,7 @@
             color: inherit;
         }
 
-        /* --- Custom Nav Styles (to complement Tailwind) --- */
+        /* --- Custom Nav Styles --- */
         .magnetic-btn {
             transition: all 0.3s ease;
         }
@@ -200,6 +199,35 @@
             transform: translateY(-2px);
         }
 
+        /* ── BACK TO OUR WORK BUTTON ── */
+        .btn-back-work {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            padding: 12px 28px;
+            border-radius: 60px;
+            font-weight: 600;
+            font-size: 0.9rem;
+            letter-spacing: 0.3px;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            border: 2px solid #ec008a;
+            background: transparent;
+            color: #ec008a;
+            text-decoration: none;
+            cursor: pointer;
+        }
+        .btn-back-work:hover {
+            background: #ec008a;
+            color: #ffffff;
+            transform: translateY(-3px);
+            box-shadow: 0 10px 25px -6px rgba(236, 0, 138, 0.5);
+        }
+        .btn-back-work i {
+            font-size: 0.95rem;
+            transition: transform 0.3s ease;
+        }
+        .btn-back-work:hover i { transform: translateX(-4px); }
+
         /* Video Showcase */
         .video-section {
             padding: 4rem 2rem 5rem;
@@ -267,7 +295,11 @@
             width: 100%;
             height: 100%;
             object-fit: cover;
-            transition: transform 0.4s ease;
+            transition: transform 0.4s ease, opacity 0.4s ease;
+            opacity: 0;
+        }
+        .video-card .thumb img.loaded {
+            opacity: 1;
         }
 
         .video-card:hover .thumb img {
@@ -414,24 +446,16 @@
             }
         }
 
-        .delay-1 {
-            animation-delay: 0.1s;
-        }
-        .delay-2 {
-            animation-delay: 0.25s;
-        }
-        .delay-3 {
-            animation-delay: 0.4s;
-        }
-        .delay-4 {
-            animation-delay: 0.55s;
-        }
+        .delay-1 { animation-delay: 0.1s; }
+        .delay-2 { animation-delay: 0.25s; }
+        .delay-3 { animation-delay: 0.4s; }
+        .delay-4 { animation-delay: 0.55s; }
+        .delay-5 { animation-delay: 0.7s; }
 
-        /* ── NEW HEADER STYLES ── */
+        /* ── HEADER STYLES ── */
         .header-glass {
             position: fixed;
-            top: 0;
-            left: 0;
+            top: 0; left: 0;
             width: 100%;
             z-index: 1030;
             background: rgba(255, 255, 255, 0.85);
@@ -462,8 +486,7 @@
 
         .dropdown-menu-custom {
             position: absolute;
-            top: 100%;
-            left: 0;
+            top: 100%; left: 0;
             margin-top: 0.5rem;
             width: 200px;
             background: white;
@@ -493,12 +516,8 @@
             background: #fdf2f8;
             color: #e6007e;
         }
-        .dropdown-menu-custom a:first-child {
-            border-radius: 0.75rem 0.75rem 0 0;
-        }
-        .dropdown-menu-custom a:last-child {
-            border-radius: 0 0 0.75rem 0.75rem;
-        }
+        .dropdown-menu-custom a:first-child { border-radius: 0.75rem 0.75rem 0 0; }
+        .dropdown-menu-custom a:last-child { border-radius: 0 0 0.75rem 0.75rem; }
 
         .btn-primary-pink {
             display: inline-flex;
@@ -519,14 +538,10 @@
             color: white;
         }
 
-        /* Mobile menu panel */
         .mobile-menu-panel {
             display: none;
             position: fixed;
-            top: 80px;
-            left: 0;
-            right: 0;
-            bottom: 0;
+            top: 80px; left: 0; right: 0; bottom: 0;
             background: rgba(255, 255, 255, 0.98);
             backdrop-filter: blur(12px);
             padding: 1.5rem;
@@ -534,9 +549,7 @@
             z-index: 1020;
             border-top: 1px solid rgba(0, 0, 0, 0.04);
         }
-        .mobile-menu-panel.open {
-            display: block;
-        }
+        .mobile-menu-panel.open { display: block; }
         .mobile-menu-panel a {
             display: block;
             padding: 0.75rem 1rem;
@@ -556,25 +569,87 @@
             color: #1a1a2e;
             cursor: default;
         }
-        .mobile-menu-panel .mobile-dropdown-items {
-            padding-left: 1rem;
-        }
+        .mobile-menu-panel .mobile-dropdown-items { padding-left: 1rem; }
         .mobile-menu-panel .mobile-dropdown-items a {
             font-weight: 400;
             font-size: 0.95rem;
+        }
+
+        /* ── BACK TO TOP BUTTON ── */
+        .scroll-top-btn {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            width: 54px;
+            height: 54px;
+            border-radius: 50%;
+            background: #ec008a;
+            color: #ffffff;
+            border: none;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 1500;
+            box-shadow: 0 8px 28px rgba(236, 0, 138, 0.45);
+            transition: opacity 0.35s ease, visibility 0.35s ease,
+                        transform 0.35s ease, background 0.25s ease,
+                        box-shadow 0.25s ease;
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(24px) scale(0.9);
+            font-size: 1.25rem;
+        }
+        .scroll-top-btn.visible {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0) scale(1);
+        }
+        .scroll-top-btn:hover {
+            background: #c40075;
+            transform: translateY(-5px) scale(1.05);
+            box-shadow: 0 14px 40px rgba(236, 0, 138, 0.6);
+        }
+        .scroll-top-btn:active { transform: translateY(-2px) scale(0.98); }
+        .scroll-top-btn::before {
+            content: '';
+            position: absolute;
+            inset: -6px;
+            border-radius: 50%;
+            border: 2px solid rgba(236, 0, 138, 0.35);
+            animation: pulseRing 2.4s ease-out infinite;
+            pointer-events: none;
+        }
+        @keyframes pulseRing {
+            0% { transform: scale(1); opacity: 0.8; }
+            70% { transform: scale(1.25); opacity: 0; }
+            100% { transform: scale(1.25); opacity: 0; }
+        }
+        .scroll-top-btn:hover::before { animation-play-state: paused; opacity: 0; }
+
+        @media (max-width: 768px) {
+            body { padding-top: 70px; }
+            .mobile-menu-panel { top: 70px; }
+            .scroll-top-btn {
+                bottom: 20px; right: 20px;
+                width: 48px; height: 48px; font-size: 1.1rem;
+            }
+        }
+        @media (max-width: 480px) {
+            .btn-back-work { padding: 10px 22px; font-size: 0.8rem; }
         }
     </style>
 </head>
 <body>
 
-    <!-- ===== NEW HEADER ===== -->
+    <!-- ===== HEADER ===== -->
     <header class="header-glass" id="mainHeader">
         <div class="max-w-7xl mx-auto px-4 md:px-6">
             <div class="flex justify-between items-center h-20">
 
                 <!-- Logo -->
-                <a href="#" class="flex items-center gap-3 group">
-                    <img src="obrian-transparent-logo-4461219.webp" alt="O'Brian Group" class="h-10 w-auto" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22%3E%3Crect width=%22100%22 height=%22100%22 fill=%22%23ed008e%22/%3E%3Ctext x=%2250%22 y=%2268%22 font-size=%2248%22 text-anchor=%22middle%22 fill=%22white%22 font-weight=%22bold%22 font-family=%22Inter%22%3EO%3C/text%3E%3C/svg%3E'">
+                <a href="index.html" class="flex items-center gap-3 group">
+                    <img src="assets/images/obrian-transparent-logo-4461219.webp" alt="O'Brian Group" class="h-10 w-auto" loading="eager" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22%3E%3Crect width=%22100%22 height=%22100%22 fill=%22%23ed008e%22/%3E%3Ctext x=%2250%22 y=%2268%22 font-size=%2248%22 text-anchor=%22middle%22 fill=%22white%22 font-weight=%22bold%22 font-family=%22Inter%22%3EO%3C/text%3E%3C/svg%3E'">
                     <span class="font-black text-xl text-[#231e1f] tracking-tight hidden sm:inline"><span class="text-[#ed018e]"></span></span>
                 </a>
 
@@ -616,7 +691,7 @@
 
                 <!-- CTA -->
                 <div class="hidden lg:block">
-                    <a href="Contact_form.html" class="btn-primary-pink">
+                    <a href="Contact_Us.html" class="btn-primary-pink">
                         <span>Contact</span>
                         <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M17 8l4 4m0 0l-4 4m4-4H3"></path></svg>
                     </a>
@@ -636,23 +711,23 @@
 
     <!-- ===== MOBILE MENU PANEL ===== -->
     <div class="mobile-menu-panel" id="mobileMenuPanel">
-        <a href="#">Home</a>
-        <a href="#">About</a>
-        <a href="#">Our Work</a>
-        <a href="#">Client Experience</a>
+        <a href="index.html">Home</a>
+        <a href="About.html">About</a>
+        <a href="Our_Work.html">Our Work</a>
+        <a href="Client_Experience.html">Client Experience</a>
 
         <div class="mobile-dropdown-title">Case Studies</div>
         <div class="mobile-dropdown-items">
-            <a href="#">Advertising</a>
-            <a href="#">Digital</a>
-            <a href="#">Consulting</a>
+            <a href="Adv_Case_Studies.html">Advertising</a>
+            <a href="Digital_Case_Studies.html">Digital</a>
+            <a href="Consulting_Case_Studies.html">Consulting</a>
         </div>
 
         <div class="mobile-dropdown-title">Our Expertise</div>
         <div class="mobile-dropdown-items">
-            <a href="#">Advertising</a>
-            <a href="#">Digital</a>
-            <a href="#">Consulting</a>
+            <a href="Advertising_Expertise.html">Advertising</a>
+            <a href="Digital_Expertise.html">Digital</a>
+            <a href="Consulting_Expertise.html">Consulting</a>
         </div>
 
         <a href="Staff_News.html">Staff News</a>
@@ -660,6 +735,11 @@
         <a href="Archive_Gallery.html">Archives</a>
         <a href="Contact_Us.html" class="magnetic-btn" style="display:inline-flex; margin-top:1rem; background:linear-gradient(135deg,#e6007e,#ff1493); color:#fff; padding:0.6rem 1.5rem; border-radius:9999px; font-weight:700;">Contact Us</a>
     </div>
+
+    <!-- ===== BACK TO TOP BUTTON ===== -->
+    <button class="scroll-top-btn" id="scrollTopBtn" aria-label="Back to top" title="Back to top">
+        <i class="fas fa-chevron-up"></i>
+    </button>
 
     <!-- ===== HERO ===== -->
     <section class="hero">
@@ -673,11 +753,18 @@
                 Launching <strong>Spring 2026</strong>.
             </p>
             <div class="btn-group fade-up delay-3">
-                <a href="Contact_form.html" class="btn-primary">
+                <a href="Contact_Us.html" class="btn-primary">
                     <i class="fas fa-bell"></i> Notify Me
                 </a>
                 <a href="#video" class="btn-outline">
                     <i class="fas fa-play-circle"></i> Watch Trailer
+                </a>
+            </div>
+
+            <!-- ===== BACK TO OUR WORK BUTTON ===== -->
+            <div class="fade-up delay-4" style="margin-top: 1.5rem;">
+                <a href="Our_Work.html" class="btn-back-work">
+                    <i class="fas fa-arrow-left"></i> Back to Our Work
                 </a>
             </div>
         </div>
@@ -696,7 +783,7 @@
                 <!-- Video Card 1 -->
                 <div class="video-card fade-up delay-3" onclick="playVideo('VS9FbAnX3f0')">
                     <div class="thumb">
-                        <img src="https://img.youtube.com/vi/VS9FbAnX3f0/maxresdefault.jpg" alt="Podcast Trailer" loading="lazy" />
+                        <img src="https://img.youtube.com/vi/VS9FbAnX3f0/maxresdefault.jpg" alt="Podcast Trailer" loading="eager" onerror="this.src='https://img.youtube.com/vi/VS9FbAnX3f0/hqdefault.jpg'">
                         <div class="play-btn"><i class="fas fa-play"></i></div>
                     </div>
                     <div class="info">
@@ -708,7 +795,7 @@
                 <!-- Video Card 2 (placeholder for future episode) -->
                 <div class="video-card fade-up delay-4" onclick="playVideo('VS9FbAnX3f0')">
                     <div class="thumb">
-                        <img src="https://img.youtube.com/vi/VS9FbAnX3f0/maxresdefault.jpg" alt="Episode Teaser" loading="lazy" />
+                        <img data-src="https://img.youtube.com/vi/VS9FbAnX3f0/maxresdefault.jpg" alt="Episode Teaser" loading="lazy" onerror="this.src='https://img.youtube.com/vi/VS9FbAnX3f0/hqdefault.jpg'">
                         <div class="play-btn"><i class="fas fa-play"></i></div>
                     </div>
                     <div class="info">
@@ -754,7 +841,7 @@
                         <li><a href="Client_Experience.html">Clients</a></li>
                         <li><a href="#">Teams</a></li>
                         <li><a href="#">Brand</a></li>
-                        <li><a href="#">Terms</a></li>
+                        <li><a href="Terms.html">Terms</a></li>
                     </ul>
                 </div>
             </div>
@@ -771,7 +858,7 @@
         </div>
     </footer>
 
-    <!-- ===== LIGHTBOX / VIDEO MODAL ===== -->
+    <!-- ===== VIDEO MODAL ===== -->
     <div id="videoModal" style="
         position: fixed;
         inset: 0;
@@ -810,8 +897,8 @@
                 display: flex;
                 align-items: center;
                 justify-content: center;
-                transition: background 0.2s ease;
-            " onmouseover="this.style.background='rgba(236,0,138,0.7)'" onmouseout="this.style.background='rgba(255,255,255,0.1)'">
+                transition: background 0.2s ease, transform 0.2s ease;
+            " onmouseover="this.style.background='rgba(236,0,138,0.7)'; this.style.transform='rotate(90deg)'" onmouseout="this.style.background='rgba(255,255,255,0.1)'; this.style.transform='rotate(0)'">
                 <i class="fas fa-times"></i>
             </button>
             <iframe id="videoIframe" src="" style="
@@ -823,91 +910,141 @@
     </div>
 
     <script>
-        // ── Mobile menu toggle (updated for new header) ──
-        const menuBtn = document.getElementById('menuBtn');
-        const mobilePanel = document.getElementById('mobileMenuPanel');
+        (function() {
+            'use strict';
 
-        if (menuBtn && mobilePanel) {
-            menuBtn.addEventListener('click', () => {
-                menuBtn.classList.toggle('open');
-                mobilePanel.classList.toggle('open');
-                document.body.style.overflow = mobilePanel.classList.contains('open') ? 'hidden' : '';
-            });
+            // ── Mobile menu toggle ──
+            const menuBtn = document.getElementById('menuBtn');
+            const mobilePanel = document.getElementById('mobileMenuPanel');
 
-            mobilePanel.querySelectorAll('a').forEach(link => {
-                link.addEventListener('click', () => {
-                    menuBtn.classList.remove('open');
-                    mobilePanel.classList.remove('open');
-                    document.body.style.overflow = '';
+            if (menuBtn && mobilePanel) {
+                menuBtn.addEventListener('click', () => {
+                    menuBtn.classList.toggle('open');
+                    mobilePanel.classList.toggle('open');
+                    document.body.style.overflow = mobilePanel.classList.contains('open') ? 'hidden' : '';
                 });
+
+                mobilePanel.querySelectorAll('a').forEach(link => {
+                    link.addEventListener('click', () => {
+                        menuBtn.classList.remove('open');
+                        mobilePanel.classList.remove('open');
+                        document.body.style.overflow = '';
+                    });
+                });
+            }
+
+            // ── Header scroll effect + back-to-top visibility ──
+            const header = document.getElementById('mainHeader');
+            const scrollTopBtn = document.getElementById('scrollTopBtn');
+            let scrollTicking = false;
+
+            function handleScroll() {
+                header.classList.toggle('scrolled', window.scrollY > 20);
+                if (window.scrollY > 300) {
+                    scrollTopBtn.classList.add('visible');
+                } else {
+                    scrollTopBtn.classList.remove('visible');
+                }
+                scrollTicking = false;
+            }
+
+            window.addEventListener('scroll', function() {
+                if (!scrollTicking) {
+                    window.requestAnimationFrame(handleScroll);
+                    scrollTicking = true;
+                }
+            }, { passive: true });
+
+            handleScroll();
+
+            // ── Back to top ──
+            scrollTopBtn.addEventListener('click', function() {
+                window.scrollTo({ top: 0, behavior: 'smooth' });
             });
-        }
 
-        // ── Header scroll effect ──
-        const header = document.getElementById('mainHeader');
-        window.addEventListener('scroll', () => {
-            if (window.scrollY > 20) {
-                header.classList.add('scrolled');
-            } else {
-                header.classList.remove('scrolled');
-            }
-        });
+            // ── FAST LAZY LOADING via IntersectionObserver ──
+            var imgObserver = new IntersectionObserver(function(entries, observer) {
+                entries.forEach(function(entry) {
+                    if (entry.isIntersecting) {
+                        var img = entry.target;
+                        var src = img.dataset.src;
+                        if (src) {
+                            img.src = src;
+                            img.removeAttribute('data-src');
+                        }
+                        img.addEventListener('load', function() {
+                            img.classList.add('loaded');
+                        }, { once: true });
+                        observer.unobserve(img);
+                    }
+                });
+            }, { rootMargin: '300px 0px', threshold: 0.01 });
 
-        // ── Video Modal ──
-        const modal = document.getElementById('videoModal');
-        const iframe = document.getElementById('videoIframe');
+            document.querySelectorAll('img[data-src]').forEach(function(img) {
+                imgObserver.observe(img);
+            });
 
-        function playVideo(videoId) {
-            iframe.src = 'https://www.youtube.com/embed/' + videoId +
-                '?autoplay=1&mute=1&loop=1&playlist=' + videoId +
-                '&controls=1&rel=0&modestbranding=1';
-            modal.style.display = 'flex';
-            document.body.style.overflow = 'hidden';
-        }
-
-        function closeVideoModal() {
-            modal.style.display = 'none';
-            document.body.style.overflow = '';
-            iframe.src = '';
-        }
-
-        // Close on backdrop click
-        modal.addEventListener('click', (e) => {
-            if (e.target === modal) closeVideoModal();
-        });
-
-        // Close on Escape
-        document.addEventListener('keydown', (e) => {
-            if (e.key === 'Escape' && modal.style.display === 'flex') {
-                closeVideoModal();
-            }
-        });
-
-        // ── Scroll-triggered fade-up (Intersection Observer) ──
-        const fadeElements = document.querySelectorAll('.fade-up');
-
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.style.animationPlayState = 'running';
+            document.querySelectorAll('img[loading="eager"]').forEach(function(img) {
+                if (img.complete) {
+                    img.classList.add('loaded');
+                } else {
+                    img.addEventListener('load', function() { img.classList.add('loaded'); }, { once: true });
                 }
             });
-        }, { threshold: 0.15 });
 
-        fadeElements.forEach(el => {
-            el.style.animationPlayState = 'paused';
-            observer.observe(el);
-        });
+            // ── Video Modal ──
+            var modal = document.getElementById('videoModal');
+            var iframe = document.getElementById('videoIframe');
 
-        // Manually trigger for elements already visible on load
-        setTimeout(() => {
+            window.playVideo = function(videoId) {
+                iframe.src = 'https://www.youtube.com/embed/' + videoId +
+                    '?autoplay=1&mute=1&loop=1&playlist=' + videoId +
+                    '&controls=1&rel=0&modestbranding=1';
+                modal.style.display = 'flex';
+                document.body.style.overflow = 'hidden';
+            };
+
+            window.closeVideoModal = function() {
+                modal.style.display = 'none';
+                document.body.style.overflow = '';
+                iframe.src = '';
+            };
+
+            modal.addEventListener('click', (e) => {
+                if (e.target === modal) closeVideoModal();
+            });
+
+            document.addEventListener('keydown', (e) => {
+                if (e.key === 'Escape' && modal.style.display === 'flex') {
+                    closeVideoModal();
+                }
+            });
+
+            // ── Scroll-triggered fade-up ──
+            var fadeElements = document.querySelectorAll('.fade-up');
+            var observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.style.animationPlayState = 'running';
+                    }
+                });
+            }, { threshold: 0.15 });
+
             fadeElements.forEach(el => {
-                const rect = el.getBoundingClientRect();
-                if (rect.top < window.innerHeight) {
-                    el.style.animationPlayState = 'running';
-                }
+                el.style.animationPlayState = 'paused';
+                observer.observe(el);
             });
-        }, 100);
+
+            setTimeout(() => {
+                fadeElements.forEach(el => {
+                    const rect = el.getBoundingClientRect();
+                    if (rect.top < window.innerHeight) {
+                        el.style.animationPlayState = 'running';
+                    }
+                });
+            }, 100);
+
+        })();
     </script>
 
 </body>
