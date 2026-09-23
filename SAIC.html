@@ -53,22 +53,14 @@
       padding-top: 80px;
     }
 
-    ::-webkit-scrollbar {
-      width: 6px;
-    }
-    ::-webkit-scrollbar-track {
-      background: #f5eef2;
-    }
-    ::-webkit-scrollbar-thumb {
-      background: var(--primary);
-      border-radius: 10px;
-    }
+    ::-webkit-scrollbar { width: 6px; }
+    ::-webkit-scrollbar-track { background: #f5eef2; }
+    ::-webkit-scrollbar-thumb { background: var(--primary); border-radius: 10px; }
 
-    /* ---------- PREMIUM GLASS HEADER STYLES ---------- */
+    /* ---------- PREMIUM GLASS HEADER ---------- */
     .header-glass {
       position: fixed;
-      top: 0;
-      left: 0;
+      top: 0; left: 0;
       width: 100%;
       z-index: 1030;
       background: rgba(255, 255, 255, 0.72);
@@ -88,33 +80,20 @@
       border-bottom: 1px solid rgba(0, 0, 0, 0.03);
     }
 
-    /* Premium Logo */
-    .logo-premium {
-      display: flex;
-      align-items: center;
-      gap: 12px;
-      transition: transform 0.3s ease;
-    }
-    .logo-premium:hover {
-      transform: scale(1.01);
-    }
+    .logo-premium { display: flex; align-items: center; gap: 12px; transition: transform 0.3s ease; }
+    .logo-premium:hover { transform: scale(1.01); }
     .logo-text {
       font-size: 1.35rem;
       font-weight: 800;
       letter-spacing: -0.5px;
       color: #231e1f;
     }
-    .logo-text .highlight {
-      color: #e6007e;
-      position: relative;
-    }
+    .logo-text .highlight { color: #e6007e; position: relative; }
     .logo-text .highlight::after {
       content: '';
       position: absolute;
-      bottom: -2px;
-      left: 0;
-      width: 100%;
-      height: 2px;
+      bottom: -2px; left: 0;
+      width: 100%; height: 2px;
       background: #e6007e;
       transform: scaleX(0);
       transform-origin: right;
@@ -125,7 +104,6 @@
       transform-origin: left;
     }
 
-    /* Premium Nav Links */
     .nav-link-premium {
       position: relative;
       padding: 0.5rem 1.2rem;
@@ -144,43 +122,25 @@
     .nav-link-premium::after {
       content: '';
       position: absolute;
-      bottom: 4px;
-      left: 50%;
-      width: 0;
-      height: 2px;
+      bottom: 4px; left: 50%;
+      width: 0; height: 2px;
       background: linear-gradient(90deg, #e6007e, #ff1493);
       transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
       transform: translateX(-50%);
       border-radius: 2px;
     }
-    .nav-link-premium:hover {
-      color: #e6007e;
-      background: rgba(230, 0, 126, 0.06);
-    }
-    .nav-link-premium:hover::after {
-      width: 60%;
-    }
-    .nav-link-premium.active-link {
-      color: #e6007e;
-      background: rgba(230, 0, 126, 0.08);
-    }
-    .nav-link-premium.active-link::after {
-      width: 70%;
-    }
+    .nav-link-premium:hover { color: #e6007e; background: rgba(230, 0, 126, 0.06); }
+    .nav-link-premium:hover::after { width: 60%; }
+    .nav-link-premium.active-link { color: #e6007e; background: rgba(230, 0, 126, 0.08); }
+    .nav-link-premium.active-link::after { width: 70%; }
 
-    /* Premium Dropdown */
-    .dropdown-wrapper {
-      position: relative;
-    }
+    .dropdown-wrapper { position: relative; }
     .dropdown-wrapper:hover .dropdown-menu-premium {
-      opacity: 1;
-      visibility: visible;
-      transform: translateY(0) scale(1);
+      opacity: 1; visibility: visible; transform: translateY(0) scale(1);
     }
     .dropdown-menu-premium {
       position: absolute;
-      top: calc(100% + 12px);
-      left: 0;
+      top: calc(100% + 12px); left: 0;
       min-width: 200px;
       background: rgba(255, 255, 255, 0.98);
       backdrop-filter: blur(16px);
@@ -199,10 +159,8 @@
     .dropdown-menu-premium::before {
       content: '';
       position: absolute;
-      top: -6px;
-      left: 20px;
-      width: 10px;
-      height: 10px;
+      top: -6px; left: 20px;
+      width: 10px; height: 10px;
       background: rgba(255, 255, 255, 0.98);
       border-left: 1px solid rgba(230, 0, 126, 0.08);
       border-top: 1px solid rgba(230, 0, 126, 0.08);
@@ -224,14 +182,9 @@
       color: #e6007e;
       padding-left: 1.8rem;
     }
-    .dropdown-menu-premium a:first-child {
-      border-radius: 12px 12px 0 0;
-    }
-    .dropdown-menu-premium a:last-child {
-      border-radius: 0 0 12px 12px;
-    }
+    .dropdown-menu-premium a:first-child { border-radius: 12px 12px 0 0; }
+    .dropdown-menu-premium a:last-child { border-radius: 0 0 12px 12px; }
 
-    /* Premium CTA Button */
     .btn-premium-cta {
       display: inline-flex;
       align-items: center;
@@ -255,10 +208,8 @@
       color: white;
     }
 
-    /* Premium Burger */
     .burger-premium {
-      width: 36px;
-      height: 36px;
+      width: 36px; height: 36px;
       border-radius: 10px;
       border: 1px solid rgba(0, 0, 0, 0.04);
       background: rgba(255, 255, 255, 0.5);
@@ -277,38 +228,24 @@
     }
     .burger-line {
       display: block;
-      width: 18px;
-      height: 2px;
+      width: 18px; height: 2px;
       background: #374151;
       border-radius: 2px;
       transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
     }
-    .burger-line:nth-child(3) {
-      width: 12px;
-      margin-left: auto;
-    }
+    .burger-line:nth-child(3) { width: 12px; margin-left: auto; }
     .burger-premium.open .burger-line:nth-child(1) {
-      transform: rotate(45deg) translate(5px, 5px);
-      width: 20px;
+      transform: rotate(45deg) translate(5px, 5px); width: 20px;
     }
-    .burger-premium.open .burger-line:nth-child(2) {
-      opacity: 0;
-      transform: scaleX(0);
-    }
+    .burger-premium.open .burger-line:nth-child(2) { opacity: 0; transform: scaleX(0); }
     .burger-premium.open .burger-line:nth-child(3) {
-      transform: rotate(-45deg) translate(5px, -5px);
-      width: 20px;
-      margin-left: 0;
+      transform: rotate(-45deg) translate(5px, -5px); width: 20px; margin-left: 0;
     }
 
-    /* Mobile menu panel */
     .mobile-menu-panel {
       display: none;
       position: fixed;
-      top: 80px;
-      left: 0;
-      right: 0;
-      bottom: 0;
+      top: 80px; left: 0; right: 0; bottom: 0;
       background: rgba(255, 255, 255, 0.98);
       backdrop-filter: blur(20px);
       -webkit-backdrop-filter: blur(20px);
@@ -317,19 +254,10 @@
       z-index: 1020;
       border-top: 1px solid rgba(0, 0, 0, 0.03);
     }
-    .mobile-menu-panel.open {
-      display: block;
-      animation: fadeSlideDown 0.4s ease forwards;
-    }
+    .mobile-menu-panel.open { display: block; animation: fadeSlideDown 0.4s ease forwards; }
     @keyframes fadeSlideDown {
-      from {
-        opacity: 0;
-        transform: translateY(-10px);
-      }
-      to {
-        opacity: 1;
-        transform: translateY(0);
-      }
+      from { opacity: 0; transform: translateY(-10px); }
+      to { opacity: 1; transform: translateY(0); }
     }
     .mobile-menu-panel a {
       display: block;
@@ -349,22 +277,16 @@
     .mobile-menu-panel .mobile-dropdown-title {
       font-weight: 700;
       padding: 0.75rem 1rem;
-      color: #1a1a2e;
       cursor: default;
       font-size: 0.85rem;
       text-transform: uppercase;
       letter-spacing: 0.5px;
       color: #6b7280;
     }
-    .mobile-menu-panel .mobile-dropdown-items {
-      padding-left: 1rem;
-    }
-    .mobile-menu-panel .mobile-dropdown-items a {
-      font-weight: 400;
-      font-size: 0.95rem;
-    }
+    .mobile-menu-panel .mobile-dropdown-items { padding-left: 1rem; }
+    .mobile-menu-panel .mobile-dropdown-items a { font-weight: 400; font-size: 0.95rem; }
 
-    /* ---------- HERO & OTHER STYLES (unchanged) ---------- */
+    /* ---------- HERO ---------- */
     .hero {
       min-height: 85vh;
       display: flex;
@@ -413,6 +335,38 @@
       font-weight: 800;
       color: var(--primary);
     }
+
+    /* ── BACK TO OUR WORK BUTTON ── */
+    .btn-back-work {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      padding: 0.75rem 1.8rem;
+      border-radius: 60px;
+      font-weight: 600;
+      font-size: 0.95rem;
+      letter-spacing: 0.3px;
+      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      border: 2px solid var(--primary);
+      background: transparent;
+      color: var(--primary);
+      text-decoration: none;
+      cursor: pointer;
+      margin-top: 2rem;
+    }
+    .btn-back-work:hover {
+      background: var(--primary);
+      color: #ffffff;
+      transform: translateY(-3px);
+      box-shadow: 0 10px 25px -6px rgba(237, 0, 142, 0.4);
+    }
+    .btn-back-work i {
+      font-size: 1rem;
+      transition: transform 0.3s ease;
+    }
+    .btn-back-work:hover i { transform: translateX(-4px); }
+
+    /* ---------- PORTFOLIO GRID ---------- */
     .portfolio-section {
       padding: 5rem 5%;
       background: var(--bg-white);
@@ -427,9 +381,7 @@
       font-family: 'Montserrat', sans-serif;
       color: var(--dark-text);
     }
-    .section-header span {
-      color: var(--primary);
-    }
+    .section-header span { color: var(--primary); }
     .section-header p {
       color: #5e4b55;
       max-width: 600px;
@@ -458,14 +410,13 @@
       width: 100%;
       height: 260px;
       object-fit: cover;
-      transition: transform 0.5s;
+      transition: transform 0.5s ease, opacity 0.4s ease;
+      display: block;
+      opacity: 0;
     }
-    .case-card:hover .card-img {
-      transform: scale(1.02);
-    }
-    .card-content {
-      padding: 1.5rem;
-    }
+    .card-img.loaded { opacity: 1; }
+    .case-card:hover .card-img { transform: scale(1.02); }
+    .card-content { padding: 1.5rem; }
     .card-title {
       font-size: 1.5rem;
       font-weight: 700;
@@ -507,81 +458,184 @@
       margin-top: 1rem;
       transition: gap 0.2s;
     }
-    .view-link i {
-      font-size: 0.7rem;
-    }
-    .view-link:hover {
-      gap: 10px;
-      color: var(--primary-dark);
-    }
+    .view-link i { font-size: 0.7rem; }
+    .view-link:hover { gap: 10px; color: var(--primary-dark); }
+
+    /* ---------- LIGHTBOX (enhanced with arrows) ---------- */
     .lightbox {
       position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background: rgba(255,255,255,0.96);
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      background: rgba(15, 10, 12, 0.95);
       backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
       z-index: 2000;
       display: flex;
       align-items: center;
       justify-content: center;
       visibility: hidden;
       opacity: 0;
-      transition: 0.2s;
+      transition: 0.25s ease;
     }
     .lightbox.active {
       visibility: visible;
       opacity: 1;
     }
     .lightbox-content {
-      max-width: 85vw;
-      max-height: 85vh;
+      max-width: 88vw;
+      max-height: 88vh;
       position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: center;
     }
     .lightbox-content img {
       width: auto;
-      max-width: 100%;
-      max-height: 80vh;
-      border-radius: 20px;
-      box-shadow: 0 20px 40px rgba(0,0,0,0.2);
-      border: 2px solid var(--primary);
+      max-width: 88vw;
+      max-height: 82vh;
+      border-radius: 16px;
+      box-shadow: 0 30px 70px rgba(0, 0, 0, 0.55);
+      object-fit: contain;
+      display: block;
     }
     .lightbox-close {
       position: absolute;
-      top: -40px;
-      right: 0;
-      background: none;
+      top: -22px;
+      right: -22px;
+      background: rgba(255, 255, 255, 0.14);
       border: none;
-      color: var(--dark-text);
-      font-size: 2rem;
+      color: #fff;
+      font-size: 1.5rem;
+      width: 44px;
+      height: 44px;
+      border-radius: 50%;
       cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: 0.25s;
+      z-index: 10;
     }
+    .lightbox-close:hover {
+      background: var(--primary);
+      transform: rotate(90deg);
+    }
+
+    /* LIGHTBOX ARROWS (prominent) */
     .lightbox-prev, .lightbox-next {
       position: absolute;
       top: 50%;
       transform: translateY(-50%);
-      background: rgba(237,0,142,0.2);
+      background: rgba(255, 255, 255, 0.92);
       border: none;
-      color: var(--dark-text);
-      font-size: 2rem;
-      padding: 0.8rem 1.2rem;
+      color: #231e1f;
+      font-size: 1.7rem;
+      width: 54px;
+      height: 54px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
       cursor: pointer;
-      border-radius: 50px;
-      transition: 0.2s;
+      z-index: 15;
+      transition: all 0.28s ease;
+      box-shadow: 0 6px 22px rgba(0, 0, 0, 0.4);
     }
     .lightbox-prev { left: -70px; }
     .lightbox-next { right: -70px; }
     .lightbox-prev:hover, .lightbox-next:hover {
       background: var(--primary);
-      color: white;
+      color: #fff;
+      transform: translateY(-50%) scale(1.08);
+      box-shadow: 0 8px 28px rgba(237, 0, 142, 0.5);
+    }
+
+    .lightbox-counter {
+      position: absolute;
+      bottom: -42px;
+      left: 50%;
+      transform: translateX(-50%);
+      color: rgba(255, 255, 255, 0.75);
+      font-size: 0.85rem;
+      letter-spacing: 1px;
+      font-weight: 500;
+      white-space: nowrap;
+    }
+
+    /* ── BACK TO TOP BUTTON ── */
+    .scroll-top-btn {
+      position: fixed;
+      bottom: 30px;
+      right: 30px;
+      width: 54px;
+      height: 54px;
+      border-radius: 50%;
+      background: var(--primary);
+      color: #ffffff;
+      border: none;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 1500;
+      box-shadow: 0 8px 28px rgba(237, 0, 142, 0.45);
+      transition: opacity 0.35s ease, visibility 0.35s ease,
+                  transform 0.35s ease, background 0.25s ease,
+                  box-shadow 0.25s ease;
+      opacity: 0;
+      visibility: hidden;
+      transform: translateY(24px) scale(0.9);
+      font-size: 1.25rem;
+    }
+    .scroll-top-btn.visible {
+      opacity: 1;
+      visibility: visible;
+      transform: translateY(0) scale(1);
+    }
+    .scroll-top-btn:hover {
+      background: var(--primary-dark);
+      transform: translateY(-5px) scale(1.05);
+      box-shadow: 0 14px 40px rgba(237, 0, 142, 0.6);
+    }
+    .scroll-top-btn:active { transform: translateY(-2px) scale(0.98); }
+    .scroll-top-btn::before {
+      content: '';
+      position: absolute;
+      inset: -6px;
+      border-radius: 50%;
+      border: 2px solid rgba(237, 0, 142, 0.35);
+      animation: pulseRing 2.4s ease-out infinite;
+      pointer-events: none;
+    }
+    @keyframes pulseRing {
+      0% { transform: scale(1); opacity: 0.8; }
+      70% { transform: scale(1.25); opacity: 0; }
+      100% { transform: scale(1.25); opacity: 0; }
+    }
+    .scroll-top-btn:hover::before { animation-play-state: paused; opacity: 0; }
+
+    @media (max-width: 900px) {
+      .lightbox-prev, .lightbox-next {
+        width: 44px; height: 44px; font-size: 1.5rem;
+      }
+      .lightbox-prev { left: -10px; }
+      .lightbox-next { right: -10px; }
+      .lightbox-close { top: -14px; right: -14px; width: 38px; height: 38px; font-size: 1.2rem; }
     }
     @media (max-width: 768px) {
-      .lightbox-prev { left: 10px; }
-      .lightbox-next { right: 10px; }
       .hero-content h1 { font-size: 2.7rem; }
       .bento-grid { grid-template-columns: 1fr; }
+      .lightbox-prev { left: 8px; }
+      .lightbox-next { right: 8px; }
+      .scroll-top-btn { bottom: 20px; right: 20px; width: 48px; height: 48px; font-size: 1.1rem; }
+      .btn-back-work { padding: 0.6rem 1.4rem; font-size: 0.85rem; }
     }
+    @media (max-width: 480px) {
+      .btn-back-work { padding: 0.55rem 1.2rem; font-size: 0.8rem; }
+      .lightbox-counter { bottom: -35px; font-size: 0.75rem; }
+    }
+
+    /* ---------- FOOTER ---------- */
     .footer-section {
       background: #faf7f9;
       padding: 3rem 5% 2rem;
@@ -598,18 +652,14 @@
       margin-bottom: 1rem;
       color: var(--primary);
     }
-    .footer-col ul {
-      list-style: none;
-    }
+    .footer-col ul { list-style: none; }
     .footer-col li, .footer-col a {
       color: #6a5762;
       text-decoration: none;
       font-size: 0.85rem;
       line-height: 1.8;
     }
-    .footer-col a:hover {
-      color: var(--primary);
-    }
+    .footer-col a:hover { color: var(--primary); }
     .social-icons {
       display: flex;
       gap: 1rem;
@@ -618,8 +668,7 @@
     }
     .social-icons a {
       background: #eee4e8;
-      width: 38px;
-      height: 38px;
+      width: 38px; height: 38px;
       display: inline-flex;
       align-items: center;
       justify-content: center;
@@ -641,26 +690,14 @@
       margin-top: 1rem;
     }
 
-    /* ── Responsive ── */
     @media (max-width: 768px) {
-      body {
-        padding-top: 70px;
-      }
-      .header-glass {
-        height: 70px;
-        padding: 0 1rem;
-      }
-      .mobile-menu-panel {
-        top: 70px;
-      }
-      .logo-text {
-        font-size: 1rem;
-      }
+      body { padding-top: 70px; }
+      .header-glass { height: 70px; padding: 0 1rem; }
+      .mobile-menu-panel { top: 70px; }
+      .logo-text { font-size: 1rem; }
     }
     @media (max-width: 480px) {
-      .logo-text {
-        font-size: 0.9rem;
-      }
+      .logo-text { font-size: 0.9rem; }
     }
   </style>
 </head>
@@ -671,15 +708,11 @@
   <div class="max-w-7xl mx-auto px-4 md:px-6 w-full">
     <div class="flex justify-between items-center">
 
-      <!-- Premium Logo -->
       <a href="Home.html" class="logo-premium group">
         <img src="assets/images/obrian-transparent-logo-4461219.webp" alt="O'Brian Group" class="h-9 w-auto" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22%3E%3Crect width=%22100%22 height=%22100%22 fill=%22%23ed008e%22/%3E%3Ctext x=%2250%22 y=%2268%22 font-size=%2248%22 text-anchor=%22middle%22 fill=%22white%22 font-weight=%22bold%22 font-family=%22Inter%22%3EO%3C/text%3E%3C/svg%3E'">
-        <span class="logo-text hidden sm:inline-block">
-          <span class="highlight"></span> 
-        </span>
+        <span class="logo-text hidden sm:inline-block"><span class="highlight"></span></span>
       </a>
 
-      <!-- Premium Desktop Nav -->
       <div class="hidden lg:flex items-center gap-0.5">
         <a href="Home.html" class="nav-link-premium">Home</a>
         <a href="About.html" class="nav-link-premium">About</a>
@@ -715,7 +748,6 @@
         <a href="Archive_Gallery.html" class="nav-link-premium">Archives</a>
       </div>
 
-      <!-- Premium CTA -->
       <div class="hidden lg:block">
         <a href="Contact_Us.html" class="btn-premium-cta">
           <span>Contact</span>
@@ -723,7 +755,6 @@
         </a>
       </div>
 
-      <!-- Premium Burger -->
       <button class="burger-premium lg:hidden" id="menuBtn" aria-label="Toggle menu">
         <span class="burger-line"></span>
         <span class="burger-line"></span>
@@ -760,15 +791,28 @@
   <a href="Contact_Us.html" style="display:inline-flex; margin-top:1rem; background:linear-gradient(135deg,#e6007e,#ff1493); color:#fff; padding:0.6rem 1.5rem; border-radius:9999px; font-weight:700; text-decoration:none;">Contact Us</a>
 </div>
 
-<!-- HERO (unchanged) -->
+<!-- ===== BACK TO TOP BUTTON ===== -->
+<button class="scroll-top-btn" id="scrollTopBtn" aria-label="Back to top" title="Back to top">
+  <i class="fas fa-chevron-up"></i>
+</button>
+
+<!-- HERO -->
 <section class="hero">
   <div class="hero-content">
-    <h1>SAIC’s Vision,<br>Engineered Online</h1>
+    <h1>SAIC's Vision,<br>Engineered Online</h1>
     <p>High-impact digital transformations, investment conference branding, and data-driven creative — case studies that define excellence.</p>
     <div class="hero-stat">
       <div class="stat-item"><span class="stat-number">+87%</span><br>Engagement lift</div>
       <div class="stat-item"><span class="stat-number">12+</span><br>Industry awards</div>
       <div class="stat-item"><span class="stat-number">4.9</span><br>Client rating</div>
+    </div>
+
+    <!-- ===== BACK TO OUR WORK BUTTON ===== -->
+    <div>
+      <a href="Our_Work.html" class="btn-back-work">
+        <i class="fas fa-arrow-left"></i>
+        Back to Our Work
+      </a>
     </div>
   </div>
 </section>
@@ -822,7 +866,7 @@
         <li><a href="Client_Experience.html">Clients</a></li>
         <li>Teams</li>
         <li>Brand</li>
-         <li><a href="Terms.html.html">Terms</a></li>
+        <li><a href="Terms.html">Terms</a></li>
       </ul>
     </div>
   </div>
@@ -837,14 +881,15 @@
   </div>
 </footer>
 
-<!-- LIGHTBOX MODAL -->
+<!-- LIGHTBOX MODAL WITH ARROWS + COUNTER -->
 <div id="lightboxModal" class="lightbox">
-  <button class="lightbox-close" id="closeLightbox">&times;</button>
-  <button class="lightbox-prev" id="prevImage"><i class="fas fa-chevron-left"></i></button>
   <div class="lightbox-content">
+    <button class="lightbox-close" id="closeLightbox" aria-label="Close">&times;</button>
+    <button class="lightbox-prev" id="prevImage" aria-label="Previous image"><i class="fas fa-chevron-left"></i></button>
     <img id="lightboxImg" src="" alt="full view">
+    <button class="lightbox-next" id="nextImage" aria-label="Next image"><i class="fas fa-chevron-right"></i></button>
+    <div class="lightbox-counter" id="lightboxCounter"></div>
   </div>
-  <button class="lightbox-next" id="nextImage"><i class="fas fa-chevron-right"></i></button>
 </div>
 
 <script>
@@ -897,14 +942,34 @@
   ];
 
   var container = document.getElementById('caseGrid');
+
+  // ── FAST LAZY LOADING via IntersectionObserver ──
+  var imgObserver = new IntersectionObserver(function(entries, observer) {
+    entries.forEach(function(entry) {
+      if (entry.isIntersecting) {
+        var img = entry.target;
+        var src = img.dataset.src;
+        if (src) {
+          img.src = src;
+          img.removeAttribute('data-src');
+        }
+        img.addEventListener('load', function() {
+          img.classList.add('loaded');
+        }, { once: true });
+        observer.unobserve(img);
+      }
+    });
+  }, { rootMargin: '300px 0px', threshold: 0.01 });
+
   function buildCards() {
     var html = '';
     imageSources.forEach(function(src, idx) {
       var data = caseData[idx % caseData.length];
       var projectTitle = data.title + (idx >= caseData.length ? ' ' + (Math.floor(idx/caseData.length)+1) : '');
+      var isEager = idx < 3;
       html += `
         <div class="case-card" data-img-index="${idx}">
-          <img class="card-img" src="${src}" alt="${projectTitle}" loading="lazy">
+          <img class="card-img" ${isEager ? 'src="' + src + '" loading="eager"' : 'data-src="' + src + '" loading="lazy"'} alt="${projectTitle}">
           <div class="card-content">
             <div class="card-sub">${data.sub}</div>
             <h3 class="card-title">${projectTitle}</h3>
@@ -916,50 +981,98 @@
       `;
     });
     container.innerHTML = html;
+
+    // Observe lazy images
+    container.querySelectorAll('img[data-src]').forEach(function(img) {
+      imgObserver.observe(img);
+    });
+
+    // Mark eager images as loaded
+    container.querySelectorAll('img[loading="eager"]').forEach(function(img) {
+      if (img.complete) {
+        img.classList.add('loaded');
+      } else {
+        img.addEventListener('load', function() { img.classList.add('loaded'); }, { once: true });
+      }
+    });
+
+    // Attach click handlers
     document.querySelectorAll('.case-card').forEach(function(card) {
-      card.addEventListener('click', function(e) {
+      card.addEventListener('click', function() {
         var idx = this.getAttribute('data-img-index');
-        if(idx !== null) openLightbox(parseInt(idx));
+        if (idx !== null) openLightbox(parseInt(idx));
       });
     });
   }
 
-  // LIGHTBOX
+  // LIGHTBOX with arrows
   var currentIdx = 0;
   var lightbox = document.getElementById('lightboxModal');
   var lightboxImg = document.getElementById('lightboxImg');
+  var lightboxCounter = document.getElementById('lightboxCounter');
+
   function openLightbox(index) {
-    currentIdx = index;
-    lightboxImg.src = imageSources[currentIdx];
+    currentIdx = (index + imageSources.length) % imageSources.length;
+    updateLightboxImage();
     lightbox.classList.add('active');
     document.body.style.overflow = 'hidden';
+    preloadAdjacent();
   }
+
+  function updateLightboxImage() {
+    if (!imageSources[currentIdx]) return;
+    lightboxImg.src = imageSources[currentIdx];
+    lightboxImg.decoding = 'async';
+    if (lightboxCounter) {
+      lightboxCounter.textContent = (currentIdx + 1) + ' / ' + imageSources.length;
+    }
+  }
+
+  function preloadAdjacent() {
+    var nextIdx = (currentIdx + 1) % imageSources.length;
+    var prevIdx = (currentIdx - 1 + imageSources.length) % imageSources.length;
+    [nextIdx, prevIdx].forEach(function(i) {
+      var pre = new Image();
+      pre.decoding = 'async';
+      pre.src = imageSources[i];
+    });
+  }
+
   function closeLightbox() {
     lightbox.classList.remove('active');
     document.body.style.overflow = '';
   }
-  function nextImage() {
+
+  function nextImage(e) {
+    if (e) e.stopPropagation();
     currentIdx = (currentIdx + 1) % imageSources.length;
-    lightboxImg.src = imageSources[currentIdx];
+    updateLightboxImage();
+    preloadAdjacent();
   }
-  function prevImage() {
+
+  function prevImage(e) {
+    if (e) e.stopPropagation();
     currentIdx = (currentIdx - 1 + imageSources.length) % imageSources.length;
-    lightboxImg.src = imageSources[currentIdx];
+    updateLightboxImage();
+    preloadAdjacent();
   }
-  document.getElementById('closeLightbox').addEventListener('click', closeLightbox);
+
+  document.getElementById('closeLightbox').addEventListener('click', function(e) { e.stopPropagation(); closeLightbox(); });
   document.getElementById('nextImage').addEventListener('click', nextImage);
   document.getElementById('prevImage').addEventListener('click', prevImage);
-  lightbox.addEventListener('click', function(e) { if(e.target === lightbox) closeLightbox(); });
+  lightbox.addEventListener('click', function(e) { if (e.target === lightbox) closeLightbox(); });
+  document.addEventListener('keydown', function(e) {
+    if (!lightbox.classList.contains('active')) return;
+    if (e.key === 'Escape') closeLightbox();
+    if (e.key === 'ArrowRight') nextImage(e);
+    if (e.key === 'ArrowLeft') prevImage(e);
+  });
 
   // ===== HEADER SCROLL EFFECT =====
   (function() {
     var header = document.getElementById('mainHeader');
     window.addEventListener('scroll', function() {
-      if (window.scrollY > 20) {
-        header.classList.add('scrolled');
-      } else {
-        header.classList.remove('scrolled');
-      }
+      header.classList.toggle('scrolled', window.scrollY > 20);
     });
   })();
 
@@ -984,7 +1097,6 @@
       });
     }
 
-    // Close menu on resize to desktop
     window.addEventListener('resize', function() {
       if (window.innerWidth >= 1024) {
         if (mobilePanel) mobilePanel.classList.remove('open');
@@ -994,15 +1106,41 @@
     });
   })();
 
+  // ===== BACK TO TOP BUTTON =====
+  (function() {
+    var scrollTopBtn = document.getElementById('scrollTopBtn');
+    var scrollTicking = false;
+
+    function handleScrollTopVisibility() {
+      if (window.scrollY > 300) scrollTopBtn.classList.add('visible');
+      else scrollTopBtn.classList.remove('visible');
+      scrollTicking = false;
+    }
+
+    window.addEventListener('scroll', function() {
+      if (!scrollTicking) {
+        window.requestAnimationFrame(handleScrollTopVisibility);
+        scrollTicking = true;
+      }
+    }, { passive: true });
+
+    handleScrollTopVisibility();
+
+    scrollTopBtn.addEventListener('click', function() {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+  })();
+
   // Scroll reveal for cards
   var observer = new IntersectionObserver(function(entries) {
     entries.forEach(function(entry) {
-      if(entry.isIntersecting) {
+      if (entry.isIntersecting) {
         entry.target.style.opacity = '1';
         entry.target.style.transform = 'translateY(0)';
       }
     });
   }, { threshold: 0.1 });
+
   window.addEventListener('load', function() {
     buildCards();
     document.querySelectorAll('.case-card').forEach(function(card) {
