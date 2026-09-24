@@ -21,9 +21,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,400..700&family=Space+Grotesk:wght@400..700&display=swap" rel="stylesheet" />
 
     <!-- Tailwind CSS -->
-    <script src="https://cdn.tailwindcss.com">
-    </script>
-    <!-- Tailwind custom colors -->
+    <script src="https://cdn.tailwindcss.com"></script>
     <script>
         tailwind.config = {
             theme: {
@@ -38,8 +36,7 @@
     </script>
 
     <!-- Lucide Icons -->
-    <script src="https://unpkg.com/lucide@latest">
-    </script>
+    <script src="https://unpkg.com/lucide@latest"></script>
 
     <style>
         /* ── custom overrides & brand styles ── */
@@ -140,6 +137,63 @@
         .btn-outline:hover {
             background: var(--dark);
             color: var(--white);
+        }
+
+        /* ── BACK TO TOP BUTTON ── */
+        .scroll-top-btn {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            width: 54px;
+            height: 54px;
+            border-radius: 50%;
+            background: var(--pink);
+            color: #ffffff;
+            border: none;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 1500;
+            box-shadow: 0 8px 28px rgba(237, 1, 142, 0.45);
+            transition: opacity 0.35s ease, visibility 0.35s ease,
+                        transform 0.35s ease, background 0.25s ease,
+                        box-shadow 0.25s ease;
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(24px) scale(0.9);
+            font-size: 1.25rem;
+        }
+        .scroll-top-btn.visible {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0) scale(1);
+        }
+        .scroll-top-btn:hover {
+            background: var(--pink-hover);
+            transform: translateY(-5px) scale(1.05);
+            box-shadow: 0 14px 40px rgba(237, 1, 142, 0.6);
+        }
+        .scroll-top-btn:active {
+            transform: translateY(-2px) scale(0.98);
+        }
+        .scroll-top-btn::before {
+            content: '';
+            position: absolute;
+            inset: -6px;
+            border-radius: 50%;
+            border: 2px solid rgba(237, 1, 142, 0.35);
+            animation: pulseRing 2.4s ease-out infinite;
+            pointer-events: none;
+        }
+        @keyframes pulseRing {
+            0% { transform: scale(1); opacity: 0.8; }
+            70% { transform: scale(1.25); opacity: 0; }
+            100% { transform: scale(1.25); opacity: 0; }
+        }
+        .scroll-top-btn:hover::before {
+            animation-play-state: paused;
+            opacity: 0;
         }
 
         /* ── Animations ── */
@@ -717,10 +771,23 @@
             .logo-text {
                 font-size: 1rem;
             }
+            .scroll-top-btn {
+                bottom: 20px;
+                right: 20px;
+                width: 48px;
+                height: 48px;
+                font-size: 1.1rem;
+            }
         }
         @media (max-width: 480px) {
             .logo-text {
                 font-size: 0.9rem;
+            }
+            .scroll-top-btn {
+                bottom: 16px;
+                right: 16px;
+                width: 44px;
+                height: 44px;
             }
         }
     </style>
@@ -820,7 +887,11 @@
         <a href="Archive_Gallery.html">Archives</a>
         <a href="Contact_Us.html" style="display:inline-flex; margin-top:1rem; background:linear-gradient(135deg,#e6007e,#ff1493); color:#fff; padding:0.6rem 1.5rem; border-radius:9999px; font-weight:700; text-decoration:none;">Contact Us</a>
     </div>
-    <!-- ============ END HEADER ============ -->
+
+    <!-- ===== BACK TO TOP BUTTON ===== -->
+    <button class="scroll-top-btn" id="scrollTopBtn" aria-label="Back to top" title="Back to top">
+        <span style="font-size: 1.3rem; line-height: 1; font-weight: 600;">↑</span>
+    </button>
 
     <!-- Hero Section -->
     <section class="hero">
@@ -969,19 +1040,37 @@
             </div>
         </div>
     </footer>
-    <!-- ============ END NEW FOOTER ============ -->
 
     <script>
         // ===== HEADER FUNCTIONALITY =====
         (function() {
-            // Header scroll effect
+            // Header scroll effect + back-to-top visibility
             const header = document.getElementById('mainHeader');
-            window.addEventListener('scroll', function() {
-                if (window.scrollY > 20) {
-                    header.classList.add('scrolled');
+            const scrollTopBtn = document.getElementById('scrollTopBtn');
+            let scrollTicking = false;
+
+            function handleScroll() {
+                header.classList.toggle('scrolled', window.scrollY > 20);
+                if (window.scrollY > 300) {
+                    scrollTopBtn.classList.add('visible');
                 } else {
-                    header.classList.remove('scrolled');
+                    scrollTopBtn.classList.remove('visible');
                 }
+                scrollTicking = false;
+            }
+
+            window.addEventListener('scroll', function() {
+                if (!scrollTicking) {
+                    window.requestAnimationFrame(handleScroll);
+                    scrollTicking = true;
+                }
+            }, { passive: true });
+
+            handleScroll();
+
+            // Back to top click
+            scrollTopBtn.addEventListener('click', function() {
+                window.scrollTo({ top: 0, behavior: 'smooth' });
             });
 
             // Mobile menu toggle
