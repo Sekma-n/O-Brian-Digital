@@ -139,21 +139,21 @@
             color: var(--white);
         }
 
-        /* ── BACK TO TOP BUTTON ── */
+        /* ── BACK TO TOP BUTTON (upgraded) ── */
         .scroll-top-btn {
             position: fixed;
             bottom: 30px;
             right: 30px;
             width: 54px;
             height: 54px;
+            padding: 0;
             border-radius: 50%;
             background: var(--pink);
             color: #ffffff;
             border: none;
             cursor: pointer;
-            display: flex;
-            align-items: center;
-            justify-content: center;
+            display: grid;
+            place-items: center;
             z-index: 1500;
             box-shadow: 0 8px 28px rgba(237, 1, 142, 0.45);
             transition: opacity 0.35s ease, visibility 0.35s ease,
@@ -162,7 +162,7 @@
             opacity: 0;
             visibility: hidden;
             transform: translateY(24px) scale(0.9);
-            font-size: 1.25rem;
+            -webkit-tap-highlight-color: transparent;
         }
         .scroll-top-btn.visible {
             opacity: 1;
@@ -177,23 +177,43 @@
         .scroll-top-btn:active {
             transform: translateY(-2px) scale(0.98);
         }
-        .scroll-top-btn::before {
-            content: '';
+        .scroll-top-btn:focus-visible {
+            outline: 3px solid rgba(237, 1, 142, 0.45);
+            outline-offset: 3px;
+        }
+
+        /* scroll-progress ring */
+        .stb-ring {
             position: absolute;
-            inset: -6px;
-            border-radius: 50%;
-            border: 2px solid rgba(237, 1, 142, 0.35);
-            animation: pulseRing 2.4s ease-out infinite;
+            inset: 0;
+            width: 100%;
+            height: 100%;
+            transform: rotate(-90deg);
             pointer-events: none;
         }
-        @keyframes pulseRing {
-            0% { transform: scale(1); opacity: 0.8; }
-            70% { transform: scale(1.25); opacity: 0; }
-            100% { transform: scale(1.25); opacity: 0; }
+        .stb-ring circle {
+            fill: none;
+            stroke-width: 2.5;
         }
-        .scroll-top-btn:hover::before {
-            animation-play-state: paused;
-            opacity: 0;
+        .stb-ring-track {
+            stroke: rgba(255, 255, 255, 0.28);
+        }
+        .stb-ring-progress {
+            stroke: #ffffff;
+            stroke-linecap: round;
+            stroke-dasharray: 150.8;   /* 2π × r(24) */
+            stroke-dashoffset: 150.8;
+        }
+
+        /* arrow */
+        .stb-arrow {
+            position: relative;
+            width: 20px;
+            height: 20px;
+            transition: transform 0.3s ease;
+        }
+        .scroll-top-btn:hover .stb-arrow {
+            transform: translateY(-2px);
         }
 
         /* ── Animations ── */
@@ -776,7 +796,6 @@
                 right: 20px;
                 width: 48px;
                 height: 48px;
-                font-size: 1.1rem;
             }
         }
         @media (max-width: 480px) {
@@ -788,6 +807,23 @@
                 right: 16px;
                 width: 44px;
                 height: 44px;
+            }
+        }
+
+        /* ── Reduced motion ── */
+        @media (prefers-reduced-motion: reduce) {
+            html {
+                scroll-behavior: auto;
+            }
+            .scroll-top-btn,
+            .stb-arrow {
+                transition: none !important;
+            }
+            .scroll-top-btn:hover {
+                transform: none;
+            }
+            .scroll-top-btn:hover .stb-arrow {
+                transform: none;
             }
         }
     </style>
@@ -889,8 +925,16 @@
     </div>
 
     <!-- ===== BACK TO TOP BUTTON ===== -->
-    <button class="scroll-top-btn" id="scrollTopBtn" aria-label="Back to top" title="Back to top">
-        <span style="font-size: 1.3rem; line-height: 1; font-weight: 600;">↑</span>
+    <button class="scroll-top-btn" id="scrollTopBtn" aria-label="Back to top" title="Back to top" aria-hidden="true" tabindex="-1">
+        <svg class="stb-ring" viewBox="0 0 54 54" aria-hidden="true">
+            <circle class="stb-ring-track" cx="27" cy="27" r="24"></circle>
+            <circle class="stb-ring-progress" cx="27" cy="27" r="24"></circle>
+        </svg>
+        <svg class="stb-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+             stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="M12 19V5"></path>
+            <path d="M5 12l7-7 7 7"></path>
+        </svg>
     </button>
 
     <!-- Hero Section -->
@@ -1047,15 +1091,29 @@
             // Header scroll effect + back-to-top visibility
             const header = document.getElementById('mainHeader');
             const scrollTopBtn = document.getElementById('scrollTopBtn');
+            const ringProgress = scrollTopBtn ? scrollTopBtn.querySelector('.stb-ring-progress') : null;
+            const RING_LENGTH = 2 * Math.PI * 24; // r = 24 in the 54×54 viewBox
+            const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
             let scrollTicking = false;
 
             function handleScroll() {
-                header.classList.toggle('scrolled', window.scrollY > 20);
-                if (window.scrollY > 300) {
-                    scrollTopBtn.classList.add('visible');
-                } else {
-                    scrollTopBtn.classList.remove('visible');
+                const scrolled = window.scrollY || document.documentElement.scrollTop;
+                const maxScroll = document.documentElement.scrollHeight - window.innerHeight;
+                const progress = maxScroll > 0 ? Math.min(scrolled / maxScroll, 1) : 0;
+
+                header.classList.toggle('scrolled', scrolled > 20);
+
+                const show = scrolled > 300;
+                scrollTopBtn.classList.toggle('visible', show);
+                // keep it out of the a11y tree / tab order while hidden
+                scrollTopBtn.setAttribute('aria-hidden', show ? 'false' : 'true');
+                scrollTopBtn.tabIndex = show ? 0 : -1;
+
+                if (ringProgress) {
+                    ringProgress.style.strokeDashoffset =
+                        (RING_LENGTH * (1 - progress)).toFixed(2);
                 }
+
                 scrollTicking = false;
             }
 
@@ -1070,7 +1128,13 @@
 
             // Back to top click
             scrollTopBtn.addEventListener('click', function() {
-                window.scrollTo({ top: 0, behavior: 'smooth' });
+                window.scrollTo({
+                    top: 0,
+                    behavior: reduceMotion ? 'auto' : 'smooth'
+                });
+                // return focus to the top of the page for keyboard users
+                const skipTarget = document.getElementById('mainHeader');
+                if (skipTarget) skipTarget.focus({ preventScroll: true });
             });
 
             // Mobile menu toggle
