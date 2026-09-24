@@ -722,38 +722,84 @@
             box-shadow: 0 12px 40px rgba(237, 0, 142, 0.30);
         }
 
-        /* ===== BACK TO TOP BUTTON ===== */
+        /* ===== BACK TO TOP BUTTON (upgraded with progress ring) ===== */
         .back-to-top-btn {
             position: fixed;
             bottom: 30px;
             right: 30px;
             width: 52px;
             height: 52px;
+            padding: 0;
             border-radius: 50%;
             background: linear-gradient(135deg, #e6007e 0%, #ff1493 100%);
             color: white;
             border: none;
-            font-size: 1.2rem;
             cursor: pointer;
-            display: flex;
-            align-items: center;
-            justify-content: center;
+            display: grid;
+            place-items: center;
             box-shadow: 0 4px 15px rgba(230, 0, 126, 0.4);
-            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            transition: opacity 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94),
+                        visibility 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94),
+                        transform 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94),
+                        box-shadow 0.3s ease,
+                        background 0.3s ease;
             z-index: 999;
             opacity: 0;
+            visibility: hidden;
             transform: translateY(20px);
-            pointer-events: none;
+            -webkit-tap-highlight-color: transparent;
         }
         .back-to-top-btn.visible {
             opacity: 1;
+            visibility: visible;
             transform: translateY(0);
-            pointer-events: auto;
         }
         .back-to-top-btn:hover {
-            transform: translateY(-4px) scale(1.1);
+            transform: translateY(-4px) scale(1.08);
             box-shadow: 0 8px 25px rgba(230, 0, 126, 0.5);
             background: linear-gradient(135deg, #c40073 0%, #e6007e 100%);
+        }
+        .back-to-top-btn:active {
+            transform: translateY(-1px) scale(0.98);
+        }
+        .back-to-top-btn:focus-visible {
+            outline: 3px solid rgba(230, 0, 126, 0.45);
+            outline-offset: 3px;
+        }
+
+        /* scroll-progress ring */
+        .btb-ring {
+            position: absolute;
+            inset: 0;
+            width: 100%;
+            height: 100%;
+            transform: rotate(-90deg);
+            pointer-events: none;
+        }
+        .btb-ring circle {
+            fill: none;
+            stroke-width: 2.5;
+        }
+        .btb-ring-track {
+            stroke: rgba(255, 255, 255, 0.25);
+        }
+        .btb-ring-progress {
+            stroke: #ffffff;
+            stroke-linecap: round;
+            stroke-dasharray: 131.95;   /* 2π × r(21) */
+            stroke-dashoffset: 131.95;
+            transition: stroke-dashoffset 0.1s linear;
+        }
+
+        /* arrow */
+        .btb-arrow {
+            position: relative;
+            width: 22px;
+            height: 22px;
+            transition: transform 0.3s ease;
+        }
+        .back-to-top-btn:hover .btb-arrow {
+            transform: translateY(-2px);
         }
 
         /* ----- FOOTER (updated with new colors and logo) ----- */
@@ -915,9 +961,12 @@
             .back-to-top-btn { 
                 width: 46px; 
                 height: 46px; 
-                font-size: 1rem; 
                 bottom: 20px; 
                 right: 20px; 
+            }
+            .btb-arrow {
+                width: 18px;
+                height: 18px;
             }
         }
 
@@ -938,7 +987,23 @@
             .back-to-top-btn { 
                 width: 42px; 
                 height: 42px; 
-                font-size: 0.9rem; 
+            }
+        }
+
+        /* ── Reduced motion ── */
+        @media (prefers-reduced-motion: reduce) {
+            html {
+                scroll-behavior: auto;
+            }
+            .back-to-top-btn,
+            .btb-arrow {
+                transition: none !important;
+            }
+            .back-to-top-btn:hover {
+                transform: none;
+            }
+            .back-to-top-btn:hover .btb-arrow {
+                transform: none;
             }
         }
 
@@ -987,7 +1052,7 @@
 <body>
 
     <!-- ===== PREMIUM GLASS HEADER ===== -->
-    <header class="header-glass" id="mainHeader">
+    <header class="header-glass" id="mainHeader" tabindex="-1">
         <div class="max-w-7xl mx-auto px-4 md:px-6 w-full">
             <div class="flex justify-between items-center">
 
@@ -1160,7 +1225,7 @@
                             <li>Expanded across the border, starting a partner office in Gaborone, Botswana in 2009.</li>
                             <li><strong>Record best financial performance:</strong> R43.7m for the year ending 2010.</li>
                         </ul>
-                        <img src="obrian-credentials-.2.jpg" alt="Growth years image" title="" class="timeline-img animate__animated animate__delay-1s animate__fadeIn" />
+                        <img src="obrian-credentials-2.jpg" alt="Growth years image" title="" class="timeline-img animate__animated animate__delay-1s animate__fadeIn" />
                     </div>
                 </div>
 
@@ -1195,16 +1260,24 @@
         </div>
     </section>
 
-    <!-- ===== BACK TO TOP BUTTON ===== -->
-    <button class="back-to-top-btn" id="backToTop" aria-label="Back to top">
-        <i class="fas fa-arrow-up"></i>
+    <!-- ===== BACK TO TOP BUTTON (with scroll progress ring) ===== -->
+    <button class="back-to-top-btn" id="backToTop" aria-label="Back to top" title="Back to top" aria-hidden="true" tabindex="-1">
+        <svg class="btb-ring" viewBox="0 0 48 48" aria-hidden="true">
+            <circle class="btb-ring-track" cx="24" cy="24" r="21"></circle>
+            <circle class="btb-ring-progress" cx="24" cy="24" r="21"></circle>
+        </svg>
+        <svg class="btb-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+             stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="M12 19V5"></path>
+            <path d="M5 12l7-7 7 7"></path>
+        </svg>
     </button>
 
     <!-- ===== FOOTER (updated with OBRIAN_LOGO_WHITE.png) ===== -->
     <footer class="footer">
         <div class="container">
             <div class="footer-brand">
-                <img src="OBRIAN_LOGO_WHITE.png" alt="O'Brian Group" />
+                <img src="assets/images/OBRIAN_LOGO_WHITE.png" alt="O'Brian Group" />
                 <p>
                     Brand strategy, creative development, and implementation via a
                     network of preferred suppliers and partners.
@@ -1258,19 +1331,6 @@
             } else {
                 header.classList.remove('scrolled');
             }
-            
-            // Back to top button visibility
-            const backToTop = document.getElementById('backToTop');
-            if (window.scrollY > 400) {
-                backToTop.classList.add('visible');
-            } else {
-                backToTop.classList.remove('visible');
-            }
-        });
-
-        // Back to top button click
-        document.getElementById('backToTop').addEventListener('click', () => {
-            window.scrollTo({ top: 0, behavior: 'smooth' });
         });
 
         // ── Mobile menu toggle ──
@@ -1349,6 +1409,55 @@
                 }
             }
         };
+
+        // ===== BACK TO TOP BUTTON LOGIC (with scroll-progress ring) =====
+        (function() {
+            var backToTopBtn = document.getElementById('backToTop');
+            if (!backToTopBtn) return;
+
+            var btbRingProgress = backToTopBtn.querySelector('.btb-ring-progress');
+            var BTB_RING_LENGTH = 2 * Math.PI * 21; // r = 21 in the 48×48 viewBox
+            var prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+            var ticking = false;
+
+            function updateBackToTop() {
+                var scrollY = window.scrollY || document.documentElement.scrollTop;
+                var maxScroll = document.documentElement.scrollHeight - window.innerHeight;
+                var progress = maxScroll > 0 ? Math.min(scrollY / maxScroll, 1) : 0;
+
+                var show = scrollY > 400;
+                backToTopBtn.classList.toggle('visible', show);
+                // keep it out of the a11y tree / tab order while hidden
+                backToTopBtn.setAttribute('aria-hidden', show ? 'false' : 'true');
+                backToTopBtn.tabIndex = show ? 0 : -1;
+
+                if (btbRingProgress) {
+                    btbRingProgress.style.strokeDashoffset =
+                        (BTB_RING_LENGTH * (1 - progress)).toFixed(2);
+                }
+
+                ticking = false;
+            }
+
+            window.addEventListener('scroll', function() {
+                if (!ticking) {
+                    window.requestAnimationFrame(updateBackToTop);
+                    ticking = true;
+                }
+            }, { passive: true });
+
+            updateBackToTop();
+
+            backToTopBtn.addEventListener('click', function() {
+                window.scrollTo({
+                    top: 0,
+                    behavior: prefersReducedMotion ? 'auto' : 'smooth'
+                });
+                // return focus to the top of the page for keyboard users
+                var headerEl = document.getElementById('mainHeader');
+                if (headerEl) headerEl.focus({ preventScroll: true });
+            });
+        })();
     </script>
 
 </body>
