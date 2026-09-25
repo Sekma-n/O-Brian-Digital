@@ -648,6 +648,76 @@
             background: rgba(255, 255, 255, 0.2);
             transform: rotate(90deg);
         }
+
+        /* ===== BACK TO TOP BUTTON ===== */
+        .back-to-top {
+            position: fixed; bottom: 32px; right: 32px;
+            width: 52px; height: 52px; border-radius: 50%;
+            background: linear-gradient(135deg, #e6007e 0%, #b0006a 100%);
+            color: #ffffff; border: 2px solid rgba(255, 255, 255, 0.25);
+            display: flex; align-items: center; justify-content: center;
+            cursor: pointer; z-index: 1500;
+            opacity: 0; visibility: hidden; transform: translateY(20px);
+            transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            box-shadow: 0 8px 24px rgba(230, 0, 126, 0.35);
+        }
+        .back-to-top.visible { opacity: 1; visibility: visible; transform: translateY(0); }
+        .back-to-top:hover {
+            transform: translateY(-4px) scale(1.06);
+            box-shadow: 0 14px 32px rgba(230, 0, 126, 0.45);
+        }
+        .back-to-top:active { transform: translateY(-1px) scale(0.98); }
+        .back-to-top svg { width: 22px; height: 22px; transition: transform 0.3s ease; }
+        .back-to-top:hover svg { transform: translateY(-2px); }
+
+        /* ===== SCROLL PROGRESS RING ===== */
+        .progress-ring {
+            position: fixed;
+            bottom: 24px;
+            right: 24px;
+            width: 68px;
+            height: 68px;
+            z-index: 1501;
+            pointer-events: none;
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(20px);
+            transition: opacity 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94),
+                        visibility 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94),
+                        transform 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            filter: drop-shadow(0 4px 12px rgba(230, 0, 126, 0.18));
+        }
+        .progress-ring.visible {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
+        }
+        .progress-ring svg {
+            width: 100%;
+            height: 100%;
+            display: block;
+            transform: rotate(-90deg);
+            overflow: visible;
+        }
+        .progress-ring .ring-track {
+            fill: none;
+            stroke: rgba(230, 0, 126, 0.16);
+            stroke-width: 4;
+        }
+        .progress-ring .ring-bar {
+            fill: none;
+            stroke: url(#ringGradient);
+            stroke-width: 4;
+            stroke-linecap: round;
+            stroke-dasharray: 188.5;
+            stroke-dashoffset: 188.5;
+        }
+
+        @media (max-width: 768px) {
+            .back-to-top { bottom: 24px; right: 20px; width: 46px; height: 46px; }
+            .back-to-top svg { width: 18px; height: 18px; }
+            .progress-ring { bottom: 17px; right: 13px; width: 60px; height: 60px; }
+        }
     </style>
 </head>
 <body>
@@ -956,6 +1026,27 @@
         <img id="lightboxImage" src="" alt="Full view" />
     </div>
 
+    <!-- ===== SCROLL PROGRESS RING ===== -->
+    <div class="progress-ring" id="progressRing" aria-hidden="true">
+        <svg viewBox="0 0 68 68">
+            <defs>
+                <linearGradient id="ringGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+                    <stop offset="0%" stop-color="#e6007e" />
+                    <stop offset="100%" stop-color="#ff1493" />
+                </linearGradient>
+            </defs>
+            <circle class="ring-track" cx="34" cy="34" r="30" />
+            <circle class="ring-bar" id="ringBar" cx="34" cy="34" r="30" />
+        </svg>
+    </div>
+
+    <!-- ===== BACK TO TOP BUTTON ===== -->
+    <button class="back-to-top" id="backToTopBtn" aria-label="Back to top">
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M5 15l7-7 7 7" />
+        </svg>
+    </button>
+
     <!-- ============================================================ -->
     <!-- SCRIPTS                                                       -->
     <!-- ============================================================ -->
@@ -1054,6 +1145,63 @@
                 if (e.key === 'Escape' && overlay.classList.contains('active')) {
                     closeLightbox();
                 }
+            });
+
+            // ===== BACK TO TOP BUTTON + SCROLL PROGRESS RING =====
+            const backToTopBtn = document.getElementById('backToTopBtn');
+            const progressRing = document.getElementById('progressRing');
+            const ringBar = document.getElementById('ringBar');
+
+            // Ring geometry: r = 30 → circumference = 2πr ≈ 188.5
+            const RING_CIRCUMFERENCE = 2 * Math.PI * 30;
+
+            if (ringBar) {
+                ringBar.style.strokeDasharray = RING_CIRCUMFERENCE;
+                ringBar.style.strokeDashoffset = RING_CIRCUMFERENCE;
+            }
+
+            let ticking = false;
+
+            function updateScrollUI() {
+                const scrollTop = window.scrollY || window.pageYOffset || document.documentElement.scrollTop || 0;
+                const maxScroll = Math.max(
+                    document.documentElement.scrollHeight - window.innerHeight,
+                    0
+                );
+
+                // ── Scroll progress (0 → 1) ──
+                const progress = maxScroll > 0 ? Math.min(scrollTop / maxScroll, 1) : 0;
+
+                if (ringBar) {
+                    ringBar.style.strokeDashoffset = RING_CIRCUMFERENCE * (1 - progress);
+                }
+
+                // ── Show / hide both the ring and the button ──
+                const shouldShow = scrollTop > 400;
+                backToTopBtn.classList.toggle('visible', shouldShow);
+                if (progressRing) {
+                    progressRing.classList.toggle('visible', shouldShow);
+                }
+
+                ticking = false;
+            }
+
+            function requestScrollUI() {
+                if (!ticking) {
+                    ticking = true;
+                    window.requestAnimationFrame(updateScrollUI);
+                }
+            }
+
+            window.addEventListener('scroll', requestScrollUI, { passive: true });
+            window.addEventListener('resize', requestScrollUI);
+            window.addEventListener('load', requestScrollUI);
+
+            // Initial paint
+            updateScrollUI();
+
+            backToTopBtn.addEventListener('click', function() {
+                window.scrollTo({ top: 0, behavior: 'smooth' });
             });
         })();
     </script>
