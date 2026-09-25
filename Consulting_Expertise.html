@@ -791,6 +791,72 @@
             transform: translateY(-4px);
             box-shadow: 0 8px 30px rgba(230, 0, 126, 0.4);
         }
+
+        /* ===== SCROLL PROGRESS RING (wraps around .scrollToTop) ===== */
+        .progress-ring {
+            position: fixed;
+            bottom: 17px;
+            right: 17px;
+            width: 74px;
+            height: 74px;
+            z-index: 39;
+            pointer-events: none;
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(20px);
+            transition: opacity 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94),
+                        visibility 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94),
+                        transform 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            filter: drop-shadow(0 4px 12px rgba(230, 0, 126, 0.18));
+        }
+        .progress-ring.visible {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
+        }
+        .progress-ring svg {
+            width: 100%;
+            height: 100%;
+            display: block;
+            transform: rotate(-90deg);
+            overflow: visible;
+        }
+        .progress-ring .ring-track {
+            fill: none;
+            stroke: rgba(230, 0, 126, 0.16);
+            stroke-width: 4;
+        }
+        .progress-ring .ring-bar {
+            fill: none;
+            stroke: url(#ringGradient);
+            stroke-width: 4;
+            stroke-linecap: round;
+            stroke-dasharray: 188.5;
+            stroke-dashoffset: 188.5;
+        }
+
+        /* Hide ring while the mobile slide-in menu is open */
+        body.menu-open .progress-ring {
+            opacity: 0 !important;
+            visibility: hidden !important;
+        }
+
+        @media (max-width: 768px) {
+            .scrollToTop {
+                bottom: 24px;
+                right: 20px;
+            }
+            .scrollToTop a {
+                width: 44px;
+                height: 44px;
+            }
+            .progress-ring {
+                bottom: 12px;
+                right: 8px;
+                width: 68px;
+                height: 68px;
+            }
+        }
     </style>
 </head>
 <body class="antialiased selection:bg-obrian-pink selection:text-white">
@@ -1125,6 +1191,20 @@
         <img id="lightboxImage" src="" alt="Full view" />
     </div>
 
+    <!-- ===== SCROLL PROGRESS RING (wraps around back-to-top) ===== -->
+    <div class="progress-ring" id="progressRing" aria-hidden="true">
+        <svg viewBox="0 0 68 68">
+            <defs>
+                <linearGradient id="ringGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+                    <stop offset="0%" stop-color="#e6007e" />
+                    <stop offset="100%" stop-color="#ff1493" />
+                </linearGradient>
+            </defs>
+            <circle class="ring-track" cx="34" cy="34" r="30" />
+            <circle class="ring-bar" id="ringBar" cx="34" cy="34" r="30" />
+        </svg>
+    </div>
+
     <!-- ===== SCROLL TO TOP ===== -->
     <div id="scrollToTop" class="scrollToTop">
         <a href="#" aria-label="Scroll to top"><i class="fas fa-arrow-up"></i></a>
@@ -1156,11 +1236,13 @@
             function openMobileMenu() {
                 mobileMenu.classList.add('open');
                 document.body.style.overflow = 'hidden';
+                document.body.classList.add('menu-open');
             }
 
             function closeMobileMenu() {
                 mobileMenu.classList.remove('open');
                 document.body.style.overflow = '';
+                document.body.classList.remove('menu-open');
             }
 
             if (menuBtn) {
@@ -1287,17 +1369,63 @@
                 }
             });
 
-            // ----- SCROLL TO TOP -----
+            // ----- SCROLL TO TOP + SCROLL PROGRESS RING -----
             const scrollBtn = document.getElementById('scrollToTop');
-            if (scrollBtn) {
-                window.addEventListener('scroll', function() {
-                    if (window.scrollY > 400) {
-                        scrollBtn.classList.add('visible');
-                    } else {
-                        scrollBtn.classList.remove('visible');
-                    }
-                });
+            const progressRing = document.getElementById('progressRing');
+            const ringBar = document.getElementById('ringBar');
 
+            // Ring geometry: r = 30 → circumference = 2πr ≈ 188.5
+            const RING_CIRCUMFERENCE = 2 * Math.PI * 30;
+
+            if (ringBar) {
+                ringBar.style.strokeDasharray = RING_CIRCUMFERENCE;
+                ringBar.style.strokeDashoffset = RING_CIRCUMFERENCE;
+            }
+
+            let ticking = false;
+
+            function updateScrollUI() {
+                const scrollTop = window.scrollY || window.pageYOffset || document.documentElement.scrollTop || 0;
+                const maxScroll = Math.max(
+                    document.documentElement.scrollHeight - window.innerHeight,
+                    0
+                );
+
+                // ── Scroll progress (0 → 1) ──
+                const progress = maxScroll > 0 ? Math.min(scrollTop / maxScroll, 1) : 0;
+
+                if (ringBar) {
+                    ringBar.style.strokeDashoffset = RING_CIRCUMFERENCE * (1 - progress);
+                }
+
+                // ── Show / hide both the ring and the button ──
+                const shouldShow = scrollTop > 400;
+                if (scrollBtn) {
+                    scrollBtn.classList.toggle('visible', shouldShow);
+                }
+                if (progressRing) {
+                    progressRing.classList.toggle('visible', shouldShow);
+                }
+
+                ticking = false;
+            }
+
+            function requestScrollUI() {
+                if (!ticking) {
+                    ticking = true;
+                    window.requestAnimationFrame(updateScrollUI);
+                }
+            }
+
+            window.addEventListener('scroll', requestScrollUI, { passive: true });
+            window.addEventListener('resize', requestScrollUI);
+            window.addEventListener('load', requestScrollUI);
+
+            // Initial paint
+            updateScrollUI();
+
+            // Existing scroll-to-top click handler
+            if (scrollBtn) {
                 scrollBtn.querySelector('a').addEventListener('click', function(e) {
                     e.preventDefault();
                     window.scrollTo({ top: 0, behavior: 'smooth' });
