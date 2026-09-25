@@ -208,7 +208,6 @@
             border: 1px solid #eef2f6;
             transition: all 0.35s cubic-bezier(0.25, 0.46, 0.45, 0.94);
             box-shadow: 0 1px 3px rgba(0, 0, 0, 0.02);
-            /* CSS containment improves scroll performance */
             contain: content;
         }
         .case-card:hover {
@@ -225,7 +224,6 @@
             box-shadow: 0 4px 20px rgba(0, 0, 0, 0.04);
             cursor: pointer; transition: transform 0.4s ease;
             position: relative;
-            /* low-quality placeholder while image loads */
             background: linear-gradient(145deg, #f5edf0 0%, #faf5f7 100%);
         }
         .case-card .image-wrapper:hover { transform: scale(1.02); }
@@ -233,7 +231,6 @@
             width: 100%; height: auto; display: block;
             transition: opacity 0.3s ease, filter 0.3s ease;
         }
-        /* blur-up loading effect */
         .case-card .image-wrapper img.lazy-loading {
             opacity: 0; filter: blur(6px);
         }
@@ -423,9 +420,54 @@
         .back-to-top:active { transform: translateY(-1px) scale(0.98); }
         .back-to-top svg { width: 22px; height: 22px; transition: transform 0.3s ease; }
         .back-to-top:hover svg { transform: translateY(-2px); }
+
+        /* ===== SCROLL PROGRESS RING ===== */
+        .progress-ring {
+            position: fixed;
+            bottom: 24px;
+            right: 24px;
+            width: 68px;
+            height: 68px;
+            z-index: 1501;
+            pointer-events: none;
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(20px);
+            transition: opacity 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94),
+                        visibility 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94),
+                        transform 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            filter: drop-shadow(0 4px 12px rgba(237, 0, 142, 0.18));
+        }
+        .progress-ring.visible {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
+        }
+        .progress-ring svg {
+            width: 100%;
+            height: 100%;
+            display: block;
+            transform: rotate(-90deg);
+            overflow: visible;
+        }
+        .progress-ring .ring-track {
+            fill: none;
+            stroke: rgba(237, 0, 142, 0.16);
+            stroke-width: 4;
+        }
+        .progress-ring .ring-bar {
+            fill: none;
+            stroke: url(#ringGradient);
+            stroke-width: 4;
+            stroke-linecap: round;
+            stroke-dasharray: 188.5;
+            stroke-dashoffset: 188.5;
+        }
+
         @media (max-width: 768px) {
             .back-to-top { bottom: 24px; right: 20px; width: 46px; height: 46px; }
             .back-to-top svg { width: 18px; height: 18px; }
+            .progress-ring { bottom: 17px; right: 13px; width: 60px; height: 60px; }
         }
 
         /* ===== RESPONSIVE ===== */
@@ -824,6 +866,20 @@
         </div>
     </div>
 
+    <!-- ===== SCROLL PROGRESS RING ===== -->
+    <div class="progress-ring" id="progressRing" aria-hidden="true">
+        <svg viewBox="0 0 68 68">
+            <defs>
+                <linearGradient id="ringGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+                    <stop offset="0%" stop-color="#ed008e" />
+                    <stop offset="100%" stop-color="#e31e1f" />
+                </linearGradient>
+            </defs>
+            <circle class="ring-track" cx="34" cy="34" r="30" />
+            <circle class="ring-bar" id="ringBar" cx="34" cy="34" r="30" />
+        </svg>
+    </div>
+
     <!-- ===== BACK TO TOP BUTTON ===== -->
     <button class="back-to-top" id="backToTopBtn" aria-label="Back to top">
         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
@@ -915,11 +971,59 @@
                 if (e.key === 'Escape') closeLightbox();
             });
 
-            // ===== BACK TO TOP BUTTON LOGIC =====
+            // ===== BACK TO TOP BUTTON + SCROLL PROGRESS RING =====
             const backToTopBtn = document.getElementById('backToTopBtn');
-            window.addEventListener('scroll', function() {
-                backToTopBtn.classList.toggle('visible', window.scrollY > 400);
-            });
+            const progressRing = document.getElementById('progressRing');
+            const ringBar = document.getElementById('ringBar');
+
+            // Ring geometry: r = 30 → circumference = 2πr ≈ 188.5
+            const RING_CIRCUMFERENCE = 2 * Math.PI * 30;
+
+            if (ringBar) {
+                ringBar.style.strokeDasharray = RING_CIRCUMFERENCE;
+                ringBar.style.strokeDashoffset = RING_CIRCUMFERENCE;
+            }
+
+            let ticking = false;
+
+            function updateScrollUI() {
+                const scrollTop = window.scrollY || window.pageYOffset || document.documentElement.scrollTop || 0;
+                const maxScroll = Math.max(
+                    document.documentElement.scrollHeight - window.innerHeight,
+                    0
+                );
+
+                // ── Scroll progress (0 → 1) ──
+                const progress = maxScroll > 0 ? Math.min(scrollTop / maxScroll, 1) : 0;
+
+                if (ringBar) {
+                    ringBar.style.strokeDashoffset = RING_CIRCUMFERENCE * (1 - progress);
+                }
+
+                // ── Show / hide both the ring and the button ──
+                const shouldShow = scrollTop > 400;
+                backToTopBtn.classList.toggle('visible', shouldShow);
+                if (progressRing) {
+                    progressRing.classList.toggle('visible', shouldShow);
+                }
+
+                ticking = false;
+            }
+
+            function requestScrollUI() {
+                if (!ticking) {
+                    ticking = true;
+                    window.requestAnimationFrame(updateScrollUI);
+                }
+            }
+
+            window.addEventListener('scroll', requestScrollUI, { passive: true });
+            window.addEventListener('resize', requestScrollUI);
+            window.addEventListener('load', requestScrollUI);
+
+            // Initial paint
+            updateScrollUI();
+
             backToTopBtn.addEventListener('click', function() {
                 window.scrollTo({ top: 0, behavior: 'smooth' });
             });
