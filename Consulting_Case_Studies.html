@@ -293,7 +293,6 @@
             transition: var(--transition);
             border: 1px solid rgba(35, 30, 31, 0.04);
             display: flex; flex-direction: column; height: 100%;
-            /* CSS containment for scroll performance */
             contain: content;
         }
         .case-card:hover {
@@ -303,7 +302,6 @@
         .case-card .card-image {
             position: relative; padding-bottom: 60%;
             overflow: hidden; background: var(--primary-light);
-            /* Low-quality placeholder */
             background-image: linear-gradient(145deg, #f5edf0 0%, #faf5f7 100%);
         }
         .case-card .card-image img {
@@ -312,7 +310,6 @@
             transition: var(--transition), opacity 0.3s ease, filter 0.3s ease;
             cursor: pointer;
         }
-        /* Blur-up effect */
         .case-card .card-image img.lazy-loading { opacity: 0; filter: blur(6px); }
         .case-card .card-image img.lazy-loaded  { opacity: 1; filter: blur(0); }
 
@@ -411,9 +408,59 @@
         .back-to-top:active { transform: translateY(-1px) scale(0.98); }
         .back-to-top svg { width: 22px; height: 22px; transition: transform 0.3s ease; }
         .back-to-top:hover svg { transform: translateY(-2px); }
+
+        /* ===== SCROLL PROGRESS RING (wraps around .back-to-top) ===== */
+        .progress-ring {
+            position: fixed;
+            bottom: 21px;
+            right: 21px;
+            width: 74px;
+            height: 74px;
+            z-index: 1499;
+            pointer-events: none;
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(20px);
+            transition: opacity 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94),
+                        visibility 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94),
+                        transform 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            filter: drop-shadow(0 4px 12px rgba(237, 0, 142, 0.18));
+        }
+        .progress-ring.visible {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
+        }
+        .progress-ring svg {
+            width: 100%;
+            height: 100%;
+            display: block;
+            transform: rotate(-90deg);
+            overflow: visible;
+        }
+        .progress-ring .ring-track {
+            fill: none;
+            stroke: rgba(237, 0, 142, 0.16);
+            stroke-width: 4;
+        }
+        .progress-ring .ring-bar {
+            fill: none;
+            stroke: url(#ringGradient);
+            stroke-width: 4;
+            stroke-linecap: round;
+            stroke-dasharray: 188.5;
+            stroke-dashoffset: 188.5;
+        }
+
+        body.menu-open .progress-ring {
+            opacity: 0 !important;
+            visibility: hidden !important;
+        }
+
         @media (max-width: 768px) {
             .back-to-top { bottom: 24px; right: 20px; width: 46px; height: 46px; }
             .back-to-top svg { width: 18px; height: 18px; }
+            .progress-ring { bottom: 15px; right: 15px; width: 60px; height: 60px; }
         }
 
         /* RESPONSIVE */
@@ -689,6 +736,20 @@
         </div>
     </footer>
 
+    <!-- ===== SCROLL PROGRESS RING (wraps around .back-to-top) ===== -->
+    <div class="progress-ring" id="progressRing" aria-hidden="true">
+        <svg viewBox="0 0 68 68">
+            <defs>
+                <linearGradient id="ringGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+                    <stop offset="0%" stop-color="#ed008e" />
+                    <stop offset="100%" stop-color="#b0006a" />
+                </linearGradient>
+            </defs>
+            <circle class="ring-track" cx="34" cy="34" r="30" />
+            <circle class="ring-bar" id="ringBar" cx="34" cy="34" r="30" />
+        </svg>
+    </div>
+
     <!-- BACK TO TOP BUTTON -->
     <button class="back-to-top" id="backToTopBtn" aria-label="Back to top">
         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
@@ -698,117 +759,146 @@
 
     <!-- SCRIPTS -->
     <script>
-        // ── Header scroll effect ──
-        const header = document.getElementById('mainHeader');
-        window.addEventListener('scroll', function() {
-            header.classList.toggle('scrolled', window.scrollY > 20);
-        });
+        (function() {
+            'use strict';
 
-        // ── Mobile menu toggle ──
-        const menuBtn = document.getElementById('menuBtn');
-        const mobilePanel = document.getElementById('mobileMenuPanel');
+            // ── Header scroll effect (handled in unified scroll below) ──
+            const header = document.getElementById('mainHeader');
 
-        if (menuBtn && mobilePanel) {
-            menuBtn.addEventListener('click', function() {
-                this.classList.toggle('open');
-                mobilePanel.classList.toggle('open');
-                document.body.style.overflow = mobilePanel.classList.contains('open') ? 'hidden' : '';
-            });
-            mobilePanel.querySelectorAll('a').forEach(function(link) {
-                link.addEventListener('click', function() {
-                    menuBtn.classList.remove('open');
-                    mobilePanel.classList.remove('open');
+            // ── Mobile menu toggle ──
+            const menuBtn = document.getElementById('menuBtn');
+            const mobilePanel = document.getElementById('mobileMenuPanel');
+
+            if (menuBtn && mobilePanel) {
+                menuBtn.addEventListener('click', function() {
+                    this.classList.toggle('open');
+                    mobilePanel.classList.toggle('open');
+                    const isOpen = mobilePanel.classList.contains('open');
+                    document.body.style.overflow = isOpen ? 'hidden' : '';
+                    document.body.classList.toggle('menu-open', isOpen);
+                });
+                mobilePanel.querySelectorAll('a').forEach(function(link) {
+                    link.addEventListener('click', function() {
+                        menuBtn.classList.remove('open');
+                        mobilePanel.classList.remove('open');
+                        document.body.style.overflow = '';
+                        document.body.classList.remove('menu-open');
+                    });
+                });
+            }
+
+            window.addEventListener('resize', function() {
+                if (window.innerWidth >= 1024) {
+                    if (mobilePanel) mobilePanel.classList.remove('open');
+                    if (menuBtn) menuBtn.classList.remove('open');
                     document.body.style.overflow = '';
+                    document.body.classList.remove('menu-open');
+                }
+            });
+
+            // ── Dropdown toggle for mobile ──
+            document.querySelectorAll('.dropdown-wrapper .nav-link-premium').forEach(function(toggle) {
+                toggle.addEventListener('click', function(e) {
+                    if (window.innerWidth >= 1024) return;
+                    e.preventDefault();
+                    const wrapper = this.closest('.dropdown-wrapper');
+                    const menu = wrapper.querySelector('.dropdown-menu-premium');
+                    if (menu) {
+                        const isOpen = menu.style.visibility === 'visible';
+                        document.querySelectorAll('.dropdown-wrapper .dropdown-menu-premium').forEach(function(m) {
+                            m.style.visibility = 'hidden';
+                            m.style.opacity = '0';
+                            m.style.transform = 'translateY(-8px) scale(0.96)';
+                        });
+                        if (!isOpen) {
+                            menu.style.visibility = 'visible';
+                            menu.style.opacity = '1';
+                            menu.style.transform = 'translateY(0) scale(1)';
+                        }
+                    }
                 });
             });
-        }
 
-        window.addEventListener('resize', function() {
-            if (window.innerWidth >= 1024) {
-                if (mobilePanel) mobilePanel.classList.remove('open');
-                if (menuBtn) menuBtn.classList.remove('open');
-                document.body.style.overflow = '';
-            }
-        });
+            // ===== Lightbox =====
+            const modal = document.getElementById('imageModal');
+            const modalImg = document.getElementById('modalImg');
+            const closeBtn = document.querySelector('.close-modal');
+            const caption = document.getElementById('modalCaption');
 
-        // ── Dropdown toggle for mobile ──
-        document.querySelectorAll('.dropdown-wrapper .nav-link-premium').forEach(function(toggle) {
-            toggle.addEventListener('click', function(e) {
-                if (window.innerWidth >= 1024) return;
-                e.preventDefault();
-                const wrapper = this.closest('.dropdown-wrapper');
-                const menu = wrapper.querySelector('.dropdown-menu-premium');
-                if (menu) {
-                    const isOpen = menu.style.visibility === 'visible';
-                    document.querySelectorAll('.dropdown-wrapper .dropdown-menu-premium').forEach(function(m) {
-                        m.style.visibility = 'hidden';
-                        m.style.opacity = '0';
-                        m.style.transform = 'translateY(-8px) scale(0.96)';
-                    });
-                    if (!isOpen) {
-                        menu.style.visibility = 'visible';
-                        menu.style.opacity = '1';
-                        menu.style.transform = 'translateY(0) scale(1)';
+            document.querySelectorAll('.lightbox-trigger').forEach(function(img) {
+                img.addEventListener('click', function() {
+                    modal.style.display = 'block';
+                    modalImg.src = this.src;
+                    caption.textContent = this.alt || 'Case study image';
+                });
+            });
+
+            closeBtn.addEventListener('click', function() { modal.style.display = 'none'; });
+            modal.addEventListener('click', function(e) { if (e.target === modal) modal.style.display = 'none'; });
+            document.addEventListener('keydown', function(e) {
+                if (e.key === 'Escape' && modal.style.display === 'block') modal.style.display = 'none';
+            });
+
+            // ===== Card reveal =====
+            const cards = document.querySelectorAll('.case-card');
+            const observer = new IntersectionObserver(function(entries) {
+                entries.forEach(function(entry) {
+                    if (entry.isIntersecting) {
+                        entry.target.style.opacity = '1';
+                        entry.target.style.transform = 'translateY(0)';
                     }
-                }
+                });
+            }, { threshold: 0.15 });
+
+            cards.forEach(function(card, i) {
+                card.style.opacity = '0';
+                card.style.transform = 'translateY(24px)';
+                card.style.transition = 'opacity 0.6s ease ' + (i * 0.10) + 's, transform 0.6s ease ' + (i * 0.10) + 's';
+                observer.observe(card);
             });
-        });
 
-        // ===== Lightbox =====
-        const modal = document.getElementById('imageModal');
-        const modalImg = document.getElementById('modalImg');
-        const closeBtn = document.querySelector('.close-modal');
-        const caption = document.getElementById('modalCaption');
+            // ===== SCROLL UI: header + back-to-top + progress ring =====
+            const backToTopBtn = document.getElementById('backToTopBtn');
+            const progressRing = document.getElementById('progressRing');
+            const ringBar = document.getElementById('ringBar');
+            const RING_CIRCUMFERENCE = 2 * Math.PI * 30;
 
-        document.querySelectorAll('.lightbox-trigger').forEach(function(img) {
-            img.addEventListener('click', function() {
-                modal.style.display = 'block';
-                modalImg.src = this.src;
-                caption.textContent = this.alt || 'Case study image';
-            });
-        });
-
-        closeBtn.addEventListener('click', function() { modal.style.display = 'none'; });
-        modal.addEventListener('click', function(e) { if (e.target === modal) modal.style.display = 'none'; });
-        document.addEventListener('keydown', function(e) {
-            if (e.key === 'Escape' && modal.style.display === 'block') modal.style.display = 'none';
-        });
-
-        // ===== Card reveal =====
-        const cards = document.querySelectorAll('.case-card');
-        const observer = new IntersectionObserver(function(entries) {
-            entries.forEach(function(entry) {
-                if (entry.isIntersecting) {
-                    entry.target.style.opacity = '1';
-                    entry.target.style.transform = 'translateY(0)';
-                }
-            });
-        }, { threshold: 0.15 });
-
-        cards.forEach(function(card, i) {
-            card.style.opacity = '0';
-            card.style.transform = 'translateY(24px)';
-            card.style.transition = 'opacity 0.6s ease ' + (i * 0.10) + 's, transform 0.6s ease ' + (i * 0.10) + 's';
-            observer.observe(card);
-        });
-
-        // ===== BACK TO TOP BUTTON LOGIC (this was missing!) =====
-        const backToTopBtn = document.getElementById('backToTopBtn');
-
-        window.addEventListener('scroll', function() {
-            if (window.scrollY > 400) {
-                backToTopBtn.classList.add('visible');
-            } else {
-                backToTopBtn.classList.remove('visible');
+            if (ringBar) {
+                ringBar.style.strokeDasharray = RING_CIRCUMFERENCE;
+                ringBar.style.strokeDashoffset = RING_CIRCUMFERENCE;
             }
-        });
 
-        backToTopBtn.addEventListener('click', function() {
-            window.scrollTo({
-                top: 0,
-                behavior: 'smooth'
+            let ticking = false;
+            function updateScrollUI() {
+                const scrollTop = window.scrollY || document.documentElement.scrollTop || 0;
+                const maxScroll = Math.max(document.documentElement.scrollHeight - window.innerHeight, 0);
+                const progress = maxScroll > 0 ? Math.min(scrollTop / maxScroll, 1) : 0;
+
+                // Ring fill
+                if (ringBar) ringBar.style.strokeDashoffset = RING_CIRCUMFERENCE * (1 - progress);
+
+                // Show / hide both ring and button together
+                const shouldShow = scrollTop > 400;
+                if (backToTopBtn) backToTopBtn.classList.toggle('visible', shouldShow);
+                if (progressRing) progressRing.classList.toggle('visible', shouldShow);
+
+                // Header
+                if (header) header.classList.toggle('scrolled', scrollTop > 20);
+
+                ticking = false;
+            }
+            function requestScrollUI() {
+                if (!ticking) { ticking = true; window.requestAnimationFrame(updateScrollUI); }
+            }
+            window.addEventListener('scroll', requestScrollUI, { passive: true });
+            window.addEventListener('resize', requestScrollUI);
+            window.addEventListener('load', requestScrollUI);
+            updateScrollUI();
+
+            backToTopBtn.addEventListener('click', function() {
+                window.scrollTo({ top: 0, behavior: 'smooth' });
             });
-        });
+        })();
     </script>
 
     <script src="https://unpkg.com/lucide@latest"></script>
