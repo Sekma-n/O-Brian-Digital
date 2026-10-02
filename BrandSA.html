@@ -477,38 +477,113 @@
     .btn-dark-custom:hover { background: #3a2e30; }
     .gradient-pink { background: linear-gradient(135deg, var(--brand-pink) 0%, #ff4da6 100%); }
 
-    /* ── BACK TO TOP BUTTON ── */
+    /* ===== BACK TO TOP BUTTON (with scroll progress ring) ===== */
     .back-to-top {
       position: fixed;
-      bottom: 30px;
-      right: 30px;
-      width: 55px;
-      height: 55px;
+      bottom: 32px;
+      right: 32px;
+      width: 52px;
+      height: 52px;
+      padding: 0;
       border-radius: 50%;
-      background: linear-gradient(135deg, #e6007e 0%, #ff1493 100%);
-      color: white;
-      border: none;
-      font-size: 1.3rem;
+      background: linear-gradient(135deg, #ed008e 0%, #b0006a 100%);
+      color: #ffffff;
+      border: 2px solid rgba(255, 255, 255, 0.25);
+      display: grid;
+      place-items: center;
       cursor: pointer;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      box-shadow: 0 4px 15px rgba(230, 0, 126, 0.4);
-      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-      z-index: 999;
+      z-index: 1500;
       opacity: 0;
+      visibility: hidden;
       transform: translateY(20px);
-      pointer-events: none;
+      transition: opacity 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94),
+                  visibility 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94),
+                  transform 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94),
+                  box-shadow 0.3s ease,
+                  background 0.3s ease;
+      box-shadow: 0 8px 24px rgba(237, 0, 142, 0.35);
+      -webkit-tap-highlight-color: transparent;
     }
     .back-to-top.visible {
       opacity: 1;
+      visibility: visible;
       transform: translateY(0);
-      pointer-events: auto;
     }
     .back-to-top:hover {
-      transform: translateY(-4px) scale(1.1);
-      box-shadow: 0 8px 25px rgba(230, 0, 126, 0.5);
-      background: linear-gradient(135deg, #c40073 0%, #e6007e 100%);
+      transform: translateY(-4px) scale(1.06);
+      box-shadow: 0 14px 32px rgba(237, 0, 142, 0.45);
+    }
+    .back-to-top:active {
+      transform: translateY(-1px) scale(0.98);
+    }
+    .back-to-top:focus-visible {
+      outline: 3px solid rgba(237, 0, 142, 0.45);
+      outline-offset: 3px;
+    }
+
+    /* scroll-progress ring */
+    .btb-ring {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      transform: rotate(-90deg);
+      pointer-events: none;
+    }
+    .btb-ring circle {
+      fill: none;
+      stroke-width: 2.5;
+    }
+    .btb-ring-track {
+      stroke: rgba(255, 255, 255, 0.25);
+    }
+    .btb-ring-progress {
+      stroke: #ffffff;
+      stroke-linecap: round;
+      stroke-dasharray: 131.95;   /* 2π × r(21) */
+      stroke-dashoffset: 131.95;
+      transition: stroke-dashoffset 0.1s linear;
+    }
+
+    /* arrow */
+    .btb-arrow {
+      position: relative;
+      width: 22px;
+      height: 22px;
+      transition: transform 0.3s ease;
+    }
+    .back-to-top:hover .btb-arrow {
+      transform: translateY(-2px);
+    }
+
+    @media (max-width: 768px) {
+      .back-to-top {
+        bottom: 24px;
+        right: 20px;
+        width: 46px;
+        height: 46px;
+      }
+      .btb-arrow {
+        width: 18px;
+        height: 18px;
+      }
+    }
+
+    /* ── Reduced motion ── */
+    @media (prefers-reduced-motion: reduce) {
+      html {
+        scroll-behavior: auto;
+      }
+      .back-to-top,
+      .btb-arrow {
+        transition: none !important;
+      }
+      .back-to-top:hover {
+        transform: none;
+      }
+      .back-to-top:hover .btb-arrow {
+        transform: none;
+      }
     }
 
     /* ── Responsive ── */
@@ -517,13 +592,11 @@
       .header-glass { height: 70px; padding: 0 1rem; }
       .mobile-menu-panel { top: 70px; }
       .logo-text { font-size: 1rem; }
-      .back-to-top { width: 48px; height: 48px; font-size: 1.1rem; bottom: 20px; right: 20px; }
       .lightbox-nav-btn { width: 42px; height: 42px; font-size: 1rem; }
       .lightbox-counter { bottom: 8px; right: 12px; font-size: 0.8rem; padding: 6px 12px; }
     }
     @media (max-width: 480px) {
       .logo-text { font-size: 0.9rem; }
-      .back-to-top { width: 44px; height: 44px; font-size: 1rem; }
       .lightbox-nav-btn { width: 38px; height: 38px; }
     }
   </style>
@@ -533,7 +606,7 @@
 <!-- ════════════════════════════════════════════════════════════════════ -->
 <!--  PREMIUM GLASS HEADER                                             -->
 <!-- ════════════════════════════════════════════════════════════════════ -->
-<header class="header-glass" id="mainHeader">
+<header class="header-glass" id="mainHeader" tabindex="-1">
     <div class="max-w-7xl mx-auto px-4 md:px-6 w-full">
         <div class="flex justify-between items-center">
 
@@ -653,7 +726,7 @@
     </div>
     <div class="mt-12 flex justify-center">
       <div class="relative w-full max-w-4xl rounded-2xl overflow-hidden shadow-2xl border-4 border-white">
-        <img src="assets/images/brand-south-africa-copy.jpg" alt="BrandSA campaign hero" class="w-full object-cover" onerror="this.src='https://placehold.co/1200x600/231e1f/white?text=BrandSA+Visual'">
+        <img src="brand-south-africa-copy.jpg" alt="BrandSA campaign hero" class="w-full object-cover" onerror="this.src='https://placehold.co/1200x600/231e1f/white?text=BrandSA+Visual'">
       </div>
     </div>
   </div>
@@ -786,9 +859,17 @@
   </div>
 </footer>
 
-<!-- ======================== BACK TO TOP BUTTON ======================== -->
-<button class="back-to-top" id="backToTop" aria-label="Back to top">
-  <i class="fas fa-arrow-up"></i>
+<!-- ======================== BACK TO TOP BUTTON (with scroll progress ring) ======================== -->
+<button class="back-to-top" id="backToTop" aria-label="Back to top" title="Back to top" aria-hidden="true" tabindex="-1">
+  <svg class="btb-ring" viewBox="0 0 48 48" aria-hidden="true">
+    <circle class="btb-ring-track" cx="24" cy="24" r="21"></circle>
+    <circle class="btb-ring-progress" cx="24" cy="24" r="21"></circle>
+  </svg>
+  <svg class="btb-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+       stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+    <path d="M12 19V5"></path>
+    <path d="M5 12l7-7 7 7"></path>
+  </svg>
 </button>
 
 <!-- ======================== LIGHTBOX MODAL ======================== -->
@@ -818,14 +899,6 @@
         header.classList.add('scrolled');
       } else {
         header.classList.remove('scrolled');
-      }
-      
-      // Back to top button visibility
-      const backToTop = document.getElementById('backToTop');
-      if (window.scrollY > 400) {
-        backToTop.classList.add('visible');
-      } else {
-        backToTop.classList.remove('visible');
       }
     });
 
@@ -857,10 +930,52 @@
         document.body.style.overflow = '';
       }
     });
+  })();
 
-    // Back to top button click
-    document.getElementById('backToTop').addEventListener('click', function() {
-      window.scrollTo({ top: 0, behavior: 'smooth' });
+  // ===== BACK TO TOP BUTTON (with scroll-progress ring) =====
+  (function() {
+    var backToTop = document.getElementById('backToTop');
+    if (!backToTop) return;
+
+    var btbRingProgress = backToTop.querySelector('.btb-ring-progress');
+    var BTB_RING_LENGTH = 2 * Math.PI * 21; // r = 21 in the 48×48 viewBox
+    var prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    var ticking = false;
+
+    function updateBackToTop() {
+      var scrollY = window.scrollY || document.documentElement.scrollTop;
+      var maxScroll = document.documentElement.scrollHeight - window.innerHeight;
+      var progress = maxScroll > 0 ? Math.min(scrollY / maxScroll, 1) : 0;
+
+      var show = scrollY > 400;
+      backToTop.classList.toggle('visible', show);
+      backToTop.setAttribute('aria-hidden', show ? 'false' : 'true');
+      backToTop.tabIndex = show ? 0 : -1;
+
+      if (btbRingProgress) {
+        btbRingProgress.style.strokeDashoffset =
+          (BTB_RING_LENGTH * (1 - progress)).toFixed(2);
+      }
+
+      ticking = false;
+    }
+
+    window.addEventListener('scroll', function() {
+      if (!ticking) {
+        window.requestAnimationFrame(updateBackToTop);
+        ticking = true;
+      }
+    }, { passive: true });
+
+    updateBackToTop();
+
+    backToTop.addEventListener('click', function() {
+      window.scrollTo({
+        top: 0,
+        behavior: prefersReducedMotion ? 'auto' : 'smooth'
+      });
+      var headerEl = document.getElementById('mainHeader');
+      if (headerEl) headerEl.focus({ preventScroll: true });
     });
   })();
 
