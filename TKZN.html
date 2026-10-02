@@ -14,7 +14,6 @@
 
     <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
-    <!-- Tailwind custom colors -->
     <script>
         tailwind.config = {
             theme: {
@@ -28,7 +27,6 @@
         }
     </script>
 
-    <!-- Lucide Icons (for fallback) -->
     <script src="https://unpkg.com/lucide@latest"></script>
 
     <style>
@@ -43,6 +41,7 @@
             color: #231e1f;
             line-height: 1.6;
             overflow-x: hidden;
+            padding-top: 80px;
         }
         h1,h2,h3,h4,.display-font { font-family: 'Space Grotesk', sans-serif; font-weight: 700; }
         a { text-decoration: none; color: inherit; }
@@ -162,7 +161,7 @@
             border: 0;
         }
 
-        /* ── GALLERY (new arrows integrated) ── */
+        /* ── GALLERY ── */
         .gallery {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
@@ -176,7 +175,7 @@
             box-shadow: 0 10px 20px rgba(35,30,31,0.07);
             transition: transform 0.3s ease, box-shadow 0.3s;
             cursor: pointer;
-            height: 260px;  /* fixed height for consistency */
+            height: 260px;
         }
         .gallery-item:hover {
             transform: translateY(-6px);
@@ -188,9 +187,7 @@
             object-fit: cover;
             transition: transform 0.4s;
         }
-        .gallery-item:hover img {
-            transform: scale(1.03);
-        }
+        .gallery-item:hover img { transform: scale(1.03); }
         .gallery-item .arrow-overlay {
             position: absolute;
             bottom: 12px;
@@ -220,10 +217,8 @@
         .lightbox {
             display: none;
             position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
             background: rgba(35,30,31,0.92);
             z-index: 9999;
             justify-content: center;
@@ -245,14 +240,12 @@
         .lightbox.active .lightbox-content { transform: scale(1); }
         .lightbox-close {
             position: absolute;
-            top: 30px;
-            right: 40px;
+            top: 30px; right: 40px;
             color: #ffffff;
             font-size: 2.8rem;
             cursor: pointer;
             background: rgba(35,30,31,0.5);
-            width: 60px;
-            height: 60px;
+            width: 60px; height: 60px;
             border-radius: 50%;
             display: flex;
             align-items: center;
@@ -283,8 +276,7 @@
             font-size: 2.5rem;
             cursor: pointer;
             background: rgba(35,30,31,0.4);
-            width: 56px;
-            height: 56px;
+            width: 56px; height: 56px;
             border-radius: 50%;
             display: flex;
             align-items: center;
@@ -299,19 +291,22 @@
         .lightbox-nav.prev { left: 24px; }
         .lightbox-nav.next { right: 24px; }
 
-        /* ── HEADER (consistent) ── */
+        /* ── HEADER ── */
         .header-glass {
             position: fixed;
-            top: 0;
-            left: 0;
+            top: 0; left: 0;
             width: 100%;
             z-index: 1000;
             background: rgba(255,255,255,0.82);
             backdrop-filter: blur(18px);
+            -webkit-backdrop-filter: blur(18px);
             border-bottom: 1px solid rgba(0,0,0,0.04);
             transition: box-shadow 0.3s, background 0.3s;
         }
-        .header-glass.scrolled { box-shadow: 0 8px 32px rgba(0,0,0,0.06); }
+        .header-glass.scrolled {
+            box-shadow: 0 8px 32px rgba(0,0,0,0.06);
+            background: rgba(255,255,255,0.94);
+        }
         .nav-link {
             font-weight: 600;
             font-size: 0.8rem;
@@ -365,7 +360,7 @@
         }
         .dropdown-menu-custom a:hover { background: #fce8f3; color: #ed018e; }
 
-        /* mobile menu panel (simplified but functional) */
+        /* mobile menu */
         .mobile-menu-panel {
             position: fixed;
             top:0; right:0; width:100%; max-width:400px; height:100%;
@@ -390,6 +385,7 @@
             font-weight: 600;
             color: #231e1f;
             border-bottom: 1px solid #eee;
+            display: block;
         }
         .mobile-accordion-btn {
             width: 100%;
@@ -400,10 +396,90 @@
             font-weight: 600;
             color: #231e1f;
             border-bottom: 1px solid #eee;
+            font-family: inherit;
+            font-size: 1rem;
+            cursor: pointer;
         }
         .mobile-sub { padding-left: 1.5rem; display:none; }
         .mobile-sub.open { display:block; }
         .mobile-sub a { padding: 0.5rem 1.5rem; display:block; color: #6f6268; }
+
+        /* ===== BACK TO TOP BUTTON (with scroll-progress ring) ===== */
+        .back-to-top {
+            position: fixed;
+            bottom: 32px;
+            right: 32px;
+            width: 52px;
+            height: 52px;
+            padding: 0;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #ed018e 0%, #b0006a 100%);
+            color: #ffffff;
+            border: 2px solid rgba(255, 255, 255, 0.25);
+            display: grid;
+            place-items: center;
+            cursor: pointer;
+            z-index: 1500;
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(20px);
+            transition: opacity 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94),
+                        visibility 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94),
+                        transform 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94),
+                        box-shadow 0.3s ease,
+                        background 0.3s ease;
+            box-shadow: 0 8px 24px rgba(237, 1, 142, 0.35);
+            -webkit-tap-highlight-color: transparent;
+        }
+        .back-to-top.visible {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
+        }
+        .back-to-top:hover {
+            transform: translateY(-4px) scale(1.06);
+            box-shadow: 0 14px 32px rgba(237, 1, 142, 0.45);
+        }
+        .back-to-top:active {
+            transform: translateY(-1px) scale(0.98);
+        }
+        .back-to-top:focus-visible {
+            outline: 3px solid rgba(237, 1, 142, 0.45);
+            outline-offset: 3px;
+        }
+
+        .btb-ring {
+            position: absolute;
+            inset: 0;
+            width: 100%;
+            height: 100%;
+            transform: rotate(-90deg);
+            pointer-events: none;
+        }
+        .btb-ring circle {
+            fill: none;
+            stroke-width: 2.5;
+        }
+        .btb-ring-track {
+            stroke: rgba(255, 255, 255, 0.25);
+        }
+        .btb-ring-progress {
+            stroke: #ffffff;
+            stroke-linecap: round;
+            stroke-dasharray: 131.95;
+            stroke-dashoffset: 131.95;
+            transition: stroke-dashoffset 0.1s linear;
+        }
+
+        .btb-arrow {
+            position: relative;
+            width: 22px;
+            height: 22px;
+            transition: transform 0.3s ease;
+        }
+        .back-to-top:hover .btb-arrow {
+            transform: translateY(-2px);
+        }
 
         /* social icons */
         .social-list { display: flex; justify-content: center; gap: 1.5rem; margin-top: 1.5rem; }
@@ -425,20 +501,37 @@
             .hero-content, .grid-2 { grid-template-columns: 1fr; }
             .stat-grid { grid-template-columns: 1fr; }
         }
+
+        @media (max-width: 768px) {
+            body { padding-top: 70px; }
+            .back-to-top {
+                bottom: 24px;
+                right: 20px;
+                width: 46px;
+                height: 46px;
+            }
+            .btb-arrow { width: 18px; height: 18px; }
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            html { scroll-behavior: auto; }
+            .back-to-top,
+            .btb-arrow { transition: none !important; }
+            .back-to-top:hover { transform: none; }
+            .back-to-top:hover .btb-arrow { transform: none; }
+        }
     </style>
 </head>
 <body>
 
-    <!-- ============ HEADER (glass) ============ -->
-    <header class="header-glass" id="mainHeader">
+    <!-- ============ HEADER ============ -->
+    <header class="header-glass" id="mainHeader" tabindex="-1">
         <div class="max-w-7xl mx-auto px-4 md:px-6">
             <div class="flex justify-between items-center h-20">
-                <!-- logo -->
                 <a href="index.html" class="flex items-center gap-3">
-                    <img src="obrian-transparent-logo-4461219.webp" alt="O'Brian Group" class="h-10 w-auto" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22%3E%3Crect width=%22100%22 height=%22100%22 fill=%22%23ed008e%22/%3E%3Ctext x=%2250%22 y=%2268%22 font-size=%2248%22 text-anchor=%22middle%22 fill=%22white%22 font-weight=%22bold%22 font-family=%22Inter%22%3EO%3C/text%3E%3C/svg%3E'">
+                    <img src="assets/images/obrian-transparent-logo-4461219.webp" alt="O'Brian Group" class="h-10 w-auto" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22%3E%3Crect width=%22100%22 height=%22100%22 fill=%22%23ed008e%22/%3E%3Ctext x=%2250%22 y=%2268%22 font-size=%2248%22 text-anchor=%22middle%22 fill=%22white%22 font-weight=%22bold%22 font-family=%22Inter%22%3EO%3C/text%3E%3C/svg%3E'">
                     <span class="font-black text-xl hidden sm:inline">O'Brian<span class="text-[#ed018e]">.</span></span>
                 </a>
-                <!-- desktop nav -->
                 <div class="hidden lg:flex items-center gap-0.5">
                     <a href="Home.html" class="nav-link">Home</a>
                     <a href="About.html" class="nav-link">About</a>
@@ -455,7 +548,6 @@
                     <a href="Staff_News.html" class="nav-link">Staff News</a>
                     <a href="Archives_Gallery.html" class="nav-link">Archives</a>
                 </div>
-                <!-- CTA + burger -->
                 <div class="flex items-center gap-3">
                     <a href="Contact_Form.html" class="btn-primary-pink hidden lg:inline-flex">Contact</a>
                     <button class="lg:hidden p-2" id="menuBtn">☰</button>
@@ -463,7 +555,7 @@
             </div>
         </div>
     </header>
-    <!-- mobile overlay & menu -->
+
     <div class="mobile-overlay" id="mobileOverlay"></div>
     <div class="mobile-menu-panel" id="mobileMenu">
         <div class="flex justify-between items-center p-6 border-b">
@@ -473,12 +565,16 @@
         <a class="mobile-link" href="Home.html">Home</a>
         <a class="mobile-link" href="About.html">About</a>
         <a class="mobile-link" href="Our_Work.html">Our Work</a>
+        <a class="mobile-link" href="Client_Experience.html">Client Experience</a>
         <button class="mobile-accordion-btn" onclick="document.getElementById('caseSub').classList.toggle('open')">Case Studies ▼</button>
         <div id="caseSub" class="mobile-sub">
             <a href="Adv_Case_Studies.html">Advertising</a>
             <a href="Digital_Case_Studies.html">Digital</a>
             <a href="Consulting_Case_Studies.html">Consulting</a>
         </div>
+        <a class="mobile-link" href="Staff_News.html">Staff News</a>
+        <a class="mobile-link" href="Archives_Gallery.html">Archives</a>
+        <a class="mobile-link" href="Contact_Form.html">Contact</a>
     </div>
 
     <!-- ============ HERO ============ -->
@@ -531,7 +627,7 @@
         </div>
     </div>
 
-    <!-- ============ IMAGE GALLERY (with arrows) ============ -->
+    <!-- ============ IMAGE GALLERY ============ -->
     <div class="container section">
         <div style="text-align:center; margin-bottom:30px;">
             <span class="section-sub">Campaign assets</span>
@@ -540,15 +636,15 @@
         </div>
         <div class="gallery" id="gallery">
             <div class="gallery-item" data-index="0">
-                <img src="175-07-tkzn-billboard-page-1.jpg" alt="Highway billboard">
+                <img src="assets/images/175-07-tkzn-billboard-page-1.jpg" alt="Highway billboard">
                 <span class="arrow-overlay">→</span>
             </div>
             <div class="gallery-item" data-index="1">
-                <img src="154035-tkzn-generic-285x210.jpg" alt="Digital creative">
+                <img src="assets/images/154035-tkzn-generic-285x210.jpg" alt="Digital creative">
                 <span class="arrow-overlay">→</span>
             </div>
             <div class="gallery-item" data-index="2">
-                <img src="154041-tkzn-billboard-394x1600.jpg" alt="Large format billboard">
+                <img src="assets/images/154041-tkzn-billboard-394x1600.jpg" alt="Large format billboard">
                 <span class="arrow-overlay">→</span>
             </div>
         </div>
@@ -559,25 +655,38 @@
     <section class="container" style="padding:50px 0; text-align:center;">
         <h3><strong>Follow us</strong></h3>
         <div class="social-list">
-            <a href="#" style="background:#ed018e;">f</a>
-            <a href="#">𝕏</a>
-            <a href="#">📷</a>
-            <a href="#">in</a>
+            <a href="https://www.facebook.com/profile.php?id=100094029616085" target="_blank" aria-label="Facebook" style="background:#ed018e;">f</a>
+            <a href="https://x.com/ObrianSA" target="_blank" aria-label="Twitter">𝕏</a>
+            <a href="https://www.instagram.com/obriandigital/" target="_blank" aria-label="Instagram">📷</a>
+            <a href="https://za.linkedin.com/company/o-brian-digital" target="_blank" aria-label="LinkedIn">in</a>
         </div>
     </section>
 
     <!-- Footer -->
     <footer class="footer">
         <div class="container">
-            <div class="footer-grid" style="display:grid; grid-template-columns:repeat(auto-fit,minmax(180px,1fr)); gap:40px;">
+            <div style="display:grid; grid-template-columns:repeat(auto-fit,minmax(180px,1fr)); gap:40px;">
                 <div><h5>Johannesburg</h5><p>2nd Floor Trumpet On Keyes,<br>21 Keyes Avenue, Rosebank</p></div>
                 <div><h5>Durban</h5><p>2 Ncondo Place, Ridgeside Dr,<br>Umhlanga Ridge</p></div>
                 <div><h5>Email</h5><p><a href="mailto:info@obriangroup.com">info@obriangroup.com</a></p></div>
-                <div><h5>About</h5><p><a href="#">History</a> · <a href="#">Clients</a> · <a href="#">Brand</a></p></div>
+                <div><h5>About</h5><p><a href="About.html">History</a> · <a href="Client_Experience.html">Clients</a> · <a href="Brand.html">Brand</a></p></div>
             </div>
             <div class="copyright"><p>&copy; 2030 Obrian Group – All Rights Reserved</p></div>
         </div>
     </footer>
+
+    <!-- ============ BACK TO TOP BUTTON (with scroll-progress ring) ============ -->
+    <button class="back-to-top" id="backToTop" aria-label="Back to top" title="Back to top" aria-hidden="true" tabindex="-1">
+        <svg class="btb-ring" viewBox="0 0 48 48" aria-hidden="true">
+            <circle class="btb-ring-track" cx="24" cy="24" r="21"></circle>
+            <circle class="btb-ring-progress" cx="24" cy="24" r="21"></circle>
+        </svg>
+        <svg class="btb-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+             stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="M12 19V5"></path>
+            <path d="M5 12l7-7 7 7"></path>
+        </svg>
+    </button>
 
     <!-- ============ LIGHTBOX ============ -->
     <div class="lightbox" id="lightbox">
@@ -624,6 +733,51 @@
                 else header.classList.remove('scrolled');
             });
 
+            // ===== BACK TO TOP BUTTON (with scroll-progress ring) =====
+            var backToTop = document.getElementById('backToTop');
+            if (backToTop) {
+                var btbRingProgress = backToTop.querySelector('.btb-ring-progress');
+                var BTB_RING_LENGTH = 2 * Math.PI * 21;
+                var prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+                var ticking = false;
+
+                function updateBackToTop() {
+                    var scrollY = window.scrollY || document.documentElement.scrollTop;
+                    var maxScroll = document.documentElement.scrollHeight - window.innerHeight;
+                    var progress = maxScroll > 0 ? Math.min(scrollY / maxScroll, 1) : 0;
+
+                    var show = scrollY > 400;
+                    backToTop.classList.toggle('visible', show);
+                    backToTop.setAttribute('aria-hidden', show ? 'false' : 'true');
+                    backToTop.tabIndex = show ? 0 : -1;
+
+                    if (btbRingProgress) {
+                        btbRingProgress.style.strokeDashoffset =
+                            (BTB_RING_LENGTH * (1 - progress)).toFixed(2);
+                    }
+
+                    ticking = false;
+                }
+
+                window.addEventListener('scroll', function() {
+                    if (!ticking) {
+                        window.requestAnimationFrame(updateBackToTop);
+                        ticking = true;
+                    }
+                }, { passive: true });
+
+                updateBackToTop();
+
+                backToTop.addEventListener('click', function() {
+                    window.scrollTo({
+                        top: 0,
+                        behavior: prefersReducedMotion ? 'auto' : 'smooth'
+                    });
+                    var headerEl = document.getElementById('mainHeader');
+                    if (headerEl) headerEl.focus({ preventScroll: true });
+                });
+            }
+
             // --- LIGHTBOX with gallery arrows ---
             const galleryItems = document.querySelectorAll('.gallery-item');
             const lightbox = document.getElementById('lightbox');
@@ -662,7 +816,6 @@
                 item.addEventListener('click', function() { openLightbox(index); });
             });
 
-            // additional arrow overlay click (redundant but ensures)
             document.querySelectorAll('.arrow-overlay').forEach(arrow => {
                 arrow.addEventListener('click', function(e) {
                     e.stopPropagation();
@@ -672,9 +825,9 @@
                 });
             });
 
-            lightboxClose.addEventListener('click', closeLightbox);
-            lightboxPrev.addEventListener('click', prevImage);
-            lightboxNext.addEventListener('click', nextImage);
+            if (lightboxClose) lightboxClose.addEventListener('click', closeLightbox);
+            if (lightboxPrev) lightboxPrev.addEventListener('click', prevImage);
+            if (lightboxNext) lightboxNext.addEventListener('click', nextImage);
 
             document.addEventListener('keydown', function(e) {
                 if (!lightbox.classList.contains('active')) return;
@@ -687,7 +840,6 @@
                 if (e.target === lightbox) closeLightbox();
             });
 
-            // touch swipe
             let touchStartX = 0, touchEndX = 0;
             lightbox.addEventListener('touchstart', function(e) { touchStartX = e.changedTouches[0].screenX; });
             lightbox.addEventListener('touchend', function(e) {
