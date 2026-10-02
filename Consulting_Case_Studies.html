@@ -409,14 +409,14 @@
         .back-to-top svg { width: 22px; height: 22px; transition: transform 0.3s ease; }
         .back-to-top:hover svg { transform: translateY(-2px); }
 
-        /* ===== SCROLL PROGRESS RING (wraps around .back-to-top) ===== */
+        /* ===== SCROLL PROGRESS RING (copied from staff_welfare.html) ===== */
         .progress-ring {
             position: fixed;
-            bottom: 21px;
-            right: 21px;
+            bottom: 19px;
+            right: 19px;
             width: 74px;
             height: 74px;
-            z-index: 1499;
+            z-index: 1041;
             pointer-events: none;
             opacity: 0;
             visibility: hidden;
@@ -424,7 +424,7 @@
             transition: opacity 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94),
                         visibility 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94),
                         transform 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-            filter: drop-shadow(0 4px 12px rgba(237, 0, 142, 0.18));
+            filter: drop-shadow(0 4px 12px rgba(230, 0, 126, 0.18));
         }
         .progress-ring.visible {
             opacity: 1;
@@ -440,7 +440,7 @@
         }
         .progress-ring .ring-track {
             fill: none;
-            stroke: rgba(237, 0, 142, 0.16);
+            stroke: rgba(230, 0, 126, 0.16);
             stroke-width: 4;
         }
         .progress-ring .ring-bar {
@@ -452,6 +452,7 @@
             stroke-dashoffset: 188.5;
         }
 
+        /* Hide ring while mobile menu is open */
         body.menu-open .progress-ring {
             opacity: 0 !important;
             visibility: hidden !important;
@@ -460,7 +461,7 @@
         @media (max-width: 768px) {
             .back-to-top { bottom: 24px; right: 20px; width: 46px; height: 46px; }
             .back-to-top svg { width: 18px; height: 18px; }
-            .progress-ring { bottom: 15px; right: 15px; width: 60px; height: 60px; }
+            .progress-ring { bottom: 13px; right: 13px; width: 60px; height: 60px; }
         }
 
         /* RESPONSIVE */
@@ -736,13 +737,13 @@
         </div>
     </footer>
 
-    <!-- ===== SCROLL PROGRESS RING (wraps around .back-to-top) ===== -->
+    <!-- ===== SCROLL PROGRESS RING (identical to staff_welfare.html) ===== -->
     <div class="progress-ring" id="progressRing" aria-hidden="true">
         <svg viewBox="0 0 68 68">
             <defs>
                 <linearGradient id="ringGradient" x1="0%" y1="0%" x2="100%" y2="100%">
-                    <stop offset="0%" stop-color="#ed008e" />
-                    <stop offset="100%" stop-color="#b0006a" />
+                    <stop offset="0%" stop-color="#e6007e" />
+                    <stop offset="100%" stop-color="#ff1493" />
                 </linearGradient>
             </defs>
             <circle class="ring-track" cx="34" cy="34" r="30" />
@@ -762,7 +763,7 @@
         (function() {
             'use strict';
 
-            // ── Header scroll effect (handled in unified scroll below) ──
+            // ── Header scroll effect ──
             const header = document.getElementById('mainHeader');
 
             // ── Mobile menu toggle ──
