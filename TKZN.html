@@ -101,6 +101,25 @@
             transform: translateY(-2px);
             box-shadow: 0 12px 28px rgba(237,1,142,0.45);
         }
+        /* FIX: added missing .btn-outline definition */
+        .btn-outline {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: transparent;
+            color: #231e1f;
+            font-weight: 600;
+            padding: 0.85rem 2rem;
+            border-radius: 3rem;
+            border: 2px solid #231e1f;
+            transition: all 0.3s ease;
+        }
+        .btn-outline:hover {
+            background: #231e1f;
+            color: #ffffff;
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(35,30,31,0.12);
+        }
 
         /* ── HERO ── */
         .hero {
@@ -196,7 +215,7 @@
             color: white;
             width: 38px;
             height: 38px;
-            border-radius: 60%;
+            border-radius: 50%; /* FIX: was 60% */
             display: flex;
             align-items: center;
             justify-content: center;
@@ -597,14 +616,7 @@
             </div>
         </div>
     </section>
-                <div class="hero-visual">
-                    <div class="hero-image">
-                        <img src="175-07-tkzn-billboard-page-1.jpg" alt="TKZN billboard" loading="lazy">
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
+    <!-- FIX: removed duplicate .hero-visual block + stray closing tags -->
 
     <!-- Challenge / solution / results -->
     <div class="container section">
@@ -776,6 +788,9 @@
                         ticking = true;
                     }
                 }, { passive: true });
+
+                // FIX: also update on resize so the ring stays accurate
+                window.addEventListener('resize', updateBackToTop);
 
                 updateBackToTop();
 
