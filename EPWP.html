@@ -977,36 +977,100 @@
             color: rgba(255, 255, 255, 0.35);
         }
 
-        /* ── scroll to top ── */
-        .scroll-top {
+        /* ===== BACK TO TOP BUTTON (copied from Home page) ===== */
+        .back-to-top {
             position: fixed;
-            bottom: 28px;
-            right: 28px;
-            width: 48px;
-            height: 48px;
+            bottom: 32px;
+            right: 32px;
+            width: 52px;
+            height: 52px;
+            padding: 0;
             border-radius: 50%;
-            background: var(--primary);
-            color: #fff;
-            border: none;
-            font-size: 1.2rem;
+            background: linear-gradient(135deg, #e6007e 0%, #b0006a 100%);
+            color: #ffffff;
+            border: 2px solid rgba(255, 255, 255, 0.25);
+            display: grid;
+            place-items: center;
             cursor: pointer;
-            box-shadow: 0 8px 24px rgba(237, 0, 142, 0.30);
-            transition: var(--transition);
+            z-index: 1500;
             opacity: 0;
-            transform: translateY(12px);
-            pointer-events: none;
-            z-index: 900;
+            visibility: hidden;
+            transform: translateY(20px);
+            transition: opacity 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94),
+                        visibility 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94),
+                        transform 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94),
+                        box-shadow 0.3s ease,
+                        background 0.3s ease;
+            box-shadow: 0 8px 24px rgba(230, 0, 126, 0.35);
+            -webkit-tap-highlight-color: transparent;
         }
-
-        .scroll-top.visible {
+        .back-to-top.visible {
             opacity: 1;
+            visibility: visible;
             transform: translateY(0);
-            pointer-events: auto;
+        }
+        .back-to-top:hover {
+            transform: translateY(-4px) scale(1.06);
+            box-shadow: 0 14px 32px rgba(230, 0, 126, 0.45);
+        }
+        .back-to-top:active {
+            transform: translateY(-1px) scale(0.98);
+        }
+        .back-to-top:focus-visible {
+            outline: 3px solid rgba(230, 0, 126, 0.45);
+            outline-offset: 3px;
         }
 
-        .scroll-top:hover {
-            transform: translateY(-4px) scale(1.04);
-            box-shadow: 0 12px 32px rgba(237, 0, 142, 0.40);
+        /* scroll-progress ring */
+        .btb-ring {
+            position: absolute;
+            inset: 0;
+            width: 100%;
+            height: 100%;
+            transform: rotate(-90deg);
+            pointer-events: none;
+        }
+        .btb-ring circle {
+            fill: none;
+            stroke-width: 2.5;
+        }
+        .btb-ring-track {
+            stroke: rgba(255, 255, 255, 0.25);
+        }
+        .btb-ring-progress {
+            stroke: #ffffff;
+            stroke-linecap: round;
+            stroke-dasharray: 131.95;   /* 2π × r(21) */
+            stroke-dashoffset: 131.95;
+            transition: stroke-dashoffset 0.1s linear;
+        }
+
+        /* arrow */
+        .btb-arrow {
+            position: relative;
+            width: 22px;
+            height: 22px;
+            transition: transform 0.3s ease;
+        }
+        .back-to-top:hover .btb-arrow {
+            transform: translateY(-2px);
+        }
+
+        /* ── reduced motion ── */
+        @media (prefers-reduced-motion: reduce) {
+            html {
+                scroll-behavior: auto;
+            }
+            .back-to-top,
+            .btb-arrow {
+                transition: none !important;
+            }
+            .back-to-top:hover {
+                transform: none;
+            }
+            .back-to-top:hover .btb-arrow {
+                transform: none;
+            }
         }
 
         /* ── responsive ── */
@@ -1095,6 +1159,18 @@
             .lightbox-controls {
                 padding: 10px 12px;
             }
+
+            /* Back-to-top responsive sizing */
+            .back-to-top {
+                bottom: 24px;
+                right: 20px;
+                width: 46px;
+                height: 46px;
+            }
+            .btb-arrow {
+                width: 18px;
+                height: 18px;
+            }
         }
 
         @media (max-width: 480px) {
@@ -1151,7 +1227,7 @@
 <body>
 
     <!-- ─── PREMIUM GLASS HEADER ─── -->
-    <header class="header-glass" id="mainHeader">
+    <header class="header-glass" id="mainHeader" tabindex="-1">
         <div class="max-w-7xl mx-auto px-4 md:px-6 w-full">
             <div class="flex justify-between items-center">
 
@@ -1243,6 +1319,19 @@
         <a href="Archive_Gallery.html">Archives</a>
         <a href="Contact_Us.html" style="display:inline-flex; margin-top:1rem; background:linear-gradient(135deg,#e6007e,#ff1493); color:#fff; padding:0.6rem 1.5rem; border-radius:9999px; font-weight:700; text-decoration:none;">Contact Us</a>
     </div>
+
+    <!-- ─── BACK TO TOP BUTTON (copied from Home) ─── -->
+    <button class="back-to-top" id="backToTopBtn" aria-label="Back to top" title="Back to top" aria-hidden="true" tabindex="-1">
+        <svg class="btb-ring" viewBox="0 0 48 48" aria-hidden="true">
+            <circle class="btb-ring-track" cx="24" cy="24" r="21"></circle>
+            <circle class="btb-ring-progress" cx="24" cy="24" r="21"></circle>
+        </svg>
+        <svg class="btb-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+             stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="M12 19V5"></path>
+            <path d="M5 12l7-7 7 7"></path>
+        </svg>
+    </button>
 
     <!-- ─── HERO ─── -->
     <section class="hero">
@@ -1423,9 +1512,6 @@
         </div>
     </footer>
 
-    <!-- ─── SCROLL TO TOP ─── -->
-    <button class="scroll-top" id="scrollTop" aria-label="Scroll to top"><i class="fas fa-arrow-up"></i></button>
-
     <!-- ─── SCRIPTS ─── -->
     <script>
         // ── Header scroll effect ──
@@ -1435,13 +1521,6 @@
                 header.classList.add('scrolled');
             } else {
                 header.classList.remove('scrolled');
-            }
-
-            const btn = document.getElementById('scrollTop');
-            if (window.scrollY > 400) {
-                btn.classList.add('visible');
-            } else {
-                btn.classList.remove('visible');
             }
         });
 
@@ -1472,11 +1551,6 @@
                 if (menuBtn) menuBtn.classList.remove('open');
                 document.body.style.overflow = '';
             }
-        });
-
-        // ── Scroll to top ──
-        document.getElementById('scrollTop').addEventListener('click', function() {
-            window.scrollTo({ top: 0, behavior: 'smooth' });
         });
 
         // ── Smooth scroll for anchor links ──
@@ -1515,15 +1589,12 @@
         const heroImg = document.querySelector('.hero-visual .feature-img img');
         const contentImg = document.querySelector('.content-image img');
         
-        // We'll collect all images for navigation
         const allImages = [];
         
-        // Add gallery images first
         imageSources.forEach(function(src) {
             allImages.push(src);
         });
         
-        // Add hero and content images if they exist
         if (heroImg) allImages.push(heroImg.getAttribute('src'));
         if (contentImg) allImages.push(contentImg.getAttribute('src'));
 
@@ -1534,14 +1605,12 @@
             lightboxImage.setAttribute('src', allImages[currentIndex]);
             lightboxImage.style.opacity = '0';
             
-            // Fade in the image
             setTimeout(function() {
                 lightboxImage.style.opacity = '1';
             }, 50);
             
             lightboxCounter.textContent = (currentIndex + 1) + ' / ' + allImages.length;
             
-            // Update nav button states
             lightboxPrev.disabled = false;
             lightboxNext.disabled = false;
             
@@ -1682,6 +1751,53 @@
             }
         `;
         document.head.appendChild(styleSheet);
+
+        // ===== BACK TO TOP BUTTON LOGIC (copied from Home) =====
+        var backToTopBtn = document.getElementById('backToTopBtn');
+        var btbRingProgress = backToTopBtn ? backToTopBtn.querySelector('.btb-ring-progress') : null;
+        var BTB_RING_LENGTH = 2 * Math.PI * 21; // r = 21 in the 48×48 viewBox
+        var btbPrefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+        var btbTicking = false;
+
+        function updateBackToTop() {
+            var scrollY = window.scrollY || document.documentElement.scrollTop;
+            var maxScroll = document.documentElement.scrollHeight - window.innerHeight;
+            var progress = maxScroll > 0 ? Math.min(scrollY / maxScroll, 1) : 0;
+
+            var show = scrollY > 400;
+            backToTopBtn.classList.toggle('visible', show);
+            // keep it out of the a11y tree / tab order while hidden
+            backToTopBtn.setAttribute('aria-hidden', show ? 'false' : 'true');
+            backToTopBtn.tabIndex = show ? 0 : -1;
+
+            if (btbRingProgress) {
+                btbRingProgress.style.strokeDashoffset =
+                    (BTB_RING_LENGTH * (1 - progress)).toFixed(2);
+            }
+
+            btbTicking = false;
+        }
+
+        if (backToTopBtn) {
+            window.addEventListener('scroll', function() {
+                if (!btbTicking) {
+                    window.requestAnimationFrame(updateBackToTop);
+                    btbTicking = true;
+                }
+            }, { passive: true });
+
+            updateBackToTop();
+
+            backToTopBtn.addEventListener('click', function() {
+                window.scrollTo({
+                    top: 0,
+                    behavior: btbPrefersReducedMotion ? 'auto' : 'smooth'
+                });
+                // return focus to the top of the page for keyboard users
+                var headerEl = document.getElementById('mainHeader');
+                if (headerEl) headerEl.focus({ preventScroll: true });
+            });
+        }
     </script>
 
 </body>
