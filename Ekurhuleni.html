@@ -5,7 +5,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
   <title>Ekurhuleni · Brand CI Manual | O'Brian Group</title>
-  
+
   <!-- SEO & Social Meta -->
   <meta name="description" content="City of Ekurhuleni Brand CI Manual Development — strategic identity, visual assets and brand governance by O'Brian Group.">
   <meta name="twitter:card" content="summary_large_image">
@@ -259,6 +259,37 @@
       transform: translateX(-4px);
     }
 
+    /* Pink filled variant (used after the gallery) */
+    .btn-back-work-pink {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      padding: 0.85rem 2.1rem;
+      border-radius: 60px;
+      font-weight: 700;
+      font-size: 0.9rem;
+      letter-spacing: 0.3px;
+      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      background: linear-gradient(135deg, #e6007e 0%, #ff1493 100%);
+      color: #ffffff;
+      text-decoration: none;
+      cursor: pointer;
+      box-shadow: 0 6px 20px rgba(230, 0, 126, 0.3);
+    }
+    .btn-back-work-pink:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 14px 32px rgba(230, 0, 126, 0.45);
+      color: #ffffff;
+    }
+    .btn-back-work-pink i {
+      font-size: 0.95rem;
+      transition: transform 0.3s ease;
+    }
+    .btn-back-work-pink:hover i {
+      transform: translateX(-4px);
+    }
+
     .overview { padding: 3rem 0 2rem; background: white; }
     .overview-grid {
       display: flex; flex-wrap: wrap; gap: 2.5rem;
@@ -373,7 +404,7 @@
       white-space: nowrap;
     }
 
-    /* ── BACK TO TOP BUTTON ── */
+    /* ── BACK TO TOP BUTTON (with scroll-progress ring) ── */
     .scroll-top-btn {
       position: fixed;
       bottom: 30px; right: 30px;
@@ -390,6 +421,7 @@
       opacity: 0; visibility: hidden;
       transform: translateY(24px) scale(0.9);
       font-size: 1.25rem;
+      -webkit-tap-highlight-color: transparent;
     }
     .scroll-top-btn.visible {
       opacity: 1; visibility: visible;
@@ -401,6 +433,12 @@
       box-shadow: 0 14px 40px rgba(237, 0, 142, 0.6);
     }
     .scroll-top-btn:active { transform: translateY(-2px) scale(0.98); }
+    .scroll-top-btn:focus-visible {
+      outline: 3px solid rgba(237, 0, 142, 0.45);
+      outline-offset: 3px;
+    }
+
+    /* pulse ring — kept from original */
     .scroll-top-btn::before {
       content: '';
       position: absolute; inset: -6px;
@@ -415,6 +453,33 @@
       100% { transform: scale(1.25); opacity: 0; }
     }
     .scroll-top-btn:hover::before { animation-play-state: paused; opacity: 0; }
+
+    /* scroll-progress SVG ring — new */
+    .stb-ring {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      transform: rotate(-90deg);
+      pointer-events: none;
+    }
+    .stb-ring circle {
+      fill: none;
+      stroke-width: 2.5;
+    }
+    .stb-ring-track { stroke: rgba(255, 255, 255, 0.28); }
+    .stb-ring-progress {
+      stroke: #ffffff;
+      stroke-linecap: round;
+      stroke-dasharray: 150.80;   /* 2π × 24 */
+      stroke-dashoffset: 150.80;  /* JS updates this */
+      transition: stroke-dashoffset 0.1s linear;
+    }
+    /* Ensure the chevron icon sits above the ring */
+    .scroll-top-btn > i {
+      position: relative;
+      z-index: 2;
+    }
 
     .social-block {
       background: var(--gray-light); padding: 2.5rem 0; text-align: center;
@@ -472,6 +537,7 @@
       }
       .scroll-top-btn { bottom: 20px; right: 20px; width: 48px; height: 48px; font-size: 1.1rem; }
       .btn-back-work { padding: 0.6rem 1.4rem; font-size: 0.85rem; margin-top: 1.5rem; }
+      .btn-back-work-pink { padding: 0.7rem 1.6rem; font-size: 0.85rem; }
     }
 
     @media (max-width: 768px) {
@@ -484,6 +550,12 @@
       .logo-text { font-size: 0.9rem; }
       .btn-back-work { padding: 0.55rem 1.2rem; font-size: 0.8rem; }
     }
+    @media (prefers-reduced-motion: reduce) {
+      html, body { scroll-behavior: auto; }
+      .scroll-top-btn, .scroll-top-btn::before { transition: none !important; animation: none !important; }
+      .scroll-top-btn:hover { transform: none; }
+      .stb-ring-progress { transition: none; }
+    }
   </style>
 </head>
 <body>
@@ -495,13 +567,14 @@
 
       <a href="Home.html" class="logo-premium group">
         <img src="obrian-transparent-logo-4461219.webp" alt="O'Brian Group" class="h-9 w-auto" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22%3E%3Crect width=%22100%22 height=%22100%22 fill=%22%23ed008e%22/%3E%3Ctext x=%2250%22 y=%2268%22 font-size=%2248%22 text-anchor=%22middle%22 fill=%22white%22 font-weight=%22bold%22 font-family=%22Inter%22%3EO%3C/text%3E%3C/svg%3E'">
-        <span class="logo-text hidden sm:inline-block"><span class="highlight"></span></span>
+        <!-- FIXED: was empty, now renders the wordmark -->
+        <span class="logo-text hidden sm:inline-block">O'<span class="highlight">Brian</span></span>
       </a>
 
       <div class="hidden lg:flex items-center gap-0.5">
         <a href="Home.html" class="nav-link-premium">Home</a>
         <a href="About.html" class="nav-link-premium">About</a>
-        <a href="Our_Work.html" class="nav-link-premium">Our Work</a>
+        <a href="Our_Work.html" class="nav-link-premium active-link">Our Work</a>
         <a href="Client_Experience.html" class="nav-link-premium">Client Experience</a>
 
         <div class="dropdown-wrapper">
@@ -576,8 +649,12 @@
   <a href="Contact_Us.html" style="display:inline-flex; margin-top:1rem; background:linear-gradient(135deg,#e6007e,#ff1493); color:#fff; padding:0.6rem 1.5rem; border-radius:9999px; font-weight:700; text-decoration:none;">Contact Us</a>
 </div>
 
-<!-- ===== BACK TO TOP ===== -->
+<!-- ===== BACK TO TOP (with scroll-progress ring) ===== -->
 <button class="scroll-top-btn" id="scrollTopBtn" aria-label="Back to top" title="Back to top">
+  <svg class="stb-ring" viewBox="0 0 54 54" aria-hidden="true">
+    <circle class="stb-ring-track" cx="27" cy="27" r="24"></circle>
+    <circle class="stb-ring-progress" cx="27" cy="27" r="24"></circle>
+  </svg>
   <i class="fas fa-chevron-up"></i>
 </button>
 
@@ -589,7 +666,7 @@
     <div class="hero-tagline">A Dive into Our Work Triumphs · Strategic CI & Visual Governance</div>
     <div class="project-badge"><i class="fas fa-building"></i> City of Ekurhuleni · Brand CI Manual Development</div>
 
-    <!-- ===== BACK TO OUR WORK BUTTON ===== -->
+    <!-- ===== BACK TO OUR WORK BUTTON (hero) ===== -->
     <div style="margin-top: 2rem;">
       <a href="Our_Work.html" class="btn-back-work">
         <i class="fas fa-arrow-left"></i>
@@ -627,6 +704,14 @@
     <div class="section-title">Visual Identity Archive</div>
     <div class="section-sub">A glimpse of brand applications, assets & guidelines</div>
     <div id="gallery-grid" class="gallery-grid"></div>
+
+    <!-- ===== BACK TO OUR WORK BUTTON (after gallery) ===== -->
+    <div style="text-align: center; margin-top: 3.5rem;">
+      <a href="Our_Work.html" class="btn-back-work-pink">
+        <i class="fas fa-arrow-left"></i>
+        Back to Our Work
+      </a>
+    </div>
   </div>
 </section>
 
@@ -729,30 +814,48 @@
     }
   });
 
-  // ── BACK TO TOP BUTTON ──
+  // ── BACK TO TOP BUTTON with scroll-progress ring ──
   const scrollTopBtn = document.getElementById('scrollTopBtn');
+  const stbRingProgress = scrollTopBtn ? scrollTopBtn.querySelector('.stb-ring-progress') : null;
+  const STB_RING_LENGTH = 2 * Math.PI * 24;   // r = 24  →  ≈150.80
+  const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   let scrollTicking = false;
 
-  function handleScrollTopVisibility() {
-    if (window.scrollY > 300) {
+  function updateScrollTop() {
+    const scrollY = window.pageYOffset || document.documentElement.scrollTop || 0;
+    const maxScroll = document.documentElement.scrollHeight - window.innerHeight;
+    const progress = maxScroll > 0 ? Math.min(scrollY / maxScroll, 1) : 0;
+
+    // show after 300px
+    if (scrollY > 300) {
       scrollTopBtn.classList.add('visible');
     } else {
       scrollTopBtn.classList.remove('visible');
+    }
+
+    // update the progress ring
+    if (stbRingProgress) {
+      stbRingProgress.style.strokeDashoffset =
+        (STB_RING_LENGTH * (1 - progress)).toFixed(2);
     }
     scrollTicking = false;
   }
 
   window.addEventListener('scroll', function() {
     if (!scrollTicking) {
-      window.requestAnimationFrame(handleScrollTopVisibility);
+      window.requestAnimationFrame(updateScrollTop);
       scrollTicking = true;
     }
   }, { passive: true });
 
-  handleScrollTopVisibility(); // initial check
+  window.addEventListener('resize', updateScrollTop);
+  updateScrollTop(); // initial check
 
   scrollTopBtn.addEventListener('click', function() {
-    window.scrollTo({ top: 0, behavior: 'smooth' });
+    window.scrollTo({
+      top: 0,
+      behavior: prefersReducedMotion ? 'auto' : 'smooth'
+    });
   });
 
   // ── Gallery data ──
