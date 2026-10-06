@@ -228,6 +228,82 @@
         }
         .btn-back-work:hover i { transform: translateX(-4px); }
 
+        /* ── FLOATING BACK BUTTON ── */
+        .floating-back {
+            position: fixed;
+            bottom: 32px;
+            left: 32px;
+            z-index: 1499;
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            padding: 12px 22px;
+            background: linear-gradient(135deg, #ec008a 0%, #b0006a 100%);
+            color: #ffffff;
+            font-weight: 700;
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            border-radius: 9999px;
+            border: 2px solid rgba(255, 255, 255, 0.25);
+            text-decoration: none;
+            box-shadow: 0 8px 24px rgba(236, 0, 138, 0.35);
+            -webkit-tap-highlight-color: transparent;
+            transition: transform 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94),
+                        box-shadow 0.3s ease,
+                        background 0.3s ease;
+        }
+        .floating-back:hover {
+            transform: translateY(-4px) scale(1.04);
+            box-shadow: 0 14px 32px rgba(236, 0, 138, 0.45);
+            color: #ffffff;
+        }
+        .floating-back:active {
+            transform: translateY(-1px) scale(0.98);
+        }
+        .floating-back:focus-visible {
+            outline: 3px solid rgba(236, 0, 138, 0.45);
+            outline-offset: 3px;
+        }
+        .floating-back i {
+            font-size: 1rem;
+            transition: transform 0.3s ease;
+        }
+        .floating-back:hover i {
+            transform: translateX(-4px);
+        }
+
+        @media (max-width: 768px) {
+            .floating-back {
+                bottom: 24px;
+                left: 20px;
+                padding: 10px 16px;
+                font-size: 0.75rem;
+            }
+            .floating-back i {
+                font-size: 0.85rem;
+            }
+        }
+        @media (max-width: 480px) {
+            .floating-back {
+                bottom: 80px;
+                padding: 8px 14px;
+                font-size: 0.7rem;
+            }
+        }
+        @media (prefers-reduced-motion: reduce) {
+            .floating-back,
+            .floating-back i {
+                transition: none !important;
+            }
+            .floating-back:hover {
+                transform: none;
+            }
+            .floating-back:hover i {
+                transform: none;
+            }
+        }
+
         /* Video Showcase */
         .video-section {
             padding: 4rem 2rem 5rem;
@@ -575,68 +651,117 @@
             font-size: 0.95rem;
         }
 
-        /* ── BACK TO TOP BUTTON ── */
-        .scroll-top-btn {
+        /* ===== BACK TO TOP BUTTON (copied from Home page) ===== */
+        .back-to-top {
             position: fixed;
-            bottom: 30px;
-            right: 30px;
-            width: 54px;
-            height: 54px;
+            bottom: 32px;
+            right: 32px;
+            width: 52px;
+            height: 52px;
+            padding: 0;
             border-radius: 50%;
-            background: #ec008a;
+            background: linear-gradient(135deg, #e6007e 0%, #b0006a 100%);
             color: #ffffff;
-            border: none;
+            border: 2px solid rgba(255, 255, 255, 0.25);
+            display: grid;
+            place-items: center;
             cursor: pointer;
-            display: flex;
-            align-items: center;
-            justify-content: center;
             z-index: 1500;
-            box-shadow: 0 8px 28px rgba(236, 0, 138, 0.45);
-            transition: opacity 0.35s ease, visibility 0.35s ease,
-                        transform 0.35s ease, background 0.25s ease,
-                        box-shadow 0.25s ease;
             opacity: 0;
             visibility: hidden;
-            transform: translateY(24px) scale(0.9);
-            font-size: 1.25rem;
+            transform: translateY(20px);
+            transition: opacity 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94),
+                        visibility 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94),
+                        transform 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94),
+                        box-shadow 0.3s ease,
+                        background 0.3s ease;
+            box-shadow: 0 8px 24px rgba(230, 0, 126, 0.35);
+            -webkit-tap-highlight-color: transparent;
         }
-        .scroll-top-btn.visible {
+        .back-to-top.visible {
             opacity: 1;
             visibility: visible;
-            transform: translateY(0) scale(1);
+            transform: translateY(0);
         }
-        .scroll-top-btn:hover {
-            background: #c40075;
-            transform: translateY(-5px) scale(1.05);
-            box-shadow: 0 14px 40px rgba(236, 0, 138, 0.6);
+        .back-to-top:hover {
+            transform: translateY(-4px) scale(1.06);
+            box-shadow: 0 14px 32px rgba(230, 0, 126, 0.45);
         }
-        .scroll-top-btn:active { transform: translateY(-2px) scale(0.98); }
-        .scroll-top-btn::before {
-            content: '';
+        .back-to-top:active {
+            transform: translateY(-1px) scale(0.98);
+        }
+        .back-to-top:focus-visible {
+            outline: 3px solid rgba(230, 0, 126, 0.45);
+            outline-offset: 3px;
+        }
+
+        /* scroll-progress ring */
+        .btb-ring {
             position: absolute;
-            inset: -6px;
-            border-radius: 50%;
-            border: 2px solid rgba(236, 0, 138, 0.35);
-            animation: pulseRing 2.4s ease-out infinite;
+            inset: 0;
+            width: 100%;
+            height: 100%;
+            transform: rotate(-90deg);
             pointer-events: none;
         }
-        @keyframes pulseRing {
-            0% { transform: scale(1); opacity: 0.8; }
-            70% { transform: scale(1.25); opacity: 0; }
-            100% { transform: scale(1.25); opacity: 0; }
+        .btb-ring circle {
+            fill: none;
+            stroke-width: 2.5;
         }
-        .scroll-top-btn:hover::before { animation-play-state: paused; opacity: 0; }
+        .btb-ring-track {
+            stroke: rgba(255, 255, 255, 0.25);
+        }
+        .btb-ring-progress {
+            stroke: #ffffff;
+            stroke-linecap: round;
+            stroke-dasharray: 131.95;   /* 2π × r(21) */
+            stroke-dashoffset: 131.95;
+            transition: stroke-dashoffset 0.1s linear;
+        }
+
+        /* arrow */
+        .btb-arrow {
+            position: relative;
+            width: 22px;
+            height: 22px;
+            transition: transform 0.3s ease;
+        }
+        .back-to-top:hover .btb-arrow {
+            transform: translateY(-2px);
+        }
 
         @media (max-width: 768px) {
             body { padding-top: 70px; }
             .mobile-menu-panel { top: 70px; }
-            .scroll-top-btn {
-                bottom: 20px; right: 20px;
-                width: 48px; height: 48px; font-size: 1.1rem;
+            .back-to-top {
+                bottom: 24px;
+                right: 20px;
+                width: 46px;
+                height: 46px;
+            }
+            .btb-arrow {
+                width: 18px;
+                height: 18px;
             }
         }
         @media (max-width: 480px) {
             .btn-back-work { padding: 10px 22px; font-size: 0.8rem; }
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            html {
+                scroll-behavior: auto;
+            }
+            .back-to-top,
+            .btb-arrow {
+                transition: none !important;
+            }
+            .back-to-top:hover {
+                transform: none;
+            }
+            .back-to-top:hover .btb-arrow {
+                transform: none;
+            }
         }
     </style>
 </head>
@@ -736,9 +861,23 @@
         <a href="Contact_Us.html" class="magnetic-btn" style="display:inline-flex; margin-top:1rem; background:linear-gradient(135deg,#e6007e,#ff1493); color:#fff; padding:0.6rem 1.5rem; border-radius:9999px; font-weight:700;">Contact Us</a>
     </div>
 
+    <!-- ===== FLOATING BACK BUTTON ===== -->
+    <a href="Our_Work.html" class="floating-back" aria-label="Back to Our Work">
+        <i class="fas fa-arrow-left"></i>
+        <span>Back to Our Work</span>
+    </a>
+
     <!-- ===== BACK TO TOP BUTTON ===== -->
-    <button class="scroll-top-btn" id="scrollTopBtn" aria-label="Back to top" title="Back to top">
-        <i class="fas fa-chevron-up"></i>
+    <button class="back-to-top" id="backToTopBtn" aria-label="Back to top" title="Back to top" aria-hidden="true" tabindex="-1">
+        <svg class="btb-ring" viewBox="0 0 48 48" aria-hidden="true">
+            <circle class="btb-ring-track" cx="24" cy="24" r="21"></circle>
+            <circle class="btb-ring-progress" cx="24" cy="24" r="21"></circle>
+        </svg>
+        <svg class="btb-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+             stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="M12 19V5"></path>
+            <path d="M5 12l7-7 7 7"></path>
+        </svg>
     </button>
 
     <!-- ===== HERO ===== -->
@@ -933,33 +1072,10 @@
                 });
             }
 
-            // ── Header scroll effect + back-to-top visibility ──
+            // ── Header scroll effect ──
             const header = document.getElementById('mainHeader');
-            const scrollTopBtn = document.getElementById('scrollTopBtn');
-            let scrollTicking = false;
-
-            function handleScroll() {
-                header.classList.toggle('scrolled', window.scrollY > 20);
-                if (window.scrollY > 300) {
-                    scrollTopBtn.classList.add('visible');
-                } else {
-                    scrollTopBtn.classList.remove('visible');
-                }
-                scrollTicking = false;
-            }
-
             window.addEventListener('scroll', function() {
-                if (!scrollTicking) {
-                    window.requestAnimationFrame(handleScroll);
-                    scrollTicking = true;
-                }
-            }, { passive: true });
-
-            handleScroll();
-
-            // ── Back to top ──
-            scrollTopBtn.addEventListener('click', function() {
-                window.scrollTo({ top: 0, behavior: 'smooth' });
+                header.classList.toggle('scrolled', window.scrollY > 20);
             });
 
             // ── FAST LAZY LOADING via IntersectionObserver ──
@@ -1043,6 +1159,51 @@
                     }
                 });
             }, 100);
+
+            // ===== BACK TO TOP BUTTON LOGIC (copied from Home) =====
+            var backToTopBtn = document.getElementById('backToTopBtn');
+            var btbRingProgress = backToTopBtn ? backToTopBtn.querySelector('.btb-ring-progress') : null;
+            var BTB_RING_LENGTH = 2 * Math.PI * 21;
+            var btbPrefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+            var btbTicking = false;
+
+            function updateBackToTop() {
+                var scrollY = window.scrollY || document.documentElement.scrollTop;
+                var maxScroll = document.documentElement.scrollHeight - window.innerHeight;
+                var progress = maxScroll > 0 ? Math.min(scrollY / maxScroll, 1) : 0;
+
+                var show = scrollY > 400;
+                backToTopBtn.classList.toggle('visible', show);
+                backToTopBtn.setAttribute('aria-hidden', show ? 'false' : 'true');
+                backToTopBtn.tabIndex = show ? 0 : -1;
+
+                if (btbRingProgress) {
+                    btbRingProgress.style.strokeDashoffset =
+                        (BTB_RING_LENGTH * (1 - progress)).toFixed(2);
+                }
+
+                btbTicking = false;
+            }
+
+            if (backToTopBtn) {
+                window.addEventListener('scroll', function() {
+                    if (!btbTicking) {
+                        window.requestAnimationFrame(updateBackToTop);
+                        btbTicking = true;
+                    }
+                }, { passive: true });
+
+                updateBackToTop();
+
+                backToTopBtn.addEventListener('click', function() {
+                    window.scrollTo({
+                        top: 0,
+                        behavior: btbPrefersReducedMotion ? 'auto' : 'smooth'
+                    });
+                    var headerEl = document.getElementById('mainHeader');
+                    if (headerEl) headerEl.focus({ preventScroll: true });
+                });
+            }
 
         })();
     </script>
