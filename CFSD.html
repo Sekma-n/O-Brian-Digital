@@ -121,9 +121,7 @@
         }
 
         /* Premium Dropdown */
-        .dropdown-wrapper {
-            position: relative;
-        }
+        .dropdown-wrapper { position: relative; }
         .dropdown-wrapper:hover .dropdown-menu-premium {
             opacity: 1;
             visibility: visible;
@@ -176,12 +174,8 @@
             color: #e6007e;
             padding-left: 1.8rem;
         }
-        .dropdown-menu-premium a:first-child {
-            border-radius: 12px 12px 0 0;
-        }
-        .dropdown-menu-premium a:last-child {
-            border-radius: 0 0 12px 12px;
-        }
+        .dropdown-menu-premium a:first-child { border-radius: 12px 12px 0 0; }
+        .dropdown-menu-premium a:last-child { border-radius: 0 0 12px 12px; }
 
         /* Premium CTA Button */
         .btn-premium-cta {
@@ -235,10 +229,7 @@
             border-radius: 2px;
             transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
         }
-        .burger-line:nth-child(3) {
-            width: 12px;
-            margin-left: auto;
-        }
+        .burger-line:nth-child(3) { width: 12px; margin-left: auto; }
         .burger-premium.open .burger-line:nth-child(1) {
             transform: rotate(45deg) translate(5px, 5px);
             width: 20px;
@@ -274,14 +265,8 @@
             animation: fadeSlideDown 0.4s ease forwards;
         }
         @keyframes fadeSlideDown {
-            from {
-                opacity: 0;
-                transform: translateY(-10px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
+            from { opacity: 0; transform: translateY(-10px); }
+            to { opacity: 1; transform: translateY(0); }
         }
         .mobile-menu-panel a {
             display: block;
@@ -301,22 +286,19 @@
         .mobile-menu-panel .mobile-dropdown-title {
             font-weight: 700;
             padding: 0.75rem 1rem;
-            color: #1a1a2e;
             cursor: default;
             font-size: 0.85rem;
             text-transform: uppercase;
             letter-spacing: 0.5px;
             color: #6b7280;
         }
-        .mobile-menu-panel .mobile-dropdown-items {
-            padding-left: 1rem;
-        }
+        .mobile-menu-panel .mobile-dropdown-items { padding-left: 1rem; }
         .mobile-menu-panel .mobile-dropdown-items a {
             font-weight: 400;
             font-size: 0.95rem;
         }
 
-        /* ----- REST OF PAGE STYLES (unchanged) ----- */
+        /* ----- REST OF PAGE STYLES ----- */
         .gallery-item {
             transition: all 0.3s cubic-bezier(0.23, 1, 0.32, 1);
             cursor: pointer;
@@ -392,6 +374,68 @@
 
         .footer a:hover { color: #e6007e; }
 
+        /* ===== BACK TO OUR WORK BUTTON ===== */
+        .btn-back {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.6rem;
+            padding: 0.75rem 1.9rem;
+            background: transparent;
+            color: #1a1a1a;
+            font-weight: 600;
+            font-size: 0.85rem;
+            letter-spacing: 0.3px;
+            border-radius: 9999px;
+            border: 2px solid #1a1a1a;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            text-decoration: none;
+            cursor: pointer;
+        }
+        .btn-back i {
+            font-size: 0.85rem;
+            transition: transform 0.3s ease;
+        }
+        .btn-back:hover {
+            background: #1a1a1a;
+            color: #ffffff;
+            transform: translateY(-2px);
+            box-shadow: 0 10px 24px rgba(26, 26, 26, 0.18);
+        }
+        .btn-back:hover i {
+            transform: translateX(-4px);
+        }
+
+        /* Pink filled variant for bottom CTA */
+        .btn-back-pink {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.6rem;
+            padding: 0.85rem 2.1rem;
+            background: linear-gradient(135deg, #e6007e 0%, #ff1493 100%);
+            color: #ffffff;
+            font-weight: 700;
+            font-size: 0.85rem;
+            letter-spacing: 0.3px;
+            border-radius: 9999px;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            text-decoration: none;
+            cursor: pointer;
+            box-shadow: 0 6px 20px rgba(230, 0, 126, 0.3);
+        }
+        .btn-back-pink i {
+            font-size: 0.85rem;
+            transition: transform 0.3s ease;
+        }
+        .btn-back-pink:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 14px 32px rgba(230, 0, 126, 0.42);
+            color: #ffffff;
+        }
+        .btn-back-pink:hover i {
+            transform: translateX(-4px);
+        }
+
         /* ===== BACK TO TOP BUTTON (scroll-progress ring) ===== */
         .back-to-top {
             position: fixed;
@@ -427,9 +471,7 @@
             transform: translateY(-4px) scale(1.06);
             box-shadow: 0 14px 32px rgba(230, 0, 126, 0.45);
         }
-        .back-to-top:active {
-            transform: translateY(-1px) scale(0.98);
-        }
+        .back-to-top:active { transform: translateY(-1px) scale(0.98); }
         .back-to-top:focus-visible {
             outline: 3px solid rgba(230, 0, 126, 0.45);
             outline-offset: 3px;
@@ -442,10 +484,7 @@
             transform: rotate(-90deg);
             pointer-events: none;
         }
-        .btb-ring circle {
-            fill: none;
-            stroke-width: 2.5;
-        }
+        .btb-ring circle { fill: none; stroke-width: 2.5; }
         .btb-ring-track { stroke: rgba(255, 255, 255, 0.25); }
         .btb-ring-progress {
             stroke: #ffffff;
@@ -476,7 +515,7 @@
         }
         @media (prefers-reduced-motion: reduce) {
             html, body { scroll-behavior: auto; }
-            .back-to-top, .btb-arrow { transition: none !important; }
+            .back-to-top, .btb-arrow, .btn-back, .btn-back-pink { transition: none !important; }
             .back-to-top:hover { transform: none; }
             .back-to-top:hover .btb-arrow { transform: none; }
             .btb-ring-progress { transition: none; }
@@ -493,7 +532,6 @@
       <!-- Premium Logo -->
       <a href="Home.html" class="logo-premium group">
         <img src="obrian-transparent-logo-4461219.webp" alt="O'Brian Group" class="h-9 w-auto" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22%3E%3Crect width=%22100%22 height=%22100%22 fill=%22%23ed008e%22/%3E%3Ctext x=%2250%22 y=%2268%22 font-size=%2248%22 text-anchor=%22middle%22 fill=%22white%22 font-weight=%22bold%22 font-family=%22Inter%22%3EO%3C/text%3E%3C/svg%3E'">
-        <!-- FIXED: was empty, now renders the wordmark -->
         <span class="logo-text hidden sm:inline-block"> <span class="highlight"> </span></span>
       </a>
 
@@ -585,7 +623,15 @@
             <p class="text-pink font-semibold tracking-wide text-sm uppercase mb-4">Case Study</p>
             <h1 class="text-4xl md:text-6xl font-black text-gray-900 mb-6">Centre for <span class="text-pink">Supplier Development</span></h1>
             <div class="w-24 h-1 bg-pink mx-auto mb-8"></div>
-            <p class="text-gray-600 text-lg max-w-2xl mx-auto">Empowering local businesses through strategic branding and incubation support.</p>
+            <p class="text-gray-600 text-lg max-w-2xl mx-auto mb-8">Empowering local businesses through strategic branding and incubation support.</p>
+
+            <!-- Back to Our Work button (hero) -->
+            <div class="flex flex-wrap justify-center gap-4">
+                <a href="Our_Work.html" class="btn-back">
+                    <i class="fas fa-arrow-left"></i>
+                    <span>Back to Our Work</span>
+                </a>
+            </div>
         </div>
     </div>
 </section>
@@ -623,14 +669,22 @@
                 <img src="cfsd-incubation-hub-banners2.jpg" alt="Incubation hub banner 2" class="w-full h-80 object-cover transition-transform duration-500 hover:scale-105">
             </div>
             <div class="gallery-item rounded-xl overflow-hidden shadow-md bg-white">
-                <img src="whatsapp-image-2025-07-25-at-15.25.18-1.jpg" alt="Workshop session" class="w-full h-80 object-cover transition-transform duration-500 hover:scale-105">
+                <img src="whatsapp-image-2025-07-25-at-15.25.18-1.jpeg" alt="Workshop session" class="w-full h-80 object-cover transition-transform duration-500 hover:scale-105">
             </div>
             <div class="gallery-item rounded-xl overflow-hidden shadow-md bg-white">
-                <img src="whatsapp-image-2025-07-25-at-15.34.25-1.jpg" alt="Participant discussion" class="w-full h-80 object-cover transition-transform duration-500 hover:scale-105">
+                <img src="whatsapp-image-2025-07-25-at-15.34.25-1.jpeg" alt="Participant discussion" class="w-full h-80 object-cover transition-transform duration-500 hover:scale-105">
             </div>
             <div class="gallery-item rounded-xl overflow-hidden shadow-md bg-white">
-                <img src="whatsapp-image-2025-07-25-at-15.34.25.jpg" alt="Group photo" class="w-full h-80 object-cover transition-transform duration-500 hover:scale-105">
+                <img src="whatsapp-image-2025-07-25-at-15.34.25.jpeg" alt="Group photo" class="w-full h-80 object-cover transition-transform duration-500 hover:scale-105">
             </div>
+        </div>
+
+        <!-- Back to Our Work button (after gallery) -->
+        <div class="text-center mt-14 reveal">
+            <a href="Our_Work.html" class="btn-back-pink">
+                <i class="fas fa-arrow-left"></i>
+                <span>Back to Our Work</span>
+            </a>
         </div>
     </div>
 </section>
@@ -652,19 +706,19 @@
     <div class="max-w-4xl mx-auto px-6 text-center">
         <h3 class="text-2xl font-bold mb-6">Follow us for more case studies</h3>
         <div class="flex justify-center gap-6">
-            <a href="https://www.facebook.com/profile.php?id=100094029616085" target="_blank" class="w-12 h-12 rounded-full bg-gray-100 flex items-center justify-center hover:bg-pink hover:text-white transition-colors text-gray-600">
+            <a href="https://www.facebook.com/profile.php?id=100094029616085" target="_blank" class="w-12 h-12 rounded-full bg-gray-100 flex items-center justify-center hover:bg-[#e6007e] hover:text-white transition-colors text-gray-600">
                 <i class="fab fa-facebook-f"></i>
             </a>
-            <a href="https://x.com/ObrianSA" target="_blank" class="w-12 h-12 rounded-full bg-gray-100 flex items-center justify-center hover:bg-pink hover:text-white transition-colors text-gray-600">
+            <a href="https://x.com/ObrianSA" target="_blank" class="w-12 h-12 rounded-full bg-gray-100 flex items-center justify-center hover:bg-[#e6007e] hover:text-white transition-colors text-gray-600">
                 <i class="fab fa-twitter"></i>
             </a>
-            <a href="https://www.instagram.com/obriandigital/" target="_blank" class="w-12 h-12 rounded-full bg-gray-100 flex items-center justify-center hover:bg-pink hover:text-white transition-colors text-gray-600">
+            <a href="https://www.instagram.com/obriandigital/" target="_blank" class="w-12 h-12 rounded-full bg-gray-100 flex items-center justify-center hover:bg-[#e6007e] hover:text-white transition-colors text-gray-600">
                 <i class="fab fa-instagram"></i>
             </a>
-            <a href="https://za.linkedin.com/company/o-brian-digital" target="_blank" class="w-12 h-12 rounded-full bg-gray-100 flex items-center justify-center hover:bg-pink hover:text-white transition-colors text-gray-600">
+            <a href="https://za.linkedin.com/company/o-brian-digital" target="_blank" class="w-12 h-12 rounded-full bg-gray-100 flex items-center justify-center hover:bg-[#e6007e] hover:text-white transition-colors text-gray-600">
                 <i class="fab fa-linkedin-in"></i>
             </a>
-            <a href="https://za.pinterest.com/OBRIANDIGITAL/" target="_blank" class="w-12 h-12 rounded-full bg-gray-100 flex items-center justify-center hover:bg-pink hover:text-white transition-colors text-gray-600">
+            <a href="https://za.pinterest.com/OBRIANDIGITAL/" target="_blank" class="w-12 h-12 rounded-full bg-gray-100 flex items-center justify-center hover:bg-[#e6007e] hover:text-white transition-colors text-gray-600">
                 <i class="fab fa-pinterest-p"></i>
             </a>
         </div>
@@ -767,15 +821,15 @@
         }
     });
 
-    // ── Gallery lightbox (preserved) ──
+    // ── Gallery lightbox ──
     var galleryImages = [
-        'obrian-work14.jpg',
-        'obrian-work15.jpg',
-        'cfsd-incubation-hub-banners.jpg',
-        'cfsd-incubation-hub-banners2.jpg',
-        'whatsapp-image-2025-07-25-at-15.25.18-1.jpg',
-        'whatsapp-image-2025-07-25-at-15.34.25-1.jpg',
-        'whatsapp-image-2025-07-25-at-15.34.25.jpg'
+        'assets/images/obrian-work14.jpg',
+        'assets/images/obrian-work15.jpg',
+        'assets/images/cfsd-incubation-hub-banners.jpg',
+        'assets/images/cfsd-incubation-hub-banners2.jpg',
+        'assets/images/whatsapp-image-2025-07-25-at-15.25.18-1.jpeg',
+        'assets/images/whatsapp-image-2025-07-25-at-15.34.25-1.jpeg',
+        'assets/images/whatsapp-image-2025-07-25-at-15.34.25.jpeg'
     ];
     var currentIndex = 0;
     var lightbox = document.getElementById('lightbox');
