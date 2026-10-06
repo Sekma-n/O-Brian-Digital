@@ -701,41 +701,128 @@
             transform: translateX(-50%) translateY(-3px);
         }
 
-        /* ── SCROLL TO TOP BUTTON ── */
-        .scroll-top-btn {
+        /* ===== FLOATING BACK BUTTON ===== */
+        .floating-back {
             position: fixed;
-            bottom: 30px;
-            right: 30px;
+            bottom: 32px;
+            left: 32px;
+            z-index: 1499;
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            padding: 12px 22px;
+            background: linear-gradient(135deg, #ed008e 0%, #b0006a 100%);
+            color: #ffffff;
+            font-weight: 700;
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            border-radius: 9999px;
+            border: 2px solid rgba(255, 255, 255, 0.25);
+            text-decoration: none;
+            box-shadow: 0 8px 24px rgba(237, 0, 142, 0.35);
+            -webkit-tap-highlight-color: transparent;
+            transition: transform 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94),
+                        box-shadow 0.3s ease,
+                        background 0.3s ease;
+        }
+        .floating-back:hover {
+            transform: translateY(-4px) scale(1.04);
+            box-shadow: 0 14px 32px rgba(237, 0, 142, 0.45);
+            color: #ffffff;
+        }
+        .floating-back:active {
+            transform: translateY(-1px) scale(0.98);
+        }
+        .floating-back:focus-visible {
+            outline: 3px solid rgba(237, 0, 142, 0.45);
+            outline-offset: 3px;
+        }
+        .floating-back .arrow-icon {
+            font-size: 1rem;
+            transition: transform 0.3s ease;
+        }
+        .floating-back:hover .arrow-icon {
+            transform: translateX(-4px);
+        }
+
+        /* ===== BACK TO TOP BUTTON (copied from Home page) ===== */
+        .back-to-top {
+            position: fixed;
+            bottom: 32px;
+            right: 32px;
             width: 52px;
             height: 52px;
+            padding: 0;
             border-radius: 50%;
-            background: var(--brand-pink);
-            color: white;
-            border: none;
+            background: linear-gradient(135deg, #e6007e 0%, #b0006a 100%);
+            color: #ffffff;
+            border: 2px solid rgba(255, 255, 255, 0.25);
+            display: grid;
+            place-items: center;
             cursor: pointer;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            z-index: 1000;
-            box-shadow: 0 6px 25px rgba(237, 0, 142, 0.4);
-            transition: all 0.3s ease;
+            z-index: 1500;
             opacity: 0;
             visibility: hidden;
             transform: translateY(20px);
+            transition: opacity 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94),
+                        visibility 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94),
+                        transform 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94),
+                        box-shadow 0.3s ease,
+                        background 0.3s ease;
+            box-shadow: 0 8px 24px rgba(230, 0, 126, 0.35);
+            -webkit-tap-highlight-color: transparent;
         }
-        .scroll-top-btn.visible {
+        .back-to-top.visible {
             opacity: 1;
             visibility: visible;
             transform: translateY(0);
         }
-        .scroll-top-btn:hover {
-            background: var(--brand-pink-dark);
-            transform: translateY(-5px);
-            box-shadow: 0 10px 35px rgba(237, 0, 142, 0.5);
+        .back-to-top:hover {
+            transform: translateY(-4px) scale(1.06);
+            box-shadow: 0 14px 32px rgba(230, 0, 126, 0.45);
         }
-        .scroll-top-btn svg {
-            width: 24px;
-            height: 24px;
+        .back-to-top:active {
+            transform: translateY(-1px) scale(0.98);
+        }
+        .back-to-top:focus-visible {
+            outline: 3px solid rgba(230, 0, 126, 0.45);
+            outline-offset: 3px;
+        }
+
+        /* scroll-progress ring */
+        .btb-ring {
+            position: absolute;
+            inset: 0;
+            width: 100%;
+            height: 100%;
+            transform: rotate(-90deg);
+            pointer-events: none;
+        }
+        .btb-ring circle {
+            fill: none;
+            stroke-width: 2.5;
+        }
+        .btb-ring-track {
+            stroke: rgba(255, 255, 255, 0.25);
+        }
+        .btb-ring-progress {
+            stroke: #ffffff;
+            stroke-linecap: round;
+            stroke-dasharray: 131.95;   /* 2π × r(21) */
+            stroke-dashoffset: 131.95;
+            transition: stroke-dashoffset 0.1s linear;
+        }
+
+        /* arrow */
+        .btb-arrow {
+            position: relative;
+            width: 22px;
+            height: 22px;
+            transition: transform 0.3s ease;
+        }
+        .back-to-top:hover .btb-arrow {
+            transform: translateY(-2px);
         }
 
         /* ── Footer ── */
@@ -800,6 +887,27 @@
             font-size: 0.85rem;
         }
 
+        /* ── Reduced motion ── */
+        @media (prefers-reduced-motion: reduce) {
+            html {
+                scroll-behavior: auto;
+            }
+            .back-to-top,
+            .btb-arrow,
+            .floating-back,
+            .floating-back .arrow-icon {
+                transition: none !important;
+            }
+            .back-to-top:hover,
+            .floating-back:hover {
+                transform: none;
+            }
+            .back-to-top:hover .btb-arrow,
+            .floating-back:hover .arrow-icon {
+                transform: none;
+            }
+        }
+
         /* ── Responsive ── */
         @media (max-width: 1024px) {
             .case-detail .content-grid {
@@ -849,11 +957,28 @@
                 padding: 10px 24px;
                 font-size: 0.85rem;
             }
-            .scroll-top-btn {
-                bottom: 20px;
+
+            /* Back-to-top responsive sizing */
+            .back-to-top {
+                bottom: 24px;
                 right: 20px;
                 width: 46px;
                 height: 46px;
+            }
+            .btb-arrow {
+                width: 18px;
+                height: 18px;
+            }
+
+            /* Floating back responsive sizing */
+            .floating-back {
+                bottom: 24px;
+                left: 20px;
+                padding: 10px 16px;
+                font-size: 0.75rem;
+            }
+            .floating-back .arrow-icon {
+                font-size: 0.85rem;
             }
         }
 
@@ -877,11 +1002,12 @@
                 padding: 8px 18px;
                 font-size: 0.8rem;
             }
-            .scroll-top-btn {
-                bottom: 15px;
-                right: 15px;
-                width: 42px;
-                height: 42px;
+
+            /* Floating back lifts above stacked layout */
+            .floating-back {
+                bottom: 80px;
+                padding: 8px 14px;
+                font-size: 0.7rem;
             }
         }
 
@@ -900,28 +1026,32 @@
             animation: fadeUp 0.7s ease forwards;
             opacity: 0;
         }
-        .fade-up-d1 {
-            animation-delay: 0.1s;
-        }
-        .fade-up-d2 {
-            animation-delay: 0.2s;
-        }
-        .fade-up-d3 {
-            animation-delay: 0.3s;
-        }
-        .fade-up-d4 {
-            animation-delay: 0.4s;
-        }
-        .fade-up-d5 {
-            animation-delay: 0.5s;
-        }
+        .fade-up-d1 { animation-delay: 0.1s; }
+        .fade-up-d2 { animation-delay: 0.2s; }
+        .fade-up-d3 { animation-delay: 0.3s; }
+        .fade-up-d4 { animation-delay: 0.4s; }
+        .fade-up-d5 { animation-delay: 0.5s; }
     </style>
 </head>
 <body>
 
-    <!-- ===== SCROLL TO TOP BUTTON ===== -->
-    <button class="scroll-top-btn" id="scrollTopBtn" aria-label="Scroll to top">
-        <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 15l7-7 7 7"/></svg>
+    <!-- ===== FLOATING BACK BUTTON ===== -->
+    <a href="Our_Work.html" class="floating-back" aria-label="Back to Our Work">
+        <span class="arrow-icon">←</span>
+        <span>Back to Our Work</span>
+    </a>
+
+    <!-- ===== BACK TO TOP BUTTON (copied from Home) ===== -->
+    <button class="back-to-top" id="backToTopBtn" aria-label="Back to top" title="Back to top" aria-hidden="true" tabindex="-1">
+        <svg class="btb-ring" viewBox="0 0 48 48" aria-hidden="true">
+            <circle class="btb-ring-track" cx="24" cy="24" r="21"></circle>
+            <circle class="btb-ring-progress" cx="24" cy="24" r="21"></circle>
+        </svg>
+        <svg class="btb-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+             stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="M12 19V5"></path>
+            <path d="M5 12l7-7 7 7"></path>
+        </svg>
     </button>
 
     <!-- ===== HEADER (from Our Work page) ===== -->
@@ -1242,23 +1372,52 @@
             }
         });
 
-        // ── SCROLL TO TOP BUTTON ──
-        const scrollTopBtn = document.getElementById('scrollTopBtn');
-        
-        window.addEventListener('scroll', () => {
-            if (window.scrollY > 400) {
-                scrollTopBtn.classList.add('visible');
-            } else {
-                scrollTopBtn.classList.remove('visible');
+        // ===== BACK TO TOP BUTTON LOGIC (copied from Home) =====
+        var backToTopBtn = document.getElementById('backToTopBtn');
+        var btbRingProgress = backToTopBtn ? backToTopBtn.querySelector('.btb-ring-progress') : null;
+        var BTB_RING_LENGTH = 2 * Math.PI * 21; // r = 21 in the 48×48 viewBox
+        var btbPrefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+        var btbTicking = false;
+
+        function updateBackToTop() {
+            var scrollY = window.scrollY || document.documentElement.scrollTop;
+            var maxScroll = document.documentElement.scrollHeight - window.innerHeight;
+            var progress = maxScroll > 0 ? Math.min(scrollY / maxScroll, 1) : 0;
+
+            var show = scrollY > 400;
+            backToTopBtn.classList.toggle('visible', show);
+            // keep it out of the a11y tree / tab order while hidden
+            backToTopBtn.setAttribute('aria-hidden', show ? 'false' : 'true');
+            backToTopBtn.tabIndex = show ? 0 : -1;
+
+            if (btbRingProgress) {
+                btbRingProgress.style.strokeDashoffset =
+                    (BTB_RING_LENGTH * (1 - progress)).toFixed(2);
             }
-        });
-        
-        scrollTopBtn.addEventListener('click', () => {
-            window.scrollTo({
-                top: 0,
-                behavior: 'smooth'
+
+            btbTicking = false;
+        }
+
+        if (backToTopBtn) {
+            window.addEventListener('scroll', function() {
+                if (!btbTicking) {
+                    window.requestAnimationFrame(updateBackToTop);
+                    btbTicking = true;
+                }
+            }, { passive: true });
+
+            updateBackToTop();
+
+            backToTopBtn.addEventListener('click', function() {
+                window.scrollTo({
+                    top: 0,
+                    behavior: btbPrefersReducedMotion ? 'auto' : 'smooth'
+                });
+                // return focus to the top of the page for keyboard users
+                var headerEl = document.getElementById('mainHeader');
+                if (headerEl) headerEl.focus({ preventScroll: true });
             });
-        });
+        }
 
         // ── LIGHTBOX with ARROWS and BACK BUTTON ──
         const lightboxOverlay = document.getElementById('lightbox');
