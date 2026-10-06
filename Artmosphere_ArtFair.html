@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Artmosphere Art Fair – Our Work</title>
     <meta name="description" content="A Dive into Our Work Triumphs – Case Studies in Excellence" />
-    <link rel="shortcut icon" href="obrian-transparent-logo-4461219.webp" type="image/x-icon" />
+    <link rel="shortcut icon" href="assets/images/obrian-transparent-logo-4461219.webp" type="image/x-icon" />
 
     <!-- Open Graph / Social -->
     <meta property="og:title" content="artmosphere art fair" />
@@ -139,51 +139,131 @@
             color: var(--white);
         }
 
-        /* ── BACK TO TOP BUTTON (upgraded) ── */
-        .scroll-top-btn {
-            position: fixed;
-            bottom: 30px;
-            right: 30px;
-            width: 54px;
-            height: 54px;
-            padding: 0;
-            border-radius: 50%;
+        /* ── BACK TO OUR WORK BUTTON ── */
+        .btn-back-work {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            padding: 12px 28px;
+            border-radius: 60px;
+            font-weight: 600;
+            font-size: 0.9rem;
+            letter-spacing: 0.3px;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            border: 2px solid var(--pink);
+            background: transparent;
+            color: var(--pink);
+            text-decoration: none;
+            cursor: pointer;
+        }
+        .btn-back-work:hover {
             background: var(--pink);
             color: #ffffff;
-            border: none;
-            cursor: pointer;
+            transform: translateY(-3px);
+            box-shadow: 0 10px 25px -6px rgba(237, 1, 142, 0.5);
+        }
+        .btn-back-work i,
+        .btn-back-work .arrow-icon {
+            font-size: 0.95rem;
+            transition: transform 0.3s ease;
+            display: inline-block;
+        }
+        .btn-back-work:hover i,
+        .btn-back-work:hover .arrow-icon {
+            transform: translateX(-4px);
+        }
+
+        /* ===== FLOATING BACK BUTTON ===== */
+        .floating-back {
+            position: fixed;
+            bottom: 32px;
+            left: 32px;
+            z-index: 1499;
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            padding: 12px 22px;
+            background: linear-gradient(135deg, #ed018e 0%, #b0006a 100%);
+            color: #ffffff;
+            font-weight: 700;
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            border-radius: 9999px;
+            border: 2px solid rgba(255, 255, 255, 0.25);
+            text-decoration: none;
+            box-shadow: 0 8px 24px rgba(237, 1, 142, 0.35);
+            -webkit-tap-highlight-color: transparent;
+            transition: transform 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94),
+                        box-shadow 0.3s ease,
+                        background 0.3s ease;
+        }
+        .floating-back:hover {
+            transform: translateY(-4px) scale(1.04);
+            box-shadow: 0 14px 32px rgba(237, 1, 142, 0.45);
+            color: #ffffff;
+        }
+        .floating-back:active {
+            transform: translateY(-1px) scale(0.98);
+        }
+        .floating-back:focus-visible {
+            outline: 3px solid rgba(237, 1, 142, 0.45);
+            outline-offset: 3px;
+        }
+        .floating-back .arrow-icon {
+            font-size: 1rem;
+            transition: transform 0.3s ease;
+        }
+        .floating-back:hover .arrow-icon {
+            transform: translateX(-4px);
+        }
+
+        /* ===== BACK TO TOP BUTTON (copied from Home page) ===== */
+        .back-to-top {
+            position: fixed;
+            bottom: 32px;
+            right: 32px;
+            width: 52px;
+            height: 52px;
+            padding: 0;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #e6007e 0%, #b0006a 100%);
+            color: #ffffff;
+            border: 2px solid rgba(255, 255, 255, 0.25);
             display: grid;
             place-items: center;
+            cursor: pointer;
             z-index: 1500;
-            box-shadow: 0 8px 28px rgba(237, 1, 142, 0.45);
-            transition: opacity 0.35s ease, visibility 0.35s ease,
-                        transform 0.35s ease, background 0.25s ease,
-                        box-shadow 0.25s ease;
             opacity: 0;
             visibility: hidden;
-            transform: translateY(24px) scale(0.9);
+            transform: translateY(20px);
+            transition: opacity 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94),
+                        visibility 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94),
+                        transform 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94),
+                        box-shadow 0.3s ease,
+                        background 0.3s ease;
+            box-shadow: 0 8px 24px rgba(230, 0, 126, 0.35);
             -webkit-tap-highlight-color: transparent;
         }
-        .scroll-top-btn.visible {
+        .back-to-top.visible {
             opacity: 1;
             visibility: visible;
-            transform: translateY(0) scale(1);
+            transform: translateY(0);
         }
-        .scroll-top-btn:hover {
-            background: var(--pink-hover);
-            transform: translateY(-5px) scale(1.05);
-            box-shadow: 0 14px 40px rgba(237, 1, 142, 0.6);
+        .back-to-top:hover {
+            transform: translateY(-4px) scale(1.06);
+            box-shadow: 0 14px 32px rgba(230, 0, 126, 0.45);
         }
-        .scroll-top-btn:active {
-            transform: translateY(-2px) scale(0.98);
+        .back-to-top:active {
+            transform: translateY(-1px) scale(0.98);
         }
-        .scroll-top-btn:focus-visible {
-            outline: 3px solid rgba(237, 1, 142, 0.45);
+        .back-to-top:focus-visible {
+            outline: 3px solid rgba(230, 0, 126, 0.45);
             outline-offset: 3px;
         }
 
         /* scroll-progress ring */
-        .stb-ring {
+        .btb-ring {
             position: absolute;
             inset: 0;
             width: 100%;
@@ -191,28 +271,29 @@
             transform: rotate(-90deg);
             pointer-events: none;
         }
-        .stb-ring circle {
+        .btb-ring circle {
             fill: none;
             stroke-width: 2.5;
         }
-        .stb-ring-track {
-            stroke: rgba(255, 255, 255, 0.28);
+        .btb-ring-track {
+            stroke: rgba(255, 255, 255, 0.25);
         }
-        .stb-ring-progress {
+        .btb-ring-progress {
             stroke: #ffffff;
             stroke-linecap: round;
-            stroke-dasharray: 150.8;   /* 2π × r(24) */
-            stroke-dashoffset: 150.8;
+            stroke-dasharray: 131.95;   /* 2π × r(21) */
+            stroke-dashoffset: 131.95;
+            transition: stroke-dashoffset 0.1s linear;
         }
 
         /* arrow */
-        .stb-arrow {
+        .btb-arrow {
             position: relative;
-            width: 20px;
-            height: 20px;
+            width: 22px;
+            height: 22px;
             transition: transform 0.3s ease;
         }
-        .scroll-top-btn:hover .stb-arrow {
+        .back-to-top:hover .btb-arrow {
             transform: translateY(-2px);
         }
 
@@ -276,6 +357,13 @@
             color: var(--gray-text);
             margin: 2rem 0;
             max-width: 450px;
+        }
+
+        .hero-actions {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+            align-items: center;
         }
 
         .hero-visual .hero-image {
@@ -466,6 +554,10 @@
         @media (max-width: 576px) {
             .gallery-grid {
                 grid-template-columns: 1fr;
+            }
+            .btn-back-work {
+                padding: 10px 22px;
+                font-size: 0.8rem;
             }
         }
 
@@ -776,6 +868,27 @@
             font-size: 0.95rem;
         }
 
+        /* ── reduced motion ── */
+        @media (prefers-reduced-motion: reduce) {
+            html {
+                scroll-behavior: auto;
+            }
+            .back-to-top,
+            .btb-arrow,
+            .floating-back,
+            .floating-back .arrow-icon {
+                transition: none !important;
+            }
+            .back-to-top:hover,
+            .floating-back:hover {
+                transform: none;
+            }
+            .back-to-top:hover .btb-arrow,
+            .floating-back:hover .arrow-icon {
+                transform: none;
+            }
+        }
+
         /* ── Responsive overrides ── */
         @media (max-width: 768px) {
             body {
@@ -791,39 +904,34 @@
             .logo-text {
                 font-size: 1rem;
             }
-            .scroll-top-btn {
-                bottom: 20px;
+            .back-to-top {
+                bottom: 24px;
                 right: 20px;
-                width: 48px;
-                height: 48px;
+                width: 46px;
+                height: 46px;
+            }
+            .btb-arrow {
+                width: 18px;
+                height: 18px;
+            }
+            .floating-back {
+                bottom: 24px;
+                left: 20px;
+                padding: 10px 16px;
+                font-size: 0.75rem;
+            }
+            .floating-back .arrow-icon {
+                font-size: 0.85rem;
             }
         }
         @media (max-width: 480px) {
             .logo-text {
                 font-size: 0.9rem;
             }
-            .scroll-top-btn {
-                bottom: 16px;
-                right: 16px;
-                width: 44px;
-                height: 44px;
-            }
-        }
-
-        /* ── Reduced motion ── */
-        @media (prefers-reduced-motion: reduce) {
-            html {
-                scroll-behavior: auto;
-            }
-            .scroll-top-btn,
-            .stb-arrow {
-                transition: none !important;
-            }
-            .scroll-top-btn:hover {
-                transform: none;
-            }
-            .scroll-top-btn:hover .stb-arrow {
-                transform: none;
+            .floating-back {
+                bottom: 80px;
+                padding: 8px 14px;
+                font-size: 0.7rem;
             }
         }
     </style>
@@ -831,7 +939,7 @@
 <body>
 
     <!-- ============ PREMIUM GLASS HEADER ============ -->
-    <header class="header-glass" id="mainHeader">
+    <header class="header-glass" id="mainHeader" tabindex="-1">
         <div class="max-w-7xl mx-auto px-4 md:px-6 w-full">
             <div class="flex justify-between items-center">
 
@@ -924,13 +1032,19 @@
         <a href="Contact_Us.html" style="display:inline-flex; margin-top:1rem; background:linear-gradient(135deg,#e6007e,#ff1493); color:#fff; padding:0.6rem 1.5rem; border-radius:9999px; font-weight:700; text-decoration:none;">Contact Us</a>
     </div>
 
-    <!-- ===== BACK TO TOP BUTTON ===== -->
-    <button class="scroll-top-btn" id="scrollTopBtn" aria-label="Back to top" title="Back to top" aria-hidden="true" tabindex="-1">
-        <svg class="stb-ring" viewBox="0 0 54 54" aria-hidden="true">
-            <circle class="stb-ring-track" cx="27" cy="27" r="24"></circle>
-            <circle class="stb-ring-progress" cx="27" cy="27" r="24"></circle>
+    <!-- ===== FLOATING BACK BUTTON ===== -->
+    <a href="Our_Work.html" class="floating-back" aria-label="Back to Our Work">
+        <span class="arrow-icon">←</span>
+        <span>Back to Our Work</span>
+    </a>
+
+    <!-- ===== BACK TO TOP BUTTON (copied from Home) ===== -->
+    <button class="back-to-top" id="backToTopBtn" aria-label="Back to top" title="Back to top" aria-hidden="true" tabindex="-1">
+        <svg class="btb-ring" viewBox="0 0 48 48" aria-hidden="true">
+            <circle class="btb-ring-track" cx="24" cy="24" r="21"></circle>
+            <circle class="btb-ring-progress" cx="24" cy="24" r="21"></circle>
         </svg>
-        <svg class="stb-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+        <svg class="btb-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor"
              stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
             <path d="M12 19V5"></path>
             <path d="M5 12l7-7 7 7"></path>
@@ -947,7 +1061,12 @@
                         An immersive celebration of contemporary African art
                         — <strong>Case Study in Excellence</strong>
                     </p>
-                    <a href="#gallery" class="btn btn-primary">View Gallery</a>
+                    <div class="hero-actions">
+                        <a href="#gallery" class="btn btn-primary">View Gallery</a>
+                        <a href="Our_Work.html" class="btn-back-work">
+                            <span class="arrow-icon">←</span> Back to Our Work
+                        </a>
+                    </div>
                 </div>
                 <div class="hero-visual fade-up">
                     <div class="hero-image">
@@ -1086,55 +1205,12 @@
     </footer>
 
     <script>
-        // ===== HEADER FUNCTIONALITY =====
+        // ===== HEADER + MENU FUNCTIONALITY =====
         (function() {
-            // Header scroll effect + back-to-top visibility
+            // Header scroll effect
             const header = document.getElementById('mainHeader');
-            const scrollTopBtn = document.getElementById('scrollTopBtn');
-            const ringProgress = scrollTopBtn ? scrollTopBtn.querySelector('.stb-ring-progress') : null;
-            const RING_LENGTH = 2 * Math.PI * 24; // r = 24 in the 54×54 viewBox
-            const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-            let scrollTicking = false;
-
-            function handleScroll() {
-                const scrolled = window.scrollY || document.documentElement.scrollTop;
-                const maxScroll = document.documentElement.scrollHeight - window.innerHeight;
-                const progress = maxScroll > 0 ? Math.min(scrolled / maxScroll, 1) : 0;
-
-                header.classList.toggle('scrolled', scrolled > 20);
-
-                const show = scrolled > 300;
-                scrollTopBtn.classList.toggle('visible', show);
-                // keep it out of the a11y tree / tab order while hidden
-                scrollTopBtn.setAttribute('aria-hidden', show ? 'false' : 'true');
-                scrollTopBtn.tabIndex = show ? 0 : -1;
-
-                if (ringProgress) {
-                    ringProgress.style.strokeDashoffset =
-                        (RING_LENGTH * (1 - progress)).toFixed(2);
-                }
-
-                scrollTicking = false;
-            }
-
             window.addEventListener('scroll', function() {
-                if (!scrollTicking) {
-                    window.requestAnimationFrame(handleScroll);
-                    scrollTicking = true;
-                }
-            }, { passive: true });
-
-            handleScroll();
-
-            // Back to top click
-            scrollTopBtn.addEventListener('click', function() {
-                window.scrollTo({
-                    top: 0,
-                    behavior: reduceMotion ? 'auto' : 'smooth'
-                });
-                // return focus to the top of the page for keyboard users
-                const skipTarget = document.getElementById('mainHeader');
-                if (skipTarget) skipTarget.focus({ preventScroll: true });
+                header.classList.toggle('scrolled', window.scrollY > 20);
             });
 
             // Mobile menu toggle
@@ -1198,10 +1274,12 @@
             currentIndex = index;
             modalImg.src = images[currentIndex];
             modal.classList.add('active');
+            document.body.style.overflow = 'hidden';
         }
 
         function closeModal() {
             modal.classList.remove('active');
+            document.body.style.overflow = '';
         }
 
         document.querySelectorAll('.gallery-item').forEach((item, idx) => {
@@ -1230,6 +1308,51 @@
             if (e.key === 'ArrowRight' && nextBtn) nextBtn.click();
             if (e.key === 'Escape') closeModal();
         });
+
+        // ===== BACK TO TOP BUTTON LOGIC (copied from Home) =====
+        var backToTopBtn = document.getElementById('backToTopBtn');
+        var btbRingProgress = backToTopBtn ? backToTopBtn.querySelector('.btb-ring-progress') : null;
+        var BTB_RING_LENGTH = 2 * Math.PI * 21; // r = 21 in the 48×48 viewBox
+        var btbPrefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+        var btbTicking = false;
+
+        function updateBackToTop() {
+            var scrollY = window.scrollY || document.documentElement.scrollTop;
+            var maxScroll = document.documentElement.scrollHeight - window.innerHeight;
+            var progress = maxScroll > 0 ? Math.min(scrollY / maxScroll, 1) : 0;
+
+            var show = scrollY > 400;
+            backToTopBtn.classList.toggle('visible', show);
+            backToTopBtn.setAttribute('aria-hidden', show ? 'false' : 'true');
+            backToTopBtn.tabIndex = show ? 0 : -1;
+
+            if (btbRingProgress) {
+                btbRingProgress.style.strokeDashoffset =
+                    (BTB_RING_LENGTH * (1 - progress)).toFixed(2);
+            }
+
+            btbTicking = false;
+        }
+
+        if (backToTopBtn) {
+            window.addEventListener('scroll', function() {
+                if (!btbTicking) {
+                    window.requestAnimationFrame(updateBackToTop);
+                    btbTicking = true;
+                }
+            }, { passive: true });
+
+            updateBackToTop();
+
+            backToTopBtn.addEventListener('click', function() {
+                window.scrollTo({
+                    top: 0,
+                    behavior: btbPrefersReducedMotion ? 'auto' : 'smooth'
+                });
+                var headerEl = document.getElementById('mainHeader');
+                if (headerEl) headerEl.focus({ preventScroll: true });
+            });
+        }
 
         // ── Init Lucide icons ──
         if (typeof lucide !== 'undefined') {
