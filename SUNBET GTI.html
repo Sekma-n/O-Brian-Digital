@@ -762,13 +762,13 @@
       background-image: linear-gradient(145deg, #f5edf0 0%, #faf5f7 100%);
     }
 
-    /* ===== BACK TO TOP BUTTON ===== */
+    /* ===== BACK TO TOP BUTTON (RING PROGRESS) ===== */
     .back-to-top {
       position: fixed;
       bottom: 32px;
       right: 32px;
-      width: 52px;
-      height: 52px;
+      width: 56px;
+      height: 56px;
       border-radius: 50%;
       background: linear-gradient(135deg, #e6007e 0%, #ff1493 100%);
       color: #ffffff;
@@ -781,9 +781,14 @@
       opacity: 0;
       visibility: hidden;
       transform: translateY(20px);
-      transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+      transition: opacity 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94),
+                  visibility 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94),
+                  transform 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94),
+                  box-shadow 0.3s ease;
       box-shadow: 0 8px 24px rgba(230, 0, 126, 0.35);
-      border: 2px solid rgba(255, 255, 255, 0.25);
+      padding: 0;
+      outline: none;
+      -webkit-tap-highlight-color: transparent;
     }
     .back-to-top.visible {
       opacity: 1;
@@ -797,24 +802,58 @@
     .back-to-top:active {
       transform: translateY(-1px) scale(0.98);
     }
-    .back-to-top svg {
-      width: 22px;
-      height: 22px;
+    .back-to-top:focus-visible {
+      outline: 3px solid rgba(230, 0, 126, 0.55);
+      outline-offset: 4px;
+    }
+
+    /* Progress ring */
+    .btb-ring {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      transform: rotate(-90deg);
+      pointer-events: none;
+      overflow: visible;
+    }
+    .btb-ring-track {
+      fill: none;
+      stroke: rgba(255, 255, 255, 0.28);
+      stroke-width: 3;
+    }
+    .btb-ring-progress {
+      fill: none;
+      stroke: #ffffff;
+      stroke-width: 3;
+      stroke-linecap: round;
+      stroke-dasharray: 131.95;
+      stroke-dashoffset: 131.95;
+      transition: stroke-dashoffset 0.12s linear;
+    }
+
+    /* Arrow icon */
+    .btb-arrow {
+      position: relative;
+      z-index: 1;
+      width: 20px;
+      height: 20px;
       transition: transform 0.3s ease;
     }
-    .back-to-top:hover svg {
+    .back-to-top:hover .btb-arrow {
       transform: translateY(-2px);
     }
+
     @media (max-width: 768px) {
       .back-to-top {
         bottom: 24px;
         right: 20px;
-        width: 46px;
-        height: 46px;
+        width: 50px;
+        height: 50px;
       }
-      .back-to-top svg {
-        width: 18px;
-        height: 18px;
+      .btb-arrow {
+        width: 17px;
+        height: 17px;
       }
     }
   </style>
@@ -1069,10 +1108,15 @@
         <img id="lightboxImg" src="" alt="Enlarged view">
     </div>
 
-    <!-- ===== BACK TO TOP BUTTON ===== -->
-    <button class="back-to-top" id="backToTopBtn" aria-label="Back to top">
-        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
-            <path stroke-linecap="round" stroke-linejoin="round" d="M5 15l7-7 7 7" />
+    <!-- ===== BACK TO TOP BUTTON (RING PROGRESS) ===== -->
+    <button class="back-to-top visible" id="backToTopBtn" aria-label="Back to top" title="Back to top" aria-hidden="false" tabindex="0">
+        <svg class="btb-ring" viewBox="0 0 48 48" aria-hidden="true">
+            <circle class="btb-ring-track" cx="24" cy="24" r="21"></circle>
+            <circle class="btb-ring-progress" cx="24" cy="24" r="21" style="stroke-dashoffset: 1.49;"></circle>
+        </svg>
+        <svg class="btb-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="M12 19V5"></path>
+            <path d="M5 12l7-7 7 7"></path>
         </svg>
     </button>
 
@@ -1196,16 +1240,37 @@
             }
         });
 
-        // ===== BACK TO TOP BUTTON LOGIC =====
+        // ===== BACK TO TOP BUTTON + RING PROGRESS =====
         const backToTopBtn = document.getElementById('backToTopBtn');
-        
-        window.addEventListener('scroll', function() {
-            if (window.scrollY > 400) {
+        const ringProgress = backToTopBtn ? backToTopBtn.querySelector('.btb-ring-progress') : null;
+
+        // Circumference of the r=21 circle: 2 * π * 21 ≈ 131.95
+        const RING_CIRCUMFERENCE = 131.95;
+
+        function updateBackToTop() {
+            const scrollTop = window.scrollY || document.documentElement.scrollTop || 0;
+            const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+            const progress = docHeight > 0 ? Math.min(Math.max(scrollTop / docHeight, 0), 1) : 0;
+
+            // Fill the ring as the page is scrolled
+            if (ringProgress) {
+                ringProgress.style.strokeDashoffset = (RING_CIRCUMFERENCE * (1 - progress)).toFixed(2);
+            }
+
+            // Show / hide the button
+            if (scrollTop > 400) {
                 backToTopBtn.classList.add('visible');
+                backToTopBtn.setAttribute('aria-hidden', 'false');
             } else {
                 backToTopBtn.classList.remove('visible');
+                backToTopBtn.setAttribute('aria-hidden', 'true');
             }
-        });
+        }
+
+        window.addEventListener('scroll', updateBackToTop, { passive: true });
+        window.addEventListener('resize', updateBackToTop);
+        window.addEventListener('load', updateBackToTop);
+        updateBackToTop();
 
         backToTopBtn.addEventListener('click', function() {
             window.scrollTo({
