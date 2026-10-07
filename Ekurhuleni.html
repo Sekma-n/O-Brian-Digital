@@ -13,7 +13,13 @@
   <meta property="og:title" content="Ekurhuleni – Brand CI Manual">
   <meta property="og:description" content="Comprehensive brand guidelines and visual identity system for the City of Ekurhuleni.">
   <meta property="og:image" content="assets/images/obrian-work20.jpg">
-  <link rel="shortcut icon" href="obrian-transparent-logo-4461219.webp" type="image/x-icon">
+  <link rel="shortcut icon" href="assets/images/obrian-transparent-logo-4461219.webp" type="image/x-icon">
+
+  <!-- ===== PERFORMANCE: PRECONNECT + DNS-PREFETCH ===== -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin>
+  <link rel="dns-prefetch" href="assets/images/">
 
   <!-- Google Fonts + Font Awesome 6 -->
   <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700;14..32,800&display=swap" rel="stylesheet">
@@ -22,7 +28,7 @@
   <!-- Tailwind CSS -->
   <script src="https://cdn.tailwindcss.com"></script>
 
-  <!-- Google tag (gtag.js) - kept original -->
+  <!-- Google tag (gtag.js) -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=AW-17324132021"></script>
   <script>
     window.dataLayer = window.dataLayer || [];
@@ -227,7 +233,6 @@
       font-size: 0.85rem; margin-top: 1.8rem; color: var(--primary-dark);
     }
 
-    /* ── BACK TO OUR WORK BUTTON ── */
     .btn-back-work {
       display: inline-flex;
       align-items: center;
@@ -259,7 +264,6 @@
       transform: translateX(-4px);
     }
 
-    /* Pink filled variant (used after the gallery) */
     .btn-back-work-pink {
       display: inline-flex;
       align-items: center;
@@ -335,6 +339,11 @@
       cursor: pointer; aspect-ratio: 4 / 3; background: #f3edf0;
       transition: all 0.3s cubic-bezier(0.2, 0, 0, 1);
       box-shadow: 0 6px 14px rgba(37, 30, 33, 0.05);
+      /* ===== PERFORMANCE: skip rendering off-screen cards ===== */
+      content-visibility: auto;
+      contain-intrinsic-size: 400px 300px;
+      /* ===== PERFORMANCE: isolate paint/layout per card ===== */
+      contain: layout paint style;
     }
     .gallery-item img {
       width: 100%; height: 100%; object-fit: cover;
@@ -404,15 +413,19 @@
       white-space: nowrap;
     }
 
-    /* ── BACK TO TOP BUTTON (with scroll-progress ring) ── */
-    .scroll-top-btn {
+    /* ===== BACK TO TOP BUTTON (ring progress) ===== */
+    .back-to-top {
       position: fixed;
       bottom: 30px; right: 30px;
       width: 54px; height: 54px;
+      padding: 0;
       border-radius: 50%;
       background: var(--primary);
-      color: #ffffff; border: none; cursor: pointer;
-      display: flex; align-items: center; justify-content: center;
+      color: #ffffff;
+      border: none;
+      cursor: pointer;
+      display: grid;
+      place-items: center;
       z-index: 1500;
       box-shadow: 0 8px 28px rgba(237, 0, 142, 0.45);
       transition: opacity 0.35s ease, visibility 0.35s ease,
@@ -420,42 +433,25 @@
                   box-shadow 0.25s ease;
       opacity: 0; visibility: hidden;
       transform: translateY(24px) scale(0.9);
-      font-size: 1.25rem;
       -webkit-tap-highlight-color: transparent;
     }
-    .scroll-top-btn.visible {
+    .back-to-top.visible {
       opacity: 1; visibility: visible;
       transform: translateY(0) scale(1);
     }
-    .scroll-top-btn:hover {
+    .back-to-top:hover {
       background: var(--primary-dark);
       transform: translateY(-5px) scale(1.05);
       box-shadow: 0 14px 40px rgba(237, 0, 142, 0.6);
     }
-    .scroll-top-btn:active { transform: translateY(-2px) scale(0.98); }
-    .scroll-top-btn:focus-visible {
+    .back-to-top:active { transform: translateY(-2px) scale(0.98); }
+    .back-to-top:focus-visible {
       outline: 3px solid rgba(237, 0, 142, 0.45);
       outline-offset: 3px;
     }
 
-    /* pulse ring — kept from original */
-    .scroll-top-btn::before {
-      content: '';
-      position: absolute; inset: -6px;
-      border-radius: 50%;
-      border: 2px solid rgba(237, 0, 142, 0.35);
-      animation: pulseRing 2.4s ease-out infinite;
-      pointer-events: none;
-    }
-    @keyframes pulseRing {
-      0% { transform: scale(1); opacity: 0.8; }
-      70% { transform: scale(1.25); opacity: 0; }
-      100% { transform: scale(1.25); opacity: 0; }
-    }
-    .scroll-top-btn:hover::before { animation-play-state: paused; opacity: 0; }
-
-    /* scroll-progress SVG ring — new */
-    .stb-ring {
+    /* scroll-progress SVG ring */
+    .btb-ring {
       position: absolute;
       inset: 0;
       width: 100%;
@@ -463,22 +459,33 @@
       transform: rotate(-90deg);
       pointer-events: none;
     }
-    .stb-ring circle {
+    .btb-ring circle {
       fill: none;
       stroke-width: 2.5;
     }
-    .stb-ring-track { stroke: rgba(255, 255, 255, 0.28); }
-    .stb-ring-progress {
+    .btb-ring-track { stroke: rgba(255, 255, 255, 0.28); }
+    .btb-ring-progress {
       stroke: #ffffff;
       stroke-linecap: round;
-      stroke-dasharray: 150.80;   /* 2π × 24 */
-      stroke-dashoffset: 150.80;  /* JS updates this */
+      stroke-dasharray: 131.95;   /* 2π × r(21) */
+      stroke-dashoffset: 131.95;
       transition: stroke-dashoffset 0.1s linear;
     }
-    /* Ensure the chevron icon sits above the ring */
-    .scroll-top-btn > i {
+    /* Chevron arrow above the ring */
+    .btb-arrow {
       position: relative;
-      z-index: 2;
+      z-index: 1;
+      width: 22px;
+      height: 22px;
+      transition: transform 0.3s ease;
+    }
+    .back-to-top:hover .btb-arrow {
+      transform: translateY(-2px);
+    }
+
+    @media (max-width: 600px) {
+      .back-to-top { bottom: 20px; right: 20px; width: 48px; height: 48px; }
+      .btb-arrow { width: 18px; height: 18px; }
     }
 
     .social-block {
@@ -535,7 +542,6 @@
         grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
         gap: 1rem;
       }
-      .scroll-top-btn { bottom: 20px; right: 20px; width: 48px; height: 48px; font-size: 1.1rem; }
       .btn-back-work { padding: 0.6rem 1.4rem; font-size: 0.85rem; margin-top: 1.5rem; }
       .btn-back-work-pink { padding: 0.7rem 1.6rem; font-size: 0.85rem; }
     }
@@ -549,12 +555,16 @@
     @media (max-width: 480px) {
       .logo-text { font-size: 0.9rem; }
       .btn-back-work { padding: 0.55rem 1.2rem; font-size: 0.8rem; }
+      .lb-counter { bottom: -35px; font-size: 0.75rem; }
     }
     @media (prefers-reduced-motion: reduce) {
       html, body { scroll-behavior: auto; }
-      .scroll-top-btn, .scroll-top-btn::before { transition: none !important; animation: none !important; }
-      .scroll-top-btn:hover { transform: none; }
-      .stb-ring-progress { transition: none; }
+      .back-to-top, .btb-arrow, .btb-ring-progress { transition: none !important; }
+      .back-to-top:hover { transform: none; }
+      .back-to-top:hover .btb-arrow { transform: none; }
+      .btn-back-work, .btn-back-work-pink { transition: none !important; }
+      .btn-back-work:hover, .btn-back-work-pink:hover { transform: none; }
+      .btn-back-work:hover i, .btn-back-work-pink:hover i { transform: none; }
     }
   </style>
 </head>
@@ -566,9 +576,8 @@
     <div class="flex justify-between items-center">
 
       <a href="Home.html" class="logo-premium group">
-        <img src="obrian-transparent-logo-4461219.webp" alt="O'Brian Group" class="h-9 w-auto" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22%3E%3Crect width=%22100%22 height=%22100%22 fill=%22%23ed008e%22/%3E%3Ctext x=%2250%22 y=%2268%22 font-size=%2248%22 text-anchor=%22middle%22 fill=%22white%22 font-weight=%22bold%22 font-family=%22Inter%22%3EO%3C/text%3E%3C/svg%3E'">
-        <!-- FIXED: was empty, now renders the wordmark -->
-        <span class="logo-text hidden sm:inline-block">O'<span class="highlight">Brian</span></span>
+        <img src="obrian-transparent-logo-4461219.webp" alt="O'Brian Group" class="h-9 w-auto" width="40" height="36" decoding="async" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22%3E%3Crect width=%22100%22 height=%22100%22 fill=%22%23ed008e%22/%3E%3Ctext x=%2250%22 y=%2268%22 font-size=%2248%22 text-anchor=%22middle%22 fill=%22white%22 font-weight=%22bold%22 font-family=%22Inter%22%3EO%3C/text%3E%3C/svg%3E'">
+        <span class="logo-text hidden sm:inline-block"> <span class="highlight"> </span></span>
       </a>
 
       <div class="hidden lg:flex items-center gap-0.5">
@@ -580,7 +589,7 @@
         <div class="dropdown-wrapper">
           <button class="nav-link-premium flex items-center gap-1">
             Case Studies
-            <svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M19 9l-7 7-7-7"></path></svg>
+            <svg class="w-3 h-3 transition-transform duration-300 dropdown-wrapper:hover:rotate-180" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M19 9l-7 7-7-7"></path></svg>
           </button>
           <div class="dropdown-menu-premium">
             <a href="Adv_Case_Studies.html">Advertising</a>
@@ -592,7 +601,7 @@
         <div class="dropdown-wrapper">
           <button class="nav-link-premium flex items-center gap-1">
             Expertise
-            <svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M19 9l-7 7-7-7"></path></svg>
+            <svg class="w-3 h-3 transition-transform duration-300 dropdown-wrapper:hover:rotate-180" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M19 9l-7 7-7-7"></path></svg>
           </button>
           <div class="dropdown-menu-premium">
             <a href="Advertising_Expertise.html">Advertising</a>
@@ -649,13 +658,16 @@
   <a href="Contact_Us.html" style="display:inline-flex; margin-top:1rem; background:linear-gradient(135deg,#e6007e,#ff1493); color:#fff; padding:0.6rem 1.5rem; border-radius:9999px; font-weight:700; text-decoration:none;">Contact Us</a>
 </div>
 
-<!-- ===== BACK TO TOP (with scroll-progress ring) ===== -->
-<button class="scroll-top-btn" id="scrollTopBtn" aria-label="Back to top" title="Back to top">
-  <svg class="stb-ring" viewBox="0 0 54 54" aria-hidden="true">
-    <circle class="stb-ring-track" cx="27" cy="27" r="24"></circle>
-    <circle class="stb-ring-progress" cx="27" cy="27" r="24"></circle>
-  </svg>
-  <i class="fas fa-chevron-up"></i>
+<!-- ===== BACK TO TOP BUTTON (with scroll-progress ring) ===== -->
+<button class="back-to-top visible" id="backToTopBtn" aria-label="Back to top" title="Back to top" aria-hidden="false" tabindex="0">
+    <svg class="btb-ring" viewBox="0 0 48 48" aria-hidden="true">
+        <circle class="btb-ring-track" cx="24" cy="24" r="21"></circle>
+        <circle class="btb-ring-progress" cx="24" cy="24" r="21" style="stroke-dashoffset: 1.49;"></circle>
+    </svg>
+    <svg class="btb-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+        <path d="M12 19V5"></path>
+        <path d="M5 12l7-7 7 7"></path>
+    </svg>
 </button>
 
 <!-- ========== HERO ========== -->
@@ -666,7 +678,6 @@
     <div class="hero-tagline">A Dive into Our Work Triumphs · Strategic CI & Visual Governance</div>
     <div class="project-badge"><i class="fas fa-building"></i> City of Ekurhuleni · Brand CI Manual Development</div>
 
-    <!-- ===== BACK TO OUR WORK BUTTON (hero) ===== -->
     <div style="margin-top: 2rem;">
       <a href="Our_Work.html" class="btn-back-work">
         <i class="fas fa-arrow-left"></i>
@@ -705,7 +716,6 @@
     <div class="section-sub">A glimpse of brand applications, assets & guidelines</div>
     <div id="gallery-grid" class="gallery-grid"></div>
 
-    <!-- ===== BACK TO OUR WORK BUTTON (after gallery) ===== -->
     <div style="text-align: center; margin-top: 3.5rem;">
       <a href="Our_Work.html" class="btn-back-work-pink">
         <i class="fas fa-arrow-left"></i>
@@ -719,7 +729,7 @@
 <div id="lightbox" class="lightbox">
   <div class="lb-content">
     <button class="close-lb" aria-label="Close"><i class="fas fa-times"></i></button>
-    <img id="lb-img" src="" alt="Full view">
+    <img id="lb-img" alt="Full view">
     <button class="lb-prev" aria-label="Previous image"><i class="fas fa-chevron-left"></i></button>
     <button class="lb-next" aria-label="Next image"><i class="fas fa-chevron-right"></i></button>
     <div class="lb-counter" id="lb-counter"></div>
@@ -731,11 +741,11 @@
   <div class="container">
     <h3>Follow our journey</h3>
     <div class="social-icons">
-      <a href="https://www.facebook.com/profile.php?id=100094029616085" target="_blank"><i class="fab fa-facebook-f"></i></a>
-      <a href="https://x.com/ObrianSA" target="_blank"><i class="fab fa-twitter"></i></a>
-      <a href="https://www.instagram.com/obriandigital/" target="_blank"><i class="fab fa-instagram"></i></a>
-      <a href="https://za.pinterest.com/OBRIANDIGITAL/" target="_blank"><i class="fab fa-pinterest-p"></i></a>
-      <a href="https://za.linkedin.com/company/o-brian-digital" target="_blank"><i class="fab fa-linkedin-in"></i></a>
+      <a href="https://www.facebook.com/profile.php?id=100094029616085" target="_blank" rel="noopener"><i class="fab fa-facebook-f"></i></a>
+      <a href="https://x.com/ObrianSA" target="_blank" rel="noopener"><i class="fab fa-twitter"></i></a>
+      <a href="https://www.instagram.com/obriandigital/" target="_blank" rel="noopener"><i class="fab fa-instagram"></i></a>
+      <a href="https://za.pinterest.com/OBRIANDIGITAL/" target="_blank" rel="noopener"><i class="fab fa-pinterest-p"></i></a>
+      <a href="https://za.linkedin.com/company/o-brian-digital" target="_blank" rel="noopener"><i class="fab fa-linkedin-in"></i></a>
     </div>
   </div>
 </section>
@@ -784,7 +794,7 @@
   const header = document.getElementById('mainHeader');
   window.addEventListener('scroll', function() {
     header.classList.toggle('scrolled', window.scrollY > 20);
-  });
+  }, { passive: true });
 
   // ── Mobile menu toggle ──
   const menuBtn = document.getElementById('menuBtn');
@@ -814,51 +824,55 @@
     }
   });
 
-  // ── BACK TO TOP BUTTON with scroll-progress ring ──
-  const scrollTopBtn = document.getElementById('scrollTopBtn');
-  const stbRingProgress = scrollTopBtn ? scrollTopBtn.querySelector('.stb-ring-progress') : null;
-  const STB_RING_LENGTH = 2 * Math.PI * 24;   // r = 24  →  ≈150.80
+  // ===== BACK TO TOP BUTTON (with scroll-progress ring) =====
+  const backToTopBtn = document.getElementById('backToTopBtn');
+  const btbRingProgress = backToTopBtn ? backToTopBtn.querySelector('.btb-ring-progress') : null;
+  const BTB_RING_LENGTH = 2 * Math.PI * 21; // r = 21 in the 48×48 viewBox
   const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   let scrollTicking = false;
 
-  function updateScrollTop() {
+  function updateBackToTop() {
     const scrollY = window.pageYOffset || document.documentElement.scrollTop || 0;
     const maxScroll = document.documentElement.scrollHeight - window.innerHeight;
     const progress = maxScroll > 0 ? Math.min(scrollY / maxScroll, 1) : 0;
 
-    // show after 300px
-    if (scrollY > 300) {
-      scrollTopBtn.classList.add('visible');
-    } else {
-      scrollTopBtn.classList.remove('visible');
-    }
+    const show = scrollY > 300;
+    backToTopBtn.classList.toggle('visible', show);
+    backToTopBtn.setAttribute('aria-hidden', show ? 'false' : 'true');
+    backToTopBtn.tabIndex = show ? 0 : -1;
 
-    // update the progress ring
-    if (stbRingProgress) {
-      stbRingProgress.style.strokeDashoffset =
-        (STB_RING_LENGTH * (1 - progress)).toFixed(2);
+    if (btbRingProgress) {
+      btbRingProgress.style.strokeDashoffset =
+        (BTB_RING_LENGTH * (1 - progress)).toFixed(2);
     }
     scrollTicking = false;
   }
 
   window.addEventListener('scroll', function() {
     if (!scrollTicking) {
-      window.requestAnimationFrame(updateScrollTop);
+      window.requestAnimationFrame(updateBackToTop);
       scrollTicking = true;
     }
   }, { passive: true });
 
-  window.addEventListener('resize', updateScrollTop);
-  updateScrollTop(); // initial check
+  window.addEventListener('resize', updateBackToTop);
+  updateBackToTop();
 
-  scrollTopBtn.addEventListener('click', function() {
+  backToTopBtn.addEventListener('click', function() {
     window.scrollTo({
       top: 0,
       behavior: prefersReducedMotion ? 'auto' : 'smooth'
     });
   });
 
-  // ── Gallery data ──
+  // ============================================================
+  //  GALLERY: data + deferred build
+  //  - First 2 images load eagerly (most likely visible soon).
+  //  - Everything else is lazy-loaded via IntersectionObserver
+  //    with a 300px rootMargin.
+  //  - Whole gallery is constructed on idle so hero/overview
+  //    paint first, then the grid appears.
+  // ============================================================
   const imageList = [
     "call-center-wide-.jpg",
     "fab-lab-guys-.jpg",
@@ -883,9 +897,9 @@
     "summer-ekurhuleni6.jpg"
   ];
 
+  const EAGER_COUNT = 2;
   const galleryContainer = document.getElementById('gallery-grid');
 
-  // ── Fast lazy loading via IntersectionObserver ──
   const imageObserver = new IntersectionObserver(function(entries, observer) {
     entries.forEach(function(entry) {
       if (entry.isIntersecting) {
@@ -903,31 +917,33 @@
     });
   }, { rootMargin: '300px 0px', threshold: 0.01 });
 
-  // ── Build gallery with eager first few, lazy rest ──
   function buildGallery() {
-    if (!galleryContainer) return;
-    galleryContainer.innerHTML = '';
+    if (!galleryContainer || galleryContainer.dataset.built === '1') return;
+    galleryContainer.dataset.built = '1';
+
     const frag = document.createDocumentFragment();
 
     imageList.forEach(function(src, idx) {
-      var item = document.createElement('div');
+      const item = document.createElement('div');
       item.className = 'gallery-item';
       item.setAttribute('data-index', idx);
       item.setAttribute('role', 'button');
       item.setAttribute('tabindex', '0');
       item.setAttribute('aria-label', 'View image ' + (idx + 1));
 
-      var img = document.createElement('img');
+      const img = document.createElement('img');
 
-      if (idx < 4) {
+      if (idx < EAGER_COUNT) {
         img.src = src;
         img.loading = 'eager';
+        img.decoding = 'async';
+        img.fetchPriority = 'high';
         img.addEventListener('load', function() { img.classList.add('loaded'); }, { once: true });
       } else {
         img.dataset.src = src;
         img.loading = 'lazy';
         img.decoding = 'async';
-        img.setAttribute('fetchpriority', 'low');
+        img.fetchPriority = 'low';
       }
 
       img.alt = 'Ekurhuleni brand asset ' + (idx + 1);
@@ -945,31 +961,20 @@
 
       frag.appendChild(item);
 
-      if (idx >= 4) imageObserver.observe(img);
+      if (idx >= EAGER_COUNT) imageObserver.observe(img);
     });
 
     galleryContainer.appendChild(frag);
-
-    // Preload first 6 for snappy first impression
-    preloadImages(6);
-  }
-
-  function preloadImages(count) {
-    for (var i = 0; i < count && i < imageList.length; i++) {
-      var pre = new Image();
-      pre.decoding = 'async';
-      pre.src = imageList[i];
-    }
   }
 
   // ── Custom lightbox with arrows ──
-  var currentIndex = 0;
-  var lightbox = document.getElementById('lightbox');
-  var lbImg = document.getElementById('lb-img');
-  var lbCounter = document.getElementById('lb-counter');
-  var closeBtn = document.querySelector('.close-lb');
-  var prevBtn = document.querySelector('.lb-prev');
-  var nextBtn = document.querySelector('.lb-next');
+  let currentIndex = 0;
+  const lightbox = document.getElementById('lightbox');
+  const lbImg = document.getElementById('lb-img');
+  const lbCounter = document.getElementById('lb-counter');
+  const closeBtn = document.querySelector('.close-lb');
+  const prevBtn = document.querySelector('.lb-prev');
+  const nextBtn = document.querySelector('.lb-next');
 
   function openLightbox(index) {
     currentIndex = index;
@@ -988,10 +993,10 @@
   }
 
   function preloadAdjacent() {
-    var nextIdx = (currentIndex + 1) % imageList.length;
-    var prevIdx = (currentIndex - 1 + imageList.length) % imageList.length;
+    const nextIdx = (currentIndex + 1) % imageList.length;
+    const prevIdx = (currentIndex - 1 + imageList.length) % imageList.length;
     [nextIdx, prevIdx].forEach(function(i) {
-      var pre = new Image();
+      const pre = new Image();
       pre.decoding = 'async';
       pre.src = imageList[i];
     });
@@ -1000,6 +1005,7 @@
   function closeLightbox() {
     lightbox.classList.remove('active');
     document.body.style.overflow = '';
+    lbImg.removeAttribute('src');
   }
 
   function nextImage(e) {
@@ -1031,7 +1037,14 @@
     if (e.key === 'ArrowLeft') prevImage(e);
   });
 
-  buildGallery();
+  // ── Defer gallery build so it doesn't block first paint ──
+  if ('requestIdleCallback' in window) {
+    requestIdleCallback(buildGallery, { timeout: 1800 });
+  } else {
+    window.addEventListener('load', function() {
+      setTimeout(buildGallery, 0);
+    });
+  }
 </script>
 </body>
 </html>
