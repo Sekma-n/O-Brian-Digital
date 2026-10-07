@@ -532,38 +532,89 @@
             background: #e6007e;
         }
 
-        /* ===== BACK TO TOP BUTTON ===== */
-        .back-to-top-btn {
+        /* ===== BACK TO TOP BUTTON (RING PROGRESS) ===== */
+        .back-to-top {
             position: fixed;
             bottom: 30px;
             right: 30px;
-            width: 52px;
-            height: 52px;
+            width: 56px;
+            height: 56px;
+            padding: 0;
             border-radius: 50%;
             background: linear-gradient(135deg, #e6007e 0%, #ff1493 100%);
-            color: white;
+            color: #ffffff;
             border: none;
-            font-size: 1.2rem;
             cursor: pointer;
-            display: flex;
-            align-items: center;
-            justify-content: center;
+            display: grid;
+            place-items: center;
             box-shadow: 0 4px 15px rgba(230, 0, 126, 0.4);
-            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            transition: opacity 0.35s ease, visibility 0.35s ease,
+                        transform 0.35s cubic-bezier(0.4, 0, 0.2, 1),
+                        box-shadow 0.3s ease, background 0.3s ease;
             z-index: 999;
             opacity: 0;
-            transform: translateY(20px);
+            visibility: hidden;
+            transform: translateY(20px) scale(0.9);
             pointer-events: none;
+            outline: none;
+            -webkit-tap-highlight-color: transparent;
         }
-        .back-to-top-btn.visible {
+        .back-to-top.visible {
             opacity: 1;
-            transform: translateY(0);
+            visibility: visible;
+            transform: translateY(0) scale(1);
             pointer-events: auto;
         }
-        .back-to-top-btn:hover {
-            transform: translateY(-4px) scale(1.1);
-            box-shadow: 0 8px 25px rgba(230, 0, 126, 0.5);
+        .back-to-top:hover {
+            transform: translateY(-4px) scale(1.08);
+            box-shadow: 0 10px 28px rgba(230, 0, 126, 0.55);
             background: linear-gradient(135deg, #c40073 0%, #e6007e 100%);
+        }
+        .back-to-top:focus-visible {
+            box-shadow: 0 0 0 3px rgba(230, 0, 126, 0.35),
+                        0 4px 15px rgba(230, 0, 126, 0.4);
+        }
+        .back-to-top:active {
+            transform: translateY(-1px) scale(1.02);
+        }
+
+        .btb-ring {
+            position: absolute;
+            inset: 0;
+            width: 100%;
+            height: 100%;
+            transform: rotate(-90deg);
+            transform-origin: 50% 50%;
+            pointer-events: none;
+            overflow: visible;
+        }
+        .btb-ring-track {
+            fill: none;
+            stroke: rgba(255, 255, 255, 0.25);
+            stroke-width: 3;
+        }
+        .btb-ring-progress {
+            fill: none;
+            stroke: #ffffff;
+            stroke-width: 3;
+            stroke-linecap: round;
+            /* circumference = 2 * PI * 21 ≈ 131.95 */
+            stroke-dasharray: 131.95;
+            stroke-dashoffset: 131.95;
+            transition: stroke-dashoffset 0.15s linear;
+        }
+        .btb-arrow {
+            position: relative;
+            z-index: 1;
+            width: 20px;
+            height: 20px;
+            display: block;
+            color: #ffffff;
+            pointer-events: none;
+            transition: transform 0.3s ease;
+        }
+        .back-to-top:hover .btb-arrow {
+            transform: translateY(-2px);
         }
 
         /* ===== RESPONSIVE ===== */
@@ -580,24 +631,34 @@
             .slider-btn { width: 36px; height: 36px; font-size: 18px; }
             .slider-btn.prev { left: 8px; }
             .slider-btn.next { right: 8px; }
-            .back-to-top-btn { 
-                width: 46px; 
-                height: 46px; 
-                font-size: 1rem; 
-                bottom: 20px; 
-                right: 20px; 
+            .back-to-top {
+                width: 50px;
+                height: 50px;
+                bottom: 20px;
+                right: 20px;
             }
+            .btb-arrow { width: 18px; height: 18px; }
         }
         @media (max-width: 480px) {
             .post-hero h1 { font-size: 1.8rem; }
             .hero-image-wrapper img { border-radius: 8px; }
             .video-section .stats-grid { grid-template-columns: 1fr; }
             .slider-slide img { max-height: 300px; }
-            .back-to-top-btn { 
-                width: 42px; 
-                height: 42px; 
-                font-size: 0.9rem; 
+            .back-to-top {
+                width: 46px;
+                height: 46px;
+                bottom: 16px;
+                right: 16px;
             }
+            .btb-arrow { width: 16px; height: 16px; }
+        }
+
+        /* ── Reduced motion ── */
+        @media (prefers-reduced-motion: reduce) {
+            html { scroll-behavior: auto; }
+            .back-to-top, .btb-arrow, .btb-ring-progress { transition: none !important; }
+            .back-to-top:hover { transform: none; }
+            .back-to-top:hover .btb-arrow { transform: none; }
         }
     </style>
 </head>
@@ -832,26 +893,26 @@
             <h2>Gallery</h2>
             <div class="slider-container" id="sliderContainer">
                 <div class="slider-track" id="sliderTrack">
-                    <div class="slider-slide"><img src="blog-post-.39.jpeg" alt="Slide 1" /></div>
-                    <div class="slider-slide"><img src="blog-post-.362.jpeg" alt="Slide 2" /></div>
-                    <div class="slider-slide"><img src="blog-post-.365.jpeg" alt="Slide 3" /></div>
-                    <div class="slider-slide"><img src="blog-post-.36-1.jpeg" alt="Slide 4" /></div>
-                    <div class="slider-slide"><img src="blog-post-.364.jpeg" alt="Slide 5" /></div>
-                    <div class="slider-slide"><img src="blog-post-.367.jpeg" alt="Slide 6" /></div>
-                    <div class="slider-slide"><img src="blog-post-.366.jpeg" alt="Slide 7" /></div>
-                    <div class="slider-slide"><img src="blog-post-.368.jpeg" alt="Slide 8" /></div>
-                    <div class="slider-slide"><img src="blog-post-.369.jpeg" alt="Slide 9" /></div>
-                    <div class="slider-slide"><img src="blog-post-.31.jpeg" alt="Slide 10" /></div>
-                    <div class="slider-slide"><img src="whatsapp-image-2025-11-05-at-12.43.01-1.jpeg" alt="Slide 11" /></div>
-                    <div class="slider-slide"><img src="whatsapp-image-2025-11-05-at-12.43.01-2.jpeg" alt="Slide 12" /></div>
-                    <div class="slider-slide"><img src="whatsapp-image-2025-11-05-at-12.43.01-3.jpeg" alt="Slide 13" /></div>
-                    <div class="slider-slide"><img src="whatsapp-image-2025-11-05-at-12.43.01-4.jpeg" alt="Slide 14" /></div>
-                    <div class="slider-slide"><img src="whatsapp-image-2025-11-05-at-12.43.01.jpeg" alt="Slide 15" /></div>
-                    <div class="slider-slide"><img src="whatsapp-image-2025-11-05-at-12.43.02-1.jpeg" alt="Slide 16" /></div>
-                    <div class="slider-slide"><img src="whatsapp-image-2025-11-05-at-12.43.02-2.jpeg" alt="Slide 17" /></div>
-                    <div class="slider-slide"><img src="whatsapp-image-2025-11-05-at-12.43.02-4.jpeg" alt="Slide 18" /></div>
-                    <div class="slider-slide"><img src="whatsapp-image-2025-11-05-at-12.43.02.jpeg" alt="Slide 19" /></div>
-                    <div class="slider-slide"><img src="whatsapp-image-2025-11-05-at-12.43.24-1.jpeg" alt="Slide 20" /></div>
+                    <div class="slider-slide"><img src="blog-post-.39.jpg" alt="Slide 1" /></div>
+                    <div class="slider-slide"><img src="blog-post-.362.jpg" alt="Slide 2" /></div>
+                    <div class="slider-slide"><img src="blog-post-.365.jpg" alt="Slide 3" /></div>
+                    <div class="slider-slide"><img src="blog-post-.36-1.jpg" alt="Slide 4" /></div>
+                    <div class="slider-slide"><img src="blog-post-.364.jpg" alt="Slide 5" /></div>
+                    <div class="slider-slide"><img src="blog-post-.367.jpg" alt="Slide 6" /></div>
+                    <div class="slider-slide"><img src="blog-post-.366.jpg" alt="Slide 7" /></div>
+                    <div class="slider-slide"><img src="blog-post-.368.jpg" alt="Slide 8" /></div>
+                    <div class="slider-slide"><img src="blog-post-.369.jpg" alt="Slide 9" /></div>
+                    <div class="slider-slide"><img src="blog-post-.31.jpg" alt="Slide 10" /></div>
+                    <div class="slider-slide"><img src="whatsapp-image-2025-11-05-at-12.43.01-1.jpg" alt="Slide 11" /></div>
+                    <div class="slider-slide"><img src="whatsapp-image-2025-11-05-at-12.43.01-2.jpg" alt="Slide 12" /></div>
+                    <div class="slider-slide"><img src="whatsapp-image-2025-11-05-at-12.43.01-3.jpg" alt="Slide 13" /></div>
+                    <div class="slider-slide"><img src="whatsapp-image-2025-11-05-at-12.43.01-4.jpg" alt="Slide 14" /></div>
+                    <div class="slider-slide"><img src="whatsapp-image-2025-11-05-at-12.43.01.jpg" alt="Slide 15" /></div>
+                    <div class="slider-slide"><img src="whatsapp-image-2025-11-05-at-12.43.02-1.jpg" alt="Slide 16" /></div>
+                    <div class="slider-slide"><img src="whatsapp-image-2025-11-05-at-12.43.02-2.jpg" alt="Slide 17" /></div>
+                    <div class="slider-slide"><img src="whatsapp-image-2025-11-05-at-12.43.02-4.jpg" alt="Slide 18" /></div>
+                    <div class="slider-slide"><img src="whatsapp-image-2025-11-05-at-12.43.02.jpg" alt="Slide 19" /></div>
+                    <div class="slider-slide"><img src="whatsapp-image-2025-11-05-at-12.43.24-1.jpg" alt="Slide 20" /></div>
                 </div>
                 <button class="slider-btn prev" onclick="moveSlider(-1)">‹</button>
                 <button class="slider-btn next" onclick="moveSlider(1)">›</button>
@@ -860,9 +921,16 @@
         </div>
     </section>
 
-    <!-- ===== BACK TO TOP BUTTON ===== -->
-    <button class="back-to-top-btn" id="backToTop" aria-label="Back to top">
-        <i class="fas fa-arrow-up"></i>
+    <!-- ===== BACK TO TOP BUTTON (RING PROGRESS) ===== -->
+    <button class="back-to-top visible" id="backToTopBtn" aria-label="Back to top" title="Back to top" aria-hidden="false" tabindex="0">
+        <svg class="btb-ring" viewBox="0 0 48 48" aria-hidden="true">
+            <circle class="btb-ring-track" cx="24" cy="24" r="21"></circle>
+            <circle class="btb-ring-progress" cx="24" cy="24" r="21" style="stroke-dashoffset: 1.49;"></circle>
+        </svg>
+        <svg class="btb-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="M12 19V5"></path>
+            <path d="M5 12l7-7 7 7"></path>
+        </svg>
     </button>
 
     <!-- ===== FOOTER ===== -->
@@ -916,28 +984,59 @@
     <!-- ===== SCRIPTS ===== -->
     <script>
         (function() {
-            // Header scroll effect
             const header = document.getElementById('mainHeader');
-            window.addEventListener('scroll', function() {
+
+            // ===== BACK TO TOP (with ring progress) =====
+            const backToTop = document.getElementById('backToTopBtn');
+            const ringProgress = backToTop ? backToTop.querySelector('.btb-ring-progress') : null;
+            const RING_RADIUS = 21;
+            const RING_CIRCUMFERENCE = 2 * Math.PI * RING_RADIUS; // ≈ 131.95
+
+            function updateBackToTop() {
+                if (!backToTop) return;
+
+                const scrollY = window.scrollY || window.pageYOffset || 0;
+                const docHeight = Math.max(
+                    document.documentElement.scrollHeight,
+                    document.body.scrollHeight
+                ) - window.innerHeight;
+                const progress = docHeight > 0 ? Math.min(Math.max(scrollY / docHeight, 0), 1) : 0;
+
+                if (scrollY > 400) {
+                    backToTop.classList.add('visible');
+                    backToTop.setAttribute('aria-hidden', 'false');
+                    backToTop.tabIndex = 0;
+                } else {
+                    backToTop.classList.remove('visible');
+                    backToTop.setAttribute('aria-hidden', 'true');
+                    backToTop.tabIndex = -1;
+                }
+
+                if (ringProgress) {
+                    ringProgress.style.strokeDasharray = RING_CIRCUMFERENCE;
+                    ringProgress.style.strokeDashoffset = (RING_CIRCUMFERENCE * (1 - progress)).toFixed(2);
+                }
+            }
+
+            function onScroll() {
                 if (window.scrollY > 20) {
                     header.classList.add('scrolled');
                 } else {
                     header.classList.remove('scrolled');
                 }
-                
-                // Back to top button visibility
-                const backToTop = document.getElementById('backToTop');
-                if (window.scrollY > 400) {
-                    backToTop.classList.add('visible');
-                } else {
-                    backToTop.classList.remove('visible');
-                }
-            });
+                updateBackToTop();
+            }
 
-            // Back to top button click
-            document.getElementById('backToTop').addEventListener('click', function() {
-                window.scrollTo({ top: 0, behavior: 'smooth' });
-            });
+            window.addEventListener('scroll', onScroll, { passive: true });
+
+            if (backToTop) {
+                backToTop.addEventListener('click', function() {
+                    window.scrollTo({ top: 0, behavior: 'smooth' });
+                });
+            }
+
+            // Initial state
+            onScroll();
 
             // Mobile menu toggle
             const menuBtn = document.getElementById('menuBtn');
@@ -963,6 +1062,7 @@
 
             window.addEventListener('resize', function() {
                 if (window.innerWidth >= 1024) closeMenu();
+                updateBackToTop();
             });
 
             window.toggleAccordion = function(id) {
@@ -985,7 +1085,6 @@
         const slides = document.querySelectorAll('.slider-slide');
         const dotsContainer = document.getElementById('sliderDots');
 
-        // Create dots
         slides.forEach((_, index) => {
             const dot = document.createElement('button');
             dot.addEventListener('click', () => goToSlide(index));
@@ -1014,13 +1113,11 @@
             updateSlider();
         }
 
-        // Initialize
         if (slides.length > 0) {
             dots[0].classList.add('active');
             updateSlider();
         }
 
-        // Handle resize
         window.addEventListener('resize', updateSlider);
     </script>
 
