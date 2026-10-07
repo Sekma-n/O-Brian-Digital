@@ -520,38 +520,113 @@
             padding-top: 1.8rem;
         }
 
-        /* ===== BACK TO TOP BUTTON ===== */
-        .back-to-top-btn {
+        /* ===== BACK TO TOP BUTTON (with scroll progress ring) ===== */
+        .back-to-top {
             position: fixed;
-            bottom: 30px;
-            right: 30px;
+            bottom: 32px;
+            right: 32px;
             width: 52px;
             height: 52px;
+            padding: 0;
             border-radius: 50%;
-            background: linear-gradient(135deg, #ed008e 0%, #ff1493 100%);
-            color: white;
-            border: none;
-            font-size: 1.2rem;
+            background: linear-gradient(135deg, #ed008e 0%, #b0006a 100%);
+            color: #ffffff;
+            border: 2px solid rgba(255, 255, 255, 0.25);
+            display: grid;
+            place-items: center;
             cursor: pointer;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            box-shadow: 0 4px 15px rgba(237, 0, 142, 0.4);
-            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-            z-index: 999;
+            z-index: 1500;
             opacity: 0;
+            visibility: hidden;
             transform: translateY(20px);
+            transition: opacity 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94),
+                        visibility 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94),
+                        transform 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94),
+                        box-shadow 0.3s ease,
+                        background 0.3s ease;
+            box-shadow: 0 8px 24px rgba(237, 0, 142, 0.35);
+            -webkit-tap-highlight-color: transparent;
+        }
+        .back-to-top.visible {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
+        }
+        .back-to-top:hover {
+            transform: translateY(-4px) scale(1.06);
+            box-shadow: 0 14px 32px rgba(237, 0, 142, 0.45);
+        }
+        .back-to-top:active {
+            transform: translateY(-1px) scale(0.98);
+        }
+        .back-to-top:focus-visible {
+            outline: 3px solid rgba(237, 0, 142, 0.45);
+            outline-offset: 3px;
+        }
+
+        /* scroll-progress ring */
+        .btb-ring {
+            position: absolute;
+            inset: 0;
+            width: 100%;
+            height: 100%;
+            transform: rotate(-90deg);
             pointer-events: none;
         }
-        .back-to-top-btn.visible {
-            opacity: 1;
-            transform: translateY(0);
-            pointer-events: auto;
+        .btb-ring circle {
+            fill: none;
+            stroke-width: 2.5;
         }
-        .back-to-top-btn:hover {
-            transform: translateY(-4px) scale(1.1);
-            box-shadow: 0 8px 25px rgba(237, 0, 142, 0.5);
-            background: linear-gradient(135deg, #c40073 0%, #ed008e 100%);
+        .btb-ring-track {
+            stroke: rgba(255, 255, 255, 0.25);
+        }
+        .btb-ring-progress {
+            stroke: #ffffff;
+            stroke-linecap: round;
+            stroke-dasharray: 131.95;   /* 2π × r(21) */
+            stroke-dashoffset: 131.95;
+            transition: stroke-dashoffset 0.1s linear;
+        }
+
+        /* arrow */
+        .btb-arrow {
+            position: relative;
+            width: 22px;
+            height: 22px;
+            transition: transform 0.3s ease;
+        }
+        .back-to-top:hover .btb-arrow {
+            transform: translateY(-2px);
+        }
+
+        @media (max-width: 768px) {
+            .back-to-top {
+                bottom: 24px;
+                right: 20px;
+                width: 46px;
+                height: 46px;
+            }
+            .btb-arrow {
+                width: 18px;
+                height: 18px;
+            }
+        }
+
+        /* ── Reduced motion ── */
+        @media (prefers-reduced-motion: reduce) {
+            html {
+                scroll-behavior: auto;
+            }
+            .back-to-top,
+            .btb-arrow {
+                transition: none !important;
+            }
+            .back-to-top:hover {
+                transform: none;
+            }
+            .back-to-top:hover .btb-arrow {
+                transform: none;
+            }
         }
 
         /* ===== FOOTER ===== */
@@ -640,13 +715,6 @@
             .footer .container {
                 grid-template-columns: 1fr 1fr;
             }
-            .back-to-top-btn { 
-                width: 46px; 
-                height: 46px; 
-                font-size: 1rem; 
-                bottom: 20px; 
-                right: 20px; 
-            }
         }
         @media (max-width: 480px) {
             .footer .container {
@@ -655,18 +723,13 @@
             .post-hero .subtitle {
                 font-size: 1rem;
             }
-            .back-to-top-btn { 
-                width: 42px; 
-                height: 42px; 
-                font-size: 0.9rem; 
-            }
         }
     </style>
 </head>
 <body>
 
     <!-- ===== HEADER ===== -->
-    <header class="header-glass" id="mainHeader">
+    <header class="header-glass" id="mainHeader" tabindex="-1">
         <div class="max-w-7xl mx-auto px-4 md:px-6">
             <div class="flex justify-between items-center h-20">
 
@@ -811,7 +874,7 @@
                         <span class="highlight">Clown Motel</span> and a Cemetery<br>
                         Tell a Story of <span class="highlight">Kitsch and Carnage</span>
                     </h1>
-                    <p class="subtitle">In the desert of central Nevada, somewhere between a shuttered brothel and a nuclear test site, lies the tiny town of Tonopah. The settlement’s main strip is a mix of dusty casinos, mining museums and old-timey shops.</p>
+                    <p class="subtitle">In the desert of central Nevada, somewhere between a shuttered brothel and a nuclear test site, lies the tiny town of Tonopah. The settlement's main strip is a mix of dusty casinos, mining museums and old-timey shops.</p>
                     <div class="meta">
                         <span><i class="fas fa-user"></i> Andrew Chamings</span>
                         <span><i class="fas fa-calendar-alt"></i> May 19, 2023</span>
@@ -832,15 +895,15 @@
 
         <!-- feature image: clownsignweb-web.jpeg -->
         <div class="feature-image">
-            <img src="clownsignweb-web.jpg" alt="Clown Motel signage, January 2023. (Andrew Chamings)"
+            <img src="clownsignweb-web.jpeg" alt="Clown Motel signage, January 2023. (Andrew Chamings)"
             onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22800%22 height=%22450%22 viewBox=%220 0 800 450%22%3E%3Crect width=%22800%22 height=%22450%22 fill=%22%23b8aba0%22/%3E%3Ctext x=%22400%22 y=%22225%22 font-family=%22Georgia%22 font-size=%2228%22 fill=%22%23fcf9f6%22 text-anchor=%22middle%22 dominant-baseline=%22middle%22%3EClown Motel%3C/text%3E%3C/svg%3E'">
         </div>
 
         <!-- body text -->
         <div class="body-text">
-            <p><strong>In the desert of central Nevada, somewhere between a shuttered brothel and a nuclear test site, lies the tiny town of Tonopah.</strong> The settlement’s main strip is a mix of dusty casinos, mining museums and old-timey shops. Faded missing-persons posters peer from store windows. A sign warns against entering the abandoned mineshafts. A smattering of tourists stroll the otherwise barren streets.</p>
+            <p><strong>In the desert of central Nevada, somewhere between a shuttered brothel and a nuclear test site, lies the tiny town of Tonopah.</strong> The settlement's main strip is a mix of dusty casinos, mining museums and old-timey shops. Faded missing-persons posters peer from store windows. A sign warns against entering the abandoned mineshafts. A smattering of tourists stroll the otherwise barren streets.</p>
 
-            <p>Many of the visitors who do venture here stay at one of the few lodgings in town: the World Famous Clown Motel. It’s hard to miss. A pair of 20-foot-tall wooden clowns surveil the parking lot. A pink and powder-blue post topped with a brightly lit juggling clown beckons motorists in (or warns them off). Known as “the scariest motel in America,” it’s said to be haunted. It may well be.</p>
+            <p>Many of the visitors who do venture here stay at one of the few lodgings in town: the World Famous Clown Motel. It's hard to miss. A pair of 20-foot-tall wooden clowns surveil the parking lot. A pink and powder-blue post topped with a brightly lit juggling clown beckons motorists in (or warns them off). Known as "the scariest motel in America," it's said to be haunted. It may well be.</p>
 
             <!-- image grid from original: 5-1.svg, screenshot-2025-03-13-at-10.37.27.png, screenshot-2025-03-13-at-11.12.55.png -->
             <div class="image-grid">
@@ -850,7 +913,7 @@
                 </div>
                 <div class="grid-item">
                     <img src="screenshot-2025-03-13-at-10.37.27.png" alt="Old Tonopah Cemetery">
-                    <div class="caption">Old Tonopah Cemetery, located across from the motel’s parking lot, January 2023. (Andrew Chamings)</div>
+                    <div class="caption">Old Tonopah Cemetery, located across from the motel's parking lot, January 2023. (Andrew Chamings)</div>
                 </div>
                 <div class="grid-item">
                     <img src="screenshot-2025-03-13-at-11.12.55.png" alt="Large wooden clown adorns the front">
@@ -860,10 +923,10 @@
 
             <p><strong>I came here in January, wanting to learn more about why America — my adopted home for 16 years — so strangely and uniquely fetishizes its brutal past.</strong> Nowhere is this more true than in the American West, and nowhere have I seen it better epitomized than in Tonopah.</p>
 
-            <p>In the shadow of the clowns, just across the motel’s parking lot, lies a cemetery that holds the story of a truly ghoulish history. A little over a century ago, Tonopah was a bustling silver mining town of about 3,000 residents. Then a mysterious illness decimated the population. It was one of the most nightmarish events in Nevada’s history — known as the Death Harvest. In the spring of 1905, a local newspaper began reporting that about a dozen seemingly healthy men in their 20s were dying every day of an unknown affliction that killed four out of every five men it infected. Early details coming out of the town were sparse and horrific. A victim’s neck would swell, then his skin would turn black. Most died within a day of getting sick. One man who escaped the horror to Reno told reporters that he saw 12 bodies on slabs on his way out, “blackened by the terrible disease that is mowing down the people.”</p>
+            <p>In the shadow of the clowns, just across the motel's parking lot, lies a cemetery that holds the story of a truly ghoulish history. A little over a century ago, Tonopah was a bustling silver mining town of about 3,000 residents. Then a mysterious illness decimated the population. It was one of the most nightmarish events in Nevada's history — known as the Death Harvest. In the spring of 1905, a local newspaper began reporting that about a dozen seemingly healthy men in their 20s were dying every day of an unknown affliction that killed four out of every five men it infected. Early details coming out of the town were sparse and horrific. A victim's neck would swell, then his skin would turn black. Most died within a day of getting sick. One man who escaped the horror to Reno told reporters that he saw 12 bodies on slabs on his way out, "blackened by the terrible disease that is mowing down the people."</p>
 
             <div class="pull-quote">
-                “The shroud of death has since left Tonopah and has been replaced with something else: ghost hunters, social media stars, trinkets and guided tours through the grimmest moments of the town’s history.”
+                "The shroud of death has since left Tonopah and has been replaced with something else: ghost hunters, social media stars, trinkets and guided tours through the grimmest moments of the town's history."
             </div>
 
             <!-- slider / carousel from original: screenshot-2025-03-13-at-10.39.36.png, screenshot-2025-03-13-at-10.37.56.png, screenshot-2025-03-13-at-10.38.09.png -->
@@ -895,11 +958,11 @@
                 </button>
                 <div class="extended-content" id="extendedContent">
                     <div class="inner">
-                        <p>No one knew how the contagion started. Some blamed the town’s unusual topography, noting that a noxious gas from the mines may have settled in the hollow between the small mountains on the edge of the desert. One report pointed to the foul-tasting whiskey being served in one of Tonopah’s bars. Another concluded the infection came from eating cannibalistic hogs. Most people believed the disease was contagious yet, somehow, women and children were spared. Even stranger, neighboring areas were unaffected. There was little to be done but escape.</p>
+                        <p>No one knew how the contagion started. Some blamed the town's unusual topography, noting that a noxious gas from the mines may have settled in the hollow between the small mountains on the edge of the desert. One report pointed to the foul-tasting whiskey being served in one of Tonopah's bars. Another concluded the infection came from eating cannibalistic hogs. Most people believed the disease was contagious yet, somehow, women and children were spared. Even stranger, neighboring areas were unaffected. There was little to be done but escape.</p>
 
-                        <p>The shroud of death has since left Tonopah and has been replaced with something else: ghost hunters, social media stars, trinkets and guided tours through the grimmest moments of the town’s history. Under the kitschy gaze of a thousand clowns, I joined this crowd, trying to understand how tragedy in America so often turns to tourism.</p>
+                        <p>The shroud of death has since left Tonopah and has been replaced with something else: ghost hunters, social media stars, trinkets and guided tours through the grimmest moments of the town's history. Under the kitschy gaze of a thousand clowns, I joined this crowd, trying to understand how tragedy in America so often turns to tourism.</p>
 
-                        <p>I grew up in a green, hilly part of England’s West Country, a few miles from the Atlantic Coast. There are no straight roads there. The longest section of uncurved tarmac was a single-lane, mile-long stretch that my dad would always say was “built by the Romans.” Every other journey around the cow-dotted hills of North Devon involved stomach-turning hairpins between the hedgerows, following winding tracks laid down by livestock thousands of years earlier.</p>
+                        <p>I grew up in a green, hilly part of England's West Country, a few miles from the Atlantic Coast. There are no straight roads there. The longest section of uncurved tarmac was a single-lane, mile-long stretch that my dad would always say was "built by the Romans." Every other journey around the cow-dotted hills of North Devon involved stomach-turning hairpins between the hedgerows, following winding tracks laid down by livestock thousands of years earlier.</p>
 
                         <p>There may be no landscape more distant and more different from my childhood home than the road to Tonopah. I begin my journey about a week after a winter storm has frozen the desert. The temperature is still cold as I make my way down U.S. Route 95. Snow dusts the foothills between the sand and the Sierra Nevada, a place so desolate it inspires both loneliness and awe.</p>
 
@@ -907,37 +970,37 @@
 
                         <p>As the sun begins to set, I eventually reach Tonopah. I see a garish sign piercing through the gloaming: Clown Motel. World Famous. Vacancy.</p>
 
-                        <p>“I added the ‘world famous’ part,” Hame Anand tells me proudly, as we stand among the 2,000 clowns in the motel lobby. Anand and his business partner, Vijay Mehar, a Las Vegas hotelier, took over this place in 2019. After surviving the pandemic, they’ve seen good business, largely due to the two horror movies that were filmed here and countless YouTubers and TikTokers who seek it out as part of their never-ending quest for viral content.</p>
+                        <p>"I added the 'world famous' part," Hame Anand tells me proudly, as we stand among the 2,000 clowns in the motel lobby. Anand and his business partner, Vijay Mehar, a Las Vegas hotelier, took over this place in 2019. After surviving the pandemic, they've seen good business, largely due to the two horror movies that were filmed here and countless YouTubers and TikTokers who seek it out as part of their never-ending quest for viral content.</p>
 
-                        <p>Outside the lobby, a new cafe is under construction. I peer through an unfinished window frame and see the cemetery below. There’s more than just a neighborly connection between the two. After the plague, another tragedy struck Tonopah just a few years later, in 1911, when a fire in a mine took 17 lives. One of the victims was Clarence David. Little is known about him except that he collected clown memorabilia. When he died, he left behind a young son and daughter. They grew up nearby and, in their later years, in 1985, decided to open a clown-themed motel to honor their father, who was buried 20 feet away.</p>
+                        <p>Outside the lobby, a new cafe is under construction. I peer through an unfinished window frame and see the cemetery below. There's more than just a neighborly connection between the two. After the plague, another tragedy struck Tonopah just a few years later, in 1911, when a fire in a mine took 17 lives. One of the victims was Clarence David. Little is known about him except that he collected clown memorabilia. When he died, he left behind a young son and daughter. They grew up nearby and, in their later years, in 1985, decided to open a clown-themed motel to honor their father, who was buried 20 feet away.</p>
 
-                        <p>There are countless ghost stories surrounding the motel, of course. The hauntings were eagerly advertised by its previous owner, Bob Perchetti, who had taken over in 1995. On one episode of “Ghost Adventures,” filmed here in 2015, he claimed that the specters of perished miners regularly visit guests in their rooms. He also said that guests have woken up to find clowns standing over them.</p>
+                        <p>There are countless ghost stories surrounding the motel, of course. The hauntings were eagerly advertised by its previous owner, Bob Perchetti, who had taken over in 1995. On one episode of "Ghost Adventures," filmed here in 2015, he claimed that the specters of perished miners regularly visit guests in their rooms. He also said that guests have woken up to find clowns standing over them.</p>
 
-                        <p>Besides adding the words “world famous” to the sign out front, Anand tells me he painted the polka dots on the exterior of the motel and doubled the number of clowns in the lobby, most of which were donated by visitors. Next to one pink-nosed cotton clown, a curious note recalls the passing of a woman named Donna. “Lisa [daughter] dropped her clown doll off,” it reads, as if depositing the clowns of dead relatives here was normal, even routine.</p>
+                        <p>Besides adding the words "world famous" to the sign out front, Anand tells me he painted the polka dots on the exterior of the motel and doubled the number of clowns in the lobby, most of which were donated by visitors. Next to one pink-nosed cotton clown, a curious note recalls the passing of a woman named Donna. "Lisa [daughter] dropped her clown doll off," it reads, as if depositing the clowns of dead relatives here was normal, even routine.</p>
 
-                        <p>Anand is proud of the motel and seems to genuinely love the place. For years, he worked in advertising in India and Las Vegas, but this strange motel in the desert seems to be his calling. “This place needs me,” he says, smiling.</p>
+                        <p>Anand is proud of the motel and seems to genuinely love the place. For years, he worked in advertising in India and Las Vegas, but this strange motel in the desert seems to be his calling. "This place needs me," he says, smiling.</p>
 
-                        <p>As I walk to my room, Anand hands a young couple an electromagnetic field reader. The ghost-hunting tool is available to rent for $35 a day — although, as the small print notes, paranormal activity is not guaranteed. He happily tells the couple that all guests have “24/7” access to the cemetery.</p>
+                        <p>As I walk to my room, Anand hands a young couple an electromagnetic field reader. The ghost-hunting tool is available to rent for $35 a day — although, as the small print notes, paranormal activity is not guaranteed. He happily tells the couple that all guests have "24/7" access to the cemetery.</p>
 
-                        <p>My room, 222, is the “Clownvis” room. That’s “Clown-Elvis,” a very real person I did not know existed until I found myself in a small red motel room with 20 gaudy painted portraits of him staring back at me.</p>
+                        <p>My room, 222, is the "Clownvis" room. That's "Clown-Elvis," a very real person I did not know existed until I found myself in a small red motel room with 20 gaudy painted portraits of him staring back at me.</p>
 
-                        <p>Late that afternoon, I visit the cemetery, stepping across the motel’s snowy parking lot and down a few steps. This is the place where many of the young men from the so-called Death Harvest are buried. Every one of the roughly 300 bodies here met their fate from 1901 to 1911. Fourteen graves are filled by those who died in the mine shaft fire. It wasn’t just the fire and plague, however.</p>
+                        <p>Late that afternoon, I visit the cemetery, stepping across the motel's snowy parking lot and down a few steps. This is the place where many of the young men from the so-called Death Harvest are buried. Every one of the roughly 300 bodies here met their fate from 1901 to 1911. Fourteen graves are filled by those who died in the mine shaft fire. It wasn't just the fire and plague, however.</p>
 
-                        <p>Most graves are marked, not with headstones, but with spindly wooden crosses that draw long shadows over the hill. Many are marked with tin plaques that note the cause of death. There’s Charles Smith, an ore sorter “murdered in his cabin behind the midway mine.” There’s Jerry O’Donel, who died after falling down a mine shaft and being blown up by dynamite. And then there’s “Big” Bill Murphy, a mine cage operator, who climbed down into the fiery shaft during the infamous fire — three times — to save unconscious miners. He never emerged from his third descent.</p>
+                        <p>Most graves are marked, not with headstones, but with spindly wooden crosses that draw long shadows over the hill. Many are marked with tin plaques that note the cause of death. There's Charles Smith, an ore sorter "murdered in his cabin behind the midway mine." There's Jerry O'Donel, who died after falling down a mine shaft and being blown up by dynamite. And then there's "Big" Bill Murphy, a mine cage operator, who climbed down into the fiery shaft during the infamous fire — three times — to save unconscious miners. He never emerged from his third descent.</p>
 
-                        <p>There are also a dozen infant graves, more than one set of brothers who died in mining accidents and a handful of young women’s names — allegedly sex workers who were murdered or who committed suicide by drinking carbolic acid.</p>
+                        <p>There are also a dozen infant graves, more than one set of brothers who died in mining accidents and a handful of young women's names — allegedly sex workers who were murdered or who committed suicide by drinking carbolic acid.</p>
 
-                        <p>Allen Metscher has spent the past four decades researching the lives of those who perished during that brutal decade. He’s the one who engraves their stories on the small sheets of tin affixed to the graves. Metscher was born in Tonopah in the 1940s and has never left the small mining towns of central Nevada.</p>
+                        <p>Allen Metscher has spent the past four decades researching the lives of those who perished during that brutal decade. He's the one who engraves their stories on the small sheets of tin affixed to the graves. Metscher was born in Tonopah in the 1940s and has never left the small mining towns of central Nevada.</p>
 
-                        <p>“My grandfather came to Nevada with gold fever in 1902. He died after a mine caved in,” Metscher tells me. “He left behind a wife and two destitute sons, my dad and my uncle. They both eventually died from silicosis from working in the mines, too.” In the 1980s, Metscher and his two brothers formed the Central Nevada Historical Society and set out to protect the region’s history; much of that work has been here, in this graveyard. He spends many of his days leading tourists around and adding more plaques to the graves.</p>
+                        <p>"My grandfather came to Nevada with gold fever in 1902. He died after a mine caved in," Metscher tells me. "He left behind a wife and two destitute sons, my dad and my uncle. They both eventually died from silicosis from working in the mines, too." In the 1980s, Metscher and his two brothers formed the Central Nevada Historical Society and set out to protect the region's history; much of that work has been here, in this graveyard. He spends many of his days leading tourists around and adding more plaques to the graves.</p>
 
                         <p>As I wander the town and speak with residents and those passing through, I learn more about its history. For roughly 12,000 years, this part of Nevada was inhabited by Indigenous people. Then, as in most of the West, European settlers arrived, bringing plunder and bloodshed along with them. Settling began with the discovery of riches beneath the ground. The town was founded in 1900, when a man named Jim Butler decided to camp by a spring near the foothills on the edge of the desert. As the story goes, Butler awoke to find his donkey missing. When he finally caught up with the wandering burro, he went to hurl a rock at it in frustration, only to realize the rock was glinting with silver.</p>
 
-                        <p>News of the discovery reverberated across the West. Hundreds of fortune seekers landed in the camp and toiled in brutal conditions, as hastily formed mining companies laid claim to the valuable ore beneath the area’s dusty hills.</p>
+                        <p>News of the discovery reverberated across the West. Hundreds of fortune seekers landed in the camp and toiled in brutal conditions, as hastily formed mining companies laid claim to the valuable ore beneath the area's dusty hills.</p>
 
                         <p>By 1905, the bodies were piling up from the plague. Word of the deaths soon made its way to the newsrooms in San Francisco, where one mineralogist erroneously told reporters the cause of the mass death was almost certainly ammonia in the water drawn from volcanic rocks. That or rotten vegetables poisoning the water.</p>
 
-                        <p>Hundreds of men fled Tonopah in fear. City officials gathered and quickly issued a report to be sent out to the newspapers, in an attempt to save the town’s reputation and to outline their efforts to disinfect every corner of it and burn all the rotten vegetables. To no avail. Tonopah was decimated.</p>
+                        <p>Hundreds of men fled Tonopah in fear. City officials gathered and quickly issued a report to be sent out to the newspapers, in an attempt to save the town's reputation and to outline their efforts to disinfect every corner of it and burn all the rotten vegetables. To no avail. Tonopah was decimated.</p>
 
                         <p>The American West is full of these once-violent places now polished for tourism and consumption. On my way here from California, I passed a marker for the site of the last camp of the Donner Party, a notorious group of pioneers caught in a winter storm. More than 40 of them died, and some of the survivors consumed the dead. The tragedy is now memorialized in a park, a museum, a ski resort, movies and a musical.</p>
 
@@ -945,34 +1008,42 @@
 
                         <p>Across the West, there are more obscure sites that trade dollars for a peek at their dark past. A few hours from Tonopah, in the city of Porterville, California, a red-brick family home named Zalud House sits across the street from a Rite Aid store. A century ago, a German immigrant family suffered inside those walls a string of tragedies so sad that the home now charges $3 for people to look inside. On display: the bed in which young Mary Jane Zalud died of consumption; the bullet-riddled rocking chair her father sat in when he was shot dead by a spurned lover; and the horse saddle the youngest boy in the family was thrown from, before dying from his injuries.</p>
 
-                        <p>The different approach to the horrors of history in England’s West Country couldn’t be more stark. In September 1975, a few miles from where I grew up in Devon, three elderly siblings shot each other dead on a farm in an apparent suicide pact. The story of their deaths was only told in whispers. No sign adorns the address today. No tours are available. Nothing is left to mark the tragedy, let alone profit from it.</p>
+                        <p>The different approach to the horrors of history in England's West Country couldn't be more stark. In September 1975, a few miles from where I grew up in Devon, three elderly siblings shot each other dead on a farm in an apparent suicide pact. The story of their deaths was only told in whispers. No sign adorns the address today. No tours are available. Nothing is left to mark the tragedy, let alone profit from it.</p>
 
                         <p>In England, every inch of soil has been warred over, killed for, harvested, bought and sold a hundred times, from the Druids to the Romans to the Gauls to the modern day. The horrors of those bygone eras are buried deep, even repressed, beneath the colonial guilt and secret tragedies of the past.</p>
 
-                        <p>The carnage of America’s manifest destiny is fresher, a bloodstain still drying in the sand. “The modern West was born in blood,” says William Deverell, a professor of history at the University of Southern California. “Events of violence and terror have somehow become part and parcel to aspects of the American character.”</p>
+                        <p>The carnage of America's manifest destiny is fresher, a bloodstain still drying in the sand. "The modern West was born in blood," says William Deverell, a professor of history at the University of Southern California. "Events of violence and terror have somehow become part and parcel to aspects of the American character."</p>
 
-                        <p>Americans have dug up that bleak history, dusted it off, repackaged it and put it up for sale. “History is shaped and contorted to meet the demands of that marketplace,” says Boyd Cothran, a historian and the author of “Remembering the Modoc War: Redemptive Violence and the Making of American Innocence.” “One of the main ways it gets remembered in the American West is, ‘How do we get tourists to stop in our town and spend a little bit of money there?’” continues Cothran.</p>
+                        <p>Americans have dug up that bleak history, dusted it off, repackaged it and put it up for sale. "History is shaped and contorted to meet the demands of that marketplace," says Boyd Cothran, a historian and the author of "Remembering the Modoc War: Redemptive Violence and the Making of American Innocence." "One of the main ways it gets remembered in the American West is, 'How do we get tourists to stop in our town and spend a little bit of money there?'" continues Cothran.</p>
 
-                        <p>In Tonopah, the mass death is part of the draw, though less attention seems to be paid to the truth behind the tale. Back in 1905, months after the Death Harvest ended, the bodies were sent to San Francisco and Reno for autopsy. It wasn’t bad booze or noxious gas that killed so many people, it turns out, but a form of pneumonia caused by unsanitary water. In its rush to pull the riches out of the ground, the town had built no working sewer system. Chamber pots were thrown onto the wooden sidewalks. Waste from the town’s slaughterhouse flowed through the streets.</p>
+                        <p>In Tonopah, the mass death is part of the draw, though less attention seems to be paid to the truth behind the tale. Back in 1905, months after the Death Harvest ended, the bodies were sent to San Francisco and Reno for autopsy. It wasn't bad booze or noxious gas that killed so many people, it turns out, but a form of pneumonia caused by unsanitary water. In its rush to pull the riches out of the ground, the town had built no working sewer system. Chamber pots were thrown onto the wooden sidewalks. Waste from the town's slaughterhouse flowed through the streets.</p>
 
-                        <p>Conditions eventually improved but, decades later, with its mines shuttered, Tonopah’s gruesome history became the cornerstone of its identity: an attraction for tourists long after the silver in its veins ran dry. Today, all that’s left to exploit in Tonopah is the lore.</p>
+                        <p>Conditions eventually improved but, decades later, with its mines shuttered, Tonopah's gruesome history became the cornerstone of its identity: an attraction for tourists long after the silver in its veins ran dry. Today, all that's left to exploit in Tonopah is the lore.</p>
 
-                        <p>Somehow, I survive the night in the motel with nary a sight of a ghost, let alone Clownvis. In the morning, I see a director named Sydney Ostrander setting up a tripod and camera in the snowy parking lot. “We’re shooting a video for a song called ‘Hotel for Clowns,’” she tells me. I ask if the artist, a rising indie pop star named Chloe Moriondo, had Tonopah in mind when she wrote the song. “I think the song came from her own brain,” Ostrander says. “But then it just happened to be a real place.”</p>
+                        <p>Somehow, I survive the night in the motel with nary a sight of a ghost, let alone Clownvis. In the morning, I see a director named Sydney Ostrander setting up a tripod and camera in the snowy parking lot. "We're shooting a video for a song called 'Hotel for Clowns,'" she tells me. I ask if the artist, a rising indie pop star named Chloe Moriondo, had Tonopah in mind when she wrote the song. "I think the song came from her own brain," Ostrander says. "But then it just happened to be a real place."</p>
 
                         <p>As I climb into my car to take the long road back to San Francisco, a man stands in the parking lot filming his friend, perhaps another YouTuber, walking down the cemetery steps while eating some jerky bought from the gas station. At the city limit, on Route 95, as the sand and wind swirl off the asphalt, a model in a pink silk dress and feather boa strikes fabulous poses on the shoulder of the road for a photographer.</p>
 
-                        <p>Later, Metscher calls me to tell me he’s making his next graveyard plaque. “He was the town barber,” Metscher says of the interred man. “He used to shave the corpses so they’d look respectable for their families. He died of pneumonia, but — a story goes that he may have died of fright. I think I’ll put that on the plaque.”</p>
+                        <p>Later, Metscher calls me to tell me he's making his next graveyard plaque. "He was the town barber," Metscher says of the interred man. "He used to shave the corpses so they'd look respectable for their families. He died of pneumonia, but — a story goes that he may have died of fright. I think I'll put that on the plaque."</p>
 
-                        <p style="font-style: italic; color: #5f5f5f; margin-top: 1rem;"><strong>This article was published in the Spring 2023 issue of New Lines‘ print edition.</strong></p>
+                        <p style="font-style: italic; color: #5f5f5f; margin-top: 1rem;"><strong>This article was published in the Spring 2023 issue of New Lines' print edition.</strong></p>
                     </div>
                 </div>
             </div>
         </div>
     </div>
 
-    <!-- ===== BACK TO TOP BUTTON ===== -->
-    <button class="back-to-top-btn" id="backToTop" aria-label="Back to top">
-        <i class="fas fa-arrow-up"></i>
+    <!-- ===== BACK TO TOP BUTTON (with scroll progress ring) ===== -->
+    <button class="back-to-top" id="backToTop" aria-label="Back to top" title="Back to top" aria-hidden="true" tabindex="-1">
+        <svg class="btb-ring" viewBox="0 0 48 48" aria-hidden="true">
+            <circle class="btb-ring-track" cx="24" cy="24" r="21"></circle>
+            <circle class="btb-ring-progress" cx="24" cy="24" r="21"></circle>
+        </svg>
+        <svg class="btb-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+             stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="M12 19V5"></path>
+            <path d="M5 12l7-7 7 7"></path>
+        </svg>
     </button>
 
     <!-- ===== FOOTER ===== -->
@@ -1034,19 +1105,6 @@
                 } else {
                     header.classList.remove('scrolled');
                 }
-                
-                // Back to top button visibility
-                const backToTop = document.getElementById('backToTop');
-                if (window.scrollY > 400) {
-                    backToTop.classList.add('visible');
-                } else {
-                    backToTop.classList.remove('visible');
-                }
-            });
-
-            // Back to top button click
-            document.getElementById('backToTop').addEventListener('click', function() {
-                window.scrollTo({ top: 0, behavior: 'smooth' });
             });
 
             // Mobile menu toggle
@@ -1132,6 +1190,53 @@
                 prevBtn.addEventListener('click', function() { goToSlide(currentIndex - 1); });
                 nextBtn.addEventListener('click', function() { goToSlide(currentIndex + 1); });
             }
+
+            // ===== BACK TO TOP BUTTON LOGIC (with scroll-progress ring) =====
+            var backToTop = document.getElementById('backToTop');
+            if (!backToTop) return;
+
+            var btbRingProgress = backToTop.querySelector('.btb-ring-progress');
+            var BTB_RING_LENGTH = 2 * Math.PI * 21; // r = 21 in the 48×48 viewBox
+            var prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+            var ticking = false;
+
+            function updateBackToTop() {
+                var scrollY = window.scrollY || document.documentElement.scrollTop;
+                var maxScroll = document.documentElement.scrollHeight - window.innerHeight;
+                var progress = maxScroll > 0 ? Math.min(scrollY / maxScroll, 1) : 0;
+
+                var show = scrollY > 400;
+                backToTop.classList.toggle('visible', show);
+                // keep it out of the a11y tree / tab order while hidden
+                backToTop.setAttribute('aria-hidden', show ? 'false' : 'true');
+                backToTop.tabIndex = show ? 0 : -1;
+
+                if (btbRingProgress) {
+                    btbRingProgress.style.strokeDashoffset =
+                        (BTB_RING_LENGTH * (1 - progress)).toFixed(2);
+                }
+
+                ticking = false;
+            }
+
+            window.addEventListener('scroll', function() {
+                if (!ticking) {
+                    window.requestAnimationFrame(updateBackToTop);
+                    ticking = true;
+                }
+            }, { passive: true });
+
+            updateBackToTop();
+
+            backToTop.addEventListener('click', function() {
+                window.scrollTo({
+                    top: 0,
+                    behavior: prefersReducedMotion ? 'auto' : 'smooth'
+                });
+                // return focus to the top of the page for keyboard users
+                var headerEl = document.getElementById('mainHeader');
+                if (headerEl) headerEl.focus({ preventScroll: true });
+            });
         })();
     </script>
 
