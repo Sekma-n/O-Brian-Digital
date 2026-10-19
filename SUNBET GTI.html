@@ -16,7 +16,7 @@
   
   <!-- ===== PERFORMANCE: PRELOAD + PRECONNECT ===== -->
   <!-- Preload the hero/winner image so it starts downloading immediately -->
-  <link rel="preload" as="image" href="112a0291.jpg" fetchpriority="high">
+  <link rel="preload" as="image" href="112a0291.webp" fetchpriority="high">
   <!-- Preconnect to font & icon CDNs to shave off DNS/TLS handshakes -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -1135,8 +1135,9 @@
         //  GALLERY: data + deferred construction
         //  - Gallery items are built only after the page is idle
         //    so the hero and above-fold content paint first.
-        //  - A DocumentFragment batches all DOM insertion into one
-        //    reflow (huge win over appending one-by-one).
+        //  - Explicit width/height/aspect-ratio are baked into the
+        //    markup so the browser reserves the correct box before
+        //    the image loads — no CLS, no "missing dimensions" warning.
         //  - Every image uses native loading="lazy" + decoding="async"
         //    + fetchpriority="low" so it doesn't compete with the hero.
         //  - content-visibility: auto on .gallery-item skips rendering
@@ -1231,38 +1232,46 @@
             if (!galleryContainer || galleryContainer.dataset.built === '1') return;
             galleryContainer.dataset.built = '1';
 
-            var fragment = document.createDocumentFragment();
+            // Explicit width/height/aspect-ratio baked into markup so the
+            // browser reserves the correct box before the image loads.
+            var html = uniqueImages.map(function(imgSrc) {
+                return '<div class="gallery-item" data-src="' + imgSrc + '">' +
+                       '<img src="' + imgSrc + '" ' +
+                       'alt="Sunbet GTI winner presentation moment" ' +
+                       'loading="lazy" ' +
+                       'decoding="async" ' +
+                       'fetchpriority="low" ' +
+                       'width="400" ' +
+                       'height="300" ' +
+                       'style="aspect-ratio: 4 / 3;" ' +
+                       'class="lazy-loading">' +
+                       '</div>';
+            }).join('');
 
-            uniqueImages.forEach(function(imgSrc) {
-                var item = document.createElement('div');
-                item.className = 'gallery-item';
+            galleryContainer.innerHTML = html;
 
-                var img = document.createElement('img');
-                img.src = imgSrc;
-                img.alt = 'Sunbet GTI winner presentation moment';
-                img.loading = 'lazy';
-                img.decoding = 'async';
-                img.fetchPriority = 'low';
-                img.width = 400;
-                img.height = 300;
-                img.className = 'lazy-loading';
+            // Attach handlers after innerHTML insertion
+            galleryContainer.querySelectorAll('.gallery-item').forEach(function(item) {
+                var img = item.querySelector('img');
+                var imgSrc = item.getAttribute('data-src');
 
-                img.onload = function() {
-                    this.classList.remove('lazy-loading');
-                    this.classList.add('lazy-loaded');
-                };
-                img.onerror = function() {
-                    this.src = 'data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22400%22 height=%22300%22%3E%3Crect width=%22400%22 height=%22300%22 fill=%22%23f0e6ea%22/%3E%3Ctext x=%22200%22 y=%22150%22 font-size=%2220%22 text-anchor=%22middle%22 fill=%22%23666%22 font-family=%22Inter%22%3EGallery%20Image%3C/text%3E%3C/svg%3E';
-                    this.classList.remove('lazy-loading');
-                    this.classList.add('lazy-loaded');
-                };
+                if (img.complete && img.naturalWidth > 0) {
+                    img.classList.remove('lazy-loading');
+                    img.classList.add('lazy-loaded');
+                } else {
+                    img.addEventListener('load', function() {
+                        this.classList.remove('lazy-loading');
+                        this.classList.add('lazy-loaded');
+                    });
+                    img.addEventListener('error', function() {
+                        this.src = 'data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22400%22 height=%22300%22%3E%3Crect width=%22400%22 height=%22300%22 fill=%22%23f0e6ea%22/%3E%3Ctext x=%22200%22 y=%22150%22 font-size=%2220%22 text-anchor=%22middle%22 fill=%22%23666%22 font-family=%22Inter%22%3EGallery%20Image%3C/text%3E%3C/svg%3E';
+                        this.classList.remove('lazy-loading');
+                        this.classList.add('lazy-loaded');
+                    });
+                }
 
-                item.appendChild(img);
                 item.addEventListener('click', function() { openLightbox(imgSrc); });
-                fragment.appendChild(item);
             });
-
-            galleryContainer.appendChild(fragment);
         }
 
         // Schedule gallery construction so it doesn't block first paint
