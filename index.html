@@ -185,26 +185,10 @@
             }
         }
         
+        /* Glow removed — pink only */
         .magic-glow {
-            text-shadow: 
-                0 0 20px rgba(230, 0, 126, 0.3),
-                0 0 40px rgba(230, 0, 126, 0.2),
-                0 0 60px rgba(230, 0, 126, 0.1);
-            animation: glowPulse 3s ease-in-out infinite;
-        }
-        
-        @keyframes glowPulse {
-            0%, 100% { 
-                text-shadow: 
-                    0 0 20px rgba(230, 0, 126, 0.3),
-                    0 0 40px rgba(230, 0, 126, 0.2);
-            }
-            50% { 
-                text-shadow: 
-                    0 0 30px rgba(230, 0, 126, 0.5),
-                    0 0 60px rgba(230, 0, 126, 0.3),
-                    0 0 90px rgba(230, 0, 126, 0.2);
-            }
+            text-shadow: none;
+            animation: none;
         }
         
         .magic-text-hover {
@@ -213,9 +197,7 @@
         }
         .magic-text-hover:hover {
             transform: translateZ(30px) scale(1.02);
-            text-shadow: 
-                0 10px 30px rgba(230, 0, 126, 0.4),
-                0 20px 60px rgba(230, 0, 126, 0.2);
+            text-shadow: none;
         }
 
         .stacked-text {
@@ -1122,8 +1104,8 @@
                 <div class="relative">
                     <div class="relative bg-obrian-black rounded-2xl p-4 shadow-2xl transform rotate-3 hover:rotate-0 transition-transform duration-500">
                         <div class="aspect-video rounded-lg overflow-hidden relative">
-                            <img src="two-boys-communicating 2.png" 
-                                 alt="Two boys communicating" 
+                            <img src="two-boys-communicating-2.png"
+                                 alt="Two boys communicating"
                                  class="w-full h-full object-cover">
                             <div class="absolute inset-0 bg-gradient-to-tr from-obrian-pink/20 to-transparent"></div>
                         </div>
@@ -1319,6 +1301,56 @@
             </div>
         </div>
     </section>
+
+    <!-- ===== NEW SECTION: FULL-SCREEN IMAGE BANNER ===== -->
+    <section class="relative min-h-screen flex items-center bg-white overflow-hidden pt-20"
+             style="background-image: url('obrian-website-image.jpg'); background-size: cover; background-position: center; background-blend-mode: overlay; background-color: rgba(255,255,255,0.85);">
+
+        <!-- animated wave lines -->
+        <div class="absolute inset-0 wave-lines">
+            <svg viewBox="0 0 1200 800" preserveAspectRatio="none">
+                <path d="M0,400 C150,300 300,500 450,400 C600,300 750,500 900,400 C1050,300 1200,500 1200,400"
+                      stroke="#e6007e" stroke-width="1" fill="none" opacity="0.2">
+                    <animate attributeName="d"
+                             dur="10s"
+                             repeatCount="indefinite"
+                             values="M0,400 C150,300 300,500 450,400 C600,300 750,500 900,400 C1050,300 1200,500 1200,400;
+                                     M0,400 C150,500 300,300 450,400 C600,500 750,300 900,400 C1050,500 1200,300 1200,400;
+                                     M0,400 C150,300 300,500 450,400 C600,300 750,500 900,400 C1050,300 1200,500 1200,400"/>
+                </path>
+            </svg>
+        </div>
+
+        <div class="relative z-10 max-w-4xl mx-auto px-6 text-center reveal">
+            <span class="inline-block text-obrian-pink font-bold text-xs uppercase tracking-[0.25em] mb-4">
+                Let's Build Something Remarkable
+            </span>
+
+            <h2 class="text-4xl md:text-6xl font-black text-obrian-black leading-tight mb-6">
+                READY TO CREATE<br>
+                <span class="text-obrian-pink">MAGIC?</span>
+            </h2>
+
+            <p class="font-body text-lg text-gray-600 max-w-2xl mx-auto mb-10">
+                Tell us where you want your brand to go — we'll help you get there with
+                strategy, creativity, and a little digital magic.
+            </p>
+
+            <div class="flex flex-col sm:flex-row gap-4 justify-center">
+                <a href="Contact_Form.html"
+                   class="magnetic-btn inline-flex items-center justify-center gap-3 px-8 py-4 bg-obrian-pink text-white font-bold rounded-full hover:shadow-lg hover:shadow-pink-500/30 transition-all">
+                    START A PROJECT
+                    <i data-lucide="arrow-right" class="w-5 h-5"></i>
+                </a>
+                <a href="tel:+27100355218"
+                   class="magnetic-btn inline-flex items-center justify-center gap-3 px-8 py-4 border-2 border-obrian-black/20 text-obrian-black font-bold rounded-full hover:border-obrian-pink hover:text-obrian-pink transition-all">
+                    CALL US
+                    <i data-lucide="phone" class="w-5 h-5"></i>
+                </a>
+            </div>
+        </div>
+    </section>
+    <!-- ===== END NEW SECTION ===== -->
 
     <!-- Contact CTA -->
     <section id="contact" class="py-24 bg-obrian-black text-white relative overflow-hidden">
