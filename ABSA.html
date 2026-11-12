@@ -127,6 +127,38 @@
             background: var(--brand-pink-dark);
         }
 
+        /* ── BACK TO OUR WORK BUTTON (hero) ── */
+        .btn-back-work {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            padding: 12px 28px;
+            border-radius: 60px;
+            font-weight: 600;
+            font-size: 0.9rem;
+            letter-spacing: 0.3px;
+            transition: var(--transition);
+            border: 2px solid var(--brand-pink);
+            background: transparent;
+            color: var(--brand-pink);
+            text-decoration: none;
+            cursor: pointer;
+        }
+        .btn-back-work:hover {
+            background: var(--brand-pink);
+            color: #ffffff;
+            transform: translateY(-3px);
+            box-shadow: 0 10px 25px -6px rgba(237, 0, 142, 0.5);
+        }
+        .btn-back-work .arrow-icon {
+            font-size: 0.95rem;
+            transition: transform 0.3s ease;
+            display: inline-block;
+        }
+        .btn-back-work:hover .arrow-icon {
+            transform: translateX(-4px);
+        }
+
         /* ── Header (from Our Work page) ── */
         .header-glass {
             position: fixed;
@@ -478,6 +510,14 @@
             font-weight: 600;
         }
 
+        .hero-actions {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+            align-items: center;
+            justify-content: center;
+        }
+
         /* ── Case Study Detail ── */
         .case-detail {
             padding: 40px 0 60px;
@@ -659,7 +699,7 @@
             right: -70px;
         }
 
-        /* ── BACK TO OUR WORK BUTTON ── */
+        /* ── BACK TO OUR WORK BUTTON (lightbox) ── */
         .btn-back {
             display: inline-flex;
             align-items: center;
@@ -699,51 +739,6 @@
         }
         .btn-back-lightbox:hover {
             transform: translateX(-50%) translateY(-3px);
-        }
-
-        /* ===== FLOATING BACK BUTTON ===== */
-        .floating-back {
-            position: fixed;
-            bottom: 32px;
-            left: 32px;
-            z-index: 1499;
-            display: inline-flex;
-            align-items: center;
-            gap: 10px;
-            padding: 12px 22px;
-            background: linear-gradient(135deg, #ed008e 0%, #b0006a 100%);
-            color: #ffffff;
-            font-weight: 700;
-            font-size: 0.85rem;
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
-            border-radius: 9999px;
-            border: 2px solid rgba(255, 255, 255, 0.25);
-            text-decoration: none;
-            box-shadow: 0 8px 24px rgba(237, 0, 142, 0.35);
-            -webkit-tap-highlight-color: transparent;
-            transition: transform 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94),
-                        box-shadow 0.3s ease,
-                        background 0.3s ease;
-        }
-        .floating-back:hover {
-            transform: translateY(-4px) scale(1.04);
-            box-shadow: 0 14px 32px rgba(237, 0, 142, 0.45);
-            color: #ffffff;
-        }
-        .floating-back:active {
-            transform: translateY(-1px) scale(0.98);
-        }
-        .floating-back:focus-visible {
-            outline: 3px solid rgba(237, 0, 142, 0.45);
-            outline-offset: 3px;
-        }
-        .floating-back .arrow-icon {
-            font-size: 1rem;
-            transition: transform 0.3s ease;
-        }
-        .floating-back:hover .arrow-icon {
-            transform: translateX(-4px);
         }
 
         /* ===== BACK TO TOP BUTTON (copied from Home page) ===== */
@@ -887,27 +882,6 @@
             font-size: 0.85rem;
         }
 
-        /* ── Reduced motion ── */
-        @media (prefers-reduced-motion: reduce) {
-            html {
-                scroll-behavior: auto;
-            }
-            .back-to-top,
-            .btb-arrow,
-            .floating-back,
-            .floating-back .arrow-icon {
-                transition: none !important;
-            }
-            .back-to-top:hover,
-            .floating-back:hover {
-                transform: none;
-            }
-            .back-to-top:hover .btb-arrow,
-            .floating-back:hover .arrow-icon {
-                transform: none;
-            }
-        }
-
         /* ── Responsive ── */
         @media (max-width: 1024px) {
             .case-detail .content-grid {
@@ -969,17 +943,6 @@
                 width: 18px;
                 height: 18px;
             }
-
-            /* Floating back responsive sizing */
-            .floating-back {
-                bottom: 24px;
-                left: 20px;
-                padding: 10px 16px;
-                font-size: 0.75rem;
-            }
-            .floating-back .arrow-icon {
-                font-size: 0.85rem;
-            }
         }
 
         @media (max-width: 480px) {
@@ -1002,12 +965,9 @@
                 padding: 8px 18px;
                 font-size: 0.8rem;
             }
-
-            /* Floating back lifts above stacked layout */
-            .floating-back {
-                bottom: 80px;
-                padding: 8px 14px;
-                font-size: 0.7rem;
+            .btn-back-work {
+                padding: 10px 22px;
+                font-size: 0.8rem;
             }
         }
 
@@ -1026,20 +986,41 @@
             animation: fadeUp 0.7s ease forwards;
             opacity: 0;
         }
-        .fade-up-d1 { animation-delay: 0.1s; }
-        .fade-up-d2 { animation-delay: 0.2s; }
-        .fade-up-d3 { animation-delay: 0.3s; }
-        .fade-up-d4 { animation-delay: 0.4s; }
-        .fade-up-d5 { animation-delay: 0.5s; }
+        .fade-up-d1 {
+            animation-delay: 0.1s;
+        }
+        .fade-up-d2 {
+            animation-delay: 0.2s;
+        }
+        .fade-up-d3 {
+            animation-delay: 0.3s;
+        }
+        .fade-up-d4 {
+            animation-delay: 0.4s;
+        }
+        .fade-up-d5 {
+            animation-delay: 0.5s;
+        }
+
+        /* ── Reduced motion ── */
+        @media (prefers-reduced-motion: reduce) {
+            html {
+                scroll-behavior: auto;
+            }
+            .back-to-top,
+            .btb-arrow {
+                transition: none !important;
+            }
+            .back-to-top:hover {
+                transform: none;
+            }
+            .back-to-top:hover .btb-arrow {
+                transform: none;
+            }
+        }
     </style>
 </head>
 <body>
-
-    <!-- ===== FLOATING BACK BUTTON ===== -->
-    <a href="Our_Work.html" class="floating-back" aria-label="Back to Our Work">
-        <span class="arrow-icon">←</span>
-        <span>Back to Our Work</span>
-    </a>
 
     <!-- ===== BACK TO TOP BUTTON (copied from Home) ===== -->
     <button class="back-to-top" id="backToTopBtn" aria-label="Back to top" title="Back to top" aria-hidden="true" tabindex="-1">
@@ -1162,6 +1143,13 @@
                 <span class="inline-block bg-white px-6 py-2 rounded-full shadow-sm text-sm font-semibold text-[#231e1f] border border-gray-100">Financial Services</span>
                 <span class="inline-block bg-white px-6 py-2 rounded-full shadow-sm text-sm font-semibold text-[#231e1f] border border-gray-100">2018</span>
             </div>
+
+            <!-- ===== BACK TO OUR WORK BUTTON (HERO) ===== -->
+            <div class="hero-actions" style="margin-top: 2rem;">
+                <a href="Our_Work.html" class="btn-back-work">
+                    <span class="arrow-icon">←</span> Back to Our Work
+                </a>
+            </div>
         </div>
     </section>
 
@@ -1208,59 +1196,59 @@
             <h2 class="text-3xl font-bold mb-8 text-center fade-up">Campaign Gallery</h2>
             <div class="gallery-grid">
                 <div class="gallery-item fade-up fade-up-d1" onclick="openLightbox(this)">
-                    <img src="https://obriangroup.com/assets/images/absa2.jpg" alt="ABSA Micro-Loan campaign image" loading="lazy" data-full="https://obriangroup.com/assets/images/absa2.jpg" data-label="ABSA MICRO-LOAN">
+                    <img src="https://obriangroup.com/absa2.jpg" alt="ABSA Micro-Loan campaign image" loading="lazy" data-full="https://obriangroup.com/absa2.jpg" data-label="ABSA MICRO-LOAN">
                     <div class="gallery-label">ABSA MICRO-LOAN</div>
                 </div>
                 <div class="gallery-item fade-up fade-up-d2" onclick="openLightbox(this)">
-                    <img src="https://obriangroup.com/assets/images/absa-1.jpg" alt="ABSA Micro-Loan campaign image" loading="lazy" data-full="https://obriangroup.com/assets/images/absa-1.jpg" data-label="ABSA MICRO-LOAN">
+                    <img src="https://obriangroup.com/absa-1.jpg" alt="ABSA Micro-Loan campaign image" loading="lazy" data-full="https://obriangroup.com/absa-1.jpg" data-label="ABSA MICRO-LOAN">
                     <div class="gallery-label">ABSA MICRO-LOAN</div>
                 </div>
                 <div class="gallery-item fade-up fade-up-d3" onclick="openLightbox(this)">
-                    <img src="https://obriangroup.com/assets/images/atm1.jpg" alt="ABSA ATM campaign" loading="lazy" data-full="https://obriangroup.com/assets/images/atm1.jpg" data-label="ABSA MICRO-LOAN">
+                    <img src="https://obriangroup.com/atm1.jpg" alt="ABSA ATM campaign" loading="lazy" data-full="https://obriangroup.com/atm1.jpg" data-label="ABSA MICRO-LOAN">
                     <div class="gallery-label">ABSA MICRO-LOAN</div>
                 </div>
                 <div class="gallery-item fade-up fade-up-d4" onclick="openLightbox(this)">
-                    <img src="https://obriangroup.com/assets/images/bs-dl-leaflet-1.jpg" alt="ABSA leaflet" loading="lazy" data-full="https://obriangroup.com/assets/images/bs-dl-leaflet-1.jpg" data-label="ABSA MICRO-LOAN">
+                    <img src="https://obriangroup.com/bs-dl-leaflet-1.jpg" alt="ABSA leaflet" loading="lazy" data-full="https://obriangroup.com/bs-dl-leaflet-1.jpg" data-label="ABSA MICRO-LOAN">
                     <div class="gallery-label">ABSA MICRO-LOAN</div>
                 </div>
                 <div class="gallery-item fade-up fade-up-d5" onclick="openLightbox(this)">
-                    <img src="https://obriangroup.com/assets/images/atm2.jpg" alt="ABSA ATM campaign" loading="lazy" data-full="https://obriangroup.com/assets/images/atm2.jpg" data-label="ABSA MICRO-LOAN">
+                    <img src="https://obriangroup.com/atm2.jpg" alt="ABSA ATM campaign" loading="lazy" data-full="https://obriangroup.com/atm2.jpg" data-label="ABSA MICRO-LOAN">
                     <div class="gallery-label">ABSA MICRO-LOAN</div>
                 </div>
                 <div class="gallery-item fade-up fade-up-d1" onclick="openLightbox(this)">
-                    <img src="https://obriangroup.com/assets/images/a5-leaflet-1.jpg" alt="ABSA leaflet" loading="lazy" data-full="https://obriangroup.com/assets/images/a5-leaflet-1.jpg" data-label="ABSA MICRO-LOAN">
+                    <img src="https://obriangroup.com/a5-leaflet-1.jpg" alt="ABSA leaflet" loading="lazy" data-full="https://obriangroup.com/a5-leaflet-1.jpg" data-label="ABSA MICRO-LOAN">
                     <div class="gallery-label">ABSA MICRO-LOAN</div>
                 </div>
                 <div class="gallery-item fade-up fade-up-d2" onclick="openLightbox(this)">
-                    <img src="https://obriangroup.com/assets/images/atm7.jpg" alt="ABSA ATM campaign" loading="lazy" data-full="https://obriangroup.com/assets/images/atm7.jpg" data-label="ABSA MICRO-LOAN">
+                    <img src="https://obriangroup.com/atm7.jpg" alt="ABSA ATM campaign" loading="lazy" data-full="https://obriangroup.com/atm7.jpg" data-label="ABSA MICRO-LOAN">
                     <div class="gallery-label">ABSA MICRO-LOAN</div>
                 </div>
                 <div class="gallery-item fade-up fade-up-d3" onclick="openLightbox(this)">
-                    <img src="https://obriangroup.com/assets/images/atm6.jpg" alt="ABSA ATM campaign" loading="lazy" data-full="https://obriangroup.com/assets/images/atm6.jpg" data-label="ABSA MICRO-LOAN">
+                    <img src="https://obriangroup.com/atm6.jpg" alt="ABSA ATM campaign" loading="lazy" data-full="https://obriangroup.com/atm6.jpg" data-label="ABSA MICRO-LOAN">
                     <div class="gallery-label">ABSA MICRO-LOAN</div>
                 </div>
                 <div class="gallery-item fade-up fade-up-d4" onclick="openLightbox(this)">
-                    <img src="https://obriangroup.com/assets/images/atm5.jpg" alt="ABSA ATM campaign" loading="lazy" data-full="https://obriangroup.com/assets/images/atm5.jpg" data-label="ABSA MICRO-LOAN">
+                    <img src="https://obriangroup.com/atm5.jpg" alt="ABSA ATM campaign" loading="lazy" data-full="https://obriangroup.com/atm5.jpg" data-label="ABSA MICRO-LOAN">
                     <div class="gallery-label">ABSA MICRO-LOAN</div>
                 </div>
                 <div class="gallery-item fade-up fade-up-d5" onclick="openLightbox(this)">
-                    <img src="https://obriangroup.com/assets/images/atm4.jpg" alt="ABSA ATM campaign" loading="lazy" data-full="https://obriangroup.com/assets/images/atm4.jpg" data-label="ABSA MICRO-LOAN">
+                    <img src="https://obriangroup.com/atm4.jpg" alt="ABSA ATM campaign" loading="lazy" data-full="https://obriangroup.com/atm4.jpg" data-label="ABSA MICRO-LOAN">
                     <div class="gallery-label">ABSA MICRO-LOAN</div>
                 </div>
                 <div class="gallery-item fade-up fade-up-d1" onclick="openLightbox(this)">
-                    <img src="https://obriangroup.com/assets/images/atm3.jpg" alt="ABSA ATM campaign" loading="lazy" data-full="https://obriangroup.com/assets/images/atm3.jpg" data-label="ABSA MICRO-LOAN">
+                    <img src="https://obriangroup.com/atm3.jpg" alt="ABSA ATM campaign" loading="lazy" data-full="https://obriangroup.com/atm3.jpg" data-label="ABSA MICRO-LOAN">
                     <div class="gallery-label">ABSA MICRO-LOAN</div>
                 </div>
                 <div class="gallery-item fade-up fade-up-d2" onclick="openLightbox(this)">
-                    <img src="https://obriangroup.com/assets/images/card-convt-2.jpg" alt="ABSA card conversion" loading="lazy" data-full="https://obriangroup.com/assets/images/card-convt-2.jpg" data-label="ABSA MICRO-LOAN">
+                    <img src="https://obriangroup.com/card-convt-2.jpg" alt="ABSA card conversion" loading="lazy" data-full="https://obriangroup.com/card-convt-2.jpg" data-label="ABSA MICRO-LOAN">
                     <div class="gallery-label">ABSA MICRO-LOAN</div>
                 </div>
                 <div class="gallery-item fade-up fade-up-d3" onclick="openLightbox(this)">
-                    <img src="https://obriangroup.com/assets/images/card-convt-1.jpg" alt="ABSA card conversion" loading="lazy" data-full="https://obriangroup.com/assets/images/card-convt-1.jpg" data-label="ABSA MICRO-LOAN">
+                    <img src="https://obriangroup.com/card-convt-1.jpg" alt="ABSA card conversion" loading="lazy" data-full="https://obriangroup.com/card-convt-1.jpg" data-label="ABSA MICRO-LOAN">
                     <div class="gallery-label">ABSA MICRO-LOAN</div>
                 </div>
                 <div class="gallery-item fade-up fade-up-d4" onclick="openLightbox(this)">
-                    <img src="https://obriangroup.com/assets/images/absa2.png" alt="ABSA campaign image" loading="lazy" data-full="https://obriangroup.com/assets/images/absa2.png" data-label="ABSA MICRO-LOAN">
+                    <img src="https://obriangroup.com/absa2.png" alt="ABSA campaign image" loading="lazy" data-full="https://obriangroup.com/absa2.png" data-label="ABSA MICRO-LOAN">
                     <div class="gallery-label">ABSA MICRO-LOAN</div>
                 </div>
             </div>
