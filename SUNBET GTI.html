@@ -15,9 +15,7 @@
   <link rel="shortcut icon" href="obrian-transparent-logo-4461219.webp" type="image/x-icon">
   
   <!-- ===== PERFORMANCE: PRELOAD + PRECONNECT ===== -->
-  <!-- Preload the hero/winner image so it starts downloading immediately -->
   <link rel="preload" as="image" href="112a0291.webp" fetchpriority="high">
-  <!-- Preconnect to font & icon CDNs to shave off DNS/TLS handshakes -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin>
@@ -442,38 +440,92 @@
       font-size: 0.95rem;
     }
 
-    /* Hero */
+    /* ── Hero (Our Work style) ── */
     .hero {
-      padding-top: 140px;
-      padding-bottom: 40px;
-      background: radial-gradient(circle at 90% 20%, rgba(237,0,142,0.04) 0%, #ffffff 90%);
-    }
-    .hero-content {
+      padding: 160px 0 80px;
+      background: linear-gradient(165deg, #ffffff 0%, #fef6f9 100%);
+      position: relative;
+      overflow: hidden;
       text-align: center;
-      max-width: 840px;
-      margin: 0 auto;
     }
-    .hero-tag {
-      background: #ed008e10;
+    .hero::before {
+      content: '';
+      position: absolute;
+      top: -30%;
+      right: -10%;
+      width: 600px;
+      height: 600px;
+      background: radial-gradient(circle, rgba(237, 0, 142, 0.06) 0%, transparent 70%);
+      border-radius: 50%;
+      pointer-events: none;
+    }
+    .hero::after {
+      content: '';
+      position: absolute;
+      bottom: -20%;
+      left: -10%;
+      width: 500px;
+      height: 500px;
+      background: radial-gradient(circle, rgba(237, 0, 142, 0.04) 0%, transparent 70%);
+      border-radius: 50%;
+      pointer-events: none;
+    }
+    .hero .container {
+      position: relative;
+      z-index: 2;
+    }
+    .hero-badge {
       display: inline-block;
-      padding: 6px 18px;
-      border-radius: 40px;
-      font-weight: 600;
-      font-size: 0.85rem;
-      margin-bottom: 24px;
+      background: #fce4f2;
       color: #ed008e;
-      border: 1px solid #ed008e20;
+      padding: 6px 20px;
+      border-radius: 60px;
+      font-size: 0.8rem;
+      font-weight: 600;
+      letter-spacing: 0.5px;
+      text-transform: uppercase;
+      margin-bottom: 20px;
     }
     .hero h1 {
-      font-size: 3.8rem;
-      margin-bottom: 24px;
-      color: #251e21;
+      font-size: clamp(2.8rem, 6vw, 5rem);
+      font-weight: 900;
+      line-height: 1.1;
+      margin-bottom: 16px;
+      background: linear-gradient(135deg, #251e21 40%, #ed008e);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
     }
     .hero p {
-      font-size: 1.2rem;
+      font-size: clamp(1.1rem, 1.5vw, 1.4rem);
       color: #4a3a42;
-      max-width: 700px;
+      max-width: 620px;
       margin: 0 auto 32px;
+      font-weight: 400;
+    }
+    .hero .highlight {
+      color: #ed008e;
+      font-weight: 600;
+    }
+    .hero-stats {
+      display: flex;
+      justify-content: center;
+      gap: 48px;
+      margin-top: 40px;
+      flex-wrap: wrap;
+    }
+    .hero-stats .stat {
+      text-align: center;
+    }
+    .hero-stats .stat .number {
+      font-size: 2.2rem;
+      font-weight: 800;
+      color: #ed008e;
+    }
+    .hero-stats .stat .label {
+      font-size: 0.85rem;
+      color: #4a3a42;
+      font-weight: 500;
     }
 
     /* winner spotlight */
@@ -495,7 +547,6 @@
       border-radius: 28px;
       overflow: hidden;
       background: linear-gradient(145deg, #f5edf0 0%, #faf5f7 100%);
-      /* Reserve space so the layout doesn't shift when the image loads */
       aspect-ratio: 3 / 2;
     }
     .winner-img img {
@@ -541,10 +592,8 @@
       box-shadow: 0 8px 20px rgba(0,0,0,0.05);
       border: 1px solid #ed008e10;
       background: linear-gradient(145deg, #f5edf0 0%, #faf5f7 100%);
-      /* ===== PERFORMANCE: skip rendering off-screen items entirely ===== */
       content-visibility: auto;
       contain-intrinsic-size: 400px 300px;
-      /* ===== PERFORMANCE: isolate paint/layout per card ===== */
       contain: layout paint style;
     }
     .gallery-item img {
@@ -744,9 +793,15 @@
     @media (max-width: 768px) {
       .back-row { justify-content: center; }
       .logo-text { font-size: 1rem; }
+      .hero { padding: 130px 0 60px; }
+      .hero h1 { font-size: 2.4rem; }
+      .hero-stats { gap: 24px; }
+      .hero-stats .stat .number { font-size: 1.6rem; }
     }
     @media (max-width: 480px) {
       .logo-text { font-size: 0.9rem; }
+      .hero h1 { font-size: 2rem; }
+      .hero-stats { flex-direction: column; gap: 12px; }
     }
 
     /* ===== BACK TO TOP BUTTON (with scroll progress ring) ===== */
@@ -812,7 +867,7 @@
     .btb-ring-progress {
       stroke: #ffffff;
       stroke-linecap: round;
-      stroke-dasharray: 131.95;   /* 2π × r(21) */
+      stroke-dasharray: 131.95;
       stroke-dashoffset: 131.95;
       transition: stroke-dashoffset 0.1s linear;
     }
@@ -947,13 +1002,27 @@
         <a href="Contact_Us.html" style="display:inline-flex; margin-top:1rem; background:linear-gradient(135deg,#e6007e,#ff1493); color:#fff; padding:0.6rem 1.5rem; border-radius:9999px; font-weight:700; text-decoration:none;">Contact Us</a>
     </div>
 
-    <!-- Hero Section -->
+    <!-- ===== HERO (Our Work style) ===== -->
     <section class="hero">
         <div class="container">
-            <div class="hero-content">
-                <span class="hero-tag"><i class="fas fa-trophy" style="margin-right: 8px;"></i> Grand Winner Edition</span>
-                <h1 class="display-large">SUNBET GTI <br>Winner Celebration</h1>
-                <p>A spectacular announcement & presentation ceremony — honouring excellence, innovation, and the ultimate GTI champion. O'Brian Group partnered with Sunbet to deliver an unforgettable experience.</p>
+            <span class="hero-badge"><i class="fas fa-trophy" style="margin-right: 6px;"></i> Winner Edition</span>
+            <h1>Sunbet GTI</h1>
+            <p>
+                A spectacular <span class="highlight">winner celebration</span> — honouring excellence, innovation, and the ultimate GTI champion. O'Brian Group partnered with Sunbet to deliver an unforgettable experience.
+            </p>
+            <div class="hero-stats">
+                <div class="stat">
+                    <div class="number">2025</div>
+                    <div class="label">Grand Prize</div>
+                </div>
+                <div class="stat">
+                    <div class="number">1</div>
+                    <div class="label">GTI Winner</div>
+                </div>
+                <div class="stat">
+                    <div class="number">100%</div>
+                    <div class="label">Client Satisfaction</div>
+                </div>
             </div>
         </div>
     </section>
@@ -969,7 +1038,6 @@
     <div class="container">
         <div class="winner-spotlight">
             <div class="winner-img">
-                <!-- Hero image: preloaded in <head>, high priority, decodes async -->
                 <img src="112a0291.webp"
                      alt="Sunbet GTI Winner Celebration"
                      width="600" height="400"
@@ -1133,15 +1201,6 @@
 
         // ============================================================
         //  GALLERY: data + deferred construction
-        //  - Gallery items are built only after the page is idle
-        //    so the hero and above-fold content paint first.
-        //  - Explicit width/height/aspect-ratio are baked into the
-        //    markup so the browser reserves the correct box before
-        //    the image loads — no CLS, no "missing dimensions" warning.
-        //  - Every image uses native loading="lazy" + decoding="async"
-        //    + fetchpriority="low" so it doesn't compete with the hero.
-        //  - content-visibility: auto on .gallery-item skips rendering
-        //    off-screen cards entirely.
         // ============================================================
         const allImagePaths = [
             "112a0142.webp",
@@ -1169,7 +1228,6 @@
             "112a0251.webp"
         ];
 
-        // De-duplicate while preserving order
         var uniqueImages = [];
         (function() {
             var seen = {};
@@ -1178,7 +1236,6 @@
             });
         })();
 
-        // Lightbox elements + state (declared early so gallery clicks can use them)
         var lightbox = document.getElementById('lightboxModal');
         var lightboxImg = document.getElementById('lightboxImg');
         var closeBtn = document.getElementById('closeLightboxBtn');
@@ -1211,7 +1268,6 @@
         function closeLightbox() {
             lightbox.classList.remove('active');
             document.body.style.overflow = '';
-            // Remove the src instead of setting it to '' to avoid a broken-image flash
             lightboxImg.removeAttribute('src');
         }
 
@@ -1226,14 +1282,11 @@
             else if (e.key === 'ArrowRight') showImage(currentIndex + 1);
         });
 
-        // ── Build the gallery in one pass, on idle ──
         function buildGallery() {
             var galleryContainer = document.getElementById('dynamicGallery');
             if (!galleryContainer || galleryContainer.dataset.built === '1') return;
             galleryContainer.dataset.built = '1';
 
-            // Explicit width/height/aspect-ratio baked into markup so the
-            // browser reserves the correct box before the image loads.
             var html = uniqueImages.map(function(imgSrc) {
                 return '<div class="gallery-item" data-src="' + imgSrc + '">' +
                        '<img src="' + imgSrc + '" ' +
@@ -1250,7 +1303,6 @@
 
             galleryContainer.innerHTML = html;
 
-            // Attach handlers after innerHTML insertion
             galleryContainer.querySelectorAll('.gallery-item').forEach(function(item) {
                 var img = item.querySelector('img');
                 var imgSrc = item.getAttribute('data-src');
@@ -1274,7 +1326,6 @@
             });
         }
 
-        // Schedule gallery construction so it doesn't block first paint
         if ('requestIdleCallback' in window) {
             requestIdleCallback(buildGallery, { timeout: 2000 });
         } else {
@@ -1289,7 +1340,7 @@
             if (!backToTop) return;
 
             var btbRingProgress = backToTop.querySelector('.btb-ring-progress');
-            var BTB_RING_LENGTH = 2 * Math.PI * 21; // r = 21 in the 48×48 viewBox
+            var BTB_RING_LENGTH = 2 * Math.PI * 21;
             var prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
             var ticking = false;
 
