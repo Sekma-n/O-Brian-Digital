@@ -165,45 +165,100 @@
     .mobile-menu-panel .mobile-dropdown-items { padding-left: 1rem; }
     .mobile-menu-panel .mobile-dropdown-items a { font-weight: 400; font-size: 0.95rem; }
 
-    /* ── PAGE STYLES ── */
+    /* ===== HERO (Sunbet GTI style) ===== */
     .hero {
-      background: linear-gradient(135deg, #ffffff 0%, #fff5f9 100%);
-      padding: 4rem 0 5rem; text-align: center;
+      padding-top: 140px;
+      padding-bottom: 60px;
+      background: radial-gradient(circle at 90% 20%, rgba(237, 0, 142, 0.04) 0%, #ffffff 90%);
       border-bottom: 1px solid #ffe2ef;
     }
-    .hero h1 { font-size: 3.2rem; margin-bottom: 1rem; color: #251e21; }
-    .hero p { font-size: 1.2rem; color: #4a3b3f; max-width: 680px; margin: 0 auto; }
-    .hero p strong { color: #ed008e; }
-
-    /* ── BACK TO OUR WORK BUTTON (hero) ── */
-    .btn-back-work {
-      display: inline-flex;
-      align-items: center;
-      gap: 10px;
-      padding: 0.75rem 1.8rem;
-      border-radius: 60px;
+    .hero .container {
+      max-width: 840px;
+      margin: 0 auto;
+      padding: 24px 14px;
+      text-align: center;
+    }
+    .hero .hero-badge {
+      background: rgba(237, 0, 142, 0.06);
+      display: inline-block;
+      padding: 6px 18px;
+      border-radius: 40px;
       font-weight: 600;
-      font-size: 0.9rem;
-      letter-spacing: 0.3px;
-      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-      border: 2px solid #ed008e;
-      background: transparent;
+      font-size: 0.85rem;
+      margin-bottom: 24px;
       color: #ed008e;
-      text-decoration: none;
-      cursor: pointer;
+      border: 1px solid rgba(237, 0, 142, 0.12);
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
     }
-    .btn-back-work:hover {
-      background: #ed008e;
-      color: #ffffff;
-      transform: translateY(-3px);
-      box-shadow: 0 10px 25px -6px rgba(237, 0, 142, 0.4);
+    .hero .hero-badge i {
+      color: #ed008e;
+      margin-right: 6px;
     }
-    .btn-back-work i {
-      font-size: 0.95rem;
-      transition: transform 0.3s ease;
+    .hero h1 {
+      font-size: 3.8rem;
+      margin-bottom: 24px;
+      color: #251e21;
+      font-weight: 800;
+      line-height: 1.15;
+      letter-spacing: -0.02em;
     }
-    .btn-back-work:hover i {
-      transform: translateX(-4px);
+    .hero h1 .highlight {
+      color: #ed008e;
+    }
+    .hero p {
+      font-size: 1.2rem;
+      color: #4a3b3f;
+      max-width: 700px;
+      margin: 0 auto 32px;
+      line-height: 1.6;
+    }
+    .hero p .highlight {
+      color: #ed008e;
+      font-weight: 500;
+    }
+    .hero .hero-stats {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 1rem;
+      margin-top: 2rem;
+    }
+    .hero .stat {
+      background: #ffffff;
+      border: 1px solid rgba(0, 0, 0, 0.06);
+      border-radius: 16px;
+      padding: 1.2rem 1.6rem;
+      min-width: 140px;
+      text-align: center;
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.05);
+    }
+    .hero .stat .number {
+      font-size: 2rem;
+      font-weight: 800;
+      color: #ed008e;
+      line-height: 1.1;
+    }
+    .hero .stat .label {
+      font-size: 0.75rem;
+      color: #6b7280;
+      text-transform: uppercase;
+      letter-spacing: 0.6px;
+      margin-top: 4px;
+      font-weight: 600;
+    }
+    .hero .hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 1rem;
+      margin-top: 2rem;
+    }
+    @media (max-width: 768px) {
+      .hero { padding-top: 120px; padding-bottom: 40px; }
+      .hero h1 { font-size: 2.4rem; }
+      .hero p { font-size: 1.05rem; }
+      .hero .stat { padding: 1rem 1.2rem; min-width: 120px; }
     }
 
     .work-section { padding: 5rem 0; border-bottom: 1px solid #f0e6ea; }
@@ -404,6 +459,37 @@
     .pdf-card small { font-size: 0.7rem; color: #888; }
     .pdf-card a { margin-top: 0.5rem; }
 
+    /* ===== BACK TO OUR WORK BUTTON (pill shape) ===== */
+    .btn-back-work {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      padding: 0.75rem 1.8rem;
+      border-radius: 9999px;
+      font-weight: 600;
+      font-size: 0.9rem;
+      letter-spacing: 0.3px;
+      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      border: 2px solid #ed008e;
+      background: transparent;
+      color: #ed008e;
+      text-decoration: none;
+      cursor: pointer;
+    }
+    .btn-back-work:hover {
+      background: #ed008e;
+      color: #ffffff;
+      transform: translateY(-3px);
+      box-shadow: 0 10px 25px -6px rgba(237, 0, 142, 0.4);
+    }
+    .btn-back-work i {
+      font-size: 0.95rem;
+      transition: transform 0.3s ease;
+    }
+    .btn-back-work:hover i {
+      transform: translateX(-4px);
+    }
+
     /* ===== BACK TO TOP BUTTON (with scroll-progress ring) ===== */
     .back-to-top {
       position: fixed; bottom: 32px; right: 32px;
@@ -473,21 +559,16 @@
 </head>
 <body>
 
-<!-- ============================================================
-     PREMIUM GLASS HEADER
-     ============================================================ -->
+<!-- ===== PREMIUM GLASS HEADER ===== -->
 <header class="header-glass" id="mainHeader">
   <div class="max-w-7xl mx-auto px-4 md:px-6 w-full">
     <div class="flex justify-between items-center">
 
-      <!-- Premium Logo -->
       <a href="Home.html" class="logo-premium group">
         <img src="obrian-transparent-logo-4461219.webp" alt="O'Brian Group" class="h-9 w-auto" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22%3E%3Crect width=%22100%22 height=%22100%22 fill=%22%23ed008e%22/%3E%3Ctext x=%2250%22 y=%2268%22 font-size=%2248%22 text-anchor=%22middle%22 fill=%22white%22 font-weight=%22bold%22 font-family=%22Inter%22%3EO%3C/text%3E%3C/svg%3E'">
-        <!-- FIXED: was empty, now renders the wordmark -->
-        <span class="logo-text hidden sm:inline-block">O'<span class="highlight">Brian</span></span>
+        <span class="logo-text hidden sm:inline-block"> <span class="highlight"> </span></span>
       </a>
 
-      <!-- Premium Desktop Nav -->
       <div class="hidden lg:flex items-center gap-0.5">
         <a href="Home.html" class="nav-link-premium">Home</a>
         <a href="About.html" class="nav-link-premium">About</a>
@@ -523,7 +604,6 @@
         <a href="Archive_Gallery.html" class="nav-link-premium">Archives</a>
       </div>
 
-      <!-- Premium CTA -->
       <div class="hidden lg:block">
         <a href="Contact_Us.html" class="btn-premium-cta">
           <span>Contact</span>
@@ -531,7 +611,6 @@
         </a>
       </div>
 
-      <!-- Premium Burger -->
       <button class="burger-premium lg:hidden" id="menuBtn" aria-label="Toggle menu">
         <span class="burger-line"></span>
         <span class="burger-line"></span>
@@ -568,14 +647,34 @@
   <a href="Contact_Us.html" style="display:inline-flex; margin-top:1rem; background:linear-gradient(135deg,#e6007e,#ff1493); color:#fff; padding:0.6rem 1.5rem; border-radius:9999px; font-weight:700; text-decoration:none;">Contact Us</a>
 </div>
 
-<!-- Hero Section - white/pink -->
+<!-- ===== HERO (Sunbet GTI style) ===== -->
 <section class="hero">
   <div class="container">
-    <h1>OUR WORK</h1>
-    <p>A Dive into Our Work Triumphs — <strong>Case Studies in Excellence</strong></p>
+    <span class="hero-badge"><i class="fas fa-star"></i> Our Work · Case Studies</span>
+    <h1>Our Work <span class="highlight">Speaks Volumes</span></h1>
+    <p>
+      A dive into our work triumphs — <span class="highlight">case studies in excellence</span>. Each project reflects our commitment to creativity, strategy, and measurable impact.
+    </p>
 
-    <!-- Back to Our Work button -->
-    <div style="margin-top: 2rem; display: flex; justify-content: center;">
+    <div class="hero-stats">
+      <div class="stat">
+        <div class="number">23+</div>
+        <div class="label">Case Studies</div>
+      </div>
+      <div class="stat">
+        <div class="number">12</div>
+        <div class="label">Industries Served</div>
+      </div>
+      <div class="stat">
+        <div class="number">100%</div>
+        <div class="label">Client Satisfaction</div>
+      </div>
+    </div>
+
+    <div class="hero-actions">
+      <a href="#featured-showcase" class="inline-flex items-center gap-2 px-6 py-3 bg-brand text-white font-bold rounded-full hover:bg-brand/90 transition shadow-lg shadow-brand/20">
+        <i class="fas fa-arrow-down"></i> Explore Case Studies
+      </a>
       <a href="Our_Work.html" class="btn-back-work">
         <i class="fas fa-arrow-left"></i> Back to Our Work
       </a>
@@ -584,7 +683,7 @@
 </section>
 
 <!-- Industrial Dev Corp showroom -->
-<section class="work-section">
+<section class="work-section" id="featured-showcase">
   <div class="container">
     <div class="section-head">
       <span class="client-tag">— featured showcase</span>
@@ -675,7 +774,7 @@
       <div class="gallery-item"><img src="13-idc-sector-campaign-print-billboards.jpg" alt="Billboard 11"></div>
       <div class="gallery-item"><img src="2-idc-sector-campaign-print-billboards.jpg" alt="Billboard 12"></div>
       <div class="gallery-item"><img src="10-idc-sector-campaign-print-billboards.jpg" alt="Billboard 13"></div>
-      <div class="gallery-item"><img src="1-idc-sector-campaign-print-billboards.jpg" alt="Billboard 14"></div>
+      <div class="gallery-item"><img src="1-idc-sector-campaign-print-billboards.jpeg" alt="Billboard 14"></div>
     </div>
   </div>
 </section>
@@ -1178,7 +1277,7 @@
         <div class="overlay">"R16.6M disbursed to restore businesses &amp; livelihoods"</div>
       </div>
       <div class="gallery-item" data-index="2">
-        <img src="IDC 50 Million CSI Disaster Relief_Social media_twitter.jpg" alt="R500M Fund" class="w-full h-64 object-cover">
+        <img src="IDC R500million Flood Relief Fund_homepage banners_RE_Page_1.jpg" alt="R500M Fund" class="w-full h-64 object-cover">
         <div class="badge-tag">Banner</div>
         <div class="overlay">"R500M Flood Relief Fund – Restoring Businesses, Communities &amp; Livelihoods"</div>
       </div>
@@ -1202,7 +1301,7 @@
           <i class="fas fa-file-pdf"></i>
           <span>CSI Disaster Relief RFP</span>
           <small>R50M Proposal Package</small>
-          <a href="#" class="mt-2 text-xs bg-pink text-white px-4 py-1 rounded-full hover:bg-pink/80 transition">Download</a>
+          <a href="#" class="mt-2 text-xs bg-[#ed008e] text-white px-4 py-1 rounded-full hover:bg-[#c40075] transition">Download</a>
         </div>
         <div class="badge-tag">RFP</div>
         <div class="overlay">"R50M available – Proposals from registered NPOs/NPCs"</div>
@@ -1212,7 +1311,7 @@
           <i class="fas fa-file-pdf"></i>
           <span>Evaluation Criteria</span>
           <small>Required Documents List</small>
-          <a href="#" class="mt-2 text-xs bg-pink text-white px-4 py-1 rounded-full hover:bg-pink/80 transition">Download</a>
+          <a href="#" class="mt-2 text-xs bg-[#ed008e] text-white px-4 py-1 rounded-full hover:bg-[#c40075] transition">Download</a>
         </div>
         <div class="badge-tag">RFP</div>
         <div class="overlay">"Evaluation Criteria &amp; Documents Required"</div>
@@ -1349,8 +1448,8 @@
           <li><a href="Client_Experience.html">Clients</a></li>
           <li>Teams</li>
           <li>Brand</li>
-          <li><a href="Terms.html">Terms</a></li>
-          </ul>
+          <li>Terms</li>
+        </ul>
       </div>
     </div>
     <div class="copyright">
@@ -1391,11 +1490,8 @@
   (function() {
     const header = document.getElementById('mainHeader');
     window.addEventListener('scroll', function() {
-      if (window.scrollY > 20) {
-        header.classList.add('scrolled');
-      } else {
-        header.classList.remove('scrolled');
-      }
+      if (window.scrollY > 20) header.classList.add('scrolled');
+      else header.classList.remove('scrolled');
     });
 
     const menuBtn = document.getElementById('menuBtn');
@@ -1426,7 +1522,7 @@
     });
   })();
 
-  // ===== BACK TO TOP BUTTON (scroll-progress ring) =====
+  // ===== BACK TO TOP (scroll-progress ring) =====
   (function () {
     var btn = document.getElementById('backToTop');
     if (!btn) return;
@@ -1528,10 +1624,7 @@
       const card = document.createElement('div');
       card.className = 'lightbox-card';
       card.style.background = data.bg || 'linear-gradient(135deg, #e6007e, #0b1a33)';
-      card.innerHTML = `
-        <h3>${data.title}</h3>
-        <p>${data.subtitle}</p>
-      `;
+      card.innerHTML = `<h3>${data.title}</h3><p>${data.subtitle}</p>`;
       lightboxDisplay.appendChild(card);
     }
   }
@@ -1560,14 +1653,8 @@
       document.body.style.overflow = '';
     }
   });
-  nextBtn.addEventListener('click', (e) => {
-    e.stopPropagation();
-    nextImage();
-  });
-  prevBtn.addEventListener('click', (e) => {
-    e.stopPropagation();
-    prevImage();
-  });
+  nextBtn.addEventListener('click', (e) => { e.stopPropagation(); nextImage(); });
+  prevBtn.addEventListener('click', (e) => { e.stopPropagation(); prevImage(); });
 
   document.querySelectorAll('.gallery-grid').forEach(grid => {
     const galleryData = collectGalleryData(grid);
@@ -1588,7 +1675,7 @@
     }
   });
 
-  // ===== REVEAL ANIMATION =====
+  // Reveal animation
   const revealEls = document.querySelectorAll('.reveal');
   const observer = new IntersectionObserver(entries => {
     entries.forEach(entry => {
