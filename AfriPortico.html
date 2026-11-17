@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>AfriPortico Brand – Our Work</title>
     <meta name="description" content="A Dive into Our Work Triumphs – Case Studies in Excellence">
-    <link rel="shortcut icon" href="obrian-transparent-logo-4461219.webp" type="image/x-icon">
+    <link rel="shortcut icon" href="assets/images/obrian-transparent-logo-4461219.webp" type="image/x-icon">
 
     <!-- Open Graph / Social -->
     <meta property="og:title" content="afriportico brand">
@@ -406,24 +406,86 @@
             font-size: 0.95rem;
         }
 
-        /* ── existing page hero, bento, cases etc. (unchanged) ── */
+        /* ===== HERO (Sunbet GTI style) ===== */
         .hero {
-            min-height: 100vh; display: flex; align-items: center;
-            padding: 8rem 0 5rem; background: var(--gray-light);
-            border-bottom: 1px solid var(--border);
+            padding-top: 60px;
+            padding-bottom: 60px;
+            background: radial-gradient(circle at 90% 20%, rgba(237, 1, 142, 0.04) 0%, #ffffff 90%);
         }
-        .hero-content { display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: center; }
-        .hero-text h1 {
-            font-size: clamp(3.5rem, 8vw, 6rem); line-height: 1.1;
-            letter-spacing: -2px; color: var(--dark);
+        .hero .container {
+            max-width: 840px;
+            margin: 0 auto;
+            padding: 0 1.5rem;
+            text-align: center;
         }
-        .hero-text .accent { color: var(--pink); }
-        .hero-text p { font-size: 1.3rem; color: var(--gray-text); margin: 2rem 0; max-width: 450px; }
-        .hero-visual .video-reel {
-            width: 100%; border-radius: 2rem; overflow: hidden;
-            box-shadow: var(--shadow); border: 1px solid var(--border);
+        .hero .hero-badge {
+            background: rgba(237, 1, 142, 0.06);
+            display: inline-block;
+            padding: 6px 18px;
+            border-radius: 40px;
+            font-weight: 600;
+            font-size: 0.85rem;
+            margin-bottom: 24px;
+            color: var(--pink);
+            border: 1px solid rgba(237, 1, 142, 0.12);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
         }
-        .hero-visual .video-reel img { width: 100%; object-fit: cover; aspect-ratio: 4/3; }
+        .hero h1 {
+            font-size: 3.8rem;
+            margin-bottom: 24px;
+            color: var(--dark);
+            font-weight: 800;
+            line-height: 1.15;
+            letter-spacing: -0.02em;
+        }
+        .hero p {
+            font-size: 1.2rem;
+            color: var(--gray-text);
+            max-width: 700px;
+            margin: 0 auto 32px;
+            line-height: 1.6;
+        }
+        .hero .highlight {
+            color: var(--pink);
+        }
+        .hero .hero-stats {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 1rem;
+            margin-top: 2rem;
+        }
+        .hero .stat {
+            background: #fff;
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            padding: 1.2rem 1.6rem;
+            min-width: 140px;
+            text-align: center;
+            box-shadow: var(--shadow);
+        }
+        .hero .stat .number {
+            font-size: 2rem;
+            font-weight: 800;
+            color: var(--pink);
+            line-height: 1.1;
+            font-family: 'Space Grotesk', sans-serif;
+        }
+        .hero .stat .label {
+            font-size: 0.75rem;
+            color: var(--gray-text);
+            text-transform: uppercase;
+            letter-spacing: 0.6px;
+            margin-top: 4px;
+            font-weight: 600;
+        }
+        @media (max-width: 768px) {
+            .hero { padding-top: 40px; padding-bottom: 40px; }
+            .hero h1 { font-size: 2.4rem; }
+            .hero p { font-size: 1.05rem; }
+            .hero .stat { padding: 1rem 1.2rem; min-width: 120px; }
+        }
 
         .section-title {
             font-size: clamp(2rem, 4vw, 3.2rem); color: var(--dark); margin-bottom: 0.5rem;
@@ -520,8 +582,116 @@
         .footer-col a:hover { color: var(--pink); }
         .copyright { text-align: center; margin-top: 3rem; color: #909090; font-size: 0.9rem; }
 
+        /* ===== BACK TO TOP BUTTON (with scroll progress ring) ===== */
+        .back-to-top {
+            position: fixed;
+            bottom: 32px;
+            right: 32px;
+            width: 52px;
+            height: 52px;
+            padding: 0;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #ed018e 0%, #b0006a 100%);
+            color: #ffffff;
+            border: 2px solid rgba(255, 255, 255, 0.25);
+            display: grid;
+            place-items: center;
+            cursor: pointer;
+            z-index: 1500;
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(20px);
+            transition: opacity 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94),
+                        visibility 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94),
+                        transform 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94),
+                        box-shadow 0.3s ease,
+                        background 0.3s ease;
+            box-shadow: 0 8px 24px rgba(237, 1, 142, 0.35);
+            -webkit-tap-highlight-color: transparent;
+        }
+        .back-to-top.visible {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
+        }
+        .back-to-top:hover {
+            transform: translateY(-4px) scale(1.06);
+            box-shadow: 0 14px 32px rgba(237, 1, 142, 0.45);
+        }
+        .back-to-top:active {
+            transform: translateY(-1px) scale(0.98);
+        }
+        .back-to-top:focus-visible {
+            outline: 3px solid rgba(237, 1, 142, 0.45);
+            outline-offset: 3px;
+        }
+
+        /* scroll-progress ring */
+        .btb-ring {
+            position: absolute;
+            inset: 0;
+            width: 100%;
+            height: 100%;
+            transform: rotate(-90deg);
+            pointer-events: none;
+        }
+        .btb-ring circle {
+            fill: none;
+            stroke-width: 2.5;
+        }
+        .btb-ring-track {
+            stroke: rgba(255, 255, 255, 0.25);
+        }
+        .btb-ring-progress {
+            stroke: #ffffff;
+            stroke-linecap: round;
+            stroke-dasharray: 131.95;   /* 2π × r(21) */
+            stroke-dashoffset: 131.95;
+            transition: stroke-dashoffset 0.1s linear;
+        }
+
+        /* arrow */
+        .btb-arrow {
+            position: relative;
+            width: 22px;
+            height: 22px;
+            transition: transform 0.3s ease;
+        }
+        .back-to-top:hover .btb-arrow {
+            transform: translateY(-2px);
+        }
+
+        @media (max-width: 768px) {
+            .back-to-top {
+                bottom: 24px;
+                right: 20px;
+                width: 46px;
+                height: 46px;
+            }
+            .btb-arrow {
+                width: 18px;
+                height: 18px;
+            }
+        }
+
+        /* ── Reduced motion ── */
+        @media (prefers-reduced-motion: reduce) {
+            html {
+                scroll-behavior: auto;
+            }
+            .back-to-top,
+            .btb-arrow {
+                transition: none !important;
+            }
+            .back-to-top:hover {
+                transform: none;
+            }
+            .back-to-top:hover .btb-arrow {
+                transform: none;
+            }
+        }
+
         @media (max-width: 992px) {
-            .hero-content { grid-template-columns: 1fr; }
             .bento-grid { grid-template-columns: 1fr 1fr; }
             .cases-grid { grid-template-columns: 1fr; }
             .footer-grid { grid-template-columns: 1fr 1fr; }
@@ -534,8 +704,8 @@
 </head>
 <body>
 
-    <!-- ===== PREMIUM HEADER (from Our Work) ===== -->
-    <header class="header-glass" id="mainHeader">
+    <!-- ===== PREMIUM HEADER ===== -->
+    <header class="header-glass" id="mainHeader" tabindex="-1">
         <div class="max-w-7xl mx-auto px-4 md:px-6 w-full">
             <div class="flex justify-between items-center">
 
@@ -551,7 +721,7 @@
                 <div class="hidden lg:flex items-center gap-0.5">
                     <a href="Home.html" class="nav-link-premium">Home</a>
                     <a href="About.html" class="nav-link-premium">About</a>
-                    <a href="Our_Work.html" class="nav-link-premium">Our Work</a>
+                    <a href="Our_Work.html" class="nav-link-premium active-link">Our Work</a>
                     <a href="Client_Experience.html" class="nav-link-premium">Client Experience</a>
 
                     <div class="dropdown-wrapper">
@@ -629,33 +799,37 @@
     </div>
 
     <!-- ════════════════════════════════════════════════════════════ -->
-    <!--  HERO SECTION                                             -->
-    <!-- ════════════════════════════════════════════════════════════ -->
-    <section class="hero">
-        <div class="container">
-            <div class="hero-content">
-                <div class="hero-text fade-up">
-                    <h1><span class="accent">Our Work</span><br>Speaks Volumes</h1>
-                    <p>A dive into our work triumphs — <strong>Case Studies in Excellence</strong></p>
-
-                    <!-- Primary CTA -->
-                    <a href="#case-studies" class="btn btn-primary">Explore Projects</a>
-
-                    <!-- Back to Our Work button -->
-                    <div style="margin-top: 1.2rem;">
-                        <a href="Our_Work.html" class="btn-back-right">
-                            <i class="fas fa-arrow-left"></i> Back to Our Work
-                        </a>
-                    </div>
-                </div>
-                <div class="hero-visual fade-up">
-                    <div class="video-reel">
-                        <img src="afriportico-brand-dev-sat-pitch-2021.jpg" alt="Brand work reel">
-                    </div>
-                </div>
+<!--  HERO SECTION — SUNBET GTI STYLE + BACK TO OUR WORK       -->
+<!-- ════════════════════════════════════════════════════════════ -->
+<section class="hero">
+    <div class="container">
+        <span class="hero-badge"><i class="fas fa-trophy" style="margin-right: 6px;"></i> Our Work</span>
+        <h1>Our Work <span class="highlight">Speaks Volumes</span></h1>
+        <p>
+            A dive into our work triumphs — <span class="highlight">case studies in excellence</span>.
+            Each project reflects our commitment to creativity, strategy, and measurable impact.
+        </p>
+        <div class="hero-stats">
+            <div class="stat">
+                <div class="number">23+</div>
+                <div class="label">Case Studies</div>
+            </div>
+            <div class="stat">
+                <div class="number">12</div>
+                <div class="label">Industries Served</div>
+            </div>
+            <div class="stat">
+                <div class="number">100%</div>
+                <div class="label">Client Satisfaction</div>
             </div>
         </div>
-    </section>
+        <div style="margin-top: 2rem;">
+            <a href="Our_Work.html" class="btn-back-right">
+                <i class="fas fa-arrow-left"></i> Back to Our Work
+            </a>
+        </div>
+    </div>
+</section>
 
     <!-- Achievements Bento Grid -->
     <section class="container" style="padding: 4rem 0;">
@@ -687,7 +861,7 @@
         <p class="section-subtitle fade-up">AfriPortico Brand Development</p>
         <div class="cases-grid">
             <div class="case-card fade-up" data-slide="0">
-                <img src="auten-logo-devrp-page-56.jpg" alt="Brand development 1">
+                <img src="auten-logo-devrp-page-56.jpeg" alt="Brand development 1">
                 <div class="case-info"><h3>Auten Logo</h3><span class="stat">Identity Design</span></div>
             </div>
             <div class="case-card fade-up" data-slide="1">
@@ -764,6 +938,19 @@
         <p class="copyright">© 2026 AfriPortico – All Rights Reserved</p>
     </footer>
 
+    <!-- ===== BACK TO TOP BUTTON (with scroll progress ring) ===== -->
+    <button class="back-to-top" id="backToTopBtn" aria-label="Back to top" title="Back to top" aria-hidden="true" tabindex="-1">
+        <svg class="btb-ring" viewBox="0 0 48 48" aria-hidden="true">
+            <circle class="btb-ring-track" cx="24" cy="24" r="21"></circle>
+            <circle class="btb-ring-progress" cx="24" cy="24" r="21"></circle>
+        </svg>
+        <svg class="btb-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+             stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="M12 19V5"></path>
+            <path d="M5 12l7-7 7 7"></path>
+        </svg>
+    </button>
+
     <!-- ════════════════════════════════════════════════════════════ -->
     <!--  SCRIPTS                                                   -->
     <!-- ════════════════════════════════════════════════════════════ -->
@@ -799,8 +986,6 @@
             }
         });
 
-        // ── Existing page scripts (counters, lightbox, scroll reveal) ──
-
         // Scroll reveal
         const fadeEls = document.querySelectorAll('.fade-up');
         const observer = new IntersectionObserver((entries) => {
@@ -832,10 +1017,10 @@
 
         // Lightbox
         const images = [
-            "auten-logo-devrp-page-56.jpg",
-            "afriportico-brand-dev-sat-pitch-2021.jpg",
-            "afriportico-brand-dev-sat-pitch-2019.jpg",
-            "afriportico-brand-dev-sat-pitch-2020.jpg"
+            "assets/images/auten-logo-devrp-page-56.jpeg",
+            "assets/images/afriportico-brand-dev-sat-pitch-2021.jpg",
+            "assets/images/afriportico-brand-dev-sat-pitch-2019.jpg",
+            "assets/images/afriportico-brand-dev-sat-pitch-2020.jpg"
         ];
         let currentIndex = 0;
         const modal = document.getElementById('galleryModal');
@@ -869,6 +1054,53 @@
             if (e.key === 'ArrowRight') nextBtn.click();
             if (e.key === 'Escape') closeModal();
         });
+
+        // ===== BACK TO TOP BUTTON LOGIC (with scroll-progress ring) =====
+        (function() {
+            var backToTopBtn = document.getElementById('backToTopBtn');
+            if (!backToTopBtn) return;
+
+            var btbRingProgress = backToTopBtn.querySelector('.btb-ring-progress');
+            var BTB_RING_LENGTH = 2 * Math.PI * 21; // r = 21 in the 48×48 viewBox
+            var prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+            var ticking = false;
+
+            function updateBackToTop() {
+                var scrollY = window.scrollY || document.documentElement.scrollTop;
+                var maxScroll = document.documentElement.scrollHeight - window.innerHeight;
+                var progress = maxScroll > 0 ? Math.min(scrollY / maxScroll, 1) : 0;
+
+                var show = scrollY > 400;
+                backToTopBtn.classList.toggle('visible', show);
+                backToTopBtn.setAttribute('aria-hidden', show ? 'false' : 'true');
+                backToTopBtn.tabIndex = show ? 0 : -1;
+
+                if (btbRingProgress) {
+                    btbRingProgress.style.strokeDashoffset =
+                        (BTB_RING_LENGTH * (1 - progress)).toFixed(2);
+                }
+
+                ticking = false;
+            }
+
+            window.addEventListener('scroll', function() {
+                if (!ticking) {
+                    window.requestAnimationFrame(updateBackToTop);
+                    ticking = true;
+                }
+            }, { passive: true });
+
+            updateBackToTop();
+
+            backToTopBtn.addEventListener('click', function() {
+                window.scrollTo({
+                    top: 0,
+                    behavior: prefersReducedMotion ? 'auto' : 'smooth'
+                });
+                var headerEl = document.getElementById('mainHeader');
+                if (headerEl) headerEl.focus({ preventScroll: true });
+            });
+        })();
     </script>
 
 </body>
