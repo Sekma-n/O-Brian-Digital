@@ -18,8 +18,12 @@
 
     <style>
         /* ── reset & base ── */
-        *, *::before, *::after {
-            margin: 0; padding: 0; box-sizing: border-box;
+        *,
+        *::before,
+        *::after {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
         }
 
         :root {
@@ -267,61 +271,126 @@
         .mobile-menu-panel .mobile-dropdown-items { padding-left: 1rem; }
         .mobile-menu-panel .mobile-dropdown-items a { font-weight: 400; font-size: 0.95rem; }
 
-        /* ── hero ── */
+        /* ===== HERO (Sunbet GTI style) ===== */
         .hero {
-            padding: 160px 0 80px;
-            background: var(--white);
-            position: relative; overflow: hidden;
+            padding-top: 140px;
+            padding-bottom: 60px;
+            background: radial-gradient(circle at 90% 20%, rgba(236, 0, 138, 0.04) 0%, #ffffff 90%);
         }
-        .hero::before {
-            content: ''; position: absolute; top: -40%; right: -10%;
-            width: 600px; height: 600px; border-radius: 50%;
-            background: radial-gradient(circle, rgba(236, 0, 138, 0.06) 0%, transparent 70%);
-            pointer-events: none;
+        .hero .container {
+            max-width: 840px;
+            margin: 0 auto;
+            padding: 24px 14px;
+            text-align: center;
         }
-        .hero .container { position: relative; z-index: 1; }
-        .hero-grid {
-            display: grid; grid-template-columns: 1fr 1fr;
-            gap: 64px; align-items: center;
+        .hero .hero-badge {
+            background: rgba(236, 0, 138, 0.06);
+            display: inline-block;
+            padding: 6px 18px;
+            border-radius: 40px;
+            font-weight: 600;
+            font-size: 0.85rem;
+            margin-bottom: 24px;
+            color: var(--primary);
+            border: 1px solid rgba(236, 0, 138, 0.12);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
         }
-        .hero-content .tag {
-            display: inline-block; background: rgba(236, 0, 138, 0.10);
-            color: var(--primary); font-weight: 600; font-size: 0.75rem;
-            letter-spacing: 0.08em; text-transform: uppercase;
-            padding: 4px 16px; border-radius: 50px; margin-bottom: 16px;
+        .hero .hero-badge i {
+            color: var(--primary);
+            margin-right: 6px;
         }
-        .hero-content h1 {
-            font-size: 3.6rem; font-weight: 800; line-height: 1.12;
-            letter-spacing: -0.03em; color: var(--dark); margin-bottom: 16px;
+        .hero h1 {
+            font-size: 3.8rem;
+            margin-bottom: 24px;
+            color: var(--dark);
+            font-weight: 800;
+            line-height: 1.15;
+            letter-spacing: -0.02em;
         }
-        .hero-content h1 span { color: var(--primary); }
-        .hero-content p {
-            font-size: 1.2rem; color: var(--gray-600);
-            max-width: 480px; margin-bottom: 32px;
+        .hero h1 .highlight { color: var(--primary); }
+        .hero p {
+            font-size: 1.2rem;
+            color: var(--gray-600);
+            max-width: 700px;
+            margin: 0 auto 32px;
+            line-height: 1.6;
         }
-        .hero-actions { display: flex; flex-wrap: wrap; gap: 16px; align-items: center; }
-
-        .hero-visual {
-            display: grid; grid-template-columns: 1fr 1fr; gap: 16px;
+        .hero p .highlight { color: var(--primary); font-weight: 500; }
+        .hero .hero-stats {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 1rem;
+            margin-top: 2rem;
         }
-        .hero-visual .card-img {
-            border-radius: var(--radius); overflow: hidden;
-            background: var(--gray-200); box-shadow: var(--shadow-sm);
-            transition: var(--transition); cursor: pointer;
+        .hero .stat {
+            background: #ffffff;
+            border: 1px solid rgba(0, 0, 0, 0.06);
+            border-radius: 16px;
+            padding: 1.2rem 1.6rem;
+            min-width: 140px;
+            text-align: center;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.05);
         }
-        .hero-visual .card-img:hover {
-            transform: scale(1.02); box-shadow: var(--shadow-md);
+        .hero .stat .number {
+            font-size: 2rem;
+            font-weight: 800;
+            color: var(--primary);
+            line-height: 1.1;
         }
-        .hero-visual .card-img img {
-            width: 100%; height: 100%; object-fit: cover;
-            aspect-ratio: 1 / 1; pointer-events: none;
+        .hero .stat .label {
+            font-size: 0.75rem;
+            color: #6b7280;
+            text-transform: uppercase;
+            letter-spacing: 0.6px;
+            margin-top: 4px;
+            font-weight: 600;
+        }
+        .hero .hero-actions {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 1rem;
+            margin-top: 2rem;
+        }
+        .hero .hero-showcase {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 16px;
+            margin-top: 3rem;
+        }
+        .hero .hero-showcase .card-img {
+            border-radius: var(--radius-sm);
+            overflow: hidden;
+            background: var(--gray-200);
+            box-shadow: var(--shadow-sm);
+            cursor: pointer;
+            transition: var(--transition);
+            aspect-ratio: 3 / 4;
+        }
+        .hero .hero-showcase .card-img:hover {
+            transform: translateY(-4px);
+            box-shadow: var(--shadow-md);
+        }
+        .hero .hero-showcase .card-img img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
             transition: transform 0.5s ease, opacity 0.4s ease;
             opacity: 0;
         }
-        .hero-visual .card-img img.loaded { opacity: 1; }
-        .hero-visual .card-img.tall { grid-row: span 2; }
-        .hero-visual .card-img.tall img {
-            aspect-ratio: auto; min-height: 280px;
+        .hero .hero-showcase .card-img img.loaded { opacity: 1; }
+        .hero .hero-showcase .card-img:hover img { transform: scale(1.04); }
+
+        @media (max-width: 900px) {
+            .hero .hero-showcase { grid-template-columns: repeat(2, 1fr); }
+        }
+        @media (max-width: 768px) {
+            .hero { padding-top: 120px; padding-bottom: 40px; }
+            .hero h1 { font-size: 2.4rem; }
+            .hero p { font-size: 1.05rem; }
+            .hero .stat { padding: 1rem 1.2rem; min-width: 120px; }
         }
 
         /* ── section titles ── */
@@ -451,7 +520,7 @@
             color: rgba(255, 255, 255, 0.35);
         }
 
-        /* ===== BACK TO TOP BUTTON (copied from Home page) ===== */
+        /* ===== BACK TO TOP BUTTON ===== */
         .back-to-top {
             position: fixed;
             bottom: 32px;
@@ -495,7 +564,6 @@
             outline-offset: 3px;
         }
 
-        /* scroll-progress ring */
         .btb-ring {
             position: absolute;
             inset: 0;
@@ -514,12 +582,11 @@
         .btb-ring-progress {
             stroke: #ffffff;
             stroke-linecap: round;
-            stroke-dasharray: 131.95;   /* 2π × r(21) */
+            stroke-dasharray: 131.95;
             stroke-dashoffset: 131.95;
             transition: stroke-dashoffset 0.1s linear;
         }
 
-        /* arrow */
         .btb-arrow {
             position: relative;
             width: 22px;
@@ -587,9 +654,7 @@
 
         /* ── responsive ── */
         @media (max-width: 1024px) {
-            .hero-grid { grid-template-columns: 1fr; gap: 48px; }
-            .hero-content h1 { font-size: 2.8rem; }
-            .hero-visual { grid-template-columns: 1fr 1fr; }
+            .hero h1 { font-size: 2.8rem; }
         }
         @media (max-width: 900px) {
             .lightbox-prev, .lightbox-next { width: 44px; height: 44px; font-size: 1.5rem; }
@@ -602,10 +667,6 @@
             .header-glass { height: 70px; padding: 0 1rem; }
             .mobile-menu-panel { top: 70px; }
             .logo-text { font-size: 1rem; }
-            .hero { padding: 120px 0 56px; }
-            .hero-content h1 { font-size: 2.2rem; }
-            .hero-content p { font-size: 1rem; }
-            .hero-visual { grid-template-columns: 1fr 1fr; gap: 12px; }
             .section-title { font-size: 1.8rem; }
             .gallery-grid {
                 grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
@@ -617,7 +678,6 @@
             .campaign-info { flex-wrap: wrap; }
             .footer-grid { grid-template-columns: 1fr 1fr; gap: 32px; }
 
-            /* Back-to-top responsive sizing */
             .back-to-top {
                 bottom: 24px;
                 right: 20px;
@@ -631,8 +691,6 @@
         }
         @media (max-width: 480px) {
             .logo-text { font-size: 0.9rem; }
-            .hero-visual { grid-template-columns: 1fr 1fr; }
-            .hero-visual .card-img.tall img { min-height: 180px; }
             .gallery-grid { grid-template-columns: repeat(auto-fill, minmax(120px, 1fr)); }
             .campaign-info { flex-direction: column; align-items: flex-start; text-align: left; }
             .footer-grid { grid-template-columns: 1fr; }
@@ -750,7 +808,7 @@
         <a href="Contact_Us.html" style="display:inline-flex; margin-top:1rem; background:linear-gradient(135deg,#e6007e,#ff1493); color:#fff; padding:0.6rem 1.5rem; border-radius:9999px; font-weight:700; text-decoration:none;">Contact Us</a>
     </div>
 
-    <!-- ─── BACK TO TOP BUTTON (copied from Home) ─── -->
+    <!-- ─── BACK TO TOP BUTTON ─── -->
     <button class="back-to-top" id="backToTopBtn" aria-label="Back to top" title="Back to top" aria-hidden="true" tabindex="-1">
         <svg class="btb-ring" viewBox="0 0 48 48" aria-hidden="true">
             <circle class="btb-ring-track" cx="24" cy="24" r="21"></circle>
@@ -763,32 +821,48 @@
         </svg>
     </button>
 
-    <!-- ─── HERO ─── -->
+    <!-- ─── HERO (Sunbet GTI style) ─── -->
     <section class="hero">
         <div class="container">
-            <div class="hero-grid">
-                <div class="hero-content">
-                    <!-- Back button -->
-                    <div style="margin-bottom: 1.2rem;">
-                        <a href="Our_Work.html" class="btn-back-work">
-                            <i class="fas fa-arrow-left"></i> Back to Our Work
-                        </a>
-                    </div>
+            <span class="hero-badge"><i class="fas fa-trophy"></i> Case Study · Energy</span>
+            <h1>BP <span class="highlight">Gas</span></h1>
+            <p>
+                A Dive into Our Work Triumphs — <span class="highlight">Case Studies in Excellence</span>.
+                From posters to pull-up banners, a vibrant multi-touchpoint campaign for BP Gas.
+            </p>
 
-                    <span class="tag"><i class="fas fa-star" style="margin-right:6px;"></i> Case Study</span>
-                    <h1>BP <span>Gas</span></h1>
-                    <p>A Dive into Our Work Triumphs — Case Studies in Excellence.</p>
-                    <div class="hero-actions">
-                        <a href="#gallery" class="btn btn-primary"><i class="fas fa-images"></i> View Gallery</a>
-                        <a href="#campaign" class="btn btn-outline"><i class="fas fa-file-pdf"></i> Campaign PDF</a>
-                    </div>
+            <div class="hero-stats">
+                <div class="stat">
+                    <div class="number">24+</div>
+                    <div class="label">Creative Assets</div>
                 </div>
-                <div class="hero-visual">
-                    <div class="card-img" data-src="posters2.jpg"><img src="posters2.jpg" alt="BP Gas poster" loading="eager"></div>
-                    <div class="card-img" data-src="posters4.jpg"><img src="posters4.jpg" alt="BP Gas poster" loading="eager"></div>
-                    <div class="card-img tall" data-src="posters5.jpg"><img src="posters5.jpg" alt="BP Gas poster" loading="eager"></div>
-                    <div class="card-img" data-src="bp-gas-bolloons-artwork-page-1.jpg"><img src="bp-gas-bolloons-artwork-page-1.jpg" alt="BP Gas balloons" loading="eager"></div>
+                <div class="stat">
+                    <div class="number">2</div>
+                    <div class="label">Campaigns</div>
                 </div>
+                <div class="stat">
+                    <div class="number">100%</div>
+                    <div class="label">Brand Consistency</div>
+                </div>
+            </div>
+
+            <div class="hero-actions">
+                <a href="#gallery" class="btn btn-primary"><i class="fas fa-images"></i> View Gallery</a>
+                <a href="#campaign" class="btn btn-outline"><i class="fas fa-file-pdf"></i> Campaign PDF</a>
+            </div>
+
+            <div style="margin-top: 2rem;">
+                <a href="Our_Work.html" class="btn-back-work">
+                    <i class="fas fa-arrow-left"></i> Back to Our Work
+                </a>
+            </div>
+
+            <!-- Hero image showcase -->
+            <div class="hero-showcase">
+                <div class="card-img" data-src="posters2.jpg"><img src="posters2.jpg" alt="BP Gas poster" loading="eager"></div>
+                <div class="card-img" data-src="posters4.jpg"><img src="posters4.jpg" alt="BP Gas poster" loading="eager"></div>
+                <div class="card-img" data-src="posters5.jpg"><img src="posters5.jpg" alt="BP Gas poster" loading="eager"></div>
+                <div class="card-img" data-src="bp-gas-bolloons-artwork-page-1.jpg"><img src="bp-gas-bolloons-artwork-page-1.jpg" alt="BP Gas balloons" loading="eager"></div>
             </div>
         </div>
     </section>
@@ -845,7 +919,7 @@
                         <p>Complete creative deck — posters, flyers, and strategic overview.</p>
                     </div>
                 </div>
-                <a href="Use-BPGasidea.pdf" class="btn btn-primary" target="_blank"><i class="fas fa-download"></i> Download PDF</a>
+                <a href="assets/files/Use-BPGasidea.pdf" class="btn btn-primary" target="_blank"><i class="fas fa-download"></i> Download PDF</a>
             </div>
         </div>
     </section>
@@ -963,6 +1037,13 @@
             });
 
             // ── IMAGE DATA ──
+            var heroImages = [
+                "posters2.jpg",
+                "posters4.jpg",
+                "posters5.jpg",
+                "bp-gas-bolloons-artwork-page-1.jpg"
+            ];
+
             var gallery1Images = [
                 "use-bp-gas-idea-page-10.jpg",
                 "use-bp-gas-idea-page-6.jpg",
@@ -989,15 +1070,11 @@
                 "bp-gas-bunting.jpg"
             ];
 
-            var heroImages = [
-                "posters2.jpg",
-                "posters4.jpg",
-                "posters5.jpg",
-                "bp-gas-bolloons-artwork-page-1.jpg"
-            ];
+            var allImages = [].concat(heroImages, gallery1Images, gallery2Images);
 
-            // COMBINED — so arrows traverse ALL images
-            var allImages = heroImages.concat(gallery1Images, gallery2Images);
+            var HERO_OFFSET = 0;
+            var GALLERY1_OFFSET = heroImages.length;
+            var GALLERY2_OFFSET = heroImages.length + gallery1Images.length;
 
             // ── FAST LAZY LOADING via IntersectionObserver ──
             var imgObserver = new IntersectionObserver(function(entries, observer) {
@@ -1017,42 +1094,33 @@
                 });
             }, { rootMargin: '300px 0px', threshold: 0.01 });
 
-            // ── RENDER GALLERY 1 ──
-            var grid1 = document.getElementById('galleryGrid1');
-            gallery1Images.forEach(function(src, i) {
-                var item = document.createElement('div');
-                item.className = 'item';
-                item.dataset.index = allImages.indexOf(src);
-                var isEager = i < 4;
-                item.innerHTML = `
-                    <img ${isEager ? 'src="' + src + '" loading="eager"' : 'data-src="' + src + '" loading="lazy"'} alt="BP Gas asset ${i+1}">
-                    <div class="overlay"><i class="fas fa-search-plus"></i></div>
-                `;
-                item.addEventListener('click', function() { openLightbox(parseInt(this.dataset.index, 10)); });
-                grid1.appendChild(item);
-            });
+            // ── GALLERY RENDERER ──
+            function renderGallery(grid, images, offset) {
+                if (!grid) return;
+                images.forEach(function(src, i) {
+                    var index = offset + i;
+                    var item = document.createElement('div');
+                    item.className = 'item';
+                    item.dataset.index = String(index);
+                    var isEager = i < 4;
+                    item.innerHTML = `
+                        <img ${isEager ? 'src="' + src + '" loading="eager"' : 'data-src="' + src + '" loading="lazy"'} alt="BP Gas asset ${index + 1}">
+                        <div class="overlay"><i class="fas fa-search-plus"></i></div>
+                    `;
+                    item.addEventListener('click', function() {
+                        openLightbox(index);
+                    });
+                    grid.appendChild(item);
+                });
+            }
 
-            // ── RENDER GALLERY 2 ──
-            var grid2 = document.getElementById('galleryGrid2');
-            gallery2Images.forEach(function(src, i) {
-                var item = document.createElement('div');
-                item.className = 'item';
-                item.dataset.index = allImages.indexOf(src);
-                var isEager = i < 4;
-                item.innerHTML = `
-                    <img ${isEager ? 'src="' + src + '" loading="eager"' : 'data-src="' + src + '" loading="lazy"'} alt="BP Gas asset ${i+1}">
-                    <div class="overlay"><i class="fas fa-search-plus"></i></div>
-                `;
-                item.addEventListener('click', function() { openLightbox(parseInt(this.dataset.index, 10)); });
-                grid2.appendChild(item);
-            });
+            renderGallery(document.getElementById('galleryGrid1'), gallery1Images, GALLERY1_OFFSET);
+            renderGallery(document.getElementById('galleryGrid2'), gallery2Images, GALLERY2_OFFSET);
 
-            // Observe lazy images
             document.querySelectorAll('img[data-src]').forEach(function(img) {
                 imgObserver.observe(img);
             });
 
-            // Mark eager images loaded
             document.querySelectorAll('img[loading="eager"]').forEach(function(img) {
                 if (img.complete) {
                     img.classList.add('loaded');
@@ -1061,12 +1129,13 @@
                 }
             });
 
-            // ── HERO IMAGES - click to open lightbox ──
-            document.querySelectorAll('.hero-visual .card-img').forEach(function(el) {
+            // ── Hero showcase: click to open lightbox ──
+            document.querySelectorAll('.hero-showcase .card-img').forEach(function(el, i) {
+                var heroIdx = heroImages.indexOf(el.dataset.src);
+                var globalIndex = HERO_OFFSET + (heroIdx >= 0 ? heroIdx : i);
+                el.dataset.index = String(globalIndex);
                 el.addEventListener('click', function() {
-                    var src = this.dataset.src;
-                    var idx = allImages.indexOf(src);
-                    openLightbox(idx >= 0 ? idx : 0);
+                    openLightbox(globalIndex);
                 });
             });
 
@@ -1080,8 +1149,13 @@
             var nextBtn = document.getElementById('lightboxNext');
 
             function openLightbox(index) {
-                if (isNaN(index)) index = 0;
-                currentIdx = (index + allImages.length) % allImages.length;
+                var total = allImages.length;
+                if (!total) return;
+
+                index = Number(index);
+                if (!isFinite(index)) index = 0;
+
+                currentIdx = ((index % total) + total) % total;
                 updateLightboxImage();
                 lightbox.classList.add('active');
                 document.body.style.overflow = 'hidden';
@@ -1139,10 +1213,10 @@
                 if (e.key === 'ArrowLeft') prevImage(e);
             });
 
-            // ===== BACK TO TOP BUTTON LOGIC (copied from Home) =====
+            // ===== BACK TO TOP BUTTON LOGIC =====
             var backToTopBtn = document.getElementById('backToTopBtn');
             var btbRingProgress = backToTopBtn ? backToTopBtn.querySelector('.btb-ring-progress') : null;
-            var BTB_RING_LENGTH = 2 * Math.PI * 21; // r = 21 in the 48×48 viewBox
+            var BTB_RING_LENGTH = 2 * Math.PI * 21;
             var btbPrefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
             var btbTicking = false;
 
@@ -1153,7 +1227,6 @@
 
                 var show = scrollY > 400;
                 backToTopBtn.classList.toggle('visible', show);
-                // keep it out of the a11y tree / tab order while hidden
                 backToTopBtn.setAttribute('aria-hidden', show ? 'false' : 'true');
                 backToTopBtn.tabIndex = show ? 0 : -1;
 
@@ -1180,7 +1253,6 @@
                         top: 0,
                         behavior: btbPrefersReducedMotion ? 'auto' : 'smooth'
                     });
-                    // return focus to the top of the page for keyboard users
                     var headerEl = document.getElementById('mainHeader');
                     if (headerEl) headerEl.focus({ preventScroll: true });
                 });
