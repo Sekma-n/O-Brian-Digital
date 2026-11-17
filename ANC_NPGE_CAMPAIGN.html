@@ -341,34 +341,156 @@
             font-size: 0.95rem;
         }
 
-        /* ===== BACK TO OUR WORK BUTTON ===== */
-        .btn-back-right {
-            color: #e6007e;
-            text-decoration: none;
-            font-weight: 600;
-            padding: 0.6rem 1.5rem;
-            border-radius: 40px;
-            transition: 0.2s ease;
-            border: 2px solid #e6007e;
-            background: transparent;
-            font-size: 0.95rem;
-            display: inline-flex;
-            align-items: center;
-            gap: 0.5rem;
-        }
-        .btn-back-right:hover {
-            background: #e6007e;
-            color: white;
-            border-color: #e6007e;
-            transform: translateY(-2px);
-            box-shadow: 0 8px 16px -6px rgba(230, 0, 126, 0.3);
-        }
-        .btn-back-right i {
-            transition: transform 0.2s ease;
-        }
-        .btn-back-right:hover i {
-            transform: translateX(-4px);
-        }
+        /* ===== HERO (Sunbet GTI style) ===== */
+.hero {
+    padding-top: 140px;
+    padding-bottom: 60px;
+    background: radial-gradient(circle at 90% 20%, rgba(237,0,142,0.04) 0%, #ffffff 90%);
+}
+.hero-content {
+    text-align: center;
+    max-width: 840px;
+    margin: 0 auto;
+}
+.hero-tag {
+    background: #ed008e10;
+    display: inline-block;
+    padding: 6px 18px;
+    border-radius: 40px;
+    font-weight: 600;
+    font-size: 0.85rem;
+    margin-bottom: 24px;
+    color: #ed008e;
+    border: 1px solid #ed008e20;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+.hero h1 {
+    font-size: 3.8rem;
+    margin-bottom: 24px;
+    color: #251e21;
+    font-weight: 800;
+    line-height: 1.15;
+    letter-spacing: -0.02em;
+}
+.hero p {
+    font-size: 1.2rem;
+    color: #4a3a42;
+    max-width: 700px;
+    margin: 0 auto 32px;
+    line-height: 1.6;
+}
+.hero .back-row {
+    display: flex;
+    justify-content: center;
+    margin-top: 8px;
+}
+
+@media (max-width: 768px) {
+    .hero {
+        padding-top: 110px;
+        padding-bottom: 40px;
+    }
+    .hero h1 {
+        font-size: 2.4rem;
+    }
+    .hero p {
+        font-size: 1.05rem;
+    }
+}
+
+        /* ===== ANC NPGE HERO BLOCK ===== */
+.anc-hero {
+    text-align: center;
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 0 1rem;
+}
+
+.anc-hero .hero-badge {
+    display: inline-block;
+    background: rgba(230, 0, 126, 0.08);
+    border: 1px solid rgba(230, 0, 126, 0.18);
+    color: #e6007e;
+    padding: 6px 18px;
+    border-radius: 40px;
+    font-weight: 700;
+    font-size: 0.85rem;
+    text-transform: uppercase;
+    letter-spacing: 0.6px;
+    margin-bottom: 1.25rem;
+}
+
+.anc-hero h1 {
+    font-size: 3.4rem;
+    font-weight: 800;
+    line-height: 1.15;
+    letter-spacing: -0.02em;
+    color: #251e21;
+    margin-bottom: 1.25rem;
+}
+
+.anc-hero h1 .highlight,
+.anc-hero > p .highlight {
+    color: #e6007e;
+}
+
+.anc-hero > p {
+    font-size: 1.15rem;
+    color: #4a3a42;
+    max-width: 700px;
+    margin: 0 auto 2rem;
+    line-height: 1.65;
+}
+
+.anc-hero .hero-stats {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 1rem;
+    margin: 2rem 0;
+}
+
+.anc-hero .stat {
+    background: #fff;
+    border: 1px solid rgba(0, 0, 0, 0.06);
+    border-radius: 16px;
+    padding: 1.2rem 1.6rem;
+    min-width: 140px;
+    text-align: center;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.05);
+}
+
+.anc-hero .stat .number {
+    font-size: 2rem;
+    font-weight: 800;
+    color: #e6007e;
+    line-height: 1.1;
+}
+
+.anc-hero .stat .label {
+    font-size: 0.75rem;
+    color: #6b7280;
+    text-transform: uppercase;
+    letter-spacing: 0.6px;
+    margin-top: 4px;
+    font-weight: 600;
+}
+
+@media (max-width: 768px) {
+    .anc-hero h1 {
+        font-size: 2.3rem;
+    }
+
+    .anc-hero > p {
+        font-size: 1.05rem;
+    }
+
+    .anc-hero .stat {
+        padding: 1rem 1.2rem;
+        min-width: 120px;
+    }
+}
 
         /* ===== EXISTING PAGE STYLES ===== */
         .gallery-item {
@@ -1102,35 +1224,53 @@
     <!-- ========== PAGE CONTENT ========== -->
 
     <!-- ===== NEW HERO / PUBLICCOMMS BANNER SECTION ===== -->
-    <section class="py-16 bg-white" style="margin-top: 0px;">
-        <div class="max-w-7xl mx-auto px-6">
+<section class="py-16 bg-white" style="margin-top: 0px;">
+    <div class="max-w-7xl mx-auto px-6">
 
-            <!-- ===== BACK TO OUR WORK BUTTON ===== -->
-            <div class="flex justify-end mb-6">
-                <a href="Our_Work.html" class="btn-back-right">
-                    <i class="fas fa-arrow-left"></i> Back to Our Work
-                </a>
-            </div>
+        <!-- ===== BACK TO OUR WORK BUTTON ===== -->
+        <div class="flex justify-end mb-6">
+            <a href="Our_Work.html" class="btn-back-right">
+                <i class="fas fa-arrow-left"></i> Back to Our Work
+            </a>
+        </div>
 
-            <div class="text-center mb-12 reveal active">
-                <span class="inline-block text-pink font-semibold tracking-wide text-sm uppercase mb-2">anc</span>
-                <h2 class="text-3xl md:text-4xl font-black text-gray-900">
-                    <i class="fas fa-expand text-pink"></i> <span class="text-pink">ANC</span>• NPGE CAMPAIGN
-                </h2>
-                <div class="w-16 h-1 bg-pink mx-auto mt-4"></div>
-                <p class="text-gray-500 mt-4 max-w-2xl mx-auto">African National Congress 2024 Election campaign</p>
-                <div class="click-hint mt-4"><i class="fas fa-mouse-pointer"></i> Click on any image to expand</div>
-            </div>
+        <div class="container anc-hero">
+    <span class="hero-badge">✦ ANC</span>
+    <h1><span class="highlight">ANC</span> • NPGE Campaign</h1>
+    <p>
+        African National Congress 2024 Election campaign —
+        <span class="highlight">a movement built on unity, renewal and progress</span>.
+    </p>
 
-            <!-- ===== PUBLICCOMMS BANNER ===== -->
-            <div class="publiccomms-banner" data-index="71" data-title="ANC CAMPAIGN · NPGE 2024" data-description="African National Congress 2024 Election campaign" data-image="npge_campaign_2024.jpg" data-link="#" onclick="openLightbox(this)">
-                <div class="banner-overlay">
-                    <img src="npge_campaign_2024.jpg" alt="ANC NPGE Campaign 2024" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%221200%22 height=%22300%22 viewBox=%220 0 1200 300%22%3E%3Crect width=%221200%22 height=%22300%22 fill=%22%230b0b0f%22/%3E%3Ctext x=%22600%22 y=%22140%22 text-anchor=%22middle%22 font-family=%22Inter, sans-serif%22 font-size=%2252%22 font-weight=%22700%22 fill=%22%23ffffff%22%3ENPGE CAMPAIGN%3C/text%3E%3Ctext x=%22600%22 y=%22190%22 text-anchor=%22middle%22 font-family=%22Inter, sans-serif%22 font-size=%2218%22 fill=%22%237aaaff%22 letter-spacing=%2210%22%3E2024%3C/text%3E%3Ctext x=%22600%22 y=%22230%22 text-anchor=%22middle%22 font-family=%22Inter, sans-serif%22 font-size=%2212%22 fill=%22%23666%22 letter-spacing=%224%22%3ELET'S DO MORE, TOGETHER%3C/text%3E%3C/svg%3E'">
-                    <span class="click-badge"><i class="fas fa-expand"></i> click to expand</span>
-                </div>
+    <div class="hero-stats">
+        <div class="stat">
+            <div class="number">2024</div>
+            <div class="label">Election Year</div>
+        </div>
+        <div class="stat">
+            <div class="number">9</div>
+            <div class="label">Provinces Reached</div>
+        </div>
+        <div class="stat">
+            <div class="number">100%</div>
+            <div class="label">Commitment</div>
+        </div>
+    </div>
+
+    <div class="click-hint">
+        <i class="fas fa-mouse-pointer"></i> Click on any image to expand
+    </div>
+</div>
+
+        <!-- ===== PUBLICCOMMS BANNER ===== -->
+        <div class="publiccomms-banner" data-index="71" data-title="ANC CAMPAIGN · NPGE 2024" data-description="African National Congress 2024 Election campaign" data-image="npge_campaign_2024.jpg" data-link="#" onclick="openLightbox(this)">
+            <div class="banner-overlay">
+                <img src="npge_campaign_2024.jpg" alt="ANC NPGE Campaign 2024" onerror="this.src='data:image/svg+xml,...'">
+                <span class="click-badge"><i class="fas fa-expand"></i> click to expand</span>
             </div>
         </div>
-    </section>
+    </div>
+</section>
 
                         <!-- ========== TV SECTION (12 Videos) ========== -->
 <section class="py-16 bg-white">
@@ -1467,7 +1607,7 @@
                     <div class="progress-container mt-4 h-1.5 bg-gray-200 rounded-full cursor-pointer" onclick="seekAudio(this, event)">
                         <div class="progress-bar h-full bg-pink rounded-full" style="width: 0%;"></div>
                     </div>
-                    <audio src="spot1.mp3" preload="metadata"></audio>
+                    <audio src="assets/audio/spot1.mp3" preload="metadata"></audio>
                 </div>
 
                 <!-- Radio Spot 2 -->
@@ -1490,7 +1630,7 @@
                     <div class="progress-container mt-4 h-1.5 bg-gray-200 rounded-full cursor-pointer" onclick="seekAudio(this, event)">
                         <div class="progress-bar h-full bg-pink rounded-full" style="width: 0%;"></div>
                     </div>
-                    <audio src="spot2.mp3" preload="metadata"></audio>
+                    <audio src="assets/audio/spot2.mp3" preload="metadata"></audio>
                 </div>
 
                 <!-- Radio Spot 3 -->
@@ -1513,7 +1653,7 @@
                     <div class="progress-container mt-4 h-1.5 bg-gray-200 rounded-full cursor-pointer" onclick="seekAudio(this, event)">
                         <div class="progress-bar h-full bg-pink rounded-full" style="width: 0%;"></div>
                     </div>
-                    <audio src="spot3.mp3" preload="metadata"></audio>
+                    <audio src="assets/audio/spot3.mp3" preload="metadata"></audio>
                 </div>
 
                 <!-- Radio Spot 4 -->
@@ -1536,7 +1676,7 @@
                     <div class="progress-container mt-4 h-1.5 bg-gray-200 rounded-full cursor-pointer" onclick="seekAudio(this, event)">
                         <div class="progress-bar h-full bg-pink rounded-full" style="width: 0%;"></div>
                     </div>
-                    <audio src="spot4.mp3" preload="metadata"></audio>
+                    <audio src="assets/audio/spot4.mp3" preload="metadata"></audio>
                 </div>
 
             </div>
@@ -2031,914 +2171,71 @@
     <img src="npge_taxi_gp_22.webp" alt="KZ14MFGP" class="w-full h-72 object-cover transition-transform duration-500 hover:scale-105">
     <div class="overlay">KZ14MFGP – "Let's Do More, Together. Vote ANC"</div>
 </div>
-                        <!-- NEW GAUTENG TAXI FROM SCREENSHOT -->
-            <div class="gallery-item cursor-pointer rounded-xl overflow-hidden shadow-md bg-white ooh-item" data-index="212" data-category="transit">
-                <img src="npge_taxi_gp_23.webp" alt="RGG141GP" class="w-full h-72 object-cover transition-transform duration-500 hover:scale-105">
-                <div class="overlay">RGG141GP – "Let's Do More, Together. Vote ANC"</div>
-            </div>
-            <!-- NEW GAUTENG TAXI ADDED FROM SCREENSHOT -->
-            <div class="gallery-item cursor-pointer rounded-xl overflow-hidden shadow-md bg-white ooh-item" data-index="213" data-category="transit">
-                <img src="npge_taxi_gp_24.webp" alt="TYD765GP" class="w-full h-72 object-cover transition-transform duration-500 hover:scale-105">
-                <div class="overlay">TYD765GP – "Let's Do More, Together. Vote ANC"</div>
-            </div>
-            <!-- NEW GAUTENG TAXI ADDED FROM SCREENSHOT (PAGE 76) -->
-            <div class="gallery-item cursor-pointer rounded-xl overflow-hidden shadow-md bg-white ooh-item" data-index="214" data-category="transit">
-                <img src="npge_taxi_gp_25.webp" alt="PRY371GP" class="w-full h-72 object-cover transition-transform duration-500 hover:scale-105">
-                <div class="overlay">PRY371GP – "Let's Do More, Together. Vote ANC"</div>
-            </div>
-            <!-- NEW GAUTENG TAXI ADDED FROM SCREENSHOT (PAGE 76) -->
-            <div class="gallery-item cursor-pointer rounded-xl overflow-hidden shadow-md bg-white ooh-item" data-index="215" data-category="transit">
-                <img src="npge_taxi_gp_26.webp" alt="KZ14MFGP" class="w-full h-72 object-cover transition-transform duration-500 hover:scale-105">
-                <div class="overlay">KP147MFGP – "Let's Do More, Together. Vote ANC"</div>
-            </div>
-            
-
-            <!-- ===== KWAZULU-NATAL BILLBOARDS ===== -->
-            <div class="gallery-item cursor-pointer rounded-xl overflow-hidden shadow-md bg-white ooh-item" data-index="220" data-category="billboard">
-                <img src="npge_billboard_kzn_01.webp" alt="R102 Umlazi Entrance" class="w-full h-72 object-cover transition-transform duration-500 hover:scale-105">
-                <div class="overlay">R102 Umlazi Entrance, Ethekwini – "Asenze Okuningi, Ngokubambisana. Votela I-ANC"</div>
-            </div>
-            <div class="gallery-item cursor-pointer rounded-xl overflow-hidden shadow-md bg-white ooh-item" data-index="221" data-category="billboard">
-                <img src="npge_billboard_kzn_02.webp" alt="M4 Congella Bridge" class="w-full h-72 object-cover transition-transform duration-500 hover:scale-105">
-                <div class="overlay">M4 Congella Bridge, Maydon Wharf, Durban – "Asenze Okuningi, Ngokubambisana. Votela I-ANC"</div>
-            </div>
-            <div class="gallery-item cursor-pointer rounded-xl overflow-hidden shadow-md bg-white ooh-item" data-index="222" data-category="billboard">
-                <img src="npge_billboard_kzn_03.webp" alt="M4 Dalbridge" class="w-full h-72 object-cover transition-transform duration-500 hover:scale-105">
-                <div class="overlay">M4 Dalbridge, Albert Park, Durban – "Let's Do More, Together. Vote ANC"</div>
-            </div>
-            <div class="gallery-item cursor-pointer rounded-xl overflow-hidden shadow-md bg-white ooh-item" data-index="223" data-category="billboard">
-                <img src="npge_billboard_kzn_04.webp" alt="M4 Dalbridge East" class="w-full h-72 object-cover transition-transform duration-500 hover:scale-105">
-                <div class="overlay">M4 Dalbridge East, Durban – "Let's Do More, Together. Vote ANC"</div>
-            </div>
-            <div class="gallery-item cursor-pointer rounded-xl overflow-hidden shadow-md bg-white ooh-item" data-index="224" data-category="billboard">
-                <img src="npge_billboard_kzn_05.webp" alt="237 Maydon Rd" class="w-full h-72 object-cover transition-transform duration-500 hover:scale-105">
-                <div class="overlay">237 Maydon Rd, Durban – "Let's Do More, Together. Vote ANC"</div>
-            </div>
-            <div class="gallery-item cursor-pointer rounded-xl overflow-hidden shadow-md bg-white ooh-item" data-index="225" data-category="billboard">
-                <img src="npge_billboard_kzn_06.webp" alt="N3 Cato Ridge" class="w-full h-72 object-cover transition-transform duration-500 hover:scale-105">
-                <div class="overlay">N3 23 Newmark Rd, Cato Ridge – "Let's Do More, Together. Vote ANC"</div>
-            </div>
-            <div class="gallery-item cursor-pointer rounded-xl overflow-hidden shadow-md bg-white ooh-item" data-index="226" data-category="billboard">
-                <img src="npge_billboard_kzn_07.webp" alt="Imbali Township Exit" class="w-full h-72 object-cover transition-transform duration-500 hover:scale-105">
-                <div class="overlay">Imbali Township Exit, Pietermaritzburg – "Asenze Okuningi, Ngokubambisana. Votela I-ANC"</div>
-            </div>
-            <div class="gallery-item cursor-pointer rounded-xl overflow-hidden shadow-md bg-white ooh-item" data-index="227" data-category="billboard">
-                <img src="npge_billboard_kzn_08.webp" alt="Queen Nandi & Chris Hani Rd" class="w-full h-72 object-cover transition-transform duration-500 hover:scale-105">
-                <div class="overlay">Queen Nandi & Chris Hani Rd – "Let's Do More, Together. Vote ANC"</div>
-            </div>
-            <div class="gallery-item cursor-pointer rounded-xl overflow-hidden shadow-md bg-white ooh-item" data-index="228" data-category="billboard">
-                <img src="npge_billboard_kzn_09.webp" alt="82 South Coast Rd, Rossburgh" class="w-full h-72 object-cover transition-transform duration-500 hover:scale-105">
-                <div class="overlay">82 South Coast Rd, Rossburgh, Durban – "Let's Do More, Together. Vote ANC"</div>
-            </div>
-
-            <!-- ===== KWAZULU-NATAL WALL MURALS ===== -->
-            <div class="gallery-item cursor-pointer rounded-xl overflow-hidden shadow-md bg-white ooh-item" data-index="230" data-category="wall">
-                <img src="npge_wall_kzn_01.webp" alt="Mayibuye Dr Umlazi" class="w-full h-72 object-cover transition-transform duration-500 hover:scale-105">
-                <div class="overlay">Mayibuye Dr, Umlazi, KwaZulu Natal – "Asenze Okuningi, Ngokubambisana. Votela I-ANC"</div>
-            </div>
-            <div class="gallery-item cursor-pointer rounded-xl overflow-hidden shadow-md bg-white ooh-item" data-index="233" data-category="wall">
-                <img src="npge_wall_kzn_04.webp" alt="Ntombela Rd KwaMashu" class="w-full h-72 object-cover transition-transform duration-500 hover:scale-105">
-                <div class="overlay">Ntombela Rd, KwaMashu, KwaZulu Natal – "Asenze Okuningi, Ngokubambisana. Votela I-ANC"</div>
-            </div>
-            <div class="gallery-item cursor-pointer rounded-xl overflow-hidden shadow-md bg-white ooh-item" data-index="235" data-category="wall">
-                <img src="npge_wall_kzn_06.webp" alt="Sbu Mugwanyane Dr" class="w-full h-72 object-cover transition-transform duration-500 hover:scale-105">
-                <div class="overlay">Sbu Mugwanyane Dr, Umlazi, KwaZulu Natal – "Asenze Okuningi, Ngokubambisana. Votela I-ANC"</div>
-            </div>
-            <div class="gallery-item cursor-pointer rounded-xl overflow-hidden shadow-md bg-white ooh-item" data-index="237" data-category="wall">
-                <img src="npge_wall_kzn_08.webp" alt="Sibisi Rd Ntuzuma" class="w-full h-72 object-cover transition-transform duration-500 hover:scale-105">
-                <div class="overlay">Sibisi Rd, Ntuzuma, KwaZulu Natal – "Asenze Okuningi, Ngokubambisana. Votela I-ANC"</div>
-            </div>
-            <div class="gallery-item cursor-pointer rounded-xl overflow-hidden shadow-md bg-white ooh-item" data-index="239" data-category="wall">
-                <img src="npge_wall_kzn_10.webp" alt="Gwala St Lamontville" class="w-full h-72 object-cover transition-transform duration-500 hover:scale-105">
-                <div class="overlay">2245 Gwala St, Lamontville, KwaZulu Natal – "Asenze Okuningi, Ngokubambisana. Votela I-ANC"</div>
-            </div>
-            <div class="gallery-item cursor-pointer rounded-xl overflow-hidden shadow-md bg-white ooh-item" data-index="241" data-category="wall">
-                <img src="npge_wall_kzn_12.webp" alt="Drum Castle Rd" class="w-full h-72 object-cover transition-transform duration-500 hover:scale-105">
-                <div class="overlay">Drum Castle Rd, Newland West, KwaZulu Natal – "Asenze Okuningi, Ngokubambisana. Votela I-ANC"</div>
-            </div>
-            <div class="gallery-item cursor-pointer rounded-xl overflow-hidden shadow-md bg-white ooh-item" data-index="243" data-category="wall">
-                <img src="npge_wall_kzn_14.webp" alt="J714 Ukhozi Rd" class="w-full h-72 object-cover transition-transform duration-500 hover:scale-105">
-                <div class="overlay">J714 Ukhozi Rd, Umlazi, KwaZulu Natal – "Asenze Okuningi, Ngokubambisana. Votela I-ANC"</div>
-            </div>
-
-            <!-- ===== KWAZULU-NATAL TAXIS ===== -->
-            <div class="gallery-item cursor-pointer rounded-xl overflow-hidden shadow-md bg-white ooh-item" data-index="250" data-category="transit">
-                <img src="npge_taxi_kzn_01.webp" alt="ND887326" class="w-full h-72 object-cover transition-transform duration-500 hover:scale-105">
-                <div class="overlay">ND887326 – "Let's Do More, Together. Vote ANC"</div>
-            </div>
-            <div class="gallery-item cursor-pointer rounded-xl overflow-hidden shadow-md bg-white ooh-item" data-index="251" data-category="transit">
-                <img src="npge_taxi_kzn_02.webp" alt="ND493196" class="w-full h-72 object-cover transition-transform duration-500 hover:scale-105">
-                <div class="overlay">ND493196 – "Let's Do More, Together. Vote ANC"</div>
-            </div>
-            <div class="gallery-item cursor-pointer rounded-xl overflow-hidden shadow-md bg-white ooh-item" data-index="252" data-category="transit">
-                <img src="npge_taxi_kzn_03.webp" alt="ND832167" class="w-full h-72 object-cover transition-transform duration-500 hover:scale-105">
-                <div class="overlay">ND832167 – "Let's Do More, Together. Vote ANC"</div>
-            </div>
-            <div class="gallery-item cursor-pointer rounded-xl overflow-hidden shadow-md bg-white ooh-item" data-index="253" data-category="transit">
-                <img src="npge_taxi_kzn_04.webp" alt="BF34NCZN" class="w-full h-72 object-cover transition-transform duration-500 hover:scale-105">
-                <div class="overlay">BF34NCZN – "Let's Do More, Together. Vote ANC"</div>
-            </div>
-            <div class="gallery-item cursor-pointer rounded-xl overflow-hidden shadow-md bg-white ooh-item" data-index="254" data-category="transit">
-                <img src="npge_taxi_kzn_05.webp" alt="BF70GTZN" class="w-full h-72 object-cover transition-transform duration-500 hover:scale-105">
-                <div class="overlay">BF70GTZN – "Let's Do More, Together. Vote ANC"</div>
-            </div>
-            <div class="gallery-item cursor-pointer rounded-xl overflow-hidden shadow-md bg-white ooh-item" data-index="255" data-category="transit">
-                <img src="npge_taxi_kzn_06.webp" alt="NJ12627" class="w-full h-72 object-cover transition-transform duration-500 hover:scale-105">
-                <div class="overlay">NJ12627 – "Let's Do More, Together. Vote ANC"</div>
-            </div>
-            <div class="gallery-item cursor-pointer rounded-xl overflow-hidden shadow-md bg-white ooh-item" data-index="256" data-category="transit">
-                <img src="npge_taxi_kzn_07.webp" alt="ND693361" class="w-full h-72 object-cover transition-transform duration-500 hover:scale-105">
-                <div class="overlay">ND693361 – "Let's Do More, Together. Vote ANC"</div>
-            </div>
-            <div class="gallery-item cursor-pointer rounded-xl overflow-hidden shadow-md bg-white ooh-item" data-index="257" data-category="transit">
-                <img src="npge_taxi_kzn_08.webp" alt="ND911358" class="w-full h-72 object-cover transition-transform duration-500 hover:scale-105">
-                <div class="overlay">ND911358 – "Let's Do More, Together. Vote ANC"</div>
-            </div>
-            <div class="gallery-item cursor-pointer rounded-xl overflow-hidden shadow-md bg-white ooh-item" data-index="258" data-category="transit">
-                <img src="npge_taxi_kzn_09.webp" alt="BC01JTZN" class="w-full h-72 object-cover transition-transform duration-500 hover:scale-105">
-                <div class="overlay">BC01JTZN – "Let's Do More, Together. Vote ANC"</div>
-            </div>
-            <div class="gallery-item cursor-pointer rounded-xl overflow-hidden shadow-md bg-white ooh-item" data-index="259" data-category="transit">
-                <img src="npge_taxi_kzn_10.webp" alt="BB89JDZN" class="w-full h-72 object-cover transition-transform duration-500 hover:scale-105">
-                <div class="overlay">BB89JDZN – "Let's Do More, Together. Vote ANC"</div>
-            </div>
-            <div class="gallery-item cursor-pointer rounded-xl overflow-hidden shadow-md bg-white ooh-item" data-index="260" data-category="transit">
-                <img src="npge_taxi_kzn_11.webp" alt="ND660160" class="w-full h-72 object-cover transition-transform duration-500 hover:scale-105">
-                <div class="overlay">ND660160 – "Let's Do More, Together. Vote ANC"</div>
-            </div>
-            <div class="gallery-item cursor-pointer rounded-xl overflow-hidden shadow-md bg-white ooh-item" data-index="261" data-category="transit">
-                <img src="npge_taxi_kzn_12.webp" alt="ND555570" class="w-full h-72 object-cover transition-transform duration-500 hover:scale-105">
-                <div class="overlay">ND555570 – "Let's Do More, Together. Vote ANC"</div>
-            </div>
-            <div class="gallery-item cursor-pointer rounded-xl overflow-hidden shadow-md bg-white ooh-item" data-index="262" data-category="transit">
-                <img src="npge_taxi_kzn_13.webp" alt="NJ54811" class="w-full h-72 object-cover transition-transform duration-500 hover:scale-105">
-                <div class="overlay">NJ54811 – "Let's Do More, Together. Vote ANC"</div>
-            </div>
-            <div class="gallery-item cursor-pointer rounded-xl overflow-hidden shadow-md bg-white ooh-item" data-index="263" data-category="transit">
-                <img src="npge_taxi_kzn_14.webp" alt="ND713671" class="w-full h-72 object-cover transition-transform duration-500 hover:scale-105">
-                <div class="overlay">ND713671 – "Let's Do More, Together. Vote ANC"</div>
-            </div>
-            <div class="gallery-item cursor-pointer rounded-xl overflow-hidden shadow-md bg-white ooh-item" data-index="264" data-category="transit">
-                <img src="npge_taxi_kzn_15.webp" alt="ND847201" class="w-full h-72 object-cover transition-transform duration-500 hover:scale-105">
-                <div class="overlay">ND847201 – "Let's Do More, Together. Vote ANC"</div>
-            </div>
-            <div class="gallery-item cursor-pointer rounded-xl overflow-hidden shadow-md bg-white ooh-item" data-index="265" data-category="transit">
-                <img src="npge_taxi_kzn_16.webp" alt="ND847129" class="w-full h-72 object-cover transition-transform duration-500 hover:scale-105">
-                <div class="overlay">ND847129 – "Let's Do More, Together. Vote ANC"</div>
-            </div>
-            <div class="gallery-item cursor-pointer rounded-xl overflow-hidden shadow-md bg-white ooh-item" data-index="266" data-category="transit">
-                <img src="npge_taxi_kzn_17.webp" alt="ND312817" class="w-full h-72 object-cover transition-transform duration-500 hover:scale-105">
-                <div class="overlay">ND312817 – "Let's Do More, Together. Vote ANC"</div>
-            </div>
-            <div class="gallery-item cursor-pointer rounded-xl overflow-hidden shadow-md bg-white ooh-item" data-index="267" data-category="transit">
-                <img src="npge_taxi_kzn_18.webp" alt="NZ20702" class="w-full h-72 object-cover transition-transform duration-500 hover:scale-105">
-                <div class="overlay">NZ20702 – "Let's Do More, Together. Vote ANC"</div>
-            </div>
-            <div class="gallery-item cursor-pointer rounded-xl overflow-hidden shadow-md bg-white ooh-item" data-index="268" data-category="transit">
-                <img src="npge_taxi_kzn_19.webp" alt="ND209354" class="w-full h-72 object-cover transition-transform duration-500 hover:scale-105">
-                <div class="overlay">ND209354 – "Let's Do More, Together. Vote ANC"</div>
-            </div>
-            <div class="gallery-item cursor-pointer rounded-xl overflow-hidden shadow-md bg-white ooh-item" data-index="269" data-category="transit">
-                <img src="npge_taxi_kzn_20.webp" alt="ND791967" class="w-full h-72 object-cover transition-transform duration-500 hover:scale-105">
-                <div class="overlay">ND791967 – "Let's Do More, Together. Vote ANC"</div>
-            </div>
-            <div class="gallery-item cursor-pointer rounded-xl overflow-hidden shadow-md bg-white ooh-item" data-index="270" data-category="transit">
-                <img src="npge_taxi_kzn_21.webp" alt="GADLELAZN" class="w-full h-72 object-cover transition-transform duration-500 hover:scale-105">
-                <div class="overlay">GADLELAZN – "Let's Do More, Together. Vote ANC"</div>
-            </div>
-            <div class="gallery-item cursor-pointer rounded-xl overflow-hidden shadow-md bg-white ooh-item" data-index="271" data-category="transit">
-                <img src="npge_taxi_kzn_22.webp" alt="NJ73560" class="w-full h-72 object-cover transition-transform duration-500 hover:scale-105">
-                <div class="overlay">NJ73560 – "Let's Do More, Together. Vote ANC"</div>
-            </div>
-            <div class="gallery-item cursor-pointer rounded-xl overflow-hidden shadow-md bg-white ooh-item" data-index="272" data-category="transit">
-                <img src="npge_taxi_kzn_23.webp" alt="ND639801" class="w-full h-72 object-cover transition-transform duration-500 hover:scale-105">
-                <div class="overlay">ND639801 – "Let's Do More, Together. Vote ANC"</div>
-            </div>
-            <div class="gallery-item cursor-pointer rounded-xl overflow-hidden shadow-md bg-white ooh-item" data-index="273" data-category="transit">
-                <img src="npge_taxi_kzn_24.webp" alt="NP638481" class="w-full h-72 object-cover transition-transform duration-500 hover:scale-105">
-                <div class="overlay">NP638481 – "Let's Do More, Together. Vote ANC"</div>
-            </div>
-            <div class="gallery-item cursor-pointer rounded-xl overflow-hidden shadow-md bg-white ooh-item" data-index="274" data-category="transit">
-                <img src="npge_taxi_kzn_25.webp" alt="ND885589" class="w-full h-72 object-cover transition-transform duration-500 hover:scale-105">
-                <div class="overlay">ND885589 – "Let's Do More, Together. Vote ANC"</div>
-            </div>
-
-            <!-- ===== LIMPOPO WALL MURALS ===== -->
-            <div class="gallery-item cursor-pointer rounded-xl overflow-hidden shadow-md bg-white ooh-item" data-index="280" data-category="wall">
-                <img src="npge_wall_lp_01.webp" alt="Ruiter Street Mokopane" class="w-full h-72 object-cover transition-transform duration-500 hover:scale-105">
-                <div class="overlay">Ruiter Street, Mokopane, Limpopo – "A Re Direng Le Go Feta, Mmogo. Boutela ANC"</div>
-            </div>
-            <div class="gallery-item cursor-pointer rounded-xl overflow-hidden shadow-md bg-white ooh-item" data-index="282" data-category="wall">
-                <img src="npge_wall_lp_03.webp" alt="Vele Str Elim" class="w-full h-72 object-cover transition-transform duration-500 hover:scale-105">
-                <div class="overlay">Vele Str, Elim, Limpopo – "Mmogo, A Re Direng Gofeta. Voutela ANC"</div>
-            </div>
-            <div class="gallery-item cursor-pointer rounded-xl overflow-hidden shadow-md bg-white ooh-item" data-index="284" data-category="wall">
-                <img src="npge_wall_lp_05.webp" alt="N11 Mokopane" class="w-full h-72 object-cover transition-transform duration-500 hover:scale-105">
-                <div class="overlay">N11, Mokopane, Limpopo – "Mmogo, A Re Direng Gofeta. Voutela ANC"</div>
-            </div>
-            <div class="gallery-item cursor-pointer rounded-xl overflow-hidden shadow-md bg-white ooh-item" data-index="286" data-category="wall">
-                <img src="npge_wall_lp_07.webp" alt="Khota Str Bela Bela" class="w-full h-72 object-cover transition-transform duration-500 hover:scale-105">
-                <div class="overlay">Khota Str, Bela Bela Township, Limpopo – "Mmogo, A Re Direng Gofeta. Voutela ANC"</div>
-            </div>
-            <div class="gallery-item cursor-pointer rounded-xl overflow-hidden shadow-md bg-white ooh-item" data-index="288" data-category="wall">
-                <img src="npge_wall_lp_09.webp" alt="Main Rd Mphakane" class="w-full h-72 object-cover transition-transform duration-500 hover:scale-105">
-                <div class="overlay">Main Rd, Mphakane, Botlokwa, Limpopo – "Mmogo, A Re Direng Gofeta. Voutela ANC"</div>
-            </div>
-            <div class="gallery-item cursor-pointer rounded-xl overflow-hidden shadow-md bg-white ooh-item" data-index="290" data-category="wall">
-                <img src="npge_wall_lp_11.webp" alt="Cnr R579 Lebowakgomo" class="w-full h-72 object-cover transition-transform duration-500 hover:scale-105">
-                <div class="overlay">Cnr R579 &amp; R518, Lebowakgomo, Limpopo – "Mmogo, A Re Direng Gofeta. Voutela ANC"</div>
-            </div>
-            <div class="gallery-item cursor-pointer rounded-xl overflow-hidden shadow-md bg-white ooh-item" data-index="292" data-category="wall">
-                <img src="npge_wall_lp_13.webp" alt="Bankuna Str Nkowankowa" class="w-full h-72 object-cover transition-transform duration-500 hover:scale-105">
-                <div class="overlay">Bankuna Str, Nkowankowa, Limpopo – "Mmogo, A Re Direng Gofeta. Voutela ANC"</div>
-            </div>
-            <div class="gallery-item cursor-pointer rounded-xl overflow-hidden shadow-md bg-white ooh-item" data-index="294" data-category="wall">
-                <img src="npge_wall_lp_15.webp" alt="Calvin Ngobeni Rd" class="w-full h-72 object-cover transition-transform duration-500 hover:scale-105">
-                <div class="overlay">Calvin Ngobeni Rd, Phalaborwa, Limpopo – "Mmogo, A Re Direng Gofeta. Voutela ANC"</div>
-            </div>
-            <div class="gallery-item cursor-pointer rounded-xl overflow-hidden shadow-md bg-white ooh-item" data-index="296" data-category="wall">
-                <img src="npge_wall_lp_17.webp" alt="University Rd Mankweng" class="w-full h-72 object-cover transition-transform duration-500 hover:scale-105">
-                <div class="overlay">University Rd, Mankweng, Limpopo – "A Re Direng Le Go Feta, Mmogo. Boutela ANC"</div>
-            </div>
-            <div class="gallery-item cursor-pointer rounded-xl overflow-hidden shadow-md bg-white ooh-item" data-index="298" data-category="wall">
-                <img src="npge_wall_lp_19.webp" alt="Jane Furse St" class="w-full h-72 object-cover transition-transform duration-500 hover:scale-105">
-                <div class="overlay">Jane Furse St, Lebowakgomo, Limpopo – "A Re Direng Le Go Feta, Mmogo. Boutela ANC"</div>
-            </div>
-            <div class="gallery-item cursor-pointer rounded-xl overflow-hidden shadow-md bg-white ooh-item" data-index="300" data-category="wall">
-                <img src="npge_wall_lp_21.webp" alt="Mohlakaneng St Polokwane" class="w-full h-72 object-cover transition-transform duration-500 hover:scale-105">
-                <div class="overlay">70 Mohlakaneng St, Polokwane, Limpopo – "A Re Direng Gofeta, Mmogo. Boutela ANC"</div>
-            </div>
-            <div class="gallery-item cursor-pointer rounded-xl overflow-hidden shadow-md bg-white ooh-item" data-index="302" data-category="wall">
-                <img src="npge_wall_lp_23.webp" alt="Location TBC Limpopo" class="w-full h-72 object-cover transition-transform duration-500 hover:scale-105">
-                <div class="overlay">Location TBC, Limpopo – "Mmogo, A Re Direng Gofeta. Voutela ANC"</div>
-            </div>
-            <div class="gallery-item cursor-pointer rounded-xl overflow-hidden shadow-md bg-white ooh-item" data-index="304" data-category="wall">
-                <img src="npge_wall_lp_25.webp" alt="Location TBC Lephalale" class="w-full h-72 object-cover transition-transform duration-500 hover:scale-105">
-                <div class="overlay">Location TBC, Lephalale, Limpopo</div>
-            </div>
-
-            <!-- ===== LIMPOPO TAXIS ===== -->
-            <div class="gallery-item cursor-pointer rounded-xl overflow-hidden shadow-md bg-white ooh-item" data-index="310" data-category="transit">
-                <img src="npge_taxi_lp_01.webp" alt="DYG065L" class="w-full h-72 object-cover transition-transform duration-500 hover:scale-105">
-                <div class="overlay">DYG065L – "Let's Do More, Together. Vote ANC"</div>
-            </div>
-            <div class="gallery-item cursor-pointer rounded-xl overflow-hidden shadow-md bg-white ooh-item" data-index="311" data-category="transit">
-                <img src="npge_taxi_lp_02.webp" alt="FCS808L" class="w-full h-72 object-cover transition-transform duration-500 hover:scale-105">
-                <div class="overlay">FCS808L – "Vote ANC"</div>
-            </div>
-            <div class="gallery-item cursor-pointer rounded-xl overflow-hidden shadow-md bg-white ooh-item" data-index="312" data-category="transit">
-                <img src="npge_taxi_lp_03.webp" alt="DWY558" class="w-full h-72 object-cover transition-transform duration-500 hover:scale-105">
-                <div class="overlay">DWY558 – "Let's Do More, Together. Vote ANC"</div>
-            </div>
-            <div class="gallery-item cursor-pointer rounded-xl overflow-hidden shadow-md bg-white ooh-item" data-index="313" data-category="transit">
-                <img src="npge_taxi_lp_04.webp" alt="FGV145L" class="w-full h-72 object-cover transition-transform duration-500 hover:scale-105">
-                <div class="overlay">FGV145L – "Vote ANC"</div>
-            </div>
-            <div class="gallery-item cursor-pointer rounded-xl overflow-hidden shadow-md bg-white ooh-item" data-index="314" data-category="transit">
-                <img src="npge_taxi_lp_05.webp" alt="FYG494L" class="w-full h-72 object-cover transition-transform duration-500 hover:scale-105">
-                <div class="overlay">FYG494L – "Vote ANC"</div>
-            </div>
-            <div class="gallery-item cursor-pointer rounded-xl overflow-hidden shadow-md bg-white ooh-item" data-index="315" data-category="transit">
-                <img src="npge_taxi_lp_06.webp" alt="FXJ590L" class="w-full h-72 object-cover transition-transform duration-500 hover:scale-105">
-                <div class="overlay">FXJ590L – "Let's Do More, Together. Vote ANC"</div>
-            </div>
-            <div class="gallery-item cursor-pointer rounded-xl overflow-hidden shadow-md bg-white ooh-item" data-index="316" data-category="transit">
-                <img src="npge_taxi_lp_07.webp" alt="FGC980L" class="w-full h-72 object-cover transition-transform duration-500 hover:scale-105">
-                <div class="overlay">FGC980L – "Let's Do More, Together. Vote ANC"</div>
-            </div>
-            <div class="gallery-item cursor-pointer rounded-xl overflow-hidden shadow-md bg-white ooh-item" data-index="317" data-category="transit">
-                <img src="npge_taxi_lp_08.webp" alt="DRT868L" class="w-full h-72 object-cover transition-transform duration-500 hover:scale-105">
-                <div class="overlay">DRT868L – "Let's Do More, Together. Vote ANC"</div>
-            </div>
-            <div class="gallery-item cursor-pointer rounded-xl overflow-hidden shadow-md bg-white ooh-item" data-index="318" data-category="transit">
-                <img src="npge_taxi_lp_09.webp" alt="DGW453L" class="w-full h-72 object-cover transition-transform duration-500 hover:scale-105">
-                <div class="overlay">DGW453L – "Let's Do More, Together. Vote ANC"</div>
-            </div>
-            <div class="gallery-item cursor-pointer rounded-xl overflow-hidden shadow-md bg-white ooh-item" data-index="319" data-category="transit">
-                <img src="npge_taxi_lp_10.webp" alt="FLX198L" class="w-full h-72 object-cover transition-transform duration-500 hover:scale-105">
-                <div class="overlay">FLX198L – "Vote ANC"</div>
-            </div>
-            <div class="gallery-item cursor-pointer rounded-xl overflow-hidden shadow-md bg-white ooh-item" data-index="320" data-category="transit">
-                <img src="npge_taxi_lp_11.webp" alt="HCX847L" class="w-full h-72 object-cover transition-transform duration-500 hover:scale-105">
-                <div class="overlay">HCX847L – "Let's Do More, Together. Vote ANC"</div>
-            </div>
-            <div class="gallery-item cursor-pointer rounded-xl overflow-hidden shadow-md bg-white ooh-item" data-index="321" data-category="transit">
-                <img src="npge_taxi_lp_12.webp" alt="DTS696L" class="w-full h-72 object-cover transition-transform duration-500 hover:scale-105">
-                <div class="overlay">DTS696L – "Vote ANC"</div>
-            </div>
-            <div class="gallery-item cursor-pointer rounded-xl overflow-hidden shadow-md bg-white ooh-item" data-index="322" data-category="transit">
-                <img src="npge_taxi_lp_13.webp" alt="FKL667L" class="w-full h-72 object-cover transition-transform duration-500 hover:scale-105">
-                <div class="overlay">FKL667L – "Let's Do More, Together. Vote ANC"</div>
-            </div>
-            <div class="gallery-item cursor-pointer rounded-xl overflow-hidden shadow-md bg-white ooh-item" data-index="323" data-category="transit">
-                <img src="npge_taxi_lp_14.webp" alt="HBM993L" class="w-full h-72 object-cover transition-transform duration-500 hover:scale-105">
-                <div class="overlay">HBM993L – "Let's Do More, Together. Vote ANC"</div>
-            </div>
-            <div class="gallery-item cursor-pointer rounded-xl overflow-hidden shadow-md bg-white ooh-item" data-index="324" data-category="transit">
-                <img src="npge_taxi_lp_15.webp" alt="FNN593L" class="w-full h-72 object-cover transition-transform duration-500 hover:scale-105">
-                <div class="overlay">FNN593L – "Vote ANC"</div>
-            </div>
-            <div class="gallery-item cursor-pointer rounded-xl overflow-hidden shadow-md bg-white ooh-item" data-index="325" data-category="transit">
-                <img src="npge_taxi_lp_16.webp" alt="DWG709L" class="w-full h-72 object-cover transition-transform duration-500 hover:scale-105">
-                <div class="overlay">DWG709L – "Let's Do More, Together. Vote ANC"</div>
-            </div>
-            <div class="gallery-item cursor-pointer rounded-xl overflow-hidden shadow-md bg-white ooh-item" data-index="326" data-category="transit">
-                <img src="npge_taxi_lp_17.webp" alt="CJN367L" class="w-full h-72 object-cover transition-transform duration-500 hover:scale-105">
-                <div class="overlay">CJN367L – "Let's Do More, Together. Vote ANC"</div>
-            </div>
-            <div class="gallery-item cursor-pointer rounded-xl overflow-hidden shadow-md bg-white ooh-item" data-index="327" data-category="transit">
-                <img src="npge_taxi_lp_18.webp" alt="DNW676L" class="w-full h-72 object-cover transition-transform duration-500 hover:scale-105">
-                <div class="overlay">DNW676L – "Vote ANC"</div>
-            </div>
-            <div class="gallery-item cursor-pointer rounded-xl overflow-hidden shadow-md bg-white ooh-item" data-index="328" data-category="transit">
-                <img src="npge_taxi_lp_19.webp" alt="CZT393L" class="w-full h-72 object-cover transition-transform duration-500 hover:scale-105">
-                <div class="overlay">CZT393L – "Let's Do More, Together. Vote ANC"</div>
-            </div>
-            <div class="gallery-item cursor-pointer rounded-xl overflow-hidden shadow-md bg-white ooh-item" data-index="329" data-category="transit">
-                <img src="npge_taxi_lp_20.webp" alt="FPP468L" class="w-full h-72 object-cover transition-transform duration-500 hover:scale-105">
-                <div class="overlay">FPP468L – "Let's Do More, Together. Vote ANC"</div>
-            </div>
-
-            <!-- ===== MPUMALANGA WALL MURALS ===== -->
-            <div class="gallery-item cursor-pointer rounded-xl overflow-hidden shadow-md bg-white ooh-item" data-index="340" data-category="wall">
-                <img src="npge_wall_mp_01.webp" alt="Mbuzini Enhlanzeni" class="w-full h-72 object-cover transition-transform duration-500 hover:scale-105">
-                <div class="overlay">Main Taxi Route, Mbuzini, Enhlanzeni, Mpumalanga – "Asente Lokunyenti, Sisonke. Votela I-ANC"</div>
-            </div>
-            <div class="gallery-item cursor-pointer rounded-xl overflow-hidden shadow-md bg-white ooh-item" data-index="342" data-category="wall">
-                <img src="npge_wall_mp_03.webp" alt="R573 Moloto Rd Phola Mall" class="w-full h-72 object-cover transition-transform duration-500 hover:scale-105">
-                <div class="overlay">R573 Moloto Rd, Phola Mall, Kwamhlanga, Mpumalanga – "Asenze Okuningi, Ngokubambisana. Vowudela I-ANC"</div>
-            </div>
-            <div class="gallery-item cursor-pointer rounded-xl overflow-hidden shadow-md bg-white ooh-item" data-index="344" data-category="wall">
-                <img src="npge_wall_mp_05.webp" alt="Chris Hani Dr Kanyamazane" class="w-full h-72 object-cover transition-transform duration-500 hover:scale-105">
-                <div class="overlay">Chris Hani Dr, Kanyamazane, Mbombela, Mpumalanga – "Asente Lokunyenti, Sisonke. Votela I-ANC"</div>
-            </div>
-            <div class="gallery-item cursor-pointer rounded-xl overflow-hidden shadow-md bg-white ooh-item" data-index="346" data-category="wall">
-                <img src="npge_wall_mp_07.webp" alt="Rethabile St Mhluzi" class="w-full h-72 object-cover transition-transform duration-500 hover:scale-105">
-                <div class="overlay">12089 Rethabile St, Mhluzi, Middelberg, Mpumalanga – "Asenze Okuningi, Ngokubambisana. Votela I-ANC"</div>
-            </div>
-            <div class="gallery-item cursor-pointer rounded-xl overflow-hidden shadow-md bg-white ooh-item" data-index="348" data-category="wall">
-                <img src="npge_wall_mp_09.webp" alt="eMkhondo Piet Retief" class="w-full h-72 object-cover transition-transform duration-500 hover:scale-105">
-                <div class="overlay">Main Taxi Rank, eMkhondo, Piet Retief, Mpumalanga – "Asente Lokunyenti, Sisonke. Votela I-ANC"</div>
-            </div>
-            <div class="gallery-item cursor-pointer rounded-xl overflow-hidden shadow-md bg-white ooh-item" data-index="349" data-category="wall">
-                <img src="npge_wall_mp_10.webp" alt="Mzinti Tonga" class="w-full h-72 object-cover transition-transform duration-500 hover:scale-105">
-                <div class="overlay">Mzinti, Tonga, Mpumalanga – "Asente Lokunyenti, Sisonke. Votela I-ANC"</div>
-            </div>
-            <div class="gallery-item cursor-pointer rounded-xl overflow-hidden shadow-md bg-white ooh-item" data-index="351" data-category="wall">
-                <img src="npge_wall_mp_12.webp" alt="Kwahlanga Section B" class="w-full h-72 object-cover transition-transform duration-500 hover:scale-105">
-                <div class="overlay">886 Section B, Kwahlanga, Mpumalanga – "Asente Lokunyenti, Sisonke. Votela I-ANC"</div>
-            </div>
-            <div class="gallery-item cursor-pointer rounded-xl overflow-hidden shadow-md bg-white ooh-item" data-index="352" data-category="wall">
-                <img src="npge_wall_mp_13.webp" alt="Location TBC Mpumalanga" class="w-full h-72 object-cover transition-transform duration-500 hover:scale-105">
-                <div class="overlay">Location TBC, Mpumalanga – "Asente Lokunyenti, Sisonke. Votela I-ANC"</div>
-            </div>
-
-            <!-- ===== NORTH WEST WALL MURALS ===== -->
-            <div class="gallery-item cursor-pointer rounded-xl overflow-hidden shadow-md bg-white ooh-item" data-index="360" data-category="wall">
-                <img src="npge_wall_nw_010.webp" alt="Rabaji Street Tlhobane" class="w-full h-72 object-cover transition-transform duration-500 hover:scale-105">
-                <div class="overlay">Rabaji Street, Tlhobane, Rustenburg, North West – "Mmogo, A Re Direng Gofeta. Voutela ANC"</div>
-            </div>
-            <div class="gallery-item cursor-pointer rounded-xl overflow-hidden shadow-md bg-white ooh-item" data-index="362" data-category="wall">
-                <img src="npge_wall_nw_03.webp" alt="Jabulani Street Klerksdorp" class="w-full h-72 object-cover transition-transform duration-500 hover:scale-105">
-                <div class="overlay">Jabulani Street, Klerksdorp, North West – "Let's Do More, Together. Vote ANC"</div>
-            </div>
-            <div class="gallery-item cursor-pointer rounded-xl overflow-hidden shadow-md bg-white ooh-item" data-index="363" data-category="wall">
-                <img src="npge_wall_nw_04.webp" alt="Makheni St Tlhabase" class="w-full h-72 object-cover transition-transform duration-500 hover:scale-105">
-                <div class="overlay">1231 Makheni St, Tlhabase, North West – "Mmogo, A Re Direng Gofeta. Voutela ANC"</div>
-            </div>
-            <div class="gallery-item cursor-pointer rounded-xl overflow-hidden shadow-md bg-white ooh-item" data-index="365" data-category="wall">
-                <img src="npge_wall_nw_06.webp" alt="R565 Kgale Phokeng" class="w-full h-72 object-cover transition-transform duration-500 hover:scale-105">
-                <div class="overlay">R565 Kgale, Phokeng, North West – "Mmogo, A Re Direng Gofeta. Voutela ANC"</div>
-            </div>
-            <div class="gallery-item cursor-pointer rounded-xl overflow-hidden shadow-md bg-white ooh-item" data-index="366" data-category="wall">
-                <img src="npge_wall_nw_07.webp" alt="Rabaji St Tlhabase" class="w-full h-72 object-cover transition-transform duration-500 hover:scale-105">
-                <div class="overlay">2247 Rabaji St, Tlhabase, North West – "Mmogo, A Re Direng Gofeta. Voutela ANC"</div>
-            </div>
-
-            <!-- ===== NORTHERN CAPE WALL MURALS ===== -->
-            <div class="gallery-item cursor-pointer rounded-xl overflow-hidden shadow-md bg-white ooh-item" data-index="380" data-category="wall">
-                <img src="npge_wall_nc_01.webp" alt="Namelang St Warrington" class="w-full h-72 object-cover transition-transform duration-500 hover:scale-105">
-                <div class="overlay">128 Namelang St, Ikhutseng, Warrington, Northern Cape – "Mmogo, A Re Direng Gofeta. Voutela ANC"</div>
-            </div>
-            <div class="gallery-item cursor-pointer rounded-xl overflow-hidden shadow-md bg-white ooh-item" data-index="382" data-category="wall">
-                <img src="npge_wall_nc_03.webp" alt="KwaNobantu Frances Baard" class="w-full h-72 object-cover transition-transform duration-500 hover:scale-105">
-                <div class="overlay">KwaNobantu, Frances Baard, Northern Cape – "Saam, Doen Ons Meer. Stem ANC"</div>
-            </div>
-
-            <!-- ===== EXISTING DIGITAL / OTHER ===== -->
-            <div class="gallery-item cursor-pointer rounded-xl overflow-hidden shadow-md bg-white ooh-item" data-index="45" data-category="digital">
-                <img src="outdoor_45.webp" alt="Digital LED screen" class="w-full h-72 object-cover transition-transform duration-500 hover:scale-105">
-                <div class="overlay">Digital Screen – Primedia display</div>
-            </div>
-            <div class="gallery-item cursor-pointer rounded-xl overflow-hidden shadow-md bg-white ooh-item" data-index="56" data-category="digital">
-                <img src="Anc_Social_Media_Poster.webp" alt="Horizontal video still" class="w-full h-72 object-cover transition-transform duration-500 hover:scale-105">
-                <div class="overlay">Social media board card-image – Digital still</div>
-            </div>
-
-            <!-- ===== EXISTING STREET FURNITURE ===== -->
-            <div class="gallery-item cursor-pointer rounded-xl overflow-hidden shadow-md bg-white ooh-item" data-index="36" data-category="street">
-                <img src="outdoor_36.webp" alt="Italian poster" class="w-full h-72 object-cover transition-transform duration-500 hover:scale-105">
-                <div class="overlay">Street Poster – Italian translation: "Facciamo di più, insieme. Vota ANC"</div>
-            </div>
-            <div class="gallery-item cursor-pointer rounded-xl overflow-hidden shadow-md bg-white ooh-item" data-index="37" data-category="street">
-                <img src="outdoor_37.webp" alt="Person holding poster" class="w-full h-72 object-cover transition-transform duration-500 hover:scale-105">
-                <div class="overlay">Street Poster – Held by a supporter</div>
-            </div>
-            <div class="gallery-item cursor-pointer rounded-xl overflow-hidden shadow-md bg-white ooh-item" data-index="39" data-category="street">
-                <img src="outdoor_39.webp" alt="Street pole banner" class="w-full h-72 object-cover transition-transform duration-500 hover:scale-105">
-                <div class="overlay">Street Pole Banner – Positioned over a busy sidewalk</div>
-            </div>
-            <div class="gallery-item cursor-pointer rounded-xl overflow-hidden shadow-md bg-white ooh-item" data-index="55" data-category="street">
-                <img src="outdoor_55.webp" alt="Container wrap" class="w-full h-72 object-cover transition-transform duration-500 hover:scale-105">
-                <div class="overlay">Street Installation – Creative wrap on a shipping container</div>
-            </div>
-            <div class="gallery-item cursor-pointer rounded-xl overflow-hidden shadow-md bg-white ooh-item" data-index="57" data-category="street">
-                <img src="outdoor_57.webp" alt="Afrikaans street pole" class="w-full h-72 object-cover transition-transform duration-500 hover:scale-105">
-                <div class="overlay">Street Pole Banner – Afrikaans translation: "Saam doen ons meer. Stem ANC"</div>
-            </div>
-            <div class="gallery-item cursor-pointer rounded-xl overflow-hidden shadow-md bg-white ooh-item" data-index="68" data-category="street">
-                <img src="outdoor_68.webp" alt="Bridge installation" class="w-full h-72 object-cover transition-transform duration-500 hover:scale-105">
-                <div class="overlay">Street Installation – Signage being installed over a railway bridge</div>
-            </div>
-            <div class="gallery-item cursor-pointer rounded-xl overflow-hidden shadow-md bg-white ooh-item" data-index="69" data-category="street">
-                <img src="outdoor_69.webp" alt="Street pole banner duplicate" class="w-full h-72 object-cover transition-transform duration-500 hover:scale-105">
-                <div class="overlay">Street Pole Banner – Along a busy thoroughfare</div>
-            </div>
-            <div class="gallery-item cursor-pointer rounded-xl overflow-hidden shadow-md bg-white ooh-item" data-index="70" data-category="street">
-                <img src="outdoor_70.webp" alt="Row of street poles" class="w-full h-72 object-cover transition-transform duration-500 hover:scale-105">
-                <div class="overlay">Street Poles – A row of multiple banners lining the street</div>
-            </div>
-
-            <!-- ===== EXISTING TRANSIT ===== -->
-            <div class="gallery-item cursor-pointer rounded-xl overflow-hidden shadow-md bg-white ooh-item" data-index="53" data-category="transit">
-                <img src="outdoor_53.webp" alt="Mobile trailer" class="w-full h-72 object-cover transition-transform duration-500 hover:scale-105">
-                <div class="overlay">Mobile Billboard – Trailer being towed on a dirt road</div>
-            </div>
-            <div class="gallery-item cursor-pointer rounded-xl overflow-hidden shadow-md bg-white ooh-item" data-index="54" data-category="transit">
-                <img src="outdoor_54.webp" alt="Mobile trailers parked" class="w-full h-72 object-cover transition-transform duration-500 hover:scale-105">
-                <div class="overlay">Mobile Billboard – Trailers parked along the roadside</div>
-            </div>
-            <div class="gallery-item cursor-pointer rounded-xl overflow-hidden shadow-md bg-white ooh-item" data-index="58" data-category="transit">
-                <img src="outdoor_58.webp" alt="Taxi wrap" class="w-full h-72 object-cover transition-transform duration-500 hover:scale-105">
-                <div class="overlay">Taxi Wrap – Full vehicle branding</div>
-            </div>
-            <div class="gallery-item cursor-pointer rounded-xl overflow-hidden shadow-md bg-white ooh-item" data-index="59" data-category="transit">
-                <img src="outdoor_59.webp" alt="Taxi side profile" class="w-full h-72 object-cover transition-transform duration-500 hover:scale-105">
-                <div class="overlay">Taxi Wrap – Side profile display</div>
-            </div>
-            <div class="gallery-item cursor-pointer rounded-xl overflow-hidden shadow-md bg-white ooh-item" data-index="60" data-category="transit">
-                <img src="outdoor_60.webp" alt="Taxi rear view" class="w-full h-72 object-cover transition-transform duration-500 hover:scale-105">
-                <div class="overlay">Taxi Wrap – Rear view with campaign branding</div>
-            </div>
-
+                    <!-- NEW GAUTENG TAXI FROM SCREENSHOT -->
+        <div class="gallery-item cursor-pointer rounded-xl overflow-hidden shadow-md bg-white ooh-item" data-index="212" data-category="transit">
+            <img src="npge_taxi_gp_23.webp" alt="RGG141GP" class="w-full h-72 object-cover transition-transform duration-500 hover:scale-105">
+            <div class="overlay">RGG141GP – "Let's Do More, Together. Vote ANC"</div>
         </div>
-    </div>
-</section>
-
-    <!-- ========== VIDEO MODAL - YouTube ========== -->
-    <div id="videoModal" class="video-modal-overlay">
-        <div class="video-modal-content">
-            <button class="close-video" id="closeVideoBtn">
-                <i class="fas fa-times"></i>
-            </button>
-            <div class="mbr-video-foreground">
-                <iframe id="youtubeIframe" src="" title="YouTube video player" allow="autoplay; encrypted-media; fullscreen" allowfullscreen="" loading="lazy"></iframe>
-            </div>
-            <div class="video-title-overlay" id="videoModalTitle">Video</div>
+        <!-- NEW GAUTENG TAXI ADDED FROM SCREENSHOT -->
+        <div class="gallery-item cursor-pointer rounded-xl overflow-hidden shadow-md bg-white ooh-item" data-index="213" data-category="transit">
+            <img src="npge_taxi_gp_24.webp" alt="TYD765GP" class="w-full h-72 object-cover transition-transform duration-500 hover:scale-105">
+            <div class="overlay">TYD765GP – "Let's Do More, Together. Vote ANC"</div>
         </div>
-    </div>
-
-    <!-- ========== LOCAL VIDEO MODAL (for .m4v) ========== -->
-    <div id="localVideoModal" class="video-modal-overlay">
-        <div class="video-modal-content">
-            <button class="close-video" id="closeLocalVideoBtn">
-                <i class="fas fa-times"></i>
-            </button>
-            <div class="mbr-video-foreground" style="display:flex; align-items:center; justify-content:center; background:#000;">
-                <video id="localVideoPlayer" controls style="max-width:100%; max-height:100%; width:100%; height:auto;" autoplay></video>
-            </div>
-            <div class="video-title-overlay" id="localVideoModalTitle">Video Title</div>
+        <!-- NEW GAUTENG TAXI ADDED FROM SCREENSHOT (PAGE 76) -->
+        <div class="gallery-item cursor-pointer rounded-xl overflow-hidden shadow-md bg-white ooh-item" data-index="214" data-category="transit">
+            <img src="npge_taxi_gp_25.webp" alt="PRY371GP" class="w-full h-72 object-cover transition-transform duration-500 hover:scale-105">
+            <div class="overlay">PRY371GP – "Let's Do More, Together. Vote ANC"</div>
         </div>
-    </div>
-
-    <!-- ========== LIGHTBOX ========== -->
-    <div id="lightbox" class="lightbox-overlay">
-        <div class="lightbox-content">
-            <button class="close-lightbox" id="closeLightboxBtn">✕</button>
-            <img id="lightboxImg" src="" alt="" />
-            <div class="lightbox-caption" id="lightboxCaption">Campaign creative displayed on an LED billboard in the city.</div>
-            <div class="lightbox-nav">
-                <button id="prevBtn"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m15 18-6-6 6-6"></path></svg></button>
-                <button id="nextBtn"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m9 18 6-6-6-6"></path></svg></button>
-            </div>
+        <!-- NEW GAUTENG TAXI ADDED FROM SCREENSHOT (PAGE 76) -->
+        <div class="gallery-item cursor-pointer rounded-xl overflow-hidden shadow-md bg-white ooh-item" data-index="215" data-category="transit">
+            <img src="npge_taxi_gp_26.webp" alt="KZ14MFGP" class="w-full h-72 object-cover transition-transform duration-500 hover:scale-105">
+            <div class="overlay">KP147MFGP – "Let's Do More, Together. Vote ANC"</div>
         </div>
-    </div>
+        
 
-    <!-- ========== NEW FOOTER ========== -->
-    <footer class="footer">
-        <div class="container">
-            <div class="footer-grid">
-                <div>
-                    <h4>Johannesburg</h4>
-                    <p>2nd Floor Trumpet On Keyes, 21 Keyes Avenue, Rosebank, Johannesburg, 2196</p>
-                    <p>Phone: +27 10 035 5218</p>
-                </div>
-                <div>
-                    <h4>Durban Office</h4>
-                    <p>2 Ncondo Place, Ridgeside Dr, Umhlanga Ridge, Durban, 4319</p>
-                    <p>Phone: +27 83 325 9532</p>
-                </div>
-                <div>
-                    <h4>Email</h4>
-                    <p><a href="mailto:info@obriangroup.com">info@obriangroup.com</a></p>
-                </div>
-                <div>
-                    <h4>About</h4>
-                    <ul>
-                        <li><a href="About.html">History</a></li>
-                        <li><a href="Client_Experience.html">Clients</a></li>
-                        <li><a href="Teams.html">Teams</a></li>
-                        <li><a href="Brand.html">Brand</a></li>
-                        <li><a href="Terms.html">Terms</a></li>
-                    </ul>
-                </div>
-            </div>
-            <div class="copyright">
-                <p>© 2026 O'Brian Group — All Rights Reserved | Designed with <span style="color:#ed008e;">●</span> precision</p>
-            </div>
+        <!-- ===== KWAZULU-NATAL BILLBOARDS ===== -->
+        <div class="gallery-item cursor-pointer rounded-xl overflow-hidden shadow-md bg-white ooh-item" data-index="220" data-category="billboard">
+            <img src="npge_billboard_kzn_01.webp" alt="R102 Umlazi Entrance" class="w-full h-72 object-cover transition-transform duration-500 hover:scale-105">
+            <div class="overlay">R102 Umlazi Entrance, Ethekwini – "Asenze Okuningi, Ngokubambisana. Votela I-ANC"</div>
         </div>
-    </footer>
+        <div class="gallery-item cursor-pointer rounded-xl overflow-hidden shadow-md bg-white ooh-item" data-index="221" data-category="billboard">
+            <img src="npge_billboard_kzn_02.webp" alt="M4 Congella Bridge" class="w-full h-72 object-cover transition-transform duration-500 hover:scale-105">
+            <div class="overlay">M4 Congella Bridge, Maydon Wharf, Durban – "Asenze Okuningi, Ngokubambisana. Votela I-ANC"</div>
+        </div>
+        <div class="gallery-item cursor-pointer rounded-xl overflow-hidden shadow-md bg-white ooh-item" data-index="222" data-category="billboard">
+            <img src="npge_billboard_kzn_03.webp" alt="M4 Dalbridge" class="w-full h-72 object-cover transition-transform duration-500 hover:scale-105">
+            <div class="overlay">M4 Dalbridge, Albert Park, Durban – "Let's Do More, Together. Vote ANC"</div>
+        </div>
+        <div class="gallery-item cursor-pointer rounded-xl overflow-hidden shadow-md bg-white ooh-item" data-index="223" data-category="billboard">
+            <img src="Artboard 79.webp" alt="M4 Dalbridge East" class="w-full h-72 object-cover transition-transform duration-500 hover:scale-105">
+            <div class="overlay">M4 Dalbridge East, Durban – "Let's Do More, Together. Vote ANC"</div>
+        </div>
+        <div class="gallery-item cursor-pointer rounded-xl overflow-hidden shadow-md bg-white ooh-item" data-index="224" data-category="billboard">
+            <img src="npge_billboard_kzn_05.webp" alt="237 Maydon Rd" class="w-full h-72 object-cover transition-transform duration-500 hover:scale-105">
+            <div class="overlay">237 Maydon Rd, Durban – "Let's Do More, Together. Vote ANC"</div>
+        </div>
+        <div class="gallery-item cursor-pointer rounded-xl overflow-hidden shadow-md bg-white ooh-item" data-index="225" data-category="billboard">
+            <img src="npge_billboard_kzn_06.webp" alt="N3 Cato Ridge" class="w-full h-72 object-cover transition-transform duration-500 hover:scale-105">
+            <div class="overlay">N3 23 Newmark Rd, Cato Ridge – "Let's Do More, Together. Vote ANC"</div>
+        </div>
+        <div class="gallery-item cursor-pointer rounded-xl overflow-hidden shadow-md bg-white ooh-item" data-index="226" data-category="billboard">
+            <img src="npge_billboard_kzn_07.webp" alt="Imbali Township Exit" class="w-full h-72 object-cover transition-transform duration-500 hover:scale-105">
+            <div class="overlay">Imbali Township Exit, Pietermaritzburg – "Asenze Okuningi, Ngokubambisana. Votela I-ANC"</div>
+        </div>
+        <div class="gallery-item cursor-pointer rounded-xl overflow-hidden shadow-md bg-white ooh-item" data-index="227" data-category="billboard">
+            <img src="Queen Nandi.webp" alt="Queen Nandi & Chris Hani Rd" class="w-full h-72 object-cover transition-transform duration-500 hover:scale-105">
+            <div class="overlay">Queen Nandi & Chris Hani Rd – "Let's Do More, Together. Vote ANC"</div>
+        </div>
+        <div class="gallery-item cursor-pointer rounded-xl overflow-hidden shadow-md bg-white ooh-item" data-index="228" data-category="billboard">
+            <img src="npge_billboard_kzn_09.webp" alt="82 South Coast Rd, Rossburgh" class="w-full h-72 object-cover transition-transform duration-500 hover:scale-105">
+            <div class="overlay">82 South Coast Rd, Rossburgh, Durban – "Let's Do More, Together. Vote ANC"</div>
+        </div>
 
-    <!-- ===== BACK TO TOP BUTTON (with scroll progress ring) ===== -->
-    <button class="back-to-top" id="backToTopBtn" aria-label="Back to top" title="Back to top" aria-hidden="true" tabindex="-1">
-        <svg class="btb-ring" viewBox="0 0 48 48" aria-hidden="true">
-            <circle class="btb-ring-track" cx="24" cy="24" r="21"></circle>
-            <circle class="btb-ring-progress" cx="24" cy="24" r="21"></circle>
-        </svg>
-        <svg class="btb-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-             stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-            <path d="M12 19V5"></path>
-            <path d="M5 12l7-7 7 7"></path>
-        </svg>
-    </button>
-
-    <!-- ========== SCRIPTS ========== -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js">
-    </script>
-    <script>
-        // Lucide icons
-        if (typeof lucide !== 'undefined') lucide.createIcons();
-
-        // ===== NEW HEADER TOGGLE =====
-        const menuBtn = document.getElementById('menuBtn');
-        const mobilePanel = document.getElementById('mobileMenuPanel');
-        if (menuBtn && mobilePanel) {
-            menuBtn.addEventListener('click', function() {
-                this.classList.toggle('open');
-                mobilePanel.classList.toggle('open');
-                document.body.style.overflow = mobilePanel.classList.contains('open') ? 'hidden' : '';
-            });
-            mobilePanel.querySelectorAll('a').forEach(link => {
-                link.addEventListener('click', function() {
-                    mobilePanel.classList.remove('open');
-                    menuBtn.classList.remove('open');
-                    document.body.style.overflow = '';
-                });
-            });
-        }
-
-        // ===== HEADER SCROLL EFFECT =====
-        const header = document.getElementById('mainHeader');
-        window.addEventListener('scroll', function() {
-            if (window.scrollY > 20) {
-                header.classList.add('scrolled');
-            } else {
-                header.classList.remove('scrolled');
-            }
-        });
-
-        // ========== GALLERY DATA – for the banner (index 71) fallback ==========
-        var galleryData = [
-            { src: 'npge_campaign_2024.jpg',
-                caption: 'ANC NPGE Campaign 2024 – A cinematic visual from the television commercial.' }
-        ];
-
-        // ========== LIGHTBOX ==========
-        var lightbox = document.getElementById('lightbox');
-        var lightboxImg = document.getElementById('lightboxImg');
-        var lightboxCaption = document.getElementById('lightboxCaption');
-        var prevBtn = document.getElementById('prevBtn');
-        var nextBtn = document.getElementById('nextBtn');
-        var closeLightboxBtn = document.getElementById('closeLightboxBtn');
-
-        let currentGalleryElement = null;
-
-        function updateLightboxContentFromElement(el) {
-            const img = el.querySelector('img');
-            if (img) lightboxImg.src = img.src;
-            let caption = '';
-            const overlay = el.querySelector('.overlay');
-            if (overlay) caption = overlay.textContent.trim();
-            if (!caption) caption = el.getAttribute('data-title') || '';
-            if (!caption && img) caption = img.alt || '';
-            lightboxCaption.textContent = caption;
-        }
-
-        function openLightbox(target) {
-            let element = null;
-            if (typeof target === 'number') {
-                element = document.querySelector(
-                    `.gallery-item[data-index="${target}"], .publiccomms-banner[data-index="${target}"]`);
-                if (!element) {
-                    if (target < 0 || target >= galleryData.length) return;
-                    const data = galleryData[target];
-                    lightboxImg.src = data.src;
-                    lightboxCaption.textContent = data.caption || '';
-                    lightbox.classList.add('active');
-                    document.body.style.overflow = 'hidden';
-                    currentGalleryElement = null;
-                    return;
-                }
-            } else {
-                element = target;
-            }
-            if (element) {
-                currentGalleryElement = element;
-                updateLightboxContentFromElement(element);
-                lightbox.classList.add('active');
-                document.body.style.overflow = 'hidden';
-            }
-        }
-
-        function closeLightbox() {
-            lightbox.classList.remove('active');
-            document.body.style.overflow = '';
-            currentGalleryElement = null;
-        }
-
-        function getAllGalleryItems() {
-            return document.querySelectorAll('.gallery-item, .publiccomms-banner');
-        }
-
-        function showPrev() {
-            if (!currentGalleryElement) return;
-            const items = getAllGalleryItems();
-            let index = Array.from(items).indexOf(currentGalleryElement);
-            if (index === -1) return;
-            index = (index - 1 + items.length) % items.length;
-            currentGalleryElement = items[index];
-            updateLightboxContentFromElement(currentGalleryElement);
-        }
-
-        function showNext() {
-            if (!currentGalleryElement) return;
-            const items = getAllGalleryItems();
-            let index = Array.from(items).indexOf(currentGalleryElement);
-            if (index === -1) return;
-            index = (index + 1) % items.length;
-            currentGalleryElement = items[index];
-            updateLightboxContentFromElement(currentGalleryElement);
-        }
-
-        function bindGalleryClicks(selector) {
-            document.querySelectorAll(selector).forEach(function(item) {
-                item.addEventListener('click', function(e) {
-                    e.stopPropagation();
-                    openLightbox(this);
-                });
-            });
-        }
-
-        bindGalleryClicks('#galleryGrid .gallery-item');
-        bindGalleryClicks('#socialGrid .gallery-item');
-        bindGalleryClicks('#printGrid .gallery-item');
-        bindGalleryClicks('#outdoorGrid .gallery-item');
-        bindGalleryClicks('#storyboardGrid .gallery-item');
-
-        document.querySelector('.publiccomms-banner')?.addEventListener('click', function() {
-            openLightbox(71);
-        });
-
-        if (prevBtn) prevBtn.addEventListener('click', function(e) { e.stopPropagation();
-            showPrev(); });
-        if (nextBtn) nextBtn.addEventListener('click', function(e) { e.stopPropagation();
-            showNext(); });
-        if (closeLightboxBtn) closeLightboxBtn.addEventListener('click', function(e) { e.stopPropagation();
-            closeLightbox(); });
-        lightbox.addEventListener('click', function(e) {
-            if (e.target === lightbox) closeLightbox();
-        });
-        document.addEventListener('keydown', function(e) {
-            if (lightbox.classList.contains('active')) {
-                if (e.key === 'Escape') closeLightbox();
-                if (e.key === 'ArrowLeft') showPrev();
-                if (e.key === 'ArrowRight') showNext();
-            }
-        });
-
-        // ========== VIDEO MODAL - YouTube ==========
-        var videoModal = document.getElementById('videoModal');
-        var youtubeIframe = document.getElementById('youtubeIframe');
-        var videoModalTitle = document.getElementById('videoModalTitle');
-        var closeVideoBtn = document.getElementById('closeVideoBtn');
-
-        function openVideoModal(videoId, title) {
-            var youtubeUrl = 'https://www.youtube.com/embed/' + videoId +
-                '?autoplay=1&mute=1&loop=1&playlist=' + videoId +
-                '&controls=1&rel=0&modestbranding=1&enablejsapi=1';
-            youtubeIframe.src = youtubeUrl;
-            videoModalTitle.textContent = title || 'Video';
-            videoModal.classList.add('active');
-            document.body.style.overflow = 'hidden';
-        }
-
-        function closeVideoModal() {
-            videoModal.classList.remove('active');
-            document.body.style.overflow = '';
-            youtubeIframe.src = '';
-        }
-
-        if (closeVideoBtn) closeVideoBtn.addEventListener('click', closeVideoModal);
-        videoModal.addEventListener('click', function(e) {
-            if (e.target === this) closeVideoModal();
-        });
-        document.addEventListener('keydown', function(e) {
-            if (e.key === 'Escape' && videoModal.classList.contains('active')) {
-                closeVideoModal();
-            }
-        });
-
-        // ========== LOCAL VIDEO MODAL ==========
-        var localVideoModal = document.getElementById('localVideoModal');
-        var localVideoPlayer = document.getElementById('localVideoPlayer');
-        var localVideoModalTitle = document.getElementById('localVideoModalTitle');
-        var closeLocalVideoBtn = document.getElementById('closeLocalVideoBtn');
-
-        function openLocalVideoModal(videoSrc, title) {
-            localVideoPlayer.src = videoSrc;
-            localVideoModalTitle.textContent = title || 'Video';
-            localVideoModal.classList.add('active');
-            document.body.style.overflow = 'hidden';
-            localVideoPlayer.play().catch(function(e) { console.log('Autoplay prevented by browser'); });
-        }
-
-        function closeLocalVideoModal() {
-            localVideoModal.classList.remove('active');
-            document.body.style.overflow = '';
-            localVideoPlayer.pause();
-            localVideoPlayer.src = '';
-        }
-
-        if (closeLocalVideoBtn) closeLocalVideoBtn.addEventListener('click', closeLocalVideoModal);
-        localVideoModal.addEventListener('click', function(e) {
-            if (e.target === this) closeLocalVideoModal();
-        });
-        document.addEventListener('keydown', function(e) {
-            if (e.key === 'Escape' && localVideoModal.classList.contains('active')) {
-                closeLocalVideoModal();
-            }
-        });
-
-        // ========== REVEAL ANIMATION ==========
-        var revealElements = document.querySelectorAll('.reveal');
-        var observer = new IntersectionObserver(function(entries) {
-            entries.forEach(function(entry) {
-                if (entry.isIntersecting) entry.target.classList.add('active');
-            });
-        }, { threshold: 0.1 });
-        revealElements.forEach(function(el) { observer.observe(el); });
-
-        // ========== PREMIUM OOH FILTER LOGIC ==========
-        const filterBtns = document.querySelectorAll('.ooh-filter-btn');
-        const oohItems = document.querySelectorAll('#outdoorGrid .ooh-item');
-
-        filterBtns.forEach(btn => {
-            btn.addEventListener('click', function() {
-                filterBtns.forEach(b => b.classList.remove('active'));
-                this.classList.add('active');
-                const filterValue = this.getAttribute('data-filter');
-                oohItems.forEach(item => {
-                    if (filterValue === 'all' || item.getAttribute('data-category') === filterValue) {
-                        item.classList.remove('hidden');
-                    } else {
-                        item.classList.add('hidden');
-                    }
-                });
-            });
-        });
-
-        // ========== CUSTOM AUDIO PLAYER LOGIC ==========
-        function toggleAudio(btn) {
-            const card = btn.closest('.radio-card');
-            const audio = card.querySelector('audio');
-            const icon = btn.querySelector('i');
-            const progressBar = card.querySelector('.progress-bar');
-            const currentTimeEl = card.querySelector('.current-time');
-            const durationEl = card.querySelector('.duration');
-
-            document.querySelectorAll('.radio-card.playing').forEach(playingCard => {
-                if (playingCard !== card) {
-                    const otherAudio = playingCard.querySelector('audio');
-                    const otherBtn = playingCard.querySelector('.radio-play-btn');
-                    const otherIcon = otherBtn.querySelector('i');
-                    otherAudio.pause();
-                    playingCard.classList.remove('playing');
-                    otherIcon.className = 'fas fa-play text-xl';
-                }
-            });
-
-            if (audio.paused) {
-                audio.play();
-                card.classList.add('playing');
-                icon.className = 'fas fa-pause text-xl';
-
-                if (durationEl.textContent === '0:00') {
-                    audio.addEventListener('loadedmetadata', function() {
-                        durationEl.textContent = formatTime(audio.duration);
-                    });
-                }
-            } else {
-                audio.pause();
-                card.classList.remove('playing');
-                icon.className = 'fas fa-play text-xl';
-            }
-
-            audio.ontimeupdate = function() {
-                const percent = (audio.currentTime / audio.duration) * 100;
-                progressBar.style.width = percent + '%';
-                currentTimeEl.textContent = formatTime(audio.currentTime);
-            };
-
-            audio.onended = function() {
-                card.classList.remove('playing');
-                icon.className = 'fas fa-play text-xl';
-                progressBar.style.width = '0%';
-                currentTimeEl.textContent = '0:00';
-            };
-        }
-
-        function seekAudio(container, e) {
-            const card = container.closest('.radio-card');
-            const audio = card.querySelector('audio');
-            const rect = container.getBoundingClientRect();
-            const clickX = e.clientX - rect.left;
-            const percent = clickX / rect.width;
-            audio.currentTime = percent * audio.duration;
-        }
-
-        function formatTime(seconds) {
-            if (isNaN(seconds)) return '0:00';
-            const m = Math.floor(seconds / 60);
-            const s = Math.floor(seconds % 60);
-            return m + ':' + (s < 10 ? '0' : '') + s;
-        }
-
-        // ===== BACK TO TOP BUTTON LOGIC (with scroll-progress ring) =====
-        (function() {
-            var backToTopBtn = document.getElementById('backToTopBtn');
-            if (!backToTopBtn) return;
-
-            var btbRingProgress = backToTopBtn.querySelector('.btb-ring-progress');
-            var BTB_RING_LENGTH = 2 * Math.PI * 21;
-            var prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-            var ticking = false;
-
-            function updateBackToTop() {
-                var scrollY = window.scrollY || document.documentElement.scrollTop;
-                var maxScroll = document.documentElement.scrollHeight - window.innerHeight;
-                var progress = maxScroll > 0 ? Math.min(scrollY / maxScroll, 1) : 0;
-
-                var show = scrollY > 400;
-                backToTopBtn.classList.toggle('visible', show);
-                backToTopBtn.setAttribute('aria-hidden', show ? 'false' : 'true');
-                backToTopBtn.tabIndex = show ? 0 : -1;
-
-                if (btbRingProgress) {
-                    btbRingProgress.style.strokeDashoffset =
-                        (BTB_RING_LENGTH * (1 - progress)).toFixed(2);
-                }
-
-                ticking = false;
-            }
-
-            window.addEventListener('scroll', function() {
-                if (!ticking) {
-                    window.requestAnimationFrame(updateBackToTop);
-                    ticking = true;
-                }
-            }, { passive: true });
-
-            updateBackToTop();
-
-            backToTopBtn.addEventListener('click', function() {
-                window.scrollTo({
-                    top: 0,
-                    behavior: prefersReducedMotion ? 'auto' : 'smooth'
-                });
-                var headerEl = document.getElementById('mainHeader');
-                if (headerEl) headerEl.focus({ preventScroll: true });
-            });
-        })();
-    </script>
-</body>
-</html>
+        <!-- ===== KWAZULU-NATAL WALL MURALS ===== -->
+        <div class="gallery-item cursor-pointer rounded-xl overflow-hidden shadow-md bg-white ooh-item" data-index="230" data-category="wall">
+            <img src="npge_wall_kzn_01.webp" alt="Mayibuye Dr Umlazi" class="w-full h-72 object-cover transition-transform duration-500 hover:scale-105">
+            <div class="overlay">Mayibuye Dr, Umlazi, KwaZulu Natal – "Asenze Okuningi, Ngokubambisana. Votela I-ANC"</div>
+        </div>
+        <div class="gallery-item cursor-pointer rounded-xl overflow-hidden shadow-md bg-white ooh-item" data-index="233" data-category="wall">
+            <img src="npge_wall_kzn_04.webp" alt="Ntombela Rd KwaMashu" class="w-full h-72 object-cover transition-transform duration-500 hover:scale-105">
+            <
