@@ -328,6 +328,86 @@
       font-size: 0.95rem;
     }
 
+    /* ===== HERO (Sunbet GTI style) ===== */
+    .hero {
+      padding-top: 60px;
+      padding-bottom: 60px;
+      background: radial-gradient(circle at 90% 20%, rgba(237, 0, 142, 0.04) 0%, #ffffff 90%);
+    }
+    .hero .container {
+      max-width: 840px;
+      margin: 0 auto;
+      padding: 0 1.5rem;
+      text-align: center;
+    }
+    .hero .hero-badge {
+      background: rgba(237, 0, 142, 0.06);
+      display: inline-block;
+      padding: 6px 18px;
+      border-radius: 40px;
+      font-weight: 600;
+      font-size: 0.85rem;
+      margin-bottom: 24px;
+      color: #ed008e;
+      border: 1px solid rgba(237, 0, 142, 0.12);
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+    .hero h1 {
+      font-size: 3.8rem;
+      margin-bottom: 24px;
+      color: #251e21;
+      font-weight: 800;
+      line-height: 1.15;
+      letter-spacing: -0.02em;
+    }
+    .hero p {
+      font-size: 1.2rem;
+      color: #4a3a42;
+      max-width: 700px;
+      margin: 0 auto 32px;
+      line-height: 1.6;
+    }
+    .hero .highlight {
+      color: #ed008e;
+    }
+    .hero .hero-stats {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 1rem;
+      margin-top: 2rem;
+    }
+    .hero .stat {
+      background: #ffffff;
+      border: 1px solid rgba(0, 0, 0, 0.06);
+      border-radius: 16px;
+      padding: 1.2rem 1.6rem;
+      min-width: 140px;
+      text-align: center;
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.05);
+    }
+    .hero .stat .number {
+      font-size: 2rem;
+      font-weight: 800;
+      color: #ed008e;
+      line-height: 1.1;
+    }
+    .hero .stat .label {
+      font-size: 0.75rem;
+      color: #6b7280;
+      text-transform: uppercase;
+      letter-spacing: 0.6px;
+      margin-top: 4px;
+      font-weight: 600;
+    }
+    @media (max-width: 768px) {
+      .hero { padding-top: 40px; padding-bottom: 40px; }
+      .hero h1 { font-size: 2.4rem; }
+      .hero p { font-size: 1.05rem; }
+      .hero .stat { padding: 1rem 1.2rem; min-width: 120px; }
+    }
+
     /* ── Existing page styles (unchanged) ── */
     .section-title { font-size: 2.2rem; font-weight: 700; letter-spacing: -0.02em; }
     @media (max-width: 768px) { .section-title { font-size: 1.8rem; } }
@@ -556,17 +636,20 @@
       transform: translateY(-2px);
     }
 
+    /* ── Responsive ── */
     @media (max-width: 768px) {
-      .back-to-top {
-        bottom: 24px;
-        right: 20px;
-        width: 46px;
-        height: 46px;
-      }
-      .btb-arrow {
-        width: 18px;
-        height: 18px;
-      }
+      body { padding-top: 70px; }
+      .header-glass { height: 70px; padding: 0 1rem; }
+      .mobile-menu-panel { top: 70px; }
+      .logo-text { font-size: 1rem; }
+      .lightbox-nav-btn { width: 42px; height: 42px; font-size: 1rem; }
+      .lightbox-counter { bottom: 8px; right: 12px; font-size: 0.8rem; padding: 6px 12px; }
+      .back-to-top { bottom: 24px; right: 20px; width: 46px; height: 46px; }
+      .btb-arrow { width: 18px; height: 18px; }
+    }
+    @media (max-width: 480px) {
+      .logo-text { font-size: 0.9rem; }
+      .lightbox-nav-btn { width: 38px; height: 38px; }
     }
 
     /* ── Reduced motion ── */
@@ -585,20 +668,6 @@
         transform: none;
       }
     }
-
-    /* ── Responsive ── */
-    @media (max-width: 768px) {
-      body { padding-top: 70px; }
-      .header-glass { height: 70px; padding: 0 1rem; }
-      .mobile-menu-panel { top: 70px; }
-      .logo-text { font-size: 1rem; }
-      .lightbox-nav-btn { width: 42px; height: 42px; font-size: 1rem; }
-      .lightbox-counter { bottom: 8px; right: 12px; font-size: 0.8rem; padding: 6px 12px; }
-    }
-    @media (max-width: 480px) {
-      .logo-text { font-size: 0.9rem; }
-      .lightbox-nav-btn { width: 38px; height: 38px; }
-    }
   </style>
 </head>
 <body>
@@ -612,7 +681,7 @@
 
             <!-- Premium Logo -->
             <a href="Home.html" class="logo-premium group">
-                <img src="obrian-transparent-logo-4461219.webp" alt="O'Brian Group" class="h-9 w-auto" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22%3E%3Crect width=%22100%22 height=%22100%22 fill=%22%23ed008e%22/%3E%3Ctext x=%2250%22 y=%2268%22 font-size=%2248%22 text-anchor=%22middle%22 fill=%22white%22 font-weight=%22bold%22 font-family=%22Inter%22%3EO%3C/text%3E%3C/svg%3E'">
+                <img src="assets/images/obrian-transparent-logo-4461219.webp" alt="O'Brian Group" class="h-9 w-auto" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22%3E%3Crect width=%22100%22 height=%22100%22 fill=%22%23ed008e%22/%3E%3Ctext x=%2250%22 y=%2268%22 font-size=%2248%22 text-anchor=%22middle%22 fill=%22white%22 font-weight=%22bold%22 font-family=%22Inter%22%3EO%3C/text%3E%3C/svg%3E'">
                 <span class="logo-text hidden sm:inline-block">
                     <span class="highlight"></span> 
                 </span>
@@ -700,33 +769,39 @@
 </div>
 
 <!-- ======================== HERO SECTION ======================== -->
-<section class="relative pt-32 pb-16 md:pt-40 md:pb-24 bg-gradient-to-br from-pink-50 via-white to-white">
-  <div class="max-w-7xl mx-auto px-5 lg:px-8">
-    <div class="max-w-3xl mx-auto text-center">
-      <div class="inline-flex items-center gap-2 bg-white/80 backdrop-blur-sm px-4 py-1.5 rounded-full text-xs font-semibold text-gray-700 border border-gray-200 mb-5">
-        <span class="w-2 h-2 rounded-full bg-[#ed008e] animate-pulse"></span> CASE STUDY • NATION BRANDING
+<section class="hero">
+  <div class="container">
+    <span class="hero-badge"><i class="fas fa-trophy" style="margin-right: 6px;"></i> Case Study · Nation Branding</span>
+    <h1>Brand<span class="highlight">SA</span> Identity Toolkit</h1>
+    <p>
+      Empowering South Africans to <span class="highlight">'Play Your Part'</span> — a strategic, digitally-led nation branding campaign that unified visual identity, messaging, and civic pride.
+    </p>
+    <div class="hero-stats">
+      <div class="stat">
+        <div class="number">+47%</div>
+        <div class="label">Brand Consistency</div>
       </div>
-      <h1 class="text-4xl md:text-6xl font-extrabold tracking-tight text-gray-900">
-        Brand<span class="text-[#ed008e]">SA</span> <br>Identity Toolkit
-      </h1>
-      <p class="text-gray-600 text-lg mt-5 max-w-2xl mx-auto leading-relaxed">
-        Empowering South Africans to 'Play Your Part' — a strategic, digitally-led nation branding campaign that unified visual identity, messaging, and civic pride.
-      </p>
-      
-      <!-- ===== BUTTON GROUP ===== -->
-      <div class="flex flex-wrap justify-center gap-4 mt-8">
-        <a href="#toolkit-downloads" class="bg-[#231e1f] text-white px-6 py-3 rounded-full font-semibold flex items-center gap-2 shadow-lg hover:bg-[#3a2e30] transition"><i class="fas fa-download"></i> Download toolkit</a>
-        
-        <!-- "Explore gallery" button (original style) -->
-        <a href="#gallery" class="border border-gray-300 px-6 py-3 rounded-full font-semibold hover:border-[#ed008e] hover:text-[#ed008e] transition">Explore gallery</a>
-        
-        <!-- "Our Work" button (matching the style above) -->
-        <a href="Our_Work.html" class="border border-gray-300 px-6 py-3 rounded-full font-semibold hover:border-[#ed008e] hover:text-[#ed008e] transition">Our Work</a>
+      <div class="stat">
+        <div class="number">2.3M</div>
+        <div class="label">Toolkit Downloads</div>
+      </div>
+      <div class="stat">
+        <div class="number">12+</div>
+        <div class="label">Govt. Departments</div>
       </div>
     </div>
+
+    <!-- ===== BUTTON GROUP ===== -->
+    <div class="flex flex-wrap justify-center gap-4 mt-10">
+      <a href="#toolkit-downloads" class="bg-[#231e1f] text-white px-6 py-3 rounded-full font-semibold flex items-center gap-2 shadow-lg hover:bg-[#3a2e30] transition"><i class="fas fa-download"></i> Download toolkit</a>
+      <a href="#gallery" class="border border-gray-300 px-6 py-3 rounded-full font-semibold hover:border-[#ed008e] hover:text-[#ed008e] transition">Explore gallery</a>
+      <a href="Our_Work.html" class="border border-gray-300 px-6 py-3 rounded-full font-semibold hover:border-[#ed008e] hover:text-[#ed008e] transition">Our Work</a>
+    </div>
+
+    <!-- ===== HERO IMAGE ===== -->
     <div class="mt-12 flex justify-center">
       <div class="relative w-full max-w-4xl rounded-2xl overflow-hidden shadow-2xl border-4 border-white">
-        <img src="brand-south-africa-copy.jpg" alt="BrandSA campaign hero" class="w-full object-cover" onerror="this.src='https://placehold.co/1200x600/231e1f/white?text=BrandSA+Visual'">
+        <img src="assets/images/brand-south-africa-copy.jpg" alt="BrandSA campaign hero" class="w-full object-cover" onerror="this.src='https://placehold.co/1200x600/231e1f/white?text=BrandSA+Visual'">
       </div>
     </div>
   </div>
@@ -743,33 +818,33 @@
     </div>
 
     <div class="gallery-grid" id="galleryGrid">
-      <div class="gallery-item" data-img-src="brand-south-africa-copy.jpg">
-        <img src="brand-south-africa-copy.jpg" alt="Brand South Africa cover" class="w-full h-64 object-cover" onerror="this.src='https://placehold.co/500x400/231e1f/white?text=Brand+Guidelines'">
+      <div class="gallery-item" data-img-src="assets/images/brand-south-africa-copy.jpg">
+        <img src="assets/images/brand-south-africa-copy.jpg" alt="Brand South Africa cover" class="w-full h-64 object-cover" onerror="this.src='https://placehold.co/500x400/231e1f/white?text=Brand+Guidelines'">
         <div class="p-3 text-center text-sm font-medium text-gray-600">Brand Identity Guidelines – Cover</div>
         <span class="arrow-indicator">→</span>
       </div>
-      <div class="gallery-item" data-img-src="brandsa.jpg">
-        <img src="brandsa.jpg" alt="Play Your Part campaign" class="w-full h-64 object-cover" onerror="this.src='https://placehold.co/500x400/231e1f/white?text=Play+Your+Part'">
+      <div class="gallery-item" data-img-src="assets/images/brandsa.jpg">
+        <img src="assets/images/brandsa.jpg" alt="Play Your Part campaign" class="w-full h-64 object-cover" onerror="this.src='https://placehold.co/500x400/231e1f/white?text=Play+Your+Part'">
         <div class="p-3 text-center text-sm font-medium text-gray-600">"Play Your Part" hero visual</div>
         <span class="arrow-indicator">→</span>
       </div>
-      <div class="gallery-item" data-img-src="brandsa-digital-case-studies-solution.png">
-        <img src="brandsa-digital-case-studies-solution.png" alt="Digital toolkit solution" class="w-full h-64 object-cover" onerror="this.src='https://placehold.co/500x400/231e1f/white?text=Digital+Asset+Suite'">
+      <div class="gallery-item" data-img-src="assets/images/brandsa-digital-case-studies-solution.png">
+        <img src="assets/images/brandsa-digital-case-studies-solution.png" alt="Digital toolkit solution" class="w-full h-64 object-cover" onerror="this.src='https://placehold.co/500x400/231e1f/white?text=Digital+Asset+Suite'">
         <div class="p-3 text-center text-sm font-medium text-gray-600">Digital toolkit – asset suite</div>
         <span class="arrow-indicator">→</span>
       </div>
-      <div class="gallery-item" data-img-src="obrian-work19.jpg">
-        <img src="obrian-work19.jpg" alt="Logo variations" class="w-full h-64 object-cover" onerror="this.src='https://placehold.co/500x400/231e1f/white?text=Logo+Lockups'">
+      <div class="gallery-item" data-img-src="assets/images/obrian-work19.jpg">
+        <img src="assets/images/obrian-work19.jpg" alt="Logo variations" class="w-full h-64 object-cover" onerror="this.src='https://placehold.co/500x400/231e1f/white?text=Logo+Lockups'">
         <div class="p-3 text-center text-sm font-medium text-gray-600">Logo lockups & colour palette</div>
         <span class="arrow-indicator">→</span>
       </div>
-      <div class="gallery-item" data-img-src="whatsapp-image-2025-07-04-at-14.51.29.jpeg">
-        <img src="whatsapp-image-2025-07-04-at-14.51.29.jpeg" alt="Print collateral" class="w-full h-64 object-cover" onerror="this.src='https://placehold.co/500x400/231e1f/white?text=Print+Brochure'">
+      <div class="gallery-item" data-img-src="assets/images/whatsapp-image-2025-07-04-at-14.51.29.jpeg">
+        <img src="assets/images/whatsapp-image-2025-07-04-at-14.51.29.jpeg" alt="Print collateral" class="w-full h-64 object-cover" onerror="this.src='https://placehold.co/500x400/231e1f/white?text=Print+Brochure'">
         <div class="p-3 text-center text-sm font-medium text-gray-600">Print collateral – brochure spreads</div>
         <span class="arrow-indicator">→</span>
       </div>
-      <div class="gallery-item" data-img-src="whatsapp-image-2025-07-04-at-14.51.30.jpeg">
-        <img src="whatsapp-image-2025-07-04-at-14.51.30.jpeg" alt="Campaign impact" class="w-full h-64 object-cover" onerror="this.src='https://placehold.co/500x400/ed008e/ffffff?text=Impact+Metrics'">
+      <div class="gallery-item" data-img-src="assets/images/whatsapp-image-2025-07-04-at-14.51.30.jpeg">
+        <img src="assets/images/whatsapp-image-2025-07-04-at-14.51.30.jpeg" alt="Campaign impact" class="w-full h-64 object-cover" onerror="this.src='https://placehold.co/500x400/ed008e/ffffff?text=Impact+Metrics'">
         <div class="p-3 text-center text-sm font-medium text-gray-600">Campaign impact & reach metrics</div>
         <span class="arrow-indicator">→</span>
       </div>
@@ -784,8 +859,8 @@
     <h2 class="section-title">Access the full Identity Toolkit</h2>
     <p class="text-gray-600 mt-3 max-w-2xl mx-auto">Comprehensive brand guidelines, 'Play Your Part' booklet, and visual identity resources designed by O'Brian Group for Brand South Africa.</p>
     <div class="pdf-btn-group mt-10">
-      <a href="BrandSA-PLAYYOURPARTbookletLR.pdf" class="inline-flex items-center gap-2 bg-[#231e1f] text-white px-7 py-3 rounded-full font-semibold shadow-md hover:bg-[#3a2e30] transition" target="_blank"><i class="fas fa-file-pdf"></i> Play Your Part Booklet (PDF)</a>
-      <a href="BrandSA-BRANDbookletLR.pdf" class="inline-flex items-center gap-2 border-2 border-[#ed008e] text-[#ed008e] px-7 py-3 rounded-full font-semibold hover:bg-[#ed008e] hover:text-white transition" target="_blank"><i class="fas fa-file-alt"></i> BrandSA Identity Guidelines (PDF)</a>
+      <a href="assets/files/BrandSA-PLAYYOURPARTbookletLR.pdf" class="inline-flex items-center gap-2 bg-[#231e1f] text-white px-7 py-3 rounded-full font-semibold shadow-md hover:bg-[#3a2e30] transition" target="_blank"><i class="fas fa-file-pdf"></i> Play Your Part Booklet (PDF)</a>
+      <a href="assets/files/BrandSA-BRANDbookletLR.pdf" class="inline-flex items-center gap-2 border-2 border-[#ed008e] text-[#ed008e] px-7 py-3 rounded-full font-semibold hover:bg-[#ed008e] hover:text-white transition" target="_blank"><i class="fas fa-file-alt"></i> BrandSA Identity Guidelines (PDF)</a>
     </div>
     <p class="text-xs text-gray-400 mt-6">*Official resources developed for Brand South Africa | All rights reserved</p>
   </div>
