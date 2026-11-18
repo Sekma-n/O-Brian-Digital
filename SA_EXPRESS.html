@@ -71,12 +71,13 @@
             box-shadow: 0 12px 30px rgba(237, 0, 142, 0.4);
         }
         .btn-outline {
-            background: transparent; color: var(--white);
-            border: 2px solid rgba(255, 255, 255, 0.35);
+            background: transparent; color: var(--secondary);
+            border: 2px solid var(--secondary);
         }
         .btn-outline:hover {
-            background: var(--white); color: var(--secondary);
-            border-color: var(--white); transform: translateY(-3px);
+            background: var(--secondary); color: var(--white);
+            border-color: var(--secondary); transform: translateY(-3px);
+            box-shadow: 0 12px 30px rgba(35, 30, 31, 0.15);
         }
         .btn-dark { background: var(--secondary); color: var(--white); }
         .btn-dark:hover {
@@ -269,65 +270,115 @@
         .mobile-menu-panel .mobile-dropdown-items { padding-left: 1rem; }
         .mobile-menu-panel .mobile-dropdown-items a { font-weight: 400; font-size: 0.95rem; }
 
-        /* ---------- HERO ---------- */
+        /* ===== HERO (Sunbet GTI style) ===== */
         .hero {
-            position: relative; min-height: 100vh;
-            display: flex; align-items: center;
-            background: var(--secondary); overflow: hidden;
-            padding-top: 80px;
+            position: relative;
+            overflow: hidden;
+            padding-top: 140px;
+            padding-bottom: 60px;
+            background: radial-gradient(circle at 90% 20%, rgba(237, 0, 142, 0.04) 0%, #ffffff 90%);
         }
-        .hero-bg { position: absolute; inset: 0; z-index: 0; }
-        .hero-bg::before {
-            content: ''; position: absolute; inset: 0;
-            background: radial-gradient(ellipse at 30% 40%, rgba(237, 0, 142, 0.25) 0%, transparent 70%),
-                radial-gradient(ellipse at 80% 70%, rgba(35, 30, 31, 0.9) 0%, var(--secondary) 100%);
+        .hero .hero-plane {
+            position: absolute;
+            right: -80px;
+            bottom: -60px;
+            font-size: 34rem;
+            color: rgba(237, 0, 142, 0.035);
+            transform: rotate(-12deg);
+            pointer-events: none;
+            z-index: 0;
+            line-height: 1;
+        }
+        .hero .container {
+            position: relative;
             z-index: 1;
+            max-width: 840px;
+            margin: 0 auto;
+            padding: 24px 14px;
+            text-align: center;
         }
-        .hero-bg .plane-icon {
-            position: absolute; right: -80px; bottom: -60px;
-            font-size: 34rem; color: rgba(255, 255, 255, 0.03);
-            transform: rotate(-12deg); z-index: 0;
+        .hero .hero-badge {
+            background: rgba(237, 0, 142, 0.06);
+            display: inline-block;
+            padding: 6px 18px;
+            border-radius: 40px;
+            font-weight: 600;
+            font-size: 0.85rem;
+            margin-bottom: 24px;
+            color: var(--primary);
+            border: 1px solid rgba(237, 0, 142, 0.12);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
         }
-        .hero-grid {
-            position: relative; z-index: 2;
-            display: grid; grid-template-columns: 1fr 1fr;
-            gap: 60px; align-items: center; padding: 40px 0 60px;
+        .hero .hero-badge i {
+            color: var(--primary);
+            margin-right: 6px;
         }
-        .hero-content h6 {
-            color: var(--primary); font-size: 0.85rem; font-weight: 600;
-            letter-spacing: 3px; text-transform: uppercase; margin-bottom: 16px;
+        .hero h1 {
+            font-size: 3.8rem;
+            margin-bottom: 24px;
+            color: var(--secondary);
+            font-weight: 900;
+            line-height: 1.05;
+            letter-spacing: -0.02em;
         }
-        .hero-content h1 {
-            font-size: clamp(2.8rem, 6vw, 4.8rem); font-weight: 900;
-            line-height: 1.05; color: #fff; margin-bottom: 20px;
+        .hero h1 .highlight {
+            color: var(--primary);
         }
-        .hero-content h1 span { color: var(--primary); }
-        .hero-content p {
-            color: rgba(255, 255, 255, 0.7); font-size: 1.2rem;
-            max-width: 480px; margin-bottom: 36px; line-height: 1.7;
+        .hero p {
+            font-size: 1.2rem;
+            color: var(--gray);
+            max-width: 700px;
+            margin: 0 auto 32px;
+            line-height: 1.6;
         }
-        .hero-content .btn-group {
-            display: flex; flex-wrap: wrap; gap: 16px;
+        .hero p .highlight {
+            color: var(--primary);
+            font-weight: 500;
         }
-
-        .hero-stats {
-            display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px;
-            background: rgba(255, 255, 255, 0.05);
-            backdrop-filter: blur(12px);
-            border: 1px solid rgba(255, 255, 255, 0.08);
-            border-radius: var(--radius); padding: 36px 32px;
+        .hero .hero-stats {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 1rem;
+            margin-top: 2rem;
         }
-        .hero-stats .stat h3 {
-            font-size: 2.4rem; font-weight: 800;
-            color: var(--primary); line-height: 1;
+        .hero .stat {
+            background: #ffffff;
+            border: 1px solid rgba(0, 0, 0, 0.06);
+            border-radius: 16px;
+            padding: 1.2rem 1.6rem;
+            min-width: 140px;
+            text-align: center;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.05);
         }
-        .hero-stats .stat h3 small {
-            font-size: 1rem; font-weight: 400;
-            color: rgba(255, 255, 255, 0.5);
+        .hero .stat .number {
+            font-size: 2rem;
+            font-weight: 800;
+            color: var(--primary);
+            line-height: 1.1;
         }
-        .hero-stats .stat p {
-            color: rgba(255, 255, 255, 0.6); font-size: 0.85rem;
-            margin-top: 6px; font-weight: 400;
+        .hero .stat .label {
+            font-size: 0.75rem;
+            color: #6b7280;
+            text-transform: uppercase;
+            letter-spacing: 0.6px;
+            margin-top: 4px;
+            font-weight: 600;
+        }
+        .hero .hero-actions {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 1rem;
+            margin-top: 2rem;
+        }
+        @media (max-width: 768px) {
+            .hero { padding-top: 120px; padding-bottom: 40px; }
+            .hero h1 { font-size: 2.4rem; }
+            .hero p { font-size: 1.05rem; }
+            .hero .stat { padding: 1rem 1.2rem; min-width: 120px; }
+            .hero .hero-plane { font-size: 20rem; right: -100px; bottom: -40px; }
         }
 
         /* ---------- SECTION TITLES ---------- */
@@ -622,7 +673,7 @@
             white-space: nowrap;
         }
 
-        /* ===== BACK TO TOP BUTTON (copied from Home page) ===== */
+        /* ===== BACK TO TOP BUTTON ===== */
         .back-to-top {
             position: fixed;
             bottom: 32px;
@@ -666,7 +717,6 @@
             outline-offset: 3px;
         }
 
-        /* scroll-progress ring */
         .btb-ring {
             position: absolute;
             inset: 0;
@@ -685,12 +735,11 @@
         .btb-ring-progress {
             stroke: #ffffff;
             stroke-linecap: round;
-            stroke-dasharray: 131.95;   /* 2π × r(21) */
+            stroke-dasharray: 131.95;
             stroke-dashoffset: 131.95;
             transition: stroke-dashoffset 0.1s linear;
         }
 
-        /* arrow */
         .btb-arrow {
             position: relative;
             width: 22px;
@@ -704,8 +753,6 @@
         /* ---------- RESPONSIVE ---------- */
         @media (max-width: 1024px) {
             .gallery-grid { grid-template-columns: repeat(3, 1fr); }
-            .hero-grid { grid-template-columns: 1fr; gap: 40px; }
-            .hero-stats { max-width: 500px; }
             .case-overview .grid { grid-template-columns: 1fr; gap: 40px; }
             .footer-grid { grid-template-columns: 1fr 1fr; }
             .radio-grid { grid-template-columns: 1fr; gap: 32px; }
@@ -725,13 +772,6 @@
             .header-glass { height: 70px; padding: 0 1rem; }
             .mobile-menu-panel { top: 70px; }
             .logo-text { font-size: 1rem; }
-            .hero { min-height: auto; padding: 120px 0 60px; }
-            .hero-content h1 { font-size: 2.6rem; }
-            .hero-stats {
-                grid-template-columns: repeat(3, 1fr);
-                padding: 24px 20px; gap: 16px;
-            }
-            .hero-stats .stat h3 { font-size: 1.8rem; }
             .gallery-grid { grid-template-columns: repeat(2, 1fr); gap: 14px; }
             .footer-grid { grid-template-columns: 1fr; gap: 32px; }
             .footer-bottom { flex-direction: column; text-align: center; }
@@ -743,7 +783,6 @@
             .lightbox-prev { left: 6px; }
             .lightbox-next { right: 6px; }
 
-            /* Back-to-top responsive sizing */
             .back-to-top {
                 bottom: 24px;
                 right: 20px;
@@ -757,10 +796,6 @@
         }
         @media (max-width: 480px) {
             .logo-text { font-size: 0.9rem; }
-            .hero-stats { grid-template-columns: 1fr 1fr; }
-            .hero-stats .stat:last-child {
-                grid-column: span 2; text-align: center;
-            }
             .gallery-grid { grid-template-columns: 1fr 1fr; gap: 10px; }
             .btn { padding: 12px 24px; font-size: 0.85rem; }
             .radio-card .card-body { padding: 20px 22px 24px; }
@@ -804,7 +839,7 @@
                 <div class="hidden lg:flex items-center gap-0.5">
                     <a href="Home.html" class="nav-link-premium">Home</a>
                     <a href="About.html" class="nav-link-premium">About</a>
-                    <a href="Our_Work.html" class="nav-link-premium">Our Work</a>
+                    <a href="Our_Work.html" class="nav-link-premium active-link">Our Work</a>
                     <a href="Client_Experience.html" class="nav-link-premium">Client Experience</a>
 
                     <div class="dropdown-wrapper">
@@ -879,7 +914,7 @@
         <a href="Contact_Us.html" style="display:inline-flex; margin-top:1rem; background:linear-gradient(135deg,#e6007e,#ff1493); color:#fff; padding:0.6rem 1.5rem; border-radius:9999px; font-weight:700; text-decoration:none;">Contact Us</a>
     </div>
 
-    <!-- ===== BACK TO TOP BUTTON (copied from Home) ===== -->
+    <!-- ===== BACK TO TOP BUTTON ===== -->
     <button class="back-to-top" id="backToTopBtn" aria-label="Back to top" title="Back to top" aria-hidden="true" tabindex="-1">
         <svg class="btb-ring" viewBox="0 0 48 48" aria-hidden="true">
             <circle class="btb-ring-track" cx="24" cy="24" r="21"></circle>
@@ -892,44 +927,40 @@
         </svg>
     </button>
 
-    <!-- ===== HERO ===== -->
-    <section class="hero" id="top">
-        <div class="hero-bg">
-            <div class="plane-icon"><i class="fas fa-plane"></i></div>
-        </div>
+    <!-- ===== HERO (Sunbet GTI style) ===== -->
+    <section class="hero">
+        <div class="hero-plane" aria-hidden="true"><i class="fas fa-plane"></i></div>
         <div class="container">
-            <div class="hero-grid">
-                <div class="hero-content">
-                    <h6>Case Study</h6>
-                    <h1>SA <span>EXPRESS</span></h1>
-                    <p>From launch to legacy — a complete brand &amp; advertising transformation for South Africa's regional airline.</p>
-                    <div class="btn-group">
-                        <a href="#video" class="btn btn-primary"><i class="fas fa-play"></i> Watch the story</a>
-                        <a href="#gallery" class="btn btn-outline">View campaign</a>
-                    </div>
+            <span class="hero-badge"><i class="fas fa-trophy"></i> Case Study · Aviation</span>
+            <h1>SA <span class="highlight">EXPRESS</span></h1>
+            <p>
+                From launch to legacy — a complete <span class="highlight">brand &amp; advertising transformation</span> for South Africa's regional airline.
+            </p>
+            <div class="hero-stats">
+                <div class="stat">
+                    <div class="number">12+</div>
+                    <div class="label">Years Partnership</div>
+                </div>
+                <div class="stat">
+                    <div class="number">47M</div>
+                    <div class="label">Impressions</div>
+                </div>
+                <div class="stat">
+                    <div class="number">23%</div>
+                    <div class="label">Brand Recall Lift</div>
+                </div>
+            </div>
 
-                    <!-- ===== BACK TO OUR WORK BUTTON ===== -->
-                    <div>
-                        <a href="Our_Work.html" class="btn-back-work">
-                            <i class="fas fa-arrow-left"></i>
-                            Back to Our Work
-                        </a>
-                    </div>
-                </div>
-                <div class="hero-stats">
-                    <div class="stat">
-                        <h3>12+ <small>yrs</small></h3>
-                        <p>Partnership duration</p>
-                    </div>
-                    <div class="stat">
-                        <h3>47 <small>M</small></h3>
-                        <p>Impressions generated</p>
-                    </div>
-                    <div class="stat">
-                        <h3>23 <small>%</small></h3>
-                        <p>Brand recall lift</p>
-                    </div>
-                </div>
+            <div class="hero-actions">
+                <a href="#video" class="btn btn-primary"><i class="fas fa-play"></i> Watch the story</a>
+                <a href="#gallery" class="btn btn-outline">View campaign</a>
+            </div>
+
+            <div>
+                <a href="Our_Work.html" class="btn-back-work">
+                    <i class="fas fa-arrow-left"></i>
+                    Back to Our Work
+                </a>
             </div>
         </div>
     </section>
@@ -1191,12 +1222,10 @@
                 grid.appendChild(el);
             });
 
-            // Observe lazy images
             grid.querySelectorAll('img[data-src]').forEach(function(img) {
                 imgObserver.observe(img);
             });
 
-            // Mark eager images loaded
             grid.querySelectorAll('img[loading="eager"]').forEach(function(img) {
                 if (img.complete) {
                     img.classList.add('loaded');
@@ -1259,7 +1288,6 @@
                 preloadAdjacent();
             }
 
-            // ---- LIGHTBOX EVENTS ----
             closeLb.addEventListener('click', function(e) { e.stopPropagation(); closeLightbox(); });
             prevBtn.addEventListener('click', prevImage);
             nextBtn.addEventListener('click', nextImage);
@@ -1284,10 +1312,10 @@
                 });
             }
 
-            // ===== BACK TO TOP BUTTON LOGIC (copied from Home) =====
+            // ===== BACK TO TOP BUTTON LOGIC =====
             var backToTopBtn = document.getElementById('backToTopBtn');
             var btbRingProgress = backToTopBtn ? backToTopBtn.querySelector('.btb-ring-progress') : null;
-            var BTB_RING_LENGTH = 2 * Math.PI * 21; // r = 21 in the 48×48 viewBox
+            var BTB_RING_LENGTH = 2 * Math.PI * 21;
             var btbPrefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
             var btbTicking = false;
 
@@ -1298,7 +1326,6 @@
 
                 var show = scrollY > 400;
                 backToTopBtn.classList.toggle('visible', show);
-                // keep it out of the a11y tree / tab order while hidden
                 backToTopBtn.setAttribute('aria-hidden', show ? 'false' : 'true');
                 backToTopBtn.tabIndex = show ? 0 : -1;
 
@@ -1325,7 +1352,6 @@
                         top: 0,
                         behavior: btbPrefersReducedMotion ? 'auto' : 'smooth'
                     });
-                    // return focus to the top of the page for keyboard users
                     var headerEl = document.getElementById('mainHeader');
                     if (headerEl) headerEl.focus({ preventScroll: true });
                 });
