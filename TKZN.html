@@ -5,15 +5,19 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Tourism KwaZulu‑Natal – Our Work</title>
     <meta name="description" content="Case Studies – integrated campaign for Tourism KwaZulu‑Natal" />
-    <link rel="shortcut icon" href="assets/images/obrian-transparent-logo-4461219.webp" type="image/x-icon" />
+    <link rel="shortcut icon" href="obrian-transparent-logo-4461219.webp" type="image/x-icon" />
 
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,400..700&family=Space+Grotesk:wght@400..700&display=swap" rel="stylesheet" />
 
+    <!-- Font Awesome (needed for the trophy icon) -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
+
     <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Tailwind custom colors -->
     <script>
         tailwind.config = {
             theme: {
@@ -27,6 +31,7 @@
         }
     </script>
 
+    <!-- Lucide Icons (for fallback) -->
     <script src="https://unpkg.com/lucide@latest"></script>
 
     <style>
@@ -41,7 +46,6 @@
             color: #231e1f;
             line-height: 1.6;
             overflow-x: hidden;
-            padding-top: 80px;
         }
         h1,h2,h3,h4,.display-font { font-family: 'Space Grotesk', sans-serif; font-weight: 700; }
         a { text-decoration: none; color: inherit; }
@@ -101,7 +105,6 @@
             transform: translateY(-2px);
             box-shadow: 0 12px 28px rgba(237,1,142,0.45);
         }
-        /* FIX: added missing .btn-outline definition */
         .btn-outline {
             display: inline-flex;
             align-items: center;
@@ -121,45 +124,95 @@
             box-shadow: 0 8px 20px rgba(35,30,31,0.12);
         }
 
-        /* ── HERO ── */
+        /* ===== HERO (Sunbet GTI style) ===== */
         .hero {
-            min-height: 70vh;
-            display: flex;
-            align-items: center;
-            padding: 8rem 0 4rem;
-            background: #f5f5f7;
-            border-bottom: 1px solid rgba(35,30,31,0.08);
+            padding-top: 140px;   /* ← clears the 80px fixed header */
+            padding-bottom: 60px;
+            background: radial-gradient(circle at 90% 20%, rgba(237, 1, 142, 0.04) 0%, #ffffff 90%);
         }
-        .hero-content {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 4rem;
-            align-items: center;
+        .hero .container {
+            max-width: 840px;
+            margin: 0 auto;
+            padding: 24px 14px;
+            text-align: center;
         }
-        .hero-text h1 {
-            font-size: clamp(3rem, 7vw, 5rem);
-            line-height: 1.1;
-            letter-spacing: -2px;
+        .hero .hero-badge {
+            background: rgba(237, 1, 142, 0.08);
+            display: inline-block;
+            padding: 6px 18px;
+            border-radius: 40px;
+            font-weight: 600;
+            font-size: 0.85rem;
+            margin-bottom: 24px;
+            color: #ed018e;
+            border: 1px solid rgba(237, 0, 142, 0.25);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+        .hero .hero-badge i {
+            color: #ed018e;
+            margin-right: 8px;
+        }
+        .hero h1 {
+            font-size: 3.8rem;
+            margin-bottom: 24px;
             color: #231e1f;
+            font-weight: 800;
+            line-height: 1.15;
+            letter-spacing: -0.02em;
         }
-        .hero-text .accent { color: #ed018e; }
-        .hero-text .subtitle {
-            font-size: 1.3rem;
-            color: #6b6b78;
-            margin: 2rem 0;
-            max-width: 450px;
+        .hero p {
+            font-size: 1.2rem;
+            color: #4a3a42;
+            max-width: 700px;
+            margin: 0 auto 32px;
+            line-height: 1.6;
         }
-        .hero-visual .hero-image {
-            width: 100%;
-            border-radius: 2rem;
-            overflow: hidden;
-            box-shadow: 0 12px 30px rgba(35,30,31,0.06);
-            border: 1px solid rgba(35,30,31,0.08);
+        .hero .highlight {
+            color: #ed018e;
         }
-        .hero-visual .hero-image img {
-            width: 100%;
-            object-fit: cover;
-            aspect-ratio: 4/3;
+        .hero .hero-stats {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 1rem;
+            margin-top: 2rem;
+        }
+        .hero .stat {
+            background: #ffffff;
+            border: 1px solid rgba(0, 0, 0, 0.06);
+            border-radius: 16px;
+            padding: 1.2rem 1.6rem;
+            min-width: 140px;
+            text-align: center;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.05);
+        }
+        .hero .stat .number {
+            font-size: 2rem;
+            font-weight: 800;
+            color: #ed018e;
+            line-height: 1.1;
+        }
+        .hero .stat .label {
+            font-size: 0.75rem;
+            color: #6b7280;
+            text-transform: uppercase;
+            letter-spacing: 0.6px;
+            margin-top: 4px;
+            font-weight: 600;
+        }
+        .hero .hero-actions {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 1rem;
+            margin-top: 2rem;
+        }
+        @media (max-width: 768px) {
+            .hero { padding-top: 120px; padding-bottom: 40px; }
+            .hero h1 { font-size: 2.4rem; }
+            .hero p { font-size: 1.05rem; }
+            .hero .stat { padding: 1rem 1.2rem; min-width: 120px; }
         }
 
         /* ── VIDEO ── */
@@ -180,7 +233,7 @@
             border: 0;
         }
 
-        /* ── GALLERY ── */
+        /* ── GALLERY (new arrows integrated) ── */
         .gallery {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
@@ -206,7 +259,9 @@
             object-fit: cover;
             transition: transform 0.4s;
         }
-        .gallery-item:hover img { transform: scale(1.03); }
+        .gallery-item:hover img {
+            transform: scale(1.03);
+        }
         .gallery-item .arrow-overlay {
             position: absolute;
             bottom: 12px;
@@ -215,7 +270,7 @@
             color: white;
             width: 38px;
             height: 38px;
-            border-radius: 50%; /* FIX: was 60% */
+            border-radius: 60%;
             display: flex;
             align-items: center;
             justify-content: center;
@@ -236,8 +291,10 @@
         .lightbox {
             display: none;
             position: fixed;
-            top: 0; left: 0;
-            width: 100%; height: 100%;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
             background: rgba(35,30,31,0.92);
             z-index: 9999;
             justify-content: center;
@@ -259,12 +316,14 @@
         .lightbox.active .lightbox-content { transform: scale(1); }
         .lightbox-close {
             position: absolute;
-            top: 30px; right: 40px;
+            top: 30px;
+            right: 40px;
             color: #ffffff;
             font-size: 2.8rem;
             cursor: pointer;
             background: rgba(35,30,31,0.5);
-            width: 60px; height: 60px;
+            width: 60px;
+            height: 60px;
             border-radius: 50%;
             display: flex;
             align-items: center;
@@ -295,7 +354,8 @@
             font-size: 2.5rem;
             cursor: pointer;
             background: rgba(35,30,31,0.4);
-            width: 56px; height: 56px;
+            width: 56px;
+            height: 56px;
             border-radius: 50%;
             display: flex;
             align-items: center;
@@ -310,22 +370,97 @@
         .lightbox-nav.prev { left: 24px; }
         .lightbox-nav.next { right: 24px; }
 
-        /* ── HEADER ── */
+        /* ── SCROLL PROGRESS RING ── */
+        .scroll-progress {
+            position: fixed;
+            right: 24px;
+            bottom: 24px;
+            width: 58px;
+            height: 58px;
+            border-radius: 50%;
+            background: rgba(255,255,255,0.9);
+            -webkit-backdrop-filter: blur(14px);
+            backdrop-filter: blur(14px);
+            border: 1px solid rgba(35,30,31,0.08);
+            box-shadow: 0 10px 30px rgba(35,30,31,0.12);
+            display: grid;
+            place-items: center;
+            cursor: pointer;
+            padding: 0;
+            z-index: 900;
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(14px) scale(0.9);
+            transition: opacity .3s ease, transform .3s cubic-bezier(0.22,1,0.36,1),
+                        visibility .3s, background .3s, box-shadow .3s;
+        }
+        .scroll-progress.visible {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0) scale(1);
+        }
+        .scroll-progress:hover {
+            background: #ed018e;
+            box-shadow: 0 16px 38px rgba(237,1,142,0.38);
+        }
+        .scroll-progress svg {
+            position: absolute;
+            inset: 0;
+            width: 100%;
+            height: 100%;
+            transform: rotate(-90deg);
+            transform-origin: 50% 50%;
+            overflow: visible;
+        }
+        .scroll-progress circle {
+            fill: none;
+            stroke-width: 4;
+            stroke-linecap: round;
+        }
+        .scroll-progress .ring-track { stroke: rgba(35,30,31,0.10); transition: stroke .3s; }
+        .scroll-progress .ring-bar {
+            stroke: #ed018e;
+            stroke-dasharray: 138.23;
+            stroke-dashoffset: 138.23;
+            transition: stroke-dashoffset .12s linear, stroke .3s;
+        }
+        .scroll-progress:hover .ring-track { stroke: rgba(255,255,255,0.35); }
+        .scroll-progress:hover .ring-bar { stroke: #ffffff; }
+        .scroll-progress .ring-arrow {
+            position: relative;
+            z-index: 2;
+            font-size: 1.05rem;
+            font-weight: 700;
+            line-height: 1;
+            color: #ed018e;
+            transition: color .3s, transform .3s;
+        }
+        .scroll-progress:hover .ring-arrow {
+            color: #ffffff;
+            transform: translateY(-2px);
+        }
+        @media (max-width: 640px) {
+            .scroll-progress { right: 16px; bottom: 16px; width: 50px; height: 50px; }
+            .scroll-progress .ring-arrow { font-size: .95rem; }
+        }
+        @media (prefers-reduced-motion: reduce) {
+            .scroll-progress { transition: opacity .2s, visibility .2s; }
+            .scroll-progress .ring-bar { transition: none; }
+        }
+
+        /* ── HEADER (consistent) ── */
         .header-glass {
             position: fixed;
-            top: 0; left: 0;
+            top: 0;
+            left: 0;
             width: 100%;
             z-index: 1000;
             background: rgba(255,255,255,0.82);
             backdrop-filter: blur(18px);
-            -webkit-backdrop-filter: blur(18px);
             border-bottom: 1px solid rgba(0,0,0,0.04);
             transition: box-shadow 0.3s, background 0.3s;
         }
-        .header-glass.scrolled {
-            box-shadow: 0 8px 32px rgba(0,0,0,0.06);
-            background: rgba(255,255,255,0.94);
-        }
+        .header-glass.scrolled { box-shadow: 0 8px 32px rgba(0,0,0,0.06); }
         .nav-link {
             font-weight: 600;
             font-size: 0.8rem;
@@ -379,7 +514,7 @@
         }
         .dropdown-menu-custom a:hover { background: #fce8f3; color: #ed018e; }
 
-        /* mobile menu */
+        /* mobile menu panel (simplified but functional) */
         .mobile-menu-panel {
             position: fixed;
             top:0; right:0; width:100%; max-width:400px; height:100%;
@@ -404,7 +539,6 @@
             font-weight: 600;
             color: #231e1f;
             border-bottom: 1px solid #eee;
-            display: block;
         }
         .mobile-accordion-btn {
             width: 100%;
@@ -415,90 +549,10 @@
             font-weight: 600;
             color: #231e1f;
             border-bottom: 1px solid #eee;
-            font-family: inherit;
-            font-size: 1rem;
-            cursor: pointer;
         }
         .mobile-sub { padding-left: 1.5rem; display:none; }
         .mobile-sub.open { display:block; }
         .mobile-sub a { padding: 0.5rem 1.5rem; display:block; color: #6f6268; }
-
-        /* ===== BACK TO TOP BUTTON (with scroll-progress ring) ===== */
-        .back-to-top {
-            position: fixed;
-            bottom: 32px;
-            right: 32px;
-            width: 52px;
-            height: 52px;
-            padding: 0;
-            border-radius: 50%;
-            background: linear-gradient(135deg, #ed018e 0%, #b0006a 100%);
-            color: #ffffff;
-            border: 2px solid rgba(255, 255, 255, 0.25);
-            display: grid;
-            place-items: center;
-            cursor: pointer;
-            z-index: 1500;
-            opacity: 0;
-            visibility: hidden;
-            transform: translateY(20px);
-            transition: opacity 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94),
-                        visibility 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94),
-                        transform 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94),
-                        box-shadow 0.3s ease,
-                        background 0.3s ease;
-            box-shadow: 0 8px 24px rgba(237, 1, 142, 0.35);
-            -webkit-tap-highlight-color: transparent;
-        }
-        .back-to-top.visible {
-            opacity: 1;
-            visibility: visible;
-            transform: translateY(0);
-        }
-        .back-to-top:hover {
-            transform: translateY(-4px) scale(1.06);
-            box-shadow: 0 14px 32px rgba(237, 1, 142, 0.45);
-        }
-        .back-to-top:active {
-            transform: translateY(-1px) scale(0.98);
-        }
-        .back-to-top:focus-visible {
-            outline: 3px solid rgba(237, 1, 142, 0.45);
-            outline-offset: 3px;
-        }
-
-        .btb-ring {
-            position: absolute;
-            inset: 0;
-            width: 100%;
-            height: 100%;
-            transform: rotate(-90deg);
-            pointer-events: none;
-        }
-        .btb-ring circle {
-            fill: none;
-            stroke-width: 2.5;
-        }
-        .btb-ring-track {
-            stroke: rgba(255, 255, 255, 0.25);
-        }
-        .btb-ring-progress {
-            stroke: #ffffff;
-            stroke-linecap: round;
-            stroke-dasharray: 131.95;
-            stroke-dashoffset: 131.95;
-            transition: stroke-dashoffset 0.1s linear;
-        }
-
-        .btb-arrow {
-            position: relative;
-            width: 22px;
-            height: 22px;
-            transition: transform 0.3s ease;
-        }
-        .back-to-top:hover .btb-arrow {
-            transform: translateY(-2px);
-        }
 
         /* social icons */
         .social-list { display: flex; justify-content: center; gap: 1.5rem; margin-top: 1.5rem; }
@@ -517,44 +571,27 @@
         .copyright { text-align:center; padding-top:30px; border-top:1px solid #3a3233; font-size:0.85rem; }
 
         @media (max-width: 992px) {
-            .hero-content, .grid-2 { grid-template-columns: 1fr; }
+            .grid-2 { grid-template-columns: 1fr; }
             .stat-grid { grid-template-columns: 1fr; }
-        }
-
-        @media (max-width: 768px) {
-            body { padding-top: 70px; }
-            .back-to-top {
-                bottom: 24px;
-                right: 20px;
-                width: 46px;
-                height: 46px;
-            }
-            .btb-arrow { width: 18px; height: 18px; }
-        }
-
-        @media (prefers-reduced-motion: reduce) {
-            html { scroll-behavior: auto; }
-            .back-to-top,
-            .btb-arrow { transition: none !important; }
-            .back-to-top:hover { transform: none; }
-            .back-to-top:hover .btb-arrow { transform: none; }
         }
     </style>
 </head>
 <body>
 
-    <!-- ============ HEADER ============ -->
-    <header class="header-glass" id="mainHeader" tabindex="-1">
+    <!-- ============ HEADER (glass) ============ -->
+    <header class="header-glass" id="mainHeader">
         <div class="max-w-7xl mx-auto px-4 md:px-6">
             <div class="flex justify-between items-center h-20">
+                <!-- logo -->
                 <a href="index.html" class="flex items-center gap-3">
                     <img src="obrian-transparent-logo-4461219.webp" alt="O'Brian Group" class="h-10 w-auto" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22%3E%3Crect width=%22100%22 height=%22100%22 fill=%22%23ed008e%22/%3E%3Ctext x=%2250%22 y=%2268%22 font-size=%2248%22 text-anchor=%22middle%22 fill=%22white%22 font-weight=%22bold%22 font-family=%22Inter%22%3EO%3C/text%3E%3C/svg%3E'">
-                    <span class="font-black text-xl hidden sm:inline"> <span class="text-[#ed018e]"> </span></span>
+                    <span class="font-black text-xl hidden sm:inline">  <span class="text-[#ed018e]"> </span></span>
                 </a>
+                <!-- desktop nav -->
                 <div class="hidden lg:flex items-center gap-0.5">
                     <a href="Home.html" class="nav-link">Home</a>
                     <a href="About.html" class="nav-link">About</a>
-                    <a href="Our_Work.html" class="nav-link">Our Work</a>
+                    <a href="Our_Work.html" class="nav-link active-link">Our Work</a>
                     <a href="Client_Experience.html" class="nav-link">Client Experience</a>
                     <div class="relative group">
                         <button class="nav-link">Case Studies ⌄</button>
@@ -567,6 +604,7 @@
                     <a href="Staff_News.html" class="nav-link">Staff News</a>
                     <a href="Archives_Gallery.html" class="nav-link">Archives</a>
                 </div>
+                <!-- CTA + burger -->
                 <div class="flex items-center gap-3">
                     <a href="Contact_Form.html" class="btn-primary-pink hidden lg:inline-flex">Contact</a>
                     <button class="lg:hidden p-2" id="menuBtn">☰</button>
@@ -574,7 +612,7 @@
             </div>
         </div>
     </header>
-
+    <!-- mobile overlay & menu -->
     <div class="mobile-overlay" id="mobileOverlay"></div>
     <div class="mobile-menu-panel" id="mobileMenu">
         <div class="flex justify-between items-center p-6 border-b">
@@ -584,39 +622,49 @@
         <a class="mobile-link" href="Home.html">Home</a>
         <a class="mobile-link" href="About.html">About</a>
         <a class="mobile-link" href="Our_Work.html">Our Work</a>
-        <a class="mobile-link" href="Client_Experience.html">Client Experience</a>
         <button class="mobile-accordion-btn" onclick="document.getElementById('caseSub').classList.toggle('open')">Case Studies ▼</button>
         <div id="caseSub" class="mobile-sub">
             <a href="Adv_Case_Studies.html">Advertising</a>
             <a href="Digital_Case_Studies.html">Digital</a>
             <a href="Consulting_Case_Studies.html">Consulting</a>
         </div>
-        <a class="mobile-link" href="Staff_News.html">Staff News</a>
-        <a class="mobile-link" href="Archives_Gallery.html">Archives</a>
-        <a class="mobile-link" href="Contact_Form.html">Contact</a>
     </div>
 
-    <!-- ============ HERO ============ -->
+    <!-- ============ HERO (Sunbet GTI style) ============ -->
     <section class="hero">
         <div class="container">
-            <div class="hero-content">
-                <div class="hero-text">
-                    <h1>Tourism <span class="accent">KwaZulu‑Natal</span></h1>
-                    <p class="subtitle">A fully integrated campaign that turned the Zulu Kingdom into a must‑visit destination.</p>
-                    <div class="flex flex-wrap gap-4 items-center mt-4">
-                        <a href="#video" class="btn-primary">▶ Watch the film</a>
-                        <a href="Our_Work.html" class="btn-outline">← Back to Our Work</a>
-                    </div>
+            <span class="hero-badge"><i class="fas fa-trophy"></i> Case Study · Tourism</span>
+            <h1>Tourism <span class="highlight">KwaZulu‑Natal</span></h1>
+            <p>
+                A fully integrated campaign that turned the <span class="highlight">Zulu Kingdom</span> into a must‑visit destination.
+            </p>
+            <div class="hero-stats">
+                <div class="stat">
+                    <div class="number">+43%</div>
+                    <div class="label">Brand Recall</div>
                 </div>
-                <div class="hero-visual">
-                    <div class="hero-image">
-                        <img src="175-07-tkzn-billboard-page-1.jpg" alt="TKZN billboard" loading="lazy">
-                    </div>
+                <div class="stat">
+                    <div class="number">2.1M</div>
+                    <div class="label">Video Views</div>
+                </div>
+                <div class="stat">
+                    <div class="number">28%</div>
+                    <div class="label">Enquiries</div>
+                </div>
+            </div>
+
+            <div class="hero-actions">
+                <a href="#video" class="btn-primary">▶ Watch the film</a>
+                <a href="Our_Work.html" class="btn-outline">← Back to Our Work</a>
+            </div>
+
+            <div style="margin-top: 2.5rem;">
+                <div class="hero-image" style="border-radius: 2rem; overflow: hidden; box-shadow: 0 12px 30px rgba(35,30,31,0.06); border: 1px solid rgba(35,30,31,0.08);">
+                    <img src="175-07-tkzn-billboard-page-1.jpg" alt="TKZN billboard" loading="lazy" style="width: 100%; object-fit: cover; aspect-ratio: 4/3;">
                 </div>
             </div>
         </div>
     </section>
-    <!-- FIX: removed duplicate .hero-visual block + stray closing tags -->
 
     <!-- Challenge / solution / results -->
     <div class="container section">
@@ -650,7 +698,7 @@
         </div>
     </div>
 
-    <!-- ============ IMAGE GALLERY ============ -->
+    <!-- ============ IMAGE GALLERY (with arrows) ============ -->
     <div class="container section">
         <div style="text-align:center; margin-bottom:30px;">
             <span class="section-sub">Campaign assets</span>
@@ -678,38 +726,30 @@
     <section class="container" style="padding:50px 0; text-align:center;">
         <h3><strong>Follow us</strong></h3>
         <div class="social-list">
-            <a href="https://www.facebook.com/profile.php?id=100094029616085" target="_blank" aria-label="Facebook" style="background:#ed018e;">f</a>
-            <a href="https://x.com/ObrianSA" target="_blank" aria-label="Twitter">𝕏</a>
-            <a href="https://www.instagram.com/obriandigital/" target="_blank" aria-label="Instagram">📷</a>
-            <a href="https://za.linkedin.com/company/o-brian-digital" target="_blank" aria-label="LinkedIn">in</a>
+            <a href="#" style="background:#ed018e;">f</a>
+            <a href="#">𝕏</a>
+            <a href="#">📷</a>
+            <a href="#">in</a>
         </div>
+    </section>
+
+    <!-- Back to Our Work (bottom) -->
+    <section class="container" style="padding: 0 0 60px; text-align: center;">
+        <a href="Our_Work.html" class="btn-outline">← Back to Our Work</a>
     </section>
 
     <!-- Footer -->
     <footer class="footer">
         <div class="container">
-            <div style="display:grid; grid-template-columns:repeat(auto-fit,minmax(180px,1fr)); gap:40px;">
+            <div class="footer-grid" style="display:grid; grid-template-columns:repeat(auto-fit,minmax(180px,1fr)); gap:40px;">
                 <div><h5>Johannesburg</h5><p>2nd Floor Trumpet On Keyes,<br>21 Keyes Avenue, Rosebank</p></div>
                 <div><h5>Durban</h5><p>2 Ncondo Place, Ridgeside Dr,<br>Umhlanga Ridge</p></div>
                 <div><h5>Email</h5><p><a href="mailto:info@obriangroup.com">info@obriangroup.com</a></p></div>
-                <div><h5>About</h5><p><a href="About.html">History</a> · <a href="Client_Experience.html">Clients</a> · <a href="Brand.html">Brand</a></p></div>
+                <div><h5>About</h5><p><a href="#">History</a> · <a href="#">Clients</a> · <a href="#">Brand</a></p></div>
             </div>
             <div class="copyright"><p>&copy; 2030 Obrian Group – All Rights Reserved</p></div>
         </div>
     </footer>
-
-    <!-- ============ BACK TO TOP BUTTON (with scroll-progress ring) ============ -->
-    <button class="back-to-top" id="backToTop" aria-label="Back to top" title="Back to top" aria-hidden="true" tabindex="-1">
-        <svg class="btb-ring" viewBox="0 0 48 48" aria-hidden="true">
-            <circle class="btb-ring-track" cx="24" cy="24" r="21"></circle>
-            <circle class="btb-ring-progress" cx="24" cy="24" r="21"></circle>
-        </svg>
-        <svg class="btb-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-             stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-            <path d="M12 19V5"></path>
-            <path d="M5 12l7-7 7 7"></path>
-        </svg>
-    </button>
 
     <!-- ============ LIGHTBOX ============ -->
     <div class="lightbox" id="lightbox">
@@ -719,6 +759,15 @@
         <img class="lightbox-content" id="lightboxImage" src="" alt="Full view">
         <div class="lightbox-counter" id="lightboxCounter">1 / 3</div>
     </div>
+
+    <!-- ============ SCROLL PROGRESS RING ============ -->
+    <button class="scroll-progress" id="scrollProgress" type="button" aria-label="Scroll progress — click to return to top" title="Back to top">
+        <svg viewBox="0 0 58 58" aria-hidden="true" focusable="false">
+            <circle class="ring-track" cx="29" cy="29" r="22"></circle>
+            <circle class="ring-bar" id="scrollProgressBar" cx="29" cy="29" r="22"></circle>
+        </svg>
+        <span class="ring-arrow" aria-hidden="true">↑</span>
+    </button>
 
     <script>
         (function() {
@@ -755,54 +804,6 @@
                 if (window.scrollY > 30) header.classList.add('scrolled');
                 else header.classList.remove('scrolled');
             });
-
-            // ===== BACK TO TOP BUTTON (with scroll-progress ring) =====
-            var backToTop = document.getElementById('backToTop');
-            if (backToTop) {
-                var btbRingProgress = backToTop.querySelector('.btb-ring-progress');
-                var BTB_RING_LENGTH = 2 * Math.PI * 21;
-                var prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-                var ticking = false;
-
-                function updateBackToTop() {
-                    var scrollY = window.scrollY || document.documentElement.scrollTop;
-                    var maxScroll = document.documentElement.scrollHeight - window.innerHeight;
-                    var progress = maxScroll > 0 ? Math.min(scrollY / maxScroll, 1) : 0;
-
-                    var show = scrollY > 400;
-                    backToTop.classList.toggle('visible', show);
-                    backToTop.setAttribute('aria-hidden', show ? 'false' : 'true');
-                    backToTop.tabIndex = show ? 0 : -1;
-
-                    if (btbRingProgress) {
-                        btbRingProgress.style.strokeDashoffset =
-                            (BTB_RING_LENGTH * (1 - progress)).toFixed(2);
-                    }
-
-                    ticking = false;
-                }
-
-                window.addEventListener('scroll', function() {
-                    if (!ticking) {
-                        window.requestAnimationFrame(updateBackToTop);
-                        ticking = true;
-                    }
-                }, { passive: true });
-
-                // FIX: also update on resize so the ring stays accurate
-                window.addEventListener('resize', updateBackToTop);
-
-                updateBackToTop();
-
-                backToTop.addEventListener('click', function() {
-                    window.scrollTo({
-                        top: 0,
-                        behavior: prefersReducedMotion ? 'auto' : 'smooth'
-                    });
-                    var headerEl = document.getElementById('mainHeader');
-                    if (headerEl) headerEl.focus({ preventScroll: true });
-                });
-            }
 
             // --- LIGHTBOX with gallery arrows ---
             const galleryItems = document.querySelectorAll('.gallery-item');
@@ -851,9 +852,9 @@
                 });
             });
 
-            if (lightboxClose) lightboxClose.addEventListener('click', closeLightbox);
-            if (lightboxPrev) lightboxPrev.addEventListener('click', prevImage);
-            if (lightboxNext) lightboxNext.addEventListener('click', nextImage);
+            lightboxClose.addEventListener('click', closeLightbox);
+            lightboxPrev.addEventListener('click', prevImage);
+            lightboxNext.addEventListener('click', nextImage);
 
             document.addEventListener('keydown', function(e) {
                 if (!lightbox.classList.contains('active')) return;
@@ -875,6 +876,49 @@
                     if (diff > 0) nextImage(); else prevImage();
                 }
             });
+
+            /* SCROLL PROGRESS RING */
+            const ring = document.getElementById('scrollProgress');
+            const ringBar = document.getElementById('scrollProgressBar');
+            if (ring && ringBar) {
+                const RADIUS = 22;
+                const CIRCUMFERENCE = 2 * Math.PI * RADIUS;
+                ringBar.style.strokeDasharray = CIRCUMFERENCE;
+                ringBar.style.strokeDashoffset = CIRCUMFERENCE;
+
+                const SHOW_AFTER = 250;
+                let ticking = false;
+
+                function updateRing() {
+                    const doc = document.documentElement;
+                    const scrollTop = window.pageYOffset || doc.scrollTop || 0;
+                    const scrollable = doc.scrollHeight - window.innerHeight;
+                    const progress = scrollable > 0
+                        ? Math.min(Math.max(scrollTop / scrollable, 0), 1)
+                        : 0;
+                    ringBar.style.strokeDashoffset = CIRCUMFERENCE * (1 - progress);
+                    if (scrollTop > SHOW_AFTER) ring.classList.add('visible');
+                    else ring.classList.remove('visible');
+                    ticking = false;
+                }
+
+                function requestRingUpdate() {
+                    if (!ticking) {
+                        ticking = true;
+                        window.requestAnimationFrame(updateRing);
+                    }
+                }
+
+                window.addEventListener('scroll', requestRingUpdate, { passive: true });
+                window.addEventListener('resize', requestRingUpdate);
+                window.addEventListener('load', updateRing);
+                updateRing();
+
+                ring.addEventListener('click', function() {
+                    const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+                    window.scrollTo({ top: 0, behavior: reduce ? 'auto' : 'smooth' });
+                });
+            }
         })();
     </script>
 </body>
