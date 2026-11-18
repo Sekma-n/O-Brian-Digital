@@ -20,6 +20,9 @@
             padding: 0;
             box-sizing: border-box;
         }
+        html {
+            scroll-behavior: smooth;
+        }
         body {
             font-family: 'Inter', system-ui, -apple-system, sans-serif;
             background: #ffffff;
@@ -231,6 +234,234 @@
             color: white;
         }
 
+        /* ── BACK TO OUR WORK (OUTLINE) BUTTON ── */
+        .btn-outline-pink {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            padding: 0.85rem 2rem;
+            background: transparent;
+            color: #e6007e;
+            border: 2px solid #e6007e;
+            font-weight: 700;
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 0.8px;
+            border-radius: 9999px;
+            text-decoration: none;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        .btn-outline-pink:hover {
+            background: #e6007e;
+            color: #ffffff;
+            transform: translateY(-3px);
+            box-shadow: 0 12px 30px rgba(230, 0, 126, 0.3);
+        }
+        .btn-outline-pink svg {
+            width: 16px;
+            height: 16px;
+            transition: transform 0.3s ease;
+        }
+        .btn-outline-pink:hover svg {
+            transform: translateX(-4px);
+        }
+
+        /* ===== HERO (Sunbet GTI style) ===== */
+        .hero {
+            padding-top: 60px;
+            padding-bottom: 60px;
+            background: radial-gradient(circle at 90% 20%, rgba(230, 0, 126, 0.04) 0%, #ffffff 90%);
+        }
+        .hero .container {
+            max-width: 840px;
+            margin: 0 auto;
+            padding: 24px 14px;
+            text-align: center;
+        }
+        .hero .hero-badge {
+            background: rgba(230, 0, 126, 0.06);
+            display: inline-block;
+            padding: 6px 18px;
+            border-radius: 40px;
+            font-weight: 600;
+            font-size: 0.85rem;
+            margin-bottom: 24px;
+            color: #e6007e;
+            border: 1px solid rgba(230, 0, 126, 0.12);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+        .hero h1 {
+            font-size: 3.8rem;
+            margin-bottom: 24px;
+            color: #231e1f;
+            font-weight: 800;
+            line-height: 1.15;
+            letter-spacing: -0.02em;
+        }
+        .hero p {
+            font-size: 1.2rem;
+            color: #4a3a42;
+            max-width: 700px;
+            margin: 0 auto 32px;
+            line-height: 1.6;
+        }
+        .hero .highlight {
+            color: #e6007e;
+        }
+        .hero .hero-stats {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 1rem;
+            margin-top: 2rem;
+        }
+        .hero .stat {
+            background: #ffffff;
+            border: 1px solid rgba(0, 0, 0, 0.06);
+            border-radius: 16px;
+            padding: 1.2rem 1.6rem;
+            min-width: 140px;
+            text-align: center;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.05);
+        }
+        .hero .stat .number {
+            font-size: 2rem;
+            font-weight: 800;
+            color: #e6007e;
+            line-height: 1.1;
+        }
+        .hero .stat .label {
+            font-size: 0.75rem;
+            color: #6b7280;
+            text-transform: uppercase;
+            letter-spacing: 0.6px;
+            margin-top: 4px;
+            font-weight: 600;
+        }
+        .hero .hero-actions {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 1rem;
+            margin-top: 2rem;
+        }
+        @media (max-width: 768px) {
+            .hero { padding-top: 40px; padding-bottom: 40px; }
+            .hero h1 { font-size: 2.4rem; }
+            .hero p { font-size: 1.05rem; }
+            .hero .stat { padding: 1rem 1.2rem; min-width: 120px; }
+        }
+
+        /* ===== BACK TO TOP BUTTON (from Home page) ===== */
+        .back-to-top {
+            position: fixed;
+            bottom: 32px;
+            right: 32px;
+            width: 52px;
+            height: 52px;
+            padding: 0;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #e6007e 0%, #b0006a 100%);
+            color: #ffffff;
+            border: 2px solid rgba(255, 255, 255, 0.25);
+            display: grid;
+            place-items: center;
+            cursor: pointer;
+            z-index: 1500;
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(20px);
+            transition: opacity 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94),
+                        visibility 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94),
+                        transform 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94),
+                        box-shadow 0.3s ease,
+                        background 0.3s ease;
+            box-shadow: 0 8px 24px rgba(230, 0, 126, 0.35);
+            -webkit-tap-highlight-color: transparent;
+        }
+        .back-to-top.visible {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
+        }
+        .back-to-top:hover {
+            transform: translateY(-4px) scale(1.06);
+            box-shadow: 0 14px 32px rgba(230, 0, 126, 0.45);
+        }
+        .back-to-top:active {
+            transform: translateY(-1px) scale(0.98);
+        }
+        .back-to-top:focus-visible {
+            outline: 3px solid rgba(230, 0, 126, 0.45);
+            outline-offset: 3px;
+        }
+
+        /* scroll-progress ring */
+        .btb-ring {
+            position: absolute;
+            inset: 0;
+            width: 100%;
+            height: 100%;
+            transform: rotate(-90deg);
+            pointer-events: none;
+        }
+        .btb-ring circle {
+            fill: none;
+            stroke-width: 2.5;
+        }
+        .btb-ring-track {
+            stroke: rgba(255, 255, 255, 0.25);
+        }
+        .btb-ring-progress {
+            stroke: #ffffff;
+            stroke-linecap: round;
+            stroke-dasharray: 131.95;   /* 2π × r(21) */
+            stroke-dashoffset: 131.95;
+            transition: stroke-dashoffset 0.1s linear;
+        }
+
+        /* arrow */
+        .btb-arrow {
+            position: relative;
+            width: 22px;
+            height: 22px;
+            transition: transform 0.3s ease;
+        }
+        .back-to-top:hover .btb-arrow {
+            transform: translateY(-2px);
+        }
+
+        @media (max-width: 768px) {
+            .back-to-top {
+                bottom: 24px;
+                right: 20px;
+                width: 46px;
+                height: 46px;
+            }
+            .btb-arrow {
+                width: 18px;
+                height: 18px;
+            }
+        }
+
+        /* ── Reduced motion ── */
+        @media (prefers-reduced-motion: reduce) {
+            html {
+                scroll-behavior: auto;
+            }
+            .back-to-top,
+            .btb-arrow {
+                transition: none !important;
+            }
+            .back-to-top:hover {
+                transform: none;
+            }
+            .back-to-top:hover .btb-arrow {
+                transform: none;
+            }
+        }
+
         /* Premium Burger */
         .burger-premium {
             width: 36px;
@@ -340,142 +571,6 @@
             font-size: 0.95rem;
         }
 
-        /* ── BACK TO BUTTON STYLES ── */
-        .back-to-btn {
-            display: inline-flex;
-            align-items: center;
-            gap: 10px;
-            padding: 14px 28px;
-            background: linear-gradient(135deg, #e6007e 0%, #ff1493 100%);
-            color: white;
-            font-weight: 700;
-            font-size: 0.9rem;
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
-            border-radius: 50px;
-            border: none;
-            cursor: pointer;
-            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-            box-shadow: 0 4px 15px rgba(230, 0, 126, 0.3);
-            text-decoration: none;
-            margin-bottom: 20px;
-        }
-        .back-to-btn:hover {
-            transform: translateY(-2px) scale(1.02);
-            box-shadow: 0 10px 30px rgba(230, 0, 126, 0.4);
-            background: linear-gradient(135deg, #c40073 0%, #e6007e 100%);
-        }
-        .back-to-btn i {
-            font-size: 1rem;
-        }
-
-        /* ── Floating Back Button (sticky) ── */
-        .floating-back {
-            position: fixed;
-            bottom: 20px;
-            left: 20px;
-            z-index: 999;
-            display: inline-flex;
-            align-items: center;
-            gap: 8px;
-            padding: 10px 20px;
-            background: #e6007e;
-            color: white;
-            font-weight: 600;
-            font-size: 0.85rem;
-            border-radius: 50px;
-            text-decoration: none;
-            box-shadow: 0 4px 15px rgba(230, 0, 126, 0.3);
-            transition: all 0.3s ease;
-        }
-        .floating-back:hover {
-            transform: translateY(-3px);
-            background: #c40073;
-            box-shadow: 0 8px 25px rgba(230, 0, 126, 0.5);
-        }
-        .floating-back i {
-            font-size: 1rem;
-        }
-
-        /* ===== BACK TO TOP BUTTON (copied from Home page) ===== */
-        .back-to-top {
-            position: fixed;
-            bottom: 32px;
-            right: 32px;
-            width: 52px;
-            height: 52px;
-            padding: 0;
-            border-radius: 50%;
-            background: linear-gradient(135deg, #e6007e 0%, #b0006a 100%);
-            color: #ffffff;
-            border: 2px solid rgba(255, 255, 255, 0.25);
-            display: grid;
-            place-items: center;
-            cursor: pointer;
-            z-index: 1500;
-            opacity: 0;
-            visibility: hidden;
-            transform: translateY(20px);
-            transition: opacity 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94),
-                        visibility 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94),
-                        transform 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94),
-                        box-shadow 0.3s ease,
-                        background 0.3s ease;
-            box-shadow: 0 8px 24px rgba(230, 0, 126, 0.35);
-            -webkit-tap-highlight-color: transparent;
-        }
-        .back-to-top.visible {
-            opacity: 1;
-            visibility: visible;
-            transform: translateY(0);
-        }
-        .back-to-top:hover {
-            transform: translateY(-4px) scale(1.06);
-            box-shadow: 0 14px 32px rgba(230, 0, 126, 0.45);
-        }
-        .back-to-top:active {
-            transform: translateY(-1px) scale(0.98);
-        }
-        .back-to-top:focus-visible {
-            outline: 3px solid rgba(230, 0, 126, 0.45);
-            outline-offset: 3px;
-        }
-
-        /* scroll-progress ring */
-        .btb-ring {
-            position: absolute;
-            inset: 0;
-            width: 100%;
-            height: 100%;
-            transform: rotate(-90deg);
-            pointer-events: none;
-        }
-        .btb-ring circle {
-            fill: none;
-            stroke-width: 2.5;
-        }
-        .btb-ring-track {
-            stroke: rgba(255, 255, 255, 0.25);
-        }
-        .btb-ring-progress {
-            stroke: #ffffff;
-            stroke-linecap: round;
-            stroke-dasharray: 131.95;   /* 2π × r(21) */
-            stroke-dashoffset: 131.95;
-            transition: stroke-dashoffset 0.1s linear;
-        }
-
-        /* arrow */
-        .btb-arrow {
-            position: relative;
-            width: 22px;
-            height: 22px;
-            transition: transform 0.3s ease;
-        }
-        .back-to-top:hover .btb-arrow {
-            transform: translateY(-2px);
-        }
-
         /* Gallery grid */
         .gallery-item {
             transition: all 0.3s cubic-bezier(0.23, 1, 0.32, 1);
@@ -504,32 +599,6 @@
             opacity: 1;
         }
 
-        /* Arrow indicator on gallery items */
-        .gallery-item .arrow-indicator {
-            position: absolute;
-            bottom: 10px;
-            right: 10px;
-            background: rgba(230, 0, 126, 0.9);
-            color: white;
-            width: 30px;
-            height: 30px;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 0.9rem;
-            opacity: 0;
-            transition: all 0.3s ease;
-            z-index: 2;
-            pointer-events: none;
-            border: 2px solid white;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.2);
-        }
-        .gallery-item:hover .arrow-indicator {
-            opacity: 1;
-            transform: scale(1.1);
-        }
-
         /* Lightbox modal */
         .lightbox-overlay {
             position: fixed;
@@ -552,10 +621,9 @@
         }
         .lightbox-content img {
             width: auto;
-            max-height: 80vh;
+            max-height: 85vh;
             border-radius: 12px;
             box-shadow: 0 30px 60px rgba(0, 0, 0, 0.5);
-            transition: opacity 0.3s ease;
         }
         .lightbox-caption {
             color: white;
@@ -580,8 +648,6 @@
         .close-lightbox:hover {
             transform: scale(1.1);
         }
-
-        /* Enhanced Lightbox Navigation */
         .lightbox-nav {
             position: absolute;
             top: 50%;
@@ -590,49 +656,19 @@
             display: flex;
             justify-content: space-between;
             padding: 0 20px;
-            z-index: 10;
         }
         .lightbox-nav button {
             background: rgba(255, 255, 255, 0.2);
             border: none;
-            width: 56px;
-            height: 56px;
+            width: 48px;
+            height: 48px;
             border-radius: 50%;
             color: white;
             cursor: pointer;
             transition: background 0.2s;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 1.3rem;
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
-            border: 2px solid rgba(255, 255, 255, 0.3);
         }
         .lightbox-nav button:hover {
-            background: rgba(230, 0, 126, 0.8);
-            border-color: #e6007e;
-            transform: scale(1.08);
-        }
-        .lightbox-nav button:disabled {
-            opacity: 0.3;
-            cursor: not-allowed;
-            transform: none;
-        }
-
-        /* Lightbox Counter */
-        .lightbox-counter {
-            position: absolute;
-            bottom: 10px;
-            right: 20px;
-            color: white;
-            background: rgba(230, 0, 126, 0.8);
-            padding: 8px 16px;
-            border-radius: 20px;
-            font-size: 0.9rem;
-            font-weight: 600;
-            z-index: 10;
-            backdrop-filter: blur(4px);
-            border: 1px solid rgba(255, 255, 255, 0.2);
+            background: rgba(255, 255, 255, 0.4);
         }
 
         /* Reveal animation */
@@ -660,7 +696,7 @@
             font-size: 1.2rem;
         }
 
-        /* ── NEW FOOTER STYLES ── */
+        /* ── FOOTER STYLES ── */
         .footer {
             background: #231e1f;
             color: rgba(255, 255, 255, 0.7);
@@ -753,6 +789,96 @@
             }
         }
 
+        /* ── Rest of page styles ── */
+        .mbr-gallery .item-wrapper {
+            position: relative;
+            cursor: pointer;
+            overflow: hidden;
+            border-radius: 8px;
+            transition: transform 0.3s ease;
+        }
+        .mbr-gallery .item-wrapper:hover {
+            transform: translateY(-4px);
+        }
+        .mbr-gallery .item-wrapper img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            transition: transform 0.4s ease;
+        }
+        .mbr-gallery .item-wrapper:hover img {
+            transform: scale(1.05);
+        }
+        .mbr-gallery .icon-wrapper {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: rgba(230, 0, 126, 0.85);
+            width: 48px;
+            height: 48px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            color: white;
+            font-size: 1.4rem;
+        }
+        .mbr-gallery .item-wrapper:hover .icon-wrapper {
+            opacity: 1;
+        }
+
+        .modal-content {
+            background: rgba(0, 0, 0, 0.9);
+            border: none;
+        }
+        .modal-body {
+            padding: 0;
+        }
+        .carousel-inner img {
+            max-height: 80vh;
+            object-fit: contain;
+            width: 100%;
+        }
+        .carousel-control-prev,
+        .carousel-control-next {
+            width: 10%;
+            opacity: 0.7;
+        }
+        .carousel-control-prev:hover,
+        .carousel-control-next:hover {
+            opacity: 1;
+        }
+        .carousel-indicators [data-bs-target] {
+            background-color: #fff;
+            opacity: 0.5;
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            margin: 0 4px;
+        }
+        .carousel-indicators .active {
+            opacity: 1;
+            background-color: #e6007e;
+        }
+        .close-modal-btn {
+            position: absolute;
+            top: 12px;
+            right: 20px;
+            z-index: 1050;
+            background: none;
+            border: none;
+            color: white;
+            font-size: 2.2rem;
+            cursor: pointer;
+            transition: transform 0.2s;
+        }
+        .close-modal-btn:hover {
+            transform: scale(1.15);
+        }
+
         /* ── Responsive ── */
         @media (max-width: 768px) {
             body {
@@ -772,64 +898,16 @@
                 padding: 0 10px;
             }
             .lightbox-nav button {
-                width: 44px;
-                height: 44px;
-                font-size: 1rem;
+                width: 36px;
+                height: 36px;
             }
-            .gallery-item .arrow-indicator {
-                width: 26px;
-                height: 26px;
-                font-size: 0.8rem;
-            }
-            .lightbox-counter {
-                bottom: 8px;
-                right: 12px;
-                font-size: 0.8rem;
-                padding: 6px 12px;
-            }
-            .back-to-btn {
-                padding: 12px 24px;
-                font-size: 0.8rem;
-            }
-            .floating-back {
-                padding: 8px 16px;
-                font-size: 0.8rem;
-            }
-            .back-to-top {
-                bottom: 24px;
-                right: 20px;
-                width: 46px;
-                height: 46px;
-            }
-            .btb-arrow {
-                width: 18px;
-                height: 18px;
+            .mbr-gallery .item-wrapper img {
+                height: 160px;
             }
         }
         @media (max-width: 480px) {
             .logo-text {
                 font-size: 0.9rem;
-            }
-            .lightbox-nav button {
-                width: 38px;
-                height: 38px;
-            }
-        }
-
-        /* ── Reduced motion ── */
-        @media (prefers-reduced-motion: reduce) {
-            html {
-                scroll-behavior: auto;
-            }
-            .back-to-top,
-            .btb-arrow {
-                transition: none !important;
-            }
-            .back-to-top:hover {
-                transform: none;
-            }
-            .back-to-top:hover .btb-arrow {
-                transform: none;
             }
         }
     </style>
@@ -853,7 +931,7 @@
                 <div class="hidden lg:flex items-center gap-0.5">
                     <a href="Home.html" class="nav-link-premium">Home</a>
                     <a href="About.html" class="nav-link-premium">About</a>
-                    <a href="Our_Work.html" class="nav-link-premium">Our Work</a>
+                    <a href="Our_Work.html" class="nav-link-premium active-link">Our Work</a>
                     <a href="Client_Experience.html" class="nav-link-premium">Client Experience</a>
 
                     <div class="dropdown-wrapper">
@@ -930,31 +1008,35 @@
         <a href="Contact_Us.html" style="display:inline-flex; margin-top:1rem; background:linear-gradient(135deg,#e6007e,#ff1493); color:#fff; padding:0.6rem 1.5rem; border-radius:9999px; font-weight:700; text-decoration:none;">Contact Us</a>
     </div>
 
-    <!-- ========== BACK TO BUTTONS ========== -->
-    <!-- Main Back Button (Top) -->
-    <div class="container" style="max-width: 1280px; margin: 0 auto; padding: 20px 24px 0;">
-        <a href="Our_Work.html" class="back-to-btn">
-            <i class="fas fa-arrow-left"></i>
-            Back to Our Work
-        </a>
-    </div>
-
-    <!-- Floating Back Button (Bottom Left) -->
-    <a href="Our_Work.html" class="floating-back" title="Back to Our Work">
-        <i class="fas fa-arrow-left"></i>
-        Back
-    </a>
-
-    <!-- ========== HERO ========== -->
-    <section class="relative pt-20 pb-20 bg-gradient-to-b from-white to-gray-50">
-        <div class="max-w-7xl mx-auto px-6 text-center">
-            <div class="reveal">
-                <p class="text-pink font-semibold tracking-wide text-sm uppercase mb-4">Case Study</p>
-                <h1 class="text-5xl md:text-7xl font-black text-gray-900 mb-6">MINA <span class="text-pink">BRAND</span></h1>
-                <div class="w-24 h-1 bg-pink mx-auto mb-8"></div>
-                <p class="text-gray-600 text-lg max-w-2xl mx-auto font-body">
-                    A bold health awareness campaign that redefined visibility and engagement for Mina Brand.
-                </p>
+    <!-- ========== HERO (Sunbet GTI style) ========== -->
+    <section class="hero">
+        <div class="container">
+            <span class="hero-badge"><i class="fas fa-trophy" style="margin-right: 6px;"></i> Case Study · Health Awareness</span>
+            <h1>MINA <span class="highlight">BRAND</span></h1>
+            <p>
+                A bold health awareness campaign that <span class="highlight">redefined visibility and engagement</span> for Mina Brand.
+            </p>
+            <div class="hero-stats">
+                <div class="stat">
+                    <div class="number">6+</div>
+                    <div class="label">Campaign Creatives</div>
+                </div>
+                <div class="stat">
+                    <div class="number">2</div>
+                    <div class="label">Media Formats</div>
+                </div>
+                <div class="stat">
+                    <div class="number">100%</div>
+                    <div class="label">Health Awareness</div>
+                </div>
+            </div>
+            <div class="hero-actions">
+                <a href="Our_Work.html" class="btn-outline-pink">
+                    <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M7 16l-4-4m0 0l4-4m-4 4h18"></path>
+                    </svg>
+                    <span>Back to Our Work</span>
+                </a>
             </div>
         </div>
     </section>
@@ -984,37 +1066,46 @@
                 <div class="gallery-item cursor-pointer rounded-xl overflow-hidden shadow-md bg-white" data-index="0">
                     <img src="mina-brand-outdoor-campaign3.jpg" alt="Mina outdoor ad - I'm on my HIV treatment full time" class="w-full h-64 object-cover transition-transform duration-500 hover:scale-105">
                     <div class="overlay">"MINA, I'M ON MY HIV TREATMENT FULL TIME."</div>
-                    <span class="arrow-indicator">→</span>
                 </div>
                 <div class="gallery-item cursor-pointer rounded-xl overflow-hidden shadow-md bg-white" data-index="1">
                     <img src="mina-brand-outdoor-campaign10.jpg" alt="Mina outdoor ad - I choose health, I choose to win" class="w-full h-64 object-cover transition-transform duration-500 hover:scale-105">
                     <div class="overlay">"MINA, I CHOOSE HEALTH. I CHOOSE TO WIN."</div>
-                    <span class="arrow-indicator">→</span>
                 </div>
                 <div class="gallery-item cursor-pointer rounded-xl overflow-hidden shadow-md bg-white" data-index="2">
                     <img src="mina-brand-outdoor-campaign9.jpg" alt="Mina outdoor ad - Ngise Formini, I choose health" class="w-full h-64 object-cover transition-transform duration-500 hover:scale-105">
                     <div class="overlay">"MINA, NGISE FORMINI. I CHOOSE HEALTH."</div>
-                    <span class="arrow-indicator">→</span>
                 </div>
                 <div class="gallery-item cursor-pointer rounded-xl overflow-hidden shadow-md bg-white" data-index="3">
                     <img src="mina-brand-outdoor-campaign4.jpg" alt="Mina outdoor ad 4" class="w-full h-64 object-cover transition-transform duration-500 hover:scale-105">
                     <div class="overlay">"LET ME HELP YOU STAY ON THE BALL"</div>
-                    <span class="arrow-indicator">→</span>
                 </div>
 
                 <!-- Added 4 New Images -->
                 <div class="gallery-item cursor-pointer rounded-xl overflow-hidden shadow-md bg-white" data-index="4">
                     <img src="billboard-tower.jpg" alt="Mina Brand tall vertical billboard" class="w-full h-64 object-cover transition-transform duration-500 hover:scale-105">
                     <div class="overlay">"MINA, NGIY'NJA YE GAME. I TAKE MY HIV TREATMENT."</div>
-                    <span class="arrow-indicator">→</span>
                 </div>
+                
                 
                 <div class="gallery-item cursor-pointer rounded-xl overflow-hidden shadow-md bg-white" data-index="7">
                     <img src="wall-teamplayer.jpg" alt="Mina Brand Team Player painted wall" class="w-full h-64 object-cover transition-transform duration-500 hover:scale-105">
                     <div class="overlay">"MINA, I'M A TEAM PLAYER. MY PARTNER KNOWS MY STATUS."</div>
-                    <span class="arrow-indicator">→</span>
                 </div>
             </div>
+        </div>
+    </section>
+
+    <!-- ========== BOTTOM CTA — BACK TO OUR WORK ========== -->
+    <section class="py-16 bg-white">
+        <div class="max-w-4xl mx-auto px-6 text-center reveal">
+            <h3 class="text-2xl md:text-3xl font-black text-gray-900 mb-3">Explore More Campaigns</h3>
+            <p class="text-gray-500 mb-8 max-w-xl mx-auto">See how we've helped other brands break through the noise and connect with their audiences.</p>
+            <a href="Our_Work.html" class="btn-outline-pink">
+                <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M7 16l-4-4m0 0l4-4m-4 4h18"></path>
+                </svg>
+                <span>Back to Our Work</span>
+            </a>
         </div>
     </section>
 
@@ -1025,14 +1116,9 @@
             <img id="lightboxImg" src="" alt="">
             <div class="lightbox-caption" id="lightboxCaption"></div>
             <div class="lightbox-nav">
-                <button id="prevBtn" title="Previous Image">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="m15 18-6-6 6-6"/></svg>
-                </button>
-                <button id="nextBtn" title="Next Image">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="m9 18 6-6-6-6"/></svg>
-                </button>
+                <button id="prevBtn"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m15 18-6-6 6-6"/></svg></button>
+                <button id="nextBtn"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m9 18 6-6-6-6"/></svg></button>
             </div>
-            <div class="lightbox-counter" id="lightboxCounter">1 / 6</div>
         </div>
     </div>
 
@@ -1049,7 +1135,7 @@
         </svg>
     </button>
 
-    <!-- ========== NEW FOOTER ========== -->
+    <!-- ========== FOOTER ========== -->
     <footer class="footer">
         <div class="container">
             <div class="footer-grid">
@@ -1132,12 +1218,12 @@
 
         // ── Campaign Gallery data ──
         const galleryData = [
-            { src: 'assets/images/mina-brand-outdoor-campaign3.jpg', caption: '"MINA, I\'M ON MY HIV TREATMENT FULL TIME. LET ME HELP YOU STAY ON THE BALL CALL, SMS, WHATSAPP COACH MPILO ON 082 5100 344"' },
-            { src: 'assets/images/mina-brand-outdoor-campaign10.jpg', caption: '"MINA, I CHOOSE HEALTH. I CHOOSE TO WIN. LET ME HELP YOU STAY ON THE BALL CALL, SMS, WHATSAPP COACH MPILO ON 082 5100 344 COACH MPILO"' },
-            { src: 'assets/images/mina-brand-outdoor-campaign9.jpg', caption: '"MINA, NGISE FORMINI. I CHOOSE HEALTH. LET ME HELP YOU STAY ON THE BALL CALL, SMS, WHATSAPP COACH MPILO ON 082 5100 344"' },
-            { src: 'assets/images/mina-brand-outdoor-campaign4.jpg', caption: '"LET ME HELP YOU STAY ON THE BALL CALL, SMS, WHATSAPP COACH MPILO ON 082 5100 344"' },
-            { src: 'assets/images/billboard-tower.jpg', caption: '"MINA, NGIY\'NJA YE GAME. I TAKE MY HIV TREATMENT. LET ME HELP YOU STAY ON THE BALL CALL, SMS, WHATSAPP COACH MPILO ON 082 5100 344"' },
-            { src: 'assets/images/wall-teamplayer.jpg', caption: '"MINA, I\'M A TEAM PLAYER. MY PARTNER KNOWS MY STATUS. LET ME HELP YOU STAY ON THE BALL CALL, SMS, WHATSAPP COACH MPILO ON 063 6722 917"' }
+            { src: 'mina-brand-outdoor-campaign3.jpg', caption: '"MINA, I\'M ON MY HIV TREATMENT FULL TIME. LET ME HELP YOU STAY ON THE BALL CALL, SMS, WHATSAPP COACH MPILO ON 082 5100 344"' },
+            { src: 'mina-brand-outdoor-campaign10.jpg', caption: '"MINA, I CHOOSE HEALTH. I CHOOSE TO WIN. LET ME HELP YOU STAY ON THE BALL CALL, SMS, WHATSAPP COACH MPILO ON 082 5100 344 COACH MPILO"' },
+            { src: 'mina-brand-outdoor-campaign9.jpg', caption: '"MINA, NGISE FORMINI. I CHOOSE HEALTH. LET ME HELP YOU STAY ON THE BALL CALL, SMS, WHATSAPP COACH MPILO ON 082 5100 344"' },
+            { src: 'mina-brand-outdoor-campaign4.jpg', caption: '"LET ME HELP YOU STAY ON THE BALL CALL, SMS, WHATSAPP COACH MPILO ON 082 5100 344"' },
+            { src: 'billboard-tower.jpg', caption: '"MINA, NGIY\'NJA YE GAME. I TAKE MY HIV TREATMENT. LET ME HELP YOU STAY ON THE BALL CALL, SMS, WHATSAPP COACH MPILO ON 082 5100 344"' },
+            { src: 'wall-teamplayer.jpg', caption: '"MINA, I\'M A TEAM PLAYER. MY PARTNER KNOWS MY STATUS. LET ME HELP YOU STAY ON THE BALL CALL, SMS, WHATSAPP COACH MPILO ON 063 6722 917"' }
         ];
 
         let currentImageIndex = 0;
@@ -1147,7 +1233,6 @@
         const prevBtn = document.getElementById('prevBtn');
         const nextBtn = document.getElementById('nextBtn');
         const closeLightboxBtn = document.getElementById('closeLightboxBtn');
-        const lightboxCounter = document.getElementById('lightboxCounter');
 
         function openLightbox(index) {
             currentImageIndex = index;
@@ -1158,17 +1243,8 @@
 
         function updateLightboxContent() {
             const data = galleryData[currentImageIndex];
-            lightboxImg.style.opacity = '0';
-            setTimeout(function() {
-                lightboxImg.src = data.src;
-                lightboxImg.style.opacity = '1';
-            }, 100);
+            lightboxImg.src = data.src;
             lightboxCaption.textContent = data.caption;
-            lightboxCounter.textContent = (currentImageIndex + 1) + ' / ' + galleryData.length;
-            
-            // Update button states
-            prevBtn.disabled = currentImageIndex === 0;
-            nextBtn.disabled = currentImageIndex === galleryData.length - 1;
         }
 
         function closeLightbox() {
@@ -1177,17 +1253,13 @@
         }
 
         function showPrev() {
-            if (currentImageIndex > 0) {
-                currentImageIndex--;
-                updateLightboxContent();
-            }
+            currentImageIndex = (currentImageIndex - 1 + galleryData.length) % galleryData.length;
+            updateLightboxContent();
         }
 
         function showNext() {
-            if (currentImageIndex < galleryData.length - 1) {
-                currentImageIndex++;
-                updateLightboxContent();
-            }
+            currentImageIndex = (currentImageIndex + 1) % galleryData.length;
+            updateLightboxContent();
         }
 
         document.querySelectorAll('#galleryGrid .gallery-item').forEach(function(item) {
@@ -1206,23 +1278,6 @@
                 if (e.key === 'Escape') closeLightbox();
                 if (e.key === 'ArrowLeft') showPrev();
                 if (e.key === 'ArrowRight') showNext();
-            }
-        });
-
-        // Touch swipe support
-        let touchStartX = 0;
-        let touchEndX = 0;
-
-        lightbox.addEventListener('touchstart', function(e) {
-            touchStartX = e.changedTouches[0].screenX;
-        });
-
-        lightbox.addEventListener('touchend', function(e) {
-            touchEndX = e.changedTouches[0].screenX;
-            const diff = touchStartX - touchEndX;
-            if (Math.abs(diff) > 50) {
-                if (diff > 0) showNext();
-                else showPrev();
             }
         });
 
