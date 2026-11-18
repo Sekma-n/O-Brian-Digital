@@ -113,39 +113,33 @@
             transform: translateY(-2px);
         }
 
-        .btn-white-outline {
-            background: transparent;
-            color: var(--white);
-            border: 2px solid rgba(255, 255, 255, 0.5);
-        }
-        .btn-white-outline:hover {
-            background: var(--white);
-            color: var(--primary-dark);
-            border-color: var(--white);
-            transform: translateY(-2px);
-        }
-
-        /* Back button specific */
+        /* Back button — pink outline for the light hero */
         .btn-back-right {
-            color: rgba(255, 255, 255, 0.7);
-            border: 1px solid rgba(255, 255, 255, 0.2);
-            padding: 10px 20px;
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            padding: 10px 24px;
             border-radius: 50px;
             font-size: 0.9rem;
-            font-weight: 500;
+            font-weight: 600;
             transition: var(--transition);
-            background: rgba(255, 255, 255, 0.05);
-            backdrop-filter: blur(4px);
-            gap: 8px;
+            background: transparent;
+            color: var(--accent-pink);
+            border: 2px solid var(--accent-pink);
+            text-decoration: none;
         }
         .btn-back-right:hover {
-            background: rgba(255, 255, 255, 0.15);
+            background: var(--accent-pink);
             color: var(--white);
-            border-color: rgba(255, 255, 255, 0.4);
-            transform: translateX(-4px);
+            transform: translateY(-3px);
+            box-shadow: 0 10px 25px -6px rgba(237, 0, 142, 0.4);
         }
         .btn-back-right i {
             font-size: 0.9rem;
+            transition: transform 0.3s ease;
+        }
+        .btn-back-right:hover i {
+            transform: translateX(-4px);
         }
 
         /* ===== PREMIUM GLASS HEADER STYLES ===== */
@@ -448,130 +442,128 @@
             font-size: 0.95rem;
         }
 
-        /* ----- HERO / HEADER ----- */
+        /* ===== HERO (Sunbet GTI style) ===== */
         .hero {
-            padding: 140px 0 80px;
-            background: var(--primary-dark);
-            color: var(--white);
-            position: relative;
-            overflow: hidden;
+            padding-top: 140px;
+            padding-bottom: 60px;
+            background: radial-gradient(circle at 90% 20%, rgba(237, 0, 142, 0.04) 0%, #ffffff 90%);
         }
-
-        .hero::after {
-            content: '';
-            position: absolute;
-            top: -40%;
-            right: -20%;
-            width: 600px;
-            height: 600px;
-            background: rgba(237, 0, 142, 0.12);
-            border-radius: 50%;
-            pointer-events: none;
-        }
-
         .hero .container {
-            position: relative;
-            z-index: 2;
+            max-width: 840px;
+            margin: 0 auto;
+            padding: 24px 14px;
+            text-align: center;
         }
-
-        .hero-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 60px;
-            align-items: center;
-        }
-
-        .hero-badge {
+        .hero .hero-badge {
+            background: rgba(237, 0, 142, 0.06);
             display: inline-block;
             padding: 6px 18px;
-            background: rgba(237, 0, 142, 0.2);
-            border-radius: 50px;
-            font-size: 0.8rem;
+            border-radius: 40px;
             font-weight: 600;
-            letter-spacing: 0.5px;
+            font-size: 0.85rem;
+            margin-bottom: 24px;
+            color: var(--accent-pink);
+            border: 1px solid rgba(237, 0, 142, 0.12);
             text-transform: uppercase;
-            color: var(--accent-pink);
-            margin-bottom: 20px;
+            letter-spacing: 0.5px;
         }
-
+        .hero .hero-badge i {
+            color: var(--accent-pink);
+            margin-right: 6px;
+        }
         .hero h1 {
-            font-size: clamp(2.4rem, 5vw, 3.8rem);
+            font-size: 3.8rem;
+            margin-bottom: 24px;
+            color: var(--primary-dark);
             font-weight: 800;
-            line-height: 1.1;
-            letter-spacing: -0.03em;
-            margin-bottom: 20px;
+            line-height: 1.15;
+            letter-spacing: -0.02em;
         }
-
-        .hero h1 span {
+        .hero h1 .highlight {
             color: var(--accent-pink);
         }
-
         .hero p {
-            font-size: 1.15rem;
-            color: rgba(255, 255, 255, 0.75);
-            max-width: 480px;
-            margin-bottom: 32px;
+            font-size: 1.2rem;
+            color: #4a3a42;
+            max-width: 700px;
+            margin: 0 auto 32px;
+            line-height: 1.6;
         }
-
-        .hero .btn-group {
+        .hero p .highlight {
+            color: var(--accent-pink);
+            font-weight: 500;
+        }
+        .hero .hero-stats {
             display: flex;
             flex-wrap: wrap;
-            align-items: center;
-            gap: 14px;
+            justify-content: center;
+            gap: 1rem;
+            margin-top: 2rem;
         }
-
-        .hero-stats {
+        .hero .stat {
+            background: #ffffff;
+            border: 1px solid rgba(0, 0, 0, 0.06);
+            border-radius: 16px;
+            padding: 1.2rem 1.6rem;
+            min-width: 140px;
+            text-align: center;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.05);
+        }
+        .hero .stat .number {
+            font-size: 2rem;
+            font-weight: 800;
+            color: var(--accent-pink);
+            line-height: 1.1;
+        }
+        .hero .stat .label {
+            font-size: 0.75rem;
+            color: #6b7280;
+            text-transform: uppercase;
+            letter-spacing: 0.6px;
+            margin-top: 4px;
+            font-weight: 600;
+        }
+        .hero .hero-actions {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 1rem;
+            margin-top: 2rem;
+        }
+        .hero .hero-showcase {
             display: grid;
             grid-template-columns: repeat(3, 1fr);
-            gap: 20px;
-            margin-top: 48px;
-            padding-top: 40px;
-            border-top: 1px solid rgba(237, 0, 142, 0.3);
-        }
-
-        .hero-stats .stat-value {
-            font-size: 1.8rem;
-            font-weight: 700;
-            color: var(--white);
-        }
-
-        .hero-stats .stat-label {
-            font-size: 0.85rem;
-            color: rgba(255, 255, 255, 0.55);
-            font-weight: 400;
-        }
-
-        /* hero image placeholder */
-        .hero-visual {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-        }
-
-        .hero-visual .image-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
             gap: 16px;
-            width: 100%;
+            margin-top: 3rem;
         }
-
-        .hero-visual .image-grid img {
-            border-radius: var(--radius);
-            box-shadow: var(--shadow-lg);
-            width: 100%;
-            height: 200px;
-            object-fit: cover;
-            transition: var(--transition);
+        .hero .hero-showcase .card-img {
+            border-radius: var(--radius-sm);
+            overflow: hidden;
+            background: var(--gray-200);
+            box-shadow: var(--shadow-sm);
             cursor: pointer;
+            transition: var(--transition);
+            aspect-ratio: 4 / 3;
         }
-
-        .hero-visual .image-grid img:hover {
-            transform: scale(1.02);
+        .hero .hero-showcase .card-img:hover {
+            transform: translateY(-4px);
+            box-shadow: var(--shadow-md);
         }
-
-        .hero-visual .image-grid img:first-child {
-            grid-row: span 2;
-            height: 416px;
+        .hero .hero-showcase .card-img img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+        .hero .hero-showcase .card-img:hover img {
+            transform: scale(1.04);
+        }
+        @media (max-width: 768px) {
+            .hero { padding-top: 120px; padding-bottom: 40px; }
+            .hero h1 { font-size: 2.4rem; }
+            .hero p { font-size: 1.05rem; }
+            .hero .stat { padding: 1rem 1.2rem; min-width: 120px; }
+            .hero .hero-showcase { grid-template-columns: 1fr; }
         }
 
         /* ----- SECTION: OVERVIEW ----- */
@@ -1001,7 +993,7 @@
             color: var(--accent-pink);
         }
 
-        /* ===== BACK TO TOP BUTTON (copied from Home page) ===== */
+        /* ===== BACK TO TOP BUTTON ===== */
         .back-to-top {
             position: fixed;
             bottom: 32px;
@@ -1045,7 +1037,6 @@
             outline-offset: 3px;
         }
 
-        /* scroll-progress ring */
         .btb-ring {
             position: absolute;
             inset: 0;
@@ -1064,12 +1055,11 @@
         .btb-ring-progress {
             stroke: #ffffff;
             stroke-linecap: round;
-            stroke-dasharray: 131.95;   /* 2π × r(21) */
+            stroke-dasharray: 131.95;
             stroke-dashoffset: 131.95;
             transition: stroke-dashoffset 0.1s linear;
         }
 
-        /* arrow */
         .btb-arrow {
             position: relative;
             width: 22px;
@@ -1082,20 +1072,6 @@
 
         /* ----- RESPONSIVE ----- */
         @media (max-width: 1024px) {
-            .hero-grid {
-                grid-template-columns: 1fr;
-                gap: 40px;
-            }
-
-            .hero-visual .image-grid img:first-child {
-                height: 240px;
-                grid-row: auto;
-            }
-
-            .hero-visual .image-grid {
-                grid-template-columns: 1fr 1fr;
-            }
-
             .overview-grid {
                 grid-template-columns: 1fr;
             }
@@ -1127,27 +1103,9 @@
             .logo-text {
                 font-size: 1rem;
             }
-            .hero {
-                padding: 120px 0 60px;
-            }
-
-            .hero h1 {
-                font-size: 2.2rem;
-            }
-
-            .hero-stats {
-                grid-template-columns: 1fr 1fr;
-            }
 
             .gallery-grid {
                 grid-template-columns: 1fr;
-            }
-
-            .hero-visual .image-grid {
-                grid-template-columns: 1fr 1fr;
-            }
-            .hero-visual .image-grid img {
-                height: 140px;
             }
 
             .footer-grid {
@@ -1181,7 +1139,6 @@
                 right: 8px;
             }
 
-            /* Back-to-top responsive sizing */
             .back-to-top {
                 bottom: 24px;
                 right: 20px;
@@ -1197,16 +1154,6 @@
         @media (max-width: 480px) {
             .logo-text {
                 font-size: 0.9rem;
-            }
-            .hero-visual .image-grid {
-                grid-template-columns: 1fr;
-            }
-            .hero-visual .image-grid img {
-                height: 180px;
-            }
-            .hero-stats {
-                grid-template-columns: 1fr;
-                gap: 12px;
             }
             .container {
                 padding: 0 16px;
@@ -1244,18 +1191,10 @@
             }
         }
 
-        .delay-1 {
-            animation-delay: 0.1s;
-        }
-        .delay-2 {
-            animation-delay: 0.2s;
-        }
-        .delay-3 {
-            animation-delay: 0.3s;
-        }
-        .delay-4 {
-            animation-delay: 0.4s;
-        }
+        .delay-1 { animation-delay: 0.1s; }
+        .delay-2 { animation-delay: 0.2s; }
+        .delay-3 { animation-delay: 0.3s; }
+        .delay-4 { animation-delay: 0.4s; }
     </style>
 </head>
 <body>
@@ -1265,7 +1204,6 @@
         <div class="max-w-7xl mx-auto px-4 md:px-6 w-full">
             <div class="flex justify-between items-center">
 
-                <!-- Premium Logo -->
                 <a href="Home.html" class="logo-premium group">
                     <img src="obrian-transparent-logo-4461219.webp" alt="O'Brian Group" class="h-9 w-auto" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22%3E%3Crect width=%22100%22 height=%22100%22 fill=%22%23ed008e%22/%3E%3Ctext x=%2250%22 y=%2268%22 font-size=%2248%22 text-anchor=%22middle%22 fill=%22white%22 font-weight=%22bold%22 font-family=%22Inter%22%3EO%3C/text%3E%3C/svg%3E'">
                     <span class="logo-text hidden sm:inline-block">
@@ -1273,11 +1211,10 @@
                     </span>
                 </a>
 
-                <!-- Premium Desktop Nav -->
                 <div class="hidden lg:flex items-center gap-0.5">
                     <a href="Home.html" class="nav-link-premium">Home</a>
                     <a href="About.html" class="nav-link-premium">About</a>
-                    <a href="Our_Work.html" class="nav-link-premium">Our Work</a>
+                    <a href="Our_Work.html" class="nav-link-premium active-link">Our Work</a>
                     <a href="Client_Experience.html" class="nav-link-premium">Client Experience</a>
 
                     <div class="dropdown-wrapper">
@@ -1309,7 +1246,6 @@
                     <a href="Archive_Gallery.html" class="nav-link-premium">Archives</a>
                 </div>
 
-                <!-- Premium CTA -->
                 <div class="hidden lg:block">
                     <a href="Contact_Us.html" class="btn-premium-cta">
                         <span>Contact</span>
@@ -1317,7 +1253,6 @@
                     </a>
                 </div>
 
-                <!-- Premium Burger -->
                 <button class="burger-premium lg:hidden" id="menuBtn" aria-label="Toggle menu">
                     <span class="burger-line"></span>
                     <span class="burger-line"></span>
@@ -1354,7 +1289,7 @@
         <a href="Contact_Us.html" style="display:inline-flex; margin-top:1rem; background:linear-gradient(135deg,#e6007e,#ff1493); color:#fff; padding:0.6rem 1.5rem; border-radius:9999px; font-weight:700; text-decoration:none;">Contact Us</a>
     </div>
 
-    <!-- ===== BACK TO TOP BUTTON (copied from Home) ===== -->
+    <!-- ===== BACK TO TOP BUTTON ===== -->
     <button class="back-to-top" id="backToTopBtn" aria-label="Back to top" title="Back to top" aria-hidden="true" tabindex="-1">
         <svg class="btb-ring" viewBox="0 0 48 48" aria-hidden="true">
             <circle class="btb-ring-track" cx="24" cy="24" r="21"></circle>
@@ -1367,47 +1302,48 @@
         </svg>
     </button>
 
-    <!-- ========== HERO ========== -->
+    <!-- ===== HERO (Sunbet GTI style) ===== -->
     <section class="hero">
         <div class="container">
-            <div class="hero-grid">
-                <div class="hero-text">
-                    <span class="hero-badge fade-up"><i class="fas fa-star" style="margin-right: 8px;"></i> Featured Case Study</span>
-                    <h1 class="fade-up delay-1">Sourceworx <br /><span>Vehicle Branding</span></h1>
-                    <p class="fade-up delay-2">
-                        A complete fleet makeover that turned commercial vehicles into moving billboards — bold, consistent, and impossible to ignore.
-                    </p>
-                    <div class="btn-group fade-up delay-3">
-                        <a href="#gallery" class="btn btn-primary"><i class="fas fa-images"></i> View Gallery</a>
-                        <a href="#overview" class="btn btn-white-outline"><i class="fas fa-arrow-right"></i> Read More</a>
-                        <!-- Back to Our Work button -->
-                        <a href="Our_Work.html" class="btn-back-right d-inline-flex align-items-center">
-                            <i class="fas fa-arrow-left"></i> Back to Our Work
-                        </a>
-                    </div>
+            <span class="hero-badge"><i class="fas fa-star"></i> Featured Case Study</span>
+            <h1>Sourceworx <span class="highlight">Vehicle Branding</span></h1>
+            <p>
+                A complete fleet makeover that turned commercial vehicles into <span class="highlight">moving billboards</span> — bold, consistent, and impossible to ignore.
+            </p>
 
-                    <div class="hero-stats fade-up delay-4">
-                        <div>
-                            <div class="stat-value">12</div>
-                            <div class="stat-label">Vehicles Branded</div>
-                        </div>
-                        <div>
-                            <div class="stat-value">4</div>
-                            <div class="stat-label">Locations</div>
-                        </div>
-                        <div>
-                            <div class="stat-value">3×</div>
-                            <div class="stat-label">Brand Visibility</div>
-                        </div>
-                    </div>
+            <div class="hero-stats">
+                <div class="stat">
+                    <div class="number">12</div>
+                    <div class="label">Vehicles Branded</div>
                 </div>
+                <div class="stat">
+                    <div class="number">4</div>
+                    <div class="label">Locations</div>
+                </div>
+                <div class="stat">
+                    <div class="number">3×</div>
+                    <div class="label">Brand Visibility</div>
+                </div>
+            </div>
 
-                <div class="hero-visual fade-up delay-2">
-                    <div class="image-grid">
-                        <img src="sourceworx-vehicle-branding.jpg" alt="Sourceworx vehicle branding main" />
-                        <img src="sourceworx-vehicle-branding2.jpg" alt="Sourceworx vehicle branding side" />
-                        <img src="sourceworx-vehicle-branding3.jpg" alt="Sourceworx vehicle branding rear" />
-                    </div>
+            <div class="hero-actions">
+                <a href="#gallery" class="btn btn-primary"><i class="fas fa-images"></i> View Gallery</a>
+                <a href="#overview" class="btn btn-outline"><i class="fas fa-arrow-right"></i> Read More</a>
+                <a href="Our_Work.html" class="btn-back-right">
+                    <i class="fas fa-arrow-left"></i> Back to Our Work
+                </a>
+            </div>
+
+            <!-- Hero image showcase -->
+            <div class="hero-showcase">
+                <div class="card-img" data-index="0">
+                    <img src="sourceworx-vehicle-branding.jpg" alt="Sourceworx vehicle branding main" loading="lazy">
+                </div>
+                <div class="card-img" data-index="1">
+                    <img src="sourceworx-vehicle-branding2.jpg" alt="Sourceworx vehicle branding side" loading="lazy">
+                </div>
+                <div class="card-img" data-index="2">
+                    <img src="sourceworx-vehicle-branding3.jpg" alt="Sourceworx vehicle branding rear" loading="lazy">
                 </div>
             </div>
         </div>
@@ -1478,19 +1414,19 @@
 
             <div class="gallery-grid" id="galleryGrid">
                 <div class="gallery-item" data-index="0">
-                    <img src="assets/images/sourceworx-vehicle-branding.jpg" alt="Sourceworx vehicle branding front view" />
+                    <img src="sourceworx-vehicle-branding.jpg" alt="Sourceworx vehicle branding front view" />
                     <div class="overlay"><i class="fas fa-expand"></i></div>
                 </div>
                 <div class="gallery-item" data-index="1">
-                    <img src="assets/images/sourceworx-vehicle-branding2.jpg" alt="Sourceworx vehicle branding side profile" />
+                    <img src="sourceworx-vehicle-branding2.jpg" alt="Sourceworx vehicle branding side profile" />
                     <div class="overlay"><i class="fas fa-expand"></i></div>
                 </div>
                 <div class="gallery-item" data-index="2">
-                    <img src="assets/images/sourceworx-vehicle-branding3.jpg" alt="Sourceworx vehicle branding rear detail" />
+                    <img src="sourceworx-vehicle-branding3.jpg" alt="Sourceworx vehicle branding rear detail" />
                     <div class="overlay"><i class="fas fa-expand"></i></div>
                 </div>
                 <div class="gallery-item" data-index="3">
-                    <img src="assets/images/whatsapp-image-2025-07-25-at-17.18.25.jpeg" alt="Sourceworx vehicle branding installation process" />
+                    <img src="whatsapp-image-2025-07-25-at-17.18.25.jpeg" alt="Sourceworx vehicle branding installation process" />
                     <div class="overlay"><i class="fas fa-expand"></i></div>
                 </div>
             </div>
@@ -1609,7 +1545,6 @@
             });
         }
 
-        // Close menu on resize to desktop
         window.addEventListener('resize', function() {
             if (window.innerWidth >= 1024) {
                 if (mobilePanel) mobilePanel.classList.remove('open');
@@ -1620,6 +1555,7 @@
 
         // ---- LIGHTBOX LOGIC ----
         var galleryItems = document.querySelectorAll('.gallery-item');
+        var heroCards = document.querySelectorAll('.hero-showcase .card-img');
         var lightbox = document.getElementById('lightbox');
         var lightboxImage = document.getElementById('lightboxImage');
         var lightboxCounter = document.getElementById('lightboxCounter');
@@ -1627,7 +1563,7 @@
         var prevBtn = document.getElementById('lightboxPrev');
         var nextBtn = document.getElementById('lightboxNext');
 
-        // Gather all image sources from the gallery
+        // Gather all image sources from the gallery grid
         var imageSources = [];
         galleryItems.forEach(function(item) {
             var img = item.querySelector('img');
@@ -1663,29 +1599,17 @@
             });
         });
 
-        // Click on hero images to open lightbox too (optional)
-        document.querySelectorAll('.hero-visual .image-grid img').forEach(function(img, idx) {
-            img.addEventListener('click', function() {
-                if (idx < imageSources.length) {
-                    openLightbox(idx);
-                }
+        // Click on hero showcase images
+        heroCards.forEach(function(card, idx) {
+            card.addEventListener('click', function() {
+                openLightbox(idx);
             });
         });
 
-        // Close button
         closeBtn.addEventListener('click', closeLightbox);
+        prevBtn.addEventListener('click', function(e) { e.stopPropagation(); changeImage(-1); });
+        nextBtn.addEventListener('click', function(e) { e.stopPropagation(); changeImage(1); });
 
-        // Prev / Next
-        prevBtn.addEventListener('click', function(e) {
-            e.stopPropagation();
-            changeImage(-1);
-        });
-        nextBtn.addEventListener('click', function(e) {
-            e.stopPropagation();
-            changeImage(1);
-        });
-
-        // Keyboard support
         document.addEventListener('keydown', function(e) {
             if (!lightbox.classList.contains('active')) return;
             if (e.key === 'Escape') closeLightbox();
@@ -1693,15 +1617,14 @@
             if (e.key === 'ArrowRight') changeImage(1);
         });
 
-        // Click on backdrop to close
         lightbox.addEventListener('click', function(e) {
             if (e.target === lightbox) closeLightbox();
         });
 
-        // ===== BACK TO TOP BUTTON LOGIC (copied from Home) =====
+        // ===== BACK TO TOP BUTTON LOGIC =====
         var backToTopBtn = document.getElementById('backToTopBtn');
         var btbRingProgress = backToTopBtn ? backToTopBtn.querySelector('.btb-ring-progress') : null;
-        var BTB_RING_LENGTH = 2 * Math.PI * 21; // r = 21 in the 48×48 viewBox
+        var BTB_RING_LENGTH = 2 * Math.PI * 21;
         var btbPrefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
         var btbTicking = false;
 
@@ -1712,7 +1635,6 @@
 
             var show = scrollY > 400;
             backToTopBtn.classList.toggle('visible', show);
-            // keep it out of the a11y tree / tab order while hidden
             backToTopBtn.setAttribute('aria-hidden', show ? 'false' : 'true');
             backToTopBtn.tabIndex = show ? 0 : -1;
 
@@ -1739,13 +1661,12 @@
                     top: 0,
                     behavior: btbPrefersReducedMotion ? 'auto' : 'smooth'
                 });
-                // return focus to the top of the page for keyboard users
                 var headerEl = document.getElementById('mainHeader');
                 if (headerEl) headerEl.focus({ preventScroll: true });
             });
         }
 
-        // ---- Gallery reveal animation (optional) ----
+        // ---- Gallery reveal animation ----
         var galleryObsItems = document.querySelectorAll('.gallery-item');
         var observer = new IntersectionObserver(function(entries) {
             entries.forEach(function(entry) {
@@ -1759,8 +1680,7 @@
         galleryObsItems.forEach(function(item, i) {
             item.style.opacity = '0';
             item.style.transform = 'translateY(30px)';
-            item.style.transition = 'opacity 0.6s ease ' + (i * 0.08) + 's, transform 0.6s ease ' + (i * 0.08) +
-            's';
+            item.style.transition = 'opacity 0.6s ease ' + (i * 0.08) + 's, transform 0.6s ease ' + (i * 0.08) + 's';
             observer.observe(item);
         });
     </script>
