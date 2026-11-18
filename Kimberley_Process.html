@@ -80,6 +80,7 @@
       border-bottom: 1px solid rgba(0, 0, 0, 0.03);
     }
 
+    /* Premium Logo */
     .logo-premium {
       display: flex;
       align-items: center;
@@ -116,6 +117,7 @@
       transform-origin: left;
     }
 
+    /* Premium Nav Links */
     .nav-link-premium {
       position: relative;
       padding: 0.5rem 1.2rem;
@@ -129,6 +131,7 @@
       display: inline-block;
       cursor: pointer;
       background: transparent;
+      text-decoration: none;
     }
     .nav-link-premium::after {
       content: '';
@@ -157,6 +160,7 @@
       width: 70%;
     }
 
+    /* Premium Dropdown */
     .dropdown-wrapper {
       position: relative;
     }
@@ -219,6 +223,7 @@
       border-radius: 0 0 12px 12px;
     }
 
+    /* Premium CTA Button */
     .btn-premium-cta {
       display: inline-flex;
       align-items: center;
@@ -242,6 +247,7 @@
       color: white;
     }
 
+    /* Premium Burger */
     .burger-premium {
       width: 36px;
       height: 36px;
@@ -287,6 +293,7 @@
       margin-left: 0;
     }
 
+    /* Mobile menu panel */
     .mobile-menu-panel {
       display: none;
       position: fixed;
@@ -348,53 +355,107 @@
       font-size: 0.95rem;
     }
 
-    /* Hero */
+    /* ===== HERO (Sunbet GTI style) ===== */
     .hero {
-      background: linear-gradient(135deg, #ffffff 0%, #fef7fb 100%);
-      padding: 5rem 2rem 4rem;
-      text-align: center;
+      padding-top: 140px;
+      padding-bottom: 60px;
+      background: radial-gradient(circle at 90% 20%, rgba(237, 0, 142, 0.04) 0%, #ffffff 90%);
       border-bottom: 1px solid var(--gray-200);
     }
-
-    .hero-container {
-      max-width: 1100px;
+    .hero .container {
+      max-width: 840px;
       margin: 0 auto;
+      padding: 24px 14px;
+      text-align: center;
     }
-
-    .hero-eyebrow {
-      font-size: 0.85rem;
-      text-transform: uppercase;
-      letter-spacing: 3px;
+    .hero .hero-badge {
+      background: rgba(237, 0, 142, 0.06);
+      display: inline-block;
+      padding: 6px 18px;
+      border-radius: 40px;
       font-weight: 600;
-      color: #ed008e;
-      margin-bottom: 1rem;
+      font-size: 0.85rem;
+      margin-bottom: 24px;
+      color: var(--primary);
+      border: 1px solid rgba(237, 0, 142, 0.12);
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
     }
-
+    .hero .hero-badge i {
+      color: var(--primary);
+      margin-right: 6px;
+    }
     .hero h1 {
-      font-family: 'Playfair Display', serif;
+      font-family: 'Inter', sans-serif;
       font-size: 3.8rem;
-      font-weight: 700;
-      color: #251e21;
-      line-height: 1.2;
-      margin-bottom: 1.2rem;
+      margin-bottom: 24px;
+      color: var(--text-dark);
+      font-weight: 800;
+      line-height: 1.15;
+      letter-spacing: -0.02em;
     }
-
-    .hero-sub {
+    .hero h1 .highlight {
+      color: var(--primary);
+    }
+    .hero p {
       font-size: 1.2rem;
-      color: #4a4145;
+      color: var(--gray-700);
       max-width: 700px;
-      margin: 0 auto 2rem;
+      margin: 0 auto 32px;
+      line-height: 1.6;
+    }
+    .hero p .highlight {
+      color: var(--primary);
+      font-weight: 500;
+    }
+    .hero .hero-stats {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 1rem;
+      margin-top: 2rem;
+    }
+    .hero .stat {
+      background: #ffffff;
+      border: 1px solid rgba(0, 0, 0, 0.06);
+      border-radius: 16px;
+      padding: 1.2rem 1.6rem;
+      min-width: 140px;
+      text-align: center;
+      box-shadow: var(--shadow-sm);
+    }
+    .hero .stat .number {
+      font-size: 2rem;
+      font-weight: 800;
+      color: var(--primary);
+      line-height: 1.1;
+    }
+    .hero .stat .label {
+      font-size: 0.75rem;
+      color: #6b7280;
+      text-transform: uppercase;
+      letter-spacing: 0.6px;
+      margin-top: 4px;
+      font-weight: 600;
+    }
+    .hero .hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 1rem;
+      margin-top: 2rem;
+    }
+    .hero .btn-back-work {
+      margin-top: 0;
+    }
+    @media (max-width: 768px) {
+      .hero { padding-top: 120px; padding-bottom: 40px; }
+      .hero h1 { font-size: 2.4rem; }
+      .hero p { font-size: 1.05rem; }
+      .hero .stat { padding: 1rem 1.2rem; min-width: 120px; }
     }
 
-    .hero-divider {
-      width: 80px;
-      height: 4px;
-      background: #ed008e;
-      margin: 1.2rem auto 0;
-      border-radius: 4px;
-    }
-
-    /* ── BACK TO OUR WORK BUTTON (hero) ── */
+    /* ── BACK TO OUR WORK BUTTON ── */
     .btn-back-work {
       display: inline-flex;
       align-items: center;
@@ -426,7 +487,7 @@
       transform: translateX(-4px);
     }
 
-    /* case study intro */
+    /* ── Case study intro ── */
     .case-intro {
       max-width: 1200px;
       margin: 3rem auto;
@@ -706,31 +767,29 @@
       color: #9c8f95;
     }
 
-    /* ===== BACK TO TOP BUTTON (with scroll-progress ring) ===== */
+    /* ===== BACK TO TOP BUTTON (with integrated progress ring) ===== */
     .back-to-top {
       position: fixed;
       bottom: 32px;
       right: 32px;
       width: 52px;
       height: 52px;
-      padding: 0;
       border-radius: 50%;
-      background: linear-gradient(135deg, #ed008e 0%, #a80062 100%);
+      background: linear-gradient(135deg, #e6007e 0%, #b0006a 100%);
       color: #ffffff;
       border: 2px solid rgba(255, 255, 255, 0.25);
-      display: grid;
-      place-items: center;
+      display: flex;
+      align-items: center;
+      justify-content: center;
       cursor: pointer;
       z-index: 1500;
       opacity: 0;
       visibility: hidden;
       transform: translateY(20px);
-      transition: opacity 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94),
-                  visibility 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94),
-                  transform 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94),
-                  box-shadow 0.3s ease;
-      box-shadow: 0 8px 24px rgba(237, 0, 142, 0.35);
-      -webkit-tap-highlight-color: transparent;
+      transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+      box-shadow: 0 8px 24px rgba(230, 0, 126, 0.35);
+      padding: 0;
+      overflow: hidden;
     }
     .back-to-top.visible {
       opacity: 1;
@@ -739,47 +798,58 @@
     }
     .back-to-top:hover {
       transform: translateY(-4px) scale(1.06);
-      box-shadow: 0 14px 32px rgba(237, 0, 142, 0.45);
+      box-shadow: 0 14px 32px rgba(230, 0, 126, 0.45);
     }
     .back-to-top:active {
       transform: translateY(-1px) scale(0.98);
     }
     .back-to-top:focus-visible {
-      outline: 3px solid rgba(237, 0, 142, 0.45);
-      outline-offset: 3px;
+      outline: 3px solid rgba(230, 0, 126, 0.45);
+      outline-offset: 4px;
     }
+
     .btb-ring {
       position: absolute;
       inset: 0;
       width: 100%;
       height: 100%;
+      display: block;
       transform: rotate(-90deg);
       pointer-events: none;
     }
-    .btb-ring circle {
+    .btb-ring-track {
       fill: none;
-      stroke-width: 2.5;
+      stroke: rgba(255, 255, 255, 0.25);
+      stroke-width: 3;
     }
-    .btb-ring-track { stroke: rgba(255, 255, 255, 0.25); }
     .btb-ring-progress {
+      fill: none;
       stroke: #ffffff;
+      stroke-width: 3;
       stroke-linecap: round;
       stroke-dasharray: 131.95;
       stroke-dashoffset: 131.95;
-      transition: stroke-dashoffset 0.1s linear;
+      transition: stroke-dashoffset 0.15s linear;
     }
+
     .btb-arrow {
       position: relative;
       width: 22px;
       height: 22px;
+      z-index: 2;
       transition: transform 0.3s ease;
     }
-    .back-to-top:hover .btb-arrow { transform: translateY(-2px); }
+    .back-to-top:hover .btb-arrow {
+      transform: translateY(-2px);
+    }
+
+    body.menu-open .back-to-top {
+      opacity: 0 !important;
+      visibility: hidden !important;
+      pointer-events: none !important;
+    }
 
     @media (max-width: 1024px) {
-      .hero h1 {
-        font-size: 2.5rem;
-      }
       .lb-prev, .lb-next {
         width: 36px;
         height: 36px;
@@ -798,11 +868,23 @@
         width: 46px;
         height: 46px;
       }
-      .btb-arrow { width: 18px; height: 18px; }
+      .btb-arrow {
+        width: 20px;
+        height: 20px;
+      }
     }
     @media (max-width: 640px) {
-      .hero h1 { font-size: 2rem; }
       .case-intro { flex-direction: column; }
+    }
+    @media (max-width: 480px) {
+      .back-to-top {
+        width: 42px;
+        height: 42px;
+      }
+      .btb-arrow {
+        width: 18px;
+        height: 18px;
+      }
     }
     @media (prefers-reduced-motion: reduce) {
       html, body { scroll-behavior: auto; }
@@ -823,11 +905,13 @@
   <div class="max-w-7xl mx-auto px-4 md:px-6 w-full">
     <div class="flex justify-between items-center">
 
+      <!-- Premium Logo -->
       <a href="Home.html" class="logo-premium group">
         <img src="obrian-transparent-logo-4461219.webp" alt="O'Brian Group" class="h-9 w-auto" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22%3E%3Crect width=%22100%22 height=%22100%22 fill=%22%23ed008e%22/%3E%3Ctext x=%2250%22 y=%2268%22 font-size=%2248%22 text-anchor=%22middle%22 fill=%22white%22 font-weight=%22bold%22 font-family=%22Inter%22%3EO%3C/text%3E%3C/svg%3E'">
-        <span class="logo-text hidden sm:inline-block">O'<span class="highlight">Brian</span></span>
+        <span class="logo-text hidden sm:inline-block"> <span class="highlight"> </span></span>
       </a>
 
+      <!-- Premium Desktop Nav -->
       <div class="hidden lg:flex items-center gap-0.5">
         <a href="Home.html" class="nav-link-premium">Home</a>
         <a href="About.html" class="nav-link-premium">About</a>
@@ -863,6 +947,7 @@
         <a href="Archive_Gallery.html" class="nav-link-premium">Archives</a>
       </div>
 
+      <!-- Premium CTA -->
       <div class="hidden lg:block">
         <a href="Contact_Us.html" class="btn-premium-cta">
           <span>Contact</span>
@@ -870,6 +955,7 @@
         </a>
       </div>
 
+      <!-- Premium Burger -->
       <button class="burger-premium lg:hidden" id="menuBtn" aria-label="Toggle menu">
         <span class="burger-line"></span>
         <span class="burger-line"></span>
@@ -906,19 +992,40 @@
   <a href="Contact_Us.html" style="display:inline-flex; margin-top:1rem; background:linear-gradient(135deg,#e6007e,#ff1493); color:#fff; padding:0.6rem 1.5rem; border-radius:9999px; font-weight:700; text-decoration:none;">Contact Us</a>
 </div>
 
-<!-- Hero Section -->
+<!-- ===== HERO (Sunbet GTI style) ===== -->
 <section class="hero">
-  <div class="hero-container">
-    <div class="hero-eyebrow">CASE STUDY • ETHICAL IMPACT</div>
-    <h1>Kimberley Process<br>Certification Scheme</h1>
-    <p class="hero-sub">Global initiative to eradicate conflict diamonds — Strategic storytelling, visual identity, and advocacy assets.</p>
-    <div class="hero-divider"></div>
+  <div class="container">
+    <span class="hero-badge"><i class="fas fa-star"></i> Case Study · Ethical Impact</span>
+    <h1>Kimberley Process <span class="highlight">Certification</span></h1>
+    <p>
+      Global initiative to eradicate conflict diamonds — <span class="highlight">strategic storytelling, visual identity, and advocacy assets</span>.
+    </p>
 
-    <!-- ===== BACK TO OUR WORK BUTTON ===== -->
-    <a href="Our_Work.html" class="btn-back-work">
-      <i class="fas fa-arrow-left"></i>
-      Back to Our Work
-    </a>
+    <div class="hero-stats">
+      <div class="stat">
+        <div class="number">10+</div>
+        <div class="label">Visual Assets</div>
+      </div>
+      <div class="stat">
+        <div class="number">3</div>
+        <div class="label">Global Pillars</div>
+      </div>
+      <div class="stat">
+        <div class="number">100%</div>
+        <div class="label">Ethical Mission</div>
+      </div>
+    </div>
+
+    <div class="hero-actions">
+      <a href="#gallery" class="btn-premium-cta">
+        <i class="fas fa-images"></i>
+        <span>View Gallery</span>
+      </a>
+      <a href="Our_Work.html" class="btn-back-work">
+        <i class="fas fa-arrow-left"></i>
+        Back to Our Work
+      </a>
+    </div>
   </div>
 </section>
 
@@ -936,7 +1043,7 @@
 </div>
 
 <!-- Gallery Showcase -->
-<section class="gallery-section">
+<section class="gallery-section" id="gallery">
   <div class="section-title">
     <h3>Visual narrative • Moments of impact</h3>
     <p>Exploring the essence of the Kimberley Process through exclusive photography and campaign assets</p>
@@ -947,10 +1054,10 @@
     <div class="gallery-card" data-index="2"><img src="kimberleyprocesspix0236.jpg" alt="Dialogue session" loading="lazy"><div class="overlay-icon"><i class="fas fa-expand-alt"></i></div></div>
     <div class="gallery-card" data-index="3"><img src="kimberleyprocesspix0271.jpg" alt="Delegates roundtable" loading="lazy"><div class="overlay-icon"><i class="fas fa-expand-alt"></i></div></div>
     <div class="gallery-card" data-index="4"><img src="kimberleyprocesspix0255-copy.jpg" alt="Workshop discussion" loading="lazy"><div class="overlay-icon"><i class="fas fa-expand-alt"></i></div></div>
-    <div class="gallery-card" data-index="5"><img src="whatsapp-image-2025-07-25-at-16.03.14.jpg" alt="KP event moments" loading="lazy"><div class="overlay-icon"><i class="fas fa-expand-alt"></i></div></div>
-    <div class="gallery-card" data-index="6"><img src="whatsapp-image-2025-07-25-at-16.03.13-1.jpg" alt="Networking" loading="lazy"><div class="overlay-icon"><i class="fas fa-expand-alt"></i></div></div>
-    <div class="gallery-card" data-index="7"><img src="whatsapp-image-2025-07-25-at-16.03.13.jpg" alt="Keynote speech" loading="lazy"><div class="overlay-icon"><i class="fas fa-expand-alt"></i></div></div>
-    <div class="gallery-card" data-index="8"><img src="whatsapp-image-2025-07-25-at-16.03.14-1.jpg" alt="Ceremony" loading="lazy"><div class="overlay-icon"><i class="fas fa-expand-alt"></i></div></div>
+    <div class="gallery-card" data-index="5"><img src="whatsapp-image-2025-07-25-at-16.03.14.jpeg" alt="KP event moments" loading="lazy"><div class="overlay-icon"><i class="fas fa-expand-alt"></i></div></div>
+    <div class="gallery-card" data-index="6"><img src="whatsapp-image-2025-07-25-at-16.03.13-1.jpeg" alt="Networking" loading="lazy"><div class="overlay-icon"><i class="fas fa-expand-alt"></i></div></div>
+    <div class="gallery-card" data-index="7"><img src="whatsapp-image-2025-07-25-at-16.03.13.jpeg" alt="Keynote speech" loading="lazy"><div class="overlay-icon"><i class="fas fa-expand-alt"></i></div></div>
+    <div class="gallery-card" data-index="8"><img src="whatsapp-image-2025-07-25-at-16.03.14-1.jpeg" alt="Ceremony" loading="lazy"><div class="overlay-icon"><i class="fas fa-expand-alt"></i></div></div>
     <div class="gallery-card" data-index="9"><img src="kimberleyprocesspix1238.jpg" alt="Global coalition gathering" loading="lazy"><div class="overlay-icon"><i class="fas fa-expand-alt"></i></div></div>
   </div>
 </section>
@@ -998,16 +1105,13 @@
   </div>
 </footer>
 
-<!-- ===== BACK TO TOP (with scroll-progress ring) ===== -->
-<button class="back-to-top" id="backToTop" type="button"
-        aria-label="Back to top" title="Back to top"
-        aria-hidden="true" tabindex="-1">
+<!-- ===== BACK TO TOP BUTTON (with integrated progress ring) ===== -->
+<button class="back-to-top" id="backToTopBtn" aria-label="Back to top" title="Back to top" aria-hidden="false" tabindex="0">
   <svg class="btb-ring" viewBox="0 0 48 48" aria-hidden="true">
     <circle class="btb-ring-track" cx="24" cy="24" r="21"></circle>
     <circle class="btb-ring-progress" cx="24" cy="24" r="21"></circle>
   </svg>
-  <svg class="btb-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-       stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+  <svg class="btb-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
     <path d="M12 19V5"></path>
     <path d="M5 12l7-7 7 7"></path>
   </svg>
@@ -1032,7 +1136,9 @@
     menuBtn.addEventListener('click', () => {
       menuBtn.classList.toggle('open');
       mobilePanel.classList.toggle('open');
-      document.body.style.overflow = mobilePanel.classList.contains('open') ? 'hidden' : '';
+      const isOpen = mobilePanel.classList.contains('open');
+      document.body.style.overflow = isOpen ? 'hidden' : '';
+      document.body.classList.toggle('menu-open', isOpen);
     });
 
     mobilePanel.querySelectorAll('a').forEach(link => {
@@ -1040,63 +1146,66 @@
         menuBtn.classList.remove('open');
         mobilePanel.classList.remove('open');
         document.body.style.overflow = '';
+        document.body.classList.remove('menu-open');
       });
     });
   }
 
-  // ── Header scroll effect ──
+  // ── Header scroll + Back to top + ring progress ──
   const header = document.getElementById('mainHeader');
-  window.addEventListener('scroll', () => {
-    if (window.scrollY > 20) {
-      header.classList.add('scrolled');
-    } else {
-      header.classList.remove('scrolled');
+  const backToTopBtn = document.getElementById('backToTopBtn');
+  const ringBar = backToTopBtn ? backToTopBtn.querySelector('.btb-ring-progress') : null;
+
+  const RING_CIRCUMFERENCE = 2 * Math.PI * 21;
+
+  if (ringBar) {
+    ringBar.style.strokeDasharray = RING_CIRCUMFERENCE;
+    ringBar.style.strokeDashoffset = RING_CIRCUMFERENCE;
+  }
+
+  let ticking = false;
+
+  function updateScrollUI() {
+    const scrollTop = window.scrollY || window.pageYOffset || document.documentElement.scrollTop || 0;
+    const maxScroll = Math.max(document.documentElement.scrollHeight - window.innerHeight, 0);
+    const progress = maxScroll > 0 ? Math.min(scrollTop / maxScroll, 1) : 0;
+
+    if (ringBar) {
+      ringBar.style.strokeDashoffset = RING_CIRCUMFERENCE * (1 - progress);
+    }
+
+    if (backToTopBtn) backToTopBtn.classList.toggle('visible', scrollTop > 400);
+    if (header) header.classList.toggle('scrolled', scrollTop > 20);
+
+    ticking = false;
+  }
+
+  function requestScrollUI() {
+    if (!ticking) {
+      ticking = true;
+      window.requestAnimationFrame(updateScrollUI);
+    }
+  }
+
+  window.addEventListener('scroll', requestScrollUI, { passive: true });
+  window.addEventListener('resize', requestScrollUI);
+  window.addEventListener('load', requestScrollUI);
+  updateScrollUI();
+
+  if (backToTopBtn) {
+    backToTopBtn.addEventListener('click', function() {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+  }
+
+  window.addEventListener('resize', function() {
+    if (window.innerWidth >= 1024) {
+      if (mobilePanel) mobilePanel.classList.remove('open');
+      if (menuBtn) menuBtn.classList.remove('open');
+      document.body.style.overflow = '';
+      document.body.classList.remove('menu-open');
     }
   });
-
-  // ── BACK TO TOP BUTTON (scroll-progress ring) ──
-  (function () {
-    var btn = document.getElementById('backToTop');
-    if (!btn) return;
-    var ringProgress = btn.querySelector('.btb-ring-progress');
-    var RING_LENGTH = 2 * Math.PI * 21;
-    var reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-    var ticking = false;
-
-    function updateButton() {
-      var scrollY = window.pageYOffset || document.documentElement.scrollTop || 0;
-      var maxScroll = document.documentElement.scrollHeight - window.innerHeight;
-      var progress = maxScroll > 0 ? Math.min(scrollY / maxScroll, 1) : 0;
-
-      var show = scrollY > 400;
-      btn.classList.toggle('visible', show);
-      btn.setAttribute('aria-hidden', show ? 'false' : 'true');
-      btn.tabIndex = show ? 0 : -1;
-
-      if (ringProgress) {
-        ringProgress.style.strokeDashoffset =
-          (RING_LENGTH * (1 - progress)).toFixed(2);
-      }
-      ticking = false;
-    }
-
-    window.addEventListener('scroll', function () {
-      if (!ticking) {
-        window.requestAnimationFrame(updateButton);
-        ticking = true;
-      }
-    }, { passive: true });
-
-    window.addEventListener('resize', updateButton);
-    updateButton();
-
-    btn.addEventListener('click', function () {
-      window.scrollTo({
-        top: 0,
-        behavior: reduceMotion ? 'auto' : 'smooth'
-      });
-    });
-  })();
 
   // ── LIGHTBOX FUNCTIONALITY ──
   const galleryItems = document.querySelectorAll('.gallery-card');
