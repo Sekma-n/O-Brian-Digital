@@ -12,14 +12,13 @@
   <meta name="twitter:title" content="Ekurhuleni | Brand Identity Case Study">
   <meta property="og:title" content="Ekurhuleni – Brand CI Manual">
   <meta property="og:description" content="Comprehensive brand guidelines and visual identity system for the City of Ekurhuleni.">
-  <meta property="og:image" content="assets/images/obrian-work20.jpg">
-  <link rel="shortcut icon" href="assets/images/obrian-transparent-logo-4461219.webp" type="image/x-icon">
+  <meta property="og:image" content="obrian-work20.jpg">
+  <link rel="shortcut icon" href="obrian-transparent-logo-4461219.webp" type="image/x-icon">
 
   <!-- ===== PERFORMANCE: PRECONNECT + DNS-PREFETCH ===== -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin>
-  <link rel="dns-prefetch" href="assets/images/">
 
   <!-- Google Fonts + Font Awesome 6 -->
   <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700;14..32,800&display=swap" rel="stylesheet">
@@ -209,35 +208,107 @@
     .mobile-menu-panel .mobile-dropdown-items { padding-left: 1rem; }
     .mobile-menu-panel .mobile-dropdown-items a { font-weight: 400; font-size: 0.95rem; }
 
-    /* ----- PAGE STYLES ----- */
+    /* ===== HERO (Sunbet GTI style) ===== */
     .hero {
-      background: linear-gradient(135deg, #fff9fc 0%, #ffffff 100%);
-      padding: 4rem 0 3rem;
-      text-align: center;
-      border-bottom: 1px solid var(--border-light);
+      padding-top: 140px;
+      padding-bottom: 60px;
+      background: radial-gradient(circle at 90% 20%, rgba(237, 0, 142, 0.04) 0%, #ffffff 90%);
     }
-    .hero-sub {
-      font-size: 0.85rem; text-transform: uppercase; letter-spacing: 2px;
-      font-weight: 600; color: var(--primary); margin-bottom: 1rem;
+    .hero .container {
+      max-width: 840px;
+      margin: 0 auto;
+      padding: 24px 14px;
+      text-align: center;
+    }
+    .hero .hero-badge {
+      background: rgba(237, 0, 142, 0.06);
+      display: inline-block;
+      padding: 6px 18px;
+      border-radius: 40px;
+      font-weight: 600;
+      font-size: 0.85rem;
+      margin-bottom: 24px;
+      color: var(--primary);
+      border: 1px solid rgba(237, 0, 142, 0.12);
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+    .hero .hero-badge i {
+      color: var(--primary);
+      margin-right: 6px;
     }
     .hero h1 {
-      font-size: 3.5rem; font-weight: 800; letter-spacing: -0.02em;
-      color: var(--dark); margin-bottom: 1rem;
+      font-size: 3.8rem;
+      margin-bottom: 24px;
+      color: var(--dark);
+      font-weight: 800;
+      line-height: 1.15;
+      letter-spacing: -0.02em;
     }
-    .hero-tagline {
-      font-size: 1.2rem; color: #4a4146; max-width: 680px; margin: 0 auto;
+    .hero h1 .highlight {
+      color: var(--primary);
     }
-    .project-badge {
-      display: inline-block; background: rgba(237, 0, 142, 0.08);
-      border-radius: 60px; padding: 0.4rem 1.2rem; font-weight: 500;
-      font-size: 0.85rem; margin-top: 1.8rem; color: var(--primary-dark);
+    .hero p {
+      font-size: 1.2rem;
+      color: #4a4146;
+      max-width: 700px;
+      margin: 0 auto 32px;
+      line-height: 1.6;
+    }
+    .hero p .highlight {
+      color: var(--primary);
+      font-weight: 500;
+    }
+    .hero .hero-stats {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 1rem;
+      margin-top: 2rem;
+    }
+    .hero .stat {
+      background: #ffffff;
+      border: 1px solid rgba(0, 0, 0, 0.06);
+      border-radius: 16px;
+      padding: 1.2rem 1.6rem;
+      min-width: 140px;
+      text-align: center;
+      box-shadow: var(--shadow-sm);
+    }
+    .hero .stat .number {
+      font-size: 2rem;
+      font-weight: 800;
+      color: var(--primary);
+      line-height: 1.1;
+    }
+    .hero .stat .label {
+      font-size: 0.75rem;
+      color: #6b7280;
+      text-transform: uppercase;
+      letter-spacing: 0.6px;
+      margin-top: 4px;
+      font-weight: 600;
+    }
+    .hero .hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 1rem;
+      margin-top: 2rem;
+    }
+    @media (max-width: 768px) {
+      .hero { padding-top: 120px; padding-bottom: 40px; }
+      .hero h1 { font-size: 2.4rem; }
+      .hero p { font-size: 1.05rem; }
+      .hero .stat { padding: 1rem 1.2rem; min-width: 120px; }
     }
 
+    /* ----- BACK TO OUR WORK BUTTON ----- */
     .btn-back-work {
       display: inline-flex;
       align-items: center;
       gap: 10px;
-      padding: 0.75rem 1.8rem;
+      padding: 12px 28px;
       border-radius: 60px;
       font-weight: 600;
       font-size: 0.95rem;
@@ -247,7 +318,6 @@
       background: transparent;
       color: var(--primary);
       text-decoration: none;
-      margin-top: 2rem;
       cursor: pointer;
     }
     .btn-back-work:hover {
@@ -339,10 +409,8 @@
       cursor: pointer; aspect-ratio: 4 / 3; background: #f3edf0;
       transition: all 0.3s cubic-bezier(0.2, 0, 0, 1);
       box-shadow: 0 6px 14px rgba(37, 30, 33, 0.05);
-      /* ===== PERFORMANCE: skip rendering off-screen cards ===== */
       content-visibility: auto;
       contain-intrinsic-size: 400px 300px;
-      /* ===== PERFORMANCE: isolate paint/layout per card ===== */
       contain: layout paint style;
     }
     .gallery-item img {
@@ -450,7 +518,6 @@
       outline-offset: 3px;
     }
 
-    /* scroll-progress SVG ring */
     .btb-ring {
       position: absolute;
       inset: 0;
@@ -467,11 +534,10 @@
     .btb-ring-progress {
       stroke: #ffffff;
       stroke-linecap: round;
-      stroke-dasharray: 131.95;   /* 2π × r(21) */
+      stroke-dasharray: 131.95;
       stroke-dashoffset: 131.95;
       transition: stroke-dashoffset 0.1s linear;
     }
-    /* Chevron arrow above the ring */
     .btb-arrow {
       position: relative;
       z-index: 1;
@@ -526,7 +592,6 @@
 
     @media (max-width: 1024px) {
       .container { padding: 0 1.5rem; }
-      .hero h1 { font-size: 2.6rem; }
     }
 
     @media (max-width: 880px) {
@@ -537,12 +602,11 @@
     }
 
     @media (max-width: 600px) {
-      .hero h1 { font-size: 2.1rem; }
       .gallery-grid {
         grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
         gap: 1rem;
       }
-      .btn-back-work { padding: 0.6rem 1.4rem; font-size: 0.85rem; margin-top: 1.5rem; }
+      .btn-back-work { padding: 0.6rem 1.4rem; font-size: 0.85rem; }
       .btn-back-work-pink { padding: 0.7rem 1.6rem; font-size: 0.85rem; }
     }
 
@@ -658,11 +722,11 @@
   <a href="Contact_Us.html" style="display:inline-flex; margin-top:1rem; background:linear-gradient(135deg,#e6007e,#ff1493); color:#fff; padding:0.6rem 1.5rem; border-radius:9999px; font-weight:700; text-decoration:none;">Contact Us</a>
 </div>
 
-<!-- ===== BACK TO TOP BUTTON (with scroll-progress ring) ===== -->
-<button class="back-to-top visible" id="backToTopBtn" aria-label="Back to top" title="Back to top" aria-hidden="false" tabindex="0">
+<!-- ===== BACK TO TOP BUTTON ===== -->
+<button class="back-to-top" id="backToTopBtn" aria-label="Back to top" title="Back to top" aria-hidden="true" tabindex="-1">
     <svg class="btb-ring" viewBox="0 0 48 48" aria-hidden="true">
         <circle class="btb-ring-track" cx="24" cy="24" r="21"></circle>
-        <circle class="btb-ring-progress" cx="24" cy="24" r="21" style="stroke-dashoffset: 1.49;"></circle>
+        <circle class="btb-ring-progress" cx="24" cy="24" r="21"></circle>
     </svg>
     <svg class="btb-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
         <path d="M12 19V5"></path>
@@ -670,15 +734,35 @@
     </svg>
 </button>
 
-<!-- ========== HERO ========== -->
+<!-- ========== HERO (Sunbet GTI style) ========== -->
 <section class="hero">
   <div class="container">
-    <div class="hero-sub">OUR WORK — CASE STUDIES</div>
-    <h1>Excellence in<br>Brand Identity</h1>
-    <div class="hero-tagline">A Dive into Our Work Triumphs · Strategic CI & Visual Governance</div>
-    <div class="project-badge"><i class="fas fa-building"></i> City of Ekurhuleni · Brand CI Manual Development</div>
+    <span class="hero-badge"><i class="fas fa-star"></i> Case Study · Brand Identity</span>
+    <h1>Ekurhuleni <span class="highlight">Brand CI Manual</span></h1>
+    <p>
+      A comprehensive corporate identity system for the City of Ekurhuleni — a case study in <span class="highlight">strategic brand governance and visual excellence</span>.
+    </p>
 
-    <div style="margin-top: 2rem;">
+    <div class="hero-stats">
+      <div class="stat">
+        <div class="number">21</div>
+        <div class="label">Brand Assets</div>
+      </div>
+      <div class="stat">
+        <div class="number">1</div>
+        <div class="label">CI Manual</div>
+      </div>
+      <div class="stat">
+        <div class="number">100%</div>
+        <div class="label">Brand Governance</div>
+      </div>
+    </div>
+
+    <div class="hero-actions">
+      <a href="#gallery" class="btn-premium-cta">
+        <i class="fas fa-images"></i>
+        <span>View Gallery</span>
+      </a>
       <a href="Our_Work.html" class="btn-back-work">
         <i class="fas fa-arrow-left"></i>
         Back to Our Work
@@ -710,7 +794,7 @@
 </section>
 
 <!-- ========== GALLERY ========== -->
-<section class="gallery-section">
+<section class="gallery-section" id="gallery">
   <div class="container">
     <div class="section-title">Visual Identity Archive</div>
     <div class="section-sub">A glimpse of brand applications, assets & guidelines</div>
@@ -824,10 +908,10 @@
     }
   });
 
-  // ===== BACK TO TOP BUTTON (with scroll-progress ring) =====
+  // ===== BACK TO TOP BUTTON =====
   const backToTopBtn = document.getElementById('backToTopBtn');
   const btbRingProgress = backToTopBtn ? backToTopBtn.querySelector('.btb-ring-progress') : null;
-  const BTB_RING_LENGTH = 2 * Math.PI * 21; // r = 21 in the 48×48 viewBox
+  const BTB_RING_LENGTH = 2 * Math.PI * 21;
   const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   let scrollTicking = false;
 
@@ -867,11 +951,6 @@
 
   // ============================================================
   //  GALLERY: data + deferred build
-  //  - First 2 images load eagerly (most likely visible soon).
-  //  - Everything else is lazy-loaded via IntersectionObserver
-  //    with a 300px rootMargin.
-  //  - Whole gallery is constructed on idle so hero/overview
-  //    paint first, then the grid appears.
   // ============================================================
   const imageList = [
     "call-center-wide-.jpg",
@@ -1037,7 +1116,7 @@
     if (e.key === 'ArrowLeft') prevImage(e);
   });
 
-  // ── Defer gallery build so it doesn't block first paint ──
+  // ── Defer gallery build ──
   if ('requestIdleCallback' in window) {
     requestIdleCallback(buildGallery, { timeout: 1800 });
   } else {
