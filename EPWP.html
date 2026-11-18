@@ -5,9 +5,16 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>EPWP — O'Brian Group</title>
 
-    <!-- Google Fonts -->
+    <!-- ===== PERFORMANCE: PRECONNECT ===== -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin />
+    <link rel="dns-prefetch" href="assets/images/" />
+
+    <!-- ===== PERFORMANCE: PRELOAD HERO IMAGE ===== -->
+    <link rel="preload" as="image" href="assets/images/epwp-copy.jpg" fetchpriority="high" />
+
+    <!-- Google Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,600;14..32,700;14..32,800;14..32,900&display=swap" rel="stylesheet" />
 
     <!-- Font Awesome 6 (free) -->
@@ -110,6 +117,7 @@
             background: var(--primary);
             color: #fff;
             transform: translateY(-2px);
+            box-shadow: 0 8px 24px rgba(237, 0, 142, 0.30);
         }
 
         .btn-sm {
@@ -125,6 +133,38 @@
             background: var(--gray-100);
             transform: translateY(-2px);
             box-shadow: var(--shadow-sm);
+        }
+
+        /* ── BACK TO OUR WORK BUTTON ── */
+        .btn-back-work {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            padding: 0.85rem 2rem;
+            border-radius: 60px;
+            font-weight: 600;
+            font-size: 0.85rem;
+            letter-spacing: 0.3px;
+            text-transform: uppercase;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            border: 2px solid var(--primary);
+            background: transparent;
+            color: var(--primary);
+            text-decoration: none;
+            cursor: pointer;
+        }
+        .btn-back-work:hover {
+            background: var(--primary);
+            color: #ffffff;
+            transform: translateY(-3px);
+            box-shadow: 0 10px 25px -6px rgba(237, 0, 142, 0.4);
+        }
+        .btn-back-work i {
+            font-size: 0.95rem;
+            transition: transform 0.3s ease;
+        }
+        .btn-back-work:hover i {
+            transform: translateX(-4px);
         }
 
         /* ── PREMIUM GLASS HEADER STYLES ── */
@@ -299,11 +339,11 @@
             display: inline-flex;
             align-items: center;
             gap: 8px;
-            padding: 0.65rem 1.8rem;
+            padding: 0.85rem 2rem;
             background: linear-gradient(135deg, #e6007e 0%, #ff1493 100%);
             color: white;
             font-weight: 700;
-            font-size: 0.75rem;
+            font-size: 0.85rem;
             text-transform: uppercase;
             letter-spacing: 0.6px;
             border-radius: 9999px;
@@ -427,129 +467,127 @@
             font-size: 0.95rem;
         }
 
-        /* ── HERO ── */
+        /* ===== HERO (Sunbet GTI style) ===== */
         .hero {
-            padding: 140px 0 60px;
-            background: var(--dark);
-            position: relative;
-            overflow: hidden;
+            padding-top: 140px;
+            padding-bottom: 60px;
+            background: radial-gradient(circle at 90% 20%, rgba(237, 0, 142, 0.04) 0%, #ffffff 90%);
+            border-bottom: 1px solid var(--gray-200);
         }
-
-        .hero::before {
-            content: '';
-            position: absolute;
-            top: -30%;
-            right: -15%;
-            width: 700px;
-            height: 700px;
-            border-radius: 50%;
-            background: radial-gradient(circle, rgba(237, 0, 142, 0.12) 0%, transparent 70%);
-            pointer-events: none;
-        }
-
-        .hero::after {
-            content: '';
-            position: absolute;
-            bottom: -20%;
-            left: -10%;
-            width: 500px;
-            height: 500px;
-            border-radius: 50%;
-            background: radial-gradient(circle, rgba(237, 0, 142, 0.06) 0%, transparent 70%);
-            pointer-events: none;
-        }
-
         .hero .container {
-            position: relative;
-            z-index: 1;
+            max-width: 840px;
+            margin: 0 auto;
+            padding: 24px 14px;
+            text-align: center;
         }
-
-        .hero-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 64px;
-            align-items: center;
-        }
-
-        .hero-content .back-link {
-            display: inline-flex;
-            align-items: center;
-            gap: 8px;
-            color: rgba(255, 255, 255, 0.50);
-            font-size: 0.85rem;
-            font-weight: 500;
-            transition: var(--transition);
-            margin-bottom: 24px;
-        }
-        .hero-content .back-link:hover {
-            color: var(--primary-light);
-        }
-
-        .hero-content .tag {
+        .hero .hero-badge {
+            background: rgba(237, 0, 142, 0.06);
             display: inline-block;
-            background: rgba(237, 0, 142, 0.15);
-            color: var(--primary-light);
+            padding: 6px 18px;
+            border-radius: 40px;
             font-weight: 600;
-            font-size: 0.7rem;
-            letter-spacing: 0.12em;
+            font-size: 0.85rem;
+            margin-bottom: 24px;
+            color: var(--primary);
+            border: 1px solid rgba(237, 0, 142, 0.12);
             text-transform: uppercase;
-            padding: 4px 16px;
-            border-radius: 50px;
-            margin-bottom: 16px;
+            letter-spacing: 0.5px;
         }
-
-        .hero-content h1 {
-            font-size: 4.2rem;
+        .hero .hero-badge i {
+            color: var(--primary);
+            margin-right: 6px;
+        }
+        .hero h1 {
+            font-size: 3.8rem;
+            margin-bottom: 24px;
+            color: var(--dark);
             font-weight: 900;
-            line-height: 1.08;
-            letter-spacing: -0.04em;
-            color: #fff;
-            margin-bottom: 8px;
+            line-height: 1.15;
+            letter-spacing: -0.02em;
         }
-
-        .hero-content h1 span {
+        .hero h1 .highlight {
             color: var(--primary);
         }
-
-        .hero-content .hero-sub {
+        .hero p {
             font-size: 1.2rem;
-            color: rgba(255, 255, 255, 0.60);
-            max-width: 520px;
-            margin-bottom: 32px;
+            color: var(--gray-600);
+            max-width: 700px;
+            margin: 0 auto 32px;
+            line-height: 1.6;
         }
-
-        .hero-actions {
+        .hero p .highlight {
+            color: var(--primary);
+            font-weight: 500;
+        }
+        .hero .hero-stats {
             display: flex;
             flex-wrap: wrap;
-            gap: 16px;
-        }
-
-        .hero-visual {
-            display: flex;
-            align-items: center;
             justify-content: center;
+            gap: 1rem;
+            margin-top: 2rem;
         }
-
-        .hero-visual .feature-img {
-            border-radius: var(--radius);
+        .hero .stat {
+            background: #ffffff;
+            border: 1px solid rgba(0, 0, 0, 0.06);
+            border-radius: 16px;
+            padding: 1.2rem 1.6rem;
+            min-width: 140px;
+            text-align: center;
+            box-shadow: var(--shadow-sm);
+        }
+        .hero .stat .number {
+            font-size: 2rem;
+            font-weight: 800;
+            color: var(--primary);
+            line-height: 1.1;
+        }
+        .hero .stat .label {
+            font-size: 0.75rem;
+            color: #6b7280;
+            text-transform: uppercase;
+            letter-spacing: 0.6px;
+            margin-top: 4px;
+            font-weight: 600;
+        }
+        .hero .hero-actions {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 1rem;
+            margin-top: 2rem;
+        }
+        .hero .hero-feature {
+            margin-top: 3rem;
+            margin-left: auto;
+            margin-right: auto;
+            max-width: 720px;
+        }
+        .hero .hero-feature .feature-img {
+            border-radius: 24px;
             overflow: hidden;
-            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.30);
-            border: 2px solid rgba(237, 0, 142, 0.20);
-            transition: var(--transition);
-            max-width: 100%;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.10), 0 0 60px rgba(237, 0, 142, 0.08);
+            border: 2px solid rgba(237, 0, 142, 0.15);
+            aspect-ratio: 4 / 3;
+            background: linear-gradient(145deg, #f2eff0 0%, #e8e0e2 100%);
             cursor: pointer;
+            transition: var(--transition);
         }
-
-        .hero-visual .feature-img:hover {
+        .hero .hero-feature .feature-img:hover {
             transform: scale(1.02);
             border-color: var(--primary);
         }
-
-        .hero-visual .feature-img img {
+        .hero .hero-feature .feature-img img {
             width: 100%;
-            height: auto;
+            height: 100%;
+            object-fit: cover;
             display: block;
             pointer-events: none;
+        }
+        @media (max-width: 768px) {
+            .hero { padding-top: 120px; padding-bottom: 40px; }
+            .hero h1 { font-size: 2.4rem; }
+            .hero p { font-size: 1.05rem; }
+            .hero .stat { padding: 1rem 1.2rem; min-width: 120px; }
         }
 
         /* ── SECTION TITLES ── */
@@ -649,6 +687,8 @@
             box-shadow: var(--shadow-md);
             cursor: pointer;
             transition: var(--transition);
+            aspect-ratio: 4 / 3;
+            background: var(--gray-100);
         }
 
         .content-image:hover {
@@ -658,7 +698,8 @@
 
         .content-image img {
             width: 100%;
-            height: auto;
+            height: 100%;
+            object-fit: cover;
             display: block;
             pointer-events: none;
         }
@@ -684,6 +725,9 @@
             cursor: pointer;
             position: relative;
             aspect-ratio: 1 / 1;
+            content-visibility: auto;
+            contain-intrinsic-size: 200px 200px;
+            contain: layout paint style;
         }
 
         .gallery-grid .item:hover {
@@ -695,8 +739,15 @@
             width: 100%;
             height: 100%;
             object-fit: cover;
-            transition: var(--transition);
+            transition: var(--transition), opacity 0.4s ease, filter 0.4s ease;
             pointer-events: none;
+            opacity: 0;
+            filter: blur(6px);
+        }
+
+        .gallery-grid .item img.loaded {
+            opacity: 1;
+            filter: blur(0);
         }
 
         .gallery-grid .item:hover img {
@@ -721,7 +772,6 @@
             opacity: 1;
         }
 
-        /* ── ARROW INDICATOR ON GALLERY ITEMS ── */
         .gallery-grid .item .arrow-indicator {
             position: absolute;
             bottom: 8px;
@@ -977,51 +1027,53 @@
             color: rgba(255, 255, 255, 0.35);
         }
 
-        /* ===== BACK TO TOP BUTTON (copied from Home page) ===== */
+        /* ===== BACK TO TOP BUTTON (with scroll-progress ring) ===== */
         .back-to-top {
             position: fixed;
-            bottom: 32px;
-            right: 32px;
+            bottom: 28px;
+            right: 28px;
             width: 52px;
             height: 52px;
             padding: 0;
             border-radius: 50%;
-            background: linear-gradient(135deg, #e6007e 0%, #b0006a 100%);
-            color: #ffffff;
-            border: 2px solid rgba(255, 255, 255, 0.25);
+            background: var(--primary);
+            color: #fff;
+            border: none;
             display: grid;
             place-items: center;
             cursor: pointer;
-            z-index: 1500;
+            box-shadow: 0 8px 24px rgba(237, 0, 142, 0.30);
+            transition: opacity 0.35s ease, visibility 0.35s ease,
+                        transform 0.35s ease, background 0.25s ease,
+                        box-shadow 0.25s ease;
             opacity: 0;
             visibility: hidden;
-            transform: translateY(20px);
-            transition: opacity 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94),
-                        visibility 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94),
-                        transform 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94),
-                        box-shadow 0.3s ease,
-                        background 0.3s ease;
-            box-shadow: 0 8px 24px rgba(230, 0, 126, 0.35);
+            transform: translateY(12px);
+            z-index: 1500;
             -webkit-tap-highlight-color: transparent;
         }
+
         .back-to-top.visible {
             opacity: 1;
             visibility: visible;
             transform: translateY(0);
         }
+
         .back-to-top:hover {
-            transform: translateY(-4px) scale(1.06);
-            box-shadow: 0 14px 32px rgba(230, 0, 126, 0.45);
+            background: var(--primary-dark);
+            transform: translateY(-4px) scale(1.04);
+            box-shadow: 0 12px 32px rgba(237, 0, 142, 0.40);
         }
+
         .back-to-top:active {
             transform: translateY(-1px) scale(0.98);
         }
+
         .back-to-top:focus-visible {
-            outline: 3px solid rgba(230, 0, 126, 0.45);
+            outline: 3px solid rgba(237, 0, 142, 0.45);
             outline-offset: 3px;
         }
 
-        /* scroll-progress ring */
         .btb-ring {
             position: absolute;
             inset: 0;
@@ -1035,64 +1087,29 @@
             stroke-width: 2.5;
         }
         .btb-ring-track {
-            stroke: rgba(255, 255, 255, 0.25);
+            stroke: rgba(255, 255, 255, 0.28);
         }
         .btb-ring-progress {
             stroke: #ffffff;
             stroke-linecap: round;
-            stroke-dasharray: 131.95;   /* 2π × r(21) */
+            stroke-dasharray: 131.95;
             stroke-dashoffset: 131.95;
             transition: stroke-dashoffset 0.1s linear;
         }
 
-        /* arrow */
         .btb-arrow {
             position: relative;
-            width: 22px;
-            height: 22px;
+            z-index: 1;
+            width: 20px;
+            height: 20px;
             transition: transform 0.3s ease;
         }
         .back-to-top:hover .btb-arrow {
             transform: translateY(-2px);
         }
 
-        /* ── reduced motion ── */
-        @media (prefers-reduced-motion: reduce) {
-            html {
-                scroll-behavior: auto;
-            }
-            .back-to-top,
-            .btb-arrow {
-                transition: none !important;
-            }
-            .back-to-top:hover {
-                transform: none;
-            }
-            .back-to-top:hover .btb-arrow {
-                transform: none;
-            }
-        }
-
         /* ── responsive ── */
         @media (max-width: 1024px) {
-            .hero-grid {
-                grid-template-columns: 1fr;
-                gap: 48px;
-                text-align: center;
-            }
-
-            .hero-content h1 {
-                font-size: 3.2rem;
-            }
-
-            .hero-content .hero-sub {
-                margin: 0 auto 32px;
-            }
-
-            .hero-actions {
-                justify-content: center;
-            }
-
             .content-grid {
                 grid-template-columns: 1fr;
                 gap: 40px;
@@ -1117,18 +1134,6 @@
             .logo-text {
                 font-size: 1rem;
             }
-            .hero {
-                padding: 110px 0 40px;
-            }
-
-            .hero-content h1 {
-                font-size: 2.4rem;
-            }
-
-            .hero-content .hero-sub {
-                font-size: 1rem;
-            }
-
             .section-title {
                 font-size: 1.8rem;
             }
@@ -1160,25 +1165,21 @@
                 padding: 10px 12px;
             }
 
-            /* Back-to-top responsive sizing */
             .back-to-top {
-                bottom: 24px;
+                bottom: 20px;
                 right: 20px;
-                width: 46px;
-                height: 46px;
+                width: 48px;
+                height: 48px;
             }
             .btb-arrow {
-                width: 18px;
-                height: 18px;
+                width: 17px;
+                height: 17px;
             }
         }
 
         @media (max-width: 480px) {
             .logo-text {
                 font-size: 0.9rem;
-            }
-            .hero-content h1 {
-                font-size: 2rem;
             }
 
             .gallery-grid {
@@ -1198,42 +1199,28 @@
             }
         }
 
-        /* ── utilities ── */
-        .d-none {
-            display: none !important;
-        }
-        @media (min-width: 992px) {
-            .d-lg-flex {
-                display: flex !important;
-            }
-            .d-lg-none {
-                display: none !important;
-            }
-        }
-        .align-items-center {
-            align-items: center !important;
-        }
-        .justify-content-between {
-            justify-content: space-between !important;
-        }
-        .w-4 {
-            width: 1rem !important;
-        }
-        .h-4 {
-            height: 1rem !important;
+        /* ── Reduced motion ── */
+        @media (prefers-reduced-motion: reduce) {
+            html { scroll-behavior: auto; }
+            .back-to-top, .btb-arrow, .btb-ring-progress { transition: none !important; }
+            .back-to-top:hover { transform: none; }
+            .back-to-top:hover .btb-arrow { transform: none; }
+            .btn-back-work { transition: none !important; }
+            .btn-back-work:hover { transform: none; }
+            .btn-back-work:hover i { transform: none; }
         }
     </style>
 </head>
 <body>
 
     <!-- ─── PREMIUM GLASS HEADER ─── -->
-    <header class="header-glass" id="mainHeader" tabindex="-1">
+    <header class="header-glass" id="mainHeader">
         <div class="max-w-7xl mx-auto px-4 md:px-6 w-full">
             <div class="flex justify-between items-center">
 
                 <!-- Premium Logo -->
                 <a href="Home.html" class="logo-premium group">
-                    <img src="obrian-transparent-logo-4461219.webp" alt="O'Brian Group" class="h-9 w-auto" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22%3E%3Crect width=%22100%22 height=%22100%22 fill=%22%23ed008e%22/%3E%3Ctext x=%2250%22 y=%2268%22 font-size=%2248%22 text-anchor=%22middle%22 fill=%22white%22 font-weight=%22bold%22 font-family=%22Inter%22%3EO%3C/text%3E%3C/svg%3E'">
+                    <img src="obrian-transparent-logo-4461219.webp" alt="O'Brian Group" class="h-9 w-auto" width="40" height="36" decoding="async" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22%3E%3Crect width=%22100%22 height=%22100%22 fill=%22%23ed008e%22/%3E%3Ctext x=%2250%22 y=%2268%22 font-size=%2248%22 text-anchor=%22middle%22 fill=%22white%22 font-weight=%22bold%22 font-family=%22Inter%22%3EO%3C/text%3E%3C/svg%3E'">
                     <span class="logo-text hidden sm:inline-block">
                         <span class="highlight"></span> 
                     </span>
@@ -1243,7 +1230,7 @@
                 <div class="hidden lg:flex items-center gap-0.5">
                     <a href="Home.html" class="nav-link-premium">Home</a>
                     <a href="About.html" class="nav-link-premium">About</a>
-                    <a href="Our_Work.html" class="nav-link-premium">Our Work</a>
+                    <a href="Our_Work.html" class="nav-link-premium active-link">Our Work</a>
                     <a href="Client_Experience.html" class="nav-link-premium">Client Experience</a>
 
                     <div class="dropdown-wrapper">
@@ -1320,41 +1307,60 @@
         <a href="Contact_Us.html" style="display:inline-flex; margin-top:1rem; background:linear-gradient(135deg,#e6007e,#ff1493); color:#fff; padding:0.6rem 1.5rem; border-radius:9999px; font-weight:700; text-decoration:none;">Contact Us</a>
     </div>
 
-    <!-- ─── BACK TO TOP BUTTON (copied from Home) ─── -->
+    <!-- ─── BACK TO TOP (with scroll-progress ring) ─── -->
     <button class="back-to-top" id="backToTopBtn" aria-label="Back to top" title="Back to top" aria-hidden="true" tabindex="-1">
         <svg class="btb-ring" viewBox="0 0 48 48" aria-hidden="true">
             <circle class="btb-ring-track" cx="24" cy="24" r="21"></circle>
             <circle class="btb-ring-progress" cx="24" cy="24" r="21"></circle>
         </svg>
-        <svg class="btb-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-             stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+        <svg class="btb-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
             <path d="M12 19V5"></path>
             <path d="M5 12l7-7 7 7"></path>
         </svg>
     </button>
 
-    <!-- ─── HERO ─── -->
+    <!-- ─── HERO (Sunbet GTI style) ─── -->
     <section class="hero">
         <div class="container">
-            <div class="hero-grid">
-                <div class="hero-content">
-                    <a href="Our_Work.html" class="back-link">
-                        <i class="fas fa-arrow-left"></i> Back to Our Work
-                    </a>
-                    <span class="tag"><i class="fas fa-briefcase" style="margin-right:6px; font-size:0.6rem;"></i> Case Study</span>
-                    <h1>EPWP</h1>
-                    <p class="hero-sub">Expanded Public Works opportunities for the unemployed by using public sector expenditure.</p>
-                    <div class="hero-actions">
-                        <a href="#content" class="btn btn-primary"><i class="fas fa-book-open"></i> Read More</a>
-                        <a href="#gallery" class="btn btn-outline" style="border-color:rgba(255,255,255,0.3); color:rgba(255,255,255,0.8);">
-                            <i class="fas fa-images"></i> View Gallery
-                        </a>
-                    </div>
+            <span class="hero-badge"><i class="fas fa-star"></i> Case Study · Public Works</span>
+            <h1>Expanded Public Works <span class="highlight">Programme</span></h1>
+            <p>
+                Skilling and developing South Africa's ordinary men and women to achieve <span class="highlight">gainful employment</span> — alleviating poverty and joblessness across the nation.
+            </p>
+
+            <div class="hero-stats">
+                <div class="stat">
+                    <div class="number">2</div>
+                    <div class="label">Campaign Phases</div>
                 </div>
-                <div class="hero-visual">
-                    <div class="feature-img" data-lightbox="true">
-                        <img src="epwp-copy.jpg" alt="EPWP Campaign" />
-                    </div>
+                <div class="stat">
+                    <div class="number">40%</div>
+                    <div class="label">Unemployment Challenge</div>
+                </div>
+                <div class="stat">
+                    <div class="number">100%</div>
+                    <div class="label">National Reach</div>
+                </div>
+            </div>
+
+            <div class="hero-actions">
+                <a href="#content" class="btn-premium-cta">
+                    <i class="fas fa-book-open"></i>
+                    <span>Read More</span>
+                </a>
+                <a href="#gallery" class="btn-outline">
+                    <i class="fas fa-images"></i> View Gallery
+                </a>
+                <a href="Our_Work.html" class="btn-back-work">
+                    <i class="fas fa-arrow-left"></i> Back to Our Work
+                </a>
+            </div>
+
+            <div class="hero-feature">
+                <div class="feature-img" data-lightbox="true">
+                    <img src="epwp-copy.jpg" alt="EPWP Campaign"
+                         width="800" height="600"
+                         loading="eager" fetchpriority="high" decoding="async" />
                 </div>
             </div>
         </div>
@@ -1389,7 +1395,9 @@
                     </div>
                 </div>
                 <div class="content-image" data-lightbox="true">
-                    <img src="earspace.jpg" alt="EPWP Program" />
+                    <img src="earspace.jpeg" alt="EPWP Program"
+                         width="800" height="600"
+                         loading="lazy" decoding="async" fetchpriority="low" />
                 </div>
             </div>
         </div>
@@ -1404,27 +1412,8 @@
                 <p class="section-sub" style="margin:0 auto;">Click any image to view it full screen with arrows to navigate.</p>
             </div>
 
-            <div class="gallery-grid">
-                <div class="item" data-index="0"><img src="1.jpg" alt="" /><div class="overlay"><i class="fas fa-search-plus"></i></div><span class="arrow-indicator">→</span></div>
-                <div class="item" data-index="1"><img src="2.jpg" alt="" /><div class="overlay"><i class="fas fa-search-plus"></i></div><span class="arrow-indicator">→</span></div>
-                <div class="item" data-index="2"><img src="3.jpg" alt="" /><div class="overlay"><i class="fas fa-search-plus"></i></div><span class="arrow-indicator">→</span></div>
-                <div class="item" data-index="3"><img src="4-copy.jpg" alt="" /><div class="overlay"><i class="fas fa-search-plus"></i></div><span class="arrow-indicator">→</span></div>
-                <div class="item" data-index="4"><img src="5.jpg" alt="" /><div class="overlay"><i class="fas fa-search-plus"></i></div><span class="arrow-indicator">→</span></div>
-                <div class="item" data-index="5"><img src="6.jpg" alt="" /><div class="overlay"><i class="fas fa-search-plus"></i></div><span class="arrow-indicator">→</span></div>
-                <div class="item" data-index="6"><img src="7.jpg" alt="" /><div class="overlay"><i class="fas fa-search-plus"></i></div><span class="arrow-indicator">→</span></div>
-                <div class="item" data-index="7"><img src="8.jpg" alt="" /><div class="overlay"><i class="fas fa-search-plus"></i></div><span class="arrow-indicator">→</span></div>
-                <div class="item" data-index="8"><img src="9.jpg" alt="" /><div class="overlay"><i class="fas fa-search-plus"></i></div><span class="arrow-indicator">→</span></div>
-                <div class="item" data-index="9"><img src="10.jpg" alt="" /><div class="overlay"><i class="fas fa-search-plus"></i></div><span class="arrow-indicator">→</span></div>
-                <div class="item" data-index="10"><img src="11.jpg" alt="" /><div class="overlay"><i class="fas fa-search-plus"></i></div><span class="arrow-indicator">→</span></div>
-                <div class="item" data-index="11"><img src="12.jpg" alt="" /><div class="overlay"><i class="fas fa-search-plus"></i></div><span class="arrow-indicator">→</span></div>
-                <div class="item" data-index="12"><img src="13.jpg" alt="" /><div class="overlay"><i class="fas fa-search-plus"></i></div><span class="arrow-indicator">→</span></div>
-                <div class="item" data-index="13"><img src="14-1.jpg" alt="" /><div class="overlay"><i class="fas fa-search-plus"></i></div><span class="arrow-indicator">→</span></div>
-                <div class="item" data-index="14"><img src="15.jpg" alt="" /><div class="overlay"><i class="fas fa-search-plus"></i></div><span class="arrow-indicator">→</span></div>
-                <div class="item" data-index="15"><img src="16.jpg" alt="" /><div class="overlay"><i class="fas fa-search-plus"></i></div><span class="arrow-indicator">→</span></div>
-                <div class="item" data-index="16"><img src="slide.jpg" alt="" /><div class="overlay"><i class="fas fa-search-plus"></i></div><span class="arrow-indicator">→</span></div>
-                <div class="item" data-index="17"><img src="1-logo.png" alt="" /><div class="overlay"><i class="fas fa-search-plus"></i></div><span class="arrow-indicator">→</span></div>
-                <div class="item" data-index="18"><img src="2-14.jpg" alt="" /><div class="overlay"><i class="fas fa-search-plus"></i></div><span class="arrow-indicator">→</span></div>
-                <div class="item" data-index="19"><img src="client-logos-60.jpg" alt="" /><div class="overlay"><i class="fas fa-search-plus"></i></div><span class="arrow-indicator">→</span></div>
+            <div class="gallery-grid" id="galleryGrid">
+                <!-- Items injected via JS with lazy-load support -->
             </div>
         </div>
     </section>
@@ -1455,11 +1444,11 @@
         <div class="container">
             <h3><i class="fas fa-share-alt" style="margin-right:8px;"></i> Follow Us</h3>
             <div class="social-list">
-                <a href="https://www.facebook.com/profile.php?id=100094029616085" target="_blank" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
-                <a href="https://x.com/ObrianSA" target="_blank" aria-label="Twitter"><i class="fa-brands fa-twitter"></i></a>
-                <a href="https://www.instagram.com/obriandigital/" target="_blank" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
-                <a href="https://za.pinterest.com/OBRIANDIGITAL/" target="_blank" aria-label="Pinterest"><i class="fab fa-pinterest-p"></i></a>
-                <a href="https://za.linkedin.com/company/o-brian-digital" target="_blank" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+                <a href="https://www.facebook.com/profile.php?id=100094029616085" target="_blank" rel="noopener" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+                <a href="https://x.com/ObrianSA" target="_blank" rel="noopener" aria-label="Twitter"><i class="fa-brands fa-twitter"></i></a>
+                <a href="https://www.instagram.com/obriandigital/" target="_blank" rel="noopener" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                <a href="https://za.pinterest.com/OBRIANDIGITAL/" target="_blank" rel="noopener" aria-label="Pinterest"><i class="fab fa-pinterest-p"></i></a>
+                <a href="https://za.linkedin.com/company/o-brian-digital" target="_blank" rel="noopener" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
             </div>
         </div>
     </section>
@@ -1495,17 +1484,17 @@
                         <li><a href="Client_Experience.html">Clients</a></li>
                         <li><a href="#">Teams</a></li>
                         <li><a href="#">Brand</a></li>
-                        <li><a href="Terms.html">Terms</a></li>
+                        <li><a href="#">Terms</a></li>
                     </ul>
                 </div>
             </div>
 
             <div style="display:flex; flex-wrap:wrap; justify-content:space-between; align-items:center; border-top:1px solid rgba(255,255,255,0.06); padding-top:24px;">
                 <div class="social-row">
-                    <a href="https://www.facebook.com/profile.php?id=100094029616085" target="_blank" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
-                    <a href="https://x.com/ObrianSA" target="_blank" aria-label="Twitter"><i class="fa-brands fa-twitter"></i></a>
-                    <a href="https://www.instagram.com/obriandigital/" target="_blank" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
-                    <a href="https://za.linkedin.com/company/o-brian-digital" target="_blank" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+                    <a href="https://www.facebook.com/profile.php?id=100094029616085" target="_blank" rel="noopener" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+                    <a href="https://x.com/ObrianSA" target="_blank" rel="noopener" aria-label="Twitter"><i class="fa-brands fa-twitter"></i></a>
+                    <a href="https://www.instagram.com/obriandigital/" target="_blank" rel="noopener" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                    <a href="https://za.linkedin.com/company/o-brian-digital" target="_blank" rel="noopener" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
                 </div>
                 <p class="copyright" style="border:none; padding-top:0; margin-top:0;">&copy; 2030 O'Brian Digital — All Rights Reserved</p>
             </div>
@@ -1517,12 +1506,8 @@
         // ── Header scroll effect ──
         const header = document.getElementById('mainHeader');
         window.addEventListener('scroll', function() {
-            if (window.scrollY > 20) {
-                header.classList.add('scrolled');
-            } else {
-                header.classList.remove('scrolled');
-            }
-        });
+            header.classList.toggle('scrolled', window.scrollY > 20);
+        }, { passive: true });
 
         // ── Mobile menu toggle ──
         const menuBtn = document.getElementById('menuBtn');
@@ -1564,39 +1549,173 @@
             });
         });
 
-        // ── LIGHTBOX WITH ARROW NAVIGATION ──
+        // ===== BACK TO TOP BUTTON (with scroll-progress ring) =====
+        const backToTopBtn = document.getElementById('backToTopBtn');
+        const btbRingProgress = backToTopBtn ? backToTopBtn.querySelector('.btb-ring-progress') : null;
+        const BTB_RING_LENGTH = 2 * Math.PI * 21;
+        const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+        let scrollTicking = false;
+
+        function updateBackToTop() {
+            const scrollY = window.pageYOffset || document.documentElement.scrollTop || 0;
+            const maxScroll = document.documentElement.scrollHeight - window.innerHeight;
+            const progress = maxScroll > 0 ? Math.min(scrollY / maxScroll, 1) : 0;
+
+            const show = scrollY > 400;
+            backToTopBtn.classList.toggle('visible', show);
+            backToTopBtn.setAttribute('aria-hidden', show ? 'false' : 'true');
+            backToTopBtn.tabIndex = show ? 0 : -1;
+
+            if (btbRingProgress) {
+                btbRingProgress.style.strokeDashoffset =
+                    (BTB_RING_LENGTH * (1 - progress)).toFixed(2);
+            }
+            scrollTicking = false;
+        }
+
+        window.addEventListener('scroll', function() {
+            if (!scrollTicking) {
+                window.requestAnimationFrame(updateBackToTop);
+                scrollTicking = true;
+            }
+        }, { passive: true });
+
+        window.addEventListener('resize', updateBackToTop);
+        updateBackToTop();
+
+        backToTopBtn.addEventListener('click', function() {
+            window.scrollTo({
+                top: 0,
+                behavior: prefersReducedMotion ? 'auto' : 'smooth'
+            });
+        });
+
+        // ============================================================
+        //  GALLERY: data + deferred build + fast lazy loading
+        // ============================================================
+        const galleryImages = [
+            "1.jpeg",
+            "2.jpeg",
+            "3.jpeg",
+            "4-copy.jpg",
+            "5.jpeg",
+            "6.jpeg",
+            "7.jpeg",
+            "8.jpeg",
+            "9.jpeg",
+            "10.jpeg",
+            "11.jpeg",
+            "12.jpeg",
+            "13.jpeg",
+            "14-1.jpeg",
+            "15.jpeg",
+            "16.jpeg",
+            "slide.jpeg",
+            "1-logo.png",
+            "2-14.jpg",
+            "client-logos-60.jpg"
+        ];
+
+        const EAGER_GALLERY_COUNT = 3;
+        const galleryGrid = document.getElementById('galleryGrid');
+        const gallerySources = [];
+
+        const imageObserver = new IntersectionObserver(function(entries, observer) {
+            entries.forEach(function(entry) {
+                if (entry.isIntersecting) {
+                    const img = entry.target;
+                    const src = img.dataset.src;
+                    if (src) {
+                        img.src = src;
+                        img.removeAttribute('data-src');
+                    }
+                    img.addEventListener('load', function() {
+                        img.classList.add('loaded');
+                    }, { once: true });
+                    observer.unobserve(img);
+                }
+            });
+        }, { rootMargin: '300px 0px', threshold: 0.01 });
+
+        function buildGallery() {
+            if (!galleryGrid || galleryGrid.dataset.built === '1') return;
+            galleryGrid.dataset.built = '1';
+
+            const frag = document.createDocumentFragment();
+
+            galleryImages.forEach(function(src, idx) {
+                const item = document.createElement('div');
+                item.className = 'item';
+                item.setAttribute('data-index', idx);
+                item.setAttribute('role', 'button');
+                item.setAttribute('tabindex', '0');
+                item.setAttribute('aria-label', 'View image ' + (idx + 1));
+
+                const img = document.createElement('img');
+
+                if (idx < EAGER_GALLERY_COUNT) {
+                    img.src = src;
+                    img.loading = 'eager';
+                    img.decoding = 'async';
+                    img.fetchPriority = 'high';
+                    img.addEventListener('load', function() { img.classList.add('loaded'); }, { once: true });
+                } else {
+                    img.dataset.src = src;
+                    img.loading = 'lazy';
+                    img.decoding = 'async';
+                    img.fetchPriority = 'low';
+                }
+
+                img.alt = 'EPWP campaign asset ' + (idx + 1);
+                img.width = 400;
+                img.height = 400;
+
+                item.appendChild(img);
+
+                const overlay = document.createElement('div');
+                overlay.className = 'overlay';
+                overlay.innerHTML = '<i class="fas fa-search-plus"></i>';
+                item.appendChild(overlay);
+
+                const arrow = document.createElement('span');
+                arrow.className = 'arrow-indicator';
+                arrow.textContent = '→';
+                item.appendChild(arrow);
+
+                item.addEventListener('click', function() { openLightbox(idx); });
+                item.addEventListener('keydown', function(e) {
+                    if (e.key === 'Enter' || e.key === ' ') {
+                        e.preventDefault();
+                        openLightbox(idx);
+                    }
+                });
+
+                frag.appendChild(item);
+                gallerySources[idx] = src;
+
+                if (idx >= EAGER_GALLERY_COUNT) imageObserver.observe(img);
+            });
+
+            galleryGrid.appendChild(frag);
+        }
+
+        // ── Collect all lightbox images ──
+        const heroImg = document.querySelector('.hero-feature .feature-img img');
+        const contentImg = document.querySelector('.content-image img');
+        const allImages = [];
+
+        galleryImages.forEach(function(src) { allImages.push(src); });
+        if (heroImg) allImages.push(heroImg.getAttribute('src'));
+        if (contentImg) allImages.push(contentImg.getAttribute('src'));
+
+        // ── Lightbox state ──
         const lightboxOverlay = document.getElementById('lightboxOverlay');
         const lightboxImage = document.getElementById('lightboxImage');
         const lightboxPrev = document.getElementById('lightboxPrev');
         const lightboxNext = document.getElementById('lightboxNext');
         const lightboxClose = document.getElementById('lightboxClose');
         const lightboxCounter = document.getElementById('lightboxCounter');
-        
-        // Collect all gallery images
-        const galleryItems = document.querySelectorAll('.gallery-grid .item');
-        const imageSources = [];
         let currentIndex = 0;
-
-        // Collect image sources from gallery items
-        galleryItems.forEach(function(item) {
-            const img = item.querySelector('img');
-            if (img) {
-                imageSources.push(img.getAttribute('src'));
-            }
-        });
-
-        // Also include hero image and content image
-        const heroImg = document.querySelector('.hero-visual .feature-img img');
-        const contentImg = document.querySelector('.content-image img');
-        
-        const allImages = [];
-        
-        imageSources.forEach(function(src) {
-            allImages.push(src);
-        });
-        
-        if (heroImg) allImages.push(heroImg.getAttribute('src'));
-        if (contentImg) allImages.push(contentImg.getAttribute('src'));
 
         function openLightbox(index) {
             if (index < 0) index = allImages.length - 1;
@@ -1604,92 +1723,61 @@
             currentIndex = index;
             lightboxImage.setAttribute('src', allImages[currentIndex]);
             lightboxImage.style.opacity = '0';
-            
+
             setTimeout(function() {
                 lightboxImage.style.opacity = '1';
             }, 50);
-            
+
             lightboxCounter.textContent = (currentIndex + 1) + ' / ' + allImages.length;
-            
-            lightboxPrev.disabled = false;
-            lightboxNext.disabled = false;
-            
-            if (currentIndex === 0) {
-                lightboxPrev.disabled = true;
-            }
-            if (currentIndex === allImages.length - 1) {
-                lightboxNext.disabled = true;
-            }
-            
+
+            lightboxPrev.disabled = currentIndex === 0;
+            lightboxNext.disabled = currentIndex === allImages.length - 1;
+
             lightboxOverlay.classList.add('active');
             document.body.style.overflow = 'hidden';
+            preloadAdjacent();
+        }
+
+        function preloadAdjacent() {
+            const nextIdx = (currentIndex + 1) % allImages.length;
+            const prevIdx = (currentIndex - 1 + allImages.length) % allImages.length;
+            [nextIdx, prevIdx].forEach(function(i) {
+                const pre = new Image();
+                pre.decoding = 'async';
+                pre.src = allImages[i];
+            });
         }
 
         function closeLightbox() {
             lightboxOverlay.classList.remove('active');
             document.body.style.overflow = '';
+            lightboxImage.removeAttribute('src');
         }
 
-        function prevImage() {
-            openLightbox(currentIndex - 1);
-        }
+        function prevImage(e) { if (e) e.stopPropagation(); openLightbox(currentIndex - 1); }
+        function nextImage(e) { if (e) e.stopPropagation(); openLightbox(currentIndex + 1); }
 
-        function nextImage() {
-            openLightbox(currentIndex + 1);
-        }
-
-        // Add click listeners to gallery items
-        galleryItems.forEach(function(item) {
-            item.addEventListener('click', function() {
-                const img = item.querySelector('img');
-                if (img) {
-                    const src = img.getAttribute('src');
-                    const index = allImages.indexOf(src);
-                    if (index >= 0) {
-                        openLightbox(index);
-                    }
-                }
-            });
-        });
-
-        // Add click listeners to hero and content images
+        // Hero and content image clicks
         document.querySelectorAll('[data-lightbox="true"]').forEach(function(el) {
             el.addEventListener('click', function() {
                 const img = this.querySelector('img');
                 if (img) {
                     const src = img.getAttribute('src');
-                    const index = allImages.indexOf(src);
-                    if (index >= 0) {
-                        openLightbox(index);
-                    }
+                    const idx = allImages.indexOf(src);
+                    if (idx >= 0) openLightbox(idx);
                 }
             });
         });
 
         // Lightbox controls
-        lightboxPrev.addEventListener('click', function(e) {
-            e.stopPropagation();
-            prevImage();
-        });
+        lightboxPrev.addEventListener('click', prevImage);
+        lightboxNext.addEventListener('click', nextImage);
+        lightboxClose.addEventListener('click', function(e) { e.stopPropagation(); closeLightbox(); });
 
-        lightboxNext.addEventListener('click', function(e) {
-            e.stopPropagation();
-            nextImage();
-        });
-
-        lightboxClose.addEventListener('click', function(e) {
-            e.stopPropagation();
-            closeLightbox();
-        });
-
-        // Close on overlay click (not on container)
         lightboxOverlay.addEventListener('click', function(e) {
-            if (e.target === lightboxOverlay) {
-                closeLightbox();
-            }
+            if (e.target === lightboxOverlay) closeLightbox();
         });
 
-        // Keyboard navigation
         document.addEventListener('keydown', function(e) {
             if (!lightboxOverlay.classList.contains('active')) return;
             if (e.key === 'Escape') closeLightbox();
@@ -1700,11 +1788,9 @@
         // Touch swipe support
         let touchStartX = 0;
         let touchEndX = 0;
-
         lightboxOverlay.addEventListener('touchstart', function(e) {
             touchStartX = e.changedTouches[0].screenX;
         });
-
         lightboxOverlay.addEventListener('touchend', function(e) {
             touchEndX = e.changedTouches[0].screenX;
             const diff = touchStartX - touchEndX;
@@ -1714,88 +1800,12 @@
             }
         });
 
-        // Add arrow indicators to gallery items
-        galleryItems.forEach(function(item) {
-            const arrow = document.createElement('span');
-            arrow.className = 'arrow-indicator';
-            arrow.innerHTML = '→';
-            item.appendChild(arrow);
-        });
-
-        // Ensure arrow indicators are visible on hover
-        const styleSheet = document.createElement('style');
-        styleSheet.textContent = `
-            .gallery-grid .item .arrow-indicator {
-                position: absolute;
-                bottom: 8px;
-                right: 8px;
-                background: rgba(237, 0, 142, 0.9);
-                color: white;
-                width: 30px;
-                height: 30px;
-                border-radius: 50%;
-                display: flex;
-                align-items: center;
-                justify-content: center;
-                font-size: 0.9rem;
-                opacity: 0;
-                transition: all 0.3s ease;
-                z-index: 2;
-                pointer-events: none;
-                border: 2px solid white;
-                box-shadow: 0 2px 8px rgba(0,0,0,0.2);
-            }
-            .gallery-grid .item:hover .arrow-indicator {
-                opacity: 1;
-                transform: scale(1.1);
-            }
-        `;
-        document.head.appendChild(styleSheet);
-
-        // ===== BACK TO TOP BUTTON LOGIC (copied from Home) =====
-        var backToTopBtn = document.getElementById('backToTopBtn');
-        var btbRingProgress = backToTopBtn ? backToTopBtn.querySelector('.btb-ring-progress') : null;
-        var BTB_RING_LENGTH = 2 * Math.PI * 21; // r = 21 in the 48×48 viewBox
-        var btbPrefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-        var btbTicking = false;
-
-        function updateBackToTop() {
-            var scrollY = window.scrollY || document.documentElement.scrollTop;
-            var maxScroll = document.documentElement.scrollHeight - window.innerHeight;
-            var progress = maxScroll > 0 ? Math.min(scrollY / maxScroll, 1) : 0;
-
-            var show = scrollY > 400;
-            backToTopBtn.classList.toggle('visible', show);
-            // keep it out of the a11y tree / tab order while hidden
-            backToTopBtn.setAttribute('aria-hidden', show ? 'false' : 'true');
-            backToTopBtn.tabIndex = show ? 0 : -1;
-
-            if (btbRingProgress) {
-                btbRingProgress.style.strokeDashoffset =
-                    (BTB_RING_LENGTH * (1 - progress)).toFixed(2);
-            }
-
-            btbTicking = false;
-        }
-
-        if (backToTopBtn) {
-            window.addEventListener('scroll', function() {
-                if (!btbTicking) {
-                    window.requestAnimationFrame(updateBackToTop);
-                    btbTicking = true;
-                }
-            }, { passive: true });
-
-            updateBackToTop();
-
-            backToTopBtn.addEventListener('click', function() {
-                window.scrollTo({
-                    top: 0,
-                    behavior: btbPrefersReducedMotion ? 'auto' : 'smooth'
-                });
-                // return focus to the top of the page for keyboard users
-                var headerEl = document.getElementById('mainHeader');
-                if (headerEl) headerEl.focus({ preventScroll: true });
+        // ── Defer gallery build so it doesn't block first paint ──
+        if ('requestIdleCallback' in window) {
+            requestIdleCallback(buildGallery, { timeout: 1800 });
+        } else {
+            window.addEventListener('load', function() {
+                setTimeout(buildGallery, 0);
             });
         }
     </script>
