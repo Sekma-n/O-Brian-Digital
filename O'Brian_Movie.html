@@ -6,10 +6,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="description" content="O'Brian Movie — A Dive into Our Work Triumphs. Case Studies in Excellence." />
     <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:image:src" content="assets/images/page56-meta.png" />
-    <meta property="og:image" content="assets/images/page56-meta.png" />
+    <meta name="twitter:image:src" content="page56-meta.png" />
+    <meta property="og:image" content="page56-meta.png" />
     <meta name="twitter:title" content="O'Brian Movie" />
-    <link rel="shortcut icon" href="assets/images/obrian-transparent-logo-4461219.webp" type="image/x-icon" />
+    <link rel="shortcut icon" href="obrian-transparent-logo-4461219.webp" type="image/x-icon" />
 
     <title>O'Brian Movie — Case Study</title>
 
@@ -48,9 +48,7 @@
             --shadow-glow: 0 0 60px rgba(237, 0, 142, 0.15);
         }
 
-        html {
-            scroll-behavior: smooth;
-        }
+        html { scroll-behavior: smooth; }
 
         body {
             font-family: 'Montserrat', sans-serif;
@@ -61,17 +59,9 @@
             padding-top: 80px;
         }
 
-        a {
-            text-decoration: none;
-            color: inherit;
-        }
-        ul {
-            list-style: none;
-        }
-        img {
-            max-width: 100%;
-            display: block;
-        }
+        a { text-decoration: none; color: inherit; }
+        ul { list-style: none; }
+        img { max-width: 100%; display: block; }
 
         .container {
             max-width: 1240px;
@@ -80,116 +70,142 @@
         }
 
         /* ===== SCROLLBAR ===== */
-        ::-webkit-scrollbar {
-            width: 8px;
-        }
-        ::-webkit-scrollbar-track {
-            background: var(--dark);
-        }
+        ::-webkit-scrollbar { width: 8px; }
+        ::-webkit-scrollbar-track { background: var(--dark); }
         ::-webkit-scrollbar-thumb {
             background: var(--primary);
             border-radius: 12px;
         }
-        ::-webkit-scrollbar-thumb:hover {
-            background: var(--gold);
-        }
+        ::-webkit-scrollbar-thumb:hover { background: var(--gold); }
 
-        /* Mobile dropdown toggle */
-        .mobile-dropdown-btn.active + .mobile-dropdown-content {
-            display: block !important;
-        }
-        .mobile-dropdown-btn.active svg {
-            transform: rotate(180deg);
-        }
-
-        /* ===== HERO ===== */
+        /* ===== HERO (Sunbet GTI style, adapted for dark) ===== */
         .hero {
+            padding-top: 140px;
+            padding-bottom: 60px;
+            background:
+                radial-gradient(circle at 90% 20%, rgba(237, 0, 142, 0.10) 0%, transparent 60%),
+                radial-gradient(circle at 10% 80%, rgba(237, 0, 142, 0.06) 0%, transparent 50%),
+                var(--dark);
             position: relative;
-            min-height: 100vh;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            padding: 120px 0 80px;
-            background: var(--dark);
             overflow: hidden;
         }
-
-        .hero::before {
-            content: '';
-            position: absolute;
-            inset: 0;
-            background:
-                radial-gradient(ellipse at 20% 50%, rgba(237, 0, 142, 0.20) 0%, transparent 60%),
-                radial-gradient(ellipse at 80% 20%, rgba(237, 0, 142, 0.10) 0%, transparent 50%),
-                radial-gradient(ellipse at 50% 100%, rgba(35, 30, 31, 0.90) 0%, transparent 40%),
-                var(--dark);
-            z-index: 0;
-        }
-
         .hero .container {
+            max-width: 840px;
+            margin: 0 auto;
+            padding: 24px 14px;
+            text-align: center;
             position: relative;
             z-index: 1;
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 60px;
-            align-items: center;
         }
-
-        .hero-content {
-            display: flex;
-            flex-direction: column;
-        }
-
-        .hero-badge {
-            display: inline-flex;
-            align-items: center;
-            gap: 10px;
-            font-size: 0.7rem;
-            font-weight: 600;
-            letter-spacing: 0.12em;
-            text-transform: uppercase;
-            color: var(--gold);
+        .hero .hero-badge {
             background: rgba(237, 0, 142, 0.10);
+            display: inline-block;
             padding: 6px 18px;
             border-radius: 40px;
-            border: 1px solid rgba(237, 0, 142, 0.15);
-            width: fit-content;
+            font-weight: 600;
+            font-size: 0.85rem;
             margin-bottom: 24px;
+            color: var(--primary);
+            border: 1px solid rgba(237, 0, 142, 0.20);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
         }
-        .hero-badge i {
-            font-size: 0.6rem;
+        .hero .hero-badge i {
+            color: var(--primary);
+            margin-right: 6px;
         }
-
-        .hero-title {
+        .hero h1 {
             font-family: 'Playfair Display', serif;
-            font-size: clamp(3rem, 8vw, 6rem);
+            font-size: 3.8rem;
+            margin-bottom: 24px;
+            color: #fff;
             font-weight: 900;
             line-height: 1.05;
-            margin-bottom: 20px;
-            background: linear-gradient(135deg, #fff 40%, var(--gold-light) 80%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
+            letter-spacing: -0.02em;
         }
-
-        .hero-subtitle {
-            font-size: 1.1rem;
-            font-weight: 300;
+        .hero h1 .highlight {
+            color: var(--primary);
+        }
+        .hero p {
+            font-size: 1.2rem;
             color: var(--text-muted);
-            max-width: 500px;
-            margin-bottom: 32px;
+            max-width: 700px;
+            margin: 0 auto 32px;
+            line-height: 1.6;
+            font-weight: 300;
         }
-        .hero-subtitle strong {
+        .hero p .highlight {
             color: #fff;
             font-weight: 600;
         }
-
-        .hero-actions {
+        .hero .hero-stats {
             display: flex;
             flex-wrap: wrap;
-            gap: 16px;
+            justify-content: center;
+            gap: 1rem;
+            margin-top: 2rem;
+        }
+        .hero .stat {
+            background: rgba(255, 255, 255, 0.04);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.06);
+            border-radius: 16px;
+            padding: 1.2rem 1.6rem;
+            min-width: 140px;
+            text-align: center;
+        }
+        .hero .stat .number {
+            font-family: 'Playfair Display', serif;
+            font-size: 2rem;
+            font-weight: 800;
+            color: var(--primary);
+            line-height: 1.1;
+        }
+        .hero .stat .label {
+            font-size: 0.75rem;
+            color: var(--text-muted);
+            text-transform: uppercase;
+            letter-spacing: 0.6px;
+            margin-top: 4px;
+            font-weight: 600;
+        }
+        .hero .hero-actions {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 1rem;
+            margin-top: 2rem;
+        }
+        .hero .hero-video {
+            margin-top: 3rem;
+            margin-left: auto;
+            margin-right: auto;
+            max-width: 720px;
+            border-radius: 24px;
+            overflow: hidden;
+            box-shadow: 0 20px 80px rgba(0, 0, 0, 0.7), 0 0 60px rgba(237, 0, 142, 0.10);
+            border: 1px solid rgba(255, 255, 255, 0.04);
+            aspect-ratio: 16 / 9;
+            position: relative;
+            background: var(--dark-surface);
+        }
+        .hero .hero-video iframe {
+            position: absolute;
+            inset: 0;
+            width: 100%;
+            height: 100%;
+            border: none;
+            display: block;
+        }
+        @media (max-width: 768px) {
+            .hero { padding-top: 120px; padding-bottom: 40px; }
+            .hero h1 { font-size: 2.4rem; }
+            .hero p { font-size: 1.05rem; }
+            .hero .stat { padding: 1rem 1.2rem; min-width: 120px; }
         }
 
+        /* ===== BUTTONS ===== */
         .btn {
             display: inline-flex;
             align-items: center;
@@ -203,6 +219,7 @@
             border: none;
             cursor: pointer;
             text-transform: uppercase;
+            font-family: inherit;
         }
 
         .btn-primary {
@@ -211,9 +228,8 @@
             box-shadow: 0 4px 30px rgba(237, 0, 142, 0.35);
         }
         .btn-primary:hover {
-            background: var(--gold);
-            color: var(--dark);
-            box-shadow: 0 4px 40px rgba(237, 0, 142, 0.35);
+            background: var(--primary-dark);
+            box-shadow: 0 4px 40px rgba(237, 0, 142, 0.5);
             transform: translateY(-2px);
         }
 
@@ -223,78 +239,40 @@
             border: 1.5px solid rgba(255, 255, 255, 0.15);
         }
         .btn-outline:hover {
-            border-color: var(--gold);
-            color: var(--gold);
+            border-color: var(--primary);
+            color: var(--primary);
             background: rgba(237, 0, 142, 0.06);
             transform: translateY(-2px);
         }
 
-        .hero-stats {
-            display: flex;
-            gap: 48px;
-            margin-top: 48px;
-            padding-top: 32px;
-            border-top: 1px solid rgba(255, 255, 255, 0.06);
-        }
-        .hero-stats .stat {
-            display: flex;
-            flex-direction: column;
-        }
-        .hero-stats .stat-number {
-            font-family: 'Playfair Display', serif;
-            font-size: 2rem;
-            font-weight: 800;
-            color: #fff;
-        }
-        .hero-stats .stat-label {
-            font-size: 0.7rem;
-            text-transform: uppercase;
-            letter-spacing: 0.06em;
-            color: var(--text-muted);
-        }
-
-        /* Hero Poster (right side) */
-        .hero-poster {
-            position: relative;
-            display: flex;
-            justify-content: center;
+        .btn-back-work {
+            display: inline-flex;
             align-items: center;
+            gap: 10px;
+            padding: 12px 28px;
+            border-radius: 60px;
+            font-weight: 600;
+            font-size: 0.85rem;
+            letter-spacing: 0.3px;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            border: 2px solid var(--primary);
+            background: transparent;
+            color: var(--primary);
+            text-decoration: none;
+            cursor: pointer;
+            text-transform: uppercase;
         }
-
-        .hero-poster .poster-frame {
-            position: relative;
-            width: 100%;
-            max-width: 520px;
-            aspect-ratio: 16 / 9;
-            border-radius: 24px;
-            overflow: hidden;
-            box-shadow: 0 20px 80px rgba(0, 0, 0, 0.7), 0 0 60px rgba(237, 0, 142, 0.10);
-            background: var(--dark-surface);
-            border: 1px solid rgba(255, 255, 255, 0.04);
+        .btn-back-work:hover {
+            background: var(--primary);
+            color: #ffffff;
+            transform: translateY(-3px);
+            box-shadow: 0 10px 25px -6px rgba(237, 0, 142, 0.5);
         }
-
-        .hero-poster .poster-frame iframe {
-            width: 100%;
-            height: 100%;
-            border: none;
-            display: block;
+        .btn-back-work i {
+            font-size: 0.9rem;
+            transition: transform 0.3s ease;
         }
-
-        .hero-poster .glow-ring {
-            position: absolute;
-            inset: -4px;
-            border-radius: 28px;
-            background: conic-gradient(from 0deg, transparent, var(--primary), var(--gold), transparent, var(--primary));
-            opacity: 0.2;
-            z-index: -1;
-            animation: spinGlow 12s linear infinite;
-        }
-
-        @keyframes spinGlow {
-            to {
-                transform: rotate(360deg);
-            }
-        }
+        .btn-back-work:hover i { transform: translateX(-4px); }
 
         /* ===== SECTION: MOVIE DETAILS ===== */
         .movie-details {
@@ -310,9 +288,7 @@
             gap: 40px;
         }
 
-        .movie-details .detail-item {
-            text-align: center;
-        }
+        .movie-details .detail-item { text-align: center; }
         .movie-details .detail-item .icon {
             font-size: 1.8rem;
             color: var(--primary);
@@ -350,7 +326,7 @@
             font-size: 2.6rem;
             font-weight: 800;
             margin-bottom: 20px;
-            background: linear-gradient(135deg, #fff, var(--gold-light));
+            background: linear-gradient(135deg, #fff, var(--primary));
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
@@ -368,10 +344,7 @@
             font-weight: 500;
         }
 
-        .about-movie .about-image {
-            display: flex;
-            justify-content: center;
-        }
+        .about-movie .about-image { display: flex; justify-content: center; }
 
         .about-movie .about-image .img-placeholder {
             width: 100%;
@@ -414,9 +387,7 @@
             color: #fff;
             letter-spacing: 0.04em;
         }
-        .social-section .social-title span {
-            color: var(--gold);
-        }
+        .social-section .social-title span { color: var(--primary); }
 
         .social-icons {
             display: flex;
@@ -445,11 +416,6 @@
             transform: translateY(-4px) scale(1.05);
             box-shadow: 0 8px 30px rgba(237, 0, 142, 0.30);
             border-color: var(--primary);
-        }
-
-        .social-icons a:hover .fab,
-        .social-icons a:hover .fa-brands {
-            color: #fff;
         }
 
         /* ===== FOOTER ===== */
@@ -482,9 +448,7 @@
             line-height: 1.8;
             transition: color 0.25s;
         }
-        .footer .col a:hover {
-            color: var(--gold);
-        }
+        .footer .col a:hover { color: var(--primary); }
 
         .footer .col .phone {
             color: #fff;
@@ -505,12 +469,8 @@
             font-size: 0.75rem;
             color: var(--text-muted);
         }
-        .footer-bottom .copy a {
-            color: var(--text-muted);
-        }
-        .footer-bottom .copy a:hover {
-            color: var(--gold);
-        }
+        .footer-bottom .copy a { color: var(--text-muted); }
+        .footer-bottom .copy a:hover { color: var(--primary); }
 
         .footer-bottom .footer-social {
             display: flex;
@@ -522,73 +482,85 @@
             transition: color 0.25s, transform 0.25s;
         }
         .footer-bottom .footer-social a:hover {
-            color: var(--gold);
+            color: var(--primary);
             transform: translateY(-2px);
         }
 
+        /* ===== BACK TO TOP ===== */
+        .scroll-top-btn {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            width: 54px;
+            height: 54px;
+            border-radius: 50%;
+            background: var(--primary);
+            color: #ffffff;
+            border: none;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 1500;
+            box-shadow: 0 8px 28px rgba(237, 0, 142, 0.45);
+            transition: opacity 0.35s ease, visibility 0.35s ease,
+                        transform 0.35s ease, background 0.25s ease,
+                        box-shadow 0.25s ease;
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(24px) scale(0.9);
+            font-size: 1.25rem;
+        }
+        .scroll-top-btn.visible {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0) scale(1);
+        }
+        .scroll-top-btn:hover {
+            background: var(--primary-dark);
+            transform: translateY(-5px) scale(1.05);
+            box-shadow: 0 14px 40px rgba(237, 0, 142, 0.6);
+        }
+        .scroll-top-btn:active { transform: translateY(-2px) scale(0.98); }
+        .scroll-top-btn::before {
+            content: '';
+            position: absolute;
+            inset: -6px;
+            border-radius: 50%;
+            border: 2px solid rgba(237, 0, 142, 0.35);
+            animation: pulseRing 2.4s ease-out infinite;
+            pointer-events: none;
+        }
+        @keyframes pulseRing {
+            0% { transform: scale(1); opacity: 0.8; }
+            70% { transform: scale(1.25); opacity: 0; }
+            100% { transform: scale(1.25); opacity: 0; }
+        }
+        .scroll-top-btn:hover::before { animation-play-state: paused; opacity: 0; }
+
         /* ===== RESPONSIVE ===== */
         @media (max-width: 1024px) {
-            .hero .container {
-                grid-template-columns: 1fr;
-                text-align: center;
-            }
-            .hero-content {
-                align-items: center;
-            }
-            .hero-subtitle {
-                max-width: 100%;
-            }
-            .hero-actions {
-                justify-content: center;
-            }
-            .hero-stats {
-                justify-content: center;
-            }
-            .hero-poster .poster-frame {
-                max-width: 100%;
-            }
-
-            .about-movie .container {
-                grid-template-columns: 1fr;
-                text-align: center;
-            }
-            .about-movie .about-text h2 {
-                font-size: 2.2rem;
-            }
-            .about-movie .about-image .img-placeholder {
-                max-width: 100%;
-            }
+            .about-movie .container { grid-template-columns: 1fr; text-align: center; }
+            .about-movie .about-text h2 { font-size: 2.2rem; }
+            .about-movie .about-image .img-placeholder { max-width: 100%; }
         }
 
         @media (max-width: 768px) {
-            .movie-details .grid {
-                grid-template-columns: 1fr 1fr;
-                gap: 24px;
-            }
-
-            .footer .grid {
-                grid-template-columns: 1fr 1fr;
-            }
-            .footer-bottom {
-                flex-direction: column;
-                text-align: center;
+            body { padding-top: 70px; }
+            .movie-details .grid { grid-template-columns: 1fr 1fr; gap: 24px; }
+            .footer .grid { grid-template-columns: 1fr 1fr; }
+            .footer-bottom { flex-direction: column; text-align: center; }
+            .scroll-top-btn {
+                bottom: 20px; right: 20px;
+                width: 48px; height: 48px; font-size: 1.1rem;
             }
         }
 
         @media (max-width: 480px) {
-            .movie-details .grid {
-                grid-template-columns: 1fr;
-            }
-            .footer .grid {
-                grid-template-columns: 1fr;
-            }
-            .hero-poster .poster-frame {
-                border-radius: 16px;
-            }
-            .btn {
-                padding: 12px 24px;
-                font-size: 0.8rem;
-            }
+            .movie-details .grid { grid-template-columns: 1fr; }
+            .footer .grid { grid-template-columns: 1fr; }
+            .btn { padding: 12px 24px; font-size: 0.8rem; }
+            .btn-back-work { padding: 10px 22px; font-size: 0.8rem; }
         }
 
         /* ===== ANIMATIONS ===== */
@@ -597,42 +569,26 @@
             transform: translateY(30px);
             animation: fadeUp 0.8s ease forwards;
         }
-        .fade-up.delay-1 {
-            animation-delay: 0.1s;
-        }
-        .fade-up.delay-2 {
-            animation-delay: 0.2s;
-        }
-        .fade-up.delay-3 {
-            animation-delay: 0.3s;
-        }
-        .fade-up.delay-4 {
-            animation-delay: 0.4s;
-        }
+        .fade-up.delay-1 { animation-delay: 0.1s; }
+        .fade-up.delay-2 { animation-delay: 0.2s; }
+        .fade-up.delay-3 { animation-delay: 0.3s; }
+        .fade-up.delay-4 { animation-delay: 0.4s; }
 
         @keyframes fadeUp {
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
+            to { opacity: 1; transform: translateY(0); }
         }
 
-        /* scroll reveal */
         .reveal {
             opacity: 0;
             transform: translateY(40px);
             transition: opacity 0.8s ease, transform 0.8s ease;
         }
-        .reveal.visible {
-            opacity: 1;
-            transform: translateY(0);
-        }
+        .reveal.visible { opacity: 1; transform: translateY(0); }
 
-        /* ── NEW HEADER STYLES ── */
+        /* ── HEADER STYLES ── */
         .header-glass {
             position: fixed;
-            top: 0;
-            left: 0;
+            top: 0; left: 0;
             width: 100%;
             z-index: 1030;
             background: rgba(255, 255, 255, 0.85);
@@ -663,8 +619,7 @@
 
         .dropdown-menu-custom {
             position: absolute;
-            top: 100%;
-            left: 0;
+            top: 100%; left: 0;
             margin-top: 0.5rem;
             width: 200px;
             background: white;
@@ -694,12 +649,8 @@
             background: #fdf2f8;
             color: #e6007e;
         }
-        .dropdown-menu-custom a:first-child {
-            border-radius: 0.75rem 0.75rem 0 0;
-        }
-        .dropdown-menu-custom a:last-child {
-            border-radius: 0 0 0.75rem 0.75rem;
-        }
+        .dropdown-menu-custom a:first-child { border-radius: 0.75rem 0.75rem 0 0; }
+        .dropdown-menu-custom a:last-child { border-radius: 0 0 0.75rem 0.75rem; }
 
         .btn-primary-pink {
             display: inline-flex;
@@ -720,14 +671,10 @@
             color: white;
         }
 
-        /* Mobile menu panel */
         .mobile-menu-panel {
             display: none;
             position: fixed;
-            top: 80px;
-            left: 0;
-            right: 0;
-            bottom: 0;
+            top: 80px; left: 0; right: 0; bottom: 0;
             background: rgba(255, 255, 255, 0.98);
             backdrop-filter: blur(12px);
             padding: 1.5rem;
@@ -735,9 +682,7 @@
             z-index: 1020;
             border-top: 1px solid rgba(0, 0, 0, 0.04);
         }
-        .mobile-menu-panel.open {
-            display: block;
-        }
+        .mobile-menu-panel.open { display: block; }
         .mobile-menu-panel a {
             display: block;
             padding: 0.75rem 1rem;
@@ -757,9 +702,7 @@
             color: #1a1a2e;
             cursor: default;
         }
-        .mobile-menu-panel .mobile-dropdown-items {
-            padding-left: 1rem;
-        }
+        .mobile-menu-panel .mobile-dropdown-items { padding-left: 1rem; }
         .mobile-menu-panel .mobile-dropdown-items a {
             font-weight: 400;
             font-size: 0.95rem;
@@ -768,20 +711,20 @@
 </head>
 <body>
 
-    <!-- ===== NEW HEADER ===== -->
+    <!-- ===== HEADER ===== -->
     <header class="header-glass" id="mainHeader">
         <div class="max-w-7xl mx-auto px-4 md:px-6">
             <div class="flex justify-between items-center h-20">
 
                 <!-- Logo -->
                 <a href="index.html" class="flex items-center gap-3 group">
-                    <img src="obrian-transparent-logo-4461219.webp" alt="O'Brian Group" class="h-10 w-auto" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22%3E%3Crect width=%22100%22 height=%22100%22 fill=%22%23ed008e%22/%3E%3Ctext x=%2250%22 y=%2268%22 font-size=%2248%22 text-anchor=%22middle%22 fill=%22white%22 font-weight=%22bold%22 font-family=%22Inter%22%3EO%3C/text%3E%3C/svg%3E'">
+                    <img src="obrian-transparent-logo-4461219.webp" alt="O'Brian Group" class="h-10 w-auto" loading="eager" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22%3E%3Crect width=%22100%22 height=%22100%22 fill=%22%23ed008e%22/%3E%3Ctext x=%2250%22 y=%2268%22 font-size=%2248%22 text-anchor=%22middle%22 fill=%22white%22 font-weight=%22bold%22 font-family=%22Inter%22%3EO%3C/text%3E%3C/svg%3E'">
                     <span class="font-black text-xl text-[#231e1f] tracking-tight hidden sm:inline"><span class="text-[#ed018e]"></span></span>
                 </a>
 
                 <!-- Desktop Nav -->
                 <div class="hidden lg:flex items-center gap-0.5">
-                    <a href="Home.html" class="nav-link">Home</a>
+                    <a href="index.html" class="nav-link">Home</a>
                     <a href="About.html" class="nav-link">About</a>
                     <a href="Our_Work.html" class="nav-link">Our Work</a>
                     <a href="Client_Experience.html" class="nav-link">Client Experience</a>
@@ -862,45 +805,47 @@
         <a href="Contact_Us.html" class="magnetic-btn" style="display:inline-flex; margin-top:1rem; background:linear-gradient(135deg,#e6007e,#ff1493); color:#fff; padding:0.6rem 1.5rem; border-radius:9999px; font-weight:700;">Contact Us</a>
     </div>
 
-    <!-- ===== HERO ===== -->
+    <!-- ===== BACK TO TOP BUTTON ===== -->
+    <button class="scroll-top-btn" id="scrollTopBtn" aria-label="Back to top" title="Back to top">
+        <i class="fas fa-chevron-up"></i>
+    </button>
+
+    <!-- ===== HERO (Sunbet GTI style, dark theme) ===== -->
     <section class="hero" id="hero">
         <div class="container">
-            <div class="hero-content fade-up">
-                <div class="hero-badge">
-                    <i class="fas fa-star"></i> Case Study
+            <span class="hero-badge"><i class="fas fa-star"></i> Case Study · Cinematic</span>
+            <h1>O'Brian <span class="highlight">Movie</span></h1>
+            <p>
+                A Dive into Our Work Triumphs — <span class="highlight">Case Studies in Excellence</span>.
+                A cinematic triumph from concept to final cut.
+            </p>
+
+            <div class="hero-stats">
+                <div class="stat">
+                    <div class="number">4K</div>
+                    <div class="label">Resolution</div>
                 </div>
-                <h1 class="hero-title">O'Brian Movie</h1>
-                <p class="hero-subtitle">
-                    A Dive into Our Work Triumphs &bull; <strong>Case Studies in Excellence</strong>
-                </p>
-                <div class="hero-actions">
-                    <a href="#video" class="btn btn-primary">
-                        <i class="fas fa-play"></i> Watch Trailer
-                    </a>
-                    <a href="Our_Work.html" class="btn btn-outline">
-                        <i class="fas fa-arrow-left"></i> Back to Work
-                    </a>
+                <div class="stat">
+                    <div class="number">12</div>
+                    <div class="label">Awards</div>
                 </div>
-                <div class="hero-stats">
-                    <div class="stat">
-                        <span class="stat-number">4K</span>
-                        <span class="stat-label">Resolution</span>
-                    </div>
-                    <div class="stat">
-                        <span class="stat-number">12</span>
-                        <span class="stat-label">Awards</span>
-                    </div>
-                    <div class="stat">
-                        <span class="stat-number">100+</span>
-                        <span class="stat-label">Screens</span>
-                    </div>
+                <div class="stat">
+                    <div class="number">100+</div>
+                    <div class="label">Screens</div>
                 </div>
             </div>
 
-            <div class="hero-poster fade-up delay-2">
-                <div class="glow-ring"></div>
-                <div class="poster-frame" id="video">
-                    <iframe
+            <div class="hero-actions">
+                <a href="#video" class="btn btn-primary">
+                    <i class="fas fa-play"></i> Watch Trailer
+                </a>
+                <a href="Our_Work.html" class="btn-back-work">
+                    <i class="fas fa-arrow-left"></i> Back to Our Work
+                </a>
+            </div>
+
+            <div class="hero-video" id="video">
+                <iframe
                     src="https://www.youtube.com/embed/QCMPE24FvgM?rel=0&mute=1&showinfo=0&autoplay=1&loop=1&playlist=QCMPE24FvgM"
                     allow="autoplay; encrypted-media"
                     allowfullscreen
@@ -908,137 +853,84 @@
                 ></iframe>
             </div>
         </div>
-    </div>
-</section>
+    </section>
 
-<!-- ===== MOVIE DETAILS ===== -->
-<section class="movie-details reveal">
-    <div class="container">
-        <div class="grid">
-            <div class="detail-item">
-                <div class="icon"><i class="fas fa-film"></i></div>
-                <div class="label">Genre</div>
-                <div class="value">Drama / Thriller</div>
-            </div>
-            <div class="detail-item">
-                <div class="icon"><i class="fas fa-user-tie"></i></div>
-                <div class="label">Director</div>
-                <div class="value">O'Brian Creative</div>
-            </div>
-            <div class="detail-item">
-                <div class="icon"><i class="fas fa-users"></i></div>
-                <div class="label">Cast</div>
-                <div class="value">Ensemble Team</div>
-            </div>
-            <div class="detail-item">
-                <div class="icon"><i class="fas fa-calendar-alt"></i></div>
-                <div class="label">Release</div>
-                <div class="value">2026</div>
-            </div>
-            <div class="detail-item">
-                <div class="icon"><i class="fas fa-clock"></i></div>
-                <div class="label">Duration</div>
-                <div class="value">1h 48m</div>
-            </div>
-        </div>
-    </div>
-</section>
-
-<!-- ===== ABOUT THE MOVIE ===== -->
-<section class="about-movie reveal">
-    <div class="container">
-        <div class="about-text">
-            <h2>Behind the Lens</h2>
-            <p>
-                <span class="highlight">O'Brian Movie</span> is more than a film — it's a
-                testament to creative excellence. Crafted by the visionary team at
-                O'Brian Group, this project pushes the boundaries of storytelling,
-                visual design, and emotional resonance.
-            </p>
-            <p>
-                From concept to final cut, every frame was meticulously shaped to
-                deliver an unforgettable experience. The result is a cinematic
-                triumph that has captivated audiences across the globe, earning
-                critical acclaim and a loyal following.
-            </p>
-            <p>
-                <span class="highlight">"A masterpiece of modern cinema."</span> —
-                Industry Review
-            </p>
-            <a href="#video" class="btn btn-primary" style="margin-top: 16px;">
-                <i class="fas fa-play"></i> Watch Now
-            </a>
-        </div>
-        <div class="about-image">
-            <div class="img-placeholder">
-                <div>
-                    <i class="fas fa-camera"></i>
-                    <p>Behind the scenes<br /><span style="font-size:0.75rem;color:var(--text-muted);">Production stills</span></p>
+    <!-- ===== MOVIE DETAILS ===== -->
+    <section class="movie-details reveal">
+        <div class="container">
+            <div class="grid">
+                <div class="detail-item">
+                    <div class="icon"><i class="fas fa-film"></i></div>
+                    <div class="label">Genre</div>
+                    <div class="value">Drama / Thriller</div>
+                </div>
+                <div class="detail-item">
+                    <div class="icon"><i class="fas fa-user-tie"></i></div>
+                    <div class="label">Director</div>
+                    <div class="value">O'Brian Creative</div>
+                </div>
+                <div class="detail-item">
+                    <div class="icon"><i class="fas fa-users"></i></div>
+                    <div class="label">Cast</div>
+                    <div class="value">Ensemble Team</div>
+                </div>
+                <div class="detail-item">
+                    <div class="icon"><i class="fas fa-calendar-alt"></i></div>
+                    <div class="label">Release</div>
+                    <div class="value">2026</div>
+                </div>
+                <div class="detail-item">
+                    <div class="icon"><i class="fas fa-clock"></i></div>
+                    <div class="label">Duration</div>
+                    <div class="value">1h 48m</div>
                 </div>
             </div>
         </div>
-    </div>
-</section>
+    </section>
 
-<!-- ===== SOCIAL ===== -->
-<section class="social-section reveal">
-    <div class="container">
-        <div class="social-title">
-            Follow <span>O'Brian</span> Digital
-        </div>
-        <div class="social-icons">
-            <a href="https://www.facebook.com/profile.php?id=100094029616085" target="_blank" aria-label="Facebook">
-                <i class="fab fa-facebook-f"></i>
-            </a>
-            <a href="https://x.com/ObrianSA" target="_blank" aria-label="Twitter">
-                <i class="fa-brands fa-twitter"></i>
-            </a>
-            <a href="https://www.instagram.com/obriandigital/" target="_blank" aria-label="Instagram">
-                <i class="fab fa-instagram"></i>
-            </a>
-            <a href="https://za.pinterest.com/OBRIANDIGITAL/" target="_blank" aria-label="Pinterest">
-                <i class="fab fa-pinterest-p"></i>
-            </a>
-            <a href="https://za.linkedin.com/company/o-brian-digital" target="_blank" aria-label="LinkedIn">
-                <i class="fab fa-linkedin-in"></i>
-            </a>
-        </div>
-    </div>
-</section>
-
-<!-- ===== FOOTER ===== -->
-<footer class="footer">
-    <div class="container">
-        <div class="grid">
-            <div class="col">
-                <h5>Johannesburg</h5>
-                <p>2nd Floor Trumpet On Keyes,<br />21 Keyes Avenue, Rosebank,<br />Johannesburg, 2196</p>
-                <p class="phone"><i class="fas fa-phone" style="margin-right:8px;color:var(--primary);"></i> +27 10 035 5218</p>
+    <!-- ===== ABOUT THE MOVIE ===== -->
+    <section class="about-movie reveal">
+        <div class="container">
+            <div class="about-text">
+                <h2>Behind the Lens</h2>
+                <p>
+                    <span class="highlight">O'Brian Movie</span> is more than a film — it's a
+                    testament to creative excellence. Crafted by the visionary team at
+                    O'Brian Group, this project pushes the boundaries of storytelling,
+                    visual design, and emotional resonance.
+                </p>
+                <p>
+                    From concept to final cut, every frame was meticulously shaped to
+                    deliver an unforgettable experience. The result is a cinematic
+                    triumph that has captivated audiences across the globe, earning
+                    critical acclaim and a loyal following.
+                </p>
+                <p>
+                    <span class="highlight">"A masterpiece of modern cinema."</span> —
+                    Industry Review
+                </p>
+                <a href="#video" class="btn btn-primary" style="margin-top: 16px;">
+                    <i class="fas fa-play"></i> Watch Now
+                </a>
             </div>
-            <div class="col">
-                <h5>Durban Office</h5>
-                <p>2 Ncondo Place, Ridgeside Dr,<br />Umhlanga Ridge, Durban, 4319</p>
-                <p class="phone"><i class="fas fa-phone" style="margin-right:8px;color:var(--primary);"></i> +27 83 325 9532</p>
-            </div>
-            <div class="col">
-                <h5>Email</h5>
-                <p><a href="mailto:info@obriangroup.com">info@obriangroup.com</a></p>
-            </div>
-            <div class="col">
-                <h5>About</h5>
-                <p><a href="page8.html">History</a></p>
-                <p><a href="page52.html">Clients</a></p>
-                <p><a href="#">Teams</a></p>
-                <p><a href="#">Brand</a></p>
-                <p><a href="#">Terms</a></p>
+            <div class="about-image">
+                <div class="img-placeholder">
+                    <div>
+                        <i class="fas fa-camera"></i>
+                        <p>Behind the scenes<br /><span style="font-size:0.75rem;color:var(--text-muted);">Production stills</span></p>
+                    </div>
+                </div>
             </div>
         </div>
+    </section>
 
-        <div class="footer-bottom">
-            <div class="copy">
-                &copy; 2030 O'Brian Group &mdash; All Rights Reserved
+    <!-- ===== SOCIAL ===== -->
+    <section class="social-section reveal">
+        <div class="container">
+            <div class="social-title">
+                Follow <span>O'Brian</span> Digital
             </div>
-            <div class="footer-social">
+            <div class="social-icons">
                 <a href="https://www.facebook.com/profile.php?id=100094029616085" target="_blank" aria-label="Facebook">
                     <i class="fab fa-facebook-f"></i>
                 </a>
@@ -1048,71 +940,147 @@
                 <a href="https://www.instagram.com/obriandigital/" target="_blank" aria-label="Instagram">
                     <i class="fab fa-instagram"></i>
                 </a>
+                <a href="https://za.pinterest.com/OBRIANDIGITAL/" target="_blank" aria-label="Pinterest">
+                    <i class="fab fa-pinterest-p"></i>
+                </a>
                 <a href="https://za.linkedin.com/company/o-brian-digital" target="_blank" aria-label="LinkedIn">
                     <i class="fab fa-linkedin-in"></i>
                 </a>
             </div>
         </div>
-    </div>
-</footer>
+    </section>
 
-<!-- ===== SCRIPTS ===== -->
-<script>
-    // ---- Mobile menu toggle (updated for new header) ----
-    const menuBtn = document.getElementById('menuBtn');
-    const mobilePanel = document.getElementById('mobileMenuPanel');
+    <!-- ===== FOOTER ===== -->
+    <footer class="footer">
+        <div class="container">
+            <div class="grid">
+                <div class="col">
+                    <h5>Johannesburg</h5>
+                    <p>2nd Floor Trumpet On Keyes,<br />21 Keyes Avenue, Rosebank,<br />Johannesburg, 2196</p>
+                    <p class="phone"><i class="fas fa-phone" style="margin-right:8px;color:var(--primary);"></i> +27 10 035 5218</p>
+                </div>
+                <div class="col">
+                    <h5>Durban Office</h5>
+                    <p>2 Ncondo Place, Ridgeside Dr,<br />Umhlanga Ridge, Durban, 4319</p>
+                    <p class="phone"><i class="fas fa-phone" style="margin-right:8px;color:var(--primary);"></i> +27 83 325 9532</p>
+                </div>
+                <div class="col">
+                    <h5>Email</h5>
+                    <p><a href="mailto:info@obriangroup.com">info@obriangroup.com</a></p>
+                </div>
+                <div class="col">
+                    <h5>About</h5>
+                    <p><a href="About.html">History</a></p>
+                    <p><a href="Client_Experience.html">Clients</a></p>
+                    <p><a href="#">Teams</a></p>
+                    <p><a href="#">Brand</a></p>
+                    <p><a href="Terms.html">Terms</a></p>
+                </div>
+            </div>
 
-    if (menuBtn && mobilePanel) {
-        menuBtn.addEventListener('click', () => {
-            menuBtn.classList.toggle('open');
-            mobilePanel.classList.toggle('open');
-            document.body.style.overflow = mobilePanel.classList.contains('open') ? 'hidden' : '';
-        });
+            <div class="footer-bottom">
+                <div class="copy">
+                    &copy; 2030 O'Brian Group &mdash; All Rights Reserved
+                </div>
+                <div class="footer-social">
+                    <a href="https://www.facebook.com/profile.php?id=100094029616085" target="_blank" aria-label="Facebook">
+                        <i class="fab fa-facebook-f"></i>
+                    </a>
+                    <a href="https://x.com/ObrianSA" target="_blank" aria-label="Twitter">
+                        <i class="fa-brands fa-twitter"></i>
+                    </a>
+                    <a href="https://www.instagram.com/obriandigital/" target="_blank" aria-label="Instagram">
+                        <i class="fab fa-instagram"></i>
+                    </a>
+                    <a href="https://za.linkedin.com/company/o-brian-digital" target="_blank" aria-label="LinkedIn">
+                        <i class="fab fa-linkedin-in"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </footer>
 
-        mobilePanel.querySelectorAll('a').forEach(link => {
-            link.addEventListener('click', () => {
-                menuBtn.classList.remove('open');
-                mobilePanel.classList.remove('open');
-                document.body.style.overflow = '';
+    <!-- ===== SCRIPTS ===== -->
+    <script>
+        (function() {
+            'use strict';
+
+            // ---- Mobile menu toggle ----
+            const menuBtn = document.getElementById('menuBtn');
+            const mobilePanel = document.getElementById('mobileMenuPanel');
+
+            if (menuBtn && mobilePanel) {
+                menuBtn.addEventListener('click', () => {
+                    menuBtn.classList.toggle('open');
+                    mobilePanel.classList.toggle('open');
+                    document.body.style.overflow = mobilePanel.classList.contains('open') ? 'hidden' : '';
+                });
+
+                mobilePanel.querySelectorAll('a').forEach(link => {
+                    link.addEventListener('click', () => {
+                        menuBtn.classList.remove('open');
+                        mobilePanel.classList.remove('open');
+                        document.body.style.overflow = '';
+                    });
+                });
+            }
+
+            // ---- Header scroll effect + back-to-top visibility ----
+            const header = document.getElementById('mainHeader');
+            const scrollTopBtn = document.getElementById('scrollTopBtn');
+            let scrollTicking = false;
+
+            function handleScroll() {
+                header.classList.toggle('scrolled', window.scrollY > 20);
+                if (window.scrollY > 300) {
+                    scrollTopBtn.classList.add('visible');
+                } else {
+                    scrollTopBtn.classList.remove('visible');
+                }
+                scrollTicking = false;
+            }
+
+            window.addEventListener('scroll', function() {
+                if (!scrollTicking) {
+                    window.requestAnimationFrame(handleScroll);
+                    scrollTicking = true;
+                }
+            }, { passive: true });
+
+            handleScroll();
+
+            // ---- Back to top ----
+            scrollTopBtn.addEventListener('click', function() {
+                window.scrollTo({ top: 0, behavior: 'smooth' });
             });
-        });
-    }
 
-    // ---- Header scroll effect ----
-    const header = document.getElementById('mainHeader');
-    window.addEventListener('scroll', () => {
-        if (window.scrollY > 20) {
-            header.classList.add('scrolled');
-        } else {
-            header.classList.remove('scrolled');
-        }
-    });
+            // ---- Scroll reveal (Intersection Observer) ----
+            const reveals = document.querySelectorAll('.reveal');
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('visible');
+                    }
+                });
+            }, { threshold: 0.15, rootMargin: '0px 0px -40px 0px' });
 
-    // ---- Scroll reveal (Intersection Observer) ----
-    const reveals = document.querySelectorAll('.reveal');
-    const observer = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                entry.target.classList.add('visible');
-            }
-        });
-    }, { threshold: 0.15, rootMargin: '0px 0px -40px 0px' });
+            reveals.forEach(el => observer.observe(el));
 
-    reveals.forEach(el => observer.observe(el));
+            // ---- Smooth anchor scroll ----
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function(e) {
+                    const targetId = this.getAttribute('href');
+                    if (targetId === '#') return;
+                    const target = document.querySelector(targetId);
+                    if (target) {
+                        e.preventDefault();
+                        target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                    }
+                });
+            });
 
-    // ---- Smooth anchor scroll ----
-    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-        anchor.addEventListener('click', function(e) {
-            const targetId = this.getAttribute('href');
-            if (targetId === '#') return;
-            const target = document.querySelector(targetId);
-            if (target) {
-                e.preventDefault();
-                target.scrollIntoView({ behavior: 'smooth', block: 'start' });
-            }
-        });
-    });
-</script>
+        })();
+    </script>
 
 </body>
 </html>
