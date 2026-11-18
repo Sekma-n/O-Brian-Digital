@@ -5,15 +5,15 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Artmosphere Art Fair – Our Work</title>
     <meta name="description" content="A Dive into Our Work Triumphs – Case Studies in Excellence" />
-    <link rel="shortcut icon" href="assets/images/obrian-transparent-logo-4461219.webp" type="image/x-icon" />
+    <link rel="shortcut icon" href="obrian-transparent-logo-4461219.webp" type="image/x-icon" />
 
     <!-- Open Graph / Social -->
     <meta property="og:title" content="artmosphere art fair" />
     <meta property="og:description" content="A Dive into Our Work Triumphs – Case Studies in Excellence" />
-    <meta property="og:image" content="assets/images/page34-meta.jpeg" />
+    <meta property="og:image" content="page34-meta.jpeg" />
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:title" content="artmosphere art fair" />
-    <meta name="twitter:image:src" content="assets/images/page34-meta.jpeg" />
+    <meta name="twitter:image:src" content="page34-meta.jpeg" />
 
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -218,7 +218,7 @@
             transform: translateX(-4px);
         }
 
-        /* ===== BACK TO TOP BUTTON (copied from Home page) ===== */
+        /* ===== BACK TO TOP BUTTON ===== */
         .back-to-top {
             position: fixed;
             bottom: 32px;
@@ -262,7 +262,6 @@
             outline-offset: 3px;
         }
 
-        /* scroll-progress ring */
         .btb-ring {
             position: absolute;
             inset: 0;
@@ -281,12 +280,11 @@
         .btb-ring-progress {
             stroke: #ffffff;
             stroke-linecap: round;
-            stroke-dasharray: 131.95;   /* 2π × r(21) */
+            stroke-dasharray: 131.95;
             stroke-dashoffset: 131.95;
             transition: stroke-dashoffset 0.1s linear;
         }
 
-        /* arrow */
         .btb-arrow {
             position: relative;
             width: 22px;
@@ -324,60 +322,130 @@
             box-shadow: 0 20px 40px rgba(35, 30, 31, 0.1);
         }
 
-        /* ── Hero ── */
+        /* ===== HERO (Sunbet GTI style) ===== */
         .hero {
-            min-height: 70vh;
-            display: flex;
-            align-items: center;
-            padding: 8rem 0 4rem;
-            background: var(--gray-light);
-            border-bottom: 1px solid var(--border);
+            padding-top: 140px;
+            padding-bottom: 60px;
+            background: radial-gradient(circle at 90% 20%, rgba(237, 1, 142, 0.04) 0%, #ffffff 90%);
         }
-
-        .hero-content {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 4rem;
-            align-items: center;
+        .hero .container {
+            max-width: 840px;
+            margin: 0 auto;
+            padding: 24px 14px;
+            text-align: center;
         }
-
-        .hero-text h1 {
-            font-size: clamp(3rem, 7vw, 5rem);
-            line-height: 1.1;
-            letter-spacing: -2px;
+        .hero .hero-badge {
+            background: rgba(237, 1, 142, 0.06);
+            display: inline-block;
+            padding: 6px 18px;
+            border-radius: 40px;
+            font-weight: 600;
+            font-size: 0.85rem;
+            margin-bottom: 24px;
+            color: var(--pink);
+            border: 1px solid rgba(237, 1, 142, 0.12);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+        .hero .hero-badge i {
+            color: var(--pink);
+            margin-right: 6px;
+        }
+        .hero h1 {
+            font-size: 3.8rem;
+            margin-bottom: 24px;
             color: var(--dark);
+            font-weight: 800;
+            line-height: 1.15;
+            letter-spacing: -0.02em;
         }
-
-        .hero-text .accent {
+        .hero h1 .highlight {
             color: var(--pink);
         }
-
-        .hero-text .subtitle {
-            font-size: 1.3rem;
+        .hero p {
+            font-size: 1.2rem;
             color: var(--gray-text);
-            margin: 2rem 0;
-            max-width: 450px;
+            max-width: 700px;
+            margin: 0 auto 32px;
+            line-height: 1.6;
         }
-
-        .hero-actions {
+        .hero p .highlight {
+            color: var(--pink);
+            font-weight: 500;
+        }
+        .hero .hero-stats {
             display: flex;
             flex-wrap: wrap;
+            justify-content: center;
             gap: 1rem;
-            align-items: center;
+            margin-top: 2rem;
         }
-
-        .hero-visual .hero-image {
-            width: 100%;
-            border-radius: 2rem;
+        .hero .stat {
+            background: #ffffff;
+            border: 1px solid rgba(0, 0, 0, 0.06);
+            border-radius: 16px;
+            padding: 1.2rem 1.6rem;
+            min-width: 140px;
+            text-align: center;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.05);
+        }
+        .hero .stat .number {
+            font-size: 2rem;
+            font-weight: 800;
+            color: var(--pink);
+            line-height: 1.1;
+        }
+        .hero .stat .label {
+            font-size: 0.75rem;
+            color: #6b7280;
+            text-transform: uppercase;
+            letter-spacing: 0.6px;
+            margin-top: 4px;
+            font-weight: 600;
+        }
+        .hero .hero-actions {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 1rem;
+            margin-top: 2rem;
+        }
+        .hero .hero-showcase {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 16px;
+            margin-top: 3rem;
+        }
+        .hero .hero-showcase .card-img {
+            border-radius: 16px;
             overflow: hidden;
+            background: var(--gray-light);
             box-shadow: var(--shadow);
-            border: 1px solid var(--border);
+            cursor: pointer;
+            transition: all 0.3s ease;
+            aspect-ratio: 1 / 1;
         }
-
-        .hero-visual .hero-image img {
+        .hero .hero-showcase .card-img:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 20px 40px rgba(35, 30, 31, 0.15);
+        }
+        .hero .hero-showcase .card-img img {
             width: 100%;
+            height: 100%;
             object-fit: cover;
-            aspect-ratio: 4/3;
+            transition: transform 0.5s ease;
+        }
+        .hero .hero-showcase .card-img:hover img {
+            transform: scale(1.04);
+        }
+        @media (max-width: 900px) {
+            .hero .hero-showcase { grid-template-columns: repeat(2, 1fr); }
+        }
+        @media (max-width: 768px) {
+            .hero { padding-top: 120px; padding-bottom: 40px; }
+            .hero h1 { font-size: 2.4rem; }
+            .hero p { font-size: 1.05rem; }
+            .hero .stat { padding: 1rem 1.2rem; min-width: 120px; }
         }
 
         /* ── Gallery ── */
@@ -543,9 +611,6 @@
 
         /* ── responsive tweaks ── */
         @media (max-width: 992px) {
-            .hero-content {
-                grid-template-columns: 1fr;
-            }
             .gallery-grid {
                 grid-template-columns: repeat(2, 1fr);
             }
@@ -1038,7 +1103,7 @@
         <span>Back to Our Work</span>
     </a>
 
-    <!-- ===== BACK TO TOP BUTTON (copied from Home) ===== -->
+    <!-- ===== BACK TO TOP BUTTON ===== -->
     <button class="back-to-top" id="backToTopBtn" aria-label="Back to top" title="Back to top" aria-hidden="true" tabindex="-1">
         <svg class="btb-ring" viewBox="0 0 48 48" aria-hidden="true">
             <circle class="btb-ring-track" cx="24" cy="24" r="21"></circle>
@@ -1051,27 +1116,49 @@
         </svg>
     </button>
 
-    <!-- Hero Section -->
+    <!-- ===== HERO (Sunbet GTI style) ===== -->
     <section class="hero">
         <div class="container">
-            <div class="hero-content">
-                <div class="hero-text fade-up">
-                    <h1><span class="accent">Artmosphere</span><br />Art Fair</h1>
-                    <p class="subtitle">
-                        An immersive celebration of contemporary African art
-                        — <strong>Case Study in Excellence</strong>
-                    </p>
-                    <div class="hero-actions">
-                        <a href="#gallery" class="btn btn-primary">View Gallery</a>
-                        <a href="Our_Work.html" class="btn-back-work">
-                            <span class="arrow-icon">←</span> Back to Our Work
-                        </a>
-                    </div>
+            <span class="hero-badge"><i class="fas fa-star"></i> Case Study · Art &amp; Culture</span>
+            <h1><span class="highlight">Artmosphere</span> Art Fair</h1>
+            <p>
+                An immersive celebration of contemporary African art — a <span class="highlight">case study in excellence</span> that brought artists and audiences together.
+            </p>
+
+            <div class="hero-stats">
+                <div class="stat">
+                    <div class="number">8+</div>
+                    <div class="label">Artworks Featured</div>
                 </div>
-                <div class="hero-visual fade-up">
-                    <div class="hero-image">
-                        <img src="client-logos-58.jpg" alt="Artmosphere Art Fair showcase" />
-                    </div>
+                <div class="stat">
+                    <div class="number">1</div>
+                    <div class="label">Art Fair Event</div>
+                </div>
+                <div class="stat">
+                    <div class="number">100%</div>
+                    <div class="label">Immersive Experience</div>
+                </div>
+            </div>
+
+            <div class="hero-actions">
+                <a href="#gallery" class="btn btn-primary">View Gallery</a>
+                <a href="Our_Work.html" class="btn-back-work">
+                    <span class="arrow-icon">←</span> Back to Our Work
+                </a>
+            </div>
+
+            <div class="hero-showcase">
+                <div class="card-img" data-index="0">
+                    <img src="75204633-152789486090021-7668615462208405504-n.png" alt="Artmosphere artwork 1" loading="eager">
+                </div>
+                <div class="card-img" data-index="1">
+                    <img src="76263491-155369272498709-1735575805909532672-n.png" alt="Artmosphere artwork 2" loading="eager">
+                </div>
+                <div class="card-img" data-index="2">
+                    <img src="75580497-153223969379906-5283314454212116480-n.jpg" alt="Artmosphere artwork 3" loading="eager">
+                </div>
+                <div class="card-img" data-index="3">
+                    <img src="474740813-940008948263000-1670546578301436987-n.jpg" alt="Artmosphere artwork 4" loading="eager">
                 </div>
             </div>
         </div>
@@ -1141,7 +1228,7 @@
         </div>
     </section>
 
-    <!-- ============ NEW FOOTER ============ -->
+    <!-- ============ FOOTER ============ -->
     <footer class="bg-obrian-black text-white pt-16 pb-8 border-t border-white/10">
         <div class="max-w-7xl mx-auto px-6">
             <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-12 mb-12">
@@ -1286,6 +1373,14 @@
             item.addEventListener('click', () => openModal(idx));
         });
 
+        // Hero showcase images open lightbox at their index
+        document.querySelectorAll('.hero-showcase .card-img').forEach((card) => {
+            card.addEventListener('click', () => {
+                const idx = parseInt(card.dataset.index, 10) || 0;
+                openModal(idx);
+            });
+        });
+
         if (closeBtn) closeBtn.addEventListener('click', closeModal);
         if (modal) modal.addEventListener('click', (e) => { if (e.target === modal) closeModal(); });
 
@@ -1309,10 +1404,10 @@
             if (e.key === 'Escape') closeModal();
         });
 
-        // ===== BACK TO TOP BUTTON LOGIC (copied from Home) =====
+        // ===== BACK TO TOP BUTTON LOGIC =====
         var backToTopBtn = document.getElementById('backToTopBtn');
         var btbRingProgress = backToTopBtn ? backToTopBtn.querySelector('.btb-ring-progress') : null;
-        var BTB_RING_LENGTH = 2 * Math.PI * 21; // r = 21 in the 48×48 viewBox
+        var BTB_RING_LENGTH = 2 * Math.PI * 21;
         var btbPrefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
         var btbTicking = false;
 
