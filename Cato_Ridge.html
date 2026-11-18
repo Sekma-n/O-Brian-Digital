@@ -355,84 +355,99 @@
             font-size: 0.95rem;
         }
 
-        /* ----- HERO SECTION ----- */
+        /* ===== HERO (Sunbet GTI style) ===== */
         .hero {
-            background: linear-gradient(135deg, #fef9ff 0%, #ffffff 100%);
-            padding: 140px 0 80px 0;
-            text-align: center;
-            border-bottom: 1px solid var(--gray-200);
+            padding-top: 140px;
+            padding-bottom: 60px;
+            background: radial-gradient(circle at 90% 20%, rgba(236, 0, 138, 0.04) 0%, #ffffff 90%);
         }
-
-        .hero-badge {
+        .hero .container {
+            max-width: 840px;
+            margin: 0 auto;
+            padding: 24px 14px;
+            text-align: center;
+        }
+        .hero .hero-badge {
+            background: rgba(236, 0, 138, 0.06);
             display: inline-block;
-            background: rgba(236, 0, 138, 0.10);
-            color: var(--accent);
+            padding: 6px 18px;
+            border-radius: 40px;
             font-weight: 600;
             font-size: 0.85rem;
-            padding: 0.3rem 1rem;
-            border-radius: 40px;
-            letter-spacing: 0.3px;
-            margin-bottom: 1.5rem;
+            margin-bottom: 24px;
+            color: var(--accent);
+            border: 1px solid rgba(236, 0, 138, 0.12);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
         }
-
+        .hero .hero-badge i {
+            color: var(--accent);
+            margin-right: 6px;
+        }
         .hero h1 {
             font-size: 3.8rem;
-            font-weight: 800;
-            letter-spacing: -0.02em;
+            margin-bottom: 24px;
             color: var(--gray-900);
-            margin-bottom: 1rem;
+            font-weight: 800;
+            line-height: 1.15;
+            letter-spacing: -0.02em;
         }
-
+        .hero h1 .highlight {
+            color: var(--accent);
+        }
         .hero p {
-            font-size: 1.25rem;
+            font-size: 1.2rem;
             color: var(--gray-700);
             max-width: 700px;
-            margin: 0 auto;
+            margin: 0 auto 32px;
+            line-height: 1.6;
         }
-
-        .hero-divider {
-            width: 80px;
-            height: 4px;
-            background: var(--accent);
-            margin: 2rem auto 0;
-            border-radius: 4px;
-        }
-
-        @media (max-width: 768px) {
-            .hero h1 {
-                font-size: 2.4rem;
-            }
-            .hero {
-                padding: 120px 0 60px;
-            }
-        }
-
-        /* ----- CASE HEADER ----- */
-        .case-header {
-            padding: 56px 0 32px;
-            border-bottom: 1px solid var(--gray-200);
-        }
-
-        .case-header .subtitle {
-            font-weight: 600;
-            text-transform: uppercase;
-            letter-spacing: 2px;
-            font-size: 0.85rem;
+        .hero p .highlight {
             color: var(--accent);
-            margin-bottom: 0.75rem;
+            font-weight: 500;
         }
-
-        .case-header h2 {
-            font-size: 3rem;
-            font-weight: 700;
-            letter-spacing: -0.02em;
-            margin-bottom: 1rem;
+        .hero .hero-stats {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 1rem;
+            margin-top: 2rem;
         }
-
-        .case-header p {
-            font-size: 1.1rem;
-            color: var(--gray-700);
-            max-width: 720px;
+        .hero .stat {
+            background: #ffffff;
+            border: 1px solid rgba(0, 0, 0, 0.06);
+            border-radius: 16px;
+            padding: 1.2rem 1.6rem;
+            min-width: 140px;
+            text-align: center;
+            box-shadow: var(--shadow-sm);
+        }
+        .hero .stat .number {
+            font-size: 2rem;
+            font-weight: 800;
+            color: var(--accent);
+            line-height: 1.1;
+        }
+        .hero .stat .label {
+            font-size: 0.75rem;
+            color: #6b7280;
+            text-transform: uppercase;
+            letter-spacing: 0.6px;
+            margin-top: 4px;
+            font-weight: 600;
+        }
+        .hero .hero-actions {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 1rem;
+            margin-top: 2rem;
+        }
+        @media (max-width: 768px) {
+            .hero { padding-top: 120px; padding-bottom: 40px; }
+            .hero h1 { font-size: 2.4rem; }
+            .hero p { font-size: 1.05rem; }
+            .hero .stat { padding: 1rem 1.2rem; min-width: 120px; }
         }
 
         /* ----- BACK BUTTON ----- */
@@ -440,33 +455,34 @@
             display: inline-flex;
             align-items: center;
             gap: 0.5rem;
-            margin-top: 1.5rem;
-            padding: 0.6rem 1.6rem;
-            background: var(--gray-100);
-            color: var(--gray-900);
+            padding: 12px 28px;
+            background: transparent;
+            color: var(--accent);
             font-weight: 600;
             font-size: 0.9rem;
+            letter-spacing: 0.3px;
             border-radius: 60px;
-            border: 1px solid var(--gray-200);
-            transition: all 0.25s ease;
-            box-shadow: var(--shadow-sm);
+            border: 2px solid var(--accent);
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            text-decoration: none;
+            cursor: pointer;
         }
 
         .btn-back:hover {
             background: var(--accent);
             color: #fff;
             border-color: var(--accent);
-            transform: translateX(-4px) translateY(-2px);
-            box-shadow: 0 8px 20px rgba(236, 0, 138, 0.25);
+            transform: translateY(-3px);
+            box-shadow: 0 10px 25px -6px rgba(236, 0, 138, 0.5);
         }
 
         .btn-back i {
             font-size: 0.9rem;
-            transition: transform 0.25s ease;
+            transition: transform 0.3s ease;
         }
 
         .btn-back:hover i {
-            transform: translateX(-3px);
+            transform: translateX(-4px);
         }
 
         /* ----- GALLERY ----- */
@@ -754,8 +770,7 @@
             transition: opacity 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94),
                         visibility 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94),
                         transform 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94),
-                        box-shadow 0.3s ease,
-                        background 0.3s ease;
+                        box-shadow 0.3s ease;
             box-shadow: 0 8px 24px rgba(236, 0, 138, 0.35);
             -webkit-tap-highlight-color: transparent;
         }
@@ -794,7 +809,7 @@
         .btb-ring-progress {
             stroke: #ffffff;
             stroke-linecap: round;
-            stroke-dasharray: 131.95;   /* 2π × 21 */
+            stroke-dasharray: 131.95;
             stroke-dashoffset: 131.95;
             transition: stroke-dashoffset 0.1s linear;
         }
@@ -841,8 +856,7 @@
             }
         }
         @media (prefers-reduced-motion: reduce) {
-            html { scroll-behavior: auto; }
-            body { scroll-behavior: auto; }
+            html, body { scroll-behavior: auto; }
             .back-to-top,
             .btb-arrow { transition: none !important; }
             .back-to-top:hover { transform: none; }
@@ -861,8 +875,7 @@
                 <!-- Premium Logo -->
                 <a href="Home.html" class="logo-premium group">
                     <img src="obrian-transparent-logo-4461219.webp" alt="O'Brian Group" class="h-9 w-auto" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22%3E%3Crect width=%22100%22 height=%22100%22 fill=%22%23ed008e%22/%3E%3Ctext x=%2250%22 y=%2268%22 font-size=%2248%22 text-anchor=%22middle%22 fill=%22white%22 font-weight=%22bold%22 font-family=%22Inter%22%3EO%3C/text%3E%3C/svg%3E'">
-                    <!-- FIX: logo text was empty -->
-                    <span class="logo-text hidden sm:inline-block">O'<span class="highlight">Brian</span></span>
+                    <span class="logo-text hidden sm:inline-block"><span class="highlight">  </span></span>
                 </a>
 
                 <!-- Premium Desktop Nav -->
@@ -946,29 +959,44 @@
         <a href="Contact_Us.html" style="display:inline-flex; margin-top:1rem; background:linear-gradient(135deg,#e6007e,#ff1493); color:#fff; padding:0.6rem 1.5rem; border-radius:9999px; font-weight:700; text-decoration:none;">Contact Us</a>
     </div>
 
-    <!-- ====== HERO ====== -->
+    <!-- ====== HERO (Sunbet GTI style) ====== -->
     <section class="hero">
         <div class="container">
-            <div class="hero-badge">Case Studies in Excellence</div>
-            <h1>OUR WORK</h1>
-            <p>A Dive into Our Work Triumphs — strategic, bold, and results-driven.</p>
-            <div class="hero-divider"></div>
+            <span class="hero-badge"><i class="fas fa-star"></i> Featured Case Study · Brand Development</span>
+            <h1>Cato Ridge <span class="highlight">Dry Port</span></h1>
+            <p>
+                Brand development, identity architecture, and digital storytelling for one of Africa's most ambitious logistics hubs — a case study in <span class="highlight">clarity, trust, and industrial prestige</span>.
+            </p>
+
+            <div class="hero-stats">
+                <div class="stat">
+                    <div class="number">8+</div>
+                    <div class="label">Brand Assets</div>
+                </div>
+                <div class="stat">
+                    <div class="number">1</div>
+                    <div class="label">Integrated Identity</div>
+                </div>
+                <div class="stat">
+                    <div class="number">100%</div>
+                    <div class="label">Brand Cohesion</div>
+                </div>
+            </div>
+
+            <div class="hero-actions">
+                <a href="#gallery" class="btn-premium-cta">
+                    <i class="fas fa-images"></i>
+                    <span>View Gallery</span>
+                </a>
+                <a href="Our_Work.html" class="btn-back">
+                    <i class="fas fa-arrow-left"></i> Back to Our Work
+                </a>
+            </div>
         </div>
     </section>
 
-    <!-- ====== CASE STUDY INTRO + BACK BUTTON ====== -->
-    <div class="container case-header">
-        <div class="subtitle">✦ Featured Project</div>
-        <h2>Cato Ridge Dry Port</h2>
-        <p>Brand development, identity architecture, and digital storytelling for one of Africa's most ambitious logistics hubs. A case study in clarity, trust, and industrial prestige.</p>
-        <!-- Back to Our Work button -->
-        <a href="Our_Work.html" class="btn-back">
-            <i class="fas fa-arrow-left me-1"></i> Back to Our Work
-        </a>
-    </div>
-
     <!-- ====== GALLERY ====== -->
-    <section class="gallery-section">
+    <section class="gallery-section" id="gallery">
         <div class="container">
             <div class="section-title">
                 <span style="background: linear-gradient(135deg, var(--accent), #ff4da6); background-clip: text; -webkit-background-clip: text; color: transparent;">Cato Ridge</span> Brand Development
@@ -1189,7 +1217,7 @@
             if (!btn) return;
 
             var ringProgress = btn.querySelector('.btb-ring-progress');
-            var RING_LENGTH = 2 * Math.PI * 21;   // r = 21  →  ≈131.95
+            var RING_LENGTH = 2 * Math.PI * 21;
             var reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
             var ticking = false;
 
