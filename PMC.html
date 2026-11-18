@@ -322,88 +322,100 @@
         .mobile-menu-panel .mobile-dropdown-items { padding-left: 1rem; }
         .mobile-menu-panel .mobile-dropdown-items a { font-weight: 400; font-size: 0.95rem; }
 
-        /* ── Hero ── */
-        .hero-pmc {
-            padding: 10rem 1.5rem 5rem;
-            background: linear-gradient(165deg, #ffffff 0%, #fdf5f9 50%, #fce8f3 100%);
-            position: relative;
-            overflow: hidden;
+        /* ===== HERO (Sunbet GTI style) ===== */
+        .hero {
+            padding-top: 140px;
+            padding-bottom: 60px;
+            background: radial-gradient(circle at 90% 20%, rgba(237, 0, 142, 0.04) 0%, #ffffff 90%);
+            border-bottom: 1px solid rgba(0, 0, 0, 0.04);
         }
-        .hero-pmc::before {
-            content: '';
-            position: absolute;
-            top: -30%; right: -10%;
-            width: 60%; height: 140%;
-            background: radial-gradient(circle at 70% 30%, rgba(237, 0, 142, 0.06) 0%, transparent 70%);
-            pointer-events: none;
-        }
-        .hero-pmc .badge {
-            display: inline-block;
-            background: var(--pink);
-            color: #fff;
-            font-size: 0.6rem;
-            font-weight: 700;
-            letter-spacing: 2.5px;
-            text-transform: uppercase;
-            padding: 0.25rem 1.4rem;
-            border-radius: 60px;
-            margin-bottom: 1.2rem;
-        }
-        .hero-pmc h1 {
-            font-size: 4rem;
-            font-weight: 900;
-            line-height: 1.05;
-            letter-spacing: -0.04em;
-            color: var(--dark);
-        }
-        .hero-pmc h1 .highlight {
-            background: linear-gradient(135deg, var(--pink), var(--pink));
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-        }
-        .hero-pmc .sub {
-            font-size: 1.1rem;
-            color: var(--gray);
-            max-width: 540px;
-            line-height: 1.8;
-            margin-top: 1rem;
-        }
-        .hero-pmc .sub strong { color: var(--pink); font-weight: 700; }
-
-        .stat-grid-premium {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
-            gap: 1.5rem;
-            margin-top: 2.5rem;
-        }
-        .stat-item-premium {
-            background: rgba(255, 255, 255, 0.7);
-            backdrop-filter: blur(8px);
-            border-radius: 1.25rem;
-            padding: 1.5rem 1rem;
+        .hero .container {
+            max-width: 840px;
+            margin: 0 auto;
+            padding: 24px 14px;
             text-align: center;
-            border: 1px solid rgba(237, 0, 142, 0.06);
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
         }
-        .stat-item-premium:hover {
-            transform: translateY(-4px);
-            box-shadow: 0 12px 32px rgba(237, 0, 142, 0.08);
-        }
-        .stat-item-premium .num {
-            font-size: 2.6rem;
-            font-weight: 800;
-            color: var(--pink);
-            letter-spacing: -0.02em;
-            line-height: 1;
-        }
-        .stat-item-premium .lbl {
-            font-size: 0.7rem;
+        .hero .hero-badge {
+            background: rgba(237, 0, 142, 0.06);
+            display: inline-block;
+            padding: 6px 18px;
+            border-radius: 40px;
             font-weight: 600;
-            color: var(--gray);
+            font-size: 0.85rem;
+            margin-bottom: 24px;
+            color: var(--pink);
+            border: 1px solid rgba(237, 0, 142, 0.12);
             text-transform: uppercase;
             letter-spacing: 0.5px;
-            margin-top: 0.3rem;
+        }
+        .hero .hero-badge i {
+            color: var(--pink);
+            margin-right: 6px;
+        }
+        .hero h1 {
+            font-size: 3.8rem;
+            margin-bottom: 24px;
+            color: var(--dark);
+            font-weight: 900;
+            line-height: 1.15;
+            letter-spacing: -0.02em;
+        }
+        .hero h1 .highlight {
+            color: var(--pink);
+        }
+        .hero p {
+            font-size: 1.2rem;
+            color: var(--gray);
+            max-width: 700px;
+            margin: 0 auto 32px;
+            line-height: 1.6;
+        }
+        .hero p .highlight {
+            color: var(--pink);
+            font-weight: 500;
+        }
+        .hero .hero-stats {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 1rem;
+            margin-top: 2rem;
+        }
+        .hero .stat {
+            background: #ffffff;
+            border: 1px solid rgba(0, 0, 0, 0.06);
+            border-radius: 16px;
+            padding: 1.2rem 1.6rem;
+            min-width: 140px;
+            text-align: center;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.05);
+        }
+        .hero .stat .number {
+            font-size: 2rem;
+            font-weight: 800;
+            color: var(--pink);
+            line-height: 1.1;
+        }
+        .hero .stat .label {
+            font-size: 0.75rem;
+            color: #6b7280;
+            text-transform: uppercase;
+            letter-spacing: 0.6px;
+            margin-top: 4px;
+            font-weight: 600;
+        }
+        .hero .hero-actions {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 1rem;
+            margin-top: 2rem;
+        }
+        @media (max-width: 768px) {
+            .hero { padding-top: 120px; padding-bottom: 40px; }
+            .hero h1 { font-size: 2.4rem; }
+            .hero p { font-size: 1.05rem; }
+            .hero .stat { padding: 1rem 1.2rem; min-width: 120px; }
         }
 
         /* ── Section Titles ── */
@@ -721,7 +733,7 @@
             color: var(--pink);
         }
 
-        /* ── LIGHTBOX ARROWS (prominent) ── */
+        /* ── LIGHTBOX ARROWS ── */
         .lightbox-prev,
         .lightbox-next {
             position: absolute;
@@ -764,57 +776,82 @@
             white-space: nowrap;
         }
 
-        /* ── BACK TO TOP BUTTON ── */
-        .scroll-top-btn {
+        /* ===== BACK TO TOP BUTTON ===== */
+        .back-to-top {
             position: fixed;
             bottom: 100px;
             right: 30px;
-            width: 54px;
-            height: 54px;
+            width: 52px;
+            height: 52px;
+            padding: 0;
             border-radius: 50%;
-            background: var(--pink);
+            background: linear-gradient(135deg, #e6007e 0%, #b0006a 100%);
             color: #ffffff;
-            border: none;
+            border: 2px solid rgba(255, 255, 255, 0.25);
+            display: grid;
+            place-items: center;
             cursor: pointer;
-            display: flex;
-            align-items: center;
-            justify-content: center;
             z-index: 1500;
-            box-shadow: 0 8px 28px rgba(237, 0, 142, 0.45);
-            transition: opacity 0.35s ease, visibility 0.35s ease,
-                        transform 0.35s ease, background 0.25s ease,
-                        box-shadow 0.25s ease;
             opacity: 0;
             visibility: hidden;
-            transform: translateY(24px) scale(0.9);
-            font-size: 1.25rem;
+            transform: translateY(20px);
+            transition: opacity 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94),
+                        visibility 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94),
+                        transform 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94),
+                        box-shadow 0.3s ease,
+                        background 0.3s ease;
+            box-shadow: 0 8px 24px rgba(230, 0, 126, 0.35);
+            -webkit-tap-highlight-color: transparent;
         }
-        .scroll-top-btn.visible {
+        .back-to-top.visible {
             opacity: 1;
             visibility: visible;
-            transform: translateY(0) scale(1);
+            transform: translateY(0);
         }
-        .scroll-top-btn:hover {
-            background: #c40075;
-            transform: translateY(-5px) scale(1.05);
-            box-shadow: 0 14px 40px rgba(237, 0, 142, 0.6);
+        .back-to-top:hover {
+            transform: translateY(-4px) scale(1.06);
+            box-shadow: 0 14px 32px rgba(230, 0, 126, 0.45);
         }
-        .scroll-top-btn:active { transform: translateY(-2px) scale(0.98); }
-        .scroll-top-btn::before {
-            content: '';
+        .back-to-top:active {
+            transform: translateY(-1px) scale(0.98);
+        }
+        .back-to-top:focus-visible {
+            outline: 3px solid rgba(230, 0, 126, 0.45);
+            outline-offset: 3px;
+        }
+
+        .btb-ring {
             position: absolute;
-            inset: -6px;
-            border-radius: 50%;
-            border: 2px solid rgba(237, 0, 142, 0.35);
-            animation: pulseRing 2.4s ease-out infinite;
+            inset: 0;
+            width: 100%;
+            height: 100%;
+            transform: rotate(-90deg);
             pointer-events: none;
         }
-        @keyframes pulseRing {
-            0% { transform: scale(1); opacity: 0.8; }
-            70% { transform: scale(1.25); opacity: 0; }
-            100% { transform: scale(1.25); opacity: 0; }
+        .btb-ring circle {
+            fill: none;
+            stroke-width: 2.5;
         }
-        .scroll-top-btn:hover::before { animation-play-state: paused; opacity: 0; }
+        .btb-ring-track {
+            stroke: rgba(255, 255, 255, 0.25);
+        }
+        .btb-ring-progress {
+            stroke: #ffffff;
+            stroke-linecap: round;
+            stroke-dasharray: 131.95;
+            stroke-dashoffset: 131.95;
+            transition: stroke-dashoffset 0.1s linear;
+        }
+
+        .btb-arrow {
+            position: relative;
+            width: 22px;
+            height: 22px;
+            transition: transform 0.3s ease;
+        }
+        .back-to-top:hover .btb-arrow {
+            transform: translateY(-2px);
+        }
 
         /* ── Scroll reveal ── */
         .scroll-reveal {
@@ -830,6 +867,32 @@
         .delay-2 { transition-delay: 0.2s; }
         .delay-3 { transition-delay: 0.3s; }
         .delay-4 { transition-delay: 0.4s; }
+
+        /* ── Reduced motion ── */
+        @media (prefers-reduced-motion: reduce) {
+            body {
+                scroll-behavior: auto;
+            }
+            .back-to-top,
+            .btb-arrow {
+                transition: none !important;
+            }
+            .back-to-top:hover {
+                transform: none;
+            }
+            .back-to-top:hover .btb-arrow {
+                transform: none;
+            }
+            .btn-back-work {
+                transition: none !important;
+            }
+            .btn-back-work:hover {
+                transform: none;
+            }
+            .btn-back-work:hover i {
+                transform: none;
+            }
+        }
 
         /* ── Responsive ── */
         @media (max-width: 900px) {
@@ -852,8 +915,18 @@
             .header-glass { height: 70px; padding: 0 1rem; }
             .mobile-menu-panel { top: 70px; }
             .logo-text { font-size: 1rem; }
-            .scroll-top-btn { bottom: 90px; right: 20px; width: 48px; height: 48px; font-size: 1.1rem; }
             .btn-back-work { padding: 0.6rem 1.4rem; font-size: 0.85rem; }
+
+            .back-to-top {
+                bottom: 90px;
+                right: 20px;
+                width: 46px;
+                height: 46px;
+            }
+            .btb-arrow {
+                width: 18px;
+                height: 18px;
+            }
         }
         @media (max-width: 640px) {
             .cookie-banner {
@@ -864,11 +937,10 @@
                 bottom: 0.8rem;
             }
             .cookie-banner .btn-cookie { width: 100%; }
-            .hero-pmc h1 { font-size: 2.6rem; }
             .section-title { font-size: 2rem; }
             .cta-premium { padding: 2.5rem 1.5rem; }
             .cta-premium h2 { font-size: 1.8rem; }
-            .scroll-top-btn { bottom: 80px; }
+            .back-to-top { bottom: 80px; }
         }
         @media (max-width: 480px) {
             .logo-text { font-size: 0.9rem; }
@@ -969,61 +1041,57 @@
     </div>
 
     <!-- ===== BACK TO TOP BUTTON ===== -->
-    <button class="scroll-top-btn" id="scrollTopBtn" aria-label="Back to top" title="Back to top">
-        <i class="fas fa-chevron-up"></i>
+    <button class="back-to-top" id="backToTopBtn" aria-label="Back to top" title="Back to top" aria-hidden="true" tabindex="-1">
+        <svg class="btb-ring" viewBox="0 0 48 48" aria-hidden="true">
+            <circle class="btb-ring-track" cx="24" cy="24" r="21"></circle>
+            <circle class="btb-ring-progress" cx="24" cy="24" r="21"></circle>
+        </svg>
+        <svg class="btb-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+             stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="M12 19V5"></path>
+            <path d="M5 12l7-7 7 7"></path>
+        </svg>
     </button>
 
     <!-- ════════════════════════════════════════════════════════════════════ -->
-    <!--  HERO                                                              -->
+    <!--  HERO (Sunbet GTI style)                                           -->
     <!-- ════════════════════════════════════════════════════════════════════ -->
-    <section class="hero-pmc">
-        <div class="max-w-7xl mx-auto relative z-10">
-            <div class="grid lg:grid-cols-2 gap-12 items-center">
-                <div>
-                    <span class="badge"><i class="fas fa-chart-line mr-2"></i> PMC Excellence</span>
-                    <h1>Project Management<br><span class="highlight">Consulting</span></h1>
-                    <p class="sub">
-                        Strategic execution, operational excellence — <strong>delivering measurable outcomes</strong> across industries. Explore our success stories below.
-                    </p>
-                    <div class="flex flex-wrap gap-4 mt-8">
-                        <a href="#galleryGrid" class="btn-primary-pink">
-                            <span>View case studies</span>
-                            <i class="fas fa-arrow-right text-sm"></i>
-                        </a>
-                        <a href="#" class="border-2 border-[#ed008e] text-[#ed008e] hover:bg-[#ed008e] hover:text-white font-bold text-sm px-6 py-3 rounded-full transition-all duration-300 inline-flex items-center gap-2">
-                            <i class="fas fa-play-circle"></i>
-                            <span>Our approach</span>
-                        </a>
-                    </div>
+    <section class="hero">
+        <div class="container">
+            <span class="hero-badge"><i class="fas fa-chart-line"></i> Case Study · PMC Excellence</span>
+            <h1>Project Management <span class="highlight">Consulting</span></h1>
+            <p>
+                Strategic execution, operational excellence — <span class="highlight">delivering measurable outcomes</span> across industries. Explore our success stories below.
+            </p>
 
-                    <!-- ===== BACK TO OUR WORK BUTTON ===== -->
-                    <div class="mt-6">
-                        <a href="Our_Work.html" class="btn-back-work">
-                            <i class="fas fa-arrow-left"></i>
-                            Back to Our Work
-                        </a>
-                    </div>
+            <div class="hero-stats">
+                <div class="stat">
+                    <div class="number">87%</div>
+                    <div class="label">Project Success Rate</div>
                 </div>
-                <div>
-                    <div class="stat-grid-premium">
-                        <div class="stat-item-premium">
-                            <div class="num">87%</div>
-                            <div class="lbl">Project success rate</div>
-                        </div>
-                        <div class="stat-item-premium">
-                            <div class="num">240+</div>
-                            <div class="lbl">Delivered projects</div>
-                        </div>
-                        <div class="stat-item-premium">
-                            <div class="num">4.8★</div>
-                            <div class="lbl">Client satisfaction</div>
-                        </div>
-                        <div class="stat-item-premium">
-                            <div class="num">35%</div>
-                            <div class="lbl">Avg. efficiency gain</div>
-                        </div>
-                    </div>
+                <div class="stat">
+                    <div class="number">240+</div>
+                    <div class="label">Delivered Projects</div>
                 </div>
+                <div class="stat">
+                    <div class="number">4.8★</div>
+                    <div class="label">Client Satisfaction</div>
+                </div>
+            </div>
+
+            <div class="hero-actions">
+                <a href="#galleryGrid" class="btn-primary-pink">
+                    <span>View case studies</span>
+                    <i class="fas fa-arrow-right text-sm"></i>
+                </a>
+                <a href="#" class="btn-back-work">
+                    <i class="fas fa-play-circle"></i>
+                    Our approach
+                </a>
+                <a href="Our_Work.html" class="btn-back-work">
+                    <i class="fas fa-arrow-left"></i>
+                    Back to Our Work
+                </a>
             </div>
         </div>
     </section>
@@ -1031,7 +1099,7 @@
     <!-- ════════════════════════════════════════════════════════════════════ -->
     <!--  GALLERY                                                           -->
     <!-- ════════════════════════════════════════════════════════════════════ -->
-    <section class="max-w-7xl mx-auto px-4 md:px-8 py-16 md:py-24">
+    <section class="max-w-7xl mx-auto px-4 md:px-8 py-16 md:py-24" id="galleryGrid">
         <div class="flex flex-wrap items-end justify-between gap-4 mb-12">
             <div>
                 <span class="text-[#ed008e] font-semibold text-sm tracking-[0.2em] uppercase"><i class="fas fa-th-large mr-2"></i> Case studies</span>
@@ -1044,7 +1112,7 @@
             </a>
         </div>
 
-        <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6" id="galleryGrid">
+        <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
             <!-- Card 1 -->
             <div class="gallery-card-premium" data-index="0">
                 <div class="img-wrap" data-index="0">
@@ -1313,10 +1381,8 @@
                 });
             }, { rootMargin: '300px 0px', threshold: 0.01 });
 
-            // Observe lazy images (those with data-src)
             document.querySelectorAll('img[data-src]').forEach(img => imgObserver.observe(img));
 
-            // Mark eager images as loaded immediately when they finish loading
             document.querySelectorAll('img[loading="eager"]').forEach(img => {
                 if (img.complete) {
                     img.classList.add('loaded');
@@ -1325,28 +1391,50 @@
                 }
             });
 
-            // ── BACK TO TOP BUTTON ──
-            const scrollTopBtn = document.getElementById('scrollTopBtn');
-            let scrollTicking = false;
+            // ===== BACK TO TOP BUTTON LOGIC =====
+            var backToTopBtn = document.getElementById('backToTopBtn');
+            var btbRingProgress = backToTopBtn ? backToTopBtn.querySelector('.btb-ring-progress') : null;
+            var BTB_RING_LENGTH = 2 * Math.PI * 21;
+            var btbPrefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+            var btbTicking = false;
 
-            function handleScrollTopVisibility() {
-                if (window.scrollY > 300) scrollTopBtn.classList.add('visible');
-                else scrollTopBtn.classList.remove('visible');
-                scrollTicking = false;
+            function updateBackToTop() {
+                var scrollY = window.scrollY || document.documentElement.scrollTop;
+                var maxScroll = document.documentElement.scrollHeight - window.innerHeight;
+                var progress = maxScroll > 0 ? Math.min(scrollY / maxScroll, 1) : 0;
+
+                var show = scrollY > 400;
+                backToTopBtn.classList.toggle('visible', show);
+                backToTopBtn.setAttribute('aria-hidden', show ? 'false' : 'true');
+                backToTopBtn.tabIndex = show ? 0 : -1;
+
+                if (btbRingProgress) {
+                    btbRingProgress.style.strokeDashoffset =
+                        (BTB_RING_LENGTH * (1 - progress)).toFixed(2);
+                }
+
+                btbTicking = false;
             }
 
-            window.addEventListener('scroll', function() {
-                if (!scrollTicking) {
-                    window.requestAnimationFrame(handleScrollTopVisibility);
-                    scrollTicking = true;
-                }
-            }, { passive: true });
+            if (backToTopBtn) {
+                window.addEventListener('scroll', function() {
+                    if (!btbTicking) {
+                        window.requestAnimationFrame(updateBackToTop);
+                        btbTicking = true;
+                    }
+                }, { passive: true });
 
-            handleScrollTopVisibility();
+                updateBackToTop();
 
-            scrollTopBtn.addEventListener('click', function() {
-                window.scrollTo({ top: 0, behavior: 'smooth' });
-            });
+                backToTopBtn.addEventListener('click', function() {
+                    window.scrollTo({
+                        top: 0,
+                        behavior: btbPrefersReducedMotion ? 'auto' : 'smooth'
+                    });
+                    var headerEl = document.getElementById('mainHeader');
+                    if (headerEl) headerEl.focus({ preventScroll: true });
+                });
+            }
 
             // ── Cookie banner ──
             const banner = document.getElementById('cookieBanner');
@@ -1370,11 +1458,9 @@
             const nextLb = document.getElementById('lightboxNext');
 
             const imgWraps = document.querySelectorAll('.img-wrap');
-            // Build the image list from all gallery cards
             const sources = Array.from(imgWraps).map(wrap => {
                 const img = wrap.querySelector('img');
                 if (!img) return '';
-                // Prefer data-src if present, else use current src
                 return img.getAttribute('data-src') || img.getAttribute('src') || '';
             }).filter(src => src && src.length > 0);
 
