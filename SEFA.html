@@ -564,6 +564,11 @@
             height: 100%;
             object-fit: cover;
             display: block;
+            opacity: 0;
+            transition: opacity 0.4s ease;
+        }
+        .hero .hero-feature .feature-img img.loaded {
+            opacity: 1;
         }
         @media (max-width: 768px) {
             .hero { padding-top: 120px; padding-bottom: 40px; }
@@ -1288,7 +1293,7 @@
 
             <div class="hero-feature">
                 <div class="feature-img">
-                    <img src="obrian-work3.jpg" alt="Sefa showcase" loading="eager" />
+                    <img data-src="obrian-work3.jpg" alt="Sefa showcase" loading="lazy" />
                 </div>
             </div>
         </div>
@@ -1326,7 +1331,7 @@
     <footer class="footer">
         <div class="container">
             <div class="footer-brand">
-                <img src="OBRIAN_LOGO_WHITE.png" alt="O'Brian Group" />
+                <img data-src="OBRIAN_LOGO_WHITE.png" alt="O'Brian Group" loading="lazy" />
                 <p>Creative intelligence that drives measurable outcomes. We partner with brands to build meaningful connections.</p>
             </div>
 
@@ -1462,34 +1467,36 @@
                 });
             }, { rootMargin: '300px 0px', threshold: 0.01 });
 
+            // Observe the hero feature image (which now uses data-src)
+            var heroImg = document.querySelector('.hero-feature .feature-img img[data-src]');
+            if (heroImg) {
+                imgObserver.observe(heroImg);
+            }
+
+            // Observe the footer logo (which now uses data-src)
+            var footerLogo = document.querySelector('.footer-brand img[data-src]');
+            if (footerLogo) {
+                imgObserver.observe(footerLogo);
+            }
+
             // ---- RENDER GALLERY ----
             var grid = document.getElementById('galleryGrid');
             imageList.forEach(function(src, index) {
                 var item = document.createElement('div');
                 item.className = 'gallery-item';
                 item.dataset.index = index;
-                // First 4 load eagerly, rest lazy
-                var isEager = index < 4;
+                // All gallery images are lazy loaded via data-src
                 item.innerHTML = `
-                    <img ${isEager ? 'src="' + src + '" loading="eager"' : 'data-src="' + src + '" loading="lazy"'} alt="Sefa gallery image ${index + 1}" />
+                    <img data-src="${src}" loading="lazy" alt="Sefa gallery image ${index + 1}" />
                     <div class="overlay"><i class="fas fa-expand"></i></div>
                 `;
                 item.addEventListener('click', function() { openLightbox(index); });
                 grid.appendChild(item);
             });
 
-            // Observe lazy images
+            // Observe ALL lazy images in the grid (including newly created ones)
             grid.querySelectorAll('img[data-src]').forEach(function(img) {
                 imgObserver.observe(img);
-            });
-
-            // Mark eager images as loaded
-            grid.querySelectorAll('img[loading="eager"]').forEach(function(img) {
-                if (img.complete) {
-                    img.classList.add('loaded');
-                } else {
-                    img.addEventListener('load', function() { img.classList.add('loaded'); }, { once: true });
-                }
             });
 
             // ---- LIGHTBOX STATE ----
