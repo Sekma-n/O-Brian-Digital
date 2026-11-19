@@ -9,10 +9,9 @@
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin />
-    <link rel="dns-prefetch" href="assets/images/" />
 
     <!-- ===== PERFORMANCE: PRELOAD HERO IMAGE ===== -->
-    <link rel="preload" as="image" href="assets/images/epwp-copy.jpg" fetchpriority="high" />
+    <link rel="preload" as="image" href="epwp-copy.jpg" fetchpriority="high" />
 
     <!-- Google Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,600;14..32,700;14..32,800;14..32,900&display=swap" rel="stylesheet" />
@@ -133,6 +132,16 @@
             background: var(--gray-100);
             transform: translateY(-2px);
             box-shadow: var(--shadow-sm);
+        }
+
+        /* Hero outline button — matches the premium CTA / back button family */
+        .hero .btn-outline {
+            font-size: 0.85rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.6px;
+            padding: 0.85rem 2rem;
+            border-radius: 9999px;
         }
 
         /* ── BACK TO OUR WORK BUTTON ── */
@@ -1348,11 +1357,13 @@
                     <i class="fas fa-book-open"></i>
                     <span>Read More</span>
                 </a>
-                <a href="#gallery" class="btn-outline">
-                    <i class="fas fa-images"></i> View Gallery
+                <a href="#gallery" class="btn btn-outline">
+                    <i class="fas fa-images"></i>
+                    <span>View Gallery</span>
                 </a>
                 <a href="Our_Work.html" class="btn-back-work">
-                    <i class="fas fa-arrow-left"></i> Back to Our Work
+                    <i class="fas fa-arrow-left"></i>
+                    <span>Back to Our Work</span>
                 </a>
             </div>
 
