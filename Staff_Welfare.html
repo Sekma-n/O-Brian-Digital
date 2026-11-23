@@ -7,7 +7,7 @@
     <meta name="description" content="A collection of staff welfare moments, team celebrations, and employee well‑being at O'Brian Group." />
 
     <!-- Preload the LCP logo -->
-    <link rel="preload" as="image" href="assets/images/obrian-transparent-logo-4461219.webp" fetchpriority="high" />
+    <link rel="preload" as="image" href="obrian-transparent-logo-4461219.webp" fetchpriority="high" />
 
     <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
@@ -113,7 +113,6 @@
         }
 
         /* ===== IMAGE LOADING: BLUR-UP FADE-IN ===== */
-        /* Every gallery thumbnail fades in softly once decoded. */
         .gallery-item {
             background: linear-gradient(145deg, #f5edf0 0%, #faf5f7 100%);
         }
@@ -122,7 +121,6 @@
             filter: blur(8px);
             transform: scale(1.02);
             transition: opacity 0.5s ease, filter 0.5s ease, transform 0.5s ease;
-            will-change: opacity, filter;
         }
         .gallery-item img.loaded {
             opacity: 1;
@@ -435,12 +433,11 @@
         .mobile-menu-panel .mobile-dropdown-title {
             font-weight: 700;
             padding: 0.75rem 1rem;
-            color: #1a1a2e;
-            cursor: default;
             font-size: 0.85rem;
             text-transform: uppercase;
             letter-spacing: 0.5px;
             color: #6b7280;
+            cursor: default;
         }
         .mobile-menu-panel .mobile-dropdown-items {
             padding-left: 1rem;
@@ -499,7 +496,12 @@
             font-size: 1rem;
         }
 
-        /* ===== GALLERY ===== */
+        /* ===== GALLERY =====
+           CLS FIX: the tile and its <img> both declare the 1:1 aspect
+           ratio, so the browser reserves the correct box before any lazy
+           image finishes downloading. content-visibility was removed
+           because its fixed contain-intrinsic-size introduced its own
+           layout shift on resize. */
         .gallery-section {
             padding: 40px 0 80px;
             background: #ffffff;
@@ -520,9 +522,7 @@
             transition: transform 0.3s ease, box-shadow 0.3s ease;
             position: relative;
             aspect-ratio: 1 / 1;
-            /* Browser skips rendering offscreen tiles for smoother scrolling */
-            content-visibility: auto;
-            contain-intrinsic-size: 220px 220px;
+            width: 100%;
         }
         .gallery-item:hover {
             transform: translateY(-4px);
@@ -531,6 +531,7 @@
         .gallery-item img {
             width: 100%;
             height: 100%;
+            aspect-ratio: 1 / 1;
             object-fit: cover;
             display: block;
         }
@@ -588,7 +589,7 @@
             inset: 0;
             background: rgba(0, 0, 0, 0.92);
             backdrop-filter: blur(6px);
-            z-index: 999;
+            z-index: 99999;
             display: none;
             align-items: center;
             justify-content: center;
@@ -606,10 +607,13 @@
             flex-direction: column;
             align-items: center;
             cursor: default;
+            padding-top: 52px; /* room for close button, prevents clipping */
         }
         .lightbox-content {
             max-width: 90vw;
-            max-height: 80vh;
+            max-height: calc(90vh - 52px);
+            min-width: 200px;
+            min-height: 200px;
             position: relative;
             display: flex;
             align-items: center;
@@ -620,7 +624,7 @@
         }
         .lightbox-content img {
             max-width: 100%;
-            max-height: 80vh;
+            max-height: calc(90vh - 52px);
             border-radius: 12px;
             box-shadow: 0 30px 60px rgba(0, 0, 0, 0.5);
             object-fit: contain;
@@ -629,7 +633,7 @@
         }
         .lightbox-close {
             position: absolute;
-            top: -40px;
+            top: 0;
             right: 0;
             background: rgba(255, 255, 255, 0.15);
             border: none;
@@ -810,86 +814,82 @@
             color: #64748b;
         }
 
-        /* ===== BACK TO TOP BUTTON ===== */
-        .back-to-top-btn {
+        /* ===== BACK TO TOP BUTTON (with integrated progress ring) ===== */
+        .back-to-top {
             position: fixed;
-            bottom: 30px;
-            right: 30px;
+            bottom: 32px;
+            right: 32px;
             width: 52px;
             height: 52px;
             border-radius: 50%;
-            background: linear-gradient(135deg, #e6007e 0%, #ff1493 100%);
-            color: white;
-            border: none;
-            font-size: 1.2rem;
-            cursor: pointer;
+            background: linear-gradient(135deg, #e6007e 0%, #b0006a 100%);
+            color: #ffffff;
+            border: 2px solid rgba(255, 255, 255, 0.25);
             display: flex;
             align-items: center;
             justify-content: center;
-            box-shadow: 0 4px 15px rgba(230, 0, 126, 0.4);
-            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-            z-index: 1040;
-            opacity: 0;
-            transform: translateY(20px);
-            pointer-events: none;
-        }
-        .back-to-top-btn.visible {
-            opacity: 1;
-            transform: translateY(0);
-            pointer-events: auto;
-        }
-        .back-to-top-btn:hover {
-            transform: translateY(-4px) scale(1.1);
-            box-shadow: 0 8px 25px rgba(230, 0, 126, 0.5);
-            background: linear-gradient(135deg, #c40073 0%, #e6007e 100%);
-        }
-
-        /* ===== SCROLL PROGRESS RING (wraps around .back-to-top-btn) ===== */
-        .progress-ring {
-            position: fixed;
-            bottom: 19px;
-            right: 19px;
-            width: 74px;
-            height: 74px;
-            z-index: 1041;
-            pointer-events: none;
+            cursor: pointer;
+            z-index: 1500;
             opacity: 0;
             visibility: hidden;
             transform: translateY(20px);
-            transition: opacity 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94),
-                        visibility 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94),
-                        transform 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-            filter: drop-shadow(0 4px 12px rgba(230, 0, 126, 0.18));
+            transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            box-shadow: 0 8px 24px rgba(230, 0, 126, 0.35);
+            padding: 0;
+            overflow: hidden;
         }
-        .progress-ring.visible {
+        .back-to-top.visible {
             opacity: 1;
             visibility: visible;
             transform: translateY(0);
         }
-        .progress-ring svg {
+        .back-to-top:hover {
+            transform: translateY(-4px) scale(1.06);
+            box-shadow: 0 14px 32px rgba(230, 0, 126, 0.45);
+        }
+        .back-to-top:active {
+            transform: translateY(-1px) scale(0.98);
+        }
+
+        /* Integrated progress ring — sits flush inside the button */
+        .btb-ring {
+            position: absolute;
+            inset: 0;
             width: 100%;
             height: 100%;
             display: block;
             transform: rotate(-90deg);
-            overflow: visible;
+            pointer-events: none;
         }
-        .progress-ring .ring-track {
+        .btb-ring-track {
             fill: none;
-            stroke: rgba(230, 0, 126, 0.16);
-            stroke-width: 4;
+            stroke: rgba(255, 255, 255, 0.25);
+            stroke-width: 3;
         }
-        .progress-ring .ring-bar {
+        .btb-ring-progress {
             fill: none;
-            stroke: url(#ringGradient);
-            stroke-width: 4;
+            stroke: #ffffff;
+            stroke-width: 3;
             stroke-linecap: round;
-            stroke-dasharray: 188.5;
-            stroke-dashoffset: 188.5;
+            stroke-dasharray: 131.95;
+            stroke-dashoffset: 131.95;
+            transition: stroke-dashoffset 0.15s linear;
         }
 
-        /* Hide ring & button while the mobile menu is open */
-        body.menu-open .progress-ring,
-        body.menu-open .back-to-top-btn {
+        /* Arrow icon centered on top of the ring */
+        .btb-arrow {
+            position: relative;
+            width: 22px;
+            height: 22px;
+            z-index: 2;
+            transition: transform 0.3s ease;
+        }
+        .back-to-top:hover .btb-arrow {
+            transform: translateY(-2px);
+        }
+
+        /* Hide button (with integrated ring) while mobile menu is open */
+        body.menu-open .back-to-top {
             opacity: 0 !important;
             visibility: hidden !important;
             pointer-events: none !important;
@@ -923,18 +923,15 @@
             .footer .container {
                 grid-template-columns: 1fr 1fr;
             }
-            .back-to-top-btn {
+            .back-to-top {
+                bottom: 24px;
+                right: 20px;
                 width: 46px;
                 height: 46px;
-                font-size: 1rem;
-                bottom: 20px;
-                right: 20px;
             }
-            .progress-ring {
-                bottom: 13px;
-                right: 13px;
-                width: 60px;
-                height: 60px;
+            .btb-arrow {
+                width: 20px;
+                height: 20px;
             }
             .lightbox-nav-btn {
                 width: 42px;
@@ -955,16 +952,13 @@
             .gallery-grid {
                 grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
             }
-            .back-to-top-btn {
+            .back-to-top {
                 width: 42px;
                 height: 42px;
-                font-size: 0.9rem;
             }
-            .progress-ring {
-                bottom: 11px;
-                right: 11px;
-                width: 56px;
-                height: 56px;
+            .btb-arrow {
+                width: 18px;
+                height: 18px;
             }
             .lightbox-nav-btn {
                 width: 38px;
@@ -990,7 +984,7 @@
             <div class="flex justify-between items-center">
 
                 <!-- Premium Logo (LCP — eager + high priority) -->
-                <a href="index.html" class="logo-premium group">
+                <a href="Home.html" class="logo-premium group">
                     <img src="obrian-transparent-logo-4461219.webp"
                          alt="O'Brian Group"
                          class="h-9 w-auto"
@@ -1006,7 +1000,7 @@
 
                 <!-- Premium Desktop Nav -->
                 <div class="hidden lg:flex items-center gap-0.5">
-                    <a href="Home.html" class="nav-link-premium active-link">Home</a>
+                    <a href="Home.html" class="nav-link-premium">Home</a>
                     <a href="About.html" class="nav-link-premium">About</a>
                     <a href="Our_Work.html" class="nav-link-premium">Our Work</a>
                     <a href="Client_Experience.html" class="nav-link-premium">Client Experience</a>
@@ -1035,7 +1029,7 @@
                         </div>
                     </div>
 
-                    <a href="Staff_News.html" class="nav-link-premium">Staff News</a>
+                    <a href="Staff_News.html" class="nav-link-premium active-link">Staff News</a>
                     <a href="Exploring_Boundless_Horizons.html" class="nav-link-premium">Blog</a>
                     <a href="Archive_Gallery.html" class="nav-link-premium">Archives</a>
                 </div>
@@ -1088,7 +1082,6 @@
     <!-- ===== HERO ===== -->
     <section class="hero">
         <div class="container">
-            <!-- Back Button -->
             <a href="Staff_News.html" class="back-link">
                 <i class="fas fa-arrow-left"></i> Back
             </a>
@@ -1100,7 +1093,7 @@
     <!-- ===== GALLERY =====
          First 6 tiles = above the fold → loading="eager"
          Remaining 55 tiles = below the fold → loading="lazy"
-         All tiles have explicit width/height to reserve layout space. -->
+         Every tile has explicit width/height and a 1:1 CSS aspect ratio. -->
     <section class="gallery-section">
         <div class="container">
             <div class="gallery-grid">
@@ -1164,10 +1157,10 @@
                 <div class="gallery-item" data-index="54"><img src="img-822.jpg" alt="Staff welfare" width="400" height="400" loading="lazy" decoding="async" /><div class="icon-wrapper"><i class="fas fa-search"></i></div><span class="arrow-indicator">→</span></div>
                 <div class="gallery-item" data-index="55"><img src="img-823.jpg" alt="Staff welfare" width="400" height="400" loading="lazy" decoding="async" /><div class="icon-wrapper"><i class="fas fa-search"></i></div><span class="arrow-indicator">→</span></div>
                 <div class="gallery-item" data-index="56"><img src="img-825.jpg" alt="Staff welfare" width="400" height="400" loading="lazy" decoding="async" /><div class="icon-wrapper"><i class="fas fa-search"></i></div><span class="arrow-indicator">→</span></div>
-                <div class="gallery-item" data-index="57"><img src="img-826.jpg" alt="Staff welfare" width="400" height="400" loading="lazy" decoding="async" /><div class="icon-wrapper"><i class="fas fa-search"></i></div><span class="arrow-indicator">→</span></div>
-                <div class="gallery-item" data-index="58"><img src="img-827.jpg" alt="Staff welfare" width="400" height="400" loading="lazy" decoding="async" /><div class="icon-wrapper"><i class="fas fa-search"></i></div><span class="arrow-indicator">→</span></div>
-                <div class="gallery-item" data-index="59"><img src="img-828.jpg" alt="Staff welfare" width="400" height="400" loading="lazy" decoding="async" /><div class="icon-wrapper"><i class="fas fa-search"></i></div><span class="arrow-indicator">→</span></div>
-                <div class="gallery-item" data-index="60"><img src="img-830.jpg" alt="Staff welfare" width="400" height="400" loading="lazy" decoding="async" /><div class="icon-wrapper"><i class="fas fa-search"></i></div><span class="arrow-indicator">→</span></div>
+                <div class="gallery-item" data-index="57"><img src="img-826.jpeg" alt="Staff welfare" width="400" height="400" loading="lazy" decoding="async" /><div class="icon-wrapper"><i class="fas fa-search"></i></div><span class="arrow-indicator">→</span></div>
+                <div class="gallery-item" data-index="58"><img src="img-827.jpeg" alt="Staff welfare" width="400" height="400" loading="lazy" decoding="async" /><div class="icon-wrapper"><i class="fas fa-search"></i></div><span class="arrow-indicator">→</span></div>
+                <div class="gallery-item" data-index="59"><img src="img-828.jpeg" alt="Staff welfare" width="400" height="400" loading="lazy" decoding="async" /><div class="icon-wrapper"><i class="fas fa-search"></i></div><span class="arrow-indicator">→</span></div>
+                <div class="gallery-item" data-index="60"><img src="img-830.jpeg" alt="Staff welfare" width="400" height="400" loading="lazy" decoding="async" /><div class="icon-wrapper"><i class="fas fa-search"></i></div><span class="arrow-indicator">→</span></div>
             </div>
         </div>
     </section>
@@ -1196,23 +1189,16 @@
         </div>
     </section>
 
-    <!-- ===== SCROLL PROGRESS RING (wraps around back-to-top) ===== -->
-    <div class="progress-ring" id="progressRing" aria-hidden="true">
-        <svg viewBox="0 0 68 68">
-            <defs>
-                <linearGradient id="ringGradient" x1="0%" y1="0%" x2="100%" y2="100%">
-                    <stop offset="0%" stop-color="#e6007e" />
-                    <stop offset="100%" stop-color="#ff1493" />
-                </linearGradient>
-            </defs>
-            <circle class="ring-track" cx="34" cy="34" r="30" />
-            <circle class="ring-bar" id="ringBar" cx="34" cy="34" r="30" />
+    <!-- ===== BACK TO TOP BUTTON (with integrated progress ring) ===== -->
+    <button class="back-to-top" id="backToTopBtn" aria-label="Back to top" title="Back to top" tabindex="0">
+        <svg class="btb-ring" viewBox="0 0 48 48" aria-hidden="true">
+            <circle class="btb-ring-track" cx="24" cy="24" r="21"></circle>
+            <circle class="btb-ring-progress" cx="24" cy="24" r="21"></circle>
         </svg>
-    </div>
-
-    <!-- ===== BACK TO TOP BUTTON ===== -->
-    <button class="back-to-top-btn" id="backToTop" aria-label="Back to top">
-        <i class="fas fa-arrow-up"></i>
+        <svg class="btb-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="M12 19V5"></path>
+            <path d="M5 12l7-7 7 7"></path>
+        </svg>
     </button>
 
     <!-- ===== FOOTER ===== -->
@@ -1264,16 +1250,17 @@
     </footer>
 
     <!-- ===== LIGHTBOX WITH ARROWS ===== -->
-    <div class="lightbox-overlay" id="lightbox">
+    <div class="lightbox-overlay" id="lightbox" role="dialog" aria-modal="true" aria-label="Image viewer">
         <div class="lightbox-container">
+            <!-- Close button lives outside .lightbox-content so overflow:hidden cannot clip it -->
+            <button class="lightbox-close" id="lightboxClose" aria-label="Close image viewer">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+            </button>
             <div class="lightbox-content">
-                <button class="lightbox-close" id="lightboxClose">
-                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
-                </button>
-                <img id="lightboxImage" src="" alt="Enlarged image" />
+                <img id="lightboxImage" alt="Enlarged image" />
                 <div class="lightbox-nav">
-                    <button class="lightbox-nav-btn" id="lightboxPrev"><i class="fas fa-chevron-left"></i></button>
-                    <button class="lightbox-nav-btn" id="lightboxNext"><i class="fas fa-chevron-right"></i></button>
+                    <button class="lightbox-nav-btn" id="lightboxPrev" aria-label="Previous image"><i class="fas fa-chevron-left"></i></button>
+                    <button class="lightbox-nav-btn" id="lightboxNext" aria-label="Next image"><i class="fas fa-chevron-right"></i></button>
                 </div>
                 <div class="lightbox-counter" id="lightboxCounter">1 / 61</div>
             </div>
@@ -1316,12 +1303,13 @@
                 });
             }
 
-            // ===== HEADER SCROLL + BACK-TO-TOP + PROGRESS RING =====
+            // ===== HEADER SCROLL + BACK-TO-TOP (with integrated ring) =====
             var header = document.getElementById('mainHeader');
-            var backToTop = document.getElementById('backToTop');
-            var progressRing = document.getElementById('progressRing');
-            var ringBar = document.getElementById('ringBar');
-            var RING_CIRCUMFERENCE = 2 * Math.PI * 30;
+            var backToTop = document.getElementById('backToTopBtn');
+            var ringBar = backToTop ? backToTop.querySelector('.btb-ring-progress') : null;
+
+            // Ring geometry: r = 21 → circumference = 2π × 21 ≈ 131.95
+            var RING_CIRCUMFERENCE = 2 * Math.PI * 21;
 
             if (ringBar) {
                 ringBar.style.strokeDasharray = RING_CIRCUMFERENCE;
@@ -1330,16 +1318,16 @@
 
             var ticking = false;
             function updateScrollUI() {
-                var scrollTop = window.scrollY || document.documentElement.scrollTop || 0;
+                var scrollTop = window.scrollY || window.pageYOffset || document.documentElement.scrollTop || 0;
                 var maxScroll = Math.max(document.documentElement.scrollHeight - window.innerHeight, 0);
                 var progress = maxScroll > 0 ? Math.min(scrollTop / maxScroll, 1) : 0;
 
-                if (ringBar) ringBar.style.strokeDashoffset = RING_CIRCUMFERENCE * (1 - progress);
+                if (ringBar) {
+                    ringBar.style.strokeDashoffset = RING_CIRCUMFERENCE * (1 - progress);
+                }
 
                 var shouldShow = scrollTop > 400;
                 if (backToTop) backToTop.classList.toggle('visible', shouldShow);
-                if (progressRing) progressRing.classList.toggle('visible', shouldShow);
-
                 if (header) header.classList.toggle('scrolled', scrollTop > 20);
 
                 ticking = false;
