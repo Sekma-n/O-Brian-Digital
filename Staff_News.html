@@ -6,11 +6,12 @@
     <title>Staff News | O'Brian Group</title>
     <meta name="description" content="Stay updated with the latest staff welfare news, employee achievements, and internal happenings at O'Brian Group." />
 
+    <!-- Preload the LCP logo so it paints instantly -->
+    <link rel="preload" as="image" href="obrian-transparent-logo-4461219.webp" fetchpriority="high" />
+
     <!-- Tailwind CSS -->
-    <script src="https://cdn.tailwindcss.com">
-    </script>
-    <script src="https://unpkg.com/lucide@latest">
-    </script>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/lucide@latest"></script>
 
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -58,11 +59,7 @@
 
     <style>
         /* ===== RESET & BASE ===== */
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
 
         body {
             font-family: 'Montserrat', sans-serif;
@@ -74,19 +71,10 @@
             -webkit-font-smoothing: antialiased;
         }
 
-        .font-body {
-            font-family: 'Open Sans', sans-serif;
-        }
-
-        .text-pink {
-            color: #e6007e;
-        }
-        .bg-pink {
-            background-color: #e6007e;
-        }
-        .border-pink {
-            border-color: #e6007e;
-        }
+        .font-body { font-family: 'Open Sans', sans-serif; }
+        .text-pink { color: #e6007e; }
+        .bg-pink { background-color: #e6007e; }
+        .border-pink { border-color: #e6007e; }
 
         .gradient-text {
             background: linear-gradient(135deg, #e6007e 0%, #ff1493 100%);
@@ -95,515 +83,407 @@
             background-clip: text;
         }
 
-        a {
-            text-decoration: none;
-            color: inherit;
+        a { text-decoration: none; color: inherit; }
+        img { max-width: 100%; display: block; }
+        .container { max-width: 1280px; margin: 0 auto; padding: 0 24px; }
+
+        /* ===== IMAGE LOADING: BLUR-UP FADE-IN ===== */
+        .item-img,
+        .logo-premium img {
+            background: linear-gradient(145deg, #f5edf0 0%, #faf5f7 100%);
+            overflow: hidden;
+        }
+        .item-img img {
+            opacity: 0;
+            filter: blur(8px);
+            transform: scale(1.02);
+            transition: opacity 0.5s ease, filter 0.5s ease, transform 0.5s ease;
+            will-change: opacity, filter;
+        }
+        .item-img img.loaded {
+            opacity: 1;
+            filter: blur(0);
+            transform: scale(1);
         }
 
-        img {
-            max-width: 100%;
+        /* ===== HERO IMAGE ===== */
+        .hero-image-wrapper {
+            max-width: 1100px;
+            margin: 40px auto 0;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 20px 50px -15px rgba(0, 0, 0, 0.2);
+            position: relative;
+            aspect-ratio: 16 / 9;
+            background: linear-gradient(145deg, #f0e4ea, #faf5f7);
+        }
+        .hero-image-wrapper img {
+            width: 100%;
+            height: 100%;
+            aspect-ratio: 16 / 9;
+            object-fit: cover;
             display: block;
+            opacity: 0;
+            filter: blur(8px);
+            transform: scale(1.02);
+            transition: opacity 0.7s ease, filter 0.7s ease, transform 0.7s ease;
+        }
+        .hero-image-wrapper img.loaded {
+            opacity: 1;
+            filter: blur(0);
+            transform: scale(1);
+        }
+        .hero-image-wrapper:hover img.loaded {
+            transform: scale(1.03);
+        }
+        .hero-image-badge {
+            position: absolute;
+            bottom: 16px;
+            left: 16px;
+            background: rgba(230, 0, 126, 0.92);
+            color: #fff;
+            font-size: 0.7rem;
+            font-weight: 800;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            padding: 8px 16px;
+            border-radius: 9999px;
+            backdrop-filter: blur(4px);
+            box-shadow: 0 4px 14px rgba(230, 0, 126, 0.35);
+            z-index: 2;
         }
 
-        .container {
-            max-width: 1280px;
-            margin: 0 auto;
-            padding: 0 24px;
+        @media (prefers-reduced-motion: reduce) {
+            .item-img img,
+            .hero-image-wrapper img {
+                opacity: 1 !important;
+                filter: none !important;
+                transform: none !important;
+                transition: none !important;
+            }
         }
 
         /* ===== SCROLLBAR ===== */
-        ::-webkit-scrollbar {
-            width: 8px;
-        }
-        ::-webkit-scrollbar-track {
-            background: #e2e8f0;
-        }
-        ::-webkit-scrollbar-thumb {
-            background: #e6007e;
-            border-radius: 4px;
-        }
+        ::-webkit-scrollbar { width: 8px; }
+        ::-webkit-scrollbar-track { background: #e2e8f0; }
+        ::-webkit-scrollbar-thumb { background: #e6007e; border-radius: 4px; }
 
-        /* ===== NEW HEADER ===== */
+        /* ===== PREMIUM GLASS HEADER STYLES ===== */
         .header-glass {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            z-index: 50;
-            background: rgba(255, 255, 255, 0.85);
-            backdrop-filter: blur(12px);
-            -webkit-backdrop-filter: blur(12px);
-            transition: box-shadow 0.3s, background 0.3s;
-            border-bottom: 1px solid rgba(0, 0, 0, 0.04);
+            position: fixed; top: 0; left: 0; width: 100%;
+            z-index: 1030;
+            background: rgba(255, 255, 255, 0.72);
+            backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px);
+            transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.4);
+            box-shadow: 0 1px 2px rgba(0, 0, 0, 0.02);
+            height: 80px; display: flex; align-items: center; padding: 0 1rem;
         }
         .header-glass.scrolled {
-            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.06);
+            background: rgba(255, 255, 255, 0.94);
+            border-bottom: 1px solid rgba(0, 0, 0, 0.03);
+        }
+
+        .logo-premium { display: flex; align-items: center; gap: 12px; transition: transform 0.3s ease; }
+        .logo-premium:hover { transform: scale(1.01); }
+        .logo-text { font-size: 1.35rem; font-weight: 800; letter-spacing: -0.5px; color: #231e1f; }
+        .logo-text .highlight { color: #e6007e; position: relative; }
+        .logo-text .highlight::after {
+            content: ''; position: absolute; bottom: -2px; left: 0;
+            width: 100%; height: 2px; background: #e6007e;
+            transform: scaleX(0); transform-origin: right; transition: transform 0.4s ease;
+        }
+        .logo-premium:hover .logo-text .highlight::after { transform: scaleX(1); transform-origin: left; }
+
+        .nav-link-premium {
+            position: relative; padding: 0.5rem 1.2rem;
+            font-size: 0.75rem; font-weight: 700; text-transform: uppercase;
+            letter-spacing: 0.8px; color: #4b5563; border-radius: 8px;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            display: inline-block; cursor: pointer; background: transparent; text-decoration: none;
+        }
+        .nav-link-premium::after {
+            content: ''; position: absolute; bottom: 4px; left: 50%;
+            width: 0; height: 2px; background: linear-gradient(90deg, #e6007e, #ff1493);
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            transform: translateX(-50%); border-radius: 2px;
+        }
+        .nav-link-premium:hover { color: #e6007e; background: rgba(230, 0, 126, 0.06); }
+        .nav-link-premium:hover::after { width: 60%; }
+        .nav-link-premium.active-link { color: #e6007e; background: rgba(230, 0, 126, 0.08); }
+        .nav-link-premium.active-link::after { width: 70%; }
+
+        .dropdown-wrapper { position: relative; }
+        .dropdown-wrapper:hover .dropdown-menu-premium { opacity: 1; visibility: visible; transform: translateY(0) scale(1); }
+        .dropdown-menu-premium {
+            position: absolute; top: calc(100% + 12px); left: 0; min-width: 200px;
             background: rgba(255, 255, 255, 0.98);
-        }
-
-        .nav-link-new {
-            padding: 0.5rem 1rem;
-            font-size: 0.875rem;
-            font-weight: 600;
-            color: #374151;
-            border-radius: 0.5rem;
-            transition: all 0.3s ease;
-            display: inline-block;
-            cursor: pointer;
-        }
-        .nav-link-new:hover {
-            color: #e6007e;
-            background-color: #fdf2f8;
-        }
-
-        .dropdown-menu-custom {
-            position: absolute;
-            top: 100%;
-            left: 0;
-            margin-top: 0.5rem;
-            width: 200px;
-            background: white;
-            border-radius: 0.75rem;
-            box-shadow: 0 20px 40px -8px rgba(0, 0, 0, 0.15);
-            border: 1px solid #f3f4f6;
-            opacity: 0;
-            visibility: hidden;
+            backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px);
+            border-radius: 12px;
+            box-shadow: 0 20px 50px -12px rgba(0, 0, 0, 0.15);
+            border: 1px solid rgba(230, 0, 126, 0.08);
+            padding: 8px 0; opacity: 0; visibility: hidden;
             transform: translateY(-8px) scale(0.96);
-            transition: all 0.25s ease;
-            transform-origin: top left;
-            z-index: 60;
+            transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            transform-origin: top left; z-index: 1050;
         }
-        .group:hover .dropdown-menu-custom {
-            opacity: 1;
-            visibility: visible;
-            transform: translateY(0) scale(1);
+        .dropdown-menu-premium::before {
+            content: ''; position: absolute; top: -6px; left: 20px;
+            width: 10px; height: 10px; background: rgba(255, 255, 255, 0.98);
+            border-left: 1px solid rgba(230, 0, 126, 0.08);
+            border-top: 1px solid rgba(230, 0, 126, 0.08);
+            transform: rotate(45deg); border-radius: 2px;
         }
-        .dropdown-menu-custom a {
-            display: block;
-            padding: 0.75rem 1.25rem;
-            font-size: 0.875rem;
-            color: #374151;
-            transition: background 0.2s, color 0.2s;
+        .dropdown-menu-premium a {
+            display: block; padding: 0.7rem 1.4rem;
+            font-size: 0.8rem; font-weight: 500; color: #374151;
+            transition: all 0.2s ease; letter-spacing: 0.3px; text-decoration: none;
         }
-        .dropdown-menu-custom a:hover {
-            background: #fdf2f8;
-            color: #e6007e;
-        }
-        .dropdown-menu-custom a:first-child {
-            border-radius: 0.75rem 0.75rem 0 0;
-        }
-        .dropdown-menu-custom a:last-child {
-            border-radius: 0 0 0.75rem 0.75rem;
-        }
+        .dropdown-menu-premium a:hover { background: rgba(230, 0, 126, 0.05); color: #e6007e; padding-left: 1.8rem; }
+        .dropdown-menu-premium a:first-child { border-radius: 12px 12px 0 0; }
+        .dropdown-menu-premium a:last-child { border-radius: 0 0 12px 12px; }
 
-        .btn-primary-pink {
-            display: inline-flex;
-            align-items: center;
-            gap: 0.5rem;
-            padding: 0.75rem 1.75rem;
-            background: linear-gradient(135deg, #e6007e, #ff1493);
-            color: white;
-            font-weight: 700;
-            font-size: 0.875rem;
-            border-radius: 9999px;
-            transition: all 0.3s ease;
-            box-shadow: 0 4px 14px rgba(230, 0, 126, 0.3);
+        .btn-premium-cta {
+            display: inline-flex; align-items: center; gap: 8px;
+            padding: 0.65rem 1.8rem;
+            background: linear-gradient(135deg, #e6007e 0%, #ff1493 100%);
+            color: white; font-weight: 700; font-size: 0.75rem;
+            text-transform: uppercase; letter-spacing: 0.6px;
+            border-radius: 9999px; transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            box-shadow: 0 4px 15px rgba(230, 0, 126, 0.3);
+            border: 1px solid rgba(255, 255, 255, 0.2); text-decoration: none;
         }
-        .btn-primary-pink:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 8px 25px rgba(230, 0, 126, 0.4);
-            color: white;
-        }
+        .btn-premium-cta:hover { transform: translateY(-3px) scale(1.02); box-shadow: 0 10px 30px rgba(230, 0, 126, 0.4); color: white; }
 
-        /* ===== MOBILE MENU ===== */
+        .burger-premium {
+            width: 36px; height: 36px; border-radius: 10px;
+            border: 1px solid rgba(0, 0, 0, 0.04);
+            background: rgba(255, 255, 255, 0.5);
+            backdrop-filter: blur(4px);
+            display: flex; flex-direction: column; justify-content: center;
+            align-items: center; gap: 5px;
+            transition: all 0.3s ease; cursor: pointer;
+        }
+        .burger-premium:hover { background: rgba(230, 0, 126, 0.05); border-color: rgba(230, 0, 126, 0.15); }
+        .burger-line {
+            display: block; width: 18px; height: 2px; background: #374151;
+            border-radius: 2px; transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        .burger-line:nth-child(3) { width: 12px; margin-left: auto; }
+        .burger-premium.open .burger-line:nth-child(1) { transform: rotate(45deg) translate(5px, 5px); width: 20px; }
+        .burger-premium.open .burger-line:nth-child(2) { opacity: 0; transform: scaleX(0); }
+        .burger-premium.open .burger-line:nth-child(3) { transform: rotate(-45deg) translate(5px, -5px); width: 20px; margin-left: 0; }
+
         .mobile-menu-panel {
-            position: fixed;
-            inset: 0;
-            background: white;
-            z-index: 60;
-            transform: translateX(100%);
-            transition: transform 0.4s cubic-bezier(0.22, 1, 0.36, 1);
-            display: flex;
-            flex-direction: column;
-            height: 100%;
-            overflow-y: auto;
+            display: none; position: fixed; top: 80px; left: 0; right: 0; bottom: 0;
+            background: rgba(255, 255, 255, 0.98);
+            backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px);
+            padding: 2rem 1.5rem; overflow-y: auto; z-index: 1020;
+            border-top: 1px solid rgba(0, 0, 0, 0.03);
         }
-        .mobile-menu-panel.open {
-            transform: translateX(0);
+        .mobile-menu-panel.open { display: block; animation: fadeSlideDown 0.4s ease forwards; }
+        @keyframes fadeSlideDown {
+            from { opacity: 0; transform: translateY(-10px); }
+            to { opacity: 1; transform: translateY(0); }
         }
         .mobile-menu-panel a {
-            display: block;
-            padding: 0.75rem 1rem;
-            font-size: 1rem;
-            font-weight: 600;
-            color: #231e1f;
-            border-radius: 0.5rem;
-            transition: all 0.2s;
+            display: block; padding: 0.75rem 1rem;
+            font-size: 1rem; font-weight: 500; color: #1a1a2e;
+            border-radius: 0.5rem; transition: all 0.2s; text-decoration: none;
         }
-        .mobile-menu-panel a:hover {
-            background: rgba(230, 0, 126, 0.06);
-            color: #e6007e;
-            padding-left: 1.2rem;
-        }
+        .mobile-menu-panel a:hover { background: rgba(237, 0, 142, 0.06); color: #ed008e; padding-left: 1.2rem; }
         .mobile-menu-panel .mobile-dropdown-title {
-            font-weight: 700;
-            padding: 0.75rem 1rem;
-            font-size: 0.85rem;
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
-            color: #6b7280;
+            font-weight: 700; padding: 0.75rem 1rem; font-size: 0.85rem;
+            text-transform: uppercase; letter-spacing: 0.5px; color: #6b7280;
         }
-        .mobile-menu-panel .mobile-dropdown-items {
-            padding-left: 1rem;
-        }
-        .mobile-menu-panel .mobile-dropdown-items a {
-            font-weight: 400;
-            font-size: 0.95rem;
-        }
+        .mobile-menu-panel .mobile-dropdown-items { padding-left: 1rem; }
+        .mobile-menu-panel .mobile-dropdown-items a { font-weight: 400; font-size: 0.95rem; }
 
         /* ===== HERO ===== */
         .hero {
-            padding: 100px 0 60px;
+            padding: 80px 0 40px;
             background: linear-gradient(160deg, #ffffff 0%, #f1f5f9 100%);
-            text-align: center;
-            position: relative;
-            overflow: hidden;
+            text-align: center; position: relative; overflow: hidden;
         }
         .hero h1 {
-            font-size: clamp(2.8rem, 5vw, 4rem);
-            font-weight: 800;
-            color: #231e1f;
-            margin-bottom: 16px;
-            letter-spacing: -0.02em;
+            font-size: clamp(2.8rem, 5vw, 4rem); font-weight: 800;
+            color: #231e1f; margin-bottom: 16px; letter-spacing: -0.02em;
         }
         .hero h1 .highlight {
             background: linear-gradient(135deg, #e6007e, #ff4dab);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
+            -webkit-background-clip: text; -webkit-text-fill-color: transparent;
             background-clip: text;
         }
         .hero p {
-            font-size: 1.15rem;
-            color: #4a4a4a;
-            max-width: 600px;
-            margin: 0 auto;
-            font-weight: 400;
-            line-height: 1.7;
+            font-size: 1.15rem; color: #4a4a4a; max-width: 600px;
+            margin: 0 auto 12px; font-weight: 400; line-height: 1.7;
         }
 
         /* ===== SLIDER ===== */
-        .slider-section {
-            padding: 40px 0 80px;
-            background: #ffffff;
-        }
-        .slider-section .container {
-            max-width: 1200px;
-        }
-        .slider-section .section-title {
-            text-align: center;
-            margin-bottom: 40px;
-        }
-        .slider-section .section-title h2 {
-            font-size: 2rem;
-            font-weight: 700;
-            color: #231e1f;
-        }
-        .slider-section .section-title p {
-            color: #475569;
-            font-size: 1rem;
-        }
+        .slider-section { padding: 40px 0 80px; background: #ffffff; }
+        .slider-section .container { max-width: 1200px; }
+        .slider-section .section-title { text-align: center; margin-bottom: 40px; }
+        .slider-section .section-title h2 { font-size: 2rem; font-weight: 700; color: #231e1f; }
+        .slider-section .section-title p { color: #475569; font-size: 1rem; }
 
-        .embla {
-            overflow: hidden;
-            position: relative;
-            border-radius: 16px;
-        }
-        .embla__viewport {
-            overflow: hidden;
-        }
-        .embla__container {
-            display: flex;
-            gap: 24px;
-            padding: 10px 0;
-        }
-        .embla__slide {
-            flex: 0 0 100%;
-            min-width: 0;
-        }
-        @media (min-width: 768px) {
-            .embla__slide {
-                flex: 0 0 calc(50% - 12px);
-            }
-        }
-        @media (min-width: 1024px) {
-            .embla__slide {
-                flex: 0 0 calc(33.333% - 16px);
-            }
-        }
+        .embla { overflow: hidden; position: relative; border-radius: 16px; }
+        .embla__viewport { overflow: hidden; }
+        .embla__container { display: flex; gap: 24px; padding: 10px 0; }
+        .embla__slide { flex: 0 0 100%; min-width: 0; }
+        @media (min-width: 768px) { .embla__slide { flex: 0 0 calc(50% - 12px); } }
+        @media (min-width: 1024px) { .embla__slide { flex: 0 0 calc(33.333% - 16px); } }
 
         .slide-card {
-            background: white;
-            border-radius: 16px;
-            overflow: hidden;
+            background: white; border-radius: 16px; overflow: hidden;
             box-shadow: 0 4px 20px rgba(0, 0, 0, 0.06);
             transition: transform 0.3s ease, box-shadow 0.3s ease;
             border: 1px solid #f0f0f0;
         }
-        .slide-card:hover {
-            transform: translateY(-6px);
-            box-shadow: 0 20px 40px rgba(230, 0, 126, 0.10);
-        }
+        .slide-card:hover { transform: translateY(-6px); box-shadow: 0 20px 40px rgba(230, 0, 126, 0.10); }
+
         .slide-card .item-img {
-            height: 200px;
+            aspect-ratio: 16 / 10;
+            width: 100%;
             overflow: hidden;
-            background: #f5f5f7;
-            display: flex;
-            align-items: center;
-            justify-content: center;
+            display: flex; align-items: center; justify-content: center;
         }
         .slide-card .item-img img {
             width: 100%;
             height: 100%;
+            aspect-ratio: 16 / 10;
             object-fit: cover;
-            transition: transform 0.5s ease;
+            display: block;
         }
-        .slide-card:hover .item-img img {
-            transform: scale(1.04);
-        }
-        .slide-card .item-content {
-            padding: 20px 24px 24px;
-        }
-        .slide-card .item-content p {
-            font-size: 0.95rem;
-            font-weight: 600;
-            color: #1a1a1a;
-            margin: 0;
-        }
-        .slide-card .item-content a {
-            color: #e6007e;
-            transition: color 0.2s;
-        }
-        .slide-card .item-content a:hover {
-            color: #b8006b;
-        }
+        .slide-card .item-content { padding: 20px 24px 24px; }
+        .slide-card .item-content p { font-size: 0.95rem; font-weight: 600; color: #1a1a1a; margin: 0; }
+        .slide-card .item-content a { color: #e6007e; transition: color 0.2s; }
+        .slide-card .item-content a:hover { color: #b8006b; }
 
         .embla__button {
-            position: absolute;
-            top: 50%;
-            transform: translateY(-50%);
-            width: 44px;
-            height: 44px;
-            border-radius: 50%;
-            background: white;
-            border: 1px solid #e5e7eb;
+            position: absolute; top: 50%; transform: translateY(-50%);
+            width: 44px; height: 44px; border-radius: 50%;
+            background: white; border: 1px solid #e5e7eb;
             box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08);
-            cursor: pointer;
-            z-index: 10;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            transition: all 0.25s ease;
-            color: #1a1a1a;
-            font-size: 1.2rem;
+            cursor: pointer; z-index: 10;
+            display: flex; align-items: center; justify-content: center;
+            transition: all 0.25s ease; color: #1a1a1a; font-size: 1.2rem;
         }
-        .embla__button:hover {
-            background: #e6007e;
-            border-color: #e6007e;
-            color: white;
-            box-shadow: 0 6px 24px rgba(230, 0, 126, 0.3);
-        }
-        .embla__button--prev {
-            left: -20px;
-        }
-        .embla__button--next {
-            right: -20px;
-        }
+        .embla__button:hover { background: #e6007e; border-color: #e6007e; color: white; box-shadow: 0 6px 24px rgba(230, 0, 126, 0.3); }
+        .embla__button--prev { left: -20px; }
+        .embla__button--next { right: -20px; }
         @media (max-width: 640px) {
-            .embla__button {
-                width: 36px;
-                height: 36px;
-                font-size: 0.9rem;
-            }
-            .embla__button--prev {
-                left: -10px;
-            }
-            .embla__button--next {
-                right: -10px;
-            }
+            .embla__button { width: 36px; height: 36px; font-size: 0.9rem; }
+            .embla__button--prev { left: -10px; }
+            .embla__button--next { right: -10px; }
         }
 
         /* ===== SOCIAL ===== */
-        .social-section {
-            padding: 40px 0 60px;
-            background: #f8fafc;
-            text-align: center;
-        }
-        .social-section h3 {
-            font-size: 1.5rem;
-            font-weight: 700;
-            color: #231e1f;
-            margin-bottom: 24px;
-        }
-        .social-list {
-            display: flex;
-            justify-content: center;
-            gap: 16px;
-            flex-wrap: wrap;
-        }
+        .social-section { padding: 40px 0 60px; background: #f8fafc; text-align: center; }
+        .social-section h3 { font-size: 1.5rem; font-weight: 700; color: #231e1f; margin-bottom: 24px; }
+        .social-list { display: flex; justify-content: center; gap: 16px; flex-wrap: wrap; }
         .social-list a {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            width: 48px;
-            height: 48px;
-            border-radius: 50%;
-            background: #e5e7eb;
-            color: #1a1a1a;
-            font-size: 1.3rem;
+            display: flex; align-items: center; justify-content: center;
+            width: 48px; height: 48px; border-radius: 50%;
+            background: #e5e7eb; color: #1a1a1a; font-size: 1.3rem;
             transition: all 0.3s ease;
         }
-        .social-list a:hover {
-            background: #e6007e;
-            color: white;
-            transform: translateY(-3px);
-            box-shadow: 0 8px 24px rgba(230, 0, 126, 0.25);
-        }
+        .social-list a:hover { background: #e6007e; color: white; transform: translateY(-3px); box-shadow: 0 8px 24px rgba(230, 0, 126, 0.25); }
 
         /* ===== FOOTER ===== */
-        .footer {
-            background: #231e1f;
-            color: #cbd5e1;
-            padding: 60px 0 32px;
-        }
-        .footer .container {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
-            gap: 40px;
-        }
-        .footer h5 {
-            font-size: 0.9rem;
-            font-weight: 700;
-            color: #e6007e;
-            margin-bottom: 16px;
-            letter-spacing: 0.02em;
-        }
-        .footer ul {
-            list-style: none;
-            display: flex;
-            flex-direction: column;
-            gap: 8px;
-        }
-        .footer ul li {
-            font-size: 0.85rem;
-            font-weight: 400;
-            color: #94a3b8;
-            transition: color 0.25s ease;
-        }
-        .footer ul li a {
-            color: inherit;
-            transition: color 0.25s ease;
-        }
-        .footer ul li a:hover {
-            color: #e6007e;
-        }
-        .footer .social {
-            display: flex;
-            gap: 16px;
-            margin-top: 8px;
-        }
+        .footer { background: #231e1f; color: #cbd5e1; padding: 60px 0 32px; }
+        .footer .container { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 40px; }
+        .footer h5 { font-size: 0.9rem; font-weight: 700; color: #e6007e; margin-bottom: 16px; letter-spacing: 0.02em; }
+        .footer ul { list-style: none; display: flex; flex-direction: column; gap: 8px; }
+        .footer ul li { font-size: 0.85rem; font-weight: 400; color: #94a3b8; transition: color 0.25s ease; }
+        .footer ul li a { color: inherit; transition: color 0.25s ease; }
+        .footer ul li a:hover { color: #e6007e; }
+        .footer .social { display: flex; gap: 16px; margin-top: 8px; }
         .footer .social a {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            width: 40px;
-            height: 40px;
-            border-radius: 50%;
-            background: rgba(255, 255, 255, 0.06);
-            color: #cbd5e1;
-            font-size: 1.1rem;
-            transition: all 0.3s ease;
+            display: flex; align-items: center; justify-content: center;
+            width: 40px; height: 40px; border-radius: 50%;
+            background: rgba(255, 255, 255, 0.06); color: #cbd5e1;
+            font-size: 1.1rem; transition: all 0.3s ease;
         }
-        .footer .social a:hover {
-            background: #e6007e;
-            color: #ffffff;
-            transform: translateY(-2px);
-        }
+        .footer .social a:hover { background: #e6007e; color: #ffffff; transform: translateY(-2px); }
         .footer .copyright {
-            grid-column: 1 / -1;
-            text-align: center;
-            margin-top: 32px;
-            padding-top: 24px;
-            border-top: 1px solid rgba(255, 255, 255, 0.06);
-            font-size: 0.8rem;
-            color: #64748b;
+            grid-column: 1 / -1; text-align: center; margin-top: 32px;
+            padding-top: 24px; border-top: 1px solid rgba(255, 255, 255, 0.06);
+            font-size: 0.8rem; color: #64748b;
         }
 
         /* ===== BACK TO TOP BUTTON ===== */
         .back-to-top {
-            position: fixed; bottom: 32px; right: 32px;
-            width: 52px; height: 52px; border-radius: 50%;
-            background: linear-gradient(135deg, #e6007e 0%, #b0006a 100%);
-            color: #ffffff; border: 2px solid rgba(255, 255, 255, 0.25);
-            display: flex; align-items: center; justify-content: center;
-            cursor: pointer; z-index: 70;
-            opacity: 0; visibility: hidden; transform: translateY(20px);
-            transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-            box-shadow: 0 8px 24px rgba(230, 0, 126, 0.35);
-        }
-        .back-to-top.visible { opacity: 1; visibility: visible; transform: translateY(0); }
-        .back-to-top:hover {
-            transform: translateY(-4px) scale(1.06);
-            box-shadow: 0 14px 32px rgba(230, 0, 126, 0.45);
-        }
-        .back-to-top:active { transform: translateY(-1px) scale(0.98); }
-        .back-to-top svg { width: 22px; height: 22px; transition: transform 0.3s ease; }
-        .back-to-top:hover svg { transform: translateY(-2px); }
-
-        /* ===== SCROLL PROGRESS RING ===== */
-        .progress-ring {
             position: fixed;
-            bottom: 24px;
-            right: 24px;
-            width: 68px;
-            height: 68px;
-            z-index: 71;
-            pointer-events: none;
+            bottom: 32px;
+            right: 32px;
+            width: 52px;
+            height: 52px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #e6007e 0%, #b0006a 100%);
+            color: #ffffff;
+            border: 2px solid rgba(255, 255, 255, 0.25);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            z-index: 1040;
             opacity: 0;
             visibility: hidden;
             transform: translateY(20px);
-            transition: opacity 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94),
-                        visibility 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94),
-                        transform 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-            filter: drop-shadow(0 4px 12px rgba(230, 0, 126, 0.18));
+            transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            box-shadow: 0 8px 24px rgba(230, 0, 126, 0.35);
+            padding: 0;
+            overflow: hidden;
         }
-        .progress-ring.visible {
+        .back-to-top.visible {
             opacity: 1;
             visibility: visible;
             transform: translateY(0);
         }
-        .progress-ring svg {
+        .back-to-top:hover {
+            transform: translateY(-4px) scale(1.06);
+            box-shadow: 0 14px 32px rgba(230, 0, 126, 0.45);
+        }
+        .back-to-top:active {
+            transform: translateY(-1px) scale(0.98);
+        }
+
+        .btb-ring {
+            position: absolute;
+            inset: 0;
             width: 100%;
             height: 100%;
             display: block;
             transform: rotate(-90deg);
-            overflow: visible;
+            pointer-events: none;
         }
-        .progress-ring .ring-track {
+        .btb-ring-track {
             fill: none;
-            stroke: rgba(230, 0, 126, 0.16);
-            stroke-width: 4;
+            stroke: rgba(255, 255, 255, 0.25);
+            stroke-width: 3;
         }
-        .progress-ring .ring-bar {
+        .btb-ring-progress {
             fill: none;
-            stroke: url(#ringGradient);
-            stroke-width: 4;
+            stroke: #ffffff;
+            stroke-width: 3;
             stroke-linecap: round;
-            stroke-dasharray: 188.5;
-            stroke-dashoffset: 188.5;
+            stroke-dasharray: 131.95;
+            stroke-dashoffset: 131.95;
+            transition: stroke-dashoffset 0.15s linear;
         }
 
-        /* Hide ring & button while the mobile menu is open */
-        body.menu-open .progress-ring,
+        .btb-arrow {
+            position: relative;
+            width: 22px;
+            height: 22px;
+            z-index: 2;
+            transition: transform 0.3s ease;
+        }
+        .back-to-top:hover .btb-arrow {
+            transform: translateY(-2px);
+        }
+
         body.menu-open .back-to-top {
             opacity: 0 !important;
             visibility: hidden !important;
@@ -612,186 +492,159 @@
 
         /* ===== RESPONSIVE ===== */
         @media (max-width: 768px) {
-            .header-glass {
-                height: 64px;
-                padding: 0 1rem;
+            body { padding-top: 70px; }
+            .header-glass { height: 70px; padding: 0 1rem; }
+            .mobile-menu-panel { top: 70px; }
+            .logo-text { font-size: 1rem; }
+            .hero { padding: 60px 0 30px; }
+            .hero h1 { font-size: 2.2rem; }
+            .hero-image-wrapper { margin-top: 30px; border-radius: 14px; }
+            .footer .container { grid-template-columns: 1fr 1fr; }
+            .back-to-top {
+                bottom: 24px;
+                right: 20px;
+                width: 46px;
+                height: 46px;
             }
-            body {
-                padding-top: 64px;
+            .btb-arrow {
+                width: 20px;
+                height: 20px;
             }
-            .hero {
-                padding: 80px 0 40px;
-            }
-            .hero h1 {
-                font-size: 2.2rem;
-            }
-            .footer .container {
-                grid-template-columns: 1fr 1fr;
-            }
-            .back-to-top { bottom: 24px; right: 20px; width: 46px; height: 46px; }
-            .back-to-top svg { width: 18px; height: 18px; }
-            .progress-ring { bottom: 17px; right: 13px; width: 60px; height: 60px; }
         }
         @media (max-width: 480px) {
-            .footer .container {
-                grid-template-columns: 1fr;
+            .logo-text { font-size: 0.9rem; }
+            .footer .container { grid-template-columns: 1fr; }
+            .hero h1 { font-size: 2rem; }
+            .hero-image-wrapper { border-radius: 12px; }
+            .hero-image-badge { font-size: 0.6rem; padding: 6px 12px; bottom: 12px; left: 12px; }
+            .back-to-top {
+                width: 42px;
+                height: 42px;
             }
-            .hero h1 {
-                font-size: 2rem;
+            .btb-arrow {
+                width: 18px;
+                height: 18px;
             }
         }
     </style>
 </head>
 <body>
 
-    <!-- ===== HEADER ===== -->
+    <!-- ===== PREMIUM GLASS HEADER ===== -->
     <header class="header-glass" id="mainHeader">
-        <div class="max-w-7xl mx-auto px-4 md:px-6">
-            <div class="flex justify-between items-center h-20">
+        <div class="max-w-7xl mx-auto px-4 md:px-6 w-full">
+            <div class="flex justify-between items-center">
 
-                <!-- Logo -->
-                <a href="index.html" class="flex items-center gap-3 group">
-                    <img src="obrian-transparent-logo-4461219.webp" alt="O'Brian Group" class="h-10 w-auto" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22%3E%3Crect width=%22100%22 height=%22100%22 fill=%22%23e6007e%22/%3E%3Ctext x=%2250%22 y=%2268%22 font-size=%2248%22 text-anchor=%22middle%22 fill=%22white%22 font-weight=%22bold%22 font-family=%22Inter%22%3EO%3C/text%3E%3C/svg%3E'">
-                    <span class="font-black text-xl text-[#231e1f] tracking-tight hidden sm:inline"><span class="text-[#e6007e]">O'BRIAN</span></span>
+                <!-- Premium Logo -->
+                <a href="Home.html" class="logo-premium group">
+                    <img src="obrian-transparent-logo-4461219.webp"
+                         alt="O'Brian Group"
+                         class="h-9 w-auto"
+                         width="120" height="36"
+                         loading="eager"
+                         fetchpriority="high"
+                         decoding="async"
+                         onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22%3E%3Crect width=%22100%22 height=%22100%22 fill=%22%23ed008e%22/%3E%3Ctext x=%2250%22 y=%2268%22 font-size=%2248%22 text-anchor=%22middle%22 fill=%22white%22 font-weight=%22bold%22 font-family=%22Inter%22%3EO%3C/text%3E%3C/svg%3E'">
+                    <span class="logo-text hidden sm:inline-block"><span class="highlight"></span></span>
                 </a>
 
-                <!-- Desktop Nav -->
+                <!-- Premium Desktop Nav -->
                 <div class="hidden lg:flex items-center gap-0.5">
-                    <a href="Home.html" class="nav-link-new">Home</a>
-                    <a href="About.html" class="nav-link-new">About</a>
-                    <a href="Our_Work.html" class="nav-link-new">Our Work</a>
-                    <a href="Client_Experience.html" class="nav-link-new">Client Experience</a>
+                    <a href="Home.html" class="nav-link-premium">Home</a>
+                    <a href="About.html" class="nav-link-premium">About</a>
+                    <a href="Our_Work.html" class="nav-link-premium">Our Work</a>
+                    <a href="Client_Experience.html" class="nav-link-premium">Client Experience</a>
 
-                    <div class="relative group">
-                        <button class="nav-link-new flex items-center gap-1">
+                    <div class="dropdown-wrapper">
+                        <button class="nav-link-premium flex items-center gap-1">
                             Case Studies
-                            <svg class="w-3 h-3 transition-transform duration-300 group-hover:rotate-180" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M19 9l-7 7-7-7"></path></svg>
+                            <svg class="w-3 h-3 transition-transform duration-300 dropdown-wrapper:hover:rotate-180" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M19 9l-7 7-7-7"></path></svg>
                         </button>
-                        <div class="dropdown-menu-custom">
+                        <div class="dropdown-menu-premium">
                             <a href="Adv_Case_Studies.html">Advertising</a>
                             <a href="Digital_Case_Studies.html">Digital</a>
                             <a href="Consulting_Case_Studies.html">Consulting</a>
                         </div>
                     </div>
 
-                    <div class="relative group">
-                        <button class="nav-link-new flex items-center gap-1">
+                    <div class="dropdown-wrapper">
+                        <button class="nav-link-premium flex items-center gap-1">
                             Expertise
-                            <svg class="w-3 h-3 transition-transform duration-300 group-hover:rotate-180" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M19 9l-7 7-7-7"></path></svg>
+                            <svg class="w-3 h-3 transition-transform duration-300 dropdown-wrapper:hover:rotate-180" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M19 9l-7 7-7-7"></path></svg>
                         </button>
-                        <div class="dropdown-menu-custom">
+                        <div class="dropdown-menu-premium">
                             <a href="Advertising_Expertise.html">Advertising</a>
                             <a href="Digital_Expertise.html">Digital</a>
                             <a href="Consulting_Expertise.html">Consulting</a>
                         </div>
                     </div>
 
-                    <a href="Staff_News.html" class="nav-link-new">Staff News</a>
-
-                    <a href="Exploring_Boundless_Horizons.html" class="nav-link-new">Blog</a>
-                    <a href="Archive_Gallery.html" class="nav-link-new">Archives</a>
+                    <a href="Staff_News.html" class="nav-link-premium active-link">Staff News</a>
+                    <a href="Exploring_Boundless_Horizons.html" class="nav-link-premium">Blog</a>
+                    <a href="Archive_Gallery.html" class="nav-link-premium">Archives</a>
                 </div>
 
-                <!-- CTA -->
+                <!-- Premium CTA -->
                 <div class="hidden lg:block">
-                    <a href="Contact_Us.html" class="btn-primary-pink">
+                    <a href="Contact_Us.html" class="btn-premium-cta">
                         <span>Contact</span>
                         <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M17 8l4 4m0 0l-4 4m4-4H3"></path></svg>
                     </a>
                 </div>
 
-                <!-- Burger -->
-                <button class="lg:hidden p-2 rounded-lg hover:bg-gray-100 transition-colors" id="menuBtn" aria-label="Toggle menu">
-                    <div class="w-6 h-6 flex flex-col justify-center items-center gap-1.5">
-                        <span class="w-6 h-0.5 bg-gray-700 transition-all duration-300 menu-line-1"></span>
-                        <span class="w-6 h-0.5 bg-gray-700 transition-all duration-300 menu-line-2"></span>
-                        <span class="w-4 h-0.5 bg-gray-700 transition-all duration-300 menu-line-3 ml-auto"></span>
-                    </div>
+                <!-- Premium Burger -->
+                <button class="burger-premium lg:hidden" id="menuBtn" aria-label="Toggle menu">
+                    <span class="burger-line"></span>
+                    <span class="burger-line"></span>
+                    <span class="burger-line"></span>
                 </button>
             </div>
         </div>
     </header>
 
-    <!-- ===== MOBILE MENU ===== -->
-    <div class="mobile-menu-panel lg:hidden" id="mobileMenu">
-        <div class="flex flex-col h-full">
-            <!-- Mobile Header -->
-            <div class="flex justify-between items-center p-6 border-b border-gray-100">
-                <a href="index.html" class="flex items-center gap-3">
-                    <img src="obrian-transparent-logo-4461219.webp" alt="O'Brian Group" class="logo-img" style="height: 40px;" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22%3E%3Crect width=%22100%22 height=%22100%22 fill=%22%23e6007e%22/%3E%3Ctext x=%2250%22 y=%2268%22 font-size=%2248%22 text-anchor=%22middle%22 fill=%22white%22 font-weight=%22bold%22 font-family=%22Arial%22%3EO%3C/text%3E%3C/svg%3E'">
-                    <span class="font-black text-xl text-gray-900">O'BRIAN</span>
-                </a>
-                <button class="p-2 rounded-lg hover:bg-gray-100 transition-colors" id="closeMenu" aria-label="Close menu">
-                    <svg class="w-6 h-6 text-gray-700" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
-                    </svg>
-                </button>
-            </div>
+    <!-- ===== MOBILE MENU PANEL ===== -->
+    <div class="mobile-menu-panel" id="mobileMenuPanel">
+        <a href="Home.html">Home</a>
+        <a href="About.html">About</a>
+        <a href="Our_Work.html">Our Work</a>
+        <a href="Client_Experience.html">Client Experience</a>
 
-            <!-- Mobile Navigation Links -->
-            <div class="flex-1 overflow-y-auto py-6 px-6">
-                <div class="space-y-1">
-                    <a href="Home.html" class="block px-4 py-3 text-lg font-semibold text-gray-800 hover:text-[#e6007e] hover:bg-pink-50 rounded-xl transition-all">Home</a>
-                    <a href="About.html" class="block px-4 py-3 text-lg font-semibold text-gray-800 hover:text-[#e6007e] hover:bg-pink-50 rounded-xl transition-all">About</a>
-                    <a href="Our_Work.html" class="block px-4 py-3 text-lg font-semibold text-gray-800 hover:text-[#e6007e] hover:bg-pink-50 rounded-xl transition-all">Our Work</a>
-                    <a href="Client_Experience.html" class="block px-4 py-3 text-lg font-semibold text-gray-800 hover:text-[#e6007e] hover:bg-pink-50 rounded-xl transition-all">Client Experience</a>
-
-                    <!-- Mobile Case Studies Accordion -->
-                    <div class="mobile-accordion">
-                        <button class="w-full flex justify-between items-center px-4 py-3 text-lg font-semibold text-gray-800 hover:text-[#e6007e] hover:bg-pink-50 rounded-xl transition-all" onclick="toggleAccordion('case-studies')">
-                            Case Studies
-                            <svg class="w-5 h-5 transition-transform duration-300" id="case-studies-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
-                            </svg>
-                        </button>
-                        <div id="case-studies" class="hidden pl-4 space-y-1 mt-1">
-                            <a href="Adv_Case_Studies.html" class="block px-4 py-2 text-sm text-gray-600 hover:text-[#e6007e] transition-colors">Advertising</a>
-                            <a href="Digital_Case_Studies.html" class="block px-4 py-2 text-sm text-gray-600 hover:text-[#e6007e] transition-colors">Digital</a>
-                            <a href="Consulting_Case_Studies.html" class="block px-4 py-2 text-sm text-gray-600 hover:text-[#e6007e] transition-colors">Consulting</a>
-                        </div>
-                    </div>
-
-                    <!-- Mobile Expertise Accordion -->
-                    <div class="mobile-accordion">
-                        <button class="w-full flex justify-between items-center px-4 py-3 text-lg font-semibold text-gray-800 hover:text-[#e6007e] hover:bg-pink-50 rounded-xl transition-all" onclick="toggleAccordion('expertise')">
-                            Our Expertise
-                            <svg class="w-5 h-5 transition-transform duration-300" id="expertise-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
-                            </svg>
-                        </button>
-                        <div id="expertise" class="hidden pl-4 space-y-1 mt-1">
-                            <a href="Advertising_Expertise.html" class="block px-4 py-2 text-sm text-gray-600 hover:text-[#e6007e] transition-colors">Advertising</a>
-                            <a href="Digital_Expertise.html" class="block px-4 py-2 text-sm text-gray-600 hover:text-[#e6007e] transition-colors">Digital</a>
-                            <a href="Consulting_Expertise.html" class="block px-4 py-2 text-sm text-gray-600 hover:text-[#e6007e] transition-colors">Consulting</a>
-                        </div>
-                    </div>
-
-                    <a href="Staff_News.html" class="block px-4 py-3 text-lg font-semibold text-gray-800 hover:text-[#e6007e] hover:bg-pink-50 rounded-xl transition-all">Staff News</a>
-
-                    <a href="Exploring_Boundless_Horizons.html" class="block px-4 py-3 text-lg font-semibold text-gray-800 hover:text-[#e6007e] hover:bg-pink-50 rounded-xl transition-all">Blog</a>
-                    <a href="Archive_Gallery.html" class="block px-4 py-3 text-lg font-semibold text-gray-800 hover:text-[#e6007e] hover:bg-pink-50 rounded-xl transition-all">Archives</a>
-                </div>
-            </div>
-
-            <!-- Mobile CTA -->
-            <div class="p-6 border-t border-gray-100">
-                <a href="Contact_Us.html" class="flex items-center justify-center gap-2 w-full px-6 py-4 bg-gradient-to-r from-[#e6007e] to-[#ff1493] text-white font-bold rounded-xl hover:shadow-lg transition-all">
-                    Contact Us
-                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"></path>
-                    </svg>
-                </a>
-            </div>
+        <div class="mobile-dropdown-title">Case Studies</div>
+        <div class="mobile-dropdown-items">
+            <a href="Adv_Case_Studies.html">Advertising</a>
+            <a href="Digital_Case_Studies.html">Digital</a>
+            <a href="Consulting_Case_Studies.html">Consulting</a>
         </div>
+
+        <div class="mobile-dropdown-title">Our Expertise</div>
+        <div class="mobile-dropdown-items">
+            <a href="Advertising_Expertise.html">Advertising</a>
+            <a href="Digital_Expertise.html">Digital</a>
+            <a href="Consulting_Expertise.html">Consulting</a>
+        </div>
+
+        <a href="Staff_News.html">Staff News</a>
+        <a href="Exploring_Boundless_Horizons.html">Blog</a>
+        <a href="Archive_Gallery.html">Archives</a>
+        <a href="Contact_Us.html" style="display:inline-flex; margin-top:1rem; background:linear-gradient(135deg,#e6007e,#ff1493); color:#fff; padding:0.6rem 1.5rem; border-radius:9999px; font-weight:700; text-decoration:none;">Contact Us</a>
     </div>
 
-    <!-- ===== HERO ===== -->
+    <!-- ===== HERO WITH FEATURED BLOG IMAGE ===== -->
     <section class="hero">
         <div class="container">
-            <h1>
-                Staff <span class="highlight">News</span>
-            </h1>
+            <h1>Staff <span class="highlight">News</span></h1>
             <p>Stay updated with the latest staff welfare news, employee achievements, and internal happenings at O'Brian Group.</p>
+
+            <!-- Featured blog image inside the hero -->
+            <div class="hero-image-wrapper">
+                <span class="hero-image-badge">Featured from the blog</span>
+                <img src="blog-staff-news-hero.webp"
+                     alt="O'Brian Group staff celebrating a recent achievement"
+                     width="1280" height="720"
+                     loading="lazy"
+                     decoding="async"
+                     onerror="this.onerror=null;this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 1280 720%22%3E%3Crect width=%221280%22 height=%22720%22 fill=%22%23f5edf0%22/%3E%3Ctext x=%22640%22 y=%22380%22 font-size=%2242%22 text-anchor=%22middle%22 fill=%22%23e6007e%22 font-family=%22Montserrat,sans-serif%22 font-weight=%22bold%22%3EO%27Brian Group · Staff News%3C/text%3E%3C/svg%3E'" />
+            </div>
         </div>
     </section>
 
@@ -806,12 +659,19 @@
             <div class="embla" data-skip-snaps="true" data-align="center" data-contain-scroll="trimSnaps" data-loop="true" data-auto-play-interval="2" data-draggable="true">
                 <div class="embla__viewport">
                     <div class="embla__container">
-                        <!-- Slide 1 -->
+
+                        <!-- Slide 1 (first slide = above the fold → eager, high priority) -->
                         <div class="embla__slide">
                             <div class="slide-card">
                                 <div class="item-img">
                                     <a href="Media_News.html">
-                                        <img src="obrian-on-the-entreprenuer-drivenbusiness-of-advertising-tranformation.jpg" alt="Media News" />
+                                        <img src="obrian-on-the-entreprenuer-drivenbusiness-of-advertising-tranformation.jpg"
+                                             alt="Media News"
+                                             width="400" height="250"
+                                             loading="eager"
+                                             fetchpriority="high"
+                                             decoding="async"
+                                             onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 400 250%22 width=%22400%22 height=%22250%22%3E%3Crect fill=%22%23f0f0f0%22 width=%22400%22 height=%22250%22/%3E%3C/svg%3E'">
                                     </a>
                                 </div>
                                 <div class="item-content">
@@ -820,12 +680,17 @@
                             </div>
                         </div>
 
-                        <!-- Slide 2 -->
+                        <!-- Slide 2 (lazy) -->
                         <div class="embla__slide">
                             <div class="slide-card">
                                 <div class="item-img">
                                     <a href="Staff_Welfare.html">
-                                        <img src="img-801.jpg" alt="Staff welfare" />
+                                        <img src="img-801.jpg"
+                                             alt="Staff welfare"
+                                             width="400" height="250"
+                                             loading="lazy"
+                                             decoding="async"
+                                             onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 400 250%22 width=%22400%22 height=%22250%22%3E%3Crect fill=%22%23f0f0f0%22 width=%22400%22 height=%22250%22/%3E%3C/svg%3E'">
                                     </a>
                                 </div>
                                 <div class="item-content">
@@ -834,12 +699,17 @@
                             </div>
                         </div>
 
-                        <!-- Slide 3 -->
+                        <!-- Slide 3 (lazy) -->
                         <div class="embla__slide">
                             <div class="slide-card">
                                 <div class="item-img">
                                     <a href="Future-Proof.html">
-                                        <img src="vlcsnap-2025-11-21-10h26m51s495.png" alt="Let's talk digital" />
+                                        <img src="vlcsnap-2025-11-21-10h26m51s495.png"
+                                             alt="Let's talk digital"
+                                             width="400" height="250"
+                                             loading="lazy"
+                                             decoding="async"
+                                             onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 400 250%22 width=%22400%22 height=%22250%22%3E%3Crect fill=%22%23f0f0f0%22 width=%22400%22 height=%22250%22/%3E%3C/svg%3E'">
                                     </a>
                                 </div>
                                 <div class="item-content">
@@ -848,12 +718,17 @@
                             </div>
                         </div>
 
-                        <!-- Slide 4 -->
+                        <!-- Slide 4 (lazy) -->
                         <div class="embla__slide">
                             <div class="slide-card">
                                 <div class="item-img">
                                     <a href="Staff_Welfare.html">
-                                        <img src="img-809.jpg" alt="Staff welfare" />
+                                        <img src="img-809.jpg"
+                                             alt="Staff welfare"
+                                             width="400" height="250"
+                                             loading="lazy"
+                                             decoding="async"
+                                             onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 400 250%22 width=%22400%22 height=%22250%22%3E%3Crect fill=%22%23f0f0f0%22 width=%22400%22 height=%22250%22/%3E%3C/svg%3E'">
                                     </a>
                                 </div>
                                 <div class="item-content">
@@ -879,21 +754,11 @@
         <div class="container">
             <h3>Follow us</h3>
             <div class="social-list">
-                <a href="https://www.facebook.com/profile.php?id=100094029616085" target="_blank" aria-label="Facebook">
-                    <i class="fab fa-facebook-f"></i>
-                </a>
-                <a href="https://x.com/ObrianSA" target="_blank" aria-label="Twitter">
-                    <i class="fab fa-twitter"></i>
-                </a>
-                <a href="https://www.instagram.com/obriandigital/" target="_blank" aria-label="Instagram">
-                    <i class="fab fa-instagram"></i>
-                </a>
-                <a href="https://za.pinterest.com/OBRIANDIGITAL/?actingBusinessId=1044694582220194747" target="_blank" aria-label="Pinterest">
-                    <i class="fab fa-pinterest-p"></i>
-                </a>
-                <a href="https://za.linkedin.com/company/o-brian-digital" target="_blank" aria-label="LinkedIn">
-                    <i class="fab fa-linkedin-in"></i>
-                </a>
+                <a href="https://www.facebook.com/profile.php?id=100094029616085" target="_blank" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+                <a href="https://x.com/ObrianSA" target="_blank" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+                <a href="https://www.instagram.com/obriandigital/" target="_blank" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                <a href="https://za.pinterest.com/OBRIANDIGITAL/?actingBusinessId=1044694582220194747" target="_blank" aria-label="Pinterest"><i class="fab fa-pinterest-p"></i></a>
+                <a href="https://za.linkedin.com/company/o-brian-digital" target="_blank" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
             </div>
         </div>
     </section>
@@ -917,15 +782,13 @@
             </div>
             <div>
                 <h5>Email</h5>
-                <ul>
-                    <li><a href="mailto:info@obriangroup.com">info@obriangroup.com</a></li>
-                </ul>
+                <ul><li><a href="mailto:info@obriangroup.com">info@obriangroup.com</a></li></ul>
             </div>
             <div>
                 <h5>About</h5>
                 <ul>
-                    <li><a href="page8.html">History</a></li>
-                    <li><a href="page52.html">Clients</a></li>
+                    <li><a href="About.html">History</a></li>
+                    <li><a href="Client_Experience.html">Clients</a></li>
                     <li>Teams</li>
                     <li>Brand</li>
                     <li>Terms</li>
@@ -940,171 +803,156 @@
                     <a href="https://za.linkedin.com/company/o-brian-digital" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
                 </div>
             </div>
-            <div class="copyright">
-                &copy; 2026 O'Brian Group — All Rights Reserved.
-            </div>
+            <div class="copyright">&copy; 2026 O'Brian Group — All Rights Reserved.</div>
         </div>
     </footer>
 
-    <!-- ===== SCROLL PROGRESS RING ===== -->
-    <div class="progress-ring" id="progressRing" aria-hidden="true">
-        <svg viewBox="0 0 68 68">
-            <defs>
-                <linearGradient id="ringGradient" x1="0%" y1="0%" x2="100%" y2="100%">
-                    <stop offset="0%" stop-color="#e6007e" />
-                    <stop offset="100%" stop-color="#ff1493" />
-                </linearGradient>
-            </defs>
-            <circle class="ring-track" cx="34" cy="34" r="30" />
-            <circle class="ring-bar" id="ringBar" cx="34" cy="34" r="30" />
+    <!-- ===== BACK TO TOP BUTTON (with integrated progress ring) ===== -->
+    <button class="back-to-top" id="backToTopBtn" aria-label="Back to top" title="Back to top" aria-hidden="false" tabindex="0">
+        <svg class="btb-ring" viewBox="0 0 48 48" aria-hidden="true">
+            <circle class="btb-ring-track" cx="24" cy="24" r="21"></circle>
+            <circle class="btb-ring-progress" cx="24" cy="24" r="21"></circle>
         </svg>
-    </div>
-
-    <!-- ===== BACK TO TOP BUTTON ===== -->
-    <button class="back-to-top" id="backToTopBtn" aria-label="Back to top">
-        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
-            <path stroke-linecap="round" stroke-linejoin="round" d="M5 15l7-7 7 7" />
+        <svg class="btb-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="M12 19V5"></path>
+            <path d="M5 12l7-7 7 7"></path>
         </svg>
     </button>
 
     <!-- ===== SCRIPTS ===== -->
     <script>
         (function() {
-            // Header scroll effect
-            const header = document.getElementById('mainHeader');
-            window.addEventListener('scroll', function() {
-                if (window.scrollY > 20) {
-                    header.classList.add('scrolled');
+            'use strict';
+
+            // ===== IMAGE FADE-IN (blur-up) =====
+            function markImageLoaded(img) {
+                if (img.complete && img.naturalWidth > 0) {
+                    img.classList.add('loaded');
                 } else {
-                    header.classList.remove('scrolled');
+                    img.addEventListener('load', function() {
+                        img.classList.add('loaded');
+                    }, { once: true });
+                    img.addEventListener('error', function() {
+                        img.classList.add('loaded');
+                    }, { once: true });
                 }
-            });
+            }
+
+            document.querySelectorAll('img').forEach(markImageLoaded);
+
+            if ('IntersectionObserver' in window) {
+                var imgObserver = new IntersectionObserver(function(entries) {
+                    entries.forEach(function(entry) {
+                        if (entry.isIntersecting) {
+                            markImageLoaded(entry.target);
+                            imgObserver.unobserve(entry.target);
+                        }
+                    });
+                }, { rootMargin: '300px 0px' });
+                document.querySelectorAll('img:not(.loaded)').forEach(function(img) {
+                    imgObserver.observe(img);
+                });
+            }
+
+            // Header scroll effect
+            var header = document.getElementById('mainHeader');
 
             // Mobile menu toggle
-            const menuBtn = document.getElementById('menuBtn');
-            const mobileMenu = document.getElementById('mobileMenu');
-            const closeBtn = document.getElementById('closeMenu');
+            var menuBtn = document.getElementById('menuBtn');
+            var mobilePanel = document.getElementById('mobileMenuPanel');
 
-            function openMenu() {
-                mobileMenu.classList.add('open');
-                document.body.style.overflow = 'hidden';
-                document.body.classList.add('menu-open');
-            }
+            if (menuBtn && mobilePanel) {
+                menuBtn.addEventListener('click', function() {
+                    this.classList.toggle('open');
+                    mobilePanel.classList.toggle('open');
+                    var isOpen = mobilePanel.classList.contains('open');
+                    document.body.style.overflow = isOpen ? 'hidden' : '';
+                    document.body.classList.toggle('menu-open', isOpen);
+                });
 
-            function closeMenu() {
-                mobileMenu.classList.remove('open');
-                document.body.style.overflow = '';
-                document.body.classList.remove('menu-open');
+                mobilePanel.querySelectorAll('a').forEach(function(link) {
+                    link.addEventListener('click', function() {
+                        menuBtn.classList.remove('open');
+                        mobilePanel.classList.remove('open');
+                        document.body.style.overflow = '';
+                        document.body.classList.remove('menu-open');
+                    });
+                });
             }
-
-            if (menuBtn) {
-                menuBtn.addEventListener('click', openMenu);
-            }
-            if (closeBtn) {
-                closeBtn.addEventListener('click', closeMenu);
-            }
-
-            // Close menu when a link is clicked
-            mobileMenu.querySelectorAll('a').forEach(link => {
-                link.addEventListener('click', closeMenu);
-            });
 
             // Close menu on resize to desktop
             window.addEventListener('resize', function() {
                 if (window.innerWidth >= 1024) {
-                    closeMenu();
+                    if (mobilePanel) mobilePanel.classList.remove('open');
+                    if (menuBtn) menuBtn.classList.remove('open');
+                    document.body.style.overflow = '';
+                    document.body.classList.remove('menu-open');
                 }
             });
 
-            // Mobile accordion
-            window.toggleAccordion = function(id) {
-                const panel = document.getElementById(id);
-                if (!panel) return;
-                const icon = document.getElementById(id + '-icon');
-                if (panel.classList.contains('hidden')) {
-                    panel.classList.remove('hidden');
-                    if (icon) icon.style.transform = 'rotate(180deg)';
-                } else {
-                    panel.classList.add('hidden');
-                    if (icon) icon.style.transform = 'rotate(0deg)';
-                }
-            };
-
             // Embla slider manual navigation (simple)
-            const emblaNode = document.querySelector('.embla');
+            var emblaNode = document.querySelector('.embla');
             if (emblaNode) {
-                const viewport = emblaNode.querySelector('.embla__viewport');
-                const container = emblaNode.querySelector('.embla__container');
-                const prevBtn = emblaNode.querySelector('.embla__button--prev');
-                const nextBtn = emblaNode.querySelector('.embla__button--next');
-                const slides = container.querySelectorAll('.embla__slide');
+                var viewport = emblaNode.querySelector('.embla__viewport');
+                var container = emblaNode.querySelector('.embla__container');
+                var prevBtn = emblaNode.querySelector('.embla__button--prev');
+                var nextBtn = emblaNode.querySelector('.embla__button--next');
+                var slides = container.querySelectorAll('.embla__slide');
 
                 if (viewport && container && slides.length) {
-                    let currentIndex = 0;
-                    const total = slides.length;
+                    var currentIndex = 0;
+                    var total = slides.length;
 
                     function getVisibleCount() {
-                        const w = viewport.clientWidth;
+                        var w = viewport.clientWidth;
                         if (w >= 1024) return 3;
                         if (w >= 768) return 2;
                         return 1;
                     }
-
                     function getSlideWidth() {
-                        const w = viewport.clientWidth;
-                        const count = getVisibleCount();
-                        const gap = 24;
+                        var w = viewport.clientWidth;
+                        var count = getVisibleCount();
+                        var gap = 24;
                         return (w - gap * (count - 1)) / count;
                     }
-
                     function goTo(index) {
-                        const count = getVisibleCount();
-                        const maxIndex = Math.max(0, total - count);
-                        const clamped = Math.max(0, Math.min(index, maxIndex));
+                        var count = getVisibleCount();
+                        var maxIndex = Math.max(0, total - count);
+                        var clamped = Math.max(0, Math.min(index, maxIndex));
                         currentIndex = clamped;
-
-                        const slideW = getSlideWidth();
-                        const gap = 24;
-                        const offset = clamped * (slideW + gap);
+                        var slideW = getSlideWidth();
+                        var gap = 24;
+                        var offset = clamped * (slideW + gap);
                         container.style.transform = 'translateX(-' + offset + 'px)';
                         container.style.transition = 'transform 0.4s cubic-bezier(0.22, 1, 0.36, 1)';
                     }
-
                     function next() {
-                        const count = getVisibleCount();
-                        const maxIndex = Math.max(0, total - count);
-                        if (currentIndex < maxIndex) {
-                            goTo(currentIndex + 1);
-                        } else {
-                            goTo(0);
-                        }
+                        var count = getVisibleCount();
+                        var maxIndex = Math.max(0, total - count);
+                        if (currentIndex < maxIndex) goTo(currentIndex + 1);
+                        else goTo(0);
                     }
-
                     function prev() {
-                        if (currentIndex > 0) {
-                            goTo(currentIndex - 1);
-                        } else {
-                            const count = getVisibleCount();
-                            const maxIndex = Math.max(0, total - count);
+                        if (currentIndex > 0) goTo(currentIndex - 1);
+                        else {
+                            var count = getVisibleCount();
+                            var maxIndex = Math.max(0, total - count);
                             goTo(maxIndex);
                         }
                     }
-
-                    // Init
                     container.style.display = 'flex';
                     container.style.gap = '24px';
                     container.style.transition = 'transform 0.4s cubic-bezier(0.22, 1, 0.36, 1)';
                     slides.forEach(function(s) { s.style.flex = '0 0 auto'; });
 
                     function updateSlideWidth() {
-                        const w = getSlideWidth();
+                        var w = getSlideWidth();
                         slides.forEach(function(s) { s.style.width = w + 'px'; });
                         goTo(currentIndex);
                     }
-
                     updateSlideWidth();
 
-                    let resizeTimer;
+                    var resizeTimer;
                     window.addEventListener('resize', function() {
                         clearTimeout(resizeTimer);
                         resizeTimer = setTimeout(updateSlideWidth, 150);
@@ -1115,64 +963,46 @@
                 }
             }
 
-            // ===== BACK TO TOP BUTTON + SCROLL PROGRESS RING =====
-            const backToTopBtn = document.getElementById('backToTopBtn');
-            const progressRing = document.getElementById('progressRing');
-            const ringBar = document.getElementById('ringBar');
+            // ===== BACK TO TOP BUTTON + INTEGRATED PROGRESS RING =====
+            var backToTopBtn = document.getElementById('backToTopBtn');
+            var ringBar = backToTopBtn.querySelector('.btb-ring-progress');
 
-            // Ring geometry: r = 30 → circumference = 2πr ≈ 188.5
-            const RING_CIRCUMFERENCE = 2 * Math.PI * 30;
+            // Ring geometry: r = 21 → circumference = 2π × 21 ≈ 131.95
+            var RING_CIRCUMFERENCE = 2 * Math.PI * 21;
 
             if (ringBar) {
                 ringBar.style.strokeDasharray = RING_CIRCUMFERENCE;
                 ringBar.style.strokeDashoffset = RING_CIRCUMFERENCE;
             }
 
-            let ticking = false;
-
+            var ticking = false;
             function updateScrollUI() {
-                const scrollTop = window.scrollY || window.pageYOffset || document.documentElement.scrollTop || 0;
-                const maxScroll = Math.max(
-                    document.documentElement.scrollHeight - window.innerHeight,
-                    0
-                );
+                var scrollTop = window.scrollY || document.documentElement.scrollTop || 0;
+                var maxScroll = Math.max(document.documentElement.scrollHeight - window.innerHeight, 0);
+                var progress = maxScroll > 0 ? Math.min(scrollTop / maxScroll, 1) : 0;
 
-                // ── Scroll progress (0 → 1) ──
-                const progress = maxScroll > 0 ? Math.min(scrollTop / maxScroll, 1) : 0;
+                if (ringBar) ringBar.style.strokeDashoffset = RING_CIRCUMFERENCE * (1 - progress);
 
-                if (ringBar) {
-                    ringBar.style.strokeDashoffset = RING_CIRCUMFERENCE * (1 - progress);
-                }
+                var shouldShow = scrollTop > 400;
+                if (backToTopBtn) backToTopBtn.classList.toggle('visible', shouldShow);
 
-                // ── Show / hide both the ring and the button ──
-                const shouldShow = scrollTop > 400;
-                backToTopBtn.classList.toggle('visible', shouldShow);
-                if (progressRing) {
-                    progressRing.classList.toggle('visible', shouldShow);
-                }
+                if (header) header.classList.toggle('scrolled', scrollTop > 20);
 
                 ticking = false;
             }
-
             function requestScrollUI() {
-                if (!ticking) {
-                    ticking = true;
-                    window.requestAnimationFrame(updateScrollUI);
-                }
+                if (!ticking) { ticking = true; window.requestAnimationFrame(updateScrollUI); }
             }
-
             window.addEventListener('scroll', requestScrollUI, { passive: true });
             window.addEventListener('resize', requestScrollUI);
             window.addEventListener('load', requestScrollUI);
-
-            // Initial paint
             updateScrollUI();
 
-            // Back to top click
-            backToTopBtn.addEventListener('click', function() {
-                window.scrollTo({ top: 0, behavior: 'smooth' });
-            });
-
+            if (backToTopBtn) {
+                backToTopBtn.addEventListener('click', function() {
+                    window.scrollTo({ top: 0, behavior: 'smooth' });
+                });
+            }
         })();
     </script>
 
