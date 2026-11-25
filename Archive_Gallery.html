@@ -9,7 +9,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800;900&family=Open+Sans:wght@300;400;600&display=swap" rel="stylesheet">
-    
+
     <script>
         tailwind.config = {
             theme: {
@@ -46,7 +46,7 @@
             }
         }
     </script>
-    
+
     <style>
         body {
             font-family: 'Montserrat', sans-serif;
@@ -55,30 +55,30 @@
             overflow-x: hidden;
             padding-top: 80px;
         }
-        
+
         .font-body {
             font-family: 'Open Sans', sans-serif;
         }
-        
+
         .text-pink {
             color: #e6007e;
         }
-        
+
         .bg-pink {
             background-color: #e6007e;
         }
-        
+
         .border-pink {
             border-color: #e6007e;
         }
-        
+
         .gradient-text {
             background: linear-gradient(135deg, #e6007e 0%, #ff1493 100%);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
         }
-        
+
         ::-webkit-scrollbar {
             width: 8px;
         }
@@ -375,7 +375,6 @@
         .mobile-menu-panel .mobile-dropdown-title {
             font-weight: 700;
             padding: 0.75rem 1rem;
-            color: #1a1a2e;
             cursor: default;
             font-size: 0.85rem;
             text-transform: uppercase;
@@ -388,6 +387,61 @@
         .mobile-menu-panel .mobile-dropdown-items a {
             font-weight: 400;
             font-size: 0.95rem;
+        }
+
+        /* ── HERO IMAGE (featured from the archive) ── */
+        .hero-image-wrapper {
+            max-width: 1100px;
+            margin: 40px auto 0;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 20px 50px -15px rgba(0, 0, 0, 0.2);
+            position: relative;
+            aspect-ratio: 16 / 9;
+            background: linear-gradient(145deg, #f0e4ea, #faf5f7);
+        }
+        .hero-image-wrapper img {
+            width: 100%;
+            height: 100%;
+            aspect-ratio: 16 / 9;
+            object-fit: cover;
+            display: block;
+            opacity: 0;
+            filter: blur(8px);
+            transform: scale(1.02);
+            transition: opacity 0.7s ease, filter 0.7s ease, transform 0.7s ease;
+        }
+        .hero-image-wrapper img.loaded {
+            opacity: 1;
+            filter: blur(0);
+            transform: scale(1);
+        }
+        .hero-image-wrapper:hover img.loaded {
+            transform: scale(1.03);
+        }
+        .hero-image-badge {
+            position: absolute;
+            bottom: 16px;
+            left: 16px;
+            background: rgba(230, 0, 126, 0.92);
+            color: #fff;
+            font-size: 0.7rem;
+            font-weight: 800;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            padding: 8px 16px;
+            border-radius: 9999px;
+            backdrop-filter: blur(4px);
+            box-shadow: 0 4px 14px rgba(230, 0, 126, 0.35);
+            z-index: 2;
+        }
+        @media (prefers-reduced-motion: reduce) {
+            .hero-image-wrapper img {
+                opacity: 1 !important;
+                filter: none !important;
+                transform: none !important;
+                transition: none !important;
+            }
         }
 
         /* ── ARCHIVE GRID ── */
@@ -417,21 +471,20 @@
         .archive-card .card-img {
             height: 200px;
             overflow: hidden;
-            background: #f5f5f7;
+            background: linear-gradient(135deg, #f0f0f2 0%, #e8e8ea 100%);
             position: relative;
-            background-image: linear-gradient(135deg, #f0f0f2 0%, #e8e8ea 100%);
         }
         .archive-card .card-img img {
             width: 100%;
             height: 100%;
             object-fit: cover;
-            transition: transform 0.5s ease, opacity 0.3s ease;
+            transition: transform 0.5s ease, opacity 0.3s ease, filter 0.3s ease;
             display: block;
             aspect-ratio: 4 / 3;
         }
         .archive-card .card-img img.lazy-loading {
             opacity: 0;
-            filter: blur(4px);
+            filter: blur(6px);
         }
         .archive-card .card-img img.lazy-loaded {
             opacity: 1;
@@ -691,32 +744,29 @@
             transform: translateX(-4px);
         }
 
-        /* ===== BACK TO TOP BUTTON (copied from Home page) ===== */
+        /* ===== BACK TO TOP BUTTON (with integrated progress ring) ===== */
         .back-to-top {
             position: fixed;
             bottom: 32px;
             right: 32px;
             width: 52px;
             height: 52px;
-            padding: 0;
             border-radius: 50%;
             background: linear-gradient(135deg, #e6007e 0%, #b0006a 100%);
             color: #ffffff;
             border: 2px solid rgba(255, 255, 255, 0.25);
-            display: grid;
-            place-items: center;
+            display: flex;
+            align-items: center;
+            justify-content: center;
             cursor: pointer;
             z-index: 1500;
             opacity: 0;
             visibility: hidden;
             transform: translateY(20px);
-            transition: opacity 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94),
-                        visibility 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94),
-                        transform 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94),
-                        box-shadow 0.3s ease,
-                        background 0.3s ease;
+            transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
             box-shadow: 0 8px 24px rgba(230, 0, 126, 0.35);
-            -webkit-tap-highlight-color: transparent;
+            padding: 0;
+            overflow: hidden;
         }
         .back-to-top.visible {
             opacity: 1;
@@ -730,40 +780,38 @@
         .back-to-top:active {
             transform: translateY(-1px) scale(0.98);
         }
-        .back-to-top:focus-visible {
-            outline: 3px solid rgba(230, 0, 126, 0.45);
-            outline-offset: 3px;
-        }
 
-        /* scroll-progress ring */
+        /* Integrated progress ring — sits flush inside the button */
         .btb-ring {
             position: absolute;
             inset: 0;
             width: 100%;
             height: 100%;
+            display: block;
             transform: rotate(-90deg);
             pointer-events: none;
         }
-        .btb-ring circle {
-            fill: none;
-            stroke-width: 2.5;
-        }
         .btb-ring-track {
+            fill: none;
             stroke: rgba(255, 255, 255, 0.25);
+            stroke-width: 3;
         }
         .btb-ring-progress {
+            fill: none;
             stroke: #ffffff;
+            stroke-width: 3;
             stroke-linecap: round;
-            stroke-dasharray: 131.95;   /* 2π × r(21) */
+            stroke-dasharray: 131.95;
             stroke-dashoffset: 131.95;
-            transition: stroke-dashoffset 0.1s linear;
+            transition: stroke-dashoffset 0.15s linear;
         }
 
-        /* arrow */
+        /* Arrow icon centered on top of the ring */
         .btb-arrow {
             position: relative;
             width: 22px;
             height: 22px;
+            z-index: 2;
             transition: transform 0.3s ease;
         }
         .back-to-top:hover .btb-arrow {
@@ -791,7 +839,6 @@
             }
         }
 
-        /* ── Responsive ── */
         @media (max-width: 768px) {
             body {
                 padding-top: 70px;
@@ -828,8 +875,12 @@
             .archive-grid {
                 grid-template-columns: 1fr 1fr;
             }
+            .hero-image-wrapper {
+                margin-top: 30px;
+                border-radius: 14px;
+            }
 
-            /* Back-to-top responsive sizing */
+            /* Back-to-top responsive */
             .back-to-top {
                 bottom: 24px;
                 right: 20px;
@@ -837,11 +888,11 @@
                 height: 46px;
             }
             .btb-arrow {
-                width: 18px;
-                height: 18px;
+                width: 20px;
+                height: 20px;
             }
 
-            /* Floating back responsive sizing */
+            /* Floating back responsive */
             .floating-back {
                 bottom: 24px;
                 left: 20px;
@@ -859,6 +910,24 @@
             .archive-grid {
                 grid-template-columns: 1fr;
             }
+            .back-to-top {
+                width: 42px;
+                height: 42px;
+            }
+            .btb-arrow {
+                width: 18px;
+                height: 18px;
+            }
+            .hero-image-wrapper {
+                border-radius: 12px;
+            }
+            .hero-image-badge {
+                font-size: 0.6rem;
+                padding: 6px 12px;
+                bottom: 12px;
+                left: 12px;
+            }
+
             /* Floating back lifts above stacked layout */
             .floating-back {
                 bottom: 80px;
@@ -886,7 +955,7 @@
                 <a href="Home.html" class="logo-premium group">
                     <img src="obrian-transparent-logo-4461219.webp" alt="O'Brian Group" class="h-9 w-auto" width="40" height="36" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22%3E%3Crect width=%22100%22 height=%22100%22 fill=%22%23ed008e%22/%3E%3Ctext x=%2250%22 y=%2268%22 font-size=%2248%22 text-anchor=%22middle%22 fill=%22white%22 font-weight=%22bold%22 font-family=%22Inter%22%3EO%3C/text%3E%3C/svg%3E'">
                     <span class="logo-text hidden sm:inline-block">
-                        <span class="highlight"></span> 
+                        <span class="highlight"></span>
                     </span>
                 </a>
 
@@ -977,26 +1046,25 @@
         <span>Back to Our Work</span>
     </a>
 
-    <!-- ===== BACK TO TOP BUTTON (copied from Home) ===== -->
-    <button class="back-to-top" id="backToTopBtn" aria-label="Back to top" title="Back to top" aria-hidden="true" tabindex="-1">
-        <svg class="btb-ring" viewBox="0 0 48 48" aria-hidden="true">
-            <circle class="btb-ring-track" cx="24" cy="24" r="21"></circle>
-            <circle class="btb-ring-progress" cx="24" cy="24" r="21"></circle>
-        </svg>
-        <svg class="btb-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-             stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-            <path d="M12 19V5"></path>
-            <path d="M5 12l7-7 7 7"></path>
-        </svg>
-    </button>
-
-    <!-- ===== HERO ===== -->
+    <!-- ===== HERO WITH FEATURED ARCHIVE IMAGE ===== -->
     <section class="py-16 bg-white">
         <div class="max-w-7xl mx-auto px-6 text-center">
             <h1 class="text-4xl md:text-5xl font-black text-[#231e1f]">
                 <span class="gradient-text">Archive</span> Gallery
             </h1>
             <p class="font-body text-gray-600 text-lg mt-3 max-w-2xl mx-auto">Explore our collection of campaigns, events, and digital work.</p>
+
+            <!-- Featured archive image inside the hero -->
+            <div class="hero-image-wrapper">
+                <span class="hero-image-badge">Featured from the archive</span>
+                <img src="blog-archive-hero.webp"
+                     alt="A curated selection of O'Brian Group campaign artwork from the archive"
+                     width="1280" height="720"
+                     loading="lazy"
+                     decoding="async"
+                     onload="this.classList.add('loaded');"
+                     onerror="this.onerror=null;this.src='blog-archive-hero.webp';this.classList.add('loaded');" />
+            </div>
         </div>
     </section>
 
@@ -1074,16 +1142,75 @@
         </div>
     </footer>
 
+    <!-- ===== BACK TO TOP BUTTON (with integrated progress ring) ===== -->
+    <button class="back-to-top" id="backToTopBtn" aria-label="Back to top" title="Back to top" aria-hidden="false" tabindex="0">
+        <svg class="btb-ring" viewBox="0 0 48 48" aria-hidden="true">
+            <circle class="btb-ring-track" cx="24" cy="24" r="21"></circle>
+            <circle class="btb-ring-progress" cx="24" cy="24" r="21"></circle>
+        </svg>
+        <svg class="btb-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="M12 19V5"></path>
+            <path d="M5 12l7-7 7 7"></path>
+        </svg>
+    </button>
+
     <script>
         (function() {
-            // ===== HEADER SCROLL =====
+            // ===== HEADER SCROLL + BACK TO TOP + INTEGRATED PROGRESS RING =====
             var header = document.getElementById('mainHeader');
-            window.addEventListener('scroll', function() {
-                if (window.scrollY > 20) {
-                    header.classList.add('scrolled');
-                } else {
-                    header.classList.remove('scrolled');
+            var backToTopBtn = document.getElementById('backToTopBtn');
+            var ringBar = backToTopBtn.querySelector('.btb-ring-progress');
+
+            // r = 21 → circumference = 2π × 21 ≈ 131.95
+            var RING_CIRCUMFERENCE = 2 * Math.PI * 21;
+
+            if (ringBar) {
+                ringBar.style.strokeDasharray = RING_CIRCUMFERENCE;
+                ringBar.style.strokeDashoffset = RING_CIRCUMFERENCE;
+            }
+
+            var ticking = false;
+
+            function updateScrollUI() {
+                var scrollTop = window.scrollY || window.pageYOffset || document.documentElement.scrollTop || 0;
+                var maxScroll = Math.max(
+                    document.documentElement.scrollHeight - window.innerHeight,
+                    0
+                );
+
+                // ── Scroll progress (0 → 1) ──
+                var progress = maxScroll > 0 ? Math.min(scrollTop / maxScroll, 1) : 0;
+
+                if (ringBar) {
+                    ringBar.style.strokeDashoffset = RING_CIRCUMFERENCE * (1 - progress);
                 }
+
+                // ── Show / hide the button (with integrated ring) ──
+                var shouldShow = scrollTop > 400;
+                backToTopBtn.classList.toggle('visible', shouldShow);
+
+                // ── Header ──
+                if (header) header.classList.toggle('scrolled', scrollTop > 20);
+
+                ticking = false;
+            }
+
+            function requestScrollUI() {
+                if (!ticking) {
+                    ticking = true;
+                    window.requestAnimationFrame(updateScrollUI);
+                }
+            }
+
+            window.addEventListener('scroll', requestScrollUI, { passive: true });
+            window.addEventListener('resize', requestScrollUI);
+            window.addEventListener('load', requestScrollUI);
+
+            // Initial paint
+            updateScrollUI();
+
+            backToTopBtn.addEventListener('click', function() {
+                window.scrollTo({ top: 0, behavior: 'smooth' });
             });
 
             // ===== MOBILE MENU =====
@@ -1106,7 +1233,6 @@
                 });
             }
 
-            // Close menu on resize to desktop
             window.addEventListener('resize', function() {
                 if (window.innerWidth >= 1024) {
                     if (mobilePanel) mobilePanel.classList.remove('open');
@@ -1121,7 +1247,7 @@
                 'or-tambo.jpg',
                 'or-tambo-2.jpg',
                 'or-tambo-3.jpg',
-                'or-tambo-6.jpg',
+                '',
                 'or-tambo-5.jpg',
                 'or-tambo-7.jpg',
                 'or-tambo-8.jpg',
@@ -1130,7 +1256,7 @@
                 'so-good14.jpg',
                 'destin-suitcase8.jpg',
                 'destin-suitcase9.jpg',
-                'destin-suitcase10.jpg',
+                'e10.jpg',
                 'destin-suitcase13.jpg',
                 'destin-suitcase14.jpg',
                 'destin-suitcase15.jpg',
@@ -1139,7 +1265,7 @@
                 'destin-suitcase-1.jpg',
                 'destin-suitcase2.jpg',
                 'destin-suitcase3.jpg',
-                'destin-suitcase4.jpg',
+                'e4.jpg',
                 'destin-suitcase5.jpg',
                 'destin-suitcase6-1.jpg',
                 'destin-suitcase7.jpg',
@@ -1179,7 +1305,7 @@
                 'dsc-1817.jpg',
                 'dsc0281.jpg',
                 'facebook-psd-cover-mockup.jpg',
-                'fb-sharkfin-2.jpg',
+                'jpg',
                 'facebook-psd-cver-mockup.jpg',
                 'free-newspadvert-mockup-5.jpg',
                 // Grid items
@@ -1198,7 +1324,7 @@
                 // Print series
                 'print2.jpg',
                 'print3.jpg',
-                'print.jpg',
+                '
                 'print4.jpg',
                 'print5.jpg',
                 'print6.jpg',
@@ -1212,7 +1338,7 @@
                 'landscape-press.jpg',
                 'landscape-press2.jpg',
                 'landscape-press3.jpg',
-                'landscape-press4.jpg',
+                's4.jpg',
                 'newspaper-advert-ockups.jpg',
                 'outdoor-summer.jpg',
                 'outdoor-summer2.jpg',
@@ -1241,16 +1367,17 @@
 
             // ===== RENDER GRID =====
             var grid = document.getElementById('archiveGrid');
-            
+
             uniqueImages.forEach(function(src, index) {
                 var card = document.createElement('div');
                 card.className = 'archive-card';
                 card.setAttribute('data-index', index);
-                
+
                 // Extract filename for title
                 var filename = src.split('/').pop().replace(/\.[^/.]+$/, '');
                 var title = filename.replace(/[-_]/g, ' ').replace(/\b\w/g, function(l) { return l.toUpperCase(); });
-                
+
+                // Build the image with optimized loading attributes
                 card.innerHTML = `
                     <div class="card-img">
                         <img src="${src}" 
@@ -1343,53 +1470,6 @@
                     else prevImage();
                 }
             });
-
-            // ===== BACK TO TOP BUTTON LOGIC (copied from Home) =====
-            var backToTopBtn = document.getElementById('backToTopBtn');
-            var btbRingProgress = backToTopBtn ? backToTopBtn.querySelector('.btb-ring-progress') : null;
-            var BTB_RING_LENGTH = 2 * Math.PI * 21; // r = 21 in the 48×48 viewBox
-            var btbPrefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-            var btbTicking = false;
-
-            function updateBackToTop() {
-                var scrollY = window.scrollY || document.documentElement.scrollTop;
-                var maxScroll = document.documentElement.scrollHeight - window.innerHeight;
-                var progress = maxScroll > 0 ? Math.min(scrollY / maxScroll, 1) : 0;
-
-                var show = scrollY > 400;
-                backToTopBtn.classList.toggle('visible', show);
-                // keep it out of the a11y tree / tab order while hidden
-                backToTopBtn.setAttribute('aria-hidden', show ? 'false' : 'true');
-                backToTopBtn.tabIndex = show ? 0 : -1;
-
-                if (btbRingProgress) {
-                    btbRingProgress.style.strokeDashoffset =
-                        (BTB_RING_LENGTH * (1 - progress)).toFixed(2);
-                }
-
-                btbTicking = false;
-            }
-
-            if (backToTopBtn) {
-                window.addEventListener('scroll', function() {
-                    if (!btbTicking) {
-                        window.requestAnimationFrame(updateBackToTop);
-                        btbTicking = true;
-                    }
-                }, { passive: true });
-
-                updateBackToTop();
-
-                backToTopBtn.addEventListener('click', function() {
-                    window.scrollTo({
-                        top: 0,
-                        behavior: btbPrefersReducedMotion ? 'auto' : 'smooth'
-                    });
-                    // return focus to the top of the page for keyboard users
-                    var headerEl = document.getElementById('mainHeader');
-                    if (headerEl) headerEl.focus({ preventScroll: true });
-                });
-            }
         })();
     </script>
 
