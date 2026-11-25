@@ -408,7 +408,6 @@
         .mobile-menu-panel .mobile-dropdown-title {
             font-weight: 700;
             padding: 0.75rem 1rem;
-            color: #1a1a2e;
             cursor: default;
             font-size: 0.85rem;
             text-transform: uppercase;
@@ -423,57 +422,88 @@
             font-size: 0.95rem;
         }
 
-        /* ===== HERO (UPDATED FOR IMAGE) ===== */
+        /* ===== HERO WITH FEATURED BLOG IMAGE ===== */
         .hero {
-            padding: 100px 0 80px;
+            padding: 80px 0 40px;
             background: linear-gradient(160deg, #ffffff 0%, #f1f5f9 100%);
+            text-align: center;
             position: relative;
             overflow: hidden;
         }
-        .hero .container.hero-content {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            gap: 50px;
-        }
-        .hero-text {
-            flex: 1;
-            max-width: 600px;
-        }
-        .hero-text h1 {
+        .hero h1 {
             font-size: clamp(2.8rem, 5vw, 4rem);
             font-weight: 800;
             color: #231e1f;
             margin-bottom: 16px;
             letter-spacing: -0.02em;
-            text-align: left;
         }
-        .hero-text h1 .highlight {
+        .hero h1 .highlight {
             background: linear-gradient(135deg, #e6007e, #ff4dab);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
         }
-        .hero-text p {
+        .hero p {
             font-size: 1.15rem;
             color: #4a4a4a;
+            max-width: 600px;
+            margin: 0 auto 12px;
             font-weight: 400;
             line-height: 1.7;
-            text-align: left;
         }
-        .hero-image {
-            flex: 1;
-            max-width: 600px;
+
+        .hero-image-wrapper {
+            max-width: 1100px;
+            margin: 40px auto 0;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 20px 50px -15px rgba(0, 0, 0, 0.2);
+            position: relative;
+            aspect-ratio: 16 / 9;
+            background: linear-gradient(145deg, #f0e4ea, #faf5f7);
         }
-        .hero-image img {
+        .hero-image-wrapper img {
             width: 100%;
-            height: auto;
-            border-radius: 16px;
-            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.12);
-            transition: transform 0.3s ease;
+            height: 100%;
+            aspect-ratio: 16 / 9;
+            object-fit: cover;
+            display: block;
+            opacity: 0;
+            filter: blur(8px);
+            transform: scale(1.02);
+            transition: opacity 0.7s ease, filter 0.7s ease, transform 0.7s ease;
         }
-        .hero-image img:hover {
-            transform: translateY(-5px);
+        .hero-image-wrapper img.loaded {
+            opacity: 1;
+            filter: blur(0);
+            transform: scale(1);
+        }
+        .hero-image-wrapper:hover img.loaded {
+            transform: scale(1.03);
+        }
+        .hero-image-badge {
+            position: absolute;
+            bottom: 16px;
+            left: 16px;
+            background: rgba(230, 0, 126, 0.92);
+            color: #fff;
+            font-size: 0.7rem;
+            font-weight: 800;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            padding: 8px 16px;
+            border-radius: 9999px;
+            backdrop-filter: blur(4px);
+            box-shadow: 0 4px 14px rgba(230, 0, 126, 0.35);
+            z-index: 2;
+        }
+        @media (prefers-reduced-motion: reduce) {
+            .hero-image-wrapper img {
+                opacity: 1 !important;
+                filter: none !important;
+                transform: none !important;
+                transition: none !important;
+            }
         }
 
         /* ===== BLOG CARDS ===== */
@@ -862,30 +892,6 @@
         }
 
         /* ===== RESPONSIVE ===== */
-        @media (max-width: 992px) {
-            .hero {
-                padding: 80px 0 60px;
-            }
-            .hero .container.hero-content {
-                flex-direction: column;
-                text-align: center;
-                gap: 30px;
-            }
-            .hero-text {
-                max-width: 100%;
-            }
-            .hero-text h1 {
-                text-align: center;
-            }
-            .hero-text p {
-                text-align: center;
-            }
-            .hero-image {
-                max-width: 80%;
-                margin: 0 auto;
-            }
-        }
-
         @media (max-width: 768px) {
             body {
                 padding-top: 70px;
@@ -901,13 +907,14 @@
                 font-size: 1rem;
             }
             .hero {
-                padding: 60px 0 40px;
+                padding: 60px 0 30px;
             }
-            .hero-text h1 {
+            .hero h1 {
                 font-size: 2.2rem;
             }
-            .hero-image {
-                max-width: 100%;
+            .hero-image-wrapper {
+                margin-top: 30px;
+                border-radius: 14px;
             }
             .blog-grid {
                 grid-template-columns: 1fr;
@@ -926,8 +933,17 @@
             .footer .container {
                 grid-template-columns: 1fr;
             }
-            .hero-text h1 {
+            .hero h1 {
                 font-size: 2rem;
+            }
+            .hero-image-wrapper {
+                border-radius: 12px;
+            }
+            .hero-image-badge {
+                font-size: 0.6rem;
+                padding: 6px 12px;
+                bottom: 12px;
+                left: 12px;
             }
         }
     </style>
@@ -943,7 +959,7 @@
                 <a href="Home.html" class="logo-premium group">
                     <img src="obrian-transparent-logo-4461219.webp" alt="O'Brian Group" class="h-9 w-auto" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22%3E%3Crect width=%22100%22 height=%22100%22 fill=%22%23ed008e%22/%3E%3Ctext x=%2250%22 y=%2268%22 font-size=%2248%22 text-anchor=%22middle%22 fill=%22white%22 font-weight=%22bold%22 font-family=%22Inter%22%3EO%3C/text%3E%3C/svg%3E'">
                     <span class="logo-text hidden sm:inline-block">
-                        <span class="highlight"></span> 
+                        <span class="highlight"></span>
                     </span>
                 </a>
 
@@ -1028,17 +1044,22 @@
         <a href="Contact_Us.html" style="display:inline-flex; margin-top:1rem; background:linear-gradient(135deg,#e6007e,#ff1493); color:#fff; padding:0.6rem 1.5rem; border-radius:9999px; font-weight:700; text-decoration:none;">Contact Us</a>
     </div>
 
-    <!-- ===== UPDATED HERO WITH IMAGE ===== -->
+    <!-- ===== HERO WITH FEATURED BLOG IMAGE ===== -->
     <section class="hero">
-        <div class="container hero-content">
-            <div class="hero-text">
-                <h1>
-                    Exploring <span class="highlight">Boundless Horizons</span>
-                </h1>
-                <p>Navigating the world of branding, advertising, and digital innovation with O'BRIAN.</p>
-            </div>
-            <div class="hero-image">
-                <img src="hero-laptop.png" alt="Virtual reality and digital innovation concept" />
+        <div class="container">
+            <h1>Exploring <span class="highlight">Boundless Horizons</span></h1>
+            <p>Navigating the world of branding, advertising, and digital innovation with O'BRIAN.</p>
+
+            <!-- Featured blog image inside the hero -->
+            <div class="hero-image-wrapper">
+                <span class="hero-image-badge">Featured from the blog</span>
+                <img src="blog-staff-news-hero 2.webp"
+                     alt="Editorial illustration representing boundless creative horizons"
+                     width="1280" height="720"
+                     loading="lazy"
+                     decoding="async"
+                     onload="this.classList.add('loaded');"
+                     onerror="this.onerror=null;this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 1280 720%22%3E%3Crect width=%221280%22 height=%22720%22 fill=%22%23f5edf0%22/%3E%3Ctext x=%22640%22 y=%22380%22 font-size=%2242%22 text-anchor=%22middle%22 fill=%22%23e6007e%22 font-family=%22Montserrat,sans-serif%22 font-weight=%22bold%22%3EO%27Brian Group %C2%B7 Boundless Horizons%3C/text%3E%3C/svg%3E';this.classList.add('loaded');" />
             </div>
         </div>
     </section>
@@ -1177,7 +1198,7 @@
                 <div class="blog-card">
                     <div class="card-img">
                         <a href="Clown_Motel.html">
-                            <img src="clownsignweb-web.jpg" alt="Clown Motel" />
+                            <img src="clownsignweb-web.jpeg" alt="Clown Motel" />
                         </a>
                     </div>
                     <div class="card-body">
